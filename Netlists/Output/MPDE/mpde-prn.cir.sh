@@ -132,8 +132,10 @@ if ( !(-f "$CIR2.startup.prn")) {
     $xyceexit=14;
 }
 
-if (defined ($xyceexit)) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
+if ( $xyceexit != 0) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
 
+# check contents of MPDE-specific output files.  Use file_compare.pl
+# since xyce_verify does not handle these MPDE-specific output files.
 $retcode = 0;
 # check for simulation footer text
 # Output from Netlist 1
