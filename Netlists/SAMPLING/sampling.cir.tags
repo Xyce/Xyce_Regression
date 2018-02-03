@@ -1,0 +1,4 @@
+serial, nightly,  parallel, analytic
+valgrind
+capacitor
+sampling
