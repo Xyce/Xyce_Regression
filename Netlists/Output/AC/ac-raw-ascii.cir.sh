@@ -58,7 +58,7 @@ if ( -f "$CIRFILE.FD.prn" ) {
 
 if ( !(-f "$CIRFILE.raw")) {
     print STDERR "Missing output file $CIRFILE.raw\n";
-    $xyceexit=14;
+    print "Exit code = 14\n"; exit 14;
 }
 
 if ($xyceexit!=0) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
