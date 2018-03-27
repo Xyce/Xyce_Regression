@@ -45,4 +45,22 @@ Measure Start VSRC1 Value= 1.000000e+00	Measure End VSRC1 Value= 5.000000e+00
 PPRETURNNEG100 = FAILED
 Measure Start VSRC1 Value= 1.000000e+00	Measure End VSRC1 Value= 5.000000e+00
 
+MAXRETURNNEGONE = FAILED at  value = 0.000000e+00
+Measure Start  Value= 0.000000e+00	Measure End  Value= 0.000000e+00
+
+MAXRETURNNEG100 = FAILED at  value = 0.000000e+00
+Measure Start  Value= 0.000000e+00	Measure End  Value= 0.000000e+00
+
+MINRETURNNEGONE = FAILED at  value = 0.000000e+00
+Measure Start  Value= 0.000000e+00	Measure End  Value= 0.000000e+00
+
+MINRETURNNEG100 = FAILED at  value = 0.000000e+00
+Measure Start  Value= 0.000000e+00	Measure End  Value= 0.000000e+00
+
+PPRETURNNEGONE = FAILED with max at  value= 0.000000e+00 and min at  value= 0.000000e+00
+Measure Start  Value= 0.000000e+00	Measure End  Value= 0.000000e+00
+
+PPRETURNNEG100 = FAILED with max at  value= 0.000000e+00 and min at  value= 0.000000e+00
+Measure Start  Value= 0.000000e+00	Measure End  Value= 0.000000e+00
+
 
