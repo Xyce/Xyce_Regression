@@ -126,6 +126,24 @@ if ($system_code == 0) {
   ++$failed;
 }
 
+# -o was removed for Xyce 6.10
+$CMD="$XYCE -o dasho.prn $CIRFILE > dasho.out 2> dasho.err";
+$system_code = system($CMD);
+if ($system_code == 0) {
+  $exit_code = $system_code >> 8;
+  $signal_id = $system_code & 127;
+  print STDERR "Xyce -o exited with exit code $exit_code signal $signal_id\n";
+  ++$failed;
+}
+
+@searchstrings = ("Invalid option given: -o");
+$retval = $Tools->checkError("dasho.out",@searchstrings);
+if ($retval != 0)
+{
+  print STDERR "Check on error message for now invalid -o option failed\n";
+  ++$failed;
+} 
+
 $CMD="$XYCE -quiet $CIRFILE > quiet.out 2> quiet.err";
 $system_code = system($CMD);
 if ($system_code != 0) {

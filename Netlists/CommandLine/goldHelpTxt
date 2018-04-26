@@ -15,7 +15,6 @@ Arguments:
   -quiet                      suppress some of the simulation-progress messages sent to stdout
   -jacobian_test              jacobian matrix diagnostic
   -delim <TAB|COMMA|string>   set the output file field delimiter
-  -o <path>                   place the results into <path>
   -l <path>                   place the log output into <path>, "cout" to log to stdout
   -per-processor              create log file for each procesor, add .<n>.<r> to log path
   -remeasure [existing Xyce output file] recompute .measure() results with existing data
