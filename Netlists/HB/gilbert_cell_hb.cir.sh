@@ -98,6 +98,43 @@ if ($XYCE_VERIFY =~ m/valgrind_check/)
         exit 0;
     }
 }
+if ( !(-f "$CIRFILE.hb_ic.prn")) {
+    print STDERR "Missing output file $CIRFILE.hb_ic.prn\n";
+    $xyceexit=14;
+}
+
+if ( !(-f "$CIRFILE.startup.prn")) {
+    print STDERR "Missing output file $CIRFILE.startup.prn\n";
+    $xyceexit=14;
+}
+
+if (defined ($xyceexit)) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
+
+# verify output files
+$retcode = 0;
+$CMD="$XYCE_VERIFY $CIRFILE $GOLDPRN.HB.TD.prn $CIRFILE.HB.TD.prn > $CIRFILE.HB.TD.prn.out 2> $CIRFILE.HB.TD.prn.err";
+if (system($CMD) != 0) {
+    print STDERR "Verification failed on file $CIRFILE.HB.TD.prn, see $CIRFILE.HB.TD.prn.err\n";
+    $retcode = 2;
+}
+
+$CMD="$XYCE_ACVERIFY $GOLDPRN.HB.FD.prn $CIRFILE.HB.FD.prn $abstol $reltol $zerotol $freqreltol > $CIRFILE.HB.FD.prn.out 2> $CIRFILE.HB.FD.prn.err";
+if (system($CMD) != 0) {
+    print STDERR "Verification failed on file $CIRFILE.HB.FD.prn, see $CIRFILE.HB.FD.prn.err\n";
+    $retcode = 2;
+}
+
+$CMD="$XYCE_VERIFY $CIRFILE $GOLDPRN.hb_ic.prn $CIRFILE.hb_ic.prn > $CIRFILE.hb_ic.prn.out 2> $CIRFILE.hb_ic.prn.err";
+if (system($CMD) != 0) {
+    print STDERR "Verification failed on file $CIRFILE.hb_ic.prn, see $CIRFILE.hb_ic.prn.err\n";
+    $retcode = 2;
+}
+
+#$CMD="$XYCE_VERIFY $CIRFILE $GOLDPRN.startup.prn $CIRFILE.startup.prn > $CIRFILE.startup.prn.out 2> $CIRFILE.startup.prn.err";
+#if (system($CMD) != 0) {
+#    print STDERR "Verification failed on file $CIRFILE.startup.prn, see $CIRFILE.startup.prn.err\n";
+#    $retcode = 2;
+#}
 
 # verify output files
 $retcode = 0;
