@@ -95,5 +95,12 @@ if ( -f "$CIRFILE.TD.prn")
     $retcode = 2;
 }
 
+# the test should not make a .TD.prn file
+if ( -f "$CIRFILE.TD.prn") 
+{
+    print "Output file $CIRFILE.TD.prn produced, when it should not\n";
+    $retcode = 2;
+}
+
 print "Exit code = $retcode\n"; exit $retcode;
 
