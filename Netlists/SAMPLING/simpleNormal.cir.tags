@@ -2,3 +2,4 @@ serial, nightly,  parallel, normal
 valgrind
 capacitor
 sampling
+exclude
