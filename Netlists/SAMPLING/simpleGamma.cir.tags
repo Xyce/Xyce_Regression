@@ -2,3 +2,4 @@ serial, nightly, gamma, required:cxx11
 valgrind
 capacitor
 sampling
+exclude
