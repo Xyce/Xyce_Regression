@@ -49,4 +49,8 @@ R2 2 0 1
 * affect .MEASURE
 .MEASURE TRAN CURLYBRACES AVG {1+{V(1)*V(2)}}
 
+* This verifies that the fix for SRN Bug 2039 did not
+* affect .MEASURE
+.MEASURE TRAN CURLYBRACES AVG {1+{V(1)*V(2)}}
+
 .END
