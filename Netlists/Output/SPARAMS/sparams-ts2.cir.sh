@@ -1,5 +1,8 @@
 #!/usr/bin/env perl
 
+use XyceRegression::Tools;
+$Tools = XyceRegression::Tools->new();
+
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
 # $ARGV[1] = location of xyce_verify.pl script
