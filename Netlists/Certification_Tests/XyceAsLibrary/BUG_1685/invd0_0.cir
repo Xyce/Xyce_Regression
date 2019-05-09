@@ -1,0 +1,22 @@
+* File: invd0.pex.netlist
+* Created: Tue Jul 15 14:55:04 2008
+* Program "Calibre xRC"
+* Version "v2008.1_20.15"
+*
+.include "invd0.pex.netlist_0.pex"
+.subckt invd0  VDD VSS I ZN
+*
+* ZN	ZN
+* I	I
+* VSS	VSS
+* VDD	VDD
+M1 N_ZN_M1_d N_I_M1_g N_VSS_M1_s VSS N_VSS_M1_s N L=3.5e-07 W=1.25e-06
++ AD=1.125e-12 AS=7.5e-13 PD=4.3e-06 PS=3.7e-06
+M2 N_ZN_M2_d N_I_M2_g N_VDD_M2_s VSS N_VDD_M2_s P L=4.5e-07 W=2.5e-06
++ AD=2.25e-12 AS=1.5e-12 PD=6.8e-06 PS=6.2e-06
+*
+.include "invd0.pex.netlist.invd0_0.pxi"
+*
+.ends
+*
+*

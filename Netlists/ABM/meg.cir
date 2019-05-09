@@ -1,0 +1,20 @@
+* Megchk01.  Test use of "1Meg" in subckt params.  3/14/06
+
+.options timeint reltol=1.0e-3        
+.print tran V(1) V(2) V(3) V(4)
+
+.TRAN 1u 1m 0 1u
+
+V1  1 0 DC 0 SIN 0 1V 8kHz 0 0 0
+R11 1 2 2k
+XR12 2 0 Rsubckt PARAMS: Rs={1Meg*2m}
+
+V2  3 0 DC 0 SIN 0 1V 8kHz 0 0 0
+R21 3 4 2k
+XR22 4 0 Rsubckt PARAMS: Rs={1000k*2m}
+
+.subckt Rsubckt a b PARAMS: Rs=1
+Rs a b {RS}
+.ends Rsubckt
+
+.END

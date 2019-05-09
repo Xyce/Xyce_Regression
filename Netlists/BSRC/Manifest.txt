@@ -1,0 +1,9 @@
+Bsrc_A1.cir
+Bsrc_A2.cir
+Bsrc_B1.cir
+Bsrc_B1.cir.prn.gs.pl
+Bsrc_B1.cir.sh
+Bsrc_C1.cir
+Bsrc_D1.cir
+Bsrc_D1.cir.tags
+tags

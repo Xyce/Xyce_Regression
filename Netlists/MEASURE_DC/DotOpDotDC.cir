@@ -1,0 +1,23 @@
+*********************************************************
+* This Xyce netlist has both a .OP statement and a .DC
+* statement.  The results for .MEASURE DC should not
+* be impacted by the presence of a .OP statement.
+*
+* However, remeasure will not work unless the .OP
+* statement is commented out.
+*********************************************************
+.op
+.DC V1 1 5 1
+.PRINT DC V(1) V(2)
+
+V1 1 0 1
+R1 1 2 1
+R2 2 1 1
+
+.MEASURE DC maxv2 MAX V(2)
+.MEASURE DC minv2 MIN V(2)
+.MEASURE DC ppv2 PP V(2)
+.measure dc FitErrorInfPrn error v(2) file=DotOpDotDCRawData.prn comp_function=infnorm indepvarcol=1 depvarcol=2
+
+.END
+

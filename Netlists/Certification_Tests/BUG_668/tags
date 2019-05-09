@@ -1,0 +1,4 @@
+serial, parallel, nightly
+tecplot
+numpy
+bug668

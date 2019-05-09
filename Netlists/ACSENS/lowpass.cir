@@ -1,0 +1,17 @@
+Lowpass filter from https://www.electronics-tutorials.ws/filter/filter_2.html
+
+v1 1 0 ac 10
+r1 1 2 4.7k
+c1 2 0 47n
+
+*.ac dec 10 1 10k
+*.ac lin 1 720 720
+.ac lin 1 360 360
+.print ac format=tecplot  vm(1) vp(1) vm(2) vp(2)   {20*log(vm(2)/vm(1))}  v(2)
+
+.sens objvars=2 param=r1:r
+.options sensitivity direct=1 adjoint=1  stdoutput=1
+
+.options device debuglevel=-100
+
+.end 

@@ -1,0 +1,20 @@
+Netlist to Test Xygra
+*YXYGRA R1 1 0  6 0 7 0
+*+ COIL = { NAME       = FOO  ,BAR,BAZ
+*+          NUMWINDINGS=1 ,1 ,1   }
+
+I1 1 0 SIN(0 .001 10)
+I6 6 0 SIN(0 .001 10)
+I7 7 0 SIN(0 .001 10)
+v1 1a 0 0
+v2 6a 0 0
+v3 7a 0 0
+r1 1 1a 1
+r2 6 6a 1
+r3 7 7a 1
+*.DC V1 0 5V 1V
+.tran 1us 1s
+*.PRINT DC V(1) I(V1)
+.PRINT tran I(V1)  I(V2)  I(V3)
+.model foobar xygra ()
+.END

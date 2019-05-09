@@ -1,0 +1,10 @@
+*~
+.*.swp
+Netlists/FastrackTests
+Netlists/SandiaTests
+OutputData/FastrackTests
+OutputData/SandiaTests
+*.pyc
+Xyce_SandiaRegression
+Xyce_FastrackRegression
+perl.core

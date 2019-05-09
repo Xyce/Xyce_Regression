@@ -1,0 +1,43 @@
+Testing ill-formed .MEASURE lines
+*******************************************************************
+* These .MEASURE lines lack enough of the <variable>=<val> syntax
+*
+* See SON Bug 673
+*
+*
+*
+*
+*
+* *****************************************************************
+VS1  1  0  SIN(0 1.0 1KHZ 0 0)
+VS2  2  0  SIN(0 2.0 1KHZ 0 0)
+R1   1  0  100
+R2   2  0  100
+.TRAN 0 1ms
+.PRINT TRAN FORMAT=NOINDEX V(1) V(2)
+
+* various bogo measure lines that will cause a fatal error within
+* the updateTran() function in the various measure functions
+.measure tran one avg 
+.measure tran twoa trig v(1)
+.measure tran twob trig v(1)=0.9
+.measure tran twoc trig v(1)=0.9 targ
+.measure tran twod trig v(1)=0.9 targ=
+.measure tran threea find v(1) when
+.measure tran threeb when
+
+* this line will cause a fatal error within measureBase, because
+* the AT qualifier isn't allowed within a TARG clause
+.measure tran foura trig v(1)=0.9 targ AT=0.1
+
+* Invalid PARAM usage
+.measure tran fivea param=
+
+* these two lines will cause a fatal error within measureBase, because
+* the FROM qualifer for five cannot depend on another measure
+* statement
+.MEASURE TRAN STARTTIME WHEN V(2)=1
+.MEASURE TRAN five MAX V(1) FROM={STARTTIME}
+
+.END
+

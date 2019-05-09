@@ -1,0 +1,21 @@
+A test of the measure rms functionality
+*******************************************************************************
+*
+* a few sources of different types
+VS  1  0  SIN(0 1.0 0.5 0 0)
+VP  2  0  PULSE( 0 10 0.2 0.2 0.2 0.5 2 )
+
+R1  1  0  100K
+R2  2  0  100K
+C1c 1  0 1e-6
+C2c 2  0 1e-6
+
+.TRAN 0  1 
+.PRINT TRAN FORMAT=NOINDEX V(1) V(2) 
+
+
+.measure tran riseSine  trig v(1) frac_max=0.1 targ v(1) frac_max=0.90 
+.measure tran risePulse trig v(2) frac_max=0.1 targ v(2) frac_max=0.90
+
+.END
+

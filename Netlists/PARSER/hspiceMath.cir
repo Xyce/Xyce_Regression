@@ -1,0 +1,44 @@
+********************************************************
+* This netlist uses HSPICE syntaxes.  It must be run
+* with the either of these command line options:
+*
+*   -hspice-ext all
+*   -hspice-ext math
+*
+* See SON Bug 1136 for more details.
+*
+********************************************************
+
+* test exponentiation with HSPICE syntaxes
+.PARAM rval2='2**2'
+.PARAM rval4='2^2'
+
+* test hspice logarithm functions
+.PARAM log1='log10(10)'
+.PARAM log2='log(10)'
+
+* test logical AND, with HSPICE syntax
+.PARAM P1=1
+.PARAM P2=1
+.PARAM P3=0
+.PARAM P4=0
+.PARAM ANDVAL1 = '(P1&&P2) ? 1.0 : 2.0'
+.PARAM ANDVAL2 = '(P1&&P3) ? 1.0 : 2.0'
+
+* test logical OR with HSPICE syntax
+.PARAM ORVAL1 = '(P1||P3) ? 1.0 : 2.0'
+.PARAM ORVAL2 = '(P3||P4) ? 1.0 : 2.0'
+
+V1 1 0 1
+R1 1 2 1
+R2 2 0 'rval2'
+
+V3 3 0 1
+R3 3 4 1
+R4 4 0 'rval4'
+
+.DC V1 1 2 1
+.PRINT DC PRECISION=4 V(1) V(2) V(4) {rval2} {rval4} {log1} {log2}
++ {ANDVAL1} {ANDVAL2} {ORVAL1} {ORVAL2}
+
+.END

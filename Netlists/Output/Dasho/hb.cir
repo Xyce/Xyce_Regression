@@ -1,0 +1,44 @@
+****************************************************************
+* For testing -o (SON Bug 911), after the fix for SON Bug 1011,
+* the key points are that:
+*
+*   1) Variables from .PRINT HB and .PRINT HB_FD statements
+*      will be concatenated into one output file
+*
+*   2) .PRINT HB_TD, .PRINT HB_IC and .PRINT HB_STARTUP lines
+*       should produce no output.  However, warning messages 
+*       about that should be produced.
+*
+*   3) the output should go to the file specified by -o,
+*      and not to the default file name or the file 
+*      specified with FILE=.  It should be a FORMAT=STD
+*      file with space as the delimiter.
+*
+*   4) the .sh file will run this netlist with -delim COMMA
+*      to verify that command line option is ignored when
+*      -o is also specified.
+*
+****************************************************************
+
+* Test netlist
+R1 1 0 1k
+C1 1 0 1p
+D1 2 1 D1N3940
+.MODEL D1N3940 D (IS=4e-10 RS=.105 N=1.48 TT=8e-7 CJO=1.95E-11 VJ=.4 M=.38
++ EG=1.36 XTI=-8 KF=0 AF=1 FC=.9 BV=600 IBV=1e-4)
+*            low high td tr  tf  pulsewidth    period
+v1 2 0 pulse 1V 2V  0 1e-5 1e-5 {1/1e4/2-1e-5 } {1/1e4}
+
+.print HB FORMAT=CSV file=foo v(1) vr(1) vi(1)
+.hb 1e4
+
+* explicit .PRINT lines for the other HB output.  Only the
+* HB_FD line should be in the -o output (via print line
+* concatenation
+.print HB_FD FORMAT=CSV file=foo v(2)
+.print HB_TD FORMAT=TECPLOT v(1) v(2) vr(1) vi(1) i(r1) ir(r1) ii(r1)
+.print HB_IC FORMAT=CSV i(r1) 
+.PRINT HB_STARTUP FORMAT=CSV ir(r1) ii(r1)
+
+.options hbint saveicdata=1 STARTUPPERIODS=2
+.end

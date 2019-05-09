@@ -1,0 +1,8 @@
+exclude
+supernode1.cir
+supernode2.cir
+supernode3.cir
+supernode4.cir
+supernode5.cir
+supernode5.cir.tags
+tags

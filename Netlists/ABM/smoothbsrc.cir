@@ -1,0 +1,16 @@
+simple Bsrc tests
+
+
+.options device smoothbsrc =1
+
+E_2         3 0   VALUE {IF(((V(1) < 0.8) & (V(2) < 0.8)),  3.5, 0.4)}
+
+v1 1 0 pulse( 0   2.2  0 1e-8 1e-8 5e-7 1e-6)
+
+v2 2 0 0.5
+
+.tran 0 1e-5
+
+.print tran v(3)
+
+.end

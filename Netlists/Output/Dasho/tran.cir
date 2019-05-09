@@ -1,0 +1,39 @@
+***************************************************************
+* For testing -o (SON Bug 911), the key points are
+* that the netlist has:
+*
+*   1) multiple .PRINT TRAN statements with formats
+*      other than FORMAT=STD.  Print line concatenation
+*      should still work.
+*
+*   2) a .PRINT SENS line, for which no output should
+*      be produced.  A warning message about that should
+*      be produced though.
+*
+*   3) the output should go to the file specified by -o,
+*      and not to the default file name or the file 
+*      specified with FILE=.   It should be a FORMAT=STD
+*      file with space as the delimiter.
+*
+*   4) the .sh file will run this netlist with -delim COMMA
+*      to verify that command line option is ignored when
+*      -o is also specified.
+*
+****************************************************************
+
+V1 1 0 PWL 0 0 1 1
+R1 1 2 1
+R2 2 0 1
+
+.TRAN 0 1
+.PRINT TRAN FORMAT=CSV V(1) 
+.PRINT TRAN FORMAT=CSV FILE=tranFoo V(2)
+.OPTIONS OUTPUT INITIAL_INTERVAL=0.2
+
+.sens objfunc={V(2)} param=R2:R 
+.print SENS FORMAT=CSV V(1) R1:R R2:R
+.options SENSITIVITY direct=1 adjoint=0  
+
+.END
+
+

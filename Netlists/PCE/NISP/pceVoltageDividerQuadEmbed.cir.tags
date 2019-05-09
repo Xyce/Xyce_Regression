@@ -1,0 +1,8 @@
+serial, nightly,  parallel, analytic
+embeddedsampling
+pce
+quadrature_pce
+nisp
+required:stokhos
+required:cxx11
+valgrind

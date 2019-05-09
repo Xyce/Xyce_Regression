@@ -1,0 +1,2 @@
+serial, parallel, nightly, sens, required:cxx11
+bsim6

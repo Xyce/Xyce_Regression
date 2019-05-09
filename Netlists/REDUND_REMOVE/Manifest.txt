@@ -1,0 +1,8 @@
+README
+gnd_and_redund.cir
+gnd_and_redund.cir.gs.pl
+gnd_and_redund.cir.sh
+just_redund.cir
+just_redund.cir.gs.pl
+just_redund.cir.sh
+tags

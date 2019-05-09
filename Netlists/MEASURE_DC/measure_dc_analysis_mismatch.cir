@@ -1,0 +1,24 @@
+Testing .MEASURE lines that are mismatched with the Analysis Types
+*********************************************************************
+* This tests the error messages that should occur if an AC or
+* TRAN mode measure is requested for a netlist that is doing a
+* .DC analysis. 
+* 
+* See SON Bug 889 for more details.
+*
+*
+*********************************************************************
+
+vsrc1   1a 0 1
+rload1a 1a 1b 0.1
+rload1b 1b 0 1
+
+.DC vsrc1 1 5 1
+.print dc vsrc1:DCV0 v(1a) v(1b)
+
+* Test what happens when a TRAN or AC measure is requested for a .DC netlist
+.MEASURE TRAN tranmax max v(1a)
+.MEASURE AC acerror ERROR vm(1b) FILE=ErrorTestACRawData.FD.prn COMP_FUNCTION=L1NORM INDEPVARCOL=1 DEPVARCOL=3
+
+.END
+

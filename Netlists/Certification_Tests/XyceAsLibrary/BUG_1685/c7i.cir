@@ -1,0 +1,20 @@
+CMOS7 inverter with interface to VHDL
+
+.include cmos7.include
+.include cmos7_soi.model
+.include invd0.cir
+
+.options device debuglevel=-100
+*.options timeint debuglevel=-100 method=7 erroption=1 
+.options timeint debuglevel=-100 
+
+Xinput  IN    da_invd0
+Xoutput OUT   ad_invd0
+
+V_VDD  VDD 0   3.3
+XINV0  VDD 0 IN OUT   invd0
+
+.tran 1ps 10ns
+.print tran V(IN) V(OUT)
+
+.end

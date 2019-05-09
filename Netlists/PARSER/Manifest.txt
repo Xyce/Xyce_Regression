@@ -1,0 +1,16 @@
+bug_203.cir
+bug_203.cir.tags
+bug_250.cir
+scalingFactors.cir
+aAsAtto.cir
+aAsAtto.cir.sh
+aAsAtto.cir.tags
+aAsAmp.cir
+hspiceMath.cir
+hspiceMath.cir.sh
+hspiceMath.cir.tags
+bad-hspice-ext.cir
+bad-hspice-ext.cir.sh
+bad-hspice-ext.cir.tags
+bad-hspice-ext.cir.options
+tags

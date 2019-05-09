@@ -1,0 +1,39 @@
+Test Circuit for the Hyperbolic Sine, Cosine and Tangent Functions
+********************************************************************************
+* Tier No.:     1
+* Directory/Circuit Name: ABM/scth.cir
+* Description:  Test of the Xyce analog behavioral modeling functions for
+*         hyperbolic sine, hypberbolic cosine and hypberbolic tangent 
+*         functions.
+* Input:  VS 
+* Output: V(2), V(3), V(4), V(5)
+* Analysis:
+*	A DC voltage source, VS or V(1),  is used as the circuit input.  Four nonlinear dependent 
+*	voltage sources are used to define the functions as follows:
+*		V(2)=B2=SINH(V(1)) = hyperbolic sine of input source
+*               v(2a) = B2a = (exp(v(1))-exp(-v(1)))/2 should be same as V(2)
+*		V(3)=B3=COSH(V(1)) =  "         cosine of input source
+*               v(3a) = B3a = (exp(v(1))+exp(-v(1)))/2 should be same as V(3)
+*		V(4)=B4=TANH(V(1)) =  "         tangent of input source
+*		V(5)=B5=V(2)/V(3) = mathematical evaluation of the hyperbolic 
+*                   tangent function =(SINH/COSH), should match V(4)
+*
+********************************************************************************
+VS  1  0  0
+R1  1  0  1
+B2  2  0  V = {SINH(V(1))}
+B2a 2a 0  V = {(exp(v(1))-exp(-V(1)))/2}
+R2  2  0  1
+R2a  2a  0  1
+B3  3  0  V = {COSH(V(1))}
+B3a 3a 0  V = {(exp(v(1))+exp(-V(1)))/2}
+R3  3  0  1
+R3a  3a  0  1
+B4  4  0  V = {TANH(V(1))}
+R4  4  0  1
+B5  5  0  V = {V(2)/V(3)}
+R5  5  0  1
+.DC VS -20 20 0.1
+.PRINT DC V(1) V(2) V(2a) V(3) V(3a) V(4) V(5)
+.END
+

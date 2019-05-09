@@ -1,0 +1,42 @@
+A test of the PRECISION keyword in .MEASURE.
+* This tests MAX, MIN, PP, TRIG/TARG and DERIV.  The other measures use the 
+* output functions from the base class.  That code is tested with the AVG
+* measure.
+*******************************************************************************
+*
+* a few sources of different types
+VS  1  0  SIN(0 1.0 1KHz 0 0)
+R1  1  0  100
+
+.TRAN 0 1ms
+
+.PRINT TRAN FORMAT=NOINDEX V(1) 
+
+* MAX
+.measure tran maxSine max V(1)
+.measure tran maxSineWP max V(1) precision=10
+
+* MIN
+.measure tran minSine min V(1)
+.measure tran minSineWP min V(1) precision=10
+
+*PP
+.measure tran ppSine PP V(1)
+.measure tran ppSineWP PP V(1) precision=10
+
+*TRIG/TARG
+.measure tran riseSine TRIG v(1)=0.1 TARG v(1)=0.9
+.measure tran riseSineWP TRIG v(1)=0.1 TARG v(1)=0.9 PRECISION=10
+
+* DERIV
+.measure tran dSinWhen deriv V(1) WHEN V(1)=0.2
+.measure tran dSinWhenWP deriv V(1) WHEN V(1)=0.2 PRECISION=10
+.measure tran dSinATwp deriv V(1) AT=0.0004 PRECISION=10
+.measure tran dSinAT deriv v(1) AT=0.00022
+
+*AVG - which uses the base class functions
+.measure tran avgSine avg V(1)
+.measure tran avgSineWP avg V(1) precision=10
+
+.END
+

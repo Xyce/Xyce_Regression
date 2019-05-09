@@ -1,0 +1,14 @@
+Test circuit for HB output through expressions
+
+.param SIG_FREQ=100kHz
+.param SIG_PER={1/SIG_FREQ}
+v1 a 0 pulse(0 5 0 5n 5n {SIG_PER/2-10n} {SIG_PER})
+R1 a b 1
+R2 b 0 2
+C1 a b 1u
+
+.hb 100kHz
+
+.print hb V(B) {V(B)} VR(B) {VR(B)} VI(B) {VI(B)} VM(B) {VM(B)} VDB(B) {VDB(B)} VP(B) {VP(B)} 
+
+.end

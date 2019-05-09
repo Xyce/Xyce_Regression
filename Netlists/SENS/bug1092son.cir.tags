@@ -1,0 +1,3 @@
+serial, parallel, nightly, sens, FD, direct, bug1092son, required:cxx11
+bsim6
+resistor

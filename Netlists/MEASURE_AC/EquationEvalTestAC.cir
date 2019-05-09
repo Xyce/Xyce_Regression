@@ -1,0 +1,41 @@
+* Test AC mode support for the EQN measure.
+* To be conservative, there are subtests for each
+* valid operator (V, VR, VI, VP, VM and VDB) for
+* each measure type.
+*
+* See SON Bug 1140 for more details
+*****************************************************
+
+* Trivial high-pass filter (V-C-R) circuit
+R1 b 0 2
+C1 a b 1u
+V1 a 0 DC 0V AC 1
+
+.print AC vr(b) vi(b) vm(b) vp(b) vdb(b)
+.ac dec 5 100Hz 1e6
+
+* EQN
+.MEASURE AC eqnvb eqn {1+v(b)}
+.MEASURE AC eqnvmb eqn {1+vm(b)}
+.MEASURE AC eqnvrb eqn {1+vr(b)}
+.MEASURE AC eqnvib eqn {1+vi(b)}
+.MEASURE AC eqnvpb eqn {1+vp(b)}
+.MEASURE AC eqnvdbb eqn {1+vdb(b)}
+
+* PARAM is a synonym for EQN in Xyce
+.MEASURE AC paramvb param={1+v(b)}
+.MEASURE AC paramvmb param={1+vm(b)}
+.MEASURE AC paramvrb param={1+vr(b)}
+.MEASURE AC paramvib param={1+vi(b)}
+.MEASURE AC paramvpb param={1+vp(b)}
+.MEASURE AC paramvdbb param={1+vdb(b)}
+
+* add FROM-TO
+.MEASURE AC eqnvmbFromTo eqn {1+vm(b)} FROM=1e3 TO=1e5
+
+* Tests should return -1 or -100, since the FROM-T0 window 
+* has various problems
+.measure ac eqnReturnNegOne eqn v(b) FROM=1e7 TO=1e8
+.measure ac maxReturnNeg100 max vr(b) FROM=1e6 TO=1e2 DEFAULT_VAL=-100
+.end
+

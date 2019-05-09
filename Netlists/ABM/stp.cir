@@ -1,0 +1,11 @@
+test for stp (step function)
+
+.param Delay=0.5
+.Func stpTest(t) { STP(t-Delay) }
+
+B1   1  0  V = {stpTest(time) * 5.0}
+R1   1  0  1
+
+.tran  0.1 1.0
+.print tran V(1)
+

@@ -1,0 +1,2 @@
+serial, nightly, pde, parallel, 2d
+required:klu

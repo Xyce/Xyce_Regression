@@ -1,0 +1,7 @@
+test for sdt capability.
+V1 1 0 1.0
+Bsrc 1 0 I={-sdt(V(1))}
+
+.tran 10us 1.0
+.print tran I(V1)
+
