@@ -18,3 +18,7 @@ dashRNotSupported.cir.options
 tags
 RCladderSP1.cir
 RCladderSP1.cir.sh
+ac.cir
+ac.cir.sh
+NegativeZ0.cir
+NegativeZ0.cir.sh
