@@ -8,6 +8,8 @@ AC_extractACData.cir
 AC_extractACData1.cir
 AC_extractACData2.cir
 AC_extractACData.cir.sh
+AC_doInit.cir
+AC_doInit.cir.sh
 AC_setAnalysisParams.cir
 AC_setAnalysisParams1.cir
 AC_setAnalysisParams2.cir
@@ -54,6 +56,8 @@ OptionBlock_extractOptionsData_1.cir
 OptionBlock_extractOptionsData_1.cir.sh
 OptionBlock_extractOptionsData_2.cir
 OptionBlock_extractOptionsData_2.cir.sh
+OptionBlock_extractDotDataStatement.cir
+OptionBlock_extractDotDataStatement.cir.sh
 ParsingHelpers_handleEndlLine1.cir
 ParsingHelpers_handleEndlLine1.cir.sh
 bogoLib1
