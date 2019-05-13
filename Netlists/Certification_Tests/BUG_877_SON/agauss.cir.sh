@@ -52,7 +52,7 @@ $num_trys=0;
 $finished=0;
 
 # Now run that netlist
-$CMD="$XYCE -hspice-ext random $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
+$CMD="$XYCE $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
 if (system($CMD) != 0)
 {
     `echo "Xyce EXITED WITH ERROR! on $CIRFILE" >> $CIRFILE.err`;
@@ -81,7 +81,7 @@ $CIRPRN_save=$CIRPRN."_save";
 `mv $CIRPRN $CIRPRN_save`;
 
 #Now re-run Xyce with reported seed:
-$CMD="$XYCE -randseed $seed -hspice-ext random  $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
+$CMD="$XYCE -randseed $seed $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
 if (system($CMD) != 0)
 {
     `echo "Xyce EXITED WITH ERROR! on $CIRFILE" >> $CIRFILE.err`;

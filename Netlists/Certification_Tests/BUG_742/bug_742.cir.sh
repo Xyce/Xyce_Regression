@@ -36,7 +36,7 @@ sub verbosePrint
 $NUMRUNS = 2;
 for($i=0;$i<$NUMRUNS;$i++)
 {
-  $CMD="$XYCE -hspice-ext random $CIRFILE > /dev/null 2> $CIRFILE.err";
+  $CMD="$XYCE $CIRFILE > /dev/null 2> $CIRFILE.err";
   if (system("$CMD") != 0) { print "Exit code = 10\n"; exit 10; }
 
   open(OUT,"$CIRFILE.prn");
