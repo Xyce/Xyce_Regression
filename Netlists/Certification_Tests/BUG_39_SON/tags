@@ -1,1 +1,1 @@
-analytic, serial, valgrind, nightly
+analytic, serial, valgrind, nightly, rand
