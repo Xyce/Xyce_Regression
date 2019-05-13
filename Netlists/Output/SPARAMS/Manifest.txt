@@ -22,3 +22,5 @@ ac.cir
 ac.cir.sh
 NegativeZ0.cir
 NegativeZ0.cir.sh
+RCladderSPdc.cir
+RCladderSPtran.cir
