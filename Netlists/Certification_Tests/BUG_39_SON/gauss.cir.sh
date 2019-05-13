@@ -62,7 +62,7 @@ $finished=0;
 while ($num_tries < 2 && $finished == 0)
 {
 # Now run that netlist
-    $CMD="$XYCE $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
+    $CMD="$XYCE -hspice-ext random $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
     if (system($CMD) != 0)
     {
         `echo "Xyce EXITED WITH ERROR! on $CIRFILE" >> $CIRFILE.err`;
