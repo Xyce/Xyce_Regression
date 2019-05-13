@@ -36,6 +36,10 @@ ampSens_vbicPNPdefault.cir
 ampSens_vbicPNPdefault.cir.sh
 ampSens_vbicPNPdefault.cir.tags
 ampSens_vbicPNPdefaultFD.cir
+ampSens_op.cir.tags
+ampSens_op.cir.sh
+ampSens_10v.cir
+ampSens_op.cir
 bsim6invAdjoint.cir
 bsim6invAdjoint.cir.sh
 bsim6invAdjoint.cir.TRADJ.prn.gs
@@ -250,3 +254,6 @@ bug1092son.cir.tags
 bug1092sonA.cir 
 bug1092sonB.cir
 exclude
+
+
+
