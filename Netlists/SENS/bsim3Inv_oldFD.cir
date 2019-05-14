@@ -18,12 +18,10 @@ MP1 OUT IN VDD VDD CMOSP L=0.46U W=1U  AD=1P   AS=1P   PD=4U  PS=4U
 ** Analysis setup **
 *
 *.tran 20ns 30us
-.tran 20ns 3us
-*COMP v(vout) reltol=5.0e-3 abstol=5.0e-7
-*COMP v(in) reltol=5.0e-3 abstol=5.0e-7
-*COMP v(1) reltol=5.0e-3 abstol=5.0e-7
+.tran 20ns 1.5042e-6 1.504e-6
+
 .print tran PRECISION=10 WIDTH=19 v(out3) v(in) v(1)
-.options timeint reltol=5e-3 abstol=1e-3
+.options timeint reltol=1e-5 abstol=1e-6
 
 .options device debuglevel=-100
 
@@ -31,7 +29,7 @@ MP1 OUT IN VDD VDD CMOSP L=0.46U W=1U  AD=1P   AS=1P   PD=4U  PS=4U
 .sens param=cmosp:Tox,cmosn:Tox
 + objfunc={v(out3)}
 
-.print SENS v(in) 
+.print SENS 
 
 .options SENSITIVITY direct=1 adjoint=0  forcefd=1
 
