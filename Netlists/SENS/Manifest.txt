@@ -253,6 +253,11 @@ bug1092son.cir.sh
 bug1092son.cir.tags
 bug1092sonA.cir 
 bug1092sonB.cir
+bsim3Inv.cir
+bsim3Inv.cir.sh
+bsim3Inv.cir.tags
+bsim3Inv_newFD.cir
+bsim3Inv_oldFD.cir
 exclude
 
 
