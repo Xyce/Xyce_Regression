@@ -1,0 +1,4 @@
+serial, nightly,  parallel, jfet, tempinterp, bug1150son
+valgrind
+step
+temp
