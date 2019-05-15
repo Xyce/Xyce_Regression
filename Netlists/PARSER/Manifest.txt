@@ -9,6 +9,9 @@ aAsAmp.cir
 hspiceMath.cir
 hspiceMath.cir.sh
 hspiceMath.cir.tags
+random.cir
+random.cir.sh
+random.cir.tags
 bad-hspice-ext.cir
 bad-hspice-ext.cir.sh
 bad-hspice-ext.cir.tags

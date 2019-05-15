@@ -1,0 +1,26 @@
+********************************************************
+* This netlist uses HSPICE syntaxes.  It must be run
+* with the either of these command line options:
+*
+*   -hspice-ext all
+*   -hspice-ext random
+*
+* See SON Bug 1136 for more details.
+*
+********************************************************
+
+* These should return the mean values of 1 when
+* -hspice-ext random is used.
+.PARAM PA={AGAUSS(1,1,1)}
+.PARAM PB={GAUSS(1,1,1)}
+
+.DC V1 1 1 1
+
+V1 1 0 1
+R1 1 0 {2*PA}
+
+V2 2 0 1
+R2 2 0 {2*PB}
+
+.PRINT DC V(1) I(R1) I(R2) {PA} {PB}
+.END
