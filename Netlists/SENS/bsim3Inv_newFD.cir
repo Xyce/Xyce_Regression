@@ -1,11 +1,25 @@
 THIS CIRCUIT TESTS THE MOS LEVEL=9 MODEL AS A CHAIN OF INVERTERS IN SERIES
 ********************************************************************************
-* TR vs. TRAN test, lower case.
+*
+* This is part of a test of analytic sensitivities for the bsim3 
+* model.    It is compared against finite difference sensitivities.
+* The sensitivities are of an output node voltage with respect to oxide 
+* thickness.
+*
+* The part of the transient that is output, and subject to this test, is 
+* very short.  These sensitivities are nearly zero most of the time, but become 
+* large near the square pulse transitions.  To avoid zero crossing errors (which 
+* are harder to fix for sensitivity outputs) I chose to have the transient output 
+* be just a narrow window near that transition.
+*
 ********************************************************************************
+*
 * This is a chain of 5 1-input CMOS inverters
 * The NMOS and PMOS devices have their gates tied 
 * together to form a CMOS inverter. VIN1, the input signal, is applied to a 1K
 * resistor,RIN, which is connected to the gates of the inverter at node IN.
+*
+********************************************************************************
 
 .subckt INVERTER IN OUT VDD GND
 MN1 OUT IN GND GND CMOSN L=0.35U W=4.2U AD=4.2P AS=4.2P PD=10U PS=10U
