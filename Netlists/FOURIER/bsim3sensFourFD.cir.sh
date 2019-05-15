@@ -164,9 +164,13 @@ while( ($line2=<RESULTS2>) && ($line_gs=<GOLD_STD>) )
            # phase needs different handling
            #print "Phase comparison passed $lineOfDataFromXyce[$i] , $gsLineOfDataFromXyce[$i]\n";
         }
-        elsif( (abs( $line2OfDataFromXyce[$i] - $gsLineOfDataFromXyce[$i] ) < $absTol )) 
-        {
+        #elsif( (abs( $line2OfDataFromXyce[$i] - $gsLineOfDataFromXyce[$i] ) < $absTol )) 
+        #{
            # regular compare
+        #}
+        elseif (   (abs(($line2OfDataFromXyce[$i] - $gsLineOfDataFromXyce[$i])/$gsLineOfDataFromXyce[$i]) ) < $relTol ) 
+        {
+           # regular compare, using reltol.  As this test compares sensitivity, the numbers are big and absTol doesn't work
         }
         else
         {
