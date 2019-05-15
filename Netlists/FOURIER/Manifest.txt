@@ -33,3 +33,6 @@ bad_dot_four_line3.cir.options
 CMOS_inverter_sens_four.cir
 CMOS_inverter_sens_four.cir.sh
 CMOS_inverter_sens_four.cir.tags
+bsim3sensFourFD.cir  
+bsim3sensFourFD.cir.sh
+bsim3sensFourFD.cir.tags
