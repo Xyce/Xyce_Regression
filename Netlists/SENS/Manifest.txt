@@ -222,6 +222,7 @@ bsim6invAdjointNewFD.cir
 bsim6invAdjointNewFD.cir.TRADJ.prn.gs
 bsim6invAdjointNewFD.cir.sh
 bsim6invAdjointNewFD.cir.tags
+bsim6invAdjointForceAnalytic.cir
 bsim6invAdjointTrapNewFD.cir
 bsim6invAdjointTrapNewFD.cir.TRADJ.prn.gs
 bsim6invAdjointTrapNewFD.cir.sh

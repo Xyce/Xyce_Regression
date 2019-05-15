@@ -56,7 +56,7 @@ Xinv5  4 vo supply 0 inverter
 + pmos:TOXE
 
 * Adjoint is to only be performed at 1 time point.  
-.options SENSITIVITY STDOUTPUT=1 DIAGNOSTICFILE=0 adjoint=1 direct=0  forceDeviceFD=true
+.options SENSITIVITY STDOUTPUT=1 DIAGNOSTICFILE=0 adjoint=1 direct=0  forceanalytic=true
 + adjointTimePoints=1.0e-7
 
 * This signal gets its error absolutely swamped by the very tiny value in
