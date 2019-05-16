@@ -39,7 +39,6 @@ X10 11 12 0 RCBlock
 * the .PRINT AC line should produce no output
 .PRINT AC V(1)
 
-.options aclin sparcalc=1
 .LIN FORMAT=TOUCHSTONE FILE=sparams-ts1-dataFormat.cir.ri.s2p DATAFORMAT=RI PRECISION=6
 .LIN FORMAT=TOUCHSTONE FILENAME=sparams-ts1-dataFormat.cir.ma.s2p DATAFORMAT=MA PRECISION=6
 .LIN FORMAT=TOUCHSTONE FILE=sparams-ts1-dataFormat.cir.db.s2p DATAFORMAT=DB PRECISION=6
