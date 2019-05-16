@@ -36,3 +36,6 @@ CMOS_inverter_sens_four.cir.tags
 bsim3sensFourFD.cir  
 bsim3sensFourFD.cir.sh
 bsim3sensFourFD.cir.tags
+bsim3sensFourFD_complicated.cir
+bsim3sensFourFD_complicated.cir.sh
+bsim3sensFourFD_complicated.cir.tags
