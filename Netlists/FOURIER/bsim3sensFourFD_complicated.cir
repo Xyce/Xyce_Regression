@@ -38,7 +38,7 @@ VIN_b 1b 0 SIN {0.5*Vmag} {0.5*Vmag} 20MEG
 .TRAN 1N 100N
 
 .FOUR 20MEG V(2) { (V(2a)-V(2))/dLN } { (V(2b)-V(2))/dLP }
-.FOUR 30MEG V(3) V(2)
+.FOUR 30MEG V(2a) V(2)
 .FOUR 40MEG V(2) { (V(2a)-V(2))/dLN } { (V(2b)-V(2))/dLP }
 
 * this is the new feature, in progress:
