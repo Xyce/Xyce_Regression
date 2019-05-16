@@ -168,9 +168,9 @@ while( ($line2=<RESULTS2>) && ($line_gs=<GOLD_STD>) )
         #{
            # regular compare
         #}
-        elseif (   (abs(($line2OfDataFromXyce[$i] - $gsLineOfDataFromXyce[$i])/$gsLineOfDataFromXyce[$i]) ) < $relTol ) 
+        elsif (   (abs(($line2OfDataFromXyce[$i] - $gsLineOfDataFromXyce[$i])/$gsLineOfDataFromXyce[$i]) ) < $relTol ) 
         {
-           # regular compare, using reltol.  As this test compares sensitivity, the numbers are big and absTol doesn't work
+           # regular compare, using reltol.  
         }
         else
         {
