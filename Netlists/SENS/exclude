@@ -54,3 +54,5 @@ ampSens_10v.cir
 bsim3Inv_newFD.cir
 bsim3Inv_oldFD.cir
 bsim6invAdjointForceAnalytic.cir
+150nm_nmos_deviceFD.cir
+150nm_nmos_oldFD.cir
