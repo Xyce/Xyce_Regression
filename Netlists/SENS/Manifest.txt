@@ -10,6 +10,7 @@
 150nm_nmos_oldFD.cir
 150nm_nmos_forceDeviceFD.cir.sh
 150nm_nmos_forceDeviceFD.cir.tags
+150nm_nmos_forceDeviceFD.cir
 ampSens.cir
 ampSens.cir.tags
 ampSensAdj.cir
