@@ -61,6 +61,28 @@ print "VERILOG_BASE = $VERILOG_BASE\n";
 system("rm -f $CIRFILE.out $CIRFILE.prn $CIRFILE.mt0");
 system("rm -f $BASE_NAME.o $BASE_NAME.vpi $BASE_NAME.vvp $BASENAME.gcc.* $BASE_NAME.icc.*");
 
+#print "Trying to make $BASE_NAME via Makefile.\n";
+#$retval= system("cd $XYCE_BASE/src/test/VPITests;make $BASE_NAME");
+#if ($retval != 0)
+#{
+#  print "Failed to build via Makefile.\n";
+#  print "Exit code = 1\n"; exit 1;
+#}
+
+# try to run via vvp
+#print("Calling vvp with...\n");
+#print("vvp -M$XYCE_BASE/src/test/VPITests -m$BASE_NAME $XYCE_BASE/src/test/VPITests/$BASE_NAME.vvp >$CIRFILE.out 2>$CIRFILE.err\n");
+#$retval = system("vvp -M$XYCE_BASE/src/test/VPITests -m$BASE_NAME $XYCE_BASE/src/test/VPITests/$BASE_NAME.vvp >$CIRFILE.out 2>$CIRFILE.err");
+#if ($retval != 0)
+#{
+#  print "$BASE_NAME.vvp file failed to execute, when made with Makefile.\n";
+#}
+#else
+#{
+#  printf "$BASE_NAME.vvp ran successfully, when compiled with Makefile.\n";
+#}
+
+
 # create vvp file, assuming gcc
 print "Trying to make and run vvp file with gcc\n";
 $retval= system("./create_vvp_file_w_gcc.sh $BASE_NAME $XYCE_BASE $VERILOG_BASE $XYCE_SRC_BASE >$BASE_NAME.gcc.out 2>$BASE_NAME.gcc.err");
@@ -74,32 +96,32 @@ if ($retval != 0)
 $retval = system("vvp -M. -m$BASE_NAME $BASE_NAME.vvp >$CIRFILE.out 2>$CIRFILE.err");
 if ($retval != 0)
 {
-  print "$BASE_NAME.vvp file failed to execute, when made with gcc\n";
-  print "retrying with icc\n";
+ print "$BASE_NAME.vvp file failed to execute, when made with gcc\n";
+ print "retrying with icc\n";
 
-  # re-try compilation of the vvp program with icc
-  $retval= system("./create_vvp_file_w_icc.sh $BASE_NAME $XYCE_BASE $VERILOG_BASE $XYCE_SRC_BASE >$BASE_NAME.icc.out 2>$BASE_NAME.icc.err");
-  if ($retval != 0)
-  {
-    print "iverilog failed to make $BASE_NAME.vvp file using icc\n";
-    print "Exit code = 1\n"; exit 1;
-  }
+ # re-try compilation of the vvp program with icc
+ $retval= system("./create_vvp_file_w_icc.sh $BASE_NAME $XYCE_BASE $VERILOG_BASE $XYCE_SRC_BASE >$BASE_NAME.icc.out 2>$BASE_NAME.icc.err");
+ if ($retval != 0)
+ {
+   print "iverilog failed to make $BASE_NAME.vvp file using icc\n";
+   print "Exit code = 1\n"; exit 1;
+ }
 
-  # re-run the vvp program, now compiled with icc
-  $retval = system("vvp -M. -m$BASE_NAME $BASE_NAME.vvp >$CIRFILE.out 2>$CIRFILE.err");
-  if ($retval != 0)
-  {
-    print "$BASE_NAME.vvp file also failed to execute, when complied with icc\n";
-    print "Exit code = 1\n"; exit 1;
-  }
-  else
-  {
-    printf "$BASE_NAME.vvp ran successfully, when compiled with icc\n";
-  }
+ # re-run the vvp program, now compiled with icc
+ $retval = system("vvp -M. -m$BASE_NAME $BASE_NAME.vvp >$CIRFILE.out 2>$CIRFILE.err");
+ if ($retval != 0)
+ {
+   print "$BASE_NAME.vvp file also failed to execute, when complied with icc\n";
+   print "Exit code = 1\n"; exit 1;
+ }
+ else
+ {
+   printf "$BASE_NAME.vvp ran successfully, when compiled with icc\n";
+ }
 }
 else
 {
-  printf "$BASE_NAME.vvp ran successfully, when compiled with gcc\n";
+ printf "$BASE_NAME.vvp ran successfully, when compiled with gcc\n";
 }
 
 # We had a successful vvp run, either with gcc or icc. 

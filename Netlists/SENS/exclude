@@ -50,3 +50,9 @@ sensCapGear_global2.cir
 sensCapGear_oldFD.cir
 bug1092sonA.cir 
 bug1092sonB.cir
+ampSens_10v.cir
+bsim3Inv_newFD.cir
+bsim3Inv_oldFD.cir
+bsim6invAdjointForceAnalytic.cir
+150nm_nmos_deviceFD.cir
+150nm_nmos_oldFD.cir

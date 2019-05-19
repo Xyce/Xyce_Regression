@@ -23,8 +23,8 @@ XYCE_VERIFY=$2
 
 #GOLDPRN=bsim6invAdjointNewFD.cir.TRADJ.prn.gs
 CIR1=bsim6invAdjointNewFD.cir
+CIR2=bsim6invAdjointForceAnalytic.cir
 
-# first comparison
 $XYCE $CIR1 > $CIR1.out 2> $CIR1.err
 if [ "$?" -ne "0" ]; then
   echo "Exit code = 10"
@@ -35,7 +35,18 @@ if [ ! -f $CIR1.TRADJ.prn ]; then
   exit 14
 fi
 
-$XYCE_VERIFY --printline=sens  $CIR1 $CIR1.TRADJ.prn $CIR1.TRADJ.prn.gs
+$XYCE $CIR2 > $CIR2.out 2> $CIR2.err
+if [ "$?" -ne "0" ]; then
+  echo "Exit code = 10"
+  exit 10
+fi
+if [ ! -f $CIR2.TRADJ.prn ]; then
+  echo "Exit code = 14"
+  exit 14
+fi
+
+#$XYCE_VERIFY --printline=sens  $CIR1 $CIR1.TRADJ.prn $CIR1.TRADJ.prn.gs
+$XYCE_VERIFY --printline=sens  $CIR1 $CIR1.TRADJ.prn $CIR2.TRADJ.prn 
 
 EXITCODE=$?
 if [ $EXITCODE -eq  0 ]; then

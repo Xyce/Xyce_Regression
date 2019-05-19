@@ -26,3 +26,5 @@ tags
 exclude
 gilbert_cell_hbTdsamples.cir.sh
 gilbert_cell_hbTran2.cir
+common_emitter_hb.cir
+common_emitter_hb.cir.sh

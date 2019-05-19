@@ -26,4 +26,4 @@ Arguments:
   -rsf <response file name>   specify a file to save simulation responses functions.
   -r <file>                   generate a rawfile named <file> in binary format
   -a                          use with -r <file> to output in ascii format
-  -randseed <number>          seed random number generator used by expressions with given value
+  -randseed <number>          seed random number generator used by expressions and sampling methods

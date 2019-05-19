@@ -1,3 +1,5 @@
 lowpass.cir
+lowpass.cir.sh
+lowpass.cir.FD.SENS.prn.gs.pl
 lowpass_fd.cir
 tags

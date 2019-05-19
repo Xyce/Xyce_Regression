@@ -409,7 +409,7 @@ sub parseNetlist
       $printline{$split_line[0]}=$line;
       debugPrint "Setting printline{$split_line[0]} to $line\n";
     }
-    elsif ($opcode =~ /^[vi]/)
+    elsif ($opcode =~ /^[vip]/)
     {
       $name=$opcode;
       if (defined $theDCSources)

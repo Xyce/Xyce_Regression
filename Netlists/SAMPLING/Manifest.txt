@@ -49,5 +49,8 @@ truncatedNormalMC.cir.tags
 transLineStepDataGlobalPar.cir  
 transLineStepDataGlobalPar.cir.sh 
 transLineStepDataGlobalPar.cir.tags
+simpleNormalSeed.cir 
+simpleNormalSeed.cir.sh
+simpleNormalSeed.cir.tags
 tags
 exclude

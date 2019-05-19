@@ -30,3 +30,12 @@ lead_current_not_on_print_line_four.cir
 bad_dot_four_line1.cir.options
 bad_dot_four_line2.cir.options
 bad_dot_four_line3.cir.options
+CMOS_inverter_sens_four.cir
+CMOS_inverter_sens_four.cir.sh
+CMOS_inverter_sens_four.cir.tags
+bsim3sensFourFD.cir  
+bsim3sensFourFD.cir.sh
+bsim3sensFourFD.cir.tags
+bsim3sensFourFD_complicated.cir
+bsim3sensFourFD_complicated.cir.sh
+bsim3sensFourFD_complicated.cir.tags

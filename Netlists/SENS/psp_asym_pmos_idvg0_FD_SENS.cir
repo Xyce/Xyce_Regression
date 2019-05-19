@@ -20,7 +20,7 @@ Vbprobe 0 Ba 0
 
 .sens param=pspqap:vfbo,pspqap:vpo,M1:W
 + objfunc={I(Vsprobe)}
-.options SENSITIVITY direct=1 adjoint=0  forcefd=1
+.options SENSITIVITY direct=1 adjoint=0  forcedevicefd=1
 
 .model pspqap pmos 
 +LEVEL=103

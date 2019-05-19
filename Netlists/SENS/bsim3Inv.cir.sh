@@ -16,43 +16,48 @@
 # error output from Xyce.  The script run_xyce_regression captures the test
 # output and handles the resulting files.  
 
-#XYCE=/Users/erkeite/XYCE/Xyce_Release_4.0/Xyce/src/OSX_NOOPTION/src/Xyce
-#XYCE_VERIFY=/Users/erkeite/XYCE/Xyce_Release_4.0/Xyce/src/OSX_VERBOSEOFF/Xyce_Regression/TestScripts/xyce_verify.pl
-
 XYCE=$1
 XYCE_VERIFY=$2
 #XYCE_COMPARE=$3
 #CIRFILE=$4
-#GOLDPRN=$5
+#GOLDPRN=fullWaveRectDiode.cir.SENS.prn.gs
+CIR1=bsim3Inv.cir
+CIR2=bsim3Inv_newFD.cir
+CIR3=bsim3Inv_oldFD.cir
 
-CIR1=dcop_bjt_start.cir
-CIR2=dcop_bjt_restart.cir
-CIR3=dcop_bjt_baseline.cir
-
-#echo "";
-#echo "    $CIR1...................."
 $XYCE $CIR1 > $CIR1.out 2> $CIR1.err
 if [ "$?" -ne "0" ]; then
   echo "Exit code = 10"
   exit 10
 fi
-#echo "    $CIR2...................."
+if [ ! -f $CIR1.SENS.prn ]; then
+  echo "Exit code = 14"
+  exit 14
+fi
+
 $XYCE $CIR2 > $CIR2.out 2> $CIR2.err
 if [ "$?" -ne "0" ]; then
   echo "Exit code = 10"
   exit 10
 fi
-#echo "    $CIR3...................."
+if [ ! -f $CIR2.SENS.prn ]; then
+  echo "Exit code = 14"
+  exit 14
+fi
+
+$XYCE_VERIFY --printline=sens  $CIR1 $CIR1.SENS.prn $CIR2.SENS.prn
+
 $XYCE $CIR3 > $CIR3.out 2> $CIR3.err
 if [ "$?" -ne "0" ]; then
   echo "Exit code = 10"
   exit 10
 fi
+if [ ! -f $CIR3.SENS.prn ]; then
+  echo "Exit code = 14"
+  exit 14
+fi
 
-# This test isn't really about the non-HOMOTOPY *prn files, but 
-# compare them anyway.
-#$XYCE_VERIFY --verbose $CIR3 $CIR2.prn $CIR3.prn  
-$XYCE_VERIFY $CIR3 $CIR2.prn $CIR3.prn  
+$XYCE_VERIFY --printline=sens  $CIR1 $CIR1.SENS.prn $CIR3.SENS.prn
 
 EXITCODE=$?
 if [ $EXITCODE -eq  0 ]; then
@@ -62,3 +67,4 @@ else
     echo "Exit code = 2"
     exit 2
 fi;
+

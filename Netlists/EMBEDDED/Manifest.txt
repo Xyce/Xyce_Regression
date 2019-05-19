@@ -50,4 +50,7 @@ tran-sampling-measure.cir.tags
 tran-sampling-measureLHS.cir
 tran-sampling-measureLHS.cir.sh
 tran-sampling-measureLHS.cir.tags
+simpleNormalSeed.cir
+simpleNormalSeed.cir.sh
+simpleNormalSeed.cir.tags
 exclude
