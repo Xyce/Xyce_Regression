@@ -1,6 +1,6 @@
 #include <vpi_user.h>
 #include <stdio.h>
-#include <string>
+#include <stdlib.h>
 #include <N_CIR_XyceCInterface.h>
 
 static int runXyceWithDAC_compiletf(char*user_data)
@@ -16,7 +16,7 @@ static int runXyceWithDAC_calltf(char*user_data)
       // Used as a pointer to a pointer to an N_CIR_Xyce object.
       // This somewhat convoluted syntax is needed to stop p from
       // pointing at the same address as the VPI system task.
-      void** p = new void* [1];  
+      void** p = (void **) malloc( sizeof(void* [1]) );
 
       // Turn the desired Xyce command line invocation into an int and
       // char** pointer that can used to initialize an N_CIR_ Xyce object.  
@@ -48,28 +48,30 @@ static int runXyceWithDAC_calltf(char*user_data)
       int dataCount = numDevNames;
       char ** devNames;
       char ** DACnames;
-      devNames = new char*[dataCount];
-      for (int i = 0; i < dataCount; i++)
+
+      int i; // loop counter
+      devNames = (char **) malloc( dataCount * sizeof(char*));
+      for (i = 0; i < dataCount; i++)
       {
-        devNames[i] = new char[nameLength];
+        devNames[i] = (char *) malloc( nameLength*sizeof(char) );
       }
 
-      DACnames = new char*[dataCount];
-      for (int i = 0; i < dataCount; i++)
+      DACnames = (char **) malloc( dataCount*sizeof(char*) );
+      for (i = 0; i < dataCount; i++)
       {
-        DACnames[i] = new char[nameLength];
+        DACnames[i] = (char *) malloc( nameLength*sizeof(char) );
       }
 
       xyce_getDeviceNames(p, (char *)"YADC", numDevNamesPtr, devNames);
       printf("Found %d Memristor devices\n",numDevNames);
-      for (int i = 0; i < numDevNames; i++)
+      for (i = 0; i < numDevNames; i++)
       {
 	printf("Device Name 1: %s\n",devNames[i]);
       }
 
       xyce_getDACDeviceNames(p, numDACnamesPtr, DACnames);
       printf("Found %d DACs\n",numDACnames);
-      for (int i = 0; i < numDACnames; i++)
+      for (i = 0; i < numDACnames; i++)
       {
 	printf("DAC Name 1: %s\n",DACnames[i]);
       }
@@ -89,13 +91,13 @@ static int runXyceWithDAC_calltf(char*user_data)
       double voltageArray [9] = { 0.0, 0.0, 3.0, 3.0, 0.0, 0.0, 3.0, 3.0, 0.0 }; 
       double timeArrayBase [9] = { 0.0, 0.1e-4, 0.2e-4, 0.4e-4, 0.5e-4, 0.7e-4, 0.8e-4, 1.0e-4, 1.1e-4 };
       double timeArray [9];
-      for (int i=0; i< 9; i++)
+      for (i=0; i< 9; i++)
       { 
         timeArray[i] = timeArrayBase[i];
       }
       
       double total_sim_time = 20.0e-4;
-      for (int i=0; i<=10; i++)
+      for (i=0; i<=10; i++)
       { 
         xyce_updateTimeVoltagePairs( p, DACnames[0], 9, timeArray, voltageArray );
         requested_time = 0.0 + (i+1) * 0.1 * total_sim_time;
@@ -107,8 +109,9 @@ static int runXyceWithDAC_calltf(char*user_data)
         xyce_obtainResponse(p,(char *)"YMEMRISTORRES",value_ptr);
         printf( "Result = %f\n", value);
 
-        // update timeArray to repeat pulse 
-        for (int j=0; j<9; j++)
+        // update timeArray to repeat pulse
+        int j; // loop counter
+        for (j=0; j<9; j++)
 	{
           timeArray[j] = timeArrayBase[j] + requested_time;
         }
@@ -118,7 +121,18 @@ static int runXyceWithDAC_calltf(char*user_data)
       xyce_close(p);
 
       // pointer clean-up
-      delete[] p;
+      free(p);
+      for (i = 0; i < dataCount; i++)
+      {
+        free( devNames[i] );
+      }
+      free( devNames );
+
+      for (i = 0; i < dataCount; i++)
+      {
+        free( DACnames[i] );
+      }
+      free( DACnames );
 
       vpi_printf("Exiting calltf for runXyceWithDAC\n"); 
       return 0;
