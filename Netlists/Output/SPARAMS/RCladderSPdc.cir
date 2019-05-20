@@ -1,6 +1,9 @@
 RC ladder circuit 
 
-P1 1 0 port=2   sin 0  1 1e5
+* If the [[DC] <val>] parameter is included on a
+* P device line then it must be the first parameter
+* after the node list.
+P1 1 0 DC 1 port=2   sin 0  1 1e5
 *P2 12 0  port=1  z0=100
 
 C1 2 0 1e-2
