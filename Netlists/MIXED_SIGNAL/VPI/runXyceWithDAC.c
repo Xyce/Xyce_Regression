@@ -32,48 +32,49 @@ static int runXyceWithDAC_calltf(char*user_data)
       xyce_open(p);
       xyce_initialize(p,argc,argv);
 
-      // get Device, ADC and DAC names;
-      int numDevNames, numDACnames, maxDevNameLength;
-      int* numDevNamesPtr = &numDevNames;
+      // Get the number of YADC and YDAC in the netlist, and maximum name lengths
+      // for each type of device. This allows for better sizing of the ADCnames
+      // and DACnames char arrays.
+      int numADCnames, numDACnames, maxADCnameLength, maxDACnameLength;
+      int* numADCnamesPtr = &numADCnames;
       int* numDACnamesPtr = &numDACnames;
-      int* maxDevNameLengthPtr = &maxDevNameLength;
+      int* maxADCnameLengthPtr = &maxADCnameLength;
+      int* maxDACnameLengthPtr = &maxDACnameLength;
 
-      // Get the number of YADC in the netlist, and maximum name length.
-      // This allows for better sizing of the devNames and DACnames char arrays.
-      xyce_getNumDevices(p, (char *)"YADC", numDevNamesPtr, maxDevNameLengthPtr);
-      printf("Num Devices and Max Device Name Length: %d %d\n",numDevNames,maxDevNameLength);
+      xyce_getNumDevices(p, (char *)"YADC", numADCnamesPtr, maxADCnameLengthPtr);
+      printf("Num ADCs and Max ADC Name Length: %d %d\n",numADCnames,maxADCnameLength);
+      xyce_getNumDevices(p, (char *)"YDAC", numDACnamesPtr, maxDACnameLengthPtr);
+      printf("Num DACs and Max DAC Name Length: %d %d\n",numDACnames,maxDACnameLength);
 
       // Initialize arrays of char array
-      const int nameLength = maxDevNameLength;
-      int dataCount = numDevNames;
-      char ** devNames;
+      char ** ADCnames;
       char ** DACnames;
 
       int i; // loop counter
-      devNames = (char **) malloc( dataCount * sizeof(char*));
-      for (i = 0; i < dataCount; i++)
+      ADCnames = (char **) malloc( numADCnames * sizeof(char*));
+      for (i = 0; i < numADCnames; i++)
       {
-        devNames[i] = (char *) malloc( nameLength*sizeof(char) );
+        ADCnames[i] = (char *) malloc( maxADCnameLength*sizeof(char) );
       }
 
-      DACnames = (char **) malloc( dataCount*sizeof(char*) );
-      for (i = 0; i < dataCount; i++)
+      DACnames = (char **) malloc( numDACnames*sizeof(char*) );
+      for (i = 0; i < numDACnames; i++)
       {
-        DACnames[i] = (char *) malloc( nameLength*sizeof(char) );
+        DACnames[i] = (char *) malloc( maxDACnameLength*sizeof(char) );
       }
 
-      xyce_getDeviceNames(p, (char *)"YADC", numDevNamesPtr, devNames);
-      printf("Found %d Memristor devices\n",numDevNames);
-      for (i = 0; i < numDevNames; i++)
+      xyce_getDeviceNames(p, (char *)"YADC", numADCnamesPtr, ADCnames);
+      printf("Found %d ADC devices\n",numADCnames);
+      for (i = 0; i < numADCnames; i++)
       {
-	printf("Device Name 1: %s\n",devNames[i]);
+	printf("ADC Name %d: %s\n",i, ADCnames[i]);
       }
 
       xyce_getDACDeviceNames(p, numDACnamesPtr, DACnames);
       printf("Found %d DACs\n",numDACnames);
       for (i = 0; i < numDACnames; i++)
       {
-	printf("DAC Name 1: %s\n",DACnames[i]);
+	printf("DAC Name %d: %s\n",i,DACnames[i]);
       }
 
       // A bug in the DAC device (put there for Habinero support) only takes
@@ -122,13 +123,13 @@ static int runXyceWithDAC_calltf(char*user_data)
 
       // pointer clean-up
       free(p);
-      for (i = 0; i < dataCount; i++)
+      for (i = 0; i < numADCnames; i++)
       {
-        free( devNames[i] );
+        free( ADCnames[i] );
       }
-      free( devNames );
+      free( ADCnames );
 
-      for (i = 0; i < dataCount; i++)
+      for (i = 0; i < numDACnames; i++)
       {
         free( DACnames[i] );
       }
