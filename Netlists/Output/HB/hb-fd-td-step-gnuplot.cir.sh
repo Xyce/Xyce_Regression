@@ -56,6 +56,18 @@ if ( !(-f "$CIRFILE.HB.FD.prn"))
   print STDERR "Missing output file $CIRFILE.HB.FD.prn\n";
   $xyceexit=14;
 }
+
+if ( !(-f "$CIRFILE.HB.TD.splot.prn")) 
+{
+  print STDERR "Missing output file $CIRFILE.HB.TD.splot.prn\n";
+  $xyceexit=14;
+}
+if ( !(-f "$CIRFILE.HB.FD.splot.prn")) 
+{
+  print STDERR "Missing output file $CIRFILE.HB.FD.splot.prn\n";
+  $xyceexit=14;
+}
+
 #if ( !(-f "$CIRFILE.startup.prn")) 
 #{
 #  print STDERR "Missing output file $CIRFILE.startup.prn\n";
@@ -82,10 +94,24 @@ if (system($CMD) != 0)
   $retcode = 2;
 }
 
+$CMD="$fc $CIRFILE.HB.TD.splot.prn $GOLDPRN.HB.TD.splot.prn $absTol $relTol $zeroTol > $CIRFILE.HB.TD.splot.prn.out 2> $CIRFILE.HB.TD.splot.prn.err";
+if (system($CMD) != 0) 
+{
+  print STDERR "Verification failed on file $CIRFILE.HB.TD.splot.prn, see $CIRFILE.HB.TD.splot.prn.err\n";
+  $retcode = 2;
+}
+
 $CMD="$fc $CIRFILE.HB.FD.prn $GOLDPRN.HB.FD.prn $absTol $relTol $zeroTol > $CIRFILE.HB.FD.prn.out 2> $CIRFILE.HB.FD.prn.err";
 if (system($CMD) != 0) 
 {
   print STDERR "Verification failed on file $CIRFILE.HB.FD.prn, see $CIRFILE.HB.FD.prn.err\n";
+  $retcode = 2;
+}
+
+$CMD="$fc $CIRFILE.HB.FD.splot.prn $GOLDPRN.HB.FD.splot.prn $absTol $relTol $zeroTol > $CIRFILE.HB.FD.splot.prn.out 2> $CIRFILE.HB.FD.splot.prn.err";
+if (system($CMD) != 0) 
+{
+  print STDERR "Verification failed on file $CIRFILE.HB.FD.splot.prn, see $CIRFILE.HB.FD.splot.prn.err\n";
   $retcode = 2;
 }
 

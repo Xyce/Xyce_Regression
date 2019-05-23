@@ -2,6 +2,8 @@
 * Test FORMAT=GNUPLOT without .STEP.  This should 
 * produce the same .SENS.prn file as FORMAT=STD. 
 *
+* This also tests FORMAT=SPLOT, which should produce
+* the same output file for the non-step case.
 ********************************************************
 
 V1 1 0 1
@@ -13,6 +15,7 @@ R2 2 0 1
 
 .sens objfunc={V(2)} param=R2:R 
 .print SENS FORMAT=GNUPLOT V(1) R1:R R2:R
+.PRINT SENS FORMAT=SPLOT FILE=sens-gnuplot.cir.SENS.splot.prn V(1) R1:R R2:R
 .options SENSITIVITY direct=1 adjoint=0  
 
 .end

@@ -2,7 +2,11 @@
 * Test FORMAT=GNUPLOT with .STEP.  This should produce 
 * the same HOMOTOPY.prn file as FORMAT=STD, but with 
 * two blank lines before step 1.  Note that the
-* first step is "step 0".  This netlist does 2 steps. 
+* first step is "step 0".  This netlist does 2 steps.
+*
+* Also test FORMAT=SPLOT with .STEP. This should
+* produce the same .HOMOTOPY.prn file as FORMAT=STD, but
+* with one blank line before steps 1,2, ... N-1.
 *
 * This netlist can use the shorthand" syntax of .STEP Ivar 
 * rather than .STEP Ivar:DCV0 since the I device has DCV0
@@ -47,5 +51,6 @@ Btest 1 0 V={A*(I(Vtest)-Ivar)**3 + B*(I(Vtest)-Ivar) + C}
 + initialstepsize=0.01 minstepsize=1.0e-8 maxstepsize=0.1
 + aggressiveness=0.1
 
-.print homotopy FORMAT=GNUPLOT Ivar I(Vtest) 
+.print homotopy FORMAT=GNUPLOT Ivar I(Vtest)
+.print homotopy FORMAT=SPLOT FILE=homotopy-step-gnuplot.cir.HOMOTOPY.splot.prn Ivar I(Vtest)
 .end

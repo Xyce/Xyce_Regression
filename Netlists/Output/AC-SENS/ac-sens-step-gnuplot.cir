@@ -5,6 +5,10 @@
 * It uses FORMAT=GNUPLOT for the .PRINT SENS line. It steps
 * over C1.
 *
+* Also test FORMAT=SPLOT with .STEP. This should
+* produce the same .FD.SENS.prn file as FORMAT=STD, but
+* with one blank line before steps 1,2, ... N-1.
+
 * See SON Bug 1170 for more details.
 ***************************************************************
 
@@ -22,6 +26,8 @@ V1 a 0 DC 0V AC 1
 .options sensitivity direct=1 adjoint=1 stdoutput=1
 .print AC vr(b) vi(b) vp(b) vm(b) R1:R C1:C
 .PRINT SENS FORMAT=GNUPLOT vr(b) vi(b) vp(b) vm(b) R1:R R2:R C1:C
+.PRINT SENS FORMAT=SPLOT FILE=ac-sens-step-gnuplot.cir.FD.SENS.splot.prn
++ vr(b) vi(b) vp(b) vm(b) R1:R R2:R C1:C
 .ac dec 5 100Hz 1e6
 .STEP C1 1u 5u 4u
 

@@ -35,7 +35,7 @@ $zerotol=1e-8;
 $freqreltol=1e-6;
 
 # remove old files if they exist
-system("rm -f $CIRFILE.FD.prn $CIRFILE.TD.prn $CIRFILE.out $CIRFILE.err");
+system("rm -f $CIRFILE.FD.* $CIRFILE.TD.prn $CIRFILE.out $CIRFILE.err");
 
 # run Xyce
 $CMD="$XYCE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err";
@@ -55,25 +55,39 @@ if ($retval != 0)
   }
 }
 
+$xyce_exit = 0;
 if ( !(-f "$CIRFILE.FD.prn")) 
 {
     print "Missing output file $CIRFILE.FD.prn\n";
-    print "Exit code =14\n";
-    exit 14;
+    print "Exit code = 14\n";
+    $xyce_exit = 14;
 }
 
-# now check the .FD.prn file
+if ( !(-f "$CIRFILE.FD.splot.prn"))
+{
+    print "Missing output file $CIRFILE.FD.splot.prn\n";
+    print "Exit code = 14\n";
+    $xyce_exit =  14;
+}
+
+if ($xyce_exit != 0) { exit $xyce_exit;}
+
+# now check the .FD.prn and .FD.splot.prn files
+$retcode=0;
 $CMD="$XYCE_ACVERIFY $GOLDPRN.FD.prn $CIRFILE.FD.prn $abstol $reltol $zerotol $freqreltol";
 $retval = system($CMD);
 $retval = $retval >> 8;
-if ($retval == 0) 
-{ 
-   $retcode = 0; 
+if ($retval != 0){
+  print STDERR "Comparator exited on file $CIRFILE.FD.prn with exit code $retval\n";
+  $retcode = 2;
 }
-else 
-{ 
-  print STDERR "Comparator exited with exit code $retval\n";
-  $retcode = 2; 
+
+$CMD="diff $CIRFILE.FD.prn $CIRFILE.FD.splot.prn > $CIRFILE.FD.splot.prn.out 2> $CIRFILE.FD.splot.prn.err";
+$retval = system($CMD);
+$retval = $retval >> 8;
+if ($retval != 0){
+  print STDERR "Diff failed on file $CIRFILE.FD.splot.prn with exit code $retval\n";
+  $retcode = 2;
 }
 
 # the test should not make a .TD.prn file

@@ -24,9 +24,7 @@ $XYCE_COMPARE=$ARGV[2];
 $CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
 
-$GOLDPRN =~ s/\.prn$//; # remove the .prn at the end.
-
-`rm -f $CIRFILE.prn $CIRFILE.err`;
+`rm -f $CIRFILE.prn $CIRFILE.splot.* $CIRFILE.out $CIRFILE.err`;
 `rm -f $CIRFILE.prn.out $CIRFILE.prn.err`;
 
 $CMD="$XYCE $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
@@ -47,24 +45,38 @@ if ($retval != 0)
   }
 }
 
+$xyce_exit = 0;
 if ( !(-f "$CIRFILE.prn")) 
 {
   print "Missing output file $CIRFILE.prn\n";
-  print "Exit code =14\n";
-  exit 14;
+  print "Exit code = 14\n";
+  $xyce_exit = 14;
 }
 
-$CMD="$XYCE_VERIFY $CIRFILE $GOLDPRN.prn $CIRFILE.prn > $CIRFILE.prn.out 2> $CIRFILE.prn.err";
-$retval = system($CMD);
-if ($retval!= 0) 
+if ( !(-f "$CIRFILE.splot.prn"))
 {
-  print "test Failed comparison of .prn file vs. gold .prn file!\n";
-  print "Exit code=2\n";
-  exit 2;
+  print "Missing output file $CIRFILE.splot.prn\n";
+  print "Exit code = 14\n";
+  $xyce_exit = 14;
 }
-else
-{ 
-  print "Passed comparison of .prn files\n";
-  print "Exit code = 0\n"; 
-  exit 0;
+
+if ($xyce_exit != 0) { exit $xyce_exit;}
+
+$retcode=0;
+$CMD="$XYCE_VERIFY $CIRFILE $GOLDPRN $CIRFILE.prn > $CIRFILE.prn.out 2> $CIRFILE.prn.err";
+$retval = system($CMD);
+$retval = $retval >> 8;
+if ($retval!= 0){
+  print STDERR "Comparator exited on file $CIRFILE.prn with exit code $retval\n";
+  $retcode = 2;
 }
+
+$CMD="diff $CIRFILE.prn $CIRFILE.splot.prn > $CIRFILE.splot.prn.out 2> $CIRFILE.splot.prn.err";
+$retval = system($CMD);
+$retval = $retval >> 8;
+if ($retval != 0){
+  print STDERR "Diff failed on file $CIRFILE.splot.prn with exit code $retval\n";
+  $retcode = 2;
+}
+
+print "Exit code = $retcode\n"; exit $retcode;
