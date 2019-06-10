@@ -26,8 +26,7 @@ $GOLDPRN=$ARGV[4];
 
 $GOLDPRN =~ s/\.prn$//; # remove the .prn at the end.
 
-`rm -f $CIRFILE.SENS.prn $CIRFILE.out $CIRFILE.err`;
-`rm -f $CIRFILE.SENS.prn.out $CIRFILE.SENS.prn.err`;
+`rm -f $CIRFILE.SENS.* $CIRFILE.out $CIRFILE.err`;
 
 $CMD="$XYCE $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
 $retval = system("$CMD");
@@ -47,20 +46,45 @@ if ($retval != 0)
   }
 }
 
+$xyce_exit = 0;
 if ( not -s "$CIRFILE.SENS.prn") 
 {
   print "Missing output file $CIRFILE.SENS.prn\n";
-  print "Exit code =14\n";
-  exit 14;
+  print "Exit code = 14\n";
+  $xyce_exit = 14;
 }
 
-$retcode=0;
-$CMD="$XYCE_VERIFY --printline=sens $CIRFILE $GOLDPRN.SENS.prn $CIRFILE.SENS.prn > $CIRFILE.SENS.prn.out 2> $CIRFILE.SENS.prn.err";
-if (system("$CMD") != 0) 
+if ( not -s "$CIRFILE.SENS.splot.prn")
 {
-  print STDERR "Verification failed on file $CIRFILE.SENS.prn, see $CIRFILE.SENS.prn.err\n";
+  print "Missing output file $CIRFILE.SENS.splot.prn\n";
+  print "Exit code = 14\n";
+  $xyce_exit = 14;
+}
+
+if ($xyce_exit != 0) { exit $xyce_exit;}
+
+$retcode=0;
+
+$absTol=1e-5;
+$relTol=1e-3;
+$zeroTol=1e-8;
+$fc = $XYCE_VERIFY;
+$fc=~ s/xyce_verify/file_compare/;
+$CMD="$fc $CIRFILE.SENS.prn $GOLDPRN.SENS.prn $absTol $relTol $zeroTol > $CIRFILE.SENS.prn.out 2> $CIRFILE.SENS.prn.err";
+$retval = system("$CMD");
+$retval = $retval >> 8;
+if ($retval != 0){
+  print STDERR "Comparator failed on file $CIRFILE.SENS.prn with exit code $retval\n";
   $retcode = 2;
 }
 
-print "Exit code = $retcode\n"; 
+$CMD="diff $CIRFILE.SENS.prn $CIRFILE.SENS.splot.prn > $CIRFILE.SENS.splot.prn.out 2> $CIRFILE.SENS.splot.prn.err";
+$retval = system($CMD);
+$retval = $retval >> 8;
+if ($retval != 0){
+  print STDERR "Diff failed on file $CIRFILE.SENS.splot.prn with exit code $retval\n";
+  $retcode = 2;
+}
+
+print "Exit code = $retcode\n";
 exit $retcode;

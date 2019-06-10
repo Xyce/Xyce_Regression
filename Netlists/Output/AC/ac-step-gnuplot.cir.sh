@@ -27,7 +27,7 @@ $GOLDPRN=$ARGV[4];
 $GOLDPRN =~ s/\.prn$//; # remove the .prn at the end.
 
 # remove old files if they exist
-system("rm -f $CIRFILE.FD.prn $CIRFILE.TD.prn $CIRFILE.out $CIRFILE.err");
+system("rm -f $CIRFILE.FD.* $CIRFILE.TD.prn $CIRFILE.out $CIRFILE.err");
 
 # run Xyce
 $CMD="$XYCE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err";
@@ -48,14 +48,27 @@ if ($retval != 0)
   }
 }
 
+$xyce_exit = 0;
 if ( not -s "$CIRFILE.FD.prn") 
 {
-    print STDERR "Missing output file $CIRFILE.FD.prn\n";
-    print "Exit code =14\n";
-    exit 14;
+    print "Missing output file $CIRFILE.FD.prn\n";
+    print "Exit code = 14\n";
+    $xyce_exit = 14;
 }
 
-# now check the .FD.prn file.  Use file_compare.pl because of the blank lines.
+if ( !(-f "$CIRFILE.FD.splot.prn"))
+{
+    print "Missing output file $CIRFILE.FD.splot.prn\n";
+    print "Exit code = 14\n";
+    $xyce_exit = 14;
+}
+
+if ($xyce_exit != 0) { exit $xyce_exit;}
+
+# now check the .FD.prn and .FD.splot.prn files.  Use file_compare.pl
+# because of the blank lines.
+$retcode=0;
+
 $absTol=1e-5;
 $relTol=1e-3;
 $zeroTol=1e-10;
@@ -64,14 +77,17 @@ $fc=~ s/xyce_verify/file_compare/;
 $CMD="$fc $CIRFILE.FD.prn $GOLDPRN.FD.prn $absTol $relTol $zeroTol";
 $retval = system($CMD);
 $retval = $retval >> 8;
-if ($retval == 0) 
-{ 
-   $retcode = 0; 
+if ($retval != 0){
+  print STDERR "Comparator exited on file $CIRFILE.FD.prn with exit code $retval\n";
+  $retcode = 2;
 }
-else 
-{ 
-  print STDERR "Comparator exited with exit code $retval\n";
-  $retcode = 2; 
+
+$CMD="$fc $CIRFILE.FD.splot.prn $GOLDPRN.FD.splot.prn $absTol $relTol $zeroTol";
+$retval = system($CMD);
+$retval = $retval >> 8;
+if ($retval != 0){
+  print STDERR "Comparator exited on file $CIRFILE.FD.splot.prn with exit code $retval\n";
+  $retcode = 2;
 }
 
 # the test should not make a .TD.prn file

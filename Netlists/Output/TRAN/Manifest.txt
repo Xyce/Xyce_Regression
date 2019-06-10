@@ -60,6 +60,9 @@ tran-step-probe.cir
 tran-gnuplot.cir
 tran-gnuplot.cir.sh
 tran-gnuplot.cir.tags
+tran-splot.cir
+tran-splot.cir.sh
+tran-splot.cir.tags
 tran-step-gnuplot.cir
 tran-step-gnuplot.cir.sh
 tran-step-gnuplot.cir.tags

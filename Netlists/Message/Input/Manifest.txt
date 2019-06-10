@@ -74,6 +74,10 @@ bad_dot_save_line.cir.sh
 bleem.op
 ParameterBlock_extractModelData.cir
 ParameterBlock_extractModelData.cir.sh
+SweepParams_convertData.cir
+SweepParams_convertData.cir.sh
+SweepParams_processDataStatements.cir
+SweepParams_processDataStatements.cir.sh
 exclude
 tags
 DeviceBlock_extractSourceFields_2.cir.sh

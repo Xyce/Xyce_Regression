@@ -1,2 +1,2 @@
 serial, nightly, parallel
-output, gnuplot
+output, gnuplot, splot

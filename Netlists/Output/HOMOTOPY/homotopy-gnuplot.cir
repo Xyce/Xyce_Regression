@@ -2,6 +2,8 @@
 * Test FORMAT=GNUPLOT without .STEP.  This should 
 * produce the same HOMOTOPY.prn file as FORMAT=STD. 
 *
+* This also tests FORMAT=SPLOT, which should produce
+* the same output file for the non-step case.
 ********************************************************
 
 * polynomial coefficients:
@@ -41,5 +43,6 @@ Btest 1 0 V={A*(I(Vtest)-Ivar)**3 + B*(I(Vtest)-Ivar) + C}
 + initialstepsize=0.01 minstepsize=1.0e-8 maxstepsize=0.1
 + aggressiveness=0.1
 
-.print homotopy FORMAT=GNUPLOT Ivar I(Vtest) 
+.print homotopy FORMAT=GNUPLOT Ivar I(Vtest)
+.print homotopy FORMAT=SPLOT FILE=homotopy-gnuplot.cir.HOMOTOPY.splot.prn Ivar I(Vtest)
 .end

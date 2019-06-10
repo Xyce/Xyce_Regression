@@ -27,8 +27,8 @@ $GOLDPRN=$ARGV[4];
 $GOLDPRN =~ s/\.prn$//; # remove the .prn at the end.
 
 # remove old files if they exist
-`rm -f $CIRFILE.NOISE.prn $CIRFILE.out $CIRFILE.err`;
-`rm -f $CIRFILE.noise.prn.out $CIRFILE.noise.prn.err`;
+`rm -f $CIRFILE.NOISE.prn $CIRFILE.NOISE.splot.* $CIRFILE.out $CIRFILE.err`;
+`rm -f $CIRFILE.noise.prn.* $CIRFILE.errmsg.*`;
 
 # run Xyce
 $CMD="$XYCE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err";
@@ -49,14 +49,26 @@ if ($retval != 0)
   }
 }
 
+$xyce_exit = 0;
 if ( not -s "$CIRFILE.NOISE.prn") 
 {
     print "Missing output file $CIRFILE.NOISE.prn\n";
-    print "Exit code =14\n";
-    exit 14;
+    print "Exit code = 14\n";
+    $xyce_exit = 14;
 }
 
-# now check the .NOISE.prn file.
+if ( not -s "$CIRFILE.NOISE.splot.prn")
+{
+    print "Missing output file $CIRFILE.NOISE.splot.prn\n";
+    print "Exit code = 14\n";
+    $xyce_exit = 14;
+}
+
+if ($xyce_exit != 0) { exit $xyce_exit;}
+
+# now check the .NOISE.prn and .NOISE.splot.prn files.
+$xyce_exit = 0;
+
 $absTol=1e-5;
 $relTol=1e-3;
 $zeroTol=1e-16;
@@ -64,16 +76,22 @@ $fc = $XYCE_VERIFY;
 $fc=~ s/xyce_verify/file_compare/;
 $CMD="$fc $CIRFILE.NOISE.prn $GOLDPRN.NOISE.prn $absTol $relTol $zeroTol > $CIRFILE.noise.prn.out 2> $CIRFILE.noise.prn.err";
 $retval = system("$CMD");
+$retval = $retval >> 8;
 if ($retval != 0)
 {
-  print "test Failed comparison of NOISE.prn file vs. gold NOISE.prn file!\n";
-  print "Exit code = 2\n";
-  exit 2;
+  print STDERR "Comparator failed on file $CIRFILE.NOISE.prn with exit code $retval\n";
+  $xyce_exit = 2;
 }
-else
-{
-  print "Passed comparison of NOISE.prn files\n";
+
+$CMD="$fc $CIRFILE.NOISE.splot.prn $GOLDPRN.NOISE.splot.prn $absTol $relTol $zeroTol > $CIRFILE.NOISE.splot.prn.out 2> $CIRFILE.NOISE.splot.prn.err";
+$retval = system($CMD);
+$retval = $retval >> 8;
+if ($retval != 0){
+  print STDERR "Comparator failed on file $CIRFILE.NOISE.splot.prn with exit code $retval\n";
+  $xyce_exit = 2;
 }
+
+if ($xyce_exit!=0) { print "Exit code = $xyce_exit\n"; exit $xyceexit;}
 
 # check that .out file exists, and open it if it does
 if (not -s "$CIRFILE.out" ) 

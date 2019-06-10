@@ -27,8 +27,7 @@ $GOLDPRN=$ARGV[4];
 $GOLDPRN =~ s/\.prn$//; # remove the .prn at the end.
 
 # remove old files if they exist
-`rm -f $CIRFILE.SENS.prn $CIRFILE.out $CIRFILE.err`;
-`rm -f $CIRFILE.SENS.prn.out $CIRFILE.SENS.prn.err`;
+`rm -f $CIRFILE.SENS.* $CIRFILE.out $CIRFILE.err`;
 
 # run Xyce
 $CMD="$XYCE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err";
@@ -49,14 +48,26 @@ if ($retval != 0)
   }
 }
 
+$xyce_exit = 0; 
 if ( not -s "$CIRFILE.SENS.prn") 
 {
     print "Missing output file $CIRFILE.SENS.prn\n";
     print "Exit code =14\n";
-    exit 14;
+    $xyce_exit = 14;
 }
 
-# now check the .SENS.prn file.
+if ( not -s "$CIRFILE.SENS.splot.prn")
+{
+  print "Missing output file $CIRFILE.SENS.splot.prn\n";
+  print "Exit code = 14\n";
+  $xyce_exit = 14;
+}
+
+if ($xyce_exit != 0) { exit $xyce_exit;}
+
+# now check the .SENS.prn and .SENS.splot.prn files.
+$retcode = 0;
+
 $absTol=1e-5;
 $relTol=1e-3;
 $zeroTol=1e-8;
@@ -64,16 +75,20 @@ $fc = $XYCE_VERIFY;
 $fc=~ s/xyce_verify/file_compare/;
 $CMD="$fc $CIRFILE.SENS.prn $GOLDPRN.SENS.prn $absTol $relTol $zeroTol > $CIRFILE.SENS.prn.out 2> $CIRFILE.SENS.prn.err";
 $retval = system("$CMD");
-if ($retval != 0)
-{
-  print "test Failed comparison of SENS.prn file vs. gold SENS.prn file!\n";
-  print "Exit code = 2\n";
-  exit 2;
+$retval = $retval >> 8;
+if ($retval != 0){
+  print STDERR "Comparator failed on file $CIRFILE.SENS.prn with exit code $retval\n";
+  $retcode = 2;
 }
-else
-{
-  print "Passed comparison of SENS.prn files\n";
-  print "Exit code = 0\n";
-  exit 0;
+
+$CMD="$fc $CIRFILE.SENS.splot.prn $GOLDPRN.SENS.splot.prn $absTol $relTol $zeroTol > $CIRFILE.SENS.splot.prn.out 2> $CIRFILE.SENS.splot.prn.err";
+$retval = system("$CMD");
+$retval = $retval >> 8;
+if ($retval != 0){
+  print STDERR "Comparator failed on file $CIRFILE.SENS.splot.prn with exit code $retval\n";
+  $retcode = 2;
 }
+
+print "Exit code = $retcode\n"; 
+exit $retcode;
 

@@ -2,7 +2,11 @@
 * Test FORMAT=GNUPLOT with .STEP.  This should produce 
 * the same .prn files as FORMAT=STD, but with two 
 * blank lines before steps 1,2, ... N-1.  Note that
-* first step is "step 0".  In this netlist, N is 4.  
+* first step is "step 0".  In this netlist, N is 4.
+*
+* Also test FORMAT=SPLOT with .STEP. This should
+* produce the same files as FORMAT=STD, but
+* with one blank line before steps 1,2, ... N-1.
 *
 * This version uses separate .PRINT lines for the 
 * .HB.TD.prn and .HB.FD.prn files.  It will also make 
@@ -20,7 +24,9 @@ D1 2 1 D1N3940
 v1 2 0 pulse 1V 2V  0 1e-5 1e-5 {1/1e4/2-1e-5 } {1/1e4}
 
 .print HB_FD FORMAT=GNUPLOT vm(1) vm(1a)
-.print HB_TD FORMAT=GNUPLOT vm(1) 
+.print HB_TD FORMAT=GNUPLOT vm(1)
+.print HB_FD FORMAT=SPLOT FILE=hb-fd-td-step-gnuplot.cir.HB.FD.splot.prn vm(1) vm(1a)
+.print HB_TD FORMAT=SPLOT FILE=hb-fd-td-step-gnuplot.cir.HB.TD.splot.prn vm(1)
 .hb 1e4
 .STEP R1:R 250 750 500
 .STEP R1A:R 1000 2000 1000

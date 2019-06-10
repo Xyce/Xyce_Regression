@@ -25,8 +25,7 @@ $GOLDPRN=$ARGV[4];
 $GOLDPRN =~ s/\.prn$//; # remove the .prn at the end.
 
 # remove old files if they exist
-`rm -f $CIRFILE.HOMOTOPY.prn $CIRFILE.prn $CIRFILE.err`;
-`rm -f $CIRFILE.homotopy.out $CIRFILE.homotopy.err`;
+`rm -f $CIRFILE.HOMOTOPY.* $CIRFILE.homotopy.* $CIRFILE.prn $CIRFILE.err`;
 
 # run Xyce
 $CMD="$XYCE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err";
@@ -47,15 +46,27 @@ if ($retval != 0)
   }
 }
 
-# Exit if the HOMOTOPY.prn file was not made
+# Exit if the HOMOTOPY.prn files were not made
+$xyce_exit = 0;
 if (not -s "$CIRFILE.HOMOTOPY.prn" )
 {
   print "$CIRFILE.HOMOTOPY.prn file is missing\n"; 
   print "Exit code = 14\n"; 
-  exit 14;
+  $xyce_exit = 14;
 }
 
-# Now check the .HOMOTOPY.prn file
+if (not -s "$CIRFILE.HOMOTOPY.splot.prn" )
+{
+  print "$CIRFILE.HOMOTOPY.splot.prn file is missing\n";
+  print "Exit code = 14\n";
+  $xyce_exit = 14;
+}
+
+if ($xyce_exit != 0) { exit $xyce_exit;}
+
+# Now check the .HOMOTOPY.prn files
+$retcode=0;
+
 $absTol=1e-5;
 $relTol=1e-3;
 $zeroTol=1e-10;
@@ -63,18 +74,22 @@ $fc = $XYCE_VERIFY;
 $fc=~ s/xyce_verify/file_compare/;
 $CMD="$fc $CIRFILE.HOMOTOPY.prn $GOLDPRN.HOMOTOPY.prn $absTol $relTol $zeroTol > $CIRFILE.homotopy.out 2> $CIRFILE.homotopy.err";
 $retval = system("$CMD");
-if ($retval != 0)
-{
-  print "test Failed comparison of HOMOTOPY.prn file vs. gold HOMOTOPY.prn file!\n";
-  print "Exit code = 2\n";
-  exit 2;
+$retval = $retval >> 8;
+if ($retval != 0){
+  print STDERR "Comparator failed on file $CIRFILE.HOMOTOPY.prn with exit code $retval\n";
+  $retcode = 2;
 }
-else
-{
-  print "Passed comparison of HOMOTOPY.prn files\n";
-  print "Exit code = 0\n";
-  exit 0;
+
+$CMD="$fc $CIRFILE.HOMOTOPY.splot.prn $GOLDPRN.HOMOTOPY.splot.prn $absTol $relTol $zeroTol > $CIRFILE.homotopy.splot.out 2> $CIRFILE.homotopy.splot.err";
+$retval = system("$CMD");
+$retval = $retval >> 8;
+if ($retval != 0){
+  print STDERR "Comparator failed on file $CIRFILE.HOMOTOPY.splot.prn with exit code $retval\n";
+  $retcode = 2;
 }
+
+print "Exit code = $retcode\n";
+exit $retcode;
 
 
 

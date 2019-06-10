@@ -46,19 +46,27 @@ if ($retval != 0)
   }
 }
 
-# The .PRINT AC line uses FORMAT=STD.  The .PRINT SENS line uses FORMAT=GNUPLOT.
+# The .PRINT AC line uses FORMAT=STD.  The .PRINT SENS lines use FORMAT=GNUPLOT
+# FORMAT=SPLOT.
 $xyce_exit = 0;
 if ( not -s "$CIRFILE.FD.prn")
 {
   print "Missing output file $CIRFILE.FD.prn\n";
-  print "Exit code =14\n";
+  print "Exit code = 14\n";
   $xyce_exit = 14;
 }
 
 if ( not -s "$CIRFILE.FD.SENS.prn")
 {
   print "Missing output file $CIRFILE.FD.SENS.prn\n";
-  print "Exit code =14\n";
+  print "Exit code = 14\n";
+  $xyce_exit = 14;
+}
+
+if ( not -s "$CIRFILE.FD.SENS.splot.prn")
+{
+  print "Missing output file $CIRFILE.FD.SENS.splot.prn\n";
+  print "Exit code = 14\n";
   $xyce_exit = 14;
 }
 
@@ -89,6 +97,15 @@ $retval = $retval >> 8;
 if ($retval != 0)
 {
   print STDERR "Comparator exited with exit code $retval on file $CIRFILE.FD.SENS.prn\n";
+  $retcode = 2;
+}
+
+$CMD="$XYCE_ACVERIFY $CIRFILE.FD.SENS.splot.prn $GOLDPRN.FD.SENS.splot.prn $absTol $relTol $zeroTol $freqreltol > $CIRFILE.FD.SENS.splot.prn.out 2> $CIRFILE.FD.SENS.splot.prn.err";
+$retval = system("$CMD");
+$retval = $retval >> 8;
+if ($retval != 0)
+{
+  print STDERR "Comparator exited with exit code $retval on file $CIRFILE.FD.SENS.splot.prn\n";
   $retcode = 2;
 }
 
