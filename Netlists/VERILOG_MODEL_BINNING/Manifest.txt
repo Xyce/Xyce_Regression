@@ -1,0 +1,4 @@
+tags
+gummel_nmos_bsim6.cir
+gummel_pmos_bsim6.cir
+invert_psp102.cir
