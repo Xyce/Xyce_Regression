@@ -1,4 +1,4 @@
-Semiconductor Resistor Circuit Netlist
+test for breakpoints in Bsrc expressions
 
 v1  1  0  pwl(0 0 1.5 1 2 0)
 b1  2  0  v={if ((time*time)>1, time+2*v(1), 1+2*v(1))}
