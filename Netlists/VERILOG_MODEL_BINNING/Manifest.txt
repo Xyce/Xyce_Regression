@@ -2,3 +2,5 @@ tags
 gummel_nmos_bsim6.cir
 gummel_pmos_bsim6.cir
 invert_psp102.cir
+modelcard_binned_bsim6.nmos
+modelcard_binned_bsim6.pmos
