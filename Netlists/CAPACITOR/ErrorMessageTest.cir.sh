@@ -47,7 +47,7 @@ if (defined($verbose)) { $Tools->setVerbose(1); }
      "Device instance C8: Parameter L is not allowed to depend on voltage/current",
      "values"],
     ["Netlist error in file ErrorMessageTest.cir at or near line 53",
-     "Device instance C8: Solution-variable-dependent parameter other than C  or Q",
+     "Device instance C8: Solution-variable-dependent parameter other than C or Q",
      "detected"]);
 
 $retval = $Tools->runAndCheckGroupedError($CIRFILE,$XYCE,@searchstrings);
