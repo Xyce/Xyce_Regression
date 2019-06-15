@@ -74,6 +74,8 @@ bad_dot_save_line.cir.sh
 bleem.op
 ParameterBlock_extractModelData.cir
 ParameterBlock_extractModelData.cir.sh
+Step_extractStepData.cir
+Step_extractStepData.cir.sh
 SweepParams_convertData.cir
 SweepParams_convertData.cir.sh
 SweepParams_processDataStatements.cir

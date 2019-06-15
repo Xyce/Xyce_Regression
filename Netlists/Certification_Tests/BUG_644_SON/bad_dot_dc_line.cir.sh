@@ -21,7 +21,7 @@ $GOLDPRN=$ARGV[4];
 if (defined($verbose)) { $Tools->setVerbose(1); }
 
 # check various error cases
-# this string should be in the output of this failed Xyce run  
+# this string should be in the output of this failed Xyce run
 @searchstrings = ( "Netlist error in file bad_dot_dc_line.cir at or near line 17",
                    "Extraneous values on .DC line",
                    "Netlist error in file bad_dot_dc_line.cir at or near line 20",
@@ -29,13 +29,24 @@ if (defined($verbose)) { $Tools->setVerbose(1); }
                    "Netlist error in file bad_dot_dc_line.cir at or near line 24",
                    ".DC line not formatted correctly, found unexpected number of fields",
                    "Netlist error in file bad_dot_dc_line.cir at or near line 25",
-                   ".DC line not formatted correctly, found unexpected number of fields",
+                    "Unrecognized dot line will be ignored",
                    "Netlist error in file bad_dot_dc_line.cir at or near line 26",
-                   "Extraneous values on .DC line",
+                   ".DC line has an unexpected number of fields",
                    "Netlist warning in file bad_dot_dc_line.cir at or near line 26",
                    "Unrecognized dot line will be ignored",
+                   "Netlist error in file bad_dot_dc_line.cir at or near line 27",
+                   ".DC line has an unexpected number of fields",
                    "Netlist warning in file bad_dot_dc_line.cir at or near line 27",
-                   "Unrecognized dot line will be ignored" );
+                   "Unrecognized dot line will be ignored",
+                   "Netlist error in file bad_dot_dc_line.cir at or near line 28",
+                   ".DC line has an unexpected number of fields",
+                   "Netlist warning in file bad_dot_dc_line.cir at or near line 28",
+                   "Unrecognized dot line will be ignored",
+                   "Netlist error in file bad_dot_dc_line.cir at or near line 29",
+                   ".DC line has an unexpected number of fields",
+                   "Netlist warning in file bad_dot_dc_line.cir at or near line 29",
+                   "Unrecognized dot line will be ignored"
+);
 
 $retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);
 print "Exit code = $retval\n"; exit $retval; 
