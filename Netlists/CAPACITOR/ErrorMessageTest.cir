@@ -58,7 +58,17 @@ v8 8a 0 0V
 v9 9 0 5
 r9 9 0 1
 
-.print tran v(1) v(2) v(3) v(4) v(5) v(6) v(7) v(8)
+* Both C and Q can not be defined as being solution dependent
+c10 10   0 CMODEL C='1e-6*V(9)' Q= '1e-6*V(9)'
+r10 10 10a 1K
+v10 10a  0 0V
+
+* Can not use IC if Q is defined as being solution dependent
+c11 10   0 CMODEL Q= '1e-6*V(9)' IC=1
+r11 11 11a 1K
+v11 11a  0 0V
+
+.print tran v(1) v(2) v(3) v(4) v(5) v(6) v(7) v(8) v(10) v(11)
 .tran 0 5ms 
 .options timeint reltol=1e-6 abstol=1e-6 
 

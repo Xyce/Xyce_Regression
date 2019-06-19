@@ -46,9 +46,12 @@ if (defined($verbose)) { $Tools->setVerbose(1); }
     ["Netlist error in file ErrorMessageTest.cir at or near line 53",
      "Device instance C8: Parameter L is not allowed to depend on voltage/current",
      "values"],
-    ["Netlist error in file ErrorMessageTest.cir at or near line 53",
-     "Device instance C8: Solution-variable-dependent parameter other than C",
-     "detected"]);
+    ["Netlist error in file ErrorMessageTest.cir at or near line 62",
+     "Device instance C10: Both C and Q have been specified as expression",
+     "parameters.  Only one may be specified at a time"],
+    ["Netlist error in file ErrorMessageTest.cir at or near line 67",
+     "Device instance C11: Q has been specified as an expression parameter and an",
+     "IC given.  IC with Q specified is not implemented"]);
 
 $retval = $Tools->runAndCheckGroupedError($CIRFILE,$XYCE,@searchstrings);
 print "Exit code = $retval\n"; exit $retval; 
