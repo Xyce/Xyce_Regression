@@ -32,5 +32,9 @@ X3 4 5 0 RCBlock
 + 3e+03 3e-08   
 .enddata
 
+* this .step line should get used
 .step data=eric
 
+* verify that the .step data=<name> line takes precedence, and
+* that this .step line is not used
+.STEP Rgs 1 5 1

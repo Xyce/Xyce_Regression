@@ -8,4 +8,5 @@ AC_setAnalysisParams1.cir
 AC_setAnalysisParams2.cir
 AC_setAnalysisParams3.cir
 AC_setAnalysisParams4.cir
+SweepParams_convertData1.cir
 

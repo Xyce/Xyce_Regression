@@ -8,6 +8,8 @@ dc_data.cir
 dc_data.cir.sh
 dc_globalparam_data.cir
 dc_globalparam_data.cir.sh
+dc_data_two_table.cir
+dc_data_two_table.cir.sh
 mos2_data_step_globalparam.cir
 mos2_data_step_globalparam.cir.sh
 transLineDataGlobal.cir  

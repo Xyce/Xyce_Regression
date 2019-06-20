@@ -4,6 +4,7 @@ use XyceRegression::Tools;
 
 $Tools = XyceRegression::Tools->new();
 #$Tools->setDebug(1);
+#$Tools->setVerbose(1);
 
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
@@ -15,6 +16,7 @@ $Tools = XyceRegression::Tools->new();
 # If Xyce does not produce a prn file, then we return exit code 10.
 # If Xyce succeeds, but the test fails, then we return exit code 2.
 # If the shell script fails for some reason, then we return exit code 1.
+# Otherwise we return the exit code of compare or xyce_verify.pl
 
 # Since the shell script runs Xyce and the comparison program, it is
 # responsible for capturing any error output from Xyce and the STDOUT & STDERR
@@ -23,49 +25,38 @@ $Tools = XyceRegression::Tools->new();
 # output from comparison to go into $CIRFILE.prn.out and the STDERR output from
 # comparison to go into $CIRFILE.prn.err.
 
+use Getopt::Long;
+
+&GetOptions( "verbose!" => \$verbose );
+
 $XYCE=$ARGV[0];
-#$XYCE_VERIFY=$ARGV[1];
+$XYCE_VERIFY=$ARGV[1];
 #$XYCE_COMPARE=$ARGV[2];
 $CIRFILE=$ARGV[3];
-#$GOLDPRN=$ARGV[4];
+$GOLDPRN=$ARGV[4];
 
-@CIR;
-$CIR[0]="SweepParams_convertData.cir";
-$CIR[1]="SweepParams_convertData1.cir";
+$fc=$XYCE_VERIFY;
+$fc =~ s/xyce_verify/file_compare/;
 
-$exitcode = 0;
+system("rm -f $CIRFILE.out $CIRFILE.prn $CIRFILE.err*");
 
-print "Testing $CIR[0]\n";
-@searchstrings = ("Netlist error: Invalid table name TABLE1 from .DATA line used as sweep",
-                  "variable",
-                  "Invalid data=<name> parameter on .AC line.");
+$retval=$Tools->wrapXyce($XYCE,$CIRFILE);
 
-$retval = $Tools->runAndCheckError($CIR[0],$XYCE,@searchstrings);
-if ($retval !=0)
-{
-  print "test failed for $CIR[0], see $CIR[0].stdout\n";
-  $exitcode = $retval;
-}
-else
-{
-  print "test passed for $CIR[0]\n";
-}
+# check that Xyce exited without error
+if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
 
-print "Testing $CIR[1]\n";
-@searchstrings = ("Netlist error: Invalid sweep parameter name.  Netlist may lack any valid .DATA",
-                  "statements",
-                  "Invalid data=<name> parameter on .AC line.");
+# use file_compare because xyce_verify does handle multiple .DC statements well
+$retcode=0;
+$absTol=1e-5;
+$relTol=1e-3;
+$zeroTol=1e-10;
+$CMD="$fc $CIRFILE.prn $GOLDPRN $absTol $relTol $zeroTol > $CIRFILE.errmsg.out 2> $CIRFILE.errmsg.err";
+$retval=system($CMD);
+$retval = $retval >> 8;
 
-$retval = $Tools->runAndCheckError($CIR[1],$XYCE,@searchstrings);
-if ($retval !=0)
-{
-  print "test failed for $CIR[1], see $CIR[1].stdout\n";
-  $exitcode = $retval;
-}
-else
-{
-  print "test passed for $CIR[1]\n";
+if ($retval != 0){
+  print STDERR "Comparator exited on file $CIRFILE.prn with exit code $retval\n";
+  $retcode = 2;
 }
 
-print "Exit code = $exitcode\n";
-exit $exitcode
+print "Exit code = $retcode\n"; exit $retcode;
