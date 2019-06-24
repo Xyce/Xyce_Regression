@@ -28,7 +28,12 @@ R2  5 0 5
 * The "enddata" statement will be ignored by Xyce.  
 * It is part of the HSpice syntax for .DATA
 
+* this .DC line should get used
 .DC data=test
+
+* verify that the .DC data=<name> line takes precedence, and
+* that this .DC line is not used
+.DC VT1 10 15 1
 
 .print DC precision=4 {R1:R} {R2:R} V(4) V(5)
 
