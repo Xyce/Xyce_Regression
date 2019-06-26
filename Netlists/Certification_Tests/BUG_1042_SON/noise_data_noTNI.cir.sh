@@ -1,5 +1,11 @@
 #!/usr/bin/env perl
 
+use XyceRegression::Tools;
+
+$Tools = XyceRegression::Tools->new();
+#$Tools->setDebug(1);
+#$Tools->setVerbose(1);
+
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
 # $ARGV[1] = location of xyce_verify.pl script
@@ -23,7 +29,7 @@ $CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
 
 # remove old files if they exist
-system("rm -f $CIRFILE.NOISE.prn $CIRFILE.err* $CIRFILE.out $CIRFILE.noise.*");
+system("rm -f $CIRFILE.NOISE.prn $CIRFILE.err $CIRFILE.out $CIRFILE.noise.*");
 
 # run Xyce
 $CMD="$XYCE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err";
@@ -72,9 +78,14 @@ else
   print "Passed comparison of .prn files\n";
 }
 
-# Make sure that the Total Noise Integral values ARE in the .out file, and
-# that the warning message is not. Check that .out file exists, and open
-# it if it does.
+# check for the warning message
+@searchstrings=("Netlist warning: Total Noise Integrals will not be calculated, since",
+                "frequencies in .DATA table are not monotonically increasing");
+$retval = $Tools->checkError("$CIRFILE.out",@searchstrings);
+if ( $retval != 0){  $retcode = $retval };
+
+# Make sure that the Total Noise Integral values ARE NOT in the .out file.
+# Check that .out file exists, and open it if it does.
 if (not -s "$CIRFILE.out" )
 {
   print "Exit code = 17\n";
@@ -89,12 +100,10 @@ else
 # parse the .out file to find the text related to .NOISE
 $foundStart=0;
 $foundEnd=0;
-$foundWarn=0;
 @outLine;
 $lineCount=0;
 while( $line=<NETLIST> )
 {
-  if ($line =~ /Total Noise Integrals will not be/) {$foundWarn = 1;}
   if ($line =~ /Total Output Noise/) { $foundStart = 1; }
 
   if ($foundStart > 0 && $foundEnd < 1)
@@ -108,24 +117,9 @@ while( $line=<NETLIST> )
 close(NETLIST);
 close(ERRMSG);
 
-# warning message should be absent
-if ( $foundWarn != 0 ){
-  print "Warning about Total Noise Integral lines not being calculated found in $CIRFILE.out, when it should\n";
+if ( $foundStart != 0 || $foundEnd !=0 ){
+  print "Total Noise Integral lines found in $CIRFILE.out, when they should not\n";
   $retcode = 2;
-}
-
-# Total Noise Integral values should be present, and be correct
-$GOLDSTDOUT="noise_data-gold-stdout";
-$CMD="$fc $CIRFILE.errmsg $GOLDSTDOUT $absTol $relTol $zeroTol > $CIRFILE.errmsg.out 2> $CIRFILE.errmsg.err";
-$retval = system("$CMD");
-$retval = $retval >> 8;
-if ( $retval != 0 ){
-  print STDERR "Comparator exited on stdout comparison with exit code $retval\n";
-  $retcode = 2;
-}
-else
-{
-  print "Passed stdout comparison\n";
 }
 
 print "Exit code = $retcode\n"; exit $retcode;
