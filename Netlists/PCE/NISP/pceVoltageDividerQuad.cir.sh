@@ -52,12 +52,12 @@ while ($num_tries < 2 && $finished == 0)
 
   $V1mean=`grep -m 1 'PCE mean of {v(1)}' $CIRFILE.out`;
   chomp($V1mean);
-  $V1mean=~ s/\(traditional samping\) projection PCE mean of \{v\(1\)\} = ([0-9]*)/\1/;
+  $V1mean=~ s/\(traditional sampling\) projection PCE mean of \{v\(1\)\} = ([0-9]*)/\1/;
   print STDERR  "v(1) PCE mean is $V1mean, analytical mean is $V1_analytical_mean\n";
 
   $V1stddev=`grep -m 1 'PCE stddev of {v(1)}' $CIRFILE.out`;
   chomp($V1stddev);
-  $V1stddev=~ s/\(traditional samping\) projection PCE stddev of \{v\(1\)\} = ([0-9]*)/\1/;
+  $V1stddev=~ s/\(traditional sampling\) projection PCE stddev of \{v\(1\)\} = ([0-9]*)/\1/;
   print STDERR  "v(1) PCE stddev is $V1stddev, analytical stddev is $V1_analytical_stddev\n";
 
   $passed=1;

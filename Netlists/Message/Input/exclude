@@ -8,5 +8,11 @@ AC_setAnalysisParams1.cir
 AC_setAnalysisParams2.cir
 AC_setAnalysisParams3.cir
 AC_setAnalysisParams4.cir
+NOISE_extractNOISEData1.cir
+NOISE_extractNOISEData2.cir
+NOISE_setAnalysisParams1.cir
+NOISE_setAnalysisParams2.cir
+NOISE_setAnalysisParams3.cir
+NOISE_setAnalysisParams4.cir
 SweepParams_convertData1.cir
 
