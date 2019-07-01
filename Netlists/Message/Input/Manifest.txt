@@ -9,6 +9,8 @@ AC_extractACData1.cir
 AC_extractACData2.cir
 AC_extractACData.cir.sh
 AC_doInit.cir
+AC_doInit1.cir
+AC_doInit2.cir
 AC_doInit.cir.sh
 AC_setAnalysisParams.cir
 AC_setAnalysisParams1.cir

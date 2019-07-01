@@ -26,14 +26,42 @@ $Tools = XyceRegression::Tools->new();
 $XYCE=$ARGV[0];
 #$XYCE_VERIFY=$ARGV[1];
 #$XYCE_COMPARE=$ARGV[2];
-$CIRFILE=$ARGV[3];
+#$CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
 
+@CIR;
+$CIR[0]="AC_doInit1.cir";
+$CIR[1]="AC_doInit2.cir";
+
+$exitcode = 0;
+
+print "Testing $CIR[0]\n";
 @searchstrings = ("Frequency values in .DATA for .AC analysis must be > 0");
 
-$retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);
+$retval = $Tools->runAndCheckError($CIR[0],$XYCE,@searchstrings);
+if ($retval !=0)
+{
+  print "test failed for $CIR[0], see $CIR[0].stdout\n";
+  $exitcode = $retval;
+}
+else
+{
+  print "test passed for $CIR[0]\n";
+}
+
+print "Testing $CIR[1]\n";
+@searchstrings = ("No port device is found for S parameter analysis");
+
+$retval = $Tools->runAndCheckError($CIR[1],$XYCE,@searchstrings);
+if ($retval !=0)
+{
+  print "test failed for $CIR[1], see $CIR[1].stdout\n";
+  $exitcode = $retval;
+}
+else
+{
+  print "test passed for $CIR[1]\n";
+}
 
 print "Exit code = $retval\n";
 exit $retval
-
-

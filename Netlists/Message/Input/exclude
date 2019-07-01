@@ -2,6 +2,8 @@ CircuitBlock_parseIncludeFile_1.cir
 CircuitBlock_parseIncludeFile_3.cir
 Bad_DCOP_Line.cir
 Bad_Netlist_Name.cir
+AC_doInit1.cir
+AC_doInit2.cir
 AC_extractACData1.cir
 AC_extractACData2.cir
 AC_setAnalysisParams1.cir
