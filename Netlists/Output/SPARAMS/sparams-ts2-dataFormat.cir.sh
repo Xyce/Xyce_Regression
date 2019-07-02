@@ -27,6 +27,7 @@ $GOLDPRN=$ARGV[4];
 
 # remove old files if they exist
 system("rm -f $CIRFILE.out $CIRFILE.err $CIRFILE.ri.* $CIRFILE.ma.* $CIRFILE.db.*");
+system("rm -f $CIRFILE.FD.prn");
 
 # run Xyce
 $CMD="$XYCE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err";
