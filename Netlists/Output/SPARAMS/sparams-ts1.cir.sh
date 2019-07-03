@@ -122,12 +122,7 @@ $retcode = 0;
 $CMD="$fc $CIR[0].s1p $dirname/$GOLD[0] $absTol $relTol $zeroTol > $CIR[0].s1p.out 2> $CIR[0].s1p.err";
 $retval = system("$CMD");
 $retval = $retval >> 8;
-if ($retval == 0)
-{
-  $retcode = 0;
-}
-else
-{
+if ($retval != 0){
   print STDERR "Comparator exited with exit code $retval on file $CIR[0].s1p\n";
   $retcode = 2;
 }
@@ -135,12 +130,7 @@ else
 $CMD="$fc $CIR[0].ma.s1p $dirname/$GOLD[1] $absTol $relTol $zeroTol > $CIR[0].ma.s1p.out 2> $CIR[0].ma.s1p.err";
 $retval = system("$CMD");
 $retval = $retval >> 8;
-if ($retval == 0)
-{
-  $retcode = 0;
-}
-else
-{
+if ($retval != 0){
   print STDERR "Comparator exited with exit code $retval on file $CIR[0].ma.s1p\n";
   $retcode = 2;
 }
@@ -148,12 +138,7 @@ else
 $CMD="$fc $CIR[0].db.s1p $dirname/$GOLD[2] $absTol $relTol $zeroTol > $CIR[0].db.s1p.out 2> $CIR[0].db.s1p.err";
 $retval = system("$CMD");
 $retval = $retval >> 8;
-if ($retval == 0)
-{
-  $retcode = 0;
-}
-else
-{
+if ($retval != 0){
   print STDERR "Comparator exited with exit code $retval on file $CIR[0].db.s1p\n";
   $retcode = 2;
 }
@@ -161,12 +146,7 @@ else
 $CMD="$fc $CIR[1].s3p $dirname/$GOLD[3] $absTol $relTol $zeroTol > $CIR[1].s3p.out 2> $CIR[1].s3p.err";
 $retval = system("$CMD");
 $retval = $retval >> 8;
-if ($retval == 0)
-{
-  $retcode = 0;
-}
-else
-{
+if ($retval != 0){
   print STDERR "Comparator exited with exit code $retval on file $CIR[1].s3p\n";
   $retcode = 2;
 }
@@ -174,12 +154,7 @@ else
 $CMD="$fc $CIR[2].s4p $dirname/$GOLD[4] $absTol $relTol $zeroTol > $CIR[2].s4p.out 2> $CIR[2].s4p.err";
 $retval = system("$CMD");
 $retval = $retval >> 8;
-if ($retval == 0)
-{
-  $retcode = 0;
-}
-else
-{
+if ($retval != 0){
   print STDERR "Comparator exited with exit code $retval on file $CIR[2].s4p\n";
   $retcode = 2;
 }
@@ -187,12 +162,7 @@ else
 $CMD="$fc $CIR[3].s5p $dirname/$GOLD[5] $absTol $relTol $zeroTol > $CIR[3].s5p.out 2> $CIR[3].s5p.err";
 $retval = system("$CMD");
 $retval = $retval >> 8;
-if ($retval == 0)
-{
-  $retcode = 0;
-}
-else
-{
+if ($retval != 0){
   print STDERR "Comparator exited with exit code $retval on file $CIR[3].s5p\n";
   $retcode = 2;
 }

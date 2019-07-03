@@ -65,12 +65,7 @@ $retcode = 0;
 $CMD="$fc $CIRFILE.s3p $GOLDS3P.s3p $absTol $relTol $zeroTol > $CIRFILE.s3p.out 2> $CIRFILE.s3p.err";
 $retval = system("$CMD");
 $retval = $retval >> 8;
-if ($retval == 0)
-{
-   $retcode = 0;
-}
-else
-{
+if ($retval != 0){
   print STDERR "Comparator exited with exit code $retval on file $CIRFILE.s3p\n";
   $retcode = 2;
 }
