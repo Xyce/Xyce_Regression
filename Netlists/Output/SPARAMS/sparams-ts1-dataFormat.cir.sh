@@ -24,6 +24,7 @@ $GOLDPRN=$ARGV[4];
 
 # remove old files if they exist
 system("rm -f $CIRFILE.out $CIRFILE.err $CIRFILE.ri.* $CIRFILE.ma.* $CIRFILE.db.*");
+system("rm -f $CIRFILE.FD.prn");
 
 # run Xyce
 $CMD="$XYCE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err";
@@ -104,40 +105,25 @@ $retcode = 0;
 $CMD="$fc $CIRFILE.ri.s2p $GOLDS2P.ri.s2p $absTol $relTol $zeroTol > $CIRFILE.ri.s2p.out 2> $CIRFILE.ri.s2p.err";
 $retval = system("$CMD");
 $retval = $retval >> 8;
-if ($retval == 0) 
-{ 
-   $retcode = 0; 
-}
-else 
-{ 
+if ($retval != 0){
   print STDERR "Comparator exited with exit code $retval on file $CIRFILE.ri.s2p\n";
-  $retcode = 2; 
+  $retcode = 2;
 }
 
 $CMD="$fc $CIRFILE.ma.s2p $GOLDS2P.ma.s2p $absTol $relTol $zeroTol > $CIRFILE.ma.s2p.out 2> $CIRFILE.ma.s2p.err";
 $retval = system("$CMD");
 $retval = $retval >> 8;
-if ($retval == 0) 
-{ 
-   $retcode = 0; 
-}
-else 
-{ 
+if ($retval != 0){
   print STDERR "Comparator exited with exit code $retval on file $CIRFILE.ma.s2p\n";
-  $retcode = 2; 
+  $retcode = 2;
 }
 
 $CMD="$fc $CIRFILE.db.s2p $GOLDS2P.db.s2p $absTol $relTol $zeroTol > $CIRFILE.db.s2p.out 2> $CIRFILE.db.s2p.err";
 $retval = system("$CMD");
 $retval = $retval >> 8;
-if ($retval == 0) 
-{ 
-   $retcode = 0; 
-}
-else 
-{ 
+if ($retval != 0){
   print STDERR "Comparator exited with exit code $retval on file $CIRFILE.db.s2p\n";
-  $retcode = 2; 
+  $retcode = 2;
 }
 
 print "Exit code = $retcode\n"; exit $retcode;

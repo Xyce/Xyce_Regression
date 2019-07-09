@@ -44,7 +44,7 @@ if ($retval != 0)
   }
 }
 
-# Exit if the .s3p file was not made
+# Exit if the .s2p file was not made
 if (not -s "$CIRFILE.s2p" )
 {
   print "$CIRFILE.s2p file is missing\n";
@@ -52,25 +52,20 @@ if (not -s "$CIRFILE.s2p" )
   exit 14;
 }
 
-# Now check the .s3p file
+# Now check the .s2p file
 $absTol=1e-5;
 $relTol=1e-3;
 $zeroTol=1e-10;
 $fc = $XYCE_VERIFY;
 $fc=~ s/xyce_verify/file_compare/;
-$GOLDS3P = $GOLDPRN;
-$GOLDS3P =~ s/\.prn$//;
+$GOLDS2P = $GOLDPRN;
+$GOLDS2P =~ s/\.prn$//;
 
 $retcode = 0;
-$CMD="$fc $CIRFILE.s2p $GOLDS3P.s2p $absTol $relTol $zeroTol > $CIRFILE.s2p.out 2> $CIRFILE.s2p.err";
+$CMD="$fc $CIRFILE.s2p $GOLDS2P.s2p $absTol $relTol $zeroTol > $CIRFILE.s2p.out 2> $CIRFILE.s2p.err";
 $retval = system("$CMD");
 $retval = $retval >> 8;
-if ($retval == 0)
-{
-   $retcode = 0;
-}
-else
-{
+if ($retval != 0){
   print STDERR "Comparator exited with exit code $retval on file $CIRFILE.s2p\n";
   $retcode = 2;
 }
