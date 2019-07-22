@@ -1,0 +1,6 @@
+exclude
+dummylib.lib
+library_parsing.cir.hspice
+library_parsing.cir
+library_parsing.cir.sh
+tags

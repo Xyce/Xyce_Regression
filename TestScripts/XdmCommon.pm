@@ -76,6 +76,11 @@ sub setXDMvariables
     $FROMSPICEXML="spectre_5_0";
     $OUTFILETYPE="prn";
   }
+  elsif ($FROMSPICE eq "hspice")
+  {
+    $FROMSPICEXML="hspice";
+    $OUTFILETYPE="csd";
+  }
   else
   {
     print "invalid value ($FROMSPICE) for FROMSPICE variable.\n";
@@ -209,6 +214,7 @@ sub verifyXDMtranslation
   # now compare the output from the "gold" and translated netlists.
   # Translations of PSPICE netlists will generate .csd files.  
   # Translations of Spectre netlists will generate .prn files.
+  # Translations of HSPICE netlists will generate .csd files.  
   if ($FROMSPICE eq "pspice")
   {
     $retval = XdmCommon::compareCSDfiles("$CIRFILE.csd","./$TRANSLATEDDIR/$CIRFILE.csd",$absTol,$relTol,$zeroTol);
@@ -219,6 +225,10 @@ sub verifyXDMtranslation
     # Use the translated netlist as the "good file", so that comp() statements
     # can be in the "gold" netlist.
     $retval = system("$XYCE_VERIFY $CIRFILE ./$TRANSLATEDDIR/$CIRFILE.prn $CIRFILE.prn > $CIRFILE.out 2> $CIRFILE.err");
+  }
+  elsif ($FROMSPICE eq "hspice")
+  {
+    $retval = XdmCommon::compareCSDfiles("$CIRFILE.csd","./$TRANSLATEDDIR/$CIRFILE.csd",$absTol,$relTol,$zeroTol);
   }
   else
   { 
