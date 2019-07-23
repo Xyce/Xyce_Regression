@@ -44,9 +44,6 @@ X10 11 12 0 RCBlock
 
 .AC DEC 10 10  1e5
 
-* the .PRINT AC line should produce no output
-.PRINT AC V(1)
-
 * The first line requests FORMAT=STD.  That should default to TOUCHSTONE2 format.
 * That first line also tests that the DELIMITER, SPARDIGIT and FREQDIGIT parameters
 * are all ignored on a .LIN line.
