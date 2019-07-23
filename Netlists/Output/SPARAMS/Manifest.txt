@@ -24,3 +24,11 @@ NegativeZ0.cir
 NegativeZ0.cir.sh
 RCladderSPdc.cir
 RCladderSPtran.cir
+InvalidRFParamOp.cir
+InvalidRFParamOp.cir.sh
+InvalidRFParamOp.cir.tags
+InvalidRFParamOp.cir.options
+dc.cir
+dc.cir.sh
+dc.cir.tags
+dc.cir.options

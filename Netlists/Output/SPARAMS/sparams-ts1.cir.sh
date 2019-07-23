@@ -38,7 +38,7 @@ $GOLD[4]="sparams-ts1-4port.cir.s4p";
 $GOLD[5]="sparams-ts1-5port.cir.s5p";
 
 # remove old files if they exist
-system("rm -f $CIR[0].ma.s1p* $CIR[0].db.s1p*");
+system("rm -f $CIR[0].ma.s1p* $CIR[0].db.s1p* $CIR[0].FD.prn");
 
 # run Xyce
 foreach $i (0 .. 3)
@@ -106,6 +106,14 @@ if (not -s "$CIR[3].s5p" )
   print "$CIR[3].s5p file is missing\n";
   print "Exit code = 14\n";
   exit 14;
+}
+
+# verify that no .AC output is made, for at least one netlist
+if ( -s "$CIR[0].FD.prn" )
+{
+  print "$CIR[0].FD.prn made when it should not be\n";
+  print "Exit code = 2\n";
+  exit 2;
 }
 
 # Now check the various output files

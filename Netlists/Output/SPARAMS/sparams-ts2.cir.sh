@@ -23,7 +23,7 @@ $CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
 
 # remove old files if they exist
-system("rm -f $CIRFILE.out $CIRFILE.err $CIRFILE.s3p.*");
+system("rm -f $CIRFILE.out $CIRFILE.err $CIRFILE.s3p.* $CIRFILE.FD.prn");
 
 # run Xyce
 $CMD="$XYCE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err";
@@ -50,6 +50,14 @@ if (not -s "$CIRFILE.s3p" )
   print "$CIRFILE.s3p file is missing\n";
   print "Exit code = 14\n";
   exit 14;
+}
+
+# verify that no .AC output is made
+if ( -s "$CIRFILE.FD.prn" )
+{
+  print "$CIRFILE.FD.prn made when it should not be\n";
+  print "Exit code = 2\n";
+  exit 2;
 }
 
 # Now check the .s3p file

@@ -27,7 +27,7 @@ $GOLDPRN=$ARGV[4];
 
 # remove old files if they exist
 system("rm -f $CIRFILE.out $CIRFILE.err $CIRFILE.ri.* $CIRFILE.ma.* $CIRFILE.db.*");
-system("rm -f $CIRFILE.FD.prn");
+system("rm -f $CIRFILE.FD.*");
 
 # run Xyce
 $CMD="$XYCE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err";
@@ -70,10 +70,10 @@ if (not -s "$CIRFILE.db.s2p" )
   exit 14;
 }
 
-# the .PRINT AC output should not happen
-if ( -s "$CIRFILE.FD.prn" )
+# the .PRINT AC output should happen
+if ( not -s "$CIRFILE.FD.prn" )
 {
-  print "$CIRFILE.FD.prn file made when it should not be\n";
+  print "$CIRFILE.FD.prn file is missing\n";
   print "Exit code = 2\n";
   exit 2;
 }
@@ -95,12 +95,15 @@ if ($XYCE_VERIFY =~ m/valgrind_check/)
     }
 }
 
-# Now check the .s2p files
+# Now check the .s2p files and .FD.prn file
 $absTol=1e-5;
 $relTol=1e-3;
 $zeroTol=1e-10;
+$freqRelTol=1e-6;
 $fc = $XYCE_VERIFY;
 $fc=~ s/xyce_verify/file_compare/;
+$XYCE_ACVERIFY = $XYCE_VERIFY;
+$XYCE_ACVERIFY =~ s/xyce_verify/ACComparator/;
 $GOLDS2P = $GOLDPRN;
 $GOLDS2P =~ s/\.prn$//;
 
@@ -129,14 +132,22 @@ if ($retval != 0){
   $retcode = 2;
 }
 
+$CMD="$XYCE_ACVERIFY $GOLDS2P.FD.prn $CIRFILE.FD.prn $absTol $relTol $zeroTol $freqRelTol";
+$retval = system($CMD);
+$retval = $retval >> 8;
+if ($retval != 0){
+  print STDERR "Comparator exited with exit code $retval on file $CIRFILE.FD.prn\n";
+  $retcode = 2;
+}
+
 # now check for the warning messages
-@searchstrings = (["Netlist warning in file sparams-ts2-dataFormat.cir at or near line 53",
+@searchstrings = (["Netlist warning in file sparams-ts2-dataFormat.cir at or near line 50",
     "DELIMITER parameter not supported on .LIN lin"],
-   ["Netlist warning in file sparams-ts2-dataFormat.cir at or near line 53",
+   ["Netlist warning in file sparams-ts2-dataFormat.cir at or near line 50",
     "No PRINT parameter SPARDIGIT found, parameter will be ignored."],
-   ["Netlist warning in file sparams-ts2-dataFormat.cir at or near line 53",
+   ["Netlist warning in file sparams-ts2-dataFormat.cir at or near line 50",
     "No PRINT parameter FREQDIGIT found, parameter will be ignored."],
-   ["Netlist warning: SParam output can only be written Touchstone format, using",
+   ["Netlist warning: SParam output can only be written in Touchstone format, using",
     "Touchstone2 format"]);
 
 $retval = $Tools->checkGroupedError("$CIRFILE.out",@searchstrings);

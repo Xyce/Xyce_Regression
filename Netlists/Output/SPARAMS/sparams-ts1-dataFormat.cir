@@ -5,7 +5,6 @@
 * FILE/FILENAME qualifiers.  This test uses
 * upper case for RI, MA and DB.
 *
-* The .PRINT AC line should produce no output.
 ****************************************************
 
 * RC ladder circuit
@@ -36,11 +35,22 @@ X10 11 12 0 RCBlock
 
 .AC DEC 10 10  1e5
 
-* the .PRINT AC line should produce no output
-.PRINT AC V(1)
-
 .LIN FORMAT=TOUCHSTONE FILE=sparams-ts1-dataFormat.cir.ri.s2p DATAFORMAT=RI PRECISION=6
 .LIN FORMAT=TOUCHSTONE FILENAME=sparams-ts1-dataFormat.cir.ma.s2p DATAFORMAT=MA PRECISION=6
 .LIN FORMAT=TOUCHSTONE FILE=sparams-ts1-dataFormat.cir.db.s2p DATAFORMAT=DB PRECISION=6
+
+* also test output of RF parameters via .PRINT AC line
+.PRINT AC S(1,1) SR(1,1) SI(1,1) SM(1,1) SP(1,1) SDB(1,1)
++ S(1,2) SR(1,2) SI(1,2) SM(1,2) SP(1,2) SDB(1,2)
++ S(2,1) SR(2,1) SI(2,1) SM(2,1) SP(2,1) SDB(2,1)
++ S(2,2) SR(2,2) SI(2,2) SM(2,2) SP(2,2) SDB(2,2)
++ Y(1,1) YR(1,1) YI(1,1) YM(1,1) YP(1,1) YDB(1,1)
++ Y(1,2) YR(1,2) YI(1,2) YM(1,2) YP(1,2) YDB(1,2)
++ Y(2,1) YR(2,1) YI(2,1) YM(2,1) YP(2,1) YDB(2,1)
++ Y(2,2) YR(2,2) YI(2,2) YM(2,2) YP(2,2) YDB(2,2)
++ Z(1,1) ZR(1,1) ZI(1,1) ZM(1,1) ZP(1,1) ZDB(1,1)
++ Z(1,2) ZR(1,2) ZI(1,2) ZM(1,2) ZP(1,2) ZDB(1,2)
++ Z(2,1) ZR(2,1) ZI(2,1) ZM(2,1) ZP(2,1) ZDB(2,1)
++ Z(2,2) ZR(2,2) ZI(2,2) ZM(2,2) ZP(2,2) ZDB(2,2)
 
 .END

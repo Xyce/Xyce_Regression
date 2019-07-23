@@ -5,6 +5,9 @@
 *
 * It also verifies that specifying SPARCALC=1 on a
 * .LIN line is okay.
+*
+* There is no .PRINT AC line.  So, there should
+* not be any .AC output.
 ****************************************************
 
 * RC ladder circuit

@@ -1,24 +1,10 @@
 ****************************************************
-* Test Touchstone2 output using a 3-Port S-Parameter
-* analysis.  This also tests:
-* the cases where:
-*
-*   1) the ports have differing output impedances.
-*
-*   2) the .LIN line uses the default values, and hence
-*      outputs Touchstone 2 format without generating
-*      any warning messages.
-*
-* There is no .PRINT AC line.  So, there should
-* not be any .AC output.
+* Test error message when the indices for S(), Y()
+* and Z() operators are invalid.
 ****************************************************
 
 * RC ladder circuit
-* Note that all ports (P devices) must use a common
-* Reference Node, which is 0 here.
 P1 1  0  port=1  z0=50
-P2 12 0  port=2  z0=50
-P3 5  0  port=3  Z0=100
 
 C1 2 0 1e-2
 Rgs 1 2 0.02
@@ -45,5 +31,10 @@ X10 11 12 0 RCBlock
 * This .LIN line should use the defaults of FORMAT=TOUCHSTONE2
 * and SPARCALC=1
 .LIN
+
+* Indices less than 1 are invalid.
+.PRINT AC S(0,1) SR(0,1) SI(0,1) SM(0,1) SP(0,1) SDB(0,1)
++ Y(1,0) YR(1,0) YI(1,0) YM(1,0) YP(1,0) YDB(1,0)
++ Z(0,1) ZR(0,1) ZI(0,1) ZM(0,1) ZP(0,1) ZDB(0,1)
 
 .END

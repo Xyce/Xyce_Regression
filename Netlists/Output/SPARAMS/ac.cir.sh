@@ -35,7 +35,7 @@ $zerotol=1e-8;
 $freqreltol=1e-6;
 
 # remove previous output files
-system("rm -f $CIRFILE.FD.*  $CIRFILE.TD.prn $CIRFILE.s1p $CIRFILE.out $CIRFILE.err");
+system("rm -f $CIRFILE.FD.* $CIRFILE.TD.prn $CIRFILE.s1p $CIRFILE.out $CIRFILE.err");
 
 # run Xyce
 $CMD="$XYCE $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
@@ -91,7 +91,7 @@ if ($retval != 0){
 }
 
 # the test should not make a .TD.prn or .s1p files
-if ( -f "$CIRFILE.TD.csv" )
+if ( -f "$CIRFILE.TD.prn" )
 {
     print STDERR "$CIRFILE.TD.prn produced, when it should not\n";
     $retcode = 2;
