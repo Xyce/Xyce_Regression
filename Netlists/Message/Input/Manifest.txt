@@ -32,6 +32,8 @@ CircuitBlock_parseIncludeFile_2a.cir
 CircuitBlock_parseIncludeFile_2a.cir.sh
 CircuitBlock_parseIncludeFile_2b.cir
 CircuitBlock_parseIncludeFile_2b.cir.sh
+CircuitBlock_parseIncludeFile_2c.cir
+CircuitBlock_parseIncludeFile_2c.cir.sh
 CircuitBlock_parseIncludeFile_3.cir
 CircuitBlock_parseIncludeFile_3_r4.lib
 CircuitBlock_parseIncludeFile_3_rvals.lib
