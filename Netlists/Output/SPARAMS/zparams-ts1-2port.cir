@@ -1,13 +1,7 @@
 ****************************************************
-* Test Touchstone2 output using a 3-Port S-Parameter
-* analysis.  This also tests:
-* the cases where:
-*
-*   1) the ports have differing output impedances.
-*
-*   2) the .LIN line uses the default values, and hence
-*      outputs Touchstone 2 format without generating
-*      any warning messages.
+* Test Touchstone1 output using a 2-Port Z-Parameter
+* analysis. This also verifies DATAFORMAT=MA and
+* DATAFORMAT=DB.
 *
 * There is no .PRINT AC line.  So, there should
 * not be any .AC output.
@@ -18,7 +12,6 @@
 * Reference Node, which is 0 here.
 P1 1  0  port=1  z0=50
 P2 12 0  port=2  z0=50
-P3 5  0  port=3  Z0=100
 
 C1 2 0 1e-2
 Rgs 1 2 0.02
@@ -42,8 +35,8 @@ X10 11 12 0 RCBlock
 
 .AC DEC 10 10  1e5
 
-* This .LIN line should use the defaults of FORMAT=TOUCHSTONE2
-* and SPARCALC=1.  It explicitly sets LINTYPE=S.
-.LIN LINTYPE=S
+.LIN FORMAT=TOUCHSTONE DATAFORMAT=RI LINTYPE=Z FILE=zparams-ts1-2port.cir.s2p
+.LIN FORMAT=TOUCHSTONE DATAFORMAT=MA LINTYPE=Z FILE=zparams-ts1-2port.cir.ma.s2p
+.LIN FORMAT=TOUCHSTONE DATAFORMAT=DB LINTYPE=Z FILE=zparams-ts1-2port.cir.db.s2p
 
 .END

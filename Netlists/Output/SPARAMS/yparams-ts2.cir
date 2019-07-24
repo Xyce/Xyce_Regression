@@ -1,16 +1,10 @@
 ****************************************************
-* Test Touchstone2 output using a 3-Port S-Parameter
-* analysis.  This also tests:
-* the cases where:
+* Test allowed data formats (RI, MA and DB) in
+* Touchstone2 output using a 2-Port Y-Parameter
+* analysis.
 *
-*   1) the ports have differing output impedances.
-*
-*   2) the .LIN line uses the default values, and hence
-*      outputs Touchstone 2 format without generating
-*      any warning messages.
-*
-* There is no .PRINT AC line.  So, there should
-* not be any .AC output.
+* There is no .PRINT AC line, so there should be
+* no AC output.
 ****************************************************
 
 * RC ladder circuit
@@ -18,7 +12,6 @@
 * Reference Node, which is 0 here.
 P1 1  0  port=1  z0=50
 P2 12 0  port=2  z0=50
-P3 5  0  port=3  Z0=100
 
 C1 2 0 1e-2
 Rgs 1 2 0.02
@@ -42,8 +35,8 @@ X10 11 12 0 RCBlock
 
 .AC DEC 10 10  1e5
 
-* This .LIN line should use the defaults of FORMAT=TOUCHSTONE2
-* and SPARCALC=1.  It explicitly sets LINTYPE=S.
-.LIN LINTYPE=S
+.LIN LINTYPE=Y
+.LIN LINTYPE=Y FILE=yparams-ts2.cir.ma.s2p DATAFORMAT=ma
+.LIN LINTYPE=Y FILE=yparams-ts2.cir.db.s2p DATAFORMAT=db
 
 .END

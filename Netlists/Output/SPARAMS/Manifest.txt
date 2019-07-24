@@ -32,3 +32,16 @@ dc.cir
 dc.cir.sh
 dc.cir.tags
 dc.cir.options
+yparams-ts1.cir
+yparams-ts1.cir.sh
+yparams-ts1-1port.cir
+yparams-ts1-2port.cir
+yparams-ts2.cir
+yparams-ts2.cir.sh
+zparams-ts1.cir
+zparams-ts1.cir.sh
+zparams-ts1-1port.cir
+zparams-ts1-2port.cir
+zparams-ts2.cir
+zparams-ts2.cir.sh
+
