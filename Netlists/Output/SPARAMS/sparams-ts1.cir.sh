@@ -37,14 +37,15 @@ $GOLD[3]="sparams-ts1-3port.cir.s3p";
 $GOLD[4]="sparams-ts1-4port.cir.s4p";
 $GOLD[5]="sparams-ts1-5port.cir.s5p";
 
-# remove old files if they exist
-system("rm -f $CIR[0].ma.s1p* $CIR[0].db.s1p* $CIR[0].FD.prn");
+# remove old output files if they exist
+system("rm -f $CIR[0].s1p* $CIR[0].ma.s1p* $CIR[0].db.s1p* $CIR[0].FD.prn");
+system("rm -f $CIR[1].s3p* $CIR[2].s4p* $CIR[3].s5p*");
 
 # run Xyce
 foreach $i (0 .. 3)
 {
   # remove old files if they exist
-  system("rm -f $CIR[$i].out $CIR[$i].err $CIR[$i].s$ip.*");
+  system("rm -f $CIR[$i].out $CIR[$i].err");
 
  $CMD="$XYCE $CIR[$i] > $CIR[$i].out 2> $CIR[$i].err";
  $retval = system("$CMD");
