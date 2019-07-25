@@ -1,0 +1,5 @@
+exclude
+p_element_bandpass_filter.cir.hspice
+p_element_bandpass_filter.cir
+p_element_bandpass_filter.cir.sh
+tags
