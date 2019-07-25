@@ -63,5 +63,5 @@ else
   print "test passed for $CIR[1]\n";
 }
 
-print "Exit code = $retval\n";
-exit $retval
+print "Exit code = $exitcode\n";
+exit $exitcode
