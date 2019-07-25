@@ -54,7 +54,9 @@ system("rm -f $CIRFILE.FD.* $CIRFILE.err $CIRFILE.out $CIRFILE.s1p");
                   "Netlist error: Function or variable ZI\\(0,1\\) is not defined",
                   "Netlist error: Function or variable ZM\\(0,1\\) is not defined",
                   "Netlist error: Function or variable ZP\\(0,1\\) is not defined",
-                  "Netlist error: Function or variable ZDB\\(0,1\\) is not defined");
+                  "Netlist error: Function or variable ZDB\\(0,1\\) is not defined",
+                  "Netlist error: Function or variable S\\(A,1\\) is not defined",
+                  "Netlist error: Function or variable Y\\(1,B\\) is not defined");
 $retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);
 
 print "Exit code = $retval\n"; exit $retval;

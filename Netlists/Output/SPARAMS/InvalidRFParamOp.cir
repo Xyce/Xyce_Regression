@@ -32,9 +32,10 @@ X10 11 12 0 RCBlock
 * and SPARCALC=1
 .LIN
 
-* Indices less than 1 are invalid.
+* Indices less than 1 are invalid.  The indices must also be integers.
 .PRINT AC S(0,1) SR(0,1) SI(0,1) SM(0,1) SP(0,1) SDB(0,1)
 + Y(1,0) YR(1,0) YI(1,0) YM(1,0) YP(1,0) YDB(1,0)
 + Z(0,1) ZR(0,1) ZI(0,1) ZM(0,1) ZP(0,1) ZDB(0,1)
++ S(a,1) Y(1,b)
 
 .END

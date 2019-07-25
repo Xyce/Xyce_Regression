@@ -95,7 +95,7 @@ if ($XYCE_VERIFY =~ m/valgrind_check/)
     }
 }
 
-# Now check the .s2p files and .FD.prn file
+# Now check the .s2p and .FD.prn files
 $absTol=1e-5;
 $relTol=1e-3;
 $zeroTol=1e-10;
@@ -137,6 +137,14 @@ $retval = system($CMD);
 $retval = $retval >> 8;
 if ($retval != 0){
   print STDERR "Comparator exited with exit code $retval on file $CIRFILE.FD.prn\n";
+  $retcode = 2;
+}
+
+$CMD="$XYCE_ACVERIFY $GOLDS2P.FD.exp.prn $CIRFILE.FD.exp.prn $absTol $relTol $zeroTol $freqRelTol";
+$retval = system($CMD);
+$retval = $retval >> 8;
+if ($retval != 0){
+  print STDERR "Comparator exited with exit code $retval on file $CIRFILE.FD.exp.prn\n";
   $retcode = 2;
 }
 
