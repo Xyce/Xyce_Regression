@@ -25,16 +25,16 @@ $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
 #$XYCE_COMPARE=$ARGV[2];
 $CIRFILE=$ARGV[3];
-#$GOLDPRN=$ARGV[4];
+$GOLDS2P="telegrapher_line_file_opt";
 
 $Tools = XyceRegression::Tools->new();
 if (defined($verbose)) { $Tools->setVerbose(1); }
 
 @CIR;
-$CIR="p_element_bandpass_filter.cir";
+$CIR="telegrapher_line.cir";
 
 # remove old files if they exist
-system("rm -f $CIR.s2p*");
+system("rm -f $GOLDS2P.s2p*");
 system("rm -f $CIR.out $CIR.err");
 
 # run known good Xyce .cir file, and check that it worked
@@ -100,34 +100,31 @@ else
 }
 
 # Exit if the various output files were not made
-if (not -s "$CIR.s2p" )
+if (not -s "$GOLDS2P.s2p" )
 {
-  print "Translated $CIR.s2p file is missing\n";
+  print "Translated $GOLDS2P.s2p file is missing\n";
   print "Exit code = 14\n";
   exit 14;
 }
 
 chdir "..";
 
-if (not -s "$CIR.s2p" )
+if (not -s "$GOLDS2P.s2p" )
 {
-  print "Gold $CIR.s2p file is missing\n";
+  print "Gold $GOLDS2P.s2p file is missing\n";
   print "Exit code = 14\n";
   exit 14;
 }
 
 @searchStrings = (
-  "Param removed. No param defined internally in XML: DC",
-  "Param removed. No param defined internally in XML: AC",
-  "Param removed. No param defined internally in XML: NOISECALC",
-  "Expression contains unsupported output variable: s11.",
-  "Expression contains unsupported output variable: s12.",
-  "Expression contains unsupported output variable: s21.",
-  "Expression contains unsupported output variable: s22.",
+  "Expression contains unsupported output variable: Z11.",
+  "Expression contains unsupported output variable: Z12.",
+  "Expression contains unsupported output variable: Z21.",
+  "Expression contains unsupported output variable: Z22.",
   "Total critical issues reported 			 = 0:", 
   "Total          errors reported 			 = 0:",
-  "Total          warnings reported 			 = 11:", 
-  "Total          information messages reported 	 = 0:",
+  "Total          warnings reported 			 = 8:", 
+  "Total          information messages reported 	 = 0:", 
   "SUCCESS: xdm completion status flag = 0:",
 );
 $xdmOutputSearchStringsPtr=\@searchStrings;
@@ -155,7 +152,7 @@ $fc=~ s/xyce_verify/file_compare/;
 
 $retcode = 0;
 
-$CMD="$fc $CIR.s2p $TRANSLATEDDIR/$CIR.s2p $absTol $relTol $zeroTol > $CIR.s2p.out 2> $CIR.s2p.err";
+$CMD="$fc $GOLDS2P.s2p $TRANSLATEDDIR/$GOLDS2P.s2p $absTol $relTol $zeroTol > $GOLDS2P.s2p.out 2> $GOLDS2P.s2p.err";
 $retval = system("$CMD");
 $retval = $retval >> 8;
 if ($retval == 0)
