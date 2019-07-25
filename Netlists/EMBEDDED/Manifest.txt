@@ -1,4 +1,9 @@
 tags
+embedded_cmosInverter.cir
+embedded_cmosInverter.cir.sh
+embedded_cmosInverter.cir.tags
+goldprn_embedded_cmosInverter.cir_ensemble.dat
+printLine_for_embedded_cmosInverter.cir
 globalParamNormalLHS.cir
 globalParamNormalLHS.cir.sh
 globalParamNormalLHS.cir.tags
