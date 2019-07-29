@@ -1,6 +1,5 @@
 nightly, serial, pce, tran
 embeddedsampling
 regression_pce
-nisp
 required:stokhos
 required:cxx11

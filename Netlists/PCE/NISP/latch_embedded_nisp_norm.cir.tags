@@ -1,6 +1,7 @@
-nightly, serial, pce, tran, bsim3
+nightly, serial, pce, tran, bjtlev1
 embeddedsampling
 quadrature_pce
 nisp
+sparse_grid
 required:stokhos
 required:cxx11

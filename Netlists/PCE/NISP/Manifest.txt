@@ -3,6 +3,12 @@ cmosInverter_nisp.cir.tags
 cmosInverter_nisp.cir.sh
 goldprn_cmosInverter_nisp.cir_ensemble.dat
 printLine_for_cmosInverter_nisp.cir
+latch_embedded_nisp_norm.cir
+latch_embedded_nisp_norm.cir.sh
+latch_embedded_nisp_norm.cir.tags
+latch_embedded_nisp_norm.cir_ensemble.dat
+goldprn_latch_embedded_nisp_norm.cir_ensemble.dat
+printLine_for_latch_embedded_nisp_norm.cir
 pceVoltageDividerQuad.cir
 pceVoltageDividerQuad.cir.sh
 pceVoltageDividerQuad.cir.tags
