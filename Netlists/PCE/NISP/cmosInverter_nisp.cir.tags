@@ -1,4 +1,5 @@
 nightly, serial, pce, tran
+embeddedsampling
 quadrature_pce
 nisp
 required:stokhos
