@@ -24,7 +24,7 @@ $GOLDPRN=$ARGV[4];
 
 # remove old files if they exist
 system("rm -f $CIRFILE.out $CIRFILE.err $CIRFILE.ri.* $CIRFILE.ma.* $CIRFILE.db.*");
-system("rm -f $CIRFILE.FD.prn");
+system("rm -f $CIRFILE.FD.*");
 
 # run Xyce
 $CMD="$XYCE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err";
@@ -45,7 +45,7 @@ if ($retval != 0)
   }
 }
 
-# Exit if the .s2p files were not made
+# Exit if the .s2p or .FD.prn files were not made
 if (not -s "$CIRFILE.ri.s2p" )
 {
   print "$CIRFILE.ri.s2p file is missing\n"; 
@@ -67,10 +67,9 @@ if (not -s "$CIRFILE.db.s2p" )
   exit 14;
 }
 
-# the .PRINT AC output should not happen
-if ( -s "$CIRFILE.FD.prn" )
+if ( not -s "$CIRFILE.FD.prn" )
 {
-  print "$CIRFILE.FD.prn file made when it should not be\n";
+  print "$CIRFILE.FD.prn is missing\n";
   print "Exit code = 2\n";
   exit 2;
 }
@@ -92,12 +91,15 @@ if ($XYCE_VERIFY =~ m/valgrind_check/)
     }
 }
 
-# Now check the .s2p files
+# Now check the .s2p files and .FD.prn file
 $absTol=1e-5;
 $relTol=1e-3;
 $zeroTol=1e-10;
+$freqRelTol=1e-6;
 $fc = $XYCE_VERIFY;
 $fc=~ s/xyce_verify/file_compare/;
+$XYCE_ACVERIFY = $XYCE_VERIFY;
+$XYCE_ACVERIFY =~ s/xyce_verify/ACComparator/;
 $GOLDS2P = $GOLDPRN;
 $GOLDS2P =~ s/\.prn$//;
 
@@ -123,6 +125,14 @@ $retval = system("$CMD");
 $retval = $retval >> 8;
 if ($retval != 0){
   print STDERR "Comparator exited with exit code $retval on file $CIRFILE.db.s2p\n";
+  $retcode = 2;
+}
+
+$CMD="$XYCE_ACVERIFY $GOLDS2P.FD.prn $CIRFILE.FD.prn $absTol $relTol $zeroTol $freqRelTol";
+$retval = system($CMD);
+$retval = $retval >> 8;
+if ($retval != 0){
+  print STDERR "Comparator exited with exit code $retval on file $CIRFILE.FD.prn\n";
   $retcode = 2;
 }
 

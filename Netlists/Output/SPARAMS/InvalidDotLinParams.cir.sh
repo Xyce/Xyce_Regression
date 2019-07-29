@@ -1,9 +1,7 @@
 #!/usr/bin/env perl
 
 use XyceRegression::Tools;
-
 $Tools = XyceRegression::Tools->new();
-#$Tools->setDebug(1);
 
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
@@ -12,7 +10,7 @@ $Tools = XyceRegression::Tools->new();
 # $ARGV[3] = location of circuit file to test
 # $ARGV[4] = location of gold standard prn file
 
-# If Xyce does not produce a prn file, then we return exit code 10.
+# If Xyce does not produce the appropriate output files, then we return exit code 14.
 # If Xyce succeeds, but the test fails, then we return exit code 2.
 # If the shell script fails for some reason, then we return exit code 1.
 
@@ -20,8 +18,12 @@ $Tools = XyceRegression::Tools->new();
 # responsible for capturing any error output from Xyce and the STDOUT & STDERR
 # from the comparison program.  The outside script, run_xyce_regression,
 # expects the STDERR output from Xyce to go into $CIRFILE.err, the STDOUT
-# output from comparison to go into $CIRFILE.prn.out and the STDERR output from
-# comparison to go into $CIRFILE.prn.err.
+# output from comparison to go into $CIRFILE.raw.out and the STDERR output from
+# comparison to go into $CIRFILE.raw.err.
+
+use Getopt::Long;
+&GetOptions( "verbose!" => \$verbose );
+if (defined($verbose)) { $Tools->setVerbose(1); }
 
 $XYCE=$ARGV[0];
 #$XYCE_VERIFY=$ARGV[1];
@@ -30,13 +32,14 @@ $XYCE=$ARGV[0];
 #$GOLDPRN=$ARGV[4];
 
 @CIR;
-$CIR[0]="AC_doInit1.cir";
-$CIR[1]="AC_doInit2.cir";
+$CIR[0]="InvalidDotLinParams1.cir";
+$CIR[1]="InvalidDotLinParams2.cir";
 
 $exitcode = 0;
 
 print "Testing $CIR[0]\n";
-@searchstrings = ("Frequency values in .DATA for .AC analysis must be > 0");
+@searchstrings = ("Unrecognized or unsupported parameter type H for Touchstone output requested",
+                  "on .LIN");
 
 $retval = $Tools->runAndCheckError($CIR[0],$XYCE,@searchstrings);
 if ($retval !=0)
@@ -50,7 +53,7 @@ else
 }
 
 print "Testing $CIR[1]\n";
-@searchstrings = ("No port device is found for S parameter analysis");
+@searchstrings = ("Unrecognized data format BOGO for Touchstone output requested on .LIN");
 
 $retval = $Tools->runAndCheckError($CIR[1],$XYCE,@searchstrings);
 if ($retval !=0)

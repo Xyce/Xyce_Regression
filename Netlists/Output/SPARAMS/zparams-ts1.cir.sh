@@ -24,25 +24,23 @@ $GOLDPRN=$ARGV[4];
 
 
 @CIR;
-$CIR[0]="sparams-ts1-1port.cir";
-$CIR[1]="sparams-ts1-3port.cir";
-$CIR[2]="sparams-ts1-4port.cir";
-$CIR[3]="sparams-ts1-5port.cir";
+$CIR[0]="zparams-ts1-1port.cir";
+$CIR[1]="zparams-ts1-2port.cir";
 
 @GOLD;
-$GOLD[0]="sparams-ts1-1port.cir.s1p";
-$GOLD[1]="sparams-ts1-1port.cir.ma.s1p";
-$GOLD[2]="sparams-ts1-1port.cir.db.s1p";
-$GOLD[3]="sparams-ts1-3port.cir.s3p";
-$GOLD[4]="sparams-ts1-4port.cir.s4p";
-$GOLD[5]="sparams-ts1-5port.cir.s5p";
+$GOLD[0]="zparams-ts1-1port.cir.s1p";
+$GOLD[1]="zparams-ts1-1port.cir.ma.s1p";
+$GOLD[2]="zparams-ts1-1port.cir.db.s1p";
+$GOLD[3]="zparams-ts1-2port.cir.s2p";
+$GOLD[4]="zparams-ts1-2port.cir.ma.s2p";
+$GOLD[5]="zparams-ts1-2port.cir.db.s2p";
 
 # remove old output files if they exist
 system("rm -f $CIR[0].s1p* $CIR[0].ma.s1p* $CIR[0].db.s1p* $CIR[0].FD.prn");
-system("rm -f $CIR[1].s3p* $CIR[2].s4p* $CIR[3].s5p*");
+system("rm -f $CIR[1].s2p* $CIR[1].ma.s2p* $CIR[1].db.s2p* $CIR[1].FD.prn");
 
 # run Xyce
-foreach $i (0 .. 3)
+foreach $i (0 .. 1)
 {
   # remove old files if they exist
   system("rm -f $CIR[$i].out $CIR[$i].err");
@@ -88,23 +86,23 @@ if (not -s "$CIR[0].db.s1p" )
   exit 14;
 }
 
-if (not -s "$CIR[1].s3p" )
+if (not -s "$CIR[1].s2p" )
 {
-  print "$CIR[1].s3p file is missing\n";
+  print "$CIR[1].s2p file is missing\n";
   print "Exit code = 14\n";
   exit 14;
 }
 
-if (not -s "$CIR[2].s4p" )
+if (not -s "$CIR[1].ma.s2p" )
 {
-  print "$CIR[2].s4p file is missing\n";
+  print "$CIR[1].ma.s2p file is missing\n";
   print "Exit code = 14\n";
   exit 14;
 }
 
-if (not -s "$CIR[3].s5p" )
+if (not -s "$CIR[1].db.s2p" )
 {
-  print "$CIR[3].s5p file is missing\n";
+  print "$CIR[1].db.s2p file is missing\n";
   print "Exit code = 14\n";
   exit 14;
 }
@@ -152,27 +150,27 @@ if ($retval != 0){
   $retcode = 2;
 }
 
-$CMD="$fc $CIR[1].s3p $dirname/$GOLD[3] $absTol $relTol $zeroTol > $CIR[1].s3p.out 2> $CIR[1].s3p.err";
+$CMD="$fc $CIR[1].s2p $dirname/$GOLD[3] $absTol $relTol $zeroTol > $CIR[1].s2p.out 2> $CIR[1].s2p.err";
 $retval = system("$CMD");
 $retval = $retval >> 8;
 if ($retval != 0){
-  print STDERR "Comparator exited with exit code $retval on file $CIR[1].s3p\n";
+  print STDERR "Comparator exited with exit code $retval on file $CIR[1].s2p\n";
   $retcode = 2;
 }
 
-$CMD="$fc $CIR[2].s4p $dirname/$GOLD[4] $absTol $relTol $zeroTol > $CIR[2].s4p.out 2> $CIR[2].s4p.err";
+$CMD="$fc $CIR[1].ma.s2p $dirname/$GOLD[4] $absTol $relTol $zeroTol > $CIR[1].ma.s2p.out 2> $CIR[1].ma.s2p.err";
 $retval = system("$CMD");
 $retval = $retval >> 8;
 if ($retval != 0){
-  print STDERR "Comparator exited with exit code $retval on file $CIR[2].s4p\n";
+  print STDERR "Comparator exited with exit code $retval on file $CIR[1].ma.s1p\n";
   $retcode = 2;
 }
 
-$CMD="$fc $CIR[3].s5p $dirname/$GOLD[5] $absTol $relTol $zeroTol > $CIR[3].s5p.out 2> $CIR[3].s5p.err";
+$CMD="$fc $CIR[1].db.s2p $dirname/$GOLD[5] $absTol $relTol $zeroTol > $CIR[1].db.s2p.out 2> $CIR[1].db.s2p.err";
 $retval = system("$CMD");
 $retval = $retval >> 8;
 if ($retval != 0){
-  print STDERR "Comparator exited with exit code $retval on file $CIR[3].s5p\n";
+  print STDERR "Comparator exited with exit code $retval on file $CIR[1].db.s1p\n";
   $retcode = 2;
 }
 

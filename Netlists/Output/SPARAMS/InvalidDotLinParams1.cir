@@ -1,13 +1,7 @@
 ****************************************************
-* Test Touchstone1 output using a 1-Port S-Parameter
-* analysis.  This also verifies DATAFORMAT=MA and
-* DATAFORMAT=DB for a number-of-ports not equal to 2.
-*
-* It also verifies that specifying SPARCALC=1 on a
-* .LIN line is okay.
-*
-* There is no .PRINT AC line.  So, there should
-* not be any .AC output.
+* Test error exit for an invalid LINTYPE=<value>
+* on the .LIN line.  In this test, H is used.  That
+* parameter type might be valid in the future.
 ****************************************************
 
 * RC ladder circuit
@@ -37,8 +31,6 @@ X10 11 12 0 RCBlock
 
 .AC DEC 10 10  1e5
 
-.LIN FORMAT=TOUCHSTONE SPARCALC=1
-.LIN FORMAT=TOUCHSTONE DATAFORMAT=MA FILE=sparams-ts1-1port.cir.ma.s1p
-.LIN FORMAT=TOUCHSTONE DATAFORMAT=DB FILE=sparams-ts1-1port.cir.db.s1p
+.LIN FORMAT=TOUCHSTONE LINTYPE=H
 
 .END

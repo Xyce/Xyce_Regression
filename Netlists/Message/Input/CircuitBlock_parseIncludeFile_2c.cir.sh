@@ -5,10 +5,10 @@ use XyceRegression::Tools;
 $Tools = XyceRegression::Tools->new();
 #$Tools->setDebug(1);
 
-# The input arguments to this script are:
+# The input arguments to this script are: 
 # $ARGV[0] = location of Xyce binary
 # $ARGV[1] = location of xyce_verify.pl script
-# $ARGV[2] = location of compare script
+# $ARGV[2] = location of compare script 
 # $ARGV[3] = location of circuit file to test
 # $ARGV[4] = location of gold standard prn file
 
@@ -21,47 +21,28 @@ $Tools = XyceRegression::Tools->new();
 # from the comparison program.  The outside script, run_xyce_regression,
 # expects the STDERR output from Xyce to go into $CIRFILE.err, the STDOUT
 # output from comparison to go into $CIRFILE.prn.out and the STDERR output from
-# comparison to go into $CIRFILE.prn.err.
+# comparison to go into $CIRFILE.prn.err.  
 
+use Getopt::Long;
+
+# these search strings are supposed to occur one right after the other in the
+# error output.
+@searchstrings = ( "Could not find include file plugh\.lib"
+);
+
+&GetOptions( "verbose!" => \$verbose );
 $XYCE=$ARGV[0];
 #$XYCE_VERIFY=$ARGV[1];
 #$XYCE_COMPARE=$ARGV[2];
-#$CIRFILE=$ARGV[3];
+$CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
 
-@CIR;
-$CIR[0]="AC_doInit1.cir";
-$CIR[1]="AC_doInit2.cir";
+if (defined($verbose)) { $Tools->setVerbose(1); }
 
-$exitcode = 0;
+$Tools->setVerbose(1);
 
-print "Testing $CIR[0]\n";
-@searchstrings = ("Frequency values in .DATA for .AC analysis must be > 0");
+$retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);
+print "Exit code = $retval\n";
+exit $retval
 
-$retval = $Tools->runAndCheckError($CIR[0],$XYCE,@searchstrings);
-if ($retval !=0)
-{
-  print "test failed for $CIR[0], see $CIR[0].stdout\n";
-  $exitcode = $retval;
-}
-else
-{
-  print "test passed for $CIR[0]\n";
-}
 
-print "Testing $CIR[1]\n";
-@searchstrings = ("No port device is found for S parameter analysis");
-
-$retval = $Tools->runAndCheckError($CIR[1],$XYCE,@searchstrings);
-if ($retval !=0)
-{
-  print "test failed for $CIR[1], see $CIR[1].stdout\n";
-  $exitcode = $retval;
-}
-else
-{
-  print "test passed for $CIR[1]\n";
-}
-
-print "Exit code = $exitcode\n";
-exit $exitcode

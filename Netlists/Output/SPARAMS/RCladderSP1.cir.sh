@@ -71,7 +71,7 @@ if ($retval != 0){
 }
 
 # This warning message should NOT be found for this case
-$retval = system("grep \"Netlist warning: SParam output can only be written Touchstone format\" $CIRFILE.out");
+$retval = system("grep \"Netlist warning: SParam output can only be written in Touchstone format\" $CIRFILE.out");
 if ($retval == 0)
 {
   print "Warning message found, when it should not be\n";

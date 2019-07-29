@@ -1,0 +1,17 @@
+embedded sampling version of a CMOS inverter
+*
+* This "circuit" exists to provide a meaningful .PRINT line to xyce_verify.pl.  
+*
+* It isn't supposed to be run, and will exit with error.
+*
+
+*COMP v(drain)mean OFFSET=1.0
+*COMP v(drain)meanPlus OFFSET=1.0
+*COMP v(drain)meanMinus OFFSET=1.0
+*COMP v(drain)stddev OFFSET=1.0
+*COMP v(drain)variance OFFSET=1.0
+
+.print tran v(drain)mean v(drain)meanPlus v(drain)meanMinus v(drain)stddev v(drain)variance 
+
+.tran 1ns 1.5e-6
+
