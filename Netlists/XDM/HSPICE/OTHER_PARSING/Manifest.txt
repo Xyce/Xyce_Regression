@@ -6,4 +6,7 @@ library_parsing.cir.sh
 mixed_param_and_func.cir.hspice
 mixed_param_and_func.cir
 mixed_param_and_func.cir.sh
+subcircuit_node_delineation.cir.hspice
+subcircuit_node_delineation.cir
+subcircuit_node_delineation.cir.sh
 tags
