@@ -1,3 +1,8 @@
+cmosInverter_nisp.cir
+cmosInverter_nisp.cir.tags
+cmosInverter_nisp.cir.sh
+goldprn_cmosInverter_nisp.cir_ensemble.dat
+printLine_for_cmosInverter_nisp.cir
 pceVoltageDividerQuad.cir
 pceVoltageDividerQuad.cir.sh
 pceVoltageDividerQuad.cir.tags

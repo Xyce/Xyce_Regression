@@ -1,0 +1,5 @@
+nightly, serial, pce, tran
+quadrature_pce
+nisp
+required:stokhos
+required:cxx11
