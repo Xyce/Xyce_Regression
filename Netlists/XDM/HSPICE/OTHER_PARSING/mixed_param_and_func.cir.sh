@@ -19,7 +19,8 @@ use Getopt::Long;
 $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
 $CIRFILE=$ARGV[3]; 
-$GOLDPRN=$ARGV[4];
+#$GOLDPRN=$ARGV[4];
+$GOLDPRN=undef;
 
 # Comparison tolerances
 $absTol = 1.0e-5;
