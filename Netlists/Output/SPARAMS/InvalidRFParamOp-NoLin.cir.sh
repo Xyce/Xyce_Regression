@@ -31,8 +31,11 @@ $XYCE=$ARGV[0];
 $CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
 
-# this string should be in the output of this failed Xyce run
-@searchstrings = ("The negative impedance -50 for port 1 is not supported for .LIN analysis");
+# these strings should be in the output of this failed Xyce run
+@searchstrings = ("Netlist error: S\\(\\), Y\\(\\) and Z\\(\\) operators only supported for .LIN analyses",
+                 "Netlist error: Function or variable S\\(1,1\\) is not defined",
+                 "Netlist error: Function or variable Y\\(1,1\\) is not defined",
+                 "Netlist error: Function or variable Z\\(1,1\\) is not defined");
 $retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);
 
 print "Exit code = $retval\n"; exit $retval;
