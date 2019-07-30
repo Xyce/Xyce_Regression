@@ -20,4 +20,4 @@ R8 8 0 10
 
 
 .DC VA 0 10 1
-.PRINT DC v(2) v(4) v(6) v(8)
+.PRINT DC v(in) v(2) v(4) v(6) v(8)

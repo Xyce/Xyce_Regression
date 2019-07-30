@@ -79,7 +79,8 @@ sub setXDMvariables
   elsif ($FROMSPICE eq "hspice")
   {
     $FROMSPICEXML="hspice";
-    $OUTFILETYPE="csd";
+    # $OUTFILETYPE="csd";
+    $OUTFILETYPE="prn";
   }
   else
   {
@@ -118,7 +119,7 @@ sub setXDMvariables
 sub verifyXDMtranslation
 {
   my ($XYCE,$XYCE_VERIFY,$CIRFILE,$FROMSPICE,$absTol,$relTol,$zeroTol,$verbose,
-           $xdmOutputSearchStringsPtr,$translatedXyceNetlistSearchStringsPtr)=@_;
+           $xdmOutputSearchStringsPtr,$translatedXyceNetlistSearchStringsPtr,$GOLDPRN)=@_;
 
   my $Tools = XyceRegression::Tools->new();
   #$Tools->setDebug(1);
@@ -141,7 +142,15 @@ sub verifyXDMtranslation
   `rm -f ./$TRANSLATEDDIR/*.err ./$TRANSLATEDDIR/*.out`;
 
   # run known good Xyce .cir file, and check that it worked
-  my $retval=system("$XYCE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err");
+  my $retval = 0;
+  if ($OUTFILETYPE eq "prn")
+  {
+    $retval=system("$XYCE -o $CIRFILE.prn $CIRFILE > $CIRFILE.out 2> $CIRFILE.err");
+  }
+  else
+  {
+    $retval=system("$XYCE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err");
+  }
   if ($retval != 0)
   {
     print STDERR "Xyce crashed trying to run gold file\n";
@@ -154,11 +163,32 @@ sub verifyXDMtranslation
   }
   # Translations of PSPICE netlists will generate .csd files.  
   # Translations of Spectre netlists will generate .prn files.
+  # Translations of HSPICE netlists will generate .prn files.
   if (not -s "$CIRFILE.$OUTFILETYPE" ) 
   {
     print ".$OUTFILETYPE file missing for gold Xyce netlist\n"; 
     print "Exit code = 14\n"; 
     exit 14; 
+  }
+
+  # For translations of HSPICE, comparison to the "gold" and translated netlists.
+  if (-s $GOLDPRN)
+  {
+    if ($FROMSPICE eq "hspice")
+    {
+      $retval = system("$XYCE_VERIFY $CIRFILE $GOLDPRN $CIRFILE.prn > $CIRFILE.gold.out 2> $CIRFILE.gold.err");
+    }
+    # check retval from Gold vs. runtime output comparison
+    if ($retval != 0)
+    { 
+      print "comparison of gold and runtime .$OUTFILETYPE files failed\n";
+      print "Exit code = $retval\n";
+      exit $retval;
+    }
+    else
+    {
+      print ".$OUTFILETYPE gold comparison succeeded\n";
+    }
   }
 
   # run xdm
@@ -188,7 +218,14 @@ sub verifyXDMtranslation
   # need to change directories to ./translated so that the translated .lib and .NET files
   # are used.
   chdir "./$TRANSLATEDDIR";
-  $retval=system("$XYCE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err");
+  if ($OUTFILETYPE eq "prn")
+  {
+    $retval=system("$XYCE -o $CIRFILE.prn $CIRFILE > $CIRFILE.out 2> $CIRFILE.err");
+  }
+  elsif ($OUTFILETYPE eq "csd")
+  {
+    $retval=system("$XYCE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err");
+  }
   if ($retval != 0)
   {
     print STDERR "Xyce crashed trying to run translated files\n";
@@ -201,6 +238,7 @@ sub verifyXDMtranslation
   } 
   # Translations of PSPICE netlists will generate .csd files.  
   # Translations of Spectre netlists will generate .prn files.
+  # Translations of HSPICE netlists will generate .prn files.
   if (not -s "$CIRFILE.$OUTFILETYPE" ) 
   {
     print ".$OUTFILETYPE file for translated Xyce netlist missing\n"; 
@@ -214,7 +252,7 @@ sub verifyXDMtranslation
   # now compare the output from the "gold" and translated netlists.
   # Translations of PSPICE netlists will generate .csd files.  
   # Translations of Spectre netlists will generate .prn files.
-  # Translations of HSPICE netlists will generate .csd files.  
+  # Translations of HSPICE netlists will generate .prn files.  
   if ($FROMSPICE eq "pspice")
   {
     $retval = XdmCommon::compareCSDfiles("$CIRFILE.csd","./$TRANSLATEDDIR/$CIRFILE.csd",$absTol,$relTol,$zeroTol);
@@ -228,7 +266,7 @@ sub verifyXDMtranslation
   }
   elsif ($FROMSPICE eq "hspice")
   {
-    $retval = XdmCommon::compareCSDfiles("$CIRFILE.csd","./$TRANSLATEDDIR/$CIRFILE.csd",$absTol,$relTol,$zeroTol);
+    $retval = system("$XYCE_VERIFY $CIRFILE ./$TRANSLATEDDIR/$CIRFILE.prn $CIRFILE.prn > $CIRFILE.out 2> $CIRFILE.err");
   }
   else
   { 
