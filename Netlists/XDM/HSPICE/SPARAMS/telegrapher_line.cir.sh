@@ -25,7 +25,10 @@ $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
 #$XYCE_COMPARE=$ARGV[2];
 $CIRFILE=$ARGV[3];
-$GOLDS2P="telegrapher_line_file_opt";
+$GOLDS2P=$ARGV[4];
+$RUNTIMES2P="telegrapher_line_file_opt";
+
+substr($GOLDS2P,-8,8) = "_file_opt.s2p";
 
 $Tools = XyceRegression::Tools->new();
 if (defined($verbose)) { $Tools->setVerbose(1); }
@@ -34,7 +37,7 @@ if (defined($verbose)) { $Tools->setVerbose(1); }
 $CIR="telegrapher_line.cir";
 
 # remove old files if they exist
-system("rm -f $GOLDS2P.s2p*");
+system("rm -f $RUNTIMES2P.s2p*");
 system("rm -f $CIR.out $CIR.err");
 
 # run known good Xyce .cir file, and check that it worked
@@ -55,6 +58,29 @@ if ($retval != 0)
      exit 10;
    }
  }
+
+# check the runtime output of gold netlist vs gold standard output 
+$absTol=1e-5;
+$relTol=1e-3;
+$zeroTol=1e-10;
+$fc = $XYCE_VERIFY;
+$fc=~ s/xyce_verify/file_compare/;
+
+$retcode = 0;
+
+$CMD="$fc $RUNTIMES2P.s2p $GOLDS2P $absTol $relTol $zeroTol > $CIR.s2p.gold.out 2> $CIR.s2p.gold.err";
+$retval = system("$CMD");
+$retval = $retval >> 8;
+if ($retval == 0)
+{
+  $retcode = 0;
+}
+else
+{
+  print STDERR "Comparator exited with exit code $retval on file $CIR.s2p vs gold standard output at $GOLDS2P\n";
+  $retcode = 2;
+  print "Exit code = $retcode\n"; exit $retcode;
+}
 
 # remove any previous tranlation directory
 system("rm -f $CIR-translated");
@@ -100,18 +126,18 @@ else
 }
 
 # Exit if the various output files were not made
-if (not -s "$GOLDS2P.s2p" )
+if (not -s "$RUNTIMES2P.s2p" )
 {
-  print "Translated $GOLDS2P.s2p file is missing\n";
+  print "Translated $RUNTIMES2P.s2p file is missing\n";
   print "Exit code = 14\n";
   exit 14;
 }
 
 chdir "..";
 
-if (not -s "$GOLDS2P.s2p" )
+if (not -s "$RUNTIMES2P.s2p" )
 {
-  print "Gold $GOLDS2P.s2p file is missing\n";
+  print "Gold $RUNTIMES2P.s2p file is missing\n";
   print "Exit code = 14\n";
   exit 14;
 }
@@ -152,7 +178,7 @@ $fc=~ s/xyce_verify/file_compare/;
 
 $retcode = 0;
 
-$CMD="$fc $GOLDS2P.s2p $TRANSLATEDDIR/$GOLDS2P.s2p $absTol $relTol $zeroTol > $GOLDS2P.s2p.out 2> $GOLDS2P.s2p.err";
+$CMD="$fc $RUNTIMES2P.s2p $TRANSLATEDDIR/$RUNTIMES2P.s2p $absTol $relTol $zeroTol > $RUNTIMES2P.s2p.out 2> $RUNTIMES2P.s2p.err";
 $retval = system("$CMD");
 $retval = $retval >> 8;
 if ($retval == 0)

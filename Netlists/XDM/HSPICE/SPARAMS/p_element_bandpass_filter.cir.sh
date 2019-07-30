@@ -25,7 +25,9 @@ $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
 #$XYCE_COMPARE=$ARGV[2];
 $CIRFILE=$ARGV[3];
-#$GOLDPRN=$ARGV[4];
+$GOLDPRN=$ARGV[4];
+
+substr($GOLDPRN,-3,3) = "s2p";
 
 $Tools = XyceRegression::Tools->new();
 if (defined($verbose)) { $Tools->setVerbose(1); }
@@ -55,6 +57,29 @@ if ($retval != 0)
      exit 10;
    }
  }
+
+# check the runtime output of gold netlist vs gold standard output 
+$absTol=1e-5;
+$relTol=1e-3;
+$zeroTol=1e-10;
+$fc = $XYCE_VERIFY;
+$fc=~ s/xyce_verify/file_compare/;
+
+$retcode = 0;
+
+$CMD="$fc $CIR.s2p $GOLDPRN $absTol $relTol $zeroTol > $CIR.s2p.gold.out 2> $CIR.s2p.gold.err";
+$retval = system("$CMD");
+$retval = $retval >> 8;
+if ($retval == 0)
+{
+  $retcode = 0;
+}
+else
+{
+  print STDERR "Comparator exited with exit code $retval on file $CIR.s2p vs gold standard output at $GOLDPRN\n";
+  $retcode = 2;
+  print "Exit code = $retcode\n"; exit $retcode;
+}
 
 # remove any previous tranlation directory
 system("rm -f $CIR-translated");
@@ -164,7 +189,7 @@ if ($retval == 0)
 }
 else
 {
-  print STDERR "Comparator exited with exit code $retval on file $CIR[0].s1p\n";
+  print STDERR "Comparator exited with exit code $retval on file $CIR.s2p\n";
   $retcode = 2;
 }
 
