@@ -34,14 +34,6 @@ $XYCE_VERIFY=$ARGV[1];
 $CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
 
-# these are the tolerances used in comparing the measures calculated by this 
-# script to those calculated by Xyce.  Zerotol is needed because some measured
-# values should be zero (and reltol won't make sense in that case).
-
-my $absTol = 3.0e-3;
-my $relTol = 0.02;
-my $zeroTol = 1.0e-5;
-
 if (defined($verbose)) { $Tools->setVerbose(1); }
 
 sub verbosePrint { $Tools->verbosePrint(@_); }
