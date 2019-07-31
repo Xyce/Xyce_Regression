@@ -1,4 +1,14 @@
 *subcircuit instance parameters
+* Netlist tests XDM subcircuit translations.
+* XDM should translate the HSPICE "." node delineation
+* into the Xyce ":" form in the output variables as
+* well as in the .IC statement. In addition, wildcards
+* in subcircuit delineations ought to be removed. 
+* Finally, XDM ought to be able to distinguish between
+* subckt instance parameters and parameters inside
+* subckts. See issues #66, #116 and #136 on XDM 
+* gitlab.
+
 .OPTIONS DEVICE TNOM=25 
 .SUBCKT subckt_resistor a b PARAMS: RESISTANCE1=1 RESISTANCE2=1
 .PARAM VAL2=3 VAL1=2

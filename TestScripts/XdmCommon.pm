@@ -171,7 +171,7 @@ sub verifyXDMtranslation
     exit 14; 
   }
 
-  # For translations of HSPICE, comparison to the "gold" and translated netlists.
+  # For translations of HSPICE, comparison of the "gold standard" output and runtime output of gold netlist.
   if (-s $GOLDPRN)
   {
     if ($FROMSPICE eq "hspice")
