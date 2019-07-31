@@ -9,4 +9,7 @@ mixed_param_and_func.cir.sh
 subcircuit_node_delineation.cir.hspice
 subcircuit_node_delineation.cir
 subcircuit_node_delineation.cir.sh
+special_variables.cir.hspice
+special_variables.cir
+special_variables.cir.sh
 tags
