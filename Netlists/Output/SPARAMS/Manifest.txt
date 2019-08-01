@@ -54,4 +54,6 @@ zparams-ts1-1port.cir
 zparams-ts1-2port.cir
 zparams-ts2.cir
 zparams-ts2.cir.sh
+multi-parameter.cir
+multi-parameter.cir.sh
 
