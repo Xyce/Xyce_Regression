@@ -1,3 +1,9 @@
+cmosInverter_regr.cir
+cmosInverter_regr.cir.sh
+cmosInverter_regr.cir.tags
+goldprn_cmosInverter_regr.cir_ensemble.dat
+printLine_for_cmosInverter_regr.cir
+exclude
 embeddedNormalPCE.cir
 embeddedNormalPCE.cir.sh
 embeddedNormalPCE.cir.tags

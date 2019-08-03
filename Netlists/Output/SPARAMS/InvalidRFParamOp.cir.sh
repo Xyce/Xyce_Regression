@@ -31,11 +31,7 @@ $XYCE=$ARGV[0];
 $CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
 
-# Remove the previous output files. $CIRFILE.raw file should not
-# be made, but remove it if it was made during a previous run
-system("rm -f $CIRFILE.FD.* $CIRFILE.err $CIRFILE.out $CIRFILE.s1p");
-
-# this string should be in the output of this failed Xyce run
+# these strings should be in the output of this failed Xyce run
 @searchstrings = ("Netlist error: Indices for S\\(\\), Y\\(\\) and Z\\(\\) operators must be > 0",
                   "Netlist error: Function or variable S\\(0,1\\) is not defined",
                   "Netlist error: Function or variable SR\\(0,1\\) is not defined",

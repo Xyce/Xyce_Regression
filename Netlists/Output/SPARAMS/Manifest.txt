@@ -28,6 +28,10 @@ InvalidRFParamOp.cir
 InvalidRFParamOp.cir.sh
 InvalidRFParamOp.cir.tags
 InvalidRFParamOp.cir.options
+InvalidRFParamOp-NoLin.cir
+InvalidRFParamOp-NoLin.cir.sh
+InvalidRFParamOp-NoLin.cir.tags
+InvalidRFParamOp-NoLin.cir.options
 InvalidDotLinParams.cir
 InvalidDotLinParams1.cir
 InvalidDotLinParams2.cir
@@ -50,4 +54,6 @@ zparams-ts1-1port.cir
 zparams-ts1-2port.cir
 zparams-ts2.cir
 zparams-ts2.cir.sh
+multi-parameter.cir
+multi-parameter.cir.sh
 
