@@ -1,6 +1,6 @@
 #
-# This is the common code used in the XDM regression testing 
-# 
+# This is the common code used in the XDM regression testing
+#
 
 package XdmCommon;
 use strict;
@@ -13,7 +13,7 @@ use XyceRegression::Tools;
 sub getXyceXMLVersion
 {
   my $XYCEXML;
-  
+
   # hard code XDM locations for now
   #my $PSPICEXML="\$XDMFORMAT/pspice_9_1.xml";
   #my $XYCEXML="\$XDMFORMAT/xyce_6_3.xml";
@@ -30,12 +30,12 @@ sub getXyceXMLVersion
 sub getXdmWrapVersion
 {
   my $XDMWRAP;
-  
+
   # the xdm_wrap script sets up (and cleans-up) the environment
   # (e.g., python version) required to run xdm.  The xdm_wrap
   # line should be used to test against the "current released
   # version" of xdm.  The other lines are used to select a particular
-  # version of xdm for testing.  
+  # version of xdm for testing.
   # xdm 1.4.0 is the current released version of xdm.  So, xdm_wrap
   # will point to that version also.
   #my $XDMWRAP="xdm_wrap1.2.0";
@@ -47,7 +47,7 @@ sub getXdmWrapVersion
   return $XDMWRAP;
 }
 
-# 
+#
 # Used to set up the XDM environment for XDM "translate" mode
 # (e.g., translating from PSpice to Xyce or from Spectre to Xyce).
 # This includes generating the XDM command line string, the name of
@@ -65,7 +65,7 @@ sub setXDMvariables
   my $OUTFILETYPE;
 
   my $XYCEXML=getXyceXMLVersion();
-  my $XDMWRAP=getXdmWrapVersion(); 
+  my $XDMWRAP=getXdmWrapVersion();
   if ($FROMSPICE eq "pspice")
   {
     $FROMSPICEXML="pspice_16_6";
@@ -124,7 +124,7 @@ sub verifyXDMtranslation
   my $Tools = XyceRegression::Tools->new();
   #$Tools->setDebug(1);
 
-  # Make the "execution string" that will be used to invoke XDM. Also get the name of 
+  # Make the "execution string" that will be used to invoke XDM. Also get the name of
   # the "from SPICE" file, and where to put the xdm-translated files.
   my ($XDMEXECSTR,$FROMSPICEFILE,$TRANSLATEDDIR,$OUTFILETYPE) = setXDMvariables($FROMSPICE,$CIRFILE);
 
@@ -138,7 +138,7 @@ sub verifyXDMtranslation
   # be cruft from a previous version of this perl module.
   `rm -f $CIRFILE.csd $CIRFILE.prn $CIRFILE.err $CIRFILE.out`;
   `rm -rf ./translated`;
-  `rm -f ./$TRANSLATEDDIR/*.csd ./$TRANSLATEDDIR/*.prn`; 
+  `rm -f ./$TRANSLATEDDIR/*.csd ./$TRANSLATEDDIR/*.prn`;
   `rm -f ./$TRANSLATEDDIR/*.err ./$TRANSLATEDDIR/*.out`;
 
   # run known good Xyce .cir file, and check that it worked
@@ -161,14 +161,14 @@ sub verifyXDMtranslation
   {
     print "Gold Xyce netlist ran\n";
   }
-  # Translations of PSPICE netlists will generate .csd files.  
+  # Translations of PSPICE netlists will generate .csd files.
   # Translations of Spectre netlists will generate .prn files.
   # Translations of HSPICE netlists will generate .prn files.
-  if (not -s "$CIRFILE.$OUTFILETYPE" ) 
+  if (not -s "$CIRFILE.$OUTFILETYPE" )
   {
-    print ".$OUTFILETYPE file missing for gold Xyce netlist\n"; 
-    print "Exit code = 14\n"; 
-    exit 14; 
+    print ".$OUTFILETYPE file missing for gold Xyce netlist\n";
+    print "Exit code = 14\n";
+    exit 14;
   }
 
   # For translations of HSPICE, comparison of the "gold standard" output and runtime output of gold netlist.
@@ -180,7 +180,7 @@ sub verifyXDMtranslation
     }
     # check retval from Gold vs. runtime output comparison
     if ($retval != 0)
-    { 
+    {
       print "comparison of gold and runtime .$OUTFILETYPE files failed\n";
       print "Exit code = $retval\n";
       exit $retval;
@@ -235,24 +235,24 @@ sub verifyXDMtranslation
   else
   {
     print "Translated Xyce netlist ran\n";
-  } 
-  # Translations of PSPICE netlists will generate .csd files.  
+  }
+  # Translations of PSPICE netlists will generate .csd files.
   # Translations of Spectre netlists will generate .prn files.
   # Translations of HSPICE netlists will generate .prn files.
-  if (not -s "$CIRFILE.$OUTFILETYPE" ) 
+  if (not -s "$CIRFILE.$OUTFILETYPE" )
   {
-    print ".$OUTFILETYPE file for translated Xyce netlist missing\n"; 
-    print "Exit code = 14\n"; 
-    exit 14; 
+    print ".$OUTFILETYPE file for translated Xyce netlist missing\n";
+    print "Exit code = 14\n";
+    exit 14;
   }
 
   # change back to the top-level directory for the comparison
   chdir "..";
 
   # now compare the output from the "gold" and translated netlists.
-  # Translations of PSPICE netlists will generate .csd files.  
+  # Translations of PSPICE netlists will generate .csd files.
   # Translations of Spectre netlists will generate .prn files.
-  # Translations of HSPICE netlists will generate .prn files.  
+  # Translations of HSPICE netlists will generate .prn files.
   if ($FROMSPICE eq "pspice")
   {
     $retval = XdmCommon::compareCSDfiles("$CIRFILE.csd","./$TRANSLATEDDIR/$CIRFILE.csd",$absTol,$relTol,$zeroTol);
@@ -269,7 +269,7 @@ sub verifyXDMtranslation
     $retval = system("$XYCE_VERIFY $CIRFILE ./$TRANSLATEDDIR/$CIRFILE.prn $CIRFILE.prn > $CIRFILE.out 2> $CIRFILE.err");
   }
   else
-  { 
+  {
    # should not ever get here, but just in case ...
    print "invalid value ($FROMSPICE) for FROMSPICE variable.\n";
    print "Exit code = 2\n";
@@ -277,7 +277,7 @@ sub verifyXDMtranslation
   }
   # check retval from Gold vs. Translated output comparison
   if ($retval != 0)
-  { 
+  {
     print "comparison of gold and translated .$OUTFILETYPE files failed\n";
     print "Exit code = $retval\n";
     exit $retval;
@@ -303,7 +303,7 @@ sub verifyXDMtranslation
     {
       print "test for xdm warning/error messages passed\n";
     }
-  } 
+  }
 
   if (defined $translatedXyceNetlistSearchStringsPtr)
   {
@@ -322,9 +322,9 @@ sub verifyXDMtranslation
       print "test for string in translated Xyce netlist passed\n";
       chdir "..";
     }
-  } 
+  }
 
-  print "Exit code = $retval\n"; exit $retval;  
+  print "Exit code = $retval\n"; exit $retval;
 }
 
 #
@@ -341,7 +341,7 @@ sub runAndCheckXDMerror
   my $Tools = XyceRegression::Tools->new();
   #$Tools->setDebug(1);
 
-  # Make the "execution string" that will be used to invoke XDM. Also get the name of 
+  # Make the "execution string" that will be used to invoke XDM. Also get the name of
   # the "from SPICE" file, and where to put the xdm-translated files.
   my ($XDMEXECSTR,$FROMSPICEFILE,$TRANSLATEDDIR) = setXDMvariables($FROMSPICE,$CIRFILE);
 
@@ -362,7 +362,7 @@ sub runAndCheckXDMerror
 
   # remove the translated subdirectory since it's not going to be used
   `rm -r ./$TRANSLATEDDIR/`;
- 
+
   # check the xdm error messages in the .stdout file
   my $retval = 0;
 
@@ -378,17 +378,17 @@ sub runAndCheckXDMerror
     else
     {
       print "test for xdm error messages passed\n";
-      
+
     }
   }
   else
   {
     print "test failed because no search strings defined\n";
     $retval=2;
-  } 
+  }
 
-  print "Exit code = $retval\n"; 
-  exit $retval;    
+  print "Exit code = $retval\n";
+  exit $retval;
 }
 
 #
@@ -405,7 +405,7 @@ sub translateAndCheckXyceMessages
   my $retval = 0;
   #$Tools->setDebug(1);
 
-  # Make the "execution string" that will be used to invoke XDM. Also get the name of 
+  # Make the "execution string" that will be used to invoke XDM. Also get the name of
   # the "from SPICE" file, and where to put the xdm-translated files.
   my ($XDMEXECSTR,$FROMSPICEFILE,$TRANSLATEDDIR,$OUTFILETYPE) = setXDMvariables($FROMSPICE,$CIRFILE);
 
@@ -414,7 +414,7 @@ sub translateAndCheckXyceMessages
   # Clean up from any previous runs.  The translated subdirectory would
   # be cruft from a previous version of this perl module.
   `rm -rf ./translated`;
-  `rm -f ./$TRANSLATEDDIR/*.csd ./$TRANSLATEDDIR/*.prn`; 
+  `rm -f ./$TRANSLATEDDIR/*.csd ./$TRANSLATEDDIR/*.prn`;
   `rm -f ./$TRANSLATEDDIR/*.err ./$TRANSLATEDDIR/*.out`;
 
     # run xdm
@@ -446,7 +446,7 @@ sub translateAndCheckXyceMessages
     {
       print "test for xdm warning/error messages passed\n";
     }
-  } 
+  }
 
   # rename the translated file
   $CMD="mv ./$TRANSLATEDDIR/$FROMSPICEFILE ./$TRANSLATEDDIR/$CIRFILE";
@@ -461,7 +461,14 @@ sub translateAndCheckXyceMessages
   # need to change directories to ./translated so that the translated .lib and .NET files
   # are used.
   chdir "./$TRANSLATEDDIR";
-  $retval=system("$XYCE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err");
+  if ($FROMSPICE eq "hspice")
+  {
+    $retval=system("$XYCE $CIRFILE -o $CIRFILE.prn > $CIRFILE.out 2> $CIRFILE.err");
+  }
+  else
+  {
+    $retval=system("$XYCE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err");
+  }
 
   if ($warnError eq "WARNING")
   {
@@ -476,15 +483,15 @@ sub translateAndCheckXyceMessages
     else
     {
       print "Translated Xyce netlist ran\n";
-    } 
-  
-    # Translations of PSPICE netlists will generate .csd files.  
+    }
+
+    # Translations of PSPICE netlists will generate .csd files.
     # Translations of Spectre netlists will generate .prn files.
-    if (not -s "$CIRFILE.$OUTFILETYPE" ) 
+    if (not -s "$CIRFILE.$OUTFILETYPE" )
     {
-      print ".$OUTFILETYPE file for translated Xyce netlist missing\n"; 
-      print "Exit code = 14\n"; 
-      exit 14; 
+      print ".$OUTFILETYPE file for translated Xyce netlist missing\n";
+      print "Exit code = 14\n";
+      exit 14;
     }
   }
   elsif ($warnError eq "ERROR")
@@ -495,9 +502,9 @@ sub translateAndCheckXyceMessages
       print STDERR "Translated Xyce netlist should not have run\n";
       print "Exit code = 2 \n";
       exit 2;
-    }     
+    }
   }
-  else 
+  else
   {
     print STDERR "translateAndCheckXyceMessages() subroutine requires ERROR or WARNING\n";
     print "Exit code = 2 \n";
@@ -507,13 +514,13 @@ sub translateAndCheckXyceMessages
   print "checking for Xyce warning/error messages in translated netlist\n";
   my @searchstrings = @$translatedXyceNetlistSearchStringsPtr;
   $retval = $Tools->checkError("$CIRFILE.out",@searchstrings);
-  print "Exit code = $retval\n"; exit $retval; 
+  print "Exit code = $retval\n"; exit $retval;
 }
 
 #
 # Used to compare .csd files
 #
-sub compareCSDfiles 
+sub compareCSDfiles
 {
   my ($goldFileName,$testFileName,$absTol,$relTol,$zeroTol)=@_;
 
@@ -530,18 +537,18 @@ sub compareCSDfiles
   my @testData;
 
   # open files and check that the files have the same number of lines
-  if (not -s "$goldFileName" ) 
-  { 
-    print STDERR "Missing Gold Standard file: $goldFileName\nExit code = 2\n"; 
-    $exitCode=2; 
+  if (not -s "$goldFileName" )
+  {
+    print STDERR "Missing Gold Standard file: $goldFileName\nExit code = 2\n";
+    $exitCode=2;
     print "test Failed!\n";
     print "Exit code = $exitCode\n";
     exit $exitCode;
   }
-  if (not -s "$testFileName" ) 
-  { 
-    print STDERR "Missing Test file: $testFileName\nExit code = 14\n"; 
-    $exitCode=14; 
+  if (not -s "$testFileName" )
+  {
+    print STDERR "Missing Test file: $testFileName\nExit code = 14\n";
+    $exitCode=14;
     print "test Failed!\n";
     print "Exit code = $exitCode\n";
     exit $exitCode;
@@ -558,7 +565,7 @@ sub compareCSDfiles
   close(TESTFILE);
 
   $exitCode=0;
-  if ($testFileCount != $gsCount) 
+  if ($testFileCount != $gsCount)
   {
     print STDERR "file $testFileName doesn't match the Gold Standard\n";
     print STDERR "$testFileName line count= $testFileCount\n";
@@ -566,7 +573,7 @@ sub compareCSDfiles
     $exitCode=2;
   }
   else
-  { 
+  {
     # If the line counts match, then compare in detail.
     # Re-open the files and compare them line by line.
     open(TESTFILE,"$testFileName");
@@ -584,14 +591,14 @@ sub compareCSDfiles
       $lineCount++;
       # process a line into text and values.
       chop $lineGS;
-      # Remove leading spaces on lineGS, otherwise the spaces become 
+      # Remove leading spaces on lineGS, otherwise the spaces become
       # element 0 of "@gsData" instead of the first column of data.
       $lineGS =~ s/^\s*//;
       @gsData = (split(/[\s,]+/, $lineGS));
 
       # process a line into text and values.
       chop $lineTestFile;
-      # Remove leading spaces on line, otherwise the spaces become 
+      # Remove leading spaces on line, otherwise the spaces become
       # element 0 of "testFileData" instead of the first column of data.
       $lineTestFile =~ s/^\s*//;
       @testFileData = (split(/[\s,]+/, $lineTestFile));
@@ -600,7 +607,7 @@ sub compareCSDfiles
       {
         $foundDataStart=1;
       }
-           
+
       if ($#gsData != $#testFileData)
       {
         print STDERR "File $testFileName and Gold Standard have a different # of elements on line $lineCount:\n";
@@ -609,7 +616,7 @@ sub compareCSDfiles
         $exitCode=2;
       }
       # skip version and date/time lines, since they may change in each
-      # test run.  Also need to handle XBEGIN line separately.  Also skip 
+      # test run.  Also need to handle XBEGIN line separately.  Also skip
       # title line for now since it has the file name, which differs
       elsif ( ($lineTestFile =~ /SOURCE/) || ($lineTestFile =~ /TIME/) || ($lineTestFile =~ /TITLE/))
       {
@@ -617,8 +624,8 @@ sub compareCSDfiles
       }
       else
       {
-        # the two files have the same number of items on a line.  
-        # compare individual values as scalars or strings  
+        # the two files have the same number of items on a line.
+        # compare individual values as scalars or strings
         for( $i=0; $i<=$#testFileData; $i++ )
         {
           if ( ($testFileData[$i] =~ /XBEGIN/) || ($testFileData[$i] =~ /XEND/) )
@@ -634,7 +641,7 @@ sub compareCSDfiles
               $exitCode=2;
               last;
             }
-            if( ($testData[0] eq $goldData[0]) ) 
+            if( ($testData[0] eq $goldData[0]) )
             {
               # two string fields match for XBEGIN and XEND
             }
@@ -653,7 +660,7 @@ sub compareCSDfiles
             else
             {
 	      $absDiff = abs($testData[1] - $goldData[1]);
-              $relDiff = $absDiff / abs($goldData[1]);   
+              $relDiff = $absDiff / abs($goldData[1]);
               if ( ( $absDiff < $absTol ) && ( $relDiff < $relTol ) )
               {
                 # two numeric fields match to within specified absolute tolerance and relative tolerance
@@ -670,10 +677,10 @@ sub compareCSDfiles
           }
           else
           {
-            # this handles date elements from lines that don't start with XBEGIN.  
+            # this handles date elements from lines that don't start with XBEGIN.
             # There are three cases, as noted in the comments below.
 	    if ( ($foundDataStart > 0) && ($testFileData[$i] =~ /:/ ) && ($gsData[$i] =~/:/) )
-            { 
+            {
               # these are fields that contain time points.  They are of the form  0.0001:1
               # where 0.0001 is the value and 1 is the idx.  This next block breaks them
               # apart into two pieces, each of which is tested separately.  These values are
@@ -684,20 +691,20 @@ sub compareCSDfiles
               {
                 if ( ( abs($testData[$idx]) <= $zeroTol ) && ( abs($goldData[$idx]) <= $zeroTol ) )
 	        {
-                  # no op since both test and gold data are less than the zero tolerance  
+                  # no op since both test and gold data are less than the zero tolerance
 	        }
                 else
                 {
 	          $absDiff = abs($testData[$idx] - $goldData[$idx]);
-                  if (abs($goldData[$idx]) > 0) 
+                  if (abs($goldData[$idx]) > 0)
 		  {
                     $relDiff = $absDiff / abs($goldData[$idx]);
-                  } 
+                  }
                   else
                   {
                     $relDiff = 0;
                   }
-  
+
 		  if ( ( $absDiff < $absTol ) && ( $relDiff < $relTol ) )
                   {
                     # two numeric fields match to within specified absolute tolerance and relative tolerance
@@ -706,16 +713,16 @@ sub compareCSDfiles
                   {
                     print STDERR "Numeric comparison failed in column $i on line $lineCount: \n";
                     print STDERR "File $testFileName had \"$testFileData[$i]\" while Gold Standard had \"$gsData[$i]\" \n";
-                    print STDERR "Calculated absDiff and relDiff = ($absDiff,$relDiff)\n"; 
+                    print STDERR "Calculated absDiff and relDiff = ($absDiff,$relDiff)\n";
                     $exitCode=2;
                     last;
                   }
 		}
                 if ($exitCode != 0) { last;}
-              } 
+              }
             }
             elsif ( looks_like_number($testFileData[$i]) && looks_like_number($gsData[$i]) )
-            {  
+            {
               # this block is for numbers that didn't match the value:idx format above
 	      if ( ( abs($testFileData[$i]) <= $zeroTol ) && ( abs($gsData[$i]) <= $zeroTol ) )
 	      {
@@ -724,33 +731,33 @@ sub compareCSDfiles
               else
               {
 	        $absDiff = abs($testFileData[$i] - $gsData[$i]);
-                if (abs($gsData[$i]) > 0) 
+                if (abs($gsData[$i]) > 0)
 		{
                   $relDiff = $absDiff / abs($gsData[$i]);
-                } 
+                }
                 else
                 {
                   $relDiff = 0;
-                } 
+                }
                 if ( ( $absDiff < $absTol ) && ( $relDiff < $relTol ) )
                 {
                   # two numeric fields match to within specified absolute tolerance and relative tolerance
                   # debug info, to verify that the comparison is working okay
                   #print STDERR "Numeric comparison for column $i on line $lineCount: \n";
                   #print STDERR "File $testFileName had \"$testFileData[$i]\" while Gold Standard had \"$gsData[$i]\" \n";
-                  #print STDERR "Calculated absDiff and relDiff = ($absDiff,$relDiff)\n"; 
+                  #print STDERR "Calculated absDiff and relDiff = ($absDiff,$relDiff)\n";
                 }
                 else
                 {
                   print STDERR "Numeric comparison failed in column $i on line $lineCount: \n";
                   print STDERR "File $testFileName had \"$testFileData[$i]\" while Gold Standard had \"$gsData[$i]\" \n";
-                  print STDERR "Calculated absDiff and relDiff = ($absDiff,$relDiff)\n"; 
+                  print STDERR "Calculated absDiff and relDiff = ($absDiff,$relDiff)\n";
                   $exitCode=2;
                   last;
                 }
               }
             }
-            elsif( ($testFileData[$i] eq $gsData[$i]) ) 
+            elsif( ($testFileData[$i] eq $gsData[$i]) )
             {
               # two string fields match
               # debug info to verify that the string comparison is working okay
@@ -764,8 +771,8 @@ sub compareCSDfiles
               $exitCode=2;
               last;
             }
-          }                 
-        }     
+          }
+        }
       }
     }
 
@@ -779,12 +786,10 @@ sub compareCSDfiles
 
 #
 # We need the 1; at the end because, when Perl loads a module, Perl checks
-# to see that the module returns a true value to ensure it loaded OK. 
+# to see that the module returns a true value to ensure it loaded OK.
 #
 1;
 
 #
 # End of common code used in each XDM test
-#  
-
-
+#
