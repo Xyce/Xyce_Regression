@@ -2,7 +2,8 @@ $library inclusion and correct instance parameters
 * Netlist tests XDM library parsing functions. Makes 
 * sure that model is read in from dummylib.lib section
 * TWO, and that there are no name scope conflicts with 
-* definition in succeeding library section
+* definition in succeeding library section (see issues
+* #107, #112, #114, #117 and #119 on XDM gitlab)
 
 .lib ./dummylib.lib two
 

@@ -12,4 +12,13 @@ subcircuit_node_delineation.cir.sh
 special_variables.cir.hspice
 special_variables.cir
 special_variables.cir.sh
+ground_node_symbol.cir.hspice
+ground_node_symbol.cir
+ground_node_symbol.cir.sh
+gnd_node_symbol.cir.hspice
+gnd_node_symbol.cir
+gnd_node_symbol.cir.sh
+gnd_exclamation_point_node_symbol.cir.hspice
+gnd_exclamation_point_node_symbol.cir
+gnd_exclamation_point_node_symbol.cir.sh
 tags

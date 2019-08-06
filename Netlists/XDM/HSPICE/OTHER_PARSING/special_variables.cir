@@ -7,9 +7,10 @@ $special variables
 * variable "temper" can be translated, into "temp"
 * in Xyce. Expressions using "hertz" will
 * have warnings and be commented out.
-* A parameter name or "vt" or an expression
+* A parameter name of "vt" or an expression
 * that uses a parameter "vt" in HSPICE will 
-* have warnings and be commented out.
+* have warnings and be commented out (see issue
+* #69 on XDM gitlab).
 
 .GLOBAL_PARAM KTQ='1.38e-23*temp/1.602e-19'
 .GLOBAL_PARAM USESVT1='2'

@@ -3,7 +3,7 @@ $mixed param func
 * and parameters mixed together on the same line in 
 * a .PARAM statement, and that it correct outputs 
 * the parameter or function to a .PARAM or .FUNC
-* statement in Xyce
+* statement in Xyce (see issue #100 on XDM gitlab)
 
 .PARAM a1=11 square(X) = 'X*X' a2=3
 .param multby2(x) = '2*x' a3=1

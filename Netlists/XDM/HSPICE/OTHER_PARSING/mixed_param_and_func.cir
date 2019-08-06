@@ -4,7 +4,7 @@
 * and parameters mixed together on the same line in 
 * a .PARAM statement, and that it correct outputs 
 * the parameter or function to a .PARAM or .FUNC
-* statement in Xyce
+* statement in Xyce (see issue #100 on XDM gitlab)
 
 .PARAM A1=11 A2=3 A3=1 A4=5 A5=8
 .FUNC SQUARE(X) 'X*X'
