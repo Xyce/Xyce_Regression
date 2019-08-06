@@ -46,7 +46,8 @@ if ($retval == 0)
 }
 
 # this string should be in the output of this failed Xyce run
-@searchstrings = ("-r and -a outputs are not supported for .HB or .LIN analyses");
+@searchstrings = ("-r and -a outputs are not supported for Embedded Sampling, .HB or .LIN",
+                  "analyses");
 $retval = $Tools->checkError("$CIRFILE.out",@searchstrings);
 
 print "Exit code = $retval\n"; exit $retval;

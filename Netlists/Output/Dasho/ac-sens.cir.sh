@@ -112,8 +112,8 @@ if ( system("grep ',' acSensOutput > acSensGrepOutput") == 0)
 }
 
 # check for warning message
-@searchstrings = ("Netlist warning: -o only produces output for .PRINT AC, .PRINT DC, .PRINT",
-                  "NOISE, .PRINT TRAN, .PRINT HB, .PRINT HB_FD and .LIN lines"
+@searchstrings = ("Netlist warning: -o only produces output for .PRINT AC, .PRINT DC, .PRINT ES",
+                  ".PRINT NOISE, .PRINT TRAN, .PRINT HB, .PRINT HB_FD and .LIN lines"
 );
 
 $retval = $Tools->checkError("$CIRFILE.out",@searchstrings);

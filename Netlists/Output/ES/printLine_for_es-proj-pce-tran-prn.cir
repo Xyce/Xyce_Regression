@@ -1,0 +1,37 @@
+embedded sampling version of a CMOS inverter
+*
+* This "circuit" exists to provide a meaningful .PRINT line to xyce_verify.pl.
+*
+* It isn't supposed to be run, and will exit with error.
+*
+
+*COMP {v(drain)}_mean                OFFSET=1.0
+*COMP {v(drain)}_meanPlus            OFFSET=1.0
+*COMP {v(drain)}_meanMinus           OFFSET=1.0
+*COMP {v(drain)}_stddev              OFFSET=1.0
+*COMP {v(drain)}_variance            OFFSET=1.0
+*COMP {v(drain)}_quad_pce_mean       OFFSET=1.0
+*COMP {v(drain)}_quad_pce_meanPlus   OFFSET=1.0
+*COMP {v(drain)}_quad_pce_meanMinus  OFFSET=1.0
+*COMP {v(drain)}_quad_pce_stddev     OFFSET=1.0
+*COMP {v(drain)}_quad_pce_variance   OFFSET=1.0
+*COMP {v(gate)}_mean                 OFFSET=1.0
+*COMP {v(gate)}_meanPlus             OFFSET=1.0
+*COMP {v(gate)}_meanMinus            OFFSET=1.0
+*COMP {v(gate)}_stddev               OFFSET=1.0
+*COMP {v(gate)}_variance             OFFSET=1.0
+*COMP {v(gate)}_quad_pce_mean        OFFSET=1.0
+*COMP {v(gate)}_quad_pce_meanPlus    OFFSET=1.0
+*COMP {v(gate)}_quad_pce_meanMinus   OFFSET=1.0
+*COMP {v(gate)}_quad_pce_stddev      OFFSET=1.0
+*COMP {v(gate)}_quad_pce_variance    OFFSET=1.0
+
+.PRINT TRAN {v(drain)}_mean {v(drain)}_meanPlus {v(drain)}_meanMinus {v(drain)}_stddev {v(drain)}_variance
++ {v(drain)}_quad_pce_mean {v(drain)}_quad_pce_meanPlus {v(drain)}_quad_pce_meanMinus
++ {v(drain)}_quad_pce_stddev {v(drain)}_quad_pce_variance
++ {V(gate)}_mean  {V(gate)}_meanPlus {V(gate)}_meanMinus {V(gate)}_stddev {V(gate)}_variance
++ {V(gate)}_quad_pce_mean {V(gate)}_quad_pce_meanPlus {V(gate)}_quad_pce_meanMinus
++ {V(gate)}_quad_pce_stddev {V(gate)}_quad_pce_variance
+
+.tran 1ns 1.5e-6
+
