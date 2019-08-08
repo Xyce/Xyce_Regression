@@ -1,7 +1,8 @@
 ********************************************************
 * Test Embedded Sampling output for .TRAN for FORMAT =
 * STD, CSV and NOINDEX. This covers regression_pce=true
-* and the case of two output variables.
+* and the case of two output variables.  It also tests
+* the print parameter OUTPUT_PCE_COEFFS=TRUE
 *
 * See SON Bug 1201 for more details.
 ********************************************************
@@ -77,12 +78,15 @@ M2 drain gate vdd vdd PMOS  w =0.54e-6 ; l=0.18e-6
 
 .options EMBEDDEDSAMPLES outputs={v(drain)},{V(gate)} numsamples=100
 + regression_pce=true
++ output_pce_coeffs=true
 
 .tran 1ns 1.5e-6
 
 .PRINT TRAN v(drain) V(gate)
 
-.PRINT ES PRECISION=6
-.PRINT ES PRECISION=6 FORMAT=CSV FILE=es-regr-pce-tran-prn.cir.ES.csv
-.PRINT ES PRECISION=6 FORMAT=NOINDEX FILE=es-regr-pce-tran-prn.cir.ES.noindex.prn
+.PRINT ES PRECISION=6 OUTPUT_PCE_COEFFS=TRUE
+.PRINT ES PRECISION=6 OUTPUT_PCE_COEFFS=TRUE
++ FORMAT=CSV FILE=es-regr-pce-tran-prn.cir.ES.csv
+.PRINT ES PRECISION=6 OUTPUT_PCE_COEFFS=TRUE
++ FORMAT=NOINDEX FILE=es-regr-pce-tran-prn.cir.ES.noindex.prn
 
