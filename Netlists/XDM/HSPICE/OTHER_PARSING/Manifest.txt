@@ -21,4 +21,7 @@ gnd_node_symbol.cir.sh
 gnd_exclamation_point_node_symbol.cir.hspice
 gnd_exclamation_point_node_symbol.cir
 gnd_exclamation_point_node_symbol.cir.sh
+macro_statement.cir.hspice
+macro_statement.cir
+macro_statement.cir.sh
 tags
