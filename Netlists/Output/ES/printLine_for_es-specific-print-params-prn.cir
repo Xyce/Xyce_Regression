@@ -1,0 +1,91 @@
+embedded sampling version of a CMOS inverter
+*
+* This "circuit" exists to provide a meaningful .PRINT line to xyce_verify.pl.
+*
+* It isn't supposed to be run, and will exit with error.
+*
+
+*COMP {v(drain)}_quad_pce_mean        OFFSET=1.0
+ *COMP {v(drain)}_quad_pce_meanPlus   OFFSET=1.0
+*COMP {v(drain)}_quad_pce_meanMinus   OFFSET=1.0
+*COMP {v(drain)}_quad_pce_stddev      OFFSET=1.0
+*COMP {v(drain)}_quad_pce_variance    OFFSET=1.0
+*COMP {v(drain)}_0   OFFSET=1.0
+*COMP {v(drain)}_1   OFFSET=1.0
+*COMP {v(drain)}_2   OFFSET=1.0
+*COMP {v(drain)}_3   OFFSET=1.0
+*COMP {v(drain)}_4   OFFSET=1.0
+*COMP {v(drain)}_5   OFFSET=1.0
+*COMP {v(drain)}_6   OFFSET=1.0
+*COMP {v(drain)}_7   OFFSET=1.0
+*COMP {v(drain)}_8   OFFSET=1.0
+*COMP {v(drain)}_9   OFFSET=1.0
+*COMP {v(drain)}_10  OFFSET=1.0
+*COMP {v(drain)}_11  OFFSET=1.0
+*COMP {v(drain)}_12  OFFSET=1.0
+*COMP {v(drain)}_13  OFFSET=1.0
+*COMP {v(drain)}_14  OFFSET=1.0
+*COMP {v(drain)}_15  OFFSET=1.0
+*COMP {v(drain)}_16  OFFSET=1.0
+*COMP {v(drain)}_17  OFFSET=1.0
+*COMP {v(drain)}_18  OFFSET=1.0
+*COMP {v(drain)}_19  OFFSET=1.0
+*COMP {v(drain)}_20  OFFSET=1.0
+*COMP {v(drain)}_21  OFFSET=1.0
+*COMP {v(drain)}_22  OFFSET=1.0
+*COMP {v(drain)}_23  OFFSET=1.0
+*COMP {v(drain)}_24  OFFSET=1.0
+*COMP {v(gate)}_quad_pce_mean         OFFSET=1.0
+*COMP {v(gate)}_quad_pce_meanPlus     OFFSET=1.0
+*COMP {v(gate)}_quad_pce_meanMinus    OFFSET=1.0
+*COMP {v(gate)}_quad_pce_stddev       OFFSET=1.0
+*COMP {v(gate)}_quad_pce_variance     OFFSET=1.0
+*COMP {v(gate)}_0    OFFSET=1.0
+*COMP {v(gate)}_1    OFFSET=1.0
+*COMP {v(gate)}_2    OFFSET=1.0
+*COMP {v(gate)}_3    OFFSET=1.0
+*COMP {v(gate)}_4    OFFSET=1.0
+*COMP {v(gate)}_5    OFFSET=1.0
+*COMP {v(gate)}_6    OFFSET=1.0
+*COMP {v(gate)}_7    OFFSET=1.0
+*COMP {v(gate)}_8    OFFSET=1.0
+*COMP {v(gate)}_9    OFFSET=1.0
+*COMP {v(gate)}_10   OFFSET=1.0
+*COMP {v(gate)}_11   OFFSET=1.0
+*COMP {v(gate)}_12   OFFSET=1.0
+*COMP {v(gate)}_13   OFFSET=1.0
+*COMP {v(gate)}_14   OFFSET=1.0
+*COMP {v(gate)}_15   OFFSET=1.0
+*COMP {v(gate)}_16   OFFSET=1.0
+*COMP {v(gate)}_17   OFFSET=1.0
+*COMP {v(gate)}_18   OFFSET=1.0
+*COMP {v(gate)}_19   OFFSET=1.0
+*COMP {v(gate)}_20   OFFSET=1.0
+*COMP {v(gate)}_21   OFFSET=1.0
+*COMP {v(gate)}_22   OFFSET=1.0
+*COMP {v(gate)}_23   OFFSET=1.0
+*COMP {v(gate)}_24   OFFSET=1.0
+
+*COMP {v(drain)}_quad_pce_mean       OFFSET=1.0
+*COMP {v(drain)}_quad_pce_meanPlus   OFFSET=1.0
+*COMP {v(drain)}_quad_pce_meanMinus  OFFSET=1.0
+*COMP {v(drain)}_quad_pce_stddev     OFFSET=1.0
+*COMP {v(drain)}_quad_pce_variance   OFFSET=1.0
+
+.PRINT TRAN {v(drain)}_quad_pce_mean {v(drain)}_quad_pce_meanPlus
++ {v(drain)}_quad_pce_meanMinus {v(drain)}_quad_pce_stddev {v(drain)}_quad_pce_variance
++ {v(drain)}_0 {v(drain)}_1 {v(drain)}_2 {v(drain)}_3 {v(drain)}_4 {v(drain)}_5
++ {v(drain)}_6 {v(drain)}_7 {v(drain)}_8 {v(drain)}_9 {v(drain)}_10 {v(drain)}_11
++ {v(drain)}_12 {v(drain)}_13 {v(drain)}_14 {v(drain)}_15 {v(drain)}_16
++ {v(drain)}_17 {v(drain)}_18 {v(drain)}_19 {v(drain)}_20 {v(drain)}_21
++ {v(drain)}_22 {v(drain)}_23 {v(drain)}_24
++ {v(gate)}_quad_pce_mean {v(gate)}_quad_pce_meanPlus
++ {v(gate)}_quad_pce_meanMinus {v(gate)}_quad_pce_stddev {v(gate)}_quad_pce_variance
++ {v(gate)}_0 {v(gate)}_1 {v(gate)}_2 {v(gate)}_3 {v(gate)}_4 {v(gate)}_5
++ {v(gate)}_6 {v(gate)}_7 {v(gate)}_8 {v(gate)}_9 {v(gate)}_10 {v(gate)}_11
++ {v(gate)}_12 {v(gate)}_13 {v(gate)}_14 {v(gate)}_15 {v(gate)}_16
++ {v(gate)}_17 {v(gate)}_18 {v(gate)}_19 {v(gate)}_20 {v(gate)}_21
++ {v(gate)}_22 {v(gate)}_23 {v(gate)}_24
+
+.tran 1ns 1.5e-6
+

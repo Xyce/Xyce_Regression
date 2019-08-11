@@ -15,6 +15,8 @@ MaxMinPPTestAC.cir
 MaxMinPPTestAC.cir.sh
 MaxMinPPTestACGSfile
 MaxMinPPTestAC.cir.tags
+RFParamsOps.cir
+RFParamsOps.cir.sh
 measure_ac_analysis_mismatch.cir
 measure_ac_analysis_mismatch.cir.sh
 measure_ac_analysis_mismatch.cir.tags

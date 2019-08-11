@@ -1,0 +1,33 @@
+********************************************************
+* Test -o command line option for .PRINT ES.  The
+* parameters FORMAT=CSV FILE=esFoo and on the .PRINT ES
+* line should be ignored.  Also, no output should occur
+* from the .PRINT DC line.
+*
+* See SON Bug 1201 for more details.
+********************************************************
+*Regression test for simple normal distribution sampling
+
+R2 1 0 3K
+R1 1 2 2K
+v1 2 0 10V
+
+.dc v1 10 10 1
+
+.EMBEDDEDSAMPLING
++ param=R1,R2
++ type=normal,normal
++ means=3K,2K
++ std_deviations=0.1K,0.2K
+
+.options EMBEDDEDSAMPLES numsamples=50
++ projection_pce=true
++ order=3
++ outputs={v(1)}
++ sample_type=lhs
++ stdoutput=true
+
+.PRINT DC V(1)
+.PRINT ES PRECISION=6 FORMAT=CSV FILE=esFoo
+
+.END

@@ -10,7 +10,7 @@ if (defined($verbose)) { $Tools->setVerbose(1); }
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
 # $ARGV[1] = location of xyce_verify.pl script
-# $ARGV[2] = location of compare script 
+# $ARGV[2] = location of compare script
 # $ARGV[3] = location of circuit file to test
 # $ARGV[4] = location of gold standard prn file
 
@@ -31,13 +31,13 @@ $XYCE_COMPARE=$ARGV[2];
 $CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
 
-$DASHOFILE="acOutput";
+$DASHOFILE="esOutput";
 $GOLDPRN =~ s/\.prn$//; # remove the .prn at the end.
 
 # Remove the previous output files, including some that are only made if the
 # previous run failed.
-system("rm -f $CIRFILE.FD.* $CIRFILE.TD.* $CIRFILE.err $CIRFILE.out");
-system("rm -f $DASHOFILE $DASHOFILE.* acGrepOutput acFoo");
+system("rm -f $CIRFILE.prn $CIRFILE.err $CIRFILE.out $CIRFILE.ES.*");
+system("rm -f $DASHOFILE $DASHOFILE.* esGrepOutput esFoo");
 
 # run Xyce
 $CMD="$XYCE -o $DASHOFILE -delim COMMA $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
@@ -47,77 +47,59 @@ if ($retval != 0)
 {
   if ($retval & 127)
   {
-    print "Exit code = 13\n"; 
-    printf STDERR "Xyce crashed with signal %d on file %s\n",($retval&127),$CIRFILE; 
+    print "Exit code = 13\n";
+    printf STDERR "Xyce crashed with signal %d on file %s\n",($retval&127),$CIRFILE;
     exit 13;
   }
   else
   {
-    print "Exit code = 10\n"; 
-    printf STDERR "Xyce exited with exit code %d on %s\n",$retval>>8,$CIRFILE; 
+    print "Exit code = 10\n";
+    printf STDERR "Xyce exited with exit code %d on %s\n",$retval>>8,$CIRFILE;
     exit 10;
   }
 }
 
-# check for output files  
+# check for output files
 $xyceexit=0;
-if ( (-f "$CIRFILE.FD.prn" ) || (-f "$CIRFILE.FD.csv") ) {
-  print STDERR "Extra output file $CIRFILE.FD.prn or $CIRFILE.FD.csv\n";
+if ( (-f "$CIRFILE.prn") || (-f "$CIRFILE.ES.csv") ){
+  print STDERR "Extra output file $CIRFILE.prn or $CIRFILE.ES.csv\n";
   $xyceexit=2;
 }
 
-if ( (-f "$CIRFILE.TD.prn") || (-f "$CIRFILE.TD.csv") ) {
-  print STDERR "Extra output file $CIRFILE.TD.prn or $CIRFILE.TD.csv\n";
-  $xyceexit=2;
-}
-
-if ( -f "acFoo") {
-  print STDERR "Extra output file acFoo\n";
+if ( -f "esFoo") {
+  print STDERR "Extra output file esFoo\n";
   $xyceexit=2;
 }
 
 if ( !(-f "$DASHOFILE") ){
-  print STDERR "Missing -o output file $DASHOFILE\n";
+  print STDERR "Missing -o output file, $DASHOFILE\n";
   $xyceexit=14;
 }
 
 if ($xyceexit!=0) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
 
-# Now verify the output file, which is acOutput.  Use file_compare.pl
-# since I'm also testing print line concatenation and that the simulation
-# footer is present.
-$retcode=0;
+# Now verify the output file, which is esOutput.
+$retcode = 0;
+$absTol=1e-5;
+$relTol=1e-3;
+$zeroTol=1e-6;
+$fc = $XYCE_VERIFY;
+$fc=~ s/xyce_verify/file_compare/;
 
-$fc=$XYCE_VERIFY;
-$fc =~ s/xyce_verify/file_compare/;
-$abstol=1e-4;
-$reltol=1e-3;
-$zerotol=1e-6;
-
-$CMD="$fc $DASHOFILE $GOLDPRN.FD.prn $abstol $reltol $zerotol > $DASHOFILE.out 2> $DASHOFILE.err";
-if (system($CMD) != 0) {
-    print STDERR "Verification failed on file $DASHOFILE, see $DASHOFILE.err\n";
-    $retcode = 2;
+$CMD="$fc $DASHOFILE $GOLDPRN.ES.prn $absTol $relTol $zeroTol > $DASHOFILE.out 2> $DASHOFILE.err";
+$retval = system($CMD);
+$retval = $retval >> 8;
+if ($retval != 0){
+  print STDERR "Comparator exited with exit code $retval on file $DASHOFILE\n";
+  $retcode = 2;
 }
 
 # output file should not have any commas in it
-if ( system("grep ',' acOutput > acGrepOutput") == 0)
+if ( system("grep ',' esOutput > esGrepOutput") == 0)
 {
   print STDERR "Verification failed on file $DASHOFILE.  It should not have any commas in it\n";
   $retcode = 2;
 }
-
-# check for warning message
-@searchstrings = ("Netlist warning: -o only produces output for .PRINT AC, .PRINT DC, .PRINT ES",
-                  ".PRINT NOISE, .PRINT TRAN, .PRINT HB, .PRINT HB_FD and .LIN lines"
-);
-
-$retval = $Tools->checkError("$CIRFILE.out",@searchstrings);
-if ($retval != 0)
-{
-  print "Check on warning message failed\n";
-  $retcode = $retval; 
-} 
 
 print "Exit code = $retcode\n"; exit $retcode;
 
