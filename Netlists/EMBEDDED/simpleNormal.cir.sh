@@ -34,6 +34,8 @@ if (defined ($xyceexit)) {print "Exit code = 10\n"; exit 10;}
 
 $CIRPRN=$CIRFILE;
 $CIRPRN =~ s/\.cir/\.cir\.prn/g;
+$CIRESPRN=$CIRFILE;
+$CIRESPRN =~ s/\.cir/\.cir\.ES\.prn/g;
 
 # Now read in the Xyce std output and locate the random seed
 $seed=`grep -m 1 'Seeding random' $CIRFILE.out`;
@@ -42,10 +44,12 @@ $seed =~ s/Seeding random number generator with ([0-9]*)/\1/;
 
 print "Seed is $seed\n";
 
-#Save the output
+#Save the outputs
 $CIRPRN_save=$CIRPRN."_save";
+$CIRESPRN_save=$CIRESPRN."_save";
 
 `mv $CIRPRN $CIRPRN_save`;
+`mv $CIRESPRN $CIRESPRN_save`;
 
 #Now re-run Xyce with reported seed:
 $CMD="$XYCE -randseed $seed $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
@@ -62,20 +66,21 @@ else
 if (defined ($xyceexit)) {print "Exit code = 10\n"; exit 10;}
 
 # Now diff the new output with the old --- match should be exact
+$exitcode=0;
 $CMD="diff $CIRPRN_save $CIRPRN > $CIRPRN.out 2> $CIRPRN.err";
-$passed=1;
 if (system("$CMD") != 0)
 {
-    $passed=0;
+    print "Failed diff on $CIRPRN_save and $CIRPRN\n";
+    $exitcode = 2;
 }
-if ($passed==1)
+
+$CMD="diff $CIRESPRN_save $CIRESPRN > $CIRESPRN.out 2> $CIRESPRN.err";
+if (system("$CMD") != 0)
 {
-    print "Exit code = 0\n";
-    exit 0;
+    print "Failed diff on $CIRESPRN_save and $CIRESPRN\n";
+    $exitcode = 2;
 }
-else
-{
-    print "Exit code = 2\n";
-    exit 2;
-}
+
+print "Exit code = $exitcode\n";
+exit $exitcode
 
