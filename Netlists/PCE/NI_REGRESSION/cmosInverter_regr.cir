@@ -73,5 +73,7 @@ M2 drain gate vdd vdd PMOS  w =0.54e-6 ; l=0.18e-6
 
 .PRINT ES PRECISION=6 FORMAT=TECPLOT output_Sample_Stats=false
 
+.PRINT ES PRECISION=6 FORMAT=TECPLOT outputSampleStats=false
+
 .tran 1ns 1.5e-6
 
