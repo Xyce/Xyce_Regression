@@ -1,7 +1,9 @@
 ********************************************************
 * Test Embedded Sampling output for .DC for FORMAT =
 * STD, CSV and NOINDEX. This covers projection_pce=true
-* with one output variable.
+* with one output variable.  It also tests the use of
+* simple expressions, voltage difference operators
+* and branch currents.
 *
 * See SON Bug 1201 for more details.
 ********************************************************
@@ -26,7 +28,7 @@ v1 2 0 10V
 .options EMBEDDEDSAMPLES numsamples=50
 + projection_pce=true
 + order=3
-+ outputs={v(1)}
++ outputs={v(1)},{v(1)+1},{I(v1)},{V(2,1)}
 + sample_type=lhs
 + stdoutput=true
 
