@@ -22,14 +22,17 @@ $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
 $XYCE_COMPARE=$ARGV[2];
 $CIRFILE=$ARGV[3];
+$GOLDPRN=$ARGV[4];
 
 $TRANSLATESCRIPT=$XYCE_VERIFY;
 $TRANSLATESCRIPT =~ s/xyce_verify.pl/convertToPrn.py/;
 $TRANSLATE="python $TRANSLATESCRIPT   ";
 
 $TMPCIRFILE="printLine_for_cmosInverter_regr.cir";
-$TECPLOTFILE="cmosInverter_regr.cir_ensemble.dat";
-$GOLDDAT="goldprn_cmosInverter_regr.cir_ensemble.dat";
+$TECPLOTFILE="cmosInverter_regr.cir.ES.dat";
+$GOLDDAT="goldprn_cmosInverter_regr.cir.ES.dat";
+
+system("rm -f test_$CIRFILE* $CIRFILE.out $CIRFILE.err $CIRFILE.ES.dat");
 
 # Run netlist:
 $CMD="$XYCE $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
@@ -84,7 +87,7 @@ if ( $result != 0 )
 }
 else
 {
-    $CMD="$XYCE_VERIFY $TMPCIRFILE test_cmosInverter_regr.cir_ensemble.dat $GOLDDAT > $CIRFILE.prn.out 2> $CIRFILE.prn.err";
+    $CMD="$XYCE_VERIFY $TMPCIRFILE test_cmosInverter_regr.cir.ES.dat $GOLDDAT > $CIRFILE.prn.out 2> $CIRFILE.prn.err";
     if (system("$CMD") != 0) 
     {
       print STDERR "Verification failed on file test_$CIRFILE.dat with $GOLDDAT, see $CIRFILE.prn.err\n";
