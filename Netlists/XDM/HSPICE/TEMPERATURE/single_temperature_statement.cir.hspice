@@ -2,6 +2,7 @@ $ single temperature statement
 * This netlist tests XDM HSPICE translation of
 * single .TEMP statements. The .TEMP statements
 * should be translated into a .STEP command
+* (see issue #94 on XDM gitlab)
 
 va 1 0 dc=0
 r1 1 2 10

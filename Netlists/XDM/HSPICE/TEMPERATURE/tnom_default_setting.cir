@@ -4,7 +4,8 @@
 * default TNOM setting for the circuit. If TNOM
 * is not set in a .OPTION statement, the Xyce
 * translation should set ".OPTIONS DEVICE TNOM=25"
-* since HSPICE's default TNOM is 25C.
+* since HSPICE's default TNOM is 25C (see issue
+* #101 in XDM gitlab)
 
 .OPTIONS DEVICE TNOM=25
 

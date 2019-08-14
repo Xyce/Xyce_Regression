@@ -3,7 +3,8 @@
 * This netlist tests XDM HSPICE translation of
 * multiple .TEMP statements. The .TEMP statements
 * should be translated into a .STEP command, with 
-* the various temperatures in a .DATA table
+* the various temperatures in a .DATA table (see
+* issue #93 on XDM gitlab).
 
 .OPTIONS DEVICE TNOM=25 
 

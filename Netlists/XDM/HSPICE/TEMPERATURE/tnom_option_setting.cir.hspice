@@ -2,7 +2,8 @@ $ default tnom setting
 * This netlist tests XDM HSPICE translation of
 * the TNOM option for the circuit. If TNOM is
 * set in a .OPTION statement, the Xyce translation
-* should be ".OPTIONS DEVICE TNOM=<VAL>"
+* should be ".OPTIONS DEVICE TNOM=<VAL>" (see
+* issue #101 in XDM gitlab)
 
 .option tnom=50
 
