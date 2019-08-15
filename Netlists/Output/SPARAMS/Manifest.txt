@@ -28,6 +28,10 @@ InvalidRFParamOp.cir
 InvalidRFParamOp.cir.sh
 InvalidRFParamOp.cir.tags
 InvalidRFParamOp.cir.options
+InvalidRFParamOp1.cir
+InvalidRFParamOp1.cir.sh
+InvalidRFParamOp1.cir.tags
+InvalidRFParamOp1.cir.options
 InvalidRFParamOp-NoLin.cir
 InvalidRFParamOp-NoLin.cir.sh
 InvalidRFParamOp-NoLin.cir.tags
