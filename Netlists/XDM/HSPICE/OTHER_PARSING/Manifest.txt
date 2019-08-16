@@ -24,4 +24,7 @@ gnd_exclamation_point_node_symbol.cir.sh
 macro_statement.cir.hspice
 macro_statement.cir
 macro_statement.cir.sh
+ext_ascii_chars_comment_line.cir
+ext_ascii_chars_comment_line.cir.hspice
+ext_ascii_chars_comment_line.cir.sh
 tags
