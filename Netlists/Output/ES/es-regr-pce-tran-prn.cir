@@ -2,7 +2,9 @@
 * Test Embedded Sampling output for .TRAN for FORMAT =
 * STD, CSV and NOINDEX. This covers regression_pce=true
 * and the case of two output variables.  It also tests
-* the print parameter OUTPUT_PCE_COEFFS=TRUE
+* the print parameter OUTPUT_PCE_COEFFS=TRUE.  Note: It
+* does not output the PCE Coeffs via the .OPTIONS
+* EMBEDDEDSAMPLES line.
 *
 * See SON Bug 1201 for more details.
 ********************************************************
@@ -78,7 +80,7 @@ M2 drain gate vdd vdd PMOS  w =0.54e-6 ; l=0.18e-6
 
 .options EMBEDDEDSAMPLES outputs={v(drain)},{V(gate)} numsamples=100
 + regression_pce=true
-+ output_pce_coeffs=true
+*+ output_pce_coeffs=true
 
 .tran 1ns 1.5e-6
 

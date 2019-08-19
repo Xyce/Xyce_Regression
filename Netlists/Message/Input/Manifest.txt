@@ -47,6 +47,9 @@ DC_excessArgs.cir.sh
 DeviceBlock_extractSourceFields_1.cir
 DeviceBlock_extractSourceFields_1.cir.sh
 DeviceBlock_extractSourceFields_2.cir
+ES_stokhos_setEmbeddedSamplingOptions.cir
+ES_stokhos_setEmbeddedSamplingOptions.cir.sh
+ES_stokhos_setEmbeddedSamplingOptions.cir.tags
 IC_And_NODESET_Specified.cir
 IC_And_NODESET_Specified.cir.sh
 IC_At_Missing_Node_Warning.cir

@@ -20,4 +20,11 @@ printLine_for_es-specific-print-params-prn.cir
 es-formats-default-to-prn.cir
 es-formats-default-to-prn.cir.sh
 es-formats-default-to-prn.cir.tags
+es-no-output.cir
+es-no-output.cir.sh
+es-no-output.cir.tags
+es-no-pce-coeffs.cir
+es-no-pce-coeffs.cir.sh
+es-no-pce-coeffs.cir.tags
+printLine_for_es-no-pce-coeffs.cir
 
