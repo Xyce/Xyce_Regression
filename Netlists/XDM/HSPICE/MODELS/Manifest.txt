@@ -3,6 +3,9 @@ tags
 correct_instance_parameters.cir.hspice
 correct_instance_parameters.cir
 correct_instance_parameters.cir.sh
+correct_instance_parameters_translation_inside_subckt.cir.hspice
+correct_instance_parameters_translation_inside_subckt.cir
+correct_instance_parameters_translation_inside_subckt.cir.sh
 capacitor_model_statements.cir
 capacitor_model_statements.cir.hspice
 capacitor_model_statements.cir.sh

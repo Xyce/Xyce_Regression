@@ -2,7 +2,7 @@ $correct instance parameters
 * Netlist tests XDM will remove NF and LDE parameters 
 * from pfet model since those don't exist in level=3
 * model, while preserving them in level=54 model where
-* it is actually defined
+* it is actually defined (see issue #113 on XDM gitlab)
 
 VD 1 0 1.2
 VG 2 0 DC=0

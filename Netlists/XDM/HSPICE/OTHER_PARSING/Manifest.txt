@@ -28,3 +28,6 @@ ext_ascii_chars_comment_line.cir
 ext_ascii_chars_comment_line.cir.hspice
 ext_ascii_chars_comment_line.cir.sh
 tags
+ternary_operator.cir.hspice
+ternary_operator.cir
+ternary_operator.cir.sh
