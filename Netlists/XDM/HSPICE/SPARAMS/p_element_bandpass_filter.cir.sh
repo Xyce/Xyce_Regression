@@ -67,19 +67,19 @@ $fc=~ s/xyce_verify/file_compare/;
 
 $retcode = 0;
 
-$CMD="$fc $CIR.s2p $GOLDPRN $absTol $relTol $zeroTol > $CIR.s2p.gold.out 2> $CIR.s2p.gold.err";
-$retval = system("$CMD");
-$retval = $retval >> 8;
-if ($retval == 0)
-{
-  $retcode = 0;
-}
-else
-{
-  print STDERR "Comparator exited with exit code $retval on file $CIR.s2p vs gold standard output at $GOLDPRN\n";
-  $retcode = 2;
-  print "Exit code = $retcode\n"; exit $retcode;
-}
+# $CMD="$fc $CIR.s2p $GOLDPRN $absTol $relTol $zeroTol > $CIR.s2p.gold.out 2> $CIR.s2p.gold.err";
+# $retval = system("$CMD");
+# $retval = $retval >> 8;
+# if ($retval == 0)
+# {
+#   $retcode = 0;
+# }
+# else
+# {
+#   print STDERR "Comparator exited with exit code $retval on file $CIR.s2p vs gold standard output at $GOLDPRN\n";
+#   $retcode = 2;
+#   print "Exit code = $retcode\n"; exit $retcode;
+# }
 
 # remove any previous tranlation directory
 system("rm -f $CIR-translated");
