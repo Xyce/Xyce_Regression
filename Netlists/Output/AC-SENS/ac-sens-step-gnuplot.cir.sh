@@ -51,26 +51,23 @@ if ($retval != 0)
 $xyce_exit = 0;
 if ( not -s "$CIRFILE.FD.prn")
 {
-  print "Missing output file $CIRFILE.FD.prn\n";
-  print "Exit code = 14\n";
+  print STDERR "Missing output file $CIRFILE.FD.prn\n";
   $xyce_exit = 14;
 }
 
 if ( not -s "$CIRFILE.FD.SENS.prn")
 {
-  print "Missing output file $CIRFILE.FD.SENS.prn\n";
-  print "Exit code = 14\n";
+  print STDERR "Missing output file $CIRFILE.FD.SENS.prn\n";
   $xyce_exit = 14;
 }
 
 if ( not -s "$CIRFILE.FD.SENS.splot.prn")
 {
-  print "Missing output file $CIRFILE.FD.SENS.splot.prn\n";
-  print "Exit code = 14\n";
+  print STDERR "Missing output file $CIRFILE.FD.SENS.splot.prn\n";
   $xyce_exit = 14;
 }
 
-if ($xyce_exit != 0) { exit $xyce_exit;}
+if ($xyce_exit != 0) { print "Exit code = 14\n"; exit $xyce_exit;}
 
 # now compare the test and gold file .prn files for .PRINT AC and the .prn files for .PRINT SENS
 $retcode=0;

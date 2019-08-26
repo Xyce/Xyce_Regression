@@ -51,19 +51,17 @@ if ($retval != 0)
 $xyce_exit = 0;
 if ( not -s "$CIRFILE.FD.prn") 
 {
-    print "Missing output file $CIRFILE.FD.prn\n";
-    print "Exit code = 14\n";
+    print STDERR "Missing output file $CIRFILE.FD.prn\n";
     $xyce_exit = 14;
 }
 
 if ( !(-f "$CIRFILE.FD.splot.prn"))
 {
-    print "Missing output file $CIRFILE.FD.splot.prn\n";
-    print "Exit code = 14\n";
+    print STDERR "Missing output file $CIRFILE.FD.splot.prn\n";
     $xyce_exit = 14;
 }
 
-if ($xyce_exit != 0) { exit $xyce_exit;}
+if ($xyce_exit != 0) { print "Exit code = 14\n"; exit $xyce_exit;}
 
 # now check the .FD.prn and .FD.splot.prn files.  Use file_compare.pl
 # because of the blank lines.

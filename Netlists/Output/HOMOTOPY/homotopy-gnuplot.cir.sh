@@ -50,19 +50,17 @@ if ($retval != 0)
 $xyce_exit = 0;
 if (not -s "$CIRFILE.HOMOTOPY.prn" )
 {
-  print "$CIRFILE.HOMOTOPY.prn file is missing\n"; 
-  print "Exit code = 14\n"; 
+  print STDERR "$CIRFILE.HOMOTOPY.prn file is missing\n";
   $xyce_exit = 14;
 }
 
 if (not -s "$CIRFILE.HOMOTOPY.splot.prn" )
 {
-  print "$CIRFILE.HOMOTOPY.splot.prn file is missing\n";
-  print "Exit code = 14\n";
+  print STDERR "$CIRFILE.HOMOTOPY.splot.prn file is missing\n";
   $xyce_exit = 14;
 }
 
-if ($xyce_exit != 0) { exit $xyce_exit;}
+if ($xyce_exit != 0) { print "Exit code = 14\n"; exit $xyce_exit;}
 
 # Now check the .HOMOTOPY.prn files
 $retcode = 0;
