@@ -63,6 +63,9 @@ tran-gnuplot.cir.tags
 tran-splot.cir
 tran-splot.cir.sh
 tran-splot.cir.tags
+tran-stepnum-col.cir
+tran-stepnum-col.cir.sh
+tran-stepnum-col.cir.tags
 tran-step-gnuplot.cir
 tran-step-gnuplot.cir.sh
 tran-step-gnuplot.cir.tags

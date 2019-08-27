@@ -35,6 +35,9 @@ ac-gnuplot.cir.tags
 ac-step-gnuplot.cir
 ac-step-gnuplot.cir.sh
 ac-step-gnuplot.cir.tags
+ac-stepnum-col.cir
+ac-stepnum-col.cir.sh
+ac-stepnum-col.cir.tags
 ac-touchstone-defaults-to-prn.cir
 ac-touchstone-defaults-to-prn.cir.sh
 convertXyceFormat.py

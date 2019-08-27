@@ -20,6 +20,9 @@ dc-raw-override.cir
 dc-raw-override.cir.sh
 dc-raw.cir
 dc-raw.cir.sh
+dc-stepnum-col.cir
+dc-stepnum-col.cir.sh
+dc-stepnum-col.cir.tags
 dc-step-prn.cir
 dc-step-prn.cir.sh
 dc-step-probe.cir
