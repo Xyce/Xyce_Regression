@@ -89,7 +89,7 @@ if ($retval != 0){
   $xyce_exit = 2;
 }
 
-if ($xyce_exit!=0) { print "Exit code = $xyce_exit\n"; exit $xyceexit;}
+if ($xyce_exit!=0) { print "Exit code = $xyce_exit\n"; exit $xyce_exit;}
 
 # check that .out file exists, and open it if it does
 if (not -s "$CIRFILE.out" ) 

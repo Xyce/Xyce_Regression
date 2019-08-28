@@ -3,7 +3,7 @@
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
 # $ARGV[1] = location of xyce_verify.pl script
-# $ARGV[2] = location of compare script 
+# $ARGV[2] = location of compare script
 # $ARGV[3] = location of circuit file to test
 # $ARGV[4] = location of gold standard prn file
 
@@ -27,23 +27,22 @@ $GOLDPRN=$ARGV[4];
 $GOLDPRN =~ s/\.prn$//; # remove the .prn at the end.
 
 # remove old files if they exist
-`rm -f $CIRFILE.NOISE.prn $CIRFILE.NOISE.splot.* $CIRFILE.out $CIRFILE.err`;
-`rm -f $CIRFILE.noise.prn.* $CIRFILE.errmsg.*`;
+`rm -f $CIRFILE.NOISE.* $CIRFILE.out $CIRFILE.err`;
 
 # run Xyce
 $CMD="$XYCE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err";
 $retval = system("$CMD");
-if ($retval != 0) 
+if ($retval != 0)
 {
   if ($retval & 127)
   {
-    print "Exit code = 13\n"; 
-    printf STDERR "Xyce crashed with signal %d on file %s\n",($retval&127),$CIRFILE; 
+    print "Exit code = 13\n";
+    printf STDERR "Xyce crashed with signal %d on file %s\n",($retval&127),$CIRFILE;
     exit 13;
   }
   else
   {
-    print "Exit code = 10\n"; 
+    print "Exit code = 10\n";
     printf STDERR "Xyce exited with exit code %d on %s\n",$retval>>8,$CIRFILE;
     exit 10;
   }
@@ -56,6 +55,18 @@ if ( not -s "$CIRFILE.NOISE.prn")
     $xyce_exit = 14;
 }
 
+if ( not -s "$CIRFILE.NOISE.noindex.prn")
+{
+    print STDERR "Missing output file $CIRFILE.NOISE.noindex.prn\n";
+    $xyce_exit = 14;
+}
+
+if ( not -s "$CIRFILE.NOISE.gnuplot.prn")
+{
+    print STDERR "Missing output file $CIRFILE.NOISE.gnuplot.prn\n";
+    $xyce_exit = 14;
+}
+
 if ( not -s "$CIRFILE.NOISE.splot.prn")
 {
     print STDERR "Missing output file $CIRFILE.NOISE.splot.prn\n";
@@ -64,76 +75,47 @@ if ( not -s "$CIRFILE.NOISE.splot.prn")
 
 if ($xyce_exit != 0) { print "Exit code = 14\n"; exit $xyce_exit;}
 
-# now check the .NOISE.prn and .NOISE.splot.prn files.  Use file_compare.pl because of the blank lines.
-$xyce_exit=0;
+# now check the output files.
+$xyce_exit = 0;
 
 $absTol=1e-5;
 $relTol=1e-3;
 $zeroTol=1e-16;
 $fc = $XYCE_VERIFY;
 $fc=~ s/xyce_verify/file_compare/;
-$CMD="$fc $CIRFILE.NOISE.prn $GOLDPRN.NOISE.prn $absTol $relTol $zeroTol > $CIRFILE.noise.prn.out 2> $CIRFILE.noise.prn.err";
+$CMD="$fc $CIRFILE.NOISE.prn $GOLDPRN.NOISE.prn $absTol $relTol $zeroTol > $CIRFILE.NOISE.prn.out 2> $CIRFILE.NOISE.prn.err";
 $retval = system("$CMD");
 $retval = $retval >> 8;
-if ($retval != 0){
+if ($retval != 0)
+{
   print STDERR "Comparator failed on file $CIRFILE.NOISE.prn with exit code $retval\n";
   $xyce_exit = 2;
 }
 
-$CMD="diff $CIRFILE.NOISE.prn $CIRFILE.NOISE.splot.prn > $CIRFILE.NOISE.splot.prn.out 2> $CIRFILE.NOISE.splot.prn.err";
+$CMD="$fc $CIRFILE.NOISE.noindex.prn $GOLDPRN.NOISE.noindex.prn $absTol $relTol $zeroTol > $CIRFILE.NOISE.noindex.noindex.out 2> $CIRFILE.NOISE.noindex.prn.err";
 $retval = system($CMD);
 $retval = $retval >> 8;
 if ($retval != 0){
-  print STDERR "Diff failed on file $CIRFILE.NOISE.splot.prn with exit code $retval\n";
+  print STDERR "Comparator failed on file $CIRFILE.NOISE.noindex.prn with exit code $retval\n";
   $xyce_exit = 2;
 }
 
-if ($xyce_exit!=0) { print "Exit code = $xyce_exit\n"; exit $xyce_exit;}
-
-# check that .out file exists, and open it if it does
-if (not -s "$CIRFILE.out" ) 
-{ 
-  print "Exit code = 17\n"; 
-  exit 17; 
-}
-else
-{
-  open(NETLIST, "$CIRFILE.out");
-  open(ERRMSG,">$CIRFILE.errmsg") or die $!;
+$CMD="$fc $CIRFILE.NOISE.gnuplot.prn $GOLDPRN.NOISE.gnuplot.prn $absTol $relTol $zeroTol > $CIRFILE.NOISE.gnuplot.prn.out 2> $CIRFILE.NOISE.gnuplot.prn.err";
+$retval = system($CMD);
+$retval = $retval >> 8;
+if ($retval != 0){
+  print STDERR "Comparator failed on file $CIRFILE.NOISE.gnuplot.prn with exit code $retval\n";
+  $xyce_exit = 2;
 }
 
-# parse the .out file to find the text related to .NOISE
-$foundStart=0;
-$foundEnd=0;
-@outLine;
-$lineCount=0;
-while( $line=<NETLIST> )
-{
-  if ($line =~ /Total Output Noise/) { $foundStart = 1; }
-  
-  if ($foundStart > 0 && $foundEnd < 1)
-  {
-    print ERRMSG $line;
-  }
-
-  if ($foundStart > 0 && $line =~ /Total Input Noise/) { $foundEnd = 1; }   
+$CMD="$fc $CIRFILE.NOISE.splot.prn $GOLDPRN.NOISE.splot.prn $absTol $relTol $zeroTol > $CIRFILE.NOISE.splot.prn.out 2> $CIRFILE.NOISE.splot.prn.err";
+$retval = system($CMD);
+$retval = $retval >> 8;
+if ($retval != 0){
+  print STDERR "Comparator failed on file $CIRFILE.NOISE.splot.prn with exit code $retval\n";
+  $xyce_exit = 2;
 }
 
-close(NETLIST);
-close(ERRMSG);
+print "Exit code = $xyce_exit\n";
+exit $xyce_exit;
 
-$GOLDSTDOUT="noise-gnuplot-gold-stdout"; 
-$CMD="$fc $CIRFILE.errmsg $GOLDSTDOUT $absTol $relTol $zeroTol > $CIRFILE.errmsg.out 2> $CIRFILE.errmsg.err";
-$retval = system("$CMD");
-if ( $retval != 0 )
-{
-  print "test Failed comparison of .NOISE info in stdout!\n";
-  print "Exit code = 2\n";
-  exit 2;
-}
-else
-{
-  print "Passed comparison of .NOISE info in stdout\n";
-  print "Exit code = 0\n";
-  exit 0;
-}

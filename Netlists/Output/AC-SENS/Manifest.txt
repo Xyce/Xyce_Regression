@@ -21,6 +21,9 @@ ac-sens-step-gnuplot.cir.tags
 ac-sens-step-tecplot.cir
 ac-sens-step-tecplot.cir.sh
 ac-sens-step-tecplot.cir.tags
+ac-sens-stepnum-col.cir
+ac-sens-stepnum-col.cir.sh
+ac-sens-stepnum-col.cir.tags
 ac-sens-formats-default-to-prn.cir
 ac-sens-formats-default-to-prn.cir.sh
 ac-sens-formats-default-to-prn.cir.tags
