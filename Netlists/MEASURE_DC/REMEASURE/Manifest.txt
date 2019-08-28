@@ -24,4 +24,7 @@ RemeasureLeadCurrents.cir
 RemeasureLeadCurrents.cir.sh
 RemeasureDotData.cir
 RemeasureDotData.cir.sh
+RemeasureStepNumCol.cir
+RemeasureStepNumCol.cir.sh
+RemeasureStepNumColGSfile
 

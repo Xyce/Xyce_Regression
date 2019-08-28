@@ -24,10 +24,8 @@ if (defined($verbose)) { $Tools->setVerbose(1); }
 system("rm -f $CIRFILE.out $CIRFILE.err");
 
 # check various error cases
-# These strings should be in the output of this failed Xyce run. 
-# Note that ( ) and : characters must be escaped with \\
-@searchstrings = ("Netlist error\\: Netlist analysis statement and measure mode \\(DC\\) for measure",
-   "DCMAX do not agree"
+# These strings should be in the output of this failed Xyce run.
+@searchstrings = ("TIME column not found in remeasured output file for TRAN-mode remeasure"
 );
 
 # re-measure should not work, but should produced a clean exit
