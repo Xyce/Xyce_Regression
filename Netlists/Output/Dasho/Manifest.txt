@@ -17,6 +17,8 @@ sparam.cir.sh
 sparam.cir.tags
 tran.cir
 tran.cir.sh
+tran-stepnum-col.cir
+tran-stepnum-col.cir.sh
 nooverwrite.cir
 nooverwrite.cir.sh
 dashrPrecedence.cir

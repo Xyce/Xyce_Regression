@@ -18,6 +18,8 @@ sens-gnuplot.cir
 sens-gnuplot.cir.sh
 sens-step-gnuplot.cir
 sens-step-gnuplot.cir.sh
+sens-stepnum-col.cir
+sens-stepnum-col.cir.sh
 sens-csv.cir
 sens-csv.cir.sh
 sens-step-csv.cir

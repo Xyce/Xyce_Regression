@@ -27,7 +27,7 @@ $GOLDPRN=$ARGV[4];
 $GOLDPRN =~ s/\.prn$//; # remove the .prn at the end.
 
 # remove old files if they exist
-`rm -f $CIRFILE.NOISE.* $CIRFILE.out $CIRFILE.err`;
+`rm -f $CIRFILE.SENS.* $CIRFILE.out $CIRFILE.err`;
 
 # run Xyce
 $CMD="$XYCE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err";
@@ -49,73 +49,72 @@ if ($retval != 0)
 }
 
 $xyce_exit = 0;
-if ( not -s "$CIRFILE.NOISE.prn")
+if ( not -s "$CIRFILE.SENS.prn")
 {
-    print STDERR "Missing output file $CIRFILE.NOISE.prn\n";
+    print STDERR "Missing output file $CIRFILE.SENS.prn\n";
     $xyce_exit = 14;
 }
 
-if ( not -s "$CIRFILE.NOISE.noindex.prn")
+if ( not -s "$CIRFILE.SENS.noindex.prn")
 {
-    print STDERR "Missing output file $CIRFILE.NOISE.noindex.prn\n";
-    $xyce_exit = 14;
+  print STDERR "Missing output file $CIRFILE.SENS.noindex.prn\n";
+  $xyce_exit = 14;
 }
 
-if ( not -s "$CIRFILE.NOISE.gnuplot.prn")
+if ( not -s "$CIRFILE.SENS.gnuplot.prn")
 {
-    print STDERR "Missing output file $CIRFILE.NOISE.gnuplot.prn\n";
-    $xyce_exit = 14;
+  print STDERR "Missing output file $CIRFILE.SENS.gnuplot.prn\n";
+  $xyce_exit = 14;
 }
 
-if ( not -s "$CIRFILE.NOISE.splot.prn")
+if ( not -s "$CIRFILE.SENS.splot.prn")
 {
-    print STDERR "Missing output file $CIRFILE.NOISE.splot.prn\n";
-    $xyce_exit = 14;
+  print STDERR "Missing output file $CIRFILE.SENS.splot.prn\n";
+  $xyce_exit = 14;
 }
 
-if ($xyce_exit != 0) { print "Exit code = 14\n"; exit $xyce_exit;}
+if ($xyce_exit != 0) { print "Exit code =14\n"; exit $xyce_exit;}
 
 # now check the output files.
-$xyce_exit = 0;
+$retcode = 0;
 
 $absTol=1e-5;
 $relTol=1e-3;
-$zeroTol=1e-16;
+$zeroTol=1e-8;
 $fc = $XYCE_VERIFY;
 $fc=~ s/xyce_verify/file_compare/;
-$CMD="$fc $CIRFILE.NOISE.prn $GOLDPRN.NOISE.prn $absTol $relTol $zeroTol > $CIRFILE.NOISE.prn.out 2> $CIRFILE.NOISE.prn.err";
+$CMD="$fc $CIRFILE.SENS.prn $GOLDPRN.SENS.prn $absTol $relTol $zeroTol > $CIRFILE.SENS.prn.out 2> $CIRFILE.SENS.prn.err";
 $retval = system("$CMD");
 $retval = $retval >> 8;
-if ($retval != 0)
-{
-  print STDERR "Comparator failed on file $CIRFILE.NOISE.prn with exit code $retval\n";
-  $xyce_exit = 2;
+if ($retval != 0){
+  print STDERR "Comparator failed on file $CIRFILE.SENS.prn with exit code $retval\n";
+  $retcode = 2;
 }
 
-$CMD="$fc $CIRFILE.NOISE.noindex.prn $GOLDPRN.NOISE.noindex.prn $absTol $relTol $zeroTol > $CIRFILE.NOISE.noindex.prn.out 2> $CIRFILE.NOISE.noindex.prn.err";
-$retval = system($CMD);
+$CMD="$fc $CIRFILE.SENS.noindex.prn $GOLDPRN.SENS.noindex.prn $absTol $relTol $zeroTol > $CIRFILE.SENS.noindex.prn.out 2> $CIRFILE.SENS.noindex.prn.err";
+$retval = system("$CMD");
 $retval = $retval >> 8;
 if ($retval != 0){
-  print STDERR "Comparator failed on file $CIRFILE.NOISE.noindex.prn with exit code $retval\n";
-  $xyce_exit = 2;
+  print STDERR "Comparator failed on file $CIRFILE.SENS.noindex.prn with exit code $retval\n";
+  $retcode = 2;
 }
 
-$CMD="$fc $CIRFILE.NOISE.gnuplot.prn $GOLDPRN.NOISE.gnuplot.prn $absTol $relTol $zeroTol > $CIRFILE.NOISE.gnuplot.prn.out 2> $CIRFILE.NOISE.gnuplot.prn.err";
-$retval = system($CMD);
+$CMD="$fc $CIRFILE.SENS.gnuplot.prn $GOLDPRN.SENS.gnuplot.prn $absTol $relTol $zeroTol > $CIRFILE.SENS.gnuplot.prn.out 2> $CIRFILE.SENS.gnuplot.prn.err";
+$retval = system("$CMD");
 $retval = $retval >> 8;
 if ($retval != 0){
-  print STDERR "Comparator failed on file $CIRFILE.NOISE.gnuplot.prn with exit code $retval\n";
-  $xyce_exit = 2;
+  print STDERR "Comparator failed on file $CIRFILE.SENS.gnuplot.prn with exit code $retval\n";
+  $retcode = 2;
 }
 
-$CMD="$fc $CIRFILE.NOISE.splot.prn $GOLDPRN.NOISE.splot.prn $absTol $relTol $zeroTol > $CIRFILE.NOISE.splot.prn.out 2> $CIRFILE.NOISE.splot.prn.err";
-$retval = system($CMD);
+$CMD="$fc $CIRFILE.SENS.splot.prn $GOLDPRN.SENS.splot.prn $absTol $relTol $zeroTol > $CIRFILE.SENS.splot.prn.out 2> $CIRFILE.SENS.splot.prn.err";
+$retval = system("$CMD");
 $retval = $retval >> 8;
 if ($retval != 0){
-  print STDERR "Comparator failed on file $CIRFILE.NOISE.splot.prn with exit code $retval\n";
-  $xyce_exit = 2;
+  print STDERR "Comparator failed on file $CIRFILE.SENS.splot.prn with exit code $retval\n";
+  $retcode = 2;
 }
 
-print "Exit code = $xyce_exit\n";
-exit $xyce_exit;
+print "Exit code = $retcode\n";
+exit $retcode;
 
