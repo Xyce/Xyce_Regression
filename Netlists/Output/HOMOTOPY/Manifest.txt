@@ -32,4 +32,7 @@ homotopy-gnuplot.cir.tags
 homotopy-step-gnuplot.cir
 homotopy-step-gnuplot.cir.sh
 homotopy-step-gnuplot.cir.tags
+homotopy-stepnum-col.cir
+homotopy-stepnum-col.cir.sh
+homotopy-stepnum-col.cir.tags
 tags
