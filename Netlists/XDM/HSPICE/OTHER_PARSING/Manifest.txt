@@ -15,6 +15,9 @@ special_variables.cir.sh
 ground_node_symbol.cir.hspice
 ground_node_symbol.cir
 ground_node_symbol.cir.sh
+ground_node_synonym_in_subckt_instantiation.cir.hspice
+ground_node_synonym_in_subckt_instantiation.cir
+ground_node_synonym_in_subckt_instantiation.cir.sh
 gnd_node_symbol.cir.hspice
 gnd_node_symbol.cir
 gnd_node_symbol.cir.sh
