@@ -47,6 +47,11 @@ DC_excessArgs.cir.sh
 DeviceBlock_extractSourceFields_1.cir
 DeviceBlock_extractSourceFields_1.cir.sh
 DeviceBlock_extractSourceFields_2.cir
+ES_setAnalysisParams.cir
+ES_setAnalysisParams1.cir
+ES_setAnalysisParams2.cir
+ES_setAnalysisParams3.cir
+ES_setAnalysisParams.cir.sh
 ES_stokhos_setEmbeddedSamplingOptions.cir
 ES_stokhos_setEmbeddedSamplingOptions.cir.sh
 ES_stokhos_setEmbeddedSamplingOptions.cir.tags
@@ -95,6 +100,11 @@ bad_dot_save_line.cir.sh
 bleem.op
 ParameterBlock_extractModelData.cir
 ParameterBlock_extractModelData.cir.sh
+SAMPLING_setAnalysisParams.cir
+SAMPLING_setAnalysisParams.cir.sh
+SAMPLING_setAnalysisParams1.cir
+SAMPLING_setAnalysisParams2.cir
+SAMPLING_setAnalysisParams3.cir
 Step_extractStepData.cir
 Step_extractStepData.cir.sh
 SweepParams_convertData.cir
