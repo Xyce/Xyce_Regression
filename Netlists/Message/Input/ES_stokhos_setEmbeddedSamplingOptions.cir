@@ -20,7 +20,7 @@ v1 2 0 10V
 + param=R1,R2
 + type=normal,normal
 + means=3K,2K
-+ std_deviations=0.1K,-0.2K
++ std_deviations=0.1K,0.2K
 
 .options EMBEDDEDSAMPLES
 + projection_pce=true
