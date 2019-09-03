@@ -29,6 +29,9 @@ noise-step-gnuplot.cir
 noise-step-gnuplot.cir.sh
 noise-step-gnuplot.cir.tags
 noise-step-gnuplot-gold-stdout
+noise-stepnum-col.cir
+noise-stepnum-col.cir.sh
+noise-stepnum-col.cir.tags
 noise-raw-override.cir
 noise-raw-override.cir.sh
 noise-raw-override.cir.tags

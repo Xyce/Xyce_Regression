@@ -52,19 +52,17 @@ if ($retval != 0)
 $xyce_exit = 0;
 if ( not -s "$CIRFILE.NOISE.prn")
 {
-    print "Missing output file $CIRFILE.NOISE.prn\n";
-    print "Exit code = 14\n";
+    print STDERR "Missing output file $CIRFILE.NOISE.prn\n";
     $xyce_exit = 14;
 }
 
 if ( not -s "$CIRFILE.NOISE.splot.prn")
 {
-    print "Missing output file $CIRFILE.NOISE.splot.prn\n";
-    print "Exit code = 14\n";
+    print STDERR "Missing output file $CIRFILE.NOISE.splot.prn\n";
     $xyce_exit = 14;
 }
 
-if ($xyce_exit != 0) { exit $xyce_exit;}
+if ($xyce_exit != 0) { print "Exit code = 14\n"; exit $xyce_exit;}
 
 # now check the .NOISE.prn and .NOISE.splot.prn files.  Use file_compare.pl because of the blank lines.
 $xyce_exit=0;
@@ -90,7 +88,7 @@ if ($retval != 0){
   $xyce_exit = 2;
 }
 
-if ($xyce_exit!=0) { print "Exit code = $xyce_exit\n"; exit $xyceexit;}
+if ($xyce_exit!=0) { print "Exit code = $xyce_exit\n"; exit $xyce_exit;}
 
 # check that .out file exists, and open it if it does
 if (not -s "$CIRFILE.out" ) 

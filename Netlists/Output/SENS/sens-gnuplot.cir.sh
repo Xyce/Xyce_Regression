@@ -49,19 +49,17 @@ if ($retval != 0)
 $xyce_exit = 0;
 if ( not -s "$CIRFILE.SENS.prn") 
 {
-  print "Missing output file $CIRFILE.SENS.prn\n";
-  print "Exit code = 14\n";
+  print STDERR "Missing output file $CIRFILE.SENS.prn\n";
   $xyce_exit = 14;
 }
 
 if ( not -s "$CIRFILE.SENS.splot.prn")
 {
-  print "Missing output file $CIRFILE.SENS.splot.prn\n";
-  print "Exit code = 14\n";
+  print STDERR "Missing output file $CIRFILE.SENS.splot.prn\n";
   $xyce_exit = 14;
 }
 
-if ($xyce_exit != 0) { exit $xyce_exit;}
+if ($xyce_exit != 0) { print "Exit code = 14\n"; exit $xyce_exit;}
 
 $retcode=0;
 

@@ -33,6 +33,8 @@ RemeasureStepCsvData.cir
 RemeasureStepCsvData.cir.sh
 RemeasurePrnData.cir
 RemeasurePrnData.cir.sh
+RemeasureStepNumCol.cir
+RemeasureStepNumCol.cir.sh
 RemeasurePrnDataCommaDelim.cir
 RemeasurePrnDataCommaDelim.cir.sh
 RemeasureStepPrnDataCommaDelim.cir

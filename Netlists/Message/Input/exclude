@@ -10,11 +10,17 @@ AC_setAnalysisParams1.cir
 AC_setAnalysisParams2.cir
 AC_setAnalysisParams3.cir
 AC_setAnalysisParams4.cir
+ES_setAnalysisParams1.cir
+ES_setAnalysisParams2.cir
+ES_setAnalysisParams3.cir
 NOISE_extractNOISEData1.cir
 NOISE_extractNOISEData2.cir
 NOISE_setAnalysisParams1.cir
 NOISE_setAnalysisParams2.cir
 NOISE_setAnalysisParams3.cir
 NOISE_setAnalysisParams4.cir
+SAMPLING_setAnalysisParams1.cir
+SAMPLING_setAnalysisParams2.cir
+SAMPLING_setAnalysisParams3.cir
 SweepParams_convertData1.cir
 

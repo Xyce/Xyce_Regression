@@ -24,8 +24,8 @@ if (defined($verbose)) { $Tools->setVerbose(1); }
 system("rm -f $CIRFILE.out $CIRFILE.err");
 
 # check various error cases
-# this string should be in the output of this failed Xyce run  
-@searchstrings = ("First column of comparison file must be Index for DC-mode remeasure"
+# this string should be in the output of this failed Xyce run
+@searchstrings = ("Index column not found in remeasured output file for DC-mode remeasure"
 );
 
 # re-measure should not work, but should produce a clean exit

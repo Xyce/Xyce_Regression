@@ -22,7 +22,7 @@ v1 2 0 10V
 + means=3K,2K
 + std_deviations=0.1K,0.2K
 
-.options EMBEDDEDSAMPLES numsamples=50
+.options EMBEDDEDSAMPLES
 + projection_pce=true
 + ORDER=-1
 + NUMSAMPLES=0

@@ -48,19 +48,17 @@ if ($retval != 0)
 $xyce_exit = 0;
 if ( !(-f "$CIRFILE.prn")) 
 {
-  print "Missing output file $CIRFILE.prn\n";
-  print "Exit code = 14\n";
+  print STDERR "Missing output file $CIRFILE.prn\n";
   $xyce_exit = 14;
 }
 
 if ( !(-f "$CIRFILE.splot.prn"))
 {
-  print "Missing output file $CIRFILE.splot.prn\n";
-  print "Exit code = 14\n";
+  print STDERR "Missing output file $CIRFILE.splot.prn\n";
   $xyce_exit = 14;
 }
 
-if ($xyce_exit != 0) { exit $xyce_exit;}
+if ($xyce_exit != 0) { print "Exit code = 14\n"; exit $xyce_exit;}
 
 $retcode=0;
 $CMD="$XYCE_VERIFY $CIRFILE $GOLDPRN $CIRFILE.prn > $CIRFILE.prn.out 2> $CIRFILE.prn.err";
