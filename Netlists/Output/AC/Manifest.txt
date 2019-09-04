@@ -1,5 +1,7 @@
 ac-csv.cir
 ac-csv.cir.sh
+ac-phase-in-degrees.cir
+ac-phase-in-degrees.cir.sh
 ac-prn-diff.cir
 ac-prn-diff.cir.sh
 ac-prn.cir

@@ -2,6 +2,9 @@ ac-sens-prn.cir
 ac-sens-prn.cir.sh
 ac-sens-csv.cir
 ac-sens-csv.cir.sh
+ac-sens-phase-in-degrees.cir
+ac-sens-phase-in-degrees.cir.sh
+ac-sens-phase-in-degrees.cir.tags
 ac-sens-prn-noindex.cir
 ac-sens-prn-noindex.cir.sh
 ac-sens-prn-noindex.cir.tags
