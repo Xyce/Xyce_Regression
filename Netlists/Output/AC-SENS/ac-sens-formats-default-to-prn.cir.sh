@@ -59,7 +59,6 @@ $xyce_exit = 0;
 if ( not -s "$CIRFILE.FD.prn")
 {
   print "Missing output file $CIRFILE.FD.prn\n";
-  print "Exit code =14\n";
   $xyce_exit = 14;
 }
 
@@ -67,11 +66,10 @@ if ( (not -s "$CIRFILE.raw") || (not -s "$CIRFILE.probe") ||
      (not -s "$CIRFILE.ts1") || (not -s "$CIRFILE.ts2") )
 {
   print "Missing output file $CIRFILE.raw, $CIRFILE.probe, CIRFILE.ts1 or $CIRFILE.ts2\n";
-  print "Exit code =14\n";
   $xyce_exit = 14;
 }
 
-if ($xyce_exit != 0) { exit $xyce_exit;}
+if ($xyce_exit != 0) { print "Exit code = $xyce_exit\n"; exit $xyce_exit;}
 
 # these strings should be in the output of this successful Xyce run
 @searchstrings = ("Netlist warning: Sensitivity output cannot be written in PROBE, RAW, Dakota or",

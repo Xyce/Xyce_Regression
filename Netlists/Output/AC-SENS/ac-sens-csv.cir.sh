@@ -51,18 +51,16 @@ $xyce_exit = 0;
 if ( not -s "$CIRFILE.FD.prn")
 {
   print "Missing output file $CIRFILE.FD.prn\n";
-  print "Exit code =14\n";
   $xyce_exit = 14;
 }
 
 if ( not -s "$CIRFILE.FD.SENS.csv")
 {
   print "Missing output file $CIRFILE.FD.SENS.csv\n";
-  print "Exit code =14\n";
   $xyce_exit = 14;
 }
 
-if ($xyce_exit != 0) { exit $xyce_exit;}
+if ($xyce_exit != 0) { print "Exit code = $xyce_exit\n"; exit $xyce_exit;}
 
 #If this is a VALGRIND run, we don't do our normal verification, we
 # merely run "valgrind_check.sh" as if it were xyce_verify.pl
