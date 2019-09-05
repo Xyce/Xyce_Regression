@@ -29,9 +29,54 @@ $XYCE=$ARGV[0];
 $CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
 
-@searchstrings = ("Netlist error: ORDER parameter on .OPTIONS EMBEDDEDSAMPLES line must >= 0",
-                  "Netlist error: NUMSAMPLES parameter on .OPTIONS EMBEDDEDSAMPLES line must > 0");
+@CIR;
+$CIR[0]="PCE_setAnalysisParams1.cir";
+$CIR[1]="PCE_setAnalysisParams2.cir";
+$CIR[2]="PCE_setAnalysisParams3.cir";
 
-$retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);
-print "Exit code = $retval\n";
-exit $retval
+$exitcode = 0;
+
+print "Testing $CIR[0]\n";
+@searchstrings = ("STD_DEVIATIONS values for .PCE must be >= 0");
+
+$retval = $Tools->runAndCheckError($CIR[0],$XYCE,@searchstrings);
+if ($retval !=0)
+{
+  print "test failed for $CIR[0], see $CIR[0].stdout\n";
+  $exitcode = $retval;
+}
+else
+{
+  print "test passed for $CIR[0]\n";
+}
+
+print "Testing $CIR[1]\n";
+@searchstrings = ("ALPHA values for .PCE must be > 0");
+
+$retval = $Tools->runAndCheckError($CIR[1],$XYCE,@searchstrings);
+if ($retval !=0)
+{
+  print "test failed for $CIR[1], see $CIR[1].stdout\n";
+  $exitcode = $retval;
+}
+else
+{
+  print "test passed for $CIR[1]\n";
+}
+
+print "Testing $CIR[2]\n";
+@searchstrings = ("BETA values for .PCE must be > 0");
+
+$retval = $Tools->runAndCheckError($CIR[2],$XYCE,@searchstrings);
+if ($retval !=0)
+{
+  print "test failed for $CIR[2], see $CIR[2].stdout\n";
+  $exitcode = $retval;
+}
+else
+{
+  print "test passed for $CIR[2]\n";
+}
+
+print "Exit code = $exitcode\n";
+exit $exitcode

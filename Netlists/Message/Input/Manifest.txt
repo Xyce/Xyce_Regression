@@ -100,6 +100,15 @@ bad_dot_save_line.cir.sh
 bleem.op
 ParameterBlock_extractModelData.cir
 ParameterBlock_extractModelData.cir.sh
+PCE_setAnalysisParams.cir
+PCE_setAnalysisParams1.cir
+PCE_setAnalysisParams2.cir
+PCE_setAnalysisParams3.cir
+PCE_setAnalysisParams.cir.sh
+PCE_setAnalysisParams.cir.tags
+PCE_setPCEOptions.cir
+PCE_setPCEOptions.cir.sh
+PCE_setPCEOptions.tags
 SAMPLING_setAnalysisParams.cir
 SAMPLING_setAnalysisParams.cir.sh
 SAMPLING_setAnalysisParams1.cir
