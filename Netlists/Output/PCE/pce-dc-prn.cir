@@ -28,9 +28,10 @@ Von 2 0 5
 + means=1000.0
 + std_deviations=200.0
 
+* Use mixed case for outputs= arguments
 .options PCES
 + order=2
-+ outputs={v(2)},{v(1)}
++ outputs={v(2)},{V(1)}
 
 .options nonlin nox=0
 

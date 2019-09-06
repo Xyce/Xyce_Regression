@@ -92,29 +92,29 @@ while ($num_tries < 2 && $finished == 0)
   # Read in the Xyce std output and locate various statistical moments of maxSine
   print STDERR  "\n";
 
-  $maxSine_mean=`grep -m 1 'mean of maxSine' $CIRFILE.out`;
+  $maxSine_mean=`grep -m 1 'mean of MAXSINE' $CIRFILE.out`;
   chomp($maxSine_mean);
-  $maxSine_mean=~ s/LHS sampling mean of maxSine = ([0-9]*)/\1/;
+  $maxSine_mean=~ s/LHS sampling mean of MAXSINE = ([0-9]*)/\1/;
   print STDERR  "max Sine sampling mean is $maxSine_mean, analytical mean is $maxSine_analytical_mean\n";
 
-  $maxSine_variance=`grep -m 1 'variance of maxSine' $CIRFILE.out`;
+  $maxSine_variance=`grep -m 1 'variance of MAXSINE' $CIRFILE.out`;
   chomp($maxSine_variance);
-  $maxSine_variance=~ s/LHS sampling variance of maxSine = ([0-9]*)/\1/;
+  $maxSine_variance=~ s/LHS sampling variance of MAXSINE = ([0-9]*)/\1/;
   print STDERR  "max Sine sampling variance is $maxSine_variance, analytical variance is $maxSine_analytical_variance\n";
 
-  $maxSine_stddev=`grep -m 1 'stddev of maxSine' $CIRFILE.out`;
+  $maxSine_stddev=`grep -m 1 'stddev of MAXSINE' $CIRFILE.out`;
   chomp($maxSine_stddev);
-  $maxSine_stddev=~ s/LHS sampling stddev of maxSine = ([0-9]*)/\1/;
+  $maxSine_stddev=~ s/LHS sampling stddev of MAXSINE = ([0-9]*)/\1/;
   print STDERR  "max Sine sampling stddev is $maxSine_stddev, analytical stddev is $maxSine_analytical_stddev\n";
 
-  $maxSine_skew=`grep -m 1 'skew of maxSine' $CIRFILE.out`;
+  $maxSine_skew=`grep -m 1 'skew of MAXSINE' $CIRFILE.out`;
   chomp($maxSine_skew);
-  $maxSine_skew=~ s/LHS sampling skew of maxSine = ([0-9]*)/\1/;
+  $maxSine_skew=~ s/LHS sampling skew of MAXSINE = ([0-9]*)/\1/;
   print STDERR  "max Sine sampling skew is $maxSine_skew, analytical skew is $maxSine_analytical_skew\n";
 
-  $maxSine_kurtosis=`grep -m 1 'kurtosis of maxSine' $CIRFILE.out`;
+  $maxSine_kurtosis=`grep -m 1 'kurtosis of MAXSINE' $CIRFILE.out`;
   chomp($maxSine_kurtosis);
-  $maxSine_kurtosis=~ s/LHS sampling kurtosis of maxSine = ([0-9]*)/\1/;
+  $maxSine_kurtosis=~ s/LHS sampling kurtosis of MAXSINE = ([0-9]*)/\1/;
   print STDERR  "max Sine sampling kurtosis is $maxSine_kurtosis, analytical kurtosis is $maxSine_analytical_kurtosis\n";
 
   $passed=1;

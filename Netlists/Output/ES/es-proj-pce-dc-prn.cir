@@ -25,10 +25,11 @@ v1 2 0 10V
 + means=3K,2K
 + std_deviations=0.1K,0.2K
 
+* Use mixed case for outputs= arguments
 .options EMBEDDEDSAMPLES numsamples=50
 + projection_pce=true
 + order=3
-+ outputs={v(1)},{v(1)+1},{I(v1)},{V(2,1)}
++ outputs={v(1)},{V(1)+1},{I(v1)},{V(2,1)}
 + sample_type=lhs
 + stdoutput=true
 

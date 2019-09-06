@@ -56,15 +56,15 @@ while ($num_tries < 2 && $finished == 0)
   # Read in the Xyce std output and locate the mean, max and min of V(1)
   print STDERR  "\n";
 
-  $V1mean=`grep -m 1 'regression PCE mean of {v(1)}' $CIRFILE.out`;
+  $V1mean=`grep -m 1 'regression PCE mean of {V(1)}' $CIRFILE.out`;
   chomp($V1mean);
-  $V1mean=~ s/\(traditional sampling\) regression PCE mean of \{v\(1\)\} = ([0-9]*)/\1/;
-  print STDERR  "v(1) PCE mean is $V1mean, analytical mean is $V1_analytical_mean\n";
+  $V1mean=~ s/\(traditional sampling\) regression PCE mean of \{V\(1\)\} = ([0-9]*)/\1/;
+  print STDERR  "V(1) PCE mean is $V1mean, analytical mean is $V1_analytical_mean\n";
 
-  $V1stddev=`grep -m 1 'regression PCE stddev of {v(1)}' $CIRFILE.out`;
+  $V1stddev=`grep -m 1 'regression PCE stddev of {V(1)}' $CIRFILE.out`;
   chomp($V1stddev);
-  $V1stddev=~ s/\(traditional sampling\) regression PCE stddev of \{v\(1\)\} = ([0-9]*)/\1/;
-  print STDERR  "v(1) PCE stddev is $V1stddev, analytical stddev is $V1_analytical_stddev\n";
+  $V1stddev=~ s/\(traditional sampling\) regression PCE stddev of \{V\(1\)\} = ([0-9]*)/\1/;
+  print STDERR  "V(1) PCE stddev is $V1stddev, analytical stddev is $V1_analytical_stddev\n";
 
   $passed=1;
   $reltol=5e-2;

@@ -5,73 +5,73 @@ embedded sampling version of a CMOS inverter
 * It isn't supposed to be run, and will exit with error.
 *
 
-*COMP {v(drain)}_mean                OFFSET=1.0
-*COMP {v(drain)}_meanPlus            OFFSET=1.0
-*COMP {v(drain)}_meanMinus           OFFSET=1.0
-*COMP {v(drain)}_stddev              OFFSET=1.0
-*COMP {v(drain)}_variance            OFFSET=1.0
-*COMP {v(drain)}_quad_pce_mean       OFFSET=1.0
-*COMP {v(drain)}_quad_pce_meanPlus   OFFSET=1.0
-*COMP {v(drain)}_quad_pce_meanMinus  OFFSET=1.0
-*COMP {v(drain)}_quad_pce_stddev     OFFSET=1.0
-*COMP {v(drain)}_quad_pce_variance   OFFSET=1.0
-*COMP {v(drain)}_coef(0,0)           OFFSET=1.0
-*COMP {v(drain)}_coef(1,0)           OFFSET=1.0
-*COMP {v(drain)}_coef(0,1)           OFFSET=1.0
-*COMP {v(drain)}_coef(2,0)           OFFSET=1.0
-*COMP {v(drain)}_coef(1,1)           OFFSET=1.0
-*COMP {v(drain)}_coef(0,2)           OFFSET=1.0
-*COMP {v(drain)}_coef(3,0)           OFFSET=1.0
-*COMP {v(drain)}_coef(2,1)           OFFSET=1.0
-*COMP {v(drain)}_coef(1,2)           OFFSET=1.0
-*COMP {v(drain)}_coef(0,3)           OFFSET=1.0
-*COMP {v(drain)}_coef(4,0)           OFFSET=1.0
-*COMP {v(drain)}_coef(3,1)           OFFSET=1.0
-*COMP {v(drain)}_coef(2,2)           OFFSET=1.0
-*COMP {v(drain)}_coef(1,3)           OFFSET=1.0
-*COMP {v(drain)}_coef(0,4)           OFFSET=1.0
-*COMP {v(gate)}_mean                 OFFSET=1.0
-*COMP {v(gate)}_meanPlus             OFFSET=1.0
-*COMP {v(gate)}_meanMinus            OFFSET=1.0
-*COMP {v(gate)}_stddev               OFFSET=1.0
-*COMP {v(gate)}_variance             OFFSET=1.0
-*COMP {v(gate)}_quad_pce_mean        OFFSET=1.0
-*COMP {v(gate)}_quad_pce_meanPlus    OFFSET=1.0
-*COMP {v(gate)}_quad_pce_meanMinus   OFFSET=1.0
-*COMP {v(gate)}_quad_pce_stddev      OFFSET=1.0
-*COMP {v(gate)}_quad_pce_variance    OFFSET=1.0
-*COMP {V(gate)}_coef(0,0)            OFFSET=1.0
-*COMP {V(gate)}_coef(1,0)            OFFSET=1.0
-*COMP {V(gate)}_coef(0,1)            OFFSET=1.0
-*COMP {V(gate)}_coef(2,0)            OFFSET=1.0
-*COMP {V(gate)}_coef(1,1)            OFFSET=1.0
-*COMP {V(gate)}_coef(0,2)            OFFSET=1.0
-*COMP {V(gate)}_coef(3,0)            OFFSET=1.0
-*COMP {V(gate)}_coef(2,1)            OFFSET=1.0
-*COMP {V(gate)}_coef(1,2)            OFFSET=1.0
-*COMP {V(gate)}_coef(0,3)            OFFSET=1.0
-*COMP {V(gate)}_coef(4,0)            OFFSET=1.0
-*COMP {V(gate)}_coef(3,1)            OFFSET=1.0
-*COMP {V(gate)}_coef(2,2)            OFFSET=1.0
-*COMP {V(gate)}_coef(1,3)            OFFSET=1.0
-*COMP {V(gate)}_coef(0,4)            OFFSET=1.0
+*COMP {V(DRAIN)}_mean                OFFSET=1.0
+*COMP {V(DRAIN)}_meanPlus            OFFSET=1.0
+*COMP {V(DRAIN)}_meanMinus           OFFSET=1.0
+*COMP {V(DRAIN)}_stddev              OFFSET=1.0
+*COMP {V(DRAIN)}_variance            OFFSET=1.0
+*COMP {V(DRAIN)}_quad_pce_mean       OFFSET=1.0
+*COMP {V(DRAIN)}_quad_pce_meanPlus   OFFSET=1.0
+*COMP {V(DRAIN)}_quad_pce_meanMinus  OFFSET=1.0
+*COMP {V(DRAIN)}_quad_pce_stddev     OFFSET=1.0
+*COMP {V(DRAIN)}_quad_pce_variance   OFFSET=1.0
+*COMP {V(DRAIN)}_coef(0_0)           OFFSET=1.0
+*COMP {V(DRAIN)}_coef(1_0)           OFFSET=1.0
+*COMP {V(DRAIN)}_coef(0_1)           OFFSET=1.0
+*COMP {V(DRAIN)}_coef(2_0)           OFFSET=1.0
+*COMP {V(DRAIN)}_coef(1_1)           OFFSET=1.0
+*COMP {V(DRAIN)}_coef(0_2)           OFFSET=1.0
+*COMP {V(DRAIN)}_coef(3_0)           OFFSET=1.0
+*COMP {V(DRAIN)}_coef(2_1)           OFFSET=1.0
+*COMP {V(DRAIN)}_coef(1_2)           OFFSET=1.0
+*COMP {V(DRAIN)}_coef(0_3)           OFFSET=1.0
+*COMP {V(DRAIN)}_coef(4_0)           OFFSET=1.0
+*COMP {V(DRAIN)}_coef(3_1)           OFFSET=1.0
+*COMP {V(DRAIN)}_coef(2_2)           OFFSET=1.0
+*COMP {V(DRAIN)}_coef(1_3)           OFFSET=1.0
+*COMP {V(DRAIN)}_coef(0_4)           OFFSET=1.0
+*COMP {V(GATE)}_mean                 OFFSET=1.0
+*COMP {V(GATE)}_meanPlus             OFFSET=1.0
+*COMP {V(GATE)}_meanMinus            OFFSET=1.0
+*COMP {V(GATE)}_stddev               OFFSET=1.0
+*COMP {V(GATE)}_variance             OFFSET=1.0
+*COMP {V(GATE)}_quad_pce_mean        OFFSET=1.0
+*COMP {V(GATE)}_quad_pce_meanPlus    OFFSET=1.0
+*COMP {V(GATE)}_quad_pce_meanMinus   OFFSET=1.0
+*COMP {V(GATE)}_quad_pce_stddev      OFFSET=1.0
+*COMP {V(GATE)}_quad_pce_variance    OFFSET=1.0
+*COMP {V(GATE)}_coef(0_0)            OFFSET=1.0
+*COMP {V(GATE)}_coef(1_0)            OFFSET=1.0
+*COMP {V(GATE)}_coef(0_1)            OFFSET=1.0
+*COMP {V(GATE)}_coef(2_0)            OFFSET=1.0
+*COMP {V(GATE)}_coef(1_1)            OFFSET=1.0
+*COMP {V(GATE)}_coef(0_2)            OFFSET=1.0
+*COMP {V(GATE)}_coef(3_0)            OFFSET=1.0
+*COMP {V(GATE)}_coef(2_1)            OFFSET=1.0
+*COMP {V(GATE)}_coef(1_2)            OFFSET=1.0
+*COMP {V(GATE)}_coef(0_3)            OFFSET=1.0
+*COMP {V(GATE)}_coef(4_0)            OFFSET=1.0
+*COMP {V(GATE)}_coef(3_1)            OFFSET=1.0
+*COMP {V(GATE)}_coef(2_2)            OFFSET=1.0
+*COMP {V(GATE)}_coef(1_3)            OFFSET=1.0
+*COMP {V(GATE)}_coef(0_4)            OFFSET=1.0
 
-.PRINT TRAN {v(drain)}_mean {v(drain)}_meanPlus {v(drain)}_meanMinus {v(drain)}_stddev {v(drain)}_variance
-+ {v(drain)}_quad_pce_mean {v(drain)}_quad_pce_meanPlus {v(drain)}_quad_pce_meanMinus
-+ {v(drain)}_quad_pce_stddev {v(drain)}_quad_pce_variance
-+ {v(drain)}_coef(0,0) {v(drain)}_coef(1,0) {v(drain)}_coef(0,1)
-+ {v(drain)}_coef(2,0) {v(drain)}_coef(1,1) {v(drain)}_coef(0,2)
-+ {v(drain)}_coef(3,0) {v(drain)}_coef(2,1) {v(drain)}_coef(1,2)
-+ {v(drain)}_coef(0,3) {v(drain)}_coef(4,0) {v(drain)}_coef(3,1)
-+ {v(drain)}_coef(2,2) {v(drain)}_coef(1,3) {v(drain)}_coef(0,4)
-+ {V(gate)}_mean  {V(gate)}_meanPlus {V(gate)}_meanMinus {V(gate)}_stddev {V(gate)}_variance
-+ {V(gate)}_quad_pce_mean {V(gate)}_quad_pce_meanPlus {V(gate)}_quad_pce_meanMinus
-+ {V(gate)}_quad_pce_stddev {V(gate)}_quad_pce_variance
-+ {V(gate)}_coef(0,0) {V(gate)}_coef(1,0) {V(gate)}_coef(0,1)
-+ {V(gate)}_coef(2,0) {V(gate)}_coef(1,1) {V(gate)}_coef(0,2)
-+ {V(gate)}_coef(3,0) {V(gate)}_coef(2,1) {V(gate)}_coef(1,2)
-+ {V(gate)}_coef(0,3) {V(gate)}_coef(4,0) {V(gate)}_coef(3,1)
-+ {V(gate)}_coef(2,2) {V(gate)}_coef(1,3) {V(gate)}_coef(0,4)
+.PRINT TRAN {V(DRAIN)}_mean {V(DRAIN)}_meanPlus {V(DRAIN)}_meanMinus {V(DRAIN)}_stddev {V(DRAIN)}_variance
++ {V(DRAIN)}_quad_pce_mean {V(DRAIN)}_quad_pce_meanPlus {V(DRAIN)}_quad_pce_meanMinus
++ {V(DRAIN)}_quad_pce_stddev {V(DRAIN)}_quad_pce_variance
++ {V(DRAIN)}_coef(0_0) {V(DRAIN)}_coef(1_0) {V(DRAIN)}_coef(0_1)
++ {V(DRAIN)}_coef(2_0) {V(DRAIN)}_coef(1_1) {V(DRAIN)}_coef(0_2)
++ {V(DRAIN)}_coef(3_0) {V(DRAIN)}_coef(2_1) {V(DRAIN)}_coef(1_2)
++ {V(DRAIN)}_coef(0_3) {V(DRAIN)}_coef(4_0) {V(DRAIN)}_coef(3_1)
++ {V(DRAIN)}_coef(2_2) {V(DRAIN)}_coef(1_3) {V(DRAIN)}_coef(0_4)
++ {V(GATE)}_mean  {V(GATE)}_meanPlus {V(GATE)}_meanMinus {V(GATE)}_stddev {V(GATE)}_variance
++ {V(GATE)}_quad_pce_mean {V(GATE)}_quad_pce_meanPlus {V(GATE)}_quad_pce_meanMinus
++ {V(GATE)}_quad_pce_stddev {V(GATE)}_quad_pce_variance
++ {V(GATE)}_coef(0_0) {V(GATE)}_coef(1_0) {V(GATE)}_coef(0_1)
++ {V(GATE)}_coef(2_0) {V(GATE)}_coef(1_1) {V(GATE)}_coef(0_2)
++ {V(GATE)}_coef(3_0) {V(GATE)}_coef(2_1) {V(GATE)}_coef(1_2)
++ {V(GATE)}_coef(0_3) {V(GATE)}_coef(4_0) {V(GATE)}_coef(3_1)
++ {V(GATE)}_coef(2_2) {V(GATE)}_coef(1_3) {V(GATE)}_coef(0_4)
 
 .tran 1ns 1.5e-6
 
