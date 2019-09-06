@@ -1,6 +1,6 @@
 ********************************************************
-* Test Embedded Sampling output for .DC for FORMAT =
-* STD, CSV and NOINDEX. This covers projection_pce=true
+* Test Embedded Sampling output for .DC with .STEP for
+* FORMAT=<STD|CSV>. This covers projection_pce=true
 * with one output variable.  It also tests the use of
 * simple expressions, voltage difference operators
 * and branch currents.
@@ -14,7 +14,7 @@ R2 1 0 3K
 R1 1 2 2K
 v1 2 0 10V
 
-.dc v1 10 10 1
+.dc v1 10 15 1
 
 .print dc v(1)
 
@@ -33,7 +33,6 @@ v1 2 0 10V
 + stdoutput=true
 
 .PRINT ES
-.PRINT ES PRECISION=6 FORMAT=CSV FILE=es-proj-pce-dc-prn.cir.ES.csv
-.PRINT ES PRECISION=6 FORMAT=NOINDEX FILE=es-proj-pce-dc-prn.cir.ES.noindex.prn
+.PRINT ES PRECISION=6 FORMAT=CSV FILE=es-proj-pce-dc-step-prn.cir.ES.csv
 
 .END

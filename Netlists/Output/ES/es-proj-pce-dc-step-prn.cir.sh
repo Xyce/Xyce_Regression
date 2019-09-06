@@ -68,12 +68,6 @@ if ( !(-f "$CIRFILE.ES.csv"))
     print "Exit code = 14\n"; exit 14;
 }
 
-if ( !(-f "$CIRFILE.ES.noindex.prn"))
-{
-    print STDERR "Missing output file $CIRFILE.ES.noindex.prn\n";
-    print "Exit code = 14\n"; exit 14;
-}
-
 $retcode = 0;
 $absTol=1e-5;
 $relTol=1e-3;
@@ -94,14 +88,6 @@ $retval = system("$CMD");
 $retval = $retval >> 8;
 if ($retval != 0){
   print STDERR "Comparator exited with exit code $retval on file $CIRFILE.ES.csv\n";
-  $retcode = 2;
-}
-
-$CMD="$fc $CIRFILE.ES.noindex.prn $GOLDPRN.ES.noindex.prn $absTol $relTol $zeroTol > $CIRFILE.ES.noindex.prn.out 2> $CIRFILE.ES.noindexprn.err";
-$retval = system("$CMD");
-$retval = $retval >> 8;
-if ($retval != 0){
-  print STDERR "Comparator exited with exit code $retval on file $CIRFILE.ES.nonidex.prn\n";
   $retcode = 2;
 }
 
