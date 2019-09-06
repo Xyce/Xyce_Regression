@@ -82,7 +82,7 @@ $zeroTol=1e-6;
 $fc = $XYCE_VERIFY;
 $fc=~ s/xyce_verify/file_compare/;
 
-$CMD="$fc $CIRFILE.PCE.raw $GOLDPRN.PCE.prn $absTol $relTol $zeroTol > $CIRFILE.PCE.raw.out 2> $CIRFILE.PCE.raw.out";
+$CMD="$fc $CIRFILE.PCE.raw $GOLDPRN.PCE.prn $absTol $relTol $zeroTol > $CIRFILE.PCE.raw.out 2> $CIRFILE.PCE.raw.err";
 $retval = system("$CMD");
 $retval = $retval >> 8;
 if ($retval != 0){

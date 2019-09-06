@@ -27,7 +27,7 @@ $GOLDPRN=$ARGV[4];
 $GOLDPRN =~ s/\.prn$//; # remove the .prn at the end.
 
 # remove previous output files
-system("rm -f $CIRFILE.ES.* $CIRFILE.out $CIRFILE.err $CIRFILE.prn");
+system("rm -f $CIRFILE.PCE.* $CIRFILE.out $CIRFILE.err $CIRFILE.prn");
 
 # run Xyce
 $CMD="$XYCE $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
@@ -56,32 +56,18 @@ if ( !(-f "$CIRFILE.prn"))
     print "Exit code = 14\n"; exit 14;
 }
 
-if ( !(-f "$CIRFILE.ES.raw"))
+if ( !(-f "$CIRFILE.PCE.prn"))
 {
-    print STDERR "Missing output file $CIRFILE.ES.raw\n";
+    print STDERR "Missing output file $CIRFILE.PCE.prn\n";
     print "Exit code = 14\n"; exit 14;
 }
 
-if ( !(-f "$CIRFILE.ES.probe"))
+if ( !(-f "$CIRFILE.PCE.csv"))
 {
-    print STDERR "Missing output file $CIRFILE.ES.probe\n";
+    print STDERR "Missing output file $CIRFILE.PCE.csv\n";
     print "Exit code = 14\n"; exit 14;
 }
 
-if ( !(-f "$CIRFILE.ES.ts1"))
-{
-    print STDERR "Missing output file $CIRFILE.ES.ts1\n";
-    print "Exit code = 14\n"; exit 14;
-}
-
-if ( !(-f "$CIRFILE.ES.ts2"))
-{
-    print STDERR "Missing output file $CIRFILE.ES.ts2\n";
-    print "Exit code = 14\n"; exit 14;
-}
-
-# test the output files
-$retcode = 0;
 $retcode = 0;
 $absTol=1e-5;
 $relTol=1e-3;
@@ -89,32 +75,22 @@ $zeroTol=1e-6;
 $fc = $XYCE_VERIFY;
 $fc=~ s/xyce_verify/file_compare/;
 
-$CMD="$fc $CIRFILE.ES.raw $GOLDPRN.ES.prn $absTol $relTol $zeroTol > $CIRFILE.ES.raw.out 2> $CIRFILE.ES.raw.err";
+$CMD="$fc $CIRFILE.PCE.prn $GOLDPRN.PCE.prn $absTol $relTol $zeroTol > $CIRFILE.PCE.prn.out 2> $CIRFILE.PCE.prn.err";
 $retval = system("$CMD");
 $retval = $retval >> 8;
 if ($retval != 0){
-  print STDERR "Comparator exited with exit code $retval on file $CIRFILE.ES.raw\n";
+  print STDERR "Comparator exited with exit code $retval on file $CIRFILE.PCE.prn\n";
   $retcode = 2;
 }
 
-# The other three output files should be identical to $CIRFILE.raw
-$CMD="diff $CIRFILE.ES.raw $CIRFILE.ES.probe > $CIRFILE.ES.probe.out";
-if (system("$CMD") != 0) {
-    print STDERR "Verification failed on file $CIRFILE.ES.probe, see $CIRFILE.ES.probe.out\n";
-    $retcode = 2;
-}
-
-$CMD="diff $CIRFILE.ES.raw $CIRFILE.ES.ts1 > $CIRFILE.ES.ts1.out";
-if (system("$CMD") != 0) {
-    print STDERR "Verification failed on file $CIRFILE.ES.ts1, see $CIRFILE.ES.ts1.out\n";
-    $retcode = 2;
-}
-
-$CMD="diff $CIRFILE.ES.raw $CIRFILE.ES.ts2 > $CIRFILE.ES.ts2.out";
-if (system("$CMD") != 0) {
-    print STDERR "Verification failed on file $CIRFILE.ES.ts2, see $CIRFILE.ES.ts2.out\n";
-    $retcode = 2;
+$CMD="$fc $CIRFILE.PCE.csv $GOLDPRN.PCE.csv $absTol $relTol $zeroTol > $CIRFILE.PCE.csv.out 2> $CIRFILE.PCE.csv.err";
+$retval = system("$CMD");
+$retval = $retval >> 8;
+if ($retval != 0){
+  print STDERR "Comparator exited with exit code $retval on file $CIRFILE.PCE.csv\n";
+  $retcode = 2;
 }
 
 print "Exit code = $retcode\n"; exit $retcode;
+
 
