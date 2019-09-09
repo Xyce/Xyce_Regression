@@ -8,6 +8,8 @@ pce-dc-prn.cir
 pce-dc-prn.cir.sh
 pce-dc-step-prn.cir
 pce-dc-step-prn.cir.sh
+pce-dc-tecplot.cir
+pce-dc-tecplot.cir.sh
 pce-no-output.cir
 pce-no-output.cir.sh
 tags
