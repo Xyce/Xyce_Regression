@@ -2,7 +2,8 @@
 * Test Embedded Sampling output for .DC for FORMAT=TECPLOT
 * This covers projection_pce=true with one output variable.
 * It also tests the use of simple expressions, voltage
-* difference operators and branch currents.
+* difference operators and branch currents.  This netlist
+* tests with the .PRINT ES line before the .PRINT DC line.
 *
 * See SON Bug 1201 for more details.
 ***********************************************************
@@ -14,8 +15,6 @@ R1 1 2 2K
 v1 2 0 10V
 
 .dc v1 10 10 1
-
-.print dc v(1)
 
 .EMBEDDEDSAMPLING
 + param=R1,R2
@@ -32,5 +31,6 @@ v1 2 0 10V
 + stdoutput=true
 
 .PRINT ES PRECISION=6 FORMAT=TECPLOT
+.print dc v(1)
 
 .END

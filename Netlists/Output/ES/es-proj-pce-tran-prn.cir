@@ -2,9 +2,10 @@
 * Test Embedded Sampling output for .TRAN for FORMAT =
 * STD, CSV and NOINDEX. This covers projection_pce=true
 * and the case of two output variables.  It also tests
-* the print parameter OUTPUT_PCE_COEFFS=TRUE.  Note: It
+* the print parameter OUTPUT_PCE_COEFFS=TRUE.  (Note: It
 * does not output the PCE Coeffs via the .OPTIONS
-* EMBEDDEDSAMPLES line.
+* EMBEDDEDSAMPLES line.)  This netlist tests with the
+* .PRINT ES line after the .PRINT TRAN line.
 *
 * See SON Bug 1201 for more details.
 ********************************************************

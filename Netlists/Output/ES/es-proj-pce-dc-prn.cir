@@ -3,7 +3,8 @@
 * STD, CSV and NOINDEX. This covers projection_pce=true
 * with one output variable.  It also tests the use of
 * simple expressions, voltage difference operators
-* and branch currents.
+* and branch currents.  This netlist tests with the
+* .PRINT ES line after the .PRINT DC line.
 *
 * See SON Bug 1201 for more details.
 ********************************************************

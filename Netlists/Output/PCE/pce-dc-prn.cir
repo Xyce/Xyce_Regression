@@ -1,7 +1,8 @@
 ********************************************************
 * Test .PRINT PCE ES for .DC for FORMAT = STD,
 * CSV and NOINDEX.  Also output all of the samples
-* for the quadrature points.
+* for the quadrature points.  This netlist also tests
+*  with the .PRINT PCE line after the .PRINT DC line.
 *
 * See SON Bug 1231 for more details.
 ********************************************************

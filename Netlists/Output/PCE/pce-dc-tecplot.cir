@@ -1,7 +1,8 @@
 ********************************************************
 * Test .PRINT PCE ES for .DC for FORMAT= TECPLOT.
 * Also output all of the samples for the quadrature
-* points.
+* points.  This netlist also tests with the .PRINT PCE
+* line before the .PRINT DC line.
 *
 * See SON Bug 1231 for more details.
 ********************************************************
@@ -15,8 +16,8 @@ Von 2 0 5
 
 .dc Von 5 5 1
 
-.print dc v(1)
 .PRINT PCE FORMAT=TECPLOT PRECISION=6 outputAllSamples=true
+.print dc v(1)
 
 .PCE
 + param=R1value
