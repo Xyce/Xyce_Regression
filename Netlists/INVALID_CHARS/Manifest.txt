@@ -13,6 +13,7 @@ valid_chars_ac_expressions.cir.tags
 valid_chars_noise_expressions.cir
 valid_chars_noise_expressions.cir.sh
 valid_chars_noise_expressions.cir.tags
+valid_chars_func_names.cir
 colon_in_node_name.cir
 colon_in_node_name.cir.sh
 colon_in_node_name.cir.tags
