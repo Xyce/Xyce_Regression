@@ -12,6 +12,9 @@ hb.cir
 hb.cir.sh
 noise.cir
 noise.cir.sh
+pce.cir
+pce.cir.sh
+pce.cir.tags
 sparam.cir
 sparam.cir.sh
 sparam.cir.tags

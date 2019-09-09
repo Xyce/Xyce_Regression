@@ -81,11 +81,27 @@ $zeroTol=1e-6;
 $fc = $XYCE_VERIFY;
 $fc=~ s/xyce_verify/file_compare/;
 
-$CMD="$fc $CIRFILE.ES.prn $GOLDPRN.ES.prn $absTol $relTol $zeroTol > $CIRFILE.ES.prn.out 2> $CIRFILE.ES.prn.out";
+$CMD="$fc $CIRFILE.ES.prn $GOLDPRN.ES.prn $absTol $relTol $zeroTol > $CIRFILE.ES.prn.out 2> $CIRFILE.ES.prn.err";
 $retval = system("$CMD");
 $retval = $retval >> 8;
 if ($retval != 0){
   print STDERR "Comparator exited with exit code $retval on file $CIRFILE.ES.prn\n";
+  $retcode = 2;
+}
+
+$CMD="$fc $CIRFILE.ES.csv $GOLDPRN.ES.csv $absTol $relTol $zeroTol > $CIRFILE.ES.csv.out 2> $CIRFILE.ES.csv.err";
+$retval = system("$CMD");
+$retval = $retval >> 8;
+if ($retval != 0){
+  print STDERR "Comparator exited with exit code $retval on file $CIRFILE.ES.csv\n";
+  $retcode = 2;
+}
+
+$CMD="$fc $CIRFILE.ES.noindex.prn $GOLDPRN.ES.noindex.prn $absTol $relTol $zeroTol > $CIRFILE.ES.noindex.prn.out 2> $CIRFILE.ES.noindexprn.err";
+$retval = system("$CMD");
+$retval = $retval >> 8;
+if ($retval != 0){
+  print STDERR "Comparator exited with exit code $retval on file $CIRFILE.ES.nonidex.prn\n";
   $retcode = 2;
 }
 

@@ -1,6 +1,6 @@
 ********************************************************
 * Test -o command line option for .PRINT ES.  The
-* parameters FORMAT=CSV FILE=esFoo and on the .PRINT ES
+* parameters FORMAT=CSV and FILE=esFoo on the .PRINT ES
 * line should be ignored.  Also, no output should occur
 * from the .PRINT DC line.
 *

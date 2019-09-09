@@ -29,8 +29,8 @@ $XYCE=$ARGV[0];
 $CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
 
-@searchstrings = ("Netlist error: ORDER parameter on .EMBEDDEDSAMPLES line must >= 0",
-                  "Netlist error: NUMSAMPLES parameter on .EMBEDDEDSAMPLES line must > 0");
+@searchstrings = ("Netlist error: ORDER parameter on .OPTIONS EMBEDDEDSAMPLES line must >= 0",
+                  "Netlist error: NUMSAMPLES parameter on .OPTIONS EMBEDDEDSAMPLES line must > 0");
 
 $retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);
 print "Exit code = $retval\n";

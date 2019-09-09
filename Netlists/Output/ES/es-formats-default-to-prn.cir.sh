@@ -89,7 +89,7 @@ $zeroTol=1e-6;
 $fc = $XYCE_VERIFY;
 $fc=~ s/xyce_verify/file_compare/;
 
-$CMD="$fc $CIRFILE.ES.raw $GOLDPRN.ES.prn $absTol $relTol $zeroTol > $CIRFILE.ES.raw.out 2> $CIRFILE.ES.raw.out";
+$CMD="$fc $CIRFILE.ES.raw $GOLDPRN.ES.prn $absTol $relTol $zeroTol > $CIRFILE.ES.raw.out 2> $CIRFILE.ES.raw.err";
 $retval = system("$CMD");
 $retval = $retval >> 8;
 if ($retval != 0){

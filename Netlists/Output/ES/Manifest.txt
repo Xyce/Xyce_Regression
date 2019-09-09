@@ -9,6 +9,9 @@ printLine_for_es-regr-pce-tran-prn.cir
 es-proj-pce-dc-prn.cir
 es-proj-pce-dc-prn.cir.sh
 es-proj-pce-dc-prn.cir.tags
+es-proj-pce-dc-step-prn.cir
+es-proj-pce-dc-step-prn.cir.sh
+es-proj-pce-dc-step-prn.cir.tags
 dashRNotSupported.cir
 dashRNotSupported.cir.sh
 dashRNotSupported.cir.tags

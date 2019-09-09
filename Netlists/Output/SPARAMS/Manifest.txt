@@ -11,6 +11,8 @@ sparams-ts2-dataFormat.cir
 sparams-ts2-dataFormat.cir.sh
 sparams-ts2.cir
 sparams-ts2.cir.sh
+sparams-phase-in-degrees.cir
+sparams-phase-in-degrees.cir.sh
 dashRNotSupported.cir
 dashRNotSupported.cir.sh
 dashRNotSupported.cir.tags
