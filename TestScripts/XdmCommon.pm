@@ -19,7 +19,7 @@ sub getXyceXMLVersion
   #my $XYCEXML="\$XDMFORMAT/xyce_6_3.xml";
   #$XYCEXML="xyce_6_4";
   #$XYCEXML="xyce_6_5";
-  $XYCEXML="xyce_6_6";
+  $XYCEXML="xyce";
 
   return $XYCEXML;
 }
@@ -68,12 +68,12 @@ sub setXDMvariables
   my $XDMWRAP=getXdmWrapVersion();
   if ($FROMSPICE eq "pspice")
   {
-    $FROMSPICEXML="pspice_16_6";
+    $FROMSPICEXML="pspice";
     $OUTFILETYPE="csd";
   }
   elsif ($FROMSPICE eq "spectre")
   {
-    $FROMSPICEXML="spectre_5_0";
+    $FROMSPICEXML="spectre";
     $OUTFILETYPE="prn";
   }
   elsif ($FROMSPICE eq "hspice")
