@@ -25,7 +25,6 @@ $CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
 
 $GOLDPRN =~ s/\.prn$//; # remove the .prn at the end.
-$TMPCIRFILE="printLine_for_es-no-pce-coeffs.cir";
 
 # remove previous output files
 system("rm -f $CIRFILE.ES.* $CIRFILE.out $CIRFILE.err $CIRFILE.prn");
@@ -64,7 +63,12 @@ if ( !(-f "$CIRFILE.ES.prn"))
 }
 
 $retcode = 0;
-$CMD="$XYCE_VERIFY $TMPCIRFILE $CIRFILE.ES.prn $GOLDPRN.ES.prn > $CIRFILE.ES.prn.out 2> $CIRFILE.ES.prn.err";
+$absTol=1e-4;
+$relTol=1e-2;
+$zeroTol=1e-6;
+$fc = $XYCE_VERIFY;
+$fc=~ s/xyce_verify/file_compare/;
+$CMD="$fc $CIRFILE.ES.prn $GOLDPRN.ES.prn $absTol $relTol $zeroTol > $CIRFILE.ES.prn.out 2> $CIRFILE.ES.prn.err";
 $retval = system("$CMD");
 $retval = $retval >> 8;
 if ($retval != 0){
