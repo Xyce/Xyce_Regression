@@ -8,10 +8,12 @@ embedded sampling version of a CMOS inverter
 *COMP v(drain)mean OFFSET=1.0
 *COMP v(drain)meanPlus OFFSET=1.0
 *COMP v(drain)meanMinus OFFSET=1.0
+*COMP v(drain)meanPlusTwoSigma OFFSET=1.0
+*COMP v(drain)meanMinusTwoSigma OFFSET=1.0
 *COMP v(drain)stddev OFFSET=1.0
 *COMP v(drain)variance OFFSET=1.0
 
-.print tran v(drain)mean v(drain)meanPlus v(drain)meanMinus v(drain)stddev v(drain)variance 
+.print tran v(drain)mean v(drain)meanplus v(drain)meanminus v(drain)meanplustwosigma v(drain)meanminustwosigma v(drain)stddev v(drain)variance 
 
 .tran 1ns 1.5e-6
 
