@@ -19,7 +19,7 @@ sub getXyceXMLVersion
   #my $XYCEXML="\$XDMFORMAT/xyce_6_3.xml";
   #$XYCEXML="xyce_6_4";
   #$XYCEXML="xyce_6_5";
-  $XYCEXML="xyce";
+  $XYCEXML="xyce_6_6";
 
   return $XYCEXML;
 }
