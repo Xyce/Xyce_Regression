@@ -20,11 +20,14 @@ $XYCE_VERIFY=$ARGV[1];
 $CIRFILE=$ARGV[3];
 $PRNOUT=$CIRFILE.".prn";
 
+# remove old output files
+system("rm -f $CIRFILE\_faked*");
+
 # This is the list of fields that must be in the output.
 # Use of unordered maps in Xyce means they might not come out in the 
 # same order on different platforms.
-@expectedOutputs=("Index", "TIME", "V\(X1:2)", "V\(X1:1)", "V\(4)", "V\(3)", "V\(2)", "V\(1)",
-                  "I\(X1:X2:V1)", "I\(X1:V1)", "I\(E2)", "I\(V1)", "I\(X1:X2:L1)");
+@expectedOutputs=("Index", "TIME", "V\\(X1:2\\)", "V\\(X1:1\\)", "V\\(4\\)", "V\\(3\\)", "V\\(2\\)", "V\\(1\\)",
+                  "I\\(X1:X2:V1\\)", "I\\(X1:V1\\)", "I\\(E2\\)", "I\\(V1\\)", "I\\(X1:X2:L1\\)");
 
 # Now run the main netlist, which has the V(*) I(*) print line in it.
 $retval = -1;
@@ -42,13 +45,24 @@ close(PRNFILE);
 chomp($headerline);
 
 $retval=0;
+$numMatch=0;
 foreach $field (@expectedOutputs)
 {
-    if (! $headerline =~ /$field/ )
+    if ( $headerline =~ /$field/ )
+    {
+        ++$numMatch;
+    }
+    else
     {
         print STDERR "Could not find field $field in primary output file.\n";
         $retval=2;
     }
+}
+
+if ($numMatch != ($#expectedOutputs + 1))
+{
+    print STDERR "Insufficient number of matches found on header line in primary output file.\n";
+    $retval=2;
 }
 
 # only if we have all the expected outputs should we proceed.
