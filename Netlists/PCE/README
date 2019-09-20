@@ -5,7 +5,6 @@ subdirectory.
 
 NISP = non-intrusive spectral projection  
 NI_REGRESSION = non-intrusive regression PCE
-
-
+PCE = fully intrusive projection PCE
 
 
