@@ -16,7 +16,7 @@ Von 2 0 5
 
 .dc Von 5 5 1
 
-.PRINT PCE FORMAT=TECPLOT PRECISION=6 outputAllSamples=true
+.PRINT PCE FORMAT=TECPLOT PRECISION=6 output_All_Samples=true
 .print dc v(1)
 
 .PCE

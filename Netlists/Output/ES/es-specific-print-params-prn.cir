@@ -81,13 +81,13 @@ M2 drain gate vdd vdd PMOS  w =0.54e-6 ; l=0.18e-6
 
 .options EMBEDDEDSAMPLES outputs={v(drain)},{v(gate)}
 + projection_pce=true
-+ outputSampleStats=false
-+ outputAllSamples=true
++ output_Sample_Stats=false
++ output_All_Samples=true
 
 .tran 1ns 1.5e-6
 
 .PRINT TRAN v(drain)
 
-.PRINT ES PRECISION=6 outputSampleStats=false outputAllSamples=true
+.PRINT ES PRECISION=6 output_Sample_Stats=false output_All_Samples=true
 
 .END

@@ -76,9 +76,9 @@ M2 drain gate vdd vdd PMOS  w =0.54e-6 ; l=0.18e-6
 + projection_pce=true
 * As the number of samples will be small, don't output the mean, variance, std dev from the original samples.  
 * Just output the PCE statistics:
-+ outputSampleStats=false
++ output_Sample_Stats=false
 
-.PRINT ES PRECISION=6 FORMAT=TECPLOT outputSampleStats=false
+.PRINT ES PRECISION=6 FORMAT=TECPLOT output_Sample_Stats=false
 
 .tran 1ns 1.5e-6
 

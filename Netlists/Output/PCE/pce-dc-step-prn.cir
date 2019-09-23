@@ -17,7 +17,7 @@ Von 2 0 5
 .print dc v(1)
 .PRINT PCE PRECISION=6 outputAllSamples=true
 .PRINT PCE PRECISION=6 FORMAT=CSV FILE=pce-dc-step-prn.cir.PCE.csv
-+ outputAllSamples=true
++ output_All_Samples=true
 
 .PCE
 + param=R1value

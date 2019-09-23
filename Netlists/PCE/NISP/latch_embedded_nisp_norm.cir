@@ -54,7 +54,6 @@ x2 5 7 3 4 2 6 eclg2
 + projection_pce=true
 * As the number of samples will be small, don't output the mean, variance, std dev from the original samples.
 * Just output the PCE statistics:
-+ outputSampleStats=false
 + sparse_grid=true
 
 .options device debuglevel=-100
