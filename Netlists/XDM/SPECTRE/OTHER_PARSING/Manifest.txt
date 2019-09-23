@@ -6,6 +6,9 @@ case_sensitive_names.cir.sh
 comment_lines.cir.spectre
 comment_lines.cir
 comment_lines.cir.sh
+dc_directive.cir.spectre
+dc_directive.cir
+dc_directive.cir.sh
 statistics_line.cir.spectre
 statistics_line.cir
 statistics_line.cir.sh
