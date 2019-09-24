@@ -26,7 +26,7 @@ v1 2 0 0V
 + alpha=9
 + beta=0.03
 
-.options embeddedsamples numsamples=5
+.options embeddedsamples numsamples=5 sample_type=mc
 
 .end
 

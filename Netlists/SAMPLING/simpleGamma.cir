@@ -28,7 +28,7 @@ v1 2 0 0V
 + alpha=9
 + beta=0.03
 
-.options samples numsamples=5
+.options samples numsamples=5 sample_type=mc
 
 .options device debuglevel=-100
 .options timeint debuglevel=-100
