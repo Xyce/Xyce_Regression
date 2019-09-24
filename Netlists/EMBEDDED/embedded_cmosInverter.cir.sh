@@ -31,18 +31,73 @@ $TMPCIRFILE="printLine_for_embedded_cmosInverter.cir";
 $TECPLOTFILE="embedded_cmosInverter.cir_ensemble.dat";
 $GOLDDAT="goldprn_embedded_cmosInverter.cir_ensemble.dat";
 
-# Run netlist:
-$CMD="$XYCE $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
-if (system($CMD) != 0)
-{
-  `echo "Xyce EXITED WITH ERROR! on $CIRFILE" >> $CIRFILE.err`;
-  $xyceexit=1;
-}
-else
-{
-  if (-z "$CIRFILE.err" ) {`rm -f $CIRFILE.err`;}
-}
+# Some platforms we test on (esp Windows) use a really bad random number generator.
+# To accomodate that I've made the comparison tolerances loose.  Also, if the test
+# initially fails the comparison, I run it one more time.  Usually, even if it 
+# fails the first time, it will pass the second time.
 
+$num_tries=0;
+$finished=0;
+
+while ($num_tries < 2 && $finished == 0)
+{
+  $passed=1;
+
+  # Run netlist:
+  $CMD="$XYCE $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
+  if (system($CMD) != 0)
+  {
+    `echo "Xyce EXITED WITH ERROR! on $CIRFILE" >> $CIRFILE.err`;
+    $passed=0;
+  }
+  else
+  {
+    if (-z "$CIRFILE.err" ) {`rm -f $CIRFILE.err`;}
+  }
+
+
+  #
+  # check the number of TITLE outputs
+  $titlecount = `grep -ic title $TECPLOTFILE 2>/dev/null`;
+  if ($titlecount =~ 1)
+  {
+    printf "Tecplot file contained correct number(%d) of titles.\n", $titlecount;
+  }
+  else
+  {
+    printf "Tecplot file contained wrong number(%d) of titles.\n", $titlecount;
+    $passed=0;
+  }
+
+  # convert and compare the *dat file.
+  $result = system( "$TRANSLATE $TECPLOTFILE");
+  #$result = system( "$TRANSLATE capacitor.cir.dat");
+  if ( $result != 0 )
+  {
+    print "Failed to translate TECPLOT to STD\n";
+    $passed=0;
+  }
+  else
+  {
+    $CMD="$XYCE_VERIFY $TMPCIRFILE test_embedded_cmosInverter.cir_ensemble.dat $GOLDDAT > $CIRFILE.prn.out 2> $CIRFILE.prn.err";
+    if (system("$CMD") != 0) 
+    {
+      print STDERR "Verification failed on file test_$CIRFILE.dat with $GOLDDAT, see $CIRFILE.prn.err\n";
+      #print STDERR "Command $CMD\n";
+      $passed=0;
+    }
+    else
+    {
+      #printf "Success! The test passed.\n";
+    }
+  }
+
+  if($passed==1)
+  {
+    $finished=1;
+  }
+  $num_tries++;
+}
 
 #If this is a VALGRIND run, we don't do our normal verification, we
 # merely run "valgrind_check.sh" as if it were xyce_verify.pl
@@ -61,44 +116,17 @@ if ($XYCE_VERIFY =~ m/valgrind_check/)
         exit 0;
     }
 }
-#
-# check the number of TITLE outputs
-$titlecount = `grep -ic title $TECPLOTFILE 2>/dev/null`;
-if ($titlecount =~ 1)
+
+if ($passed==1)
 {
-  printf "Tecplot file contained correct number(%d) of titles.\n", $titlecount;
+#    print STDERR "Ran $num_tries, passed the last one.\n";
+    print "Exit code = 0\n";
+    exit 0;
 }
 else
 {
-  printf "Tecplot file contained wrong number(%d) of titles.\n", $titlecount;
-  $retcode = 2;
+#    print STDERR "Ran $num_tries times, failed all of them.\n";
+    print "Exit code = 2\n";
+    exit 2;
 }
-
-# convert and compare the *dat file.
-$result = system( "$TRANSLATE $TECPLOTFILE");
-#$result = system( "$TRANSLATE capacitor.cir.dat");
-if ( $result != 0 )
-{
-  print "Failed to translate TECPLOT to STD\n";
-  $retcode = 2;
-}
-else
-{
-    $CMD="$XYCE_VERIFY $TMPCIRFILE test_embedded_cmosInverter.cir_ensemble.dat $GOLDDAT > $CIRFILE.prn.out 2> $CIRFILE.prn.err";
-    if (system("$CMD") != 0) 
-    {
-      print STDERR "Verification failed on file test_$CIRFILE.dat with $GOLDDAT, see $CIRFILE.prn.err\n";
-      #print STDERR "Command $CMD\n";
-      $retcode = 2;
-    }
-    else
-    {
-      #printf "Success! The test passed.\n";
-      $retcode = 0;
-    }
-
-}
-
-print "Exit code = $retcode\n"; exit $retcode;
-
 
