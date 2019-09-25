@@ -23,7 +23,9 @@ X8 9 10 0 RCBlock
 X9 10 11 0 RCBlock
 X10 11 12 0 RCBlock
 
-.AC DEC 10 10  1e5 
+.AC lin 11 -1e5 1e5
+
+*.AC DEC 10 10  1e5 
 
 .LIN FORMAT=TOUCHSTONE
 
