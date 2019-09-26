@@ -18,7 +18,7 @@ V1 a 0 DC 0V AC 1
 
 .SENS OBJVARS=b,c PARAM=R1:R,C1:C
 .options sensitivity direct=1 adjoint=1 stdoutput=1
-.PRINT SENS vr(b) vi(b) vp(b) vm(b) R1:R R2:R C1:C
+.PRINT SENS FORMAT=NOINDEX vr(b) vi(b) vp(b) vm(b) R1:R R2:R C1:C
 .ac dec 5 100Hz 1e6
 
 .OPTIONS OUTPUT PHASE_OPS_RADIANS=1
