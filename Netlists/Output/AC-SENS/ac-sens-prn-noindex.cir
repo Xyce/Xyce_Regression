@@ -3,6 +3,9 @@
 * the case of two objective functions and two parameters.
 * This file only has a .PRINT SENS line.
 *
+* This netlist outputs the VP(b) column in radians, not
+* degrees
+*
 * See SON Bug 1170 for more details.
 ***************************************************************
 
@@ -17,5 +20,7 @@ V1 a 0 DC 0V AC 1
 .options sensitivity direct=1 adjoint=1 stdoutput=1
 .PRINT SENS vr(b) vi(b) vp(b) vm(b) R1:R R2:R C1:C
 .ac dec 5 100Hz 1e6
+
+.OPTIONS OUTPUT PHASE_OPS_RADIANS=1
 
 .end

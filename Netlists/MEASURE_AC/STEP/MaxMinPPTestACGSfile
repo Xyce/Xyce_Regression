@@ -12,7 +12,7 @@ Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 MAXVIB = 4.877457e-01 at freq = 3.981072e+05
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-MAXVPB = 1.570482e+00 at freq = 1.000000e+02
+MAXVPB = 8.998200e+01 at freq = 1.000000e+02
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 MAXVDBB = -4.191399e-01 at freq = 1.000000e+06
@@ -30,7 +30,7 @@ Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 MINVIB = 3.141592e-04 at freq = 1.000000e+02
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-MINVPB = 3.081691e-01 at freq = 1.000000e+06
+MINVPB = 1.765679e+01 at freq = 1.000000e+06
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 MINVDBB = -7.005700e+01 at freq = 1.000000e+02
@@ -48,7 +48,7 @@ Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 PPVIB = 4.874315e-01 with max at freq= 3.981072e+05 and min at freq= 1.000000e+02
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-PPVPB = 1.262313e+00 with max at freq= 1.000000e+02 and min at freq= 1.000000e+06
+PPVPB = 7.232521e+01 with max at freq= 1.000000e+02 and min at freq= 1.000000e+06
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 PPVDBB = 6.963786e+01 with max at freq= 1.000000e+06 and min at freq= 1.000000e+02
@@ -120,7 +120,7 @@ Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 MAXVIB = 4.872317e-01 at freq = 1.000000e+05
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-MAXVPB = 1.569540e+00 at freq = 1.000000e+02
+MAXVPB = 8.992800e+01 at freq = 1.000000e+02
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 MAXVDBB = -2.741531e-02 at freq = 1.000000e+06
@@ -138,7 +138,7 @@ Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 MINVIB = 1.256635e-03 at freq = 1.000000e+02
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-MINVPB = 7.941013e-02 at freq = 1.000000e+06
+MINVPB = 4.549865e+00 at freq = 1.000000e+06
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 MINVDBB = -5.801581e+01 at freq = 1.000000e+02
@@ -156,7 +156,7 @@ Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 PPVIB = 4.859750e-01 with max at freq= 1.000000e+05 and min at freq= 1.000000e+02
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-PPVPB = 1.490130e+00 with max at freq= 1.000000e+02 and min at freq= 1.000000e+06
+PPVPB = 8.537813e+01 with max at freq= 1.000000e+02 and min at freq= 1.000000e+06
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 PPVDBB = 5.798839e+01 with max at freq= 1.000000e+06 and min at freq= 1.000000e+02
