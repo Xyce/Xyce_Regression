@@ -1,5 +1,5 @@
 ****************************************************
-* Test .PRINT SENS output for .AC in degrees.
+* Test .PRINT SENS output for .AC in radians.
 *
 * See SON Bug 1208 for more details.
 ****************************************************
@@ -18,6 +18,6 @@ V1 a 0 DC 0V AC 1
 .PRINT SENS vr(b) vi(b) vp(b) vm(b) R1:R R2:R C1:C
 .ac dec 5 100Hz 1e6
 
-.OPTIONS OUTPUT PHASE_OUTPUT_RADIANS=0
+.OPTIONS OUTPUT PHASE_OUTPUT_RADIANS=1
 
 .end
