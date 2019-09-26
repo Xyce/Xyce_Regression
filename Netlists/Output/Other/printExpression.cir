@@ -23,4 +23,7 @@ v1 2 0 pulse 1V 2V  0 1e-5 1e-5 {1/1e4/2-1e-5 } {1/1e4}
 
 .options hbint numfreq=50
 
+* Output vp() and ip() in degrees
+.OPTIONS OUTPUT PHASE_OUTPUT_RADIANS=true
+
 .end

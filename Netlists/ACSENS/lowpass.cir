@@ -56,6 +56,9 @@ c1 2 0 {cval}
 *.ac lin 1 720 720
 *.ac lin 1 360 360
 
+* Output vp() in degrees
+.OPTIONS OUTPUT PHASE_OUTPUT_RADIANS=true
+
 .print ac 
 *format=tecplot  
 + vm(1) vp(1) vm(2) vp(2)   

@@ -20,6 +20,9 @@ v1 2 0 pulse 1V 2V  0 1e-5 1e-5 {1/1e4/2-1e-5 } {1/1e4}
 
 .options hbint numfreq=50
 
+* Output vp() and ip() in degrees
+.OPTIONS OUTPUT PHASE_OUTPUT_RADIANS=true
+
 .print HB FORMAT=TECPLOT v(1) vr(1) vi(1) vm(1) vp(1) vdb(1) i(v1) ir(v1) ii(v1) im(v1) ip(v1) idb(v1)
 .print HB_TD FORMAT=TECPLOT v(1) vr(1) vi(1) i(v1)
 .print HB_IC FORMAT=TECPLOT v(1) vr(1) vi(1) i(v1)
