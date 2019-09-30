@@ -1,5 +1,8 @@
 exclude
 dummylib.lib
+curly_braces_for_simple_function_calls.cir.hspice
+curly_braces_for_simple_function_calls.cir
+curly_braces_for_simple_function_calls.cir.sh
 library_parsing.cir.hspice
 library_parsing.cir
 library_parsing.cir.sh
@@ -31,6 +34,9 @@ ext_ascii_chars_comment_line.cir
 ext_ascii_chars_comment_line.cir.hspice
 ext_ascii_chars_comment_line.cir.sh
 tags
+solution_dependent_resistors.cir.hspice
+solution_dependent_resistors.cir
+solution_dependent_resistors.cir.sh
 ternary_operator.cir.hspice
 ternary_operator.cir
 ternary_operator.cir.sh
