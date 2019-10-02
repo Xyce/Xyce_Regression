@@ -12,13 +12,14 @@ $special variables
 * have warnings and be commented out (see issue
 * #69 on XDM gitlab).
 
-.GLOBAL_PARAM KTQ='1.38e-23*temp/1.602e-19'
-.GLOBAL_PARAM USESVT1='2'
+.GLOBAL_PARAM XYCE_TEMP = 'TEMP'
+.PARAM KTQ='1.38e-23*XYCE_TEMP/1.602e-19'
+.PARAM USESVT1='2'
 
 VA 1 0 DC 0.8 AC 1
-R1 1 2 R='temp'
+R1 1 2 R='XYCE_TEMP'
 C1 2 0 C=1n
 .AC dec 2 1000 100000
 
-.PRINT AC FORMAT=PROBE 'temp' 'ktq' 
+.PRINT AC FORMAT=PROBE 'XYCE_TEMP' 'ktq' 
 
