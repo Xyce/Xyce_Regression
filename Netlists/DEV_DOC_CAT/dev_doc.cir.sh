@@ -48,6 +48,7 @@ if (system($CMD) != 0) {
 if (defined ($xyceexit)) {print "Exit code = 10\n"; exit 10;}
 
 @tables_to_compare=("C_1_Device_Instance_Params.tex", "M_10_Device_Instance_Params.tex", "M_10_Device_Model_Params.tex");
+$retcode = 0;
 
 foreach $table (@tables_to_compare)
 {
@@ -58,8 +59,6 @@ foreach $table (@tables_to_compare)
     }
 
     if (defined ($xyceexit)) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
-
-    $retcode = 0;
 
     $CMD="$XPLAT_DIFF $table $GOLDDIR/$table > $table".".out";
     if (system("$CMD") != 0) {
