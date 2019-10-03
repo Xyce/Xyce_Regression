@@ -9,9 +9,6 @@ C1 a b 1u
 
 .hb 100kHz
 
-* Output vp() in degrees
-.OPTIONS OUTPUT PHASE_OUTPUT_RADIANS=true
-
 .print hb V(B) {V(B)} VR(B) {VR(B)} VI(B) {VI(B)} VM(B) {VM(B)} VDB(B) {VDB(B)} VP(B) {VP(B)} 
 
 .end
