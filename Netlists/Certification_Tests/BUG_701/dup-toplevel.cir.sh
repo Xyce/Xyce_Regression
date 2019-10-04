@@ -27,8 +27,7 @@ use Getopt::Long;
 
 # these search strings are supposed to occur one right after the other in the
 # error output.
-@searchstrings = (  "in file dup-toplevel.cir at or near line 6",
-		    "Duplicate device V1" );
+@searchstrings = ( "Duplicate device V1" );
 
 &GetOptions( "verbose!" => \$verbose );
 $XYCE=$ARGV[0];

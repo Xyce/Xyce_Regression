@@ -27,8 +27,7 @@ use Getopt::Long;
 
 # these search strings are supposed to occur one right after the other in the
 # error output.
-@searchstrings = (  "in file dup-subcircuit.cir at or near line 8",
-		    "Duplicate device XVNODES:R1" );
+@searchstrings = ( "Duplicate device XVNODES:R1" );
 
 &GetOptions( "verbose!" => \$verbose );
 $XYCE=$ARGV[0];
