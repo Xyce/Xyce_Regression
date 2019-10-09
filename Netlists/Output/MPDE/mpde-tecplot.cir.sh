@@ -61,6 +61,23 @@ if ($retval != 0)
   }
 }
 
+#If this is a VALGRIND run, we don't do our normal verification, we
+# merely run "valgrind_check.sh" as if it were xyce_verify.pl
+if ($XYCE_VERIFY =~ m/valgrind_check/)
+{
+    print STDERR "DOING VALGRIND RUN INSTEAD OF REAL RUN!";
+    if (system("$XYCE_VERIFY $CIR1 $GOLDPRN $CIRFILE.prn > $CIRFILE.prn.out 2>&1 $CIRFILE.prn.err"))
+    {
+        print "Exit code = 2 \n";
+        exit 2;
+    }
+    else
+    {
+        print "Exit code = 0 \n";
+        exit 0;
+    }
+}
+
 $CMD="$XYCE $CIR2 > $CIR2.out 2>$CIR2.err";
 $retval=system($CMD);
 
