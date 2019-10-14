@@ -1,0 +1,13 @@
+vstar1.cir
+vstar1.cir.sh
+vstar2.cir
+vstar2.cir.sh
+istar.cir
+istar.cir.sh
+pwstar.cir
+pwstar.cir.sh
+invalid_wildcards.cir
+invalid_wildcards.cir.sh
+invalid_wildcards.cir.tags
+invalid_wildcards.cir.options
+tags
