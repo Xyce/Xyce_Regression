@@ -21,17 +21,17 @@ $GOLDPRN=$ARGV[4];
 if (defined($verbose)) { $Tools->setVerbose(1); }
 
 # check various error cases
-# this string should be in the output of this failed Xyce run  
-@searchstrings = ("Netlist warning in file semicolon_fails.cir at or near line 21",
-  "Expected value field for device R2, continuing with value of 0",
-  "Netlist error in file semicolon_fails.cir at or near line 25",
-  "Not enough fields on input line for device V2",
-  "Netlist error in file semicolon_fails.cir at or near line 26",
-  "Not enough fields on input line for device V3",
-  "Netlist error in file semicolon_fails.cir at or near line 27",
-  "Not enough fields on input line for device V4",
-  "Netlist error in file semicolon_fails.cir at or near line 28",
-  "Not enough fields on input line for device V");
+# this string should be in the output of this failed Xyce run
+@searchstrings = (["Netlist warning in file semicolon_fails.cir at or near line 21",
+   "Expected value field for device R2, continuing with value of 0"],
+  ["Netlist error in file semicolon_fails.cir at or near line 25",
+   "Not enough fields on input line for device V2"],
+  ["Netlist error in file semicolon_fails.cir at or near line 26",
+   "Not enough fields on input line for device V3"],
+  ["Netlist error in file semicolon_fails.cir at or near line 27",
+   "Not enough fields on input line for device V4"],
+  ["Netlist error in file semicolon_fails.cir at or near line 28",
+   "Not enough fields on input line for device V"]);
 
-$retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);
+$retval = $Tools->runAndCheckGroupedError($CIRFILE,$XYCE,@searchstrings);
 print "Exit code = $retval\n"; exit $retval; 
