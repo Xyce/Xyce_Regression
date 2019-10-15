@@ -1,7 +1,7 @@
 *******************************************************************
 * Test for I(*), P*() and W(*) with Y devices that do not implement
 * lead currents. Those devices should be "silently ignored" when
-* the variable lists for the I(*), P(*) and W(*) requests.
+* the variable lists for the I(*), P(*) and W(*) requests are made.
 *
 * See SON Bugs 988 and 715 for more details.
 ****************************************************************

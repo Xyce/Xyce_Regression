@@ -133,8 +133,7 @@ if ($retval==0)
     close(CIRFILE2);
 
     # we have now created a new circuit file that should have a .print line that matches what the
-    # V(*) I(*) version did
-    # Now run the main netlist, which has the V(*) print line in it.
+    # V(*) I(*) version output
     $CMD="$XYCE $CIRFILE2 > $CIRFILE2.out 2>$CIRFILE2.err";
     $retval=system($CMD);
 
