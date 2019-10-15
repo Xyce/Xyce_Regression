@@ -1,0 +1,11 @@
+bjt.cir
+bjt.cir.sh
+jfet.cir
+jfet.cir.sh
+mesfet.cir
+mesfet.cir.sh
+mosfet.cir
+mosfet.cir.sh
+noThreeTerminal.cir
+noThreeTerminal.cir.sh
+tags
