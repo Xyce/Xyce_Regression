@@ -6,11 +6,6 @@
 # $ARGV[3] = location of circuit file to test
 # $ARGV[4] = location of gold standard prn file
 
-# This test is intended to verify that V(*) I(*) on a .print line
-# works properly when there are voltage sources inside subcircuits.
-# Prior to the fix of bug 715, this would lead to Xyce exiting
-# with a netlist error.
-
 use XyceRegression::Tools;
 
 $Tools = XyceRegression::Tools->new();
