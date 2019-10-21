@@ -6,6 +6,9 @@ istar.cir
 istar.cir.sh
 pwstar.cir
 pwstar.cir.sh
+starInNames.cir
+starInNames.cir.sh
+headerGold
 invalid_wildcards.cir
 invalid_wildcards.cir.sh
 invalid_wildcards.cir.tags
