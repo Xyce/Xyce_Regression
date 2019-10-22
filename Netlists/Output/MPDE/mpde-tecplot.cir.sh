@@ -30,8 +30,15 @@ $XYCE_COMPARE=$ARGV[2];
 #$CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
 
+$TRANSLATESCRIPT=$XYCE_VERIFY;
+$TRANSLATESCRIPT =~ s/xyce_verify.pl/convertToPrn.py/;
+$TRANSLATE="python $TRANSLATESCRIPT ";
+
 $CIR1="mpde-tecplot.cir";
 $CIR2="mpde-tecplot-fallback.cir";
+
+$TMPCIRFILE1="printLine_for_mpde-tecplot.cir";
+$TMPCIRFILE2="printLine_for_mpde-tecplot-fallback.cir";
 
 $GOLDDIR = dirname($GOLDPRN);
 $GOLD1 = "$GOLDDIR/$CIR1";
@@ -203,25 +210,36 @@ else
 
 # check contents of MPDE-specific output files for both netlists.
 print "Checking contents of output files\n";
-#$CMD="$fc $CIR1.MPDE.dat $GOLD1.MPDE.dat $abstol $reltol $zerotol > $CIR1.MPDE.dat.out 2> $CIR1.MPDE.dat.err";
-#if (system("$CMD") != 0) {
-#    print STDERR "Verification failed on file $CIR1.MPDE.dat, see $CIR1.MPDE.dat.err\n";
-#    $retcode = 2;
-#}
 
-#$CMD="$XYCE_VERIFY $CIR1 $GOLD1.mpde_ic.dat $CIR1.mpde_ic.dat > $CIR1.mpde_ic.dat.out 2> $CIR1.mpde_ic.dat.err";
-#if (system("$CMD") != 0) {
-#    print STDERR "Verification failed on file $CIR1.mpde_ic.dat, see $CIR1.mpde_ic.dat.err\n";
-#    $retcode = 2;
-#}
+$result = system("$TRANSLATE $CIR1.mpde_ic.dat");
+if ( $result != 0 )
+{
+  print "Failed to translate TECPLOT to STD for $CIR1.mpde_ic.dat\n";
+  $retcode = 2;
+}
+else
+{
+  $CMD="$XYCE_VERIFY --printline=mpde_ic $TMPCIRFILE1 test_$CIR1.mpde_ic.dat $GOLD1.mpde_ic.prn > $CIR1.mpde_ic.dat.out 2> $CIR1.mpde_ic.dat.err";
+  if (system("$CMD") != 0) {
+      print STDERR "Verification failed on file test_$CIR1.mpde_ic.dat with $GOLD1.mpde_ic.prn, see $CIR1.mpde_ic.dat.err\n";
+      $retcode = 2;
+  }
+}
 
-#$CMD="$XYCE_VERIFY $CIR1 $GOLD1.startup.dat $CIR1.startup.dat > $CIR1.startup.dat.out 2> $CIR1.startup.dat.err";
-#if (system("$CMD") != 0) {
-#    print STDERR "Verification failed on file $CIR1.startup.dat, see $CIR1.startup.dat.err\n";
-#    $retcode = 2;
-#}
-
-# netlist 2
+$result = system("$TRANSLATE $CIR1.startup.dat");
+if ( $result != 0 )
+{
+  print "Failed to translate TECPLOT to STD for $CIR1.startup.dat\n";
+  $retcode = 2;
+}
+else
+{
+  $CMD="$XYCE_VERIFY --printline=mpde_startup $TMPCIRFILE1 test_$CIR1.startup.dat $GOLD1.startup.prn > $CIR1.startup.dat.out 2> $CIR1.startup.dat.err";
+  if (system("$CMD") != 0) {
+      print STDERR "Verification failed on file test_$CIR1.startup.dat with $GOLD1.startup.prn, see $CIR1.startup.dat.err\n";
+      $retcode = 2;
+  }
+}
 
 #$CMD="$fc $CIR2.MPDE.dat $GOLD2.MPDE.dat $abstol $reltol $zerotol > $CIR2.MPDE.dat.out 2> $CIR2.MPDE.dat.err";
 #if (system("$CMD") != 0) {
@@ -229,16 +247,34 @@ print "Checking contents of output files\n";
 #    $retcode = 2;
 #}
 
-#$CMD="$XYCE_VERIFY $CIR2 $GOLD2.mpde_ic.dat $CIR2.mpde_ic.dat > $CIR2.mpde_ic.dat.out 2> $CIR2.mpde_ic.dat.err";
-#if (system("$CMD") != 0) {
-#    print STDERR "Verification failed on file $CIR2.mpde_ic.dat, see $CIR2.mpde_ic.dat.err\n";
-#    $retcode = 2;
-#}
+$result = system("$TRANSLATE $CIR2.mpde_ic.dat");
+if ( $result != 0 )
+{
+  print "Failed to translate TECPLOT to STD for $CIR2.mpde_ic.dat\n";
+  $retcode = 2;
+}
+else
+{
+  $CMD="$XYCE_VERIFY --printline=mpde $TMPCIRFILE2 test_$CIR2.mpde_ic.dat $GOLD2.mpde_ic.prn > $CIR2.mpde_ic.dat.out 2> $CIR2.mpde_ic.dat.err";
+  if (system("$CMD") != 0) {
+      print STDERR "Verification failed on file test_$CIR2.mpde_ic.dat with $GOLD2.mpde_ic.prn, see $CIR2.mpde_ic.dat.err\n";
+      $retcode = 2;
+  }
+}
 
-#$CMD="$XYCE_VERIFY $CIR2 $GOLD2.startup.dat $CIR2.startup.dat > $CIR2.startup.dat.out 2> $CIR2.startup.dat.err";
-#if (system("$CMD") != 0) {
-#    print STDERR "Verification failed on file $CIR2.startup.dat, see $CIR2.startup.dat.err\n";
-#    $retcode = 2;
-#}
+$result = system("$TRANSLATE $CIR2.startup.dat");
+if ( $result != 0 )
+{
+  print "Failed to translate TECPLOT to STD for $CIR2.startup.dat\n";
+  $retcode = 2;
+}
+else
+{
+  $CMD="$XYCE_VERIFY --printline=mpde $TMPCIRFILE2 test_$CIR2.startup.dat $GOLD2.startup.prn > $CIR2.startup.dat.out 2> $CIR2.startup.dat.err";
+  if (system("$CMD") != 0) {
+      print STDERR "Verification failed on file test_$CIR2.startup.dat with $GOLD2.startup.prn, see $CIR2.startup.dat.err\n";
+      $retcode = 2;
+  }
+}
 
 print "Exit code = $retcode\n"; exit $retcode;
