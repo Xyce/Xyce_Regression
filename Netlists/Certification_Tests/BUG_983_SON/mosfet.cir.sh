@@ -22,9 +22,10 @@ system("rm -f $CIRFILE\_faked*");
 # Use of unordered maps in Xyce means they might not come out in the
 # same order on different platforms.
 @expectedOutputs=("Index", "TIME", "V\\(1\\)", "ID\\(MN1\\)", "ID\\(MP1\\)",
-           "IG\\(MN1\\)", "IG\\(MP1\\)", "IS\\(MN1\\)", "IS\\(MP1\\)");
+           "IG\\(MN1\\)", "IG\\(MP1\\)", "IS\\(MN1\\)", "IS\\(MP1\\)",
+           "IB\\(MP1\\)", "IB\\(MN1\\)");
 
-# Now run the main netlist, which has the ID(*) IG(*) IS(*) print line in it.
+# Now run the main netlist, which has the ID(*) IG(*) IS(*) IB(*) print line in it.
 $retval = -1;
 $retval=$Tools->wrapXyce($XYCE,$CIRFILE);
 if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
@@ -97,7 +98,7 @@ if ($retval==0)
     close(CIRFILE2);
 
     # we have now created a new circuit file that should have a .print line that matches what the
-    # ID(*) IG(*) IS(*) version did
+    # ID(*) IG(*) IS(*) IB(*) version did
     $retval=$Tools->wrapXyce($XYCE,$CIRFILE2);
     if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
     if (not -s "$CIRFILE2.prn" ) { print "Exit code = 14\n"; exit 14; }

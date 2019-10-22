@@ -1,4 +1,4 @@
-* Test ID(*) IG(*) IS(*) for MOSFET.  The output should not have the
+* Test ID(*) IG(*) IS(*) IB(*) for MOSFET.  The output should not have the
 * branch currents for the V devices, or any of the lead currents for
 * the R and C devices.
 
@@ -12,7 +12,7 @@
 ** Analysis setup **
 *
 .tran 20ns 6us
-.print tran V(1) IG(*) ID(*) IS(*)
+.print tran V(1) IG(*) ID(*) IS(*) IB(*)
 VDDdev  VDD 0 5V
 RIN IN  1 1K
 VIN1  1 0  5V PULSE (5V 0V 1.5us 5ns 5ns 1.5us 3us)
