@@ -21,6 +21,10 @@ M1 drain gate source bulk nmos W=10u L=10u
 *.probe dc gx4=deriv(gx3)
 *.print dc par'ids' par'gx' par'gx2' par'gx3' par 'gx4'
 .print dc v(drain) v(gate) {-I(vdrain)}
+
+* the zero crossing of v(drain) is causing a large relative error on HPC
+* Offsetting output to correct this
+*COMP d{I(vdrain)}/d(m1:l)_Dir offset=1.0
 .print sens v(drain) v(gate)
 
 .sens param=nmos:vfb,m1:l,m1:w objfunc={I(vdrain)}
