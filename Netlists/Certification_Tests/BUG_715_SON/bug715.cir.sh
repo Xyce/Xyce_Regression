@@ -1,8 +1,8 @@
 #!/usr/bin/env perl
-# The input arguments to this script are: 
+# The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
 # $ARGV[1] = location of xyce_verify.pl script
-# $ARGV[2] = location of compare script 
+# $ARGV[2] = location of compare script
 # $ARGV[3] = location of circuit file to test
 # $ARGV[4] = location of gold standard prn file
 
@@ -24,12 +24,18 @@ $PRNOUT=$CIRFILE.".prn";
 system("rm -f $CIRFILE\_faked*");
 
 # This is the list of fields that must be in the output.
-# Use of unordered maps in Xyce means they might not come out in the 
+# Use of unordered maps in Xyce means they might not come out in the
 # same order on different platforms.
-@expectedOutputs=("Index", "TIME", "V\\(X1:2\\)", "V\\(X1:1\\)", "V\\(4\\)", "V\\(3\\)", "V\\(2\\)", "V\\(1\\)",
-                  "I\\(X1:X2:V1\\)", "I\\(X1:V1\\)", "I\\(E2\\)", "I\\(V1\\)", "I\\(X1:X2:L1\\)");
+@expectedOutputs=("Index", "TIME", "V\\(1\\)", "V\\(2\\)", "V\\(3\\)", "V\\(4\\)",
+        "V\\(X1:1\\)", "V\\(X1:2\\)", "V\\(X1:X2:C\\)",
+        "I\\(X1:X2:V1\\)", "I\\(X1:V1\\)", "I\\(E2\\)", "I\\(V1\\)", "I\\(X1:X2:L1\\)",
+        "I\\(R1\\)", "I\\(R2\\)", "I\\(X1:R1\\)", "I\\(X1:R2\\)", "I\\(X1:X2:R1\\)", "I\\(X1:X2:R1\\)",
+        "P\\(X1:X2:V1\\)", "P\\(X1:V1\\)", "P\\(E2\\)", "P\\(V1\\)", "P\\(X1:X2:L1\\)",
+        "P\\(R1\\)", "P\\(R2\\)", "P\\(X1:R1\\)", "P\\(X1:R2\\)", "P\\(X1:X2:R1\\)", "P\\(X1:X2:R1\\)",
+        "W\\(X1:X2:V1\\)", "W\\(X1:V1\\)", "W\\(E2\\)", "W\\(V1\\)", "W\\(X1:X2:L1\\)",
+        "W\\(R1\\)", "W\\(R2\\)", "W\\(X1:R1\\)", "W\\(X1:R2\\)", "W\\(X1:X2:R1\\)", "W\\(X1:X2:R1\\)");
 
-# Now run the main netlist, which has the V(*) I(*) print line in it.
+# Now run the main netlist, which has the V(*) I(*) P(*) print line in it.
 $retval = -1;
 $retval=$Tools->wrapXyce($XYCE,$CIRFILE);
 if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
@@ -43,6 +49,7 @@ $headerline=<PRNFILE>;
 close(PRNFILE);
 
 chomp($headerline);
+@headerfields=split(' ',$headerline);
 
 $retval=0;
 $numMatch=0;
@@ -59,7 +66,12 @@ foreach $field (@expectedOutputs)
     }
 }
 
-if ($numMatch != ($#expectedOutputs + 1))
+if ($#headerfields+1 != $#expectedOutputs+1)
+{
+    print STDERR "Incorrect number of entries on header line in primary output file.\n";
+    $retval=2;
+}
+elsif ($numMatch != ($#expectedOutputs + 1))
 {
     print STDERR "Insufficient number of matches found on header line in primary output file.\n";
     $retval=2;
@@ -95,7 +107,8 @@ if ($retval==0)
     close(CIRFILE);
     close(CIRFILE2);
 
-    # we have now created a new circuit file that should have a .print line that matches what the V(*) and I(*) version did
+    # we have now created a new circuit file that should have a .print line that matches what the
+    # V(*) I(*) P(*) version did
     $retval=$Tools->wrapXyce($XYCE,$CIRFILE2);
     if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
     if (not -s "$CIRFILE2.prn" ) { print "Exit code = 14\n"; exit 14; }
@@ -104,7 +117,6 @@ if ($retval==0)
     $CMD="$XYCE_VERIFY $CIRFILE2 $PRNOUT $CIRFILE2.prn > $CIRFILE.prn.out 2> $CIRFILE.prn.err";
     $retcode=system($CMD);
     $retval=2 if $retcode != 0;
-        
 }
 
 

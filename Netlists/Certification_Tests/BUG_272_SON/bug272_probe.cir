@@ -6,6 +6,10 @@
 * Documentation at http://www.brorson.com/gEDA/SPICE/   *
 *********************************************************
 *==============  Begin SPICE netlist of main design ============
+
+* Output vp() in degrees
+.OPTIONS OUTPUT PHASE_OUTPUT_RADIANS=true
+
 *.print AC format=probe V(Ve) V(out)
 *.print AC Vdb(Ve) Vp(Ve) Vdb(out) Vp(out)
 .print AC format=probe V(Ve) VR(Ve) VI(Ve) VM(Ve) VP(Ve) VDB(Ve) 

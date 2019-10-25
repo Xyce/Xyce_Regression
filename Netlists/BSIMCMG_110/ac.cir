@@ -23,6 +23,8 @@ cl supply vout c=10f
 * For Bias Point Testing 
 * .dc vsig -1 1.5 0.01
 
+* Output vp() in degrees
+.OPTIONS OUTPUT PHASE_OUTPUT_RADIANS=true
 .print ac vm(vout) vp(vout)
 
 *.alter

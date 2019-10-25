@@ -1,4 +1,4 @@
-        *test of V(*) and I(*) syntax on .PRINT lines
+test of V(*), I(*), P(*) and W(*) syntax on .PRINT lines
 
 V1 1 0 SIN(0 1 1KHZ)
 E2 2 0 1 0 1
@@ -25,6 +25,6 @@ R2   b 0 1
 
 
 .TRAN 0.5U 2ms
-.PRINT TRAN V(*) I(*)
+.PRINT TRAN I(*) V(*) W(*) P(*)
 
 .END

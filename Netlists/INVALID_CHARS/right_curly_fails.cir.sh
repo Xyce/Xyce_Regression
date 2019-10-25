@@ -21,13 +21,13 @@ $GOLDPRN=$ARGV[4];
 if (defined($verbose)) { $Tools->setVerbose(1); }
 
 # check various error cases
-# this string should be in the output of this failed Xyce run  
-@searchstrings = ("Netlist error in file right_curly_fails.cir at or near line 19",
-   "Not enough fields on input line for device V2",
-   "Netlist error in file right_curly_fails.cir at or near line 20",
-   "Not enough fields on input line for device V4",
-   "Netlist error in file right_curly_fails.cir at or near line 21",
-   "Not enough fields on input line for device V");
+# this string should be in the output of this failed Xyce run
+@searchstrings = (["Netlist error in file right_curly_fails.cir at or near line 19",
+    "Not enough fields on input line for device V2"],
+   ["Netlist error in file right_curly_fails.cir at or near line 20",
+    "Not enough fields on input line for device V4"],
+   ["Netlist error in file right_curly_fails.cir at or near line 21",
+    "Not enough fields on input line for device V"]);
 
-$retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);
+$retval = $Tools->runAndCheckGroupedError($CIRFILE,$XYCE,@searchstrings);
 print "Exit code = $retval\n"; exit $retval; 

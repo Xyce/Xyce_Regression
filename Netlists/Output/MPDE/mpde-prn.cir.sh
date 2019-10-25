@@ -33,6 +33,9 @@ $GOLDPRN=$ARGV[4];
 $CIR1="mpde-prn.cir";
 $CIR2="mpde-prn-fallback.cir";
 
+$TMPCIRFILE1="startup_printline_for_mpde-prn.cir";
+$TMPCIRFILE2="startup_printline_for_mpde-prn-fallback.cir";
+
 $GOLDDIR = dirname($GOLDPRN);
 $GOLD1 = "$GOLDDIR/$CIR1";
 $GOLD2 = "$GOLDDIR/$CIR2";
@@ -59,6 +62,23 @@ if ($retval != 0)
     printf STDERR "Xyce exited with exit code %d on %s\n",$retval>>8,$CIR1; 
     exit 10;
   }
+}
+
+#If this is a VALGRIND run, we don't do our normal verification, we
+# merely run "valgrind_check.sh" as if it were xyce_verify.pl
+if ($XYCE_VERIFY =~ m/valgrind_check/)
+{
+    print STDERR "DOING VALGRIND RUN INSTEAD OF REAL RUN!";
+    if (system("$XYCE_VERIFY $CIR1 $GOLDPRN $CIRFILE.prn > $CIRFILE.prn.out 2>&1 $CIRFILE.prn.err"))
+    {
+        print "Exit code = 2 \n";
+        exit 2;
+    }
+    else
+    {
+        print "Exit code = 0 \n";
+        exit 0;
+    }
 }
 
 $CMD="$XYCE $CIR2 > $CIR2.out 2>$CIR2.err";
@@ -198,11 +218,11 @@ if (system("$CMD") != 0) {
     $retcode = 2;
 }
 
-#$CMD="$XYCE_VERIFY $CIR1 $GOLD1.startup.prn $CIR1.startup.prn > $CIR1.startup.prn.out 2> $CIR1.startup.prn.err";
-#if (system("$CMD") != 0) {
-#    print STDERR "Verification failed on file $CIR1.startup.prn, see $CIR1.startup.prn.err\n";
-#    $retcode = 2;
-#}
+$CMD="$XYCE_VERIFY $TMPCIRFILE1 $GOLD1.startup.prn $CIR1.startup.prn > $CIR1.startup.prn.out 2> $CIR1.startup.prn.err";
+if (system("$CMD") != 0) {
+    print STDERR "Verification failed on file $CIR1.startup.prn, see $CIR1.startup.prn.err\n";
+    $retcode = 2;
+}
 
 # netlist 2
 
@@ -218,10 +238,10 @@ if (system("$CMD") != 0) {
     $retcode = 2;
 }
 
-#$CMD="$XYCE_VERIFY $CIR2 $GOLD2.startup.prn $CIR2.startup.prn > $CIR2.startup.prn.out 2> $CIR2.startup.prn.err";
-#if (system("$CMD") != 0) {
-#    print STDERR "Verification failed on file $CIR2.startup.prn, see $CIR2.startup.prn.err\n";
-#    $retcode = 2;
-#}
+$CMD="$XYCE_VERIFY $TMPCIRFILE2 $GOLD2.startup.prn $CIR2.startup.prn > $CIR2.startup.prn.out 2> $CIR2.startup.prn.err";
+if (system("$CMD") != 0) {
+    print STDERR "Verification failed on file $CIR2.startup.prn, see $CIR2.startup.prn.err\n";
+    $retcode = 2;
+}
 
 print "Exit code = $retcode\n"; exit $retcode;

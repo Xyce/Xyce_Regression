@@ -27,8 +27,7 @@ use Getopt::Long;
 
 # these search strings are supposed to occur one right after the other in the
 # error output.
-@searchstrings = (  "in file YDup.cir at or near line 32",
-		    "Duplicate device YPDE!D1" );
+@searchstrings = ( "Duplicate device YPDE!D1" );
 
 &GetOptions( "verbose!" => \$verbose );
 $XYCE=$ARGV[0];

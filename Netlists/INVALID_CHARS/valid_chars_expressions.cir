@@ -9,6 +9,10 @@
 *
 * ` ~ ! @ # $ % ^ & - _ + [ ] | \ < > . ? /
 *
+* Note that .print DC {v(1*)} {v(*)} will print out the voltages
+* at nodes 1* and *.  * and 1* are NOT wildcard syntaxes when
+* used within expression delimiters.
+*
 * This also tests the case of using an operator name (e.g., V)
 * as the variable name in a .FUNC statement.
 *
@@ -27,11 +31,11 @@
 + {v(])} {v(|)} {v(\)} {v(<)} {v(>)} {v(.)} 
 + {v(?)} {v(/)} 
 + v(X1:1`) v(X1:1~) v(X1:1!) v(X1:1@) 
-+ v(X1:1#) v(X1:1$) v(X1:1%) v(X1:1^) v(X1:1&) v(X1:1*) v(X1:1-)
++ v(X1:1#) v(X1:1$) v(X1:1%) v(X1:1^) v(X1:1&) v(X1:1-)
 + v(X1:1_) v(X1:1+) v(X1:1[) v(X1:1]) v(X1:1|) v(X1:1\) v(X1:1<) 
 + v(X1:1>) v(X1:1.) v(X1:1?) v(X1:1/) 
 + v(X1:`) v(X1:~) v(X1:!) v(X1:@) v(X1:#) v(X1:$) v(X1:%) v(X1:^)
-+ v(X1:&) v(X1:*) v(X1:-) v(X1:_) v(X1:+) v(X1:[) v(X1:]) v(X1:|) v(X1:\) 
++ v(X1:&) v(X1:-) v(X1:_) v(X1:+) v(X1:[) v(X1:]) v(X1:|) v(X1:\) 
 + v(X1:<) v(X1:>) v(X1:.) v(X1:?) v(X1:/) 
 + {I(R3+)} {P(R3+)} {W(R3+)} {I(R-4)}
 + {IC(Q1+)} {IB(Q1+)} {IE(Q1+)}

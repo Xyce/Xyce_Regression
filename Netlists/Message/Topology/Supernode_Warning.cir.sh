@@ -27,9 +27,7 @@ use Getopt::Long;
 
 # these search strings are supposed to occur one right after the other in the
 # error output.
-@searchstrings = ( "Device verification found 1 device",
-                   "After combining equivalent nodes, 1 node"
-);
+@searchstrings = ( "Device verification found 1 device" );
 
 &GetOptions( "verbose!" => \$verbose );
 $XYCE=$ARGV[0];
