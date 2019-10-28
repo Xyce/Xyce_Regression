@@ -1,12 +1,15 @@
 ************************************************
 * Verify that the special variable FREQ works
-* for global parameters, dependent parameters
-* and on a .PRINT line.
+* for global parameters, dependent parameters,
+* function arguments, and on .PRINT and .FUNC
+* lines.
 *
 * See SON Bug 1212 for more details.
 ************************************************
 
 .GLOBAL_PARAM OMEGA={2*PI*FREQ}
+.FUNC F1(x) {x}
+.FUNC F2(x) {x*FREQ}
 
 * Trivial high-pass filter (V-C-R) circuits
 R1 1a 0  2
@@ -21,7 +24,7 @@ R3 3a 0  {OMEGA}
 C3 3  3a 1u
 V3 3  0  DC 0V AC 1
 
-.print AC {2*PI*FREQ} OMEGA FREQ R2:R R3:R vm(1a)
+.print AC {2*PI*FREQ} OMEGA FREQ {F1(FREQ)} {F2(2)} R2:R R3:R vm(1a)
 .ac dec 5 100Hz 10e6
 
 .end
