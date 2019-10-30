@@ -32,4 +32,7 @@ es-no-output.cir.tags
 es-no-pce-coeffs.cir
 es-no-pce-coeffs.cir.sh
 es-no-pce-coeffs.cir.tags
+es-no-headerfooter.cir
+es-no-headerfooter.cir.sh
+es-no-headerfooter.cir.tags
 

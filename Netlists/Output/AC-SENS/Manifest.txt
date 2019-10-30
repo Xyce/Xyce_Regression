@@ -30,4 +30,7 @@ ac-sens-stepnum-col.cir.tags
 ac-sens-formats-default-to-prn.cir
 ac-sens-formats-default-to-prn.cir.sh
 ac-sens-formats-default-to-prn.cir.tags
+ac-sens-no-headerfooter.cir
+ac-sens-no-headerfooter.cir.sh
+ac-sens-no-headerfooter.cir.tags
 tags
