@@ -1,5 +1,12 @@
 #!/usr/bin/env perl
 
+use XyceRegression::Tools;
+$Tools = XyceRegression::Tools->new();
+#$Tools->setDebug(1);
+#$Tools->setVerbose(1);
+
+if (defined($verbose)) { $Tools->setVerbose(1); }
+
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
 # $ARGV[1] = location of xyce_verify.pl script
@@ -74,8 +81,26 @@ if ( !(-f "$CIRFILE.PCE.ts2"))
     print "Exit code = 14\n"; exit 14;
 }
 
-# test the output files
 $retcode = 0;
+# these strings should be in the output of this successful Xyce run
+@searchstrings = ("Netlist warning: PCE output cannot be written in PROBE, RAW or Touchstone",
+          "format, using standard format instead",
+          "Netlist warning: PCE output cannot be written in PROBE, RAW or Touchstone",
+          "format, using standard format instead",
+          "Netlist warning: PCE output cannot be written in PROBE, RAW or Touchstone",
+          "format, using standard format instead",
+          "Netlist warning: PCE output cannot be written in PROBE, RAW or Touchstone",
+          "format, using standard format instead"
+);
+
+$retval = $Tools->checkError("$CIRFILE.out",@searchstrings);
+if ($retval != 0)
+{
+  print "Check on warning message failed\n";
+  $retcode = 2;
+}
+
+# test the output files
 $absTol=1e-5;
 $relTol=1e-3;
 $zeroTol=1e-6;
