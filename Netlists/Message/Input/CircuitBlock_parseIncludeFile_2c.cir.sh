@@ -31,28 +31,18 @@ use Getopt::Long;
 );
 
 &GetOptions( "verbose!" => \$verbose );
-if (defined($verbose)) { $Tools->setVerbose(1); }
-$Tools->setVerbose(1);
-
 $XYCE=$ARGV[0];
 #$XYCE_VERIFY=$ARGV[1];
 #$XYCE_COMPARE=$ARGV[2];
 $CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
 
-# these search strings are supposed to occur in the error output
-# for the netlist ParameterBlock_extractMIDeviceData1.cir.
-@searchstrings = (["Netlist error in file Core_SourceData_extractSourceData.cir at or near line 6",
-    "Line for device V1 is missing a value or expression after DC field"],
-   ["Netlist error in file Core_SourceData_extractSourceData.cir at or near line 9",
-    "Line for device I2 is missing a value or expression after DC field"],
-   ["Netlist error in file Core_SourceData_extractSourceData.cir at or near line 12",
-    "Invalid DC value \"V\" for device V3"],
-   ["Netlist error in file Core_SourceData_extractSourceData.cir at or near line 15",
-    "Invalid DC value \"A\" for device I4"]
-);
+if (defined($verbose)) { $Tools->setVerbose(1); }
 
-$retval = $Tools->runAndCheckGroupedError($CIRFILE,$XYCE,@searchstrings);
+$Tools->setVerbose(1);
+
+$retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);
 print "Exit code = $retval\n";
-exit $retval;
+exit $retval
+
 

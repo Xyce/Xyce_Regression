@@ -38,11 +38,7 @@ sub getXdmWrapVersion
   # version of xdm for testing.
   # xdm 1.4.0 is the current released version of xdm.  So, xdm_wrap
   # will point to that version also.
-  #my $XDMWRAP="xdm_wrap1.2.0";
-  #my $XDMWRAP="xdm_wrap1.3.0";
-  #my $XDMWRAP="xdm_wrap1.4.0";
-  my $XDMWRAP="xdm_wrap2.0.0";
-  #my $XDMWRAP="xdm_wrap";
+  my $XDMWRAP="xdm_bdl";
 
   return $XDMWRAP;
 }
