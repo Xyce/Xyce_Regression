@@ -204,13 +204,15 @@ else
   $retcode = 2;
 }
 
-# check contents of MPDE-specific output files for both netlists.
-print "Checking contents of output files\n";
-#$CMD="$fc $CIR1.MPDE.prn $GOLD1.MPDE.prn $abstol $reltol $zerotol > $CIR1.MPDE.prn.out 2> $CIR1.MPDE.prn.err";
-#if (system("$CMD") != 0) {
-#    print STDERR "Verification failed on file $CIR1.MPDE.prn, see $CIR1.MPDE.prn.err\n";
-#    $retcode = 2;
-#}
+# Check contents of MPDE-specific output files for both netlists.
+# Only check header line in <netlistName>.MPDE.prn files
+`head -n1 $CIR1.MPDE.prn > $CIR1.MPDE.prn.headerLine`;
+$CMD="diff -bi $CIR1.MPDE.prn.headerLine $CIR1.goldHeader";
+if (system("$CMD") != 0)
+{
+  print STDERR "Incorrect header line in $CIR1.MPDE.prn\n";
+  $retcode = 2;
+}
 
 $CMD="$XYCE_VERIFY $CIR1 $GOLD1.mpde_ic.prn $CIR1.mpde_ic.prn > $CIR1.mpde_ic.prn.out 2> $CIR1.mpde_ic.prn.err";
 if (system("$CMD") != 0) {
@@ -225,12 +227,13 @@ if (system("$CMD") != 0) {
 }
 
 # netlist 2
-
-#$CMD="$fc $CIR2.MPDE.prn $GOLD2.MPDE.prn $abstol $reltol $zerotol > $CIR2.MPDE.prn.out 2> $CIR2.MPDE.prn.err";
-#if (system("$CMD") != 0) {
-#    print STDERR "Verification failed on file $CIR2.MPDE.prn, see $CIR2.MPDE.prn.err\n";
-#    $retcode = 2;
-#}
+`head -n1 $CIR2.MPDE.prn > $CIR2.MPDE.prn.headerLine`;
+$CMD="diff -bi $CIR2.MPDE.prn.headerLine $CIR2.goldHeader";
+if (system("$CMD") != 0)
+{
+  print STDERR "Incorrect header line in $CIR2.MPDE.prn\n";
+  $retcode = 2;
+}
 
 $CMD="$XYCE_VERIFY $CIR2 $GOLD2.mpde_ic.prn $CIR2.mpde_ic.prn > $CIR2.mpde_ic.prn.out 2> $CIR2.mpde_ic.prn.err";
 if (system("$CMD") != 0) {

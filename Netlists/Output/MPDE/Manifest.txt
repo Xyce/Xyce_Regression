@@ -1,9 +1,13 @@
 mpde-prn.cir
 mpde-prn-fallback.cir
 mpde-prn.cir.sh
+mpde-prn.cir.goldHeader
+mpde-prn-fallback.cir.goldHeader
 mpde-csv.cir
 mpde-csv-fallback.cir
 mpde-csv.cir.sh
+mpde-csv.cir.goldHeader
+mpde-csv-fallback.cir.goldHeader
 mpde-tecplot.cir
 mpde-tecplot-fallback.cir
 mpde-tecplot.cir.sh
