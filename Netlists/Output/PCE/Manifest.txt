@@ -12,4 +12,6 @@ pce-dc-tecplot.cir
 pce-dc-tecplot.cir.sh
 pce-no-output.cir
 pce-no-output.cir.sh
+pce-no-headerfooter.cir
+pce-no-headerfooter.cir.sh
 tags

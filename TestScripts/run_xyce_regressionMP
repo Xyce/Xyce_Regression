@@ -570,7 +570,7 @@ print results "There are $numtests tests.\n";
 my $runTestBaseCommand = "$XYCE_TEST_HOME/TestScripts/runTest.pl --xyce_verify=$XYCE_VERIFY --xyce_test_home=$XYCE_TEST_HOME --xyce_path=\"$XYCEPATH\"" ;
 
 # this array is to track active process ids
-my @activePIDs;
+my @activePIDs=();
 
 # these hashes connect a process id to a result file, test directory and test file for reporting
 my %resultsHash;
@@ -773,6 +773,62 @@ sub findTests
   return @cktlist;
 }
 
+#
+# getTestsInCommonDir()
+#
+# must pass in circuit list as a reference.
+#
+sub getTestsInCommonDir
+{
+  use strict;
+  my ($cktlist_ref) = @_;
+  #my @cktlist = ();
+  #if( $cktlist_ref )
+  #{
+  #  @cktlist = @{ $cktlist_ref };
+  #}
+  my @results = ();
+  # automatically push first line to results
+  my $line =shift @{$cktlist_ref};
+  my @ckt1 = split(' ',$line);
+  my $firstDir = $ckt1[0];
+  my $ckt = $ckt1[1];
+  push @results, $line;
+  while( $#{$cktlist_ref} > 0)
+  {
+    $line=shift @{$cktlist_ref};
+    @ckt1 = split(' ',$line);
+    my $dir = $ckt1[0];
+    $ckt = $ckt1[1];
+    if($firstDir eq $dir)
+    {
+      push @results, $line;
+    }
+    else
+    {
+      # found a test directory that is different than firstDir
+      unshift @{$cktlist_ref}, $line;
+      return @results;
+    }
+  }
+  return @results;
+}
+
+#
+# count up the tests in a list of test bundles
+#
+sub getTotalNumberOfTests
+{
+  use strict;
+  my ($testBundleList_ref) = @_;
+  my $numTests=0;
+  foreach my $testBundle_ref (@{$testBundleList_ref})
+  {
+    $numTests = $numTests + $#{$testBundle_ref} + 1;
+  }
+  return $numTests;
+}
+
 
 #
 # sub runTestsInSubProc -- runs a set of tests from a list.  
@@ -794,185 +850,264 @@ sub runTestsInSubProc
   {
     @testResults = @{ $testResults_ref };
   }
-
+  
+  if( $numproc<=0 ) 
+  {
+    print "Invalid number of test jobs to run specified: $numproc.  Must be greater than zero.\n";
+    return;
+  }
+  
   my $numberfailed_local = $numberfailed;
   my $num_code_failure_local = $num_code_failure;
   my @failedTestsForRetest=();
-
-  if( $numproc>=0 ) 
+  my $numTests= $#cktlist + 1;
+  my $bndnum = 0;
+  my @testBundles = ();
+  # debug
+  # print out test list
+  # 
+  #print "Original list of tests (count $#cktlist)\n";
+  #foreach my $testline (@cktlist)
+  #{
+  #  print "$testline\n";
+  #}
+  
+  my $numberOfTestsInOriginalList = $#cktlist + 1;
+  #print "Circuit list size $#cktlist and \"@cktlist\"\n";
+  # break up test list into a sets of tests 
+  while( $#cktlist>=0 )
   {
-    # Now loop over every circuit in the list and run each test.
-    my $numTests = $#cktlist+1;
-    foreach my $line (@cktlist) 
+    my @localTestList = getTestsInCommonDir( \@cktlist);
+    push( @testBundles, \@localTestList);
+  }
+  
+  # this may seem a bit confusing to do at this time, but the setupCVSSandbox copies
+  # all of the files from a test directory into the output directory.  Thus it only 
+  # needs to be done once per test bundle, rather than for each test. 
+  print "Setting up test directories and files.\n";
+  for my $testBundle_ref (@testBundles)
+  {
+    my @testBundle = @{ $testBundle_ref};
+    my $aDir="";
+    my $aCkt="";
+    ($aDir, $aCkt) = split(' ', @testBundle[0]);
+    $Tools->setupCVSSandbox("$XYCE_TEST_HOME/Netlists/$aDir","$output/Netlists/$aDir","$aCkt");
+  }
+  
+  # sort the bundles by the number of tests per bundle
+  # want the largest bundles first 
+  my @sortedTestBundles = sort {  (scalar @{$b}) <=>  (scalar @{$a}) } @testBundles;
+  
+  # now we have a sorted list of test bundles 
+  # start running jobs from the list using the number of tests in the list as 
+  # an indicator of if we are done.
+  
+  my $pendingTests = getTotalNumberOfTests(\@sortedTestBundles);
+  my $numActiveProcs = @activePIDs;
+  
+  while ( ($pendingTests>0) || ($numActiveProcs > 0) )
+  {
+    if( $#sortedTestBundles != -1 )
     {
-      debugPrint "run_xyce_regression:  \$line = $line\n";
-      my @ckt1 = split(' ',$line);
-      my $dir = $ckt1[0];
-      my $ckt = $ckt1[1];
-      # Set up sand-box area in $output:
-      $Tools->setupCVSSandbox("$XYCE_TEST_HOME/Netlists/$dir","$output/Netlists/$dir","$ckt");
+      # start a test from a test bundle.
+      my $testBundle_ref = shift @sortedTestBundles;
+    
+      my $dir = "";
+      my $ckt = "";
+      ($dir, $ckt) = split( ' ', @{$testBundle_ref}[0]);
+      
       my $wdir="$output/Netlists/$dir";
       $Tools->setWorkDir( $wdir );
-      if (chdir "$output/Netlists/$dir") 
+      if(!(chdir "$output/Netlists/$dir"))
       {
-        debugPrint "run_xyce_regression:  \$dir = $dir\n";
-        debugPrint "run_xyce_regression:  \$ckt = $ckt\n";
-        # Grab any options from options files and pass to $Tools
-        $Tools->setRunOptions($Tools,$defaultRunOptionsRef);
-        $Tools->readAndSetRunOptions("options","$ckt.options");
-        my $runTestCommand = "cd $output/Netlists/$dir; $runTestBaseCommand --outputdir=$output/Netlists --testdir=$dir --testfile=$ckt";
-        #print ("Calling runTest with command \"$runTestCommand\"");
-        #system( $runTestCommand );
-        # start a new process to run a test.  Save process ID to monitor its progress
-        my $stdOutFile="$ckt.pstdout";
-        my $stdErrFile="$ckt.pstderr";
-        my $testPID=$Tools->forkCommand( $runTestCommand, $stdOutFile, $stdErrFile );
-        #print( "PID returned \"$testPID\"\n" );
-        push( @activePIDs, $testPID );
-        # spawned a test, decrement the test counter.
-        $numTests--;
-        #print( "Adding $testPID to hash with value \"$dir/$stdOutFile\"\n" );
-        $resultsHash{ $testPID } = "$dir/$stdOutFile";
-        $testDirHash{ $testPID } = "$dir";
-        $testFileHash{ $testPID } = "$ckt";
-
-        #
-        # check on running procsses if we have spawned up to the process limit
-        # or if the number of tests left is zero keep waiting until all jobs finish
-        #
-        while( ($#activePIDs >= $numproc ) || ( ($numTests==0) && ($#activePIDs >= 0) ) )
-        {
-          # take a PID off the front of thie array.
-          my $aPID = shift @activePIDs;
-
-          # this tests if a process is abled to be killed.  Doesn't kill it
-          # it's an easy way to check if a process is still running.
-          #print( "Checking on pid $aPID : $activePIDs[$pidIndex]\n" );
-          my $pidCheck = waitpid($aPID,&WNOHANG); # == $pid on completion
-
-          if( $pidCheck == $aPID ) 
-          {
-            # process is done output results
-            if( -f "$output/Netlists/$resultsHash{ $aPID }" )
-            {
-              open(RESULTFILE,"<$output/Netlists/$resultsHash{ $aPID }") or die "ERROR cannot open $output/Netlists/$resultsHash{ $aPID } for reading";
-              my $skipPrint=0;
-              my $testPassed=1;
-              while ($line = <RESULTFILE>) 
-              {
-                if ($line =~/\.FAILED/ )
-                {
-                  $testPassed=0;
-                  if( $retestFailsInSingleProc )
-                  {
-                    push(@failedTestsForRetest, "$testDirHash{ $testPID }  $testFileHash{ $testPID }");
-                    $skipPrint = 1;
-                  }
-                  else
-                  {
-                    $numberfailed_local++;
-                    print results $line;
-                    if (defined($failList)) 
-                    {
-                      print $failListFileHandle "$testDirHash{ $aPID } $testFileHash{ $aPID }";
-                    }
-                  }
-                }
-                #
-                # error messages that indicate a test failed for unexpected reasons.
-                #
-                #    1 => "SHELL SCRIPT EXITED WITH ERROR",
-                #    2 => "FAILED",
-                #   10 => "EXITED WITH ERROR",
-                #   11 => "TEST REQUIRES MANUAL VERIFICATION",
-                #   12 => "STALLED",
-                #   13 => "XYCE CRASHED",
-                #   14 => "NO PRN FILE",
-                #   15 => "TIME LIMIT",
-                #   16 => "CONTROL-C",
-                #   17 => "NO MEASURE FILE",
-                #   18 => "DAKOTA NOT FOUND"
-                #  if( ( $line =~/\.ERROR/ ) || ($line =~/\.SHELL/ ) || ($line =~/\.NO PRN FILE/ ) || ($line =~/\.XYCE/ ) )
-                if( ($line =~/\.SHELL SCRIPT EXITED WITH ERROR/ ) ||
-                    ($line =~/\.EXITED WITH ERROR/ ) ||
-                    ($line =~/\.UNKNOWN ERROR/ ) ||
-                    ($line =~/\.TEST REQUIRES MANUAL VERIFICATION/ ) ||
-                    ($line =~/\.XYCE CRASHED/ ) ||
-                    ($line =~/\.NO PRN FILE/ ) ||
-                    ($line =~/\.NO MEASURE FILE/ ) ||
-                    ($line =~/\.STALLED/ ) ||
-                    ($line =~/\.TIME LIMIT/ ) ||
-                    ($line =~/\.DAKOTA NOT FOUND/ ) )
-                {
-                  $testPassed=0;
-                  if( $retestFailsInSingleProc )
-                  {
-                    push(@failedTestsForRetest, "$testDirHash{ $testPID }  $testFileHash{ $testPID }");
-                    $skipPrint = 1;
-                  }
-                  else
-                  {
-                    $num_code_failure_local++;
-                    print results $line;
-                    if (defined($failList)) 
-                    {
-                      print $failListFileHandle "$testDirHash{ $aPID } $testFileHash{ $aPID }";
-                    }
-                  }
-                }
-               
-                if( not $skipPrint ) 
-                {
-                  # print to standard output
-                  if( $bufferOutput ) 
-                  {
-                    # if we are buffering the output, then the Active Jobs and Tests in Queue isn't useful info
-                    push(@testResults, $line)  
-                  }
-                  else
-                  {
-                    # not buffering the output, so Active Jobs and Tests in Queue may be useful info.
-                    chomp $line;
-                    my $activeJobs = $#activePIDs+1;
-                    print "$line Tests in Queue: $numTests, Active Jobs: $activeJobs\n";
-                  }
-                }
-                if ( $testPassed and defined($passList)) 
-                {
-                  print $passListFileHandle "$testDirHash{ $aPID } $testFileHash{ $aPID }";
-                }
-              }
-              close(RESULTFILE);
-            }
-            else
-            {
-              print( "Couldn't find output file for process $aPID:  $output/Netlists/$resultsHash{ $aPID }\n");
-            }
-          }
-          else
-          {
-            # PID was still going so push it back on the end of the array
-            push( @activePIDs, $aPID );
-          }
-          if( $#activePIDs >= $numproc ) {
-            # sleep for some time waiting for tests to finish
-            # print( "proc queue full $#activePIDs.  Waiting." );
-            # sleep 1;
-          }
-          # check for control-c to exit
-          if ($Tools->checkControlExit()) {
-            kill '-KILL', @activePIDs;
-            $numTests=0;
-            @activePIDs={};
-          }
-
-        } # end of outter while loop
-      } else {
         warn "WARNING cannot chdir to $output/Netlists/$dir, skipping...";
         die "ERROR cannot chdir to $output/Netlists/$dir, skipping...";
       }
+  
+      debugPrint "run_xyce_regression:  \$dir = $dir\n";
+      debugPrint "run_xyce_regression:  \$ckt = $ckt\n";
+      # Grab any options from options files and pass to $Tools
+      $Tools->setRunOptions($Tools,$defaultRunOptionsRef);
+      $Tools->readAndSetRunOptions("options","$ckt.options");
+      my $runTestCommand = "cd $output/Netlists/$dir; $runTestBaseCommand --outputdir=$output/Netlists --testdir=$dir --testfile=$ckt";
+      #print ("Calling runTest with command \"$runTestCommand\"");
+      #system( $runTestCommand );
+      # start a new process to run a test.  Save process ID to monitor its progress
+      my $stdOutFile="$wdir/$ckt.pstdout";
+      my $stdErrFile="$wdir/$ckt.pstderr";
+    
+      my $testPID=$Tools->forkCommand( $runTestCommand, $stdOutFile, $stdErrFile );
+      if ($testPID < 0)
+      {
+        print "Coudn't fork.  forkCommand returned $testPID\n";
+      }
+      # print( "PID returned $testPID\n" );
+      push( @activePIDs, $testPID );
+      $numActiveProcs = @activePIDs;
+      # spawned a test, decrement the test counter.
+      $pendingTests--;
+      #print( "Adding $testPID to hash with value \"$dir/$stdOutFile\"\n" );
+      $resultsHash{ $testPID } = "$stdOutFile";
+      $testDirHash{ $testPID } = "$dir";
+      $testFileHash{ $testPID } = $testBundle_ref;
     }
-  } 
-  #print "returning from runTestInSubProc $numberfailed_local, $num_code_failure_local, $#testResults, $#failedTestsForRetest \n";
+    
+    # check all the active PID's to see if any are done;
+    while( ($numActiveProcs >= $numproc ) ||  ((($pendingTests==0)||($#sortedTestBundles==-1)) && ($numActiveProcs > 0)) )
+    {
+      # take a PID off the front of thie array.
+      my $aPID = shift @activePIDs;
+      $numActiveProcs = @activePIDs;
+
+      # this tests if a process is abled to be killed.  Doesn't kill it
+      # it's an easy way to check if a process is still running.
+      #print( "Checking on pid $aPID : $activePIDs[$pidIndex]\n" );
+      my $pidCheck = waitpid($aPID,&WNOHANG); # == $pid on completion
+
+      if( $pidCheck == $aPID ) 
+      {
+        # process is done output results
+        if( -f "$resultsHash{ $aPID }" )
+        {
+          open(RESULTFILE,"<$resultsHash{ $aPID }") or die "ERROR cannot open $resultsHash{ $aPID } for reading";
+          my $skipPrint=0;
+          my $testPassed=1;
+          while (my $line = <RESULTFILE>) 
+          {
+            if ($line =~/\.FAILED/ )
+            {
+              $testPassed=0;
+              if( $retestFailsInSingleProc )
+              {
+                my @testDirAndFile = split(' ', @{$testFileHash{ $aPID }}[0]);
+                push(@failedTestsForRetest, "$testDirHash{ $aPID }  @testDirAndFile[1]");
+                $skipPrint = 1;
+              }
+              else
+              {
+                $numberfailed_local++;
+                print results $line;
+                if (defined($failList)) 
+                {
+                  my @testDirAndFile = split(' ', @{$testFileHash{ $aPID }}[0]);
+                  print $failListFileHandle "$testDirHash{ $aPID } @testDirAndFile[1]";
+                }
+              }
+            }
+            #
+            # error messages that indicate a test failed for unexpected reasons.
+            #
+            #    1 => "SHELL SCRIPT EXITED WITH ERROR",
+            #    2 => "FAILED",
+            #   10 => "EXITED WITH ERROR",
+            #   11 => "TEST REQUIRES MANUAL VERIFICATION",
+            #   12 => "STALLED",
+            #   13 => "XYCE CRASHED",
+            #   14 => "NO PRN FILE",
+            #   15 => "TIME LIMIT",
+            #   16 => "CONTROL-C",
+            #   17 => "NO MEASURE FILE",
+            #   18 => "DAKOTA NOT FOUND"
+            #  if( ( $line =~/\.ERROR/ ) || ($line =~/\.SHELL/ ) || ($line =~/\.NO PRN FILE/ ) || ($line =~/\.XYCE/ ) )
+            if( ($line =~/\.SHELL SCRIPT EXITED WITH ERROR/ ) ||
+                ($line =~/\.EXITED WITH ERROR/ ) ||
+                ($line =~/\.UNKNOWN ERROR/ ) ||
+                ($line =~/\.TEST REQUIRES MANUAL VERIFICATION/ ) ||
+                ($line =~/\.XYCE CRASHED/ ) ||
+                ($line =~/\.NO PRN FILE/ ) ||
+                ($line =~/\.NO MEASURE FILE/ ) ||
+                ($line =~/\.STALLED/ ) ||
+                ($line =~/\.TIME LIMIT/ ) ||
+                ($line =~/\.DAKOTA NOT FOUND/ ) )
+            {
+              $testPassed=0;
+              if( $retestFailsInSingleProc )
+              {
+                my @testDirAndFile = split(' ', @{$testFileHash{ $aPID }}[0]);
+                push(@failedTestsForRetest, "$testDirHash{ $aPID }  @testDirAndFile[1]");
+                $skipPrint = 1;
+              }
+              else
+              {
+                $num_code_failure_local++;
+                print results $line;
+                if (defined($failList)) 
+                {
+                  my @testDirAndFile = split(' ', @{$testFileHash{ $aPID }}[0]);
+                  print $failListFileHandle "$testDirHash{ $aPID } @testDirAndFile[1]";
+                }
+              }
+            }
+           
+            if( not $skipPrint ) 
+            {
+              # print to standard output
+              if( $bufferOutput ) 
+              {
+                # if we are buffering the output, then the Active Jobs and Tests in Queue isn't useful info
+                push(@testResults, $line)  
+              }
+              else
+              {
+                # not buffering the output, so Active Jobs and Tests in Queue may be useful info.
+                chomp $line;
+                print "$line Tests in Queue: $pendingTests, Active Jobs: $numActiveProcs\n";
+                resultPrint "$line Tests in Queue: $pendingTests, Active Jobs: $numActiveProcs\n";
+              }
+            }
+            if ( $testPassed and defined($passList)) 
+            {
+              my @testDirAndFile = split(' ', @{$testFileHash{ $aPID }}[0]);
+              print $passListFileHandle "$testDirHash{ $aPID } @testDirAndFile[1]";
+            }
+          }
+          close(RESULTFILE);
+          
+          #
+          # check on remaining tests 
+          #
+          my $testBundle_ref = $testFileHash{ $aPID };
+          
+          # pull directory and test name off the list 
+          shift @{$testBundle_ref};
+          
+          # for this test bundle if there are any remaining tests then put the bundle back on the test list.
+          # print "===>loalTestList len = $#{$localTestListRef}\n";
+          if( $#{$testBundle_ref} >= 0)
+          {
+            unshift( @sortedTestBundles, $testBundle_ref);
+          }
+          
+        }
+        else
+        {
+          print( "Couldn't find output file for process $aPID:  $output/Netlists/$resultsHash{ $aPID }\n");
+        }
+      }
+      else
+      {
+        # PID was still going so push it back on the end of the array
+        push( @activePIDs, $aPID );
+        $numActiveProcs = @activePIDs;
+      }
+      # may have changed the number of active processes so update the counter.
+      
+      
+      if( $#activePIDs >= $numproc ) {
+        # sleep for some time waiting for tests to finish
+        # print( "proc queue full $#activePIDs.  Waiting." );
+        # sleep 1;
+      }
+      # check for control-c to exit
+      if ($Tools->checkControlExit()) {
+        kill '-KILL', @activePIDs;
+        $numTests=0;
+        @activePIDs={};
+      }
+    }
+    $numActiveProcs = @activePIDs;
+    #print ("==>Active PIDs  $numActiveProcs \n");
+  }
+  
   return ($numberfailed_local, $num_code_failure_local, \@testResults, \@failedTestsForRetest);
 }
