@@ -33,8 +33,8 @@ $GOLDPRN=$ARGV[4];
 $CIR1="mpde-prn.cir";
 $CIR2="mpde-prn-fallback.cir";
 
-$TMPCIRFILE1="startup_printline_for_mpde-prn.cir";
-$TMPCIRFILE2="startup_printline_for_mpde-prn-fallback.cir";
+$TMPCIRFILE1="printLine_for_mpde-prn.cir";
+$TMPCIRFILE2="printLine_for_mpde-prn-fallback.cir";
 
 $GOLDDIR = dirname($GOLDPRN);
 $GOLD1 = "$GOLDDIR/$CIR1";
@@ -43,6 +43,7 @@ $GOLD2 = "$GOLDDIR/$CIR2";
 # remove previous output files
 system("rm -f $CIR1.prn $CIR1.MPDE.* $CIR1.mpde_ic.* $CIR1.startup.* $CIR1.out $CIR1.err");
 system("rm -f $CIR2.prn $CIR2.MPDE.* $CIR2.mpde_ic.* $CIR2.startup.* $CIR2.out $CIR2.err");
+system("rm -f $CIR1.prn.* $CIR2.prn.*");
 
 # run Xyce on both netlists
 $CMD="$XYCE $CIR1 > $CIR1.out 2>$CIR1.err";
@@ -119,6 +120,10 @@ if ( !(-f "$CIR1.startup.prn")) {
 }
 
 # check for output files from both netlists
+if ( !(-f "$CIR2.prn")) {
+    print STDERR "Missing output file $CIR2.prn\n";
+    $xyceexit=14;
+}
 if ( !(-f "$CIR2.MPDE.prn")) {
     print STDERR "Missing output file $CIR2.MPDE.prn\n";
     $xyceexit=14;
@@ -214,15 +219,21 @@ if (system("$CMD") != 0)
   $retcode = 2;
 }
 
-$CMD="$XYCE_VERIFY $CIR1 $GOLD1.mpde_ic.prn $CIR1.mpde_ic.prn > $CIR1.mpde_ic.prn.out 2> $CIR1.mpde_ic.prn.err";
+$CMD="$XYCE_VERIFY --printline=mpde_ic $TMPCIRFILE1 $GOLD1.mpde_ic.prn $CIR1.mpde_ic.prn > $CIR1.mpde_ic.prn.out 2> $CIR1.mpde_ic.prn.err";
 if (system("$CMD") != 0) {
     print STDERR "Verification failed on file $CIR1.mpde_ic.prn, see $CIR1.mpde_ic.prn.err\n";
     $retcode = 2;
 }
 
-$CMD="$XYCE_VERIFY $TMPCIRFILE1 $GOLD1.startup.prn $CIR1.startup.prn > $CIR1.startup.prn.out 2> $CIR1.startup.prn.err";
+$CMD="$XYCE_VERIFY --printline=mpde_startup $TMPCIRFILE1 $GOLD1.startup.prn $CIR1.startup.prn > $CIR1.startup.prn.out 2> $CIR1.startup.prn.err";
 if (system("$CMD") != 0) {
     print STDERR "Verification failed on file $CIR1.startup.prn, see $CIR1.startup.prn.err\n";
+    $retcode = 2;
+}
+
+$CMD="$XYCE_VERIFY $CIR1 $GOLD1.prn $CIR1.prn > $CIR1.prn.out 2> $CIR1.prn.err";
+if (system("$CMD") != 0) {
+    print STDERR "Verification failed on file $CIR1.prn, see $CIR1.prn.err\n";
     $retcode = 2;
 }
 
@@ -235,15 +246,21 @@ if (system("$CMD") != 0)
   $retcode = 2;
 }
 
-$CMD="$XYCE_VERIFY $CIR2 $GOLD2.mpde_ic.prn $CIR2.mpde_ic.prn > $CIR2.mpde_ic.prn.out 2> $CIR2.mpde_ic.prn.err";
+$CMD="$XYCE_VERIFY --printline=mpde $TMPCIRFILE2 $GOLD2.mpde_ic.prn $CIR2.mpde_ic.prn > $CIR2.mpde_ic.prn.out 2> $CIR2.mpde_ic.prn.err";
 if (system("$CMD") != 0) {
     print STDERR "Verification failed on file $CIR2.mpde_ic.prn, see $CIR2.mpde_ic.prn.err\n";
     $retcode = 2;
 }
 
-$CMD="$XYCE_VERIFY $TMPCIRFILE2 $GOLD2.startup.prn $CIR2.startup.prn > $CIR2.startup.prn.out 2> $CIR2.startup.prn.err";
+$CMD="$XYCE_VERIFY --printline=mpde $TMPCIRFILE2 $GOLD2.startup.prn $CIR2.startup.prn > $CIR2.startup.prn.out 2> $CIR2.startup.prn.err";
 if (system("$CMD") != 0) {
     print STDERR "Verification failed on file $CIR2.startup.prn, see $CIR2.startup.prn.err\n";
+    $retcode = 2;
+}
+
+$CMD="$XYCE_VERIFY $CIR2 $GOLD2.prn $CIR2.prn > $CIR2.prn.out 2> $CIR2.prn.err";
+if (system("$CMD") != 0) {
+    print STDERR "Verification failed on file $CIR2.prn, see $CIR2.prn.err\n";
     $retcode = 2;
 }
 

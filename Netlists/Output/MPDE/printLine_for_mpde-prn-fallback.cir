@@ -4,7 +4,5 @@
 * It isn't supposed to be run, and will exit with error.
 *
 
-.tran 1.0e-8
-.print tran {v(1)+4}
-
-.end
+.mpde 0 1.0e-8
+.print mpde FORMAT=TECPLOT {v(1)+2}

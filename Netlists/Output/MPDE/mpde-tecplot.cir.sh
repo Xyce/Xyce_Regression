@@ -47,6 +47,7 @@ $GOLD2 = "$GOLDDIR/$CIR2";
 # remove previous output files
 system("rm -f $CIR1.prn $CIR1.MPDE.* $CIR1.mpde_ic.* $CIR1.startup.* $CIR1.out $CIR1.err");
 system("rm -f $CIR2.prn $CIR2.MPDE.* $CIR2.mpde_ic.* $CIR2.startup.* $CIR2.out $CIR2.err");
+system("rm -f $CIR1.prn.* $CIR2.prn.*");
 
 # run Xyce on both netlists
 $CMD="$XYCE $CIR1 > $CIR1.out 2>$CIR1.err";
@@ -123,6 +124,10 @@ if ( !(-f "$CIR1.startup.dat")) {
 }
 
 # check for output files from both netlists
+if ( !(-f "$CIR2.prn")) {
+    print STDERR "Missing output file $CIR2.prn\n";
+    $xyceexit=14;
+}
 if ( !(-f "$CIR2.MPDE.dat")) {
     print STDERR "Missing output file $CIR2.MPDE.dat\n";
     $xyceexit=14;
@@ -212,7 +217,8 @@ else
 print "Checking contents of output files\n";
 
 # Only check header line in <netlistName>.MPDE.dat files
-$retcode = testTecplotHeaders("$CIR1.MPDE.dat");
+$headerTest = testTecplotHeaders("$CIR1.MPDE.dat");
+if ($headerTest != 0) { $retcode = $headerTest;}
 print "Done with testing Tecplot headers for $CIR1.MPDE.dat\n";
 print "At this point retcode = $retcode\n";
 
@@ -246,8 +252,17 @@ else
   }
 }
 
-$retcode = testTecplotHeaders("$CIR2.MPDE.dat");
+$CMD="$XYCE_VERIFY $CIR1 $GOLD1.prn $CIR1.prn > $CIR1.prn.out 2> $CIR1.prn.err";
+if (system("$CMD") != 0) {
+    print STDERR "Verification failed on file $CIR1.prn, see $CIR1.prn.err\n";
+    $retcode = 2;
+}
+
+# netlist 2
+
+$headerTest = testTecplotHeaders("$CIR2.MPDE.dat");
 print "Done with testing Tecplot headers for $CIR2.MPDE.dat\n";
+if ($headerTest != 0) { $retcode = $headerTest;}
 print "At this point retcode = $retcode\n";
 
 $result = system("$TRANSLATE $CIR2.mpde_ic.dat");
@@ -278,6 +293,12 @@ else
       print STDERR "Verification failed on file test_$CIR2.startup.dat with $GOLD2.startup.prn, see $CIR2.startup.dat.err\n";
       $retcode = 2;
   }
+}
+
+$CMD="$XYCE_VERIFY $CIR2 $GOLD2.prn $CIR2.prn > $CIR2.prn.out 2> $CIR2.prn.err";
+if (system("$CMD") != 0) {
+    print STDERR "Verification failed on file $CIR2.prn, see $CIR2.prn.err\n";
+    $retcode = 2;
 }
 
 print "Exit code = $retcode\n"; exit $retcode;

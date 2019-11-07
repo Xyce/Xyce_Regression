@@ -1,6 +1,15 @@
 * Netlist to test MPDE output in CSV format.
 * This version generates "fallback print lines" for the MPDE_IC
 * and MPDE_STARTUP output.  See SON Bug 969 for more details.
+*
+* Another important note is that this netlist uses TRAP,
+* rather than GEAR, as the time integrator for MDPE.  This
+* is because the MPDE/WaMPDE interpolation functions were not
+* implemented yet for the Gear method.  If GEAR is used on the
+* .options timeint-mpde line then the <netlistName>.prn file
+* will have truncated output.
+
+*COMP {V(1)+2}  RELTOL=0.025
 
 *simple LC Tank Oscillator
 
@@ -16,7 +25,7 @@
 .param satval = {1/R}
 
 .options mpdeint startupperiods=2 ic=4 auton2=true T2=9.8681e-10 saveicdata=1 diff=1 wampde=1 phase=1 phasecoeff=0 oscout="I(L1)"
-.options timeint-mpde method=8 erroption=1 delmax=1e-9
+*.options timeint-mpde method=8 erroption=1 delmax=1e-9
 .options timeint method=7 newlte=1
 
 r1 1 0 R
