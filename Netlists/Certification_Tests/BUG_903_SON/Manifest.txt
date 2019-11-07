@@ -7,7 +7,4 @@ bug_903_ac.cir
 bug_903_ac.cir.sh
 bug_903_ac.cir.GSfile1
 bug_903_ac.cir.GSfile2
-bug_903_homotopy.cir
-bug_903_homotopy.cir.sh
-bug_903_homotopy.cir.GSfile
 

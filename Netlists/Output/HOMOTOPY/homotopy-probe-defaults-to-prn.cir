@@ -1,6 +1,6 @@
 ***********************************************************************
-* Netlist to test Homotopy output in PROBE format, which produces a
-* .csd file. 
+* Netlist to test that homotopy output in PROBE format defaults to
+* STD format (.prn file with an Index column)
 *
 * This netlist will fail to get a DCOP in normal newton solves.
 * It contains options necessary to run the DCOP using GMIN stepping instead.
@@ -42,3 +42,4 @@ Q1  7  3  5  BFT92
 .options loca stepper=natural predictor=constant stepcontrol=adaptive
 
 .END
+

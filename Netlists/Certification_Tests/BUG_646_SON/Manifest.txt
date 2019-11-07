@@ -22,8 +22,3 @@ bug_646_ac.cir.sh
 bug_646_ac.cir3.GSfile
 bug_646_ac.cir4.GSfile
 bug_646_ac.cir5.GSfile
-bug_646_homotopy.cir
-bug_646_homotopy.cir.sh
-bug_646_homotopy.cir3.GSfile
-bug_646_homotopy.cir4.GSfile
-bug_646_homotopy.cir5.GSfile
