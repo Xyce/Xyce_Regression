@@ -62,9 +62,25 @@ if (not -s "$CIRFILE.NOISE.prn" )
   exit 14;
 }
 
+if ( not -s "$CIRFILE.NOISE.ts1")
+{
+    print STDERR "Missing output file $CIRFILE.NOISE.ts1\n";
+    print "Exit code = 14\n"; exit 14;
+}
+
+if ( not -s "$CIRFILE.NOISE.ts2")
+{
+    print STDERR "Missing output file $CIRFILE.NOISE.ts2\n";
+    print "Exit code = 14\n"; exit 14;
+}
+
 # these strings should be in the output of this successful Xyce run
-@searchstrings = ("Netlist warning: Noise output cannot be written in PROBE or RAW format, using",
-                  "standard format instead"
+@searchstrings = ("Netlist warning: Noise output cannot be written in PROBE, RAW or Touchstone",
+                  "format, using standard format instead",
+                  "Netlist warning: Noise output cannot be written in PROBE, RAW or Touchstone",
+                  "format, using standard format instead",
+                  "Netlist warning: Noise output cannot be written in PROBE, RAW or Touchstone",
+                  "format, using standard format instead"
 );
 
 $retval = $Tools->checkError("$CIRFILE.out",@searchstrings);
@@ -75,6 +91,9 @@ if ($retval != 0)
 } 
 
 # Now check the .NOISE.prn file
+print "Now checking output files\n";
+
+$retcode=0;
 $absTol=1e-5;
 $relTol=1e-3;
 $zeroTol=1e-10;
@@ -83,16 +102,23 @@ $fc=~ s/xyce_verify/file_compare/;
 $GOLDPRN = substr($GOLDPRN,0,-3)."NOISE.prn";
 $CMD="$fc $CIRFILE.NOISE.prn $GOLDPRN $absTol $relTol $zeroTol > $CIRFILE.noise.out 2> $CIRFILE.noise.err";
 $retval = system("$CMD");
-if ( $retval != 0 )
-{
-  print "test Failed comparison of NOISE.prn file vs. gold NOISE.prn file!\n";
-  print "Exit code = 2\n";
-  exit 2;
-}
-else
-{
-  print "Passed comparison of NOISE.prn files\n";
-  print "Exit code = 0\n";
-  exit 0;
+
+if ( $retval != 0 ){
+  print STDERR "Comparator exited with exit code $retval on file $CIRFILE.NOISE.prn\n";
+  $retcode = 2;
 }
 
+# The other two output files should be identical to $CIRFILE.NOISE.prn
+$CMD="diff $CIRFILE.NOISE.prn $CIRFILE.NOISE.ts1 > $CIRFILE.NOISE.ts1.out";
+if (system("$CMD") != 0) {
+    print STDERR "Verification failed on file $CIRFILE.NOISE.ts1, see $CIRFILE.NOISE.ts1\n";
+    $retcode = 2;
+}
+
+$CMD="diff $CIRFILE.NOISE.prn $CIRFILE.NOISE.ts2 > $CIRFILE.NOISE.ts2.out";
+if (system("$CMD") != 0) {
+    print STDERR "Verification failed on file $CIRFILE.NOISE.ts2, see $CIRFILE.NOISE.ts2\n";
+    $retcode = 2;
+}
+
+print "Exit code = $retcode\n"; exit $retcode;

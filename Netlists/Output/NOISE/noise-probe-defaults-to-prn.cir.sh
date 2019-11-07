@@ -64,8 +64,8 @@ if (not -s "$CIRFILE.NOISE.prn" )
 }
 
 # these strings should be in the output of this successful Xyce run
-@searchstrings = ("Netlist warning: Noise output cannot be written in PROBE or RAW format, using",
-                  "standard format instead"
+@searchstrings = ("Netlist warning: Noise output cannot be written in PROBE, RAW or Touchstone",
+                  "format, using standard format instead"
 );
 
 $retval = $Tools->checkError("$CIRFILE.out",@searchstrings);
