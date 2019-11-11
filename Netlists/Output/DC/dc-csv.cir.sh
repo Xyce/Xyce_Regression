@@ -57,7 +57,13 @@ if (defined ($xyceexit)) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
 
 $retcode = 0;
 
-$CMD="$XYCE_VERIFY $CIRFILE $GOLDCSV.csv $CIRFILE.csv > $CIRFILE.csv.out 2> $CIRFILE.csv.err";
+$absTol=1e-5;
+$relTol=1e-3;
+$zeroTol=1e-8;
+$fc = $XYCE_VERIFY;
+$fc=~ s/xyce_verify/file_compare/;
+
+$CMD="$fc $GOLDCSV.csv $CIRFILE.csv $absTol $relTol $zeroTol > $CIRFILE.csv.out 2> $CIRFILE.csv.err";
 if (system("$CMD") != 0) {
     print STDERR "Verification failed on file $CIRFILE.csv, see $CIRFILE.csv.err\n";
     $retcode = 2;
