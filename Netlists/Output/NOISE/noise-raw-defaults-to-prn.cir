@@ -1,6 +1,8 @@
 **********************************************************
 * Netlist tests that Noise output in RAW format defaults
-* to STD format (.prn file with an Index column)
+* to STD format (.prn file with an Index column). This also
+* tests that FORMAT=<TOUCHSTONE|TOUCHSTONE2> defaults to
+* STD format.
 *
 **********************************************************
 
@@ -18,5 +20,7 @@ CLP1  4 0 1.59NF
 
 .NOISE  V(4)  V1  DEC  5 100 100MEG 1
 .PRINT NOISE FORMAT=RAW INOISE ONOISE
+.PRINT NOISE FORMAT=TOUCHSTONE file=noise-raw-defaults-to-prn.cir.NOISE.ts1 INOISE ONOISE
+.PRINT NOISE FORMAT=TOUCHSTONE2 file=noise-raw-defaults-to-prn.cir.NOISE.ts2 INOISE ONOISE
 
 .END

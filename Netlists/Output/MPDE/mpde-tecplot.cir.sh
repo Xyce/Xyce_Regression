@@ -47,6 +47,7 @@ $GOLD2 = "$GOLDDIR/$CIR2";
 # remove previous output files
 system("rm -f $CIR1.prn $CIR1.MPDE.* $CIR1.mpde_ic.* $CIR1.startup.* $CIR1.out $CIR1.err");
 system("rm -f $CIR2.prn $CIR2.MPDE.* $CIR2.mpde_ic.* $CIR2.startup.* $CIR2.out $CIR2.err");
+system("rm -f $CIR1.prn.* $CIR2.prn.*");
 
 # run Xyce on both netlists
 $CMD="$XYCE $CIR1 > $CIR1.out 2>$CIR1.err";
@@ -123,6 +124,10 @@ if ( !(-f "$CIR1.startup.dat")) {
 }
 
 # check for output files from both netlists
+if ( !(-f "$CIR2.prn")) {
+    print STDERR "Missing output file $CIR2.prn\n";
+    $xyceexit=14;
+}
 if ( !(-f "$CIR2.MPDE.dat")) {
     print STDERR "Missing output file $CIR2.MPDE.dat\n";
     $xyceexit=14;
@@ -211,6 +216,12 @@ else
 # check contents of MPDE-specific output files for both netlists.
 print "Checking contents of output files\n";
 
+# Only check header line in <netlistName>.MPDE.dat files
+$headerTest = testTecplotHeaders("$CIR1.MPDE.dat");
+if ($headerTest != 0) { $retcode = $headerTest;}
+print "Done with testing Tecplot headers for $CIR1.MPDE.dat\n";
+print "At this point retcode = $retcode\n";
+
 $result = system("$TRANSLATE $CIR1.mpde_ic.dat");
 if ( $result != 0 )
 {
@@ -241,11 +252,18 @@ else
   }
 }
 
-#$CMD="$fc $CIR2.MPDE.dat $GOLD2.MPDE.dat $abstol $reltol $zerotol > $CIR2.MPDE.dat.out 2> $CIR2.MPDE.dat.err";
-#if (system("$CMD") != 0) {
-#    print STDERR "Verification failed on file $CIR2.MPDE.dat, see $CIR2.MPDE.dat.err\n";
-#    $retcode = 2;
-#}
+$CMD="$XYCE_VERIFY $CIR1 $GOLD1.prn $CIR1.prn > $CIR1.prn.out 2> $CIR1.prn.err";
+if (system("$CMD") != 0) {
+    print STDERR "Verification failed on file $CIR1.prn, see $CIR1.prn.err\n";
+    $retcode = 2;
+}
+
+# netlist 2
+
+$headerTest = testTecplotHeaders("$CIR2.MPDE.dat");
+print "Done with testing Tecplot headers for $CIR2.MPDE.dat\n";
+if ($headerTest != 0) { $retcode = $headerTest;}
+print "At this point retcode = $retcode\n";
 
 $result = system("$TRANSLATE $CIR2.mpde_ic.dat");
 if ( $result != 0 )
@@ -277,4 +295,55 @@ else
   }
 }
 
+$CMD="$XYCE_VERIFY $CIR2 $GOLD2.prn $CIR2.prn > $CIR2.prn.out 2> $CIR2.prn.err";
+if (system("$CMD") != 0) {
+    print STDERR "Verification failed on file $CIR2.prn, see $CIR2.prn.err\n";
+    $retcode = 2;
+}
+
 print "Exit code = $retcode\n"; exit $retcode;
+
+sub testTecplotHeaders {
+
+  my ($filename) = @_;
+
+  $retval = 0;
+
+  # check the number of TITLE outputs
+  $titlecount = `grep -ic title $filename 2>/dev/null`;
+  if ($titlecount =~ 1)
+  {
+    printf "Tecplot file %s contained correct number(%d) of titles.\n", $filename, $titlecount;
+  }
+  else
+  {
+    printf "Tecplot file %s contained wrong number(%d) of titles.\n", $filename, $titlecount;
+    $retval = 2;
+  }
+
+  # check the number of ZONE outputs
+  $zonecount = `grep -ic zone $filename 2>/dev/null`;
+  if ($zonecount =~ 1)
+  {
+    printf "Tecplot file %s contained correct number(%d) of zones.\n", $filename,$zonecount;
+  }
+  else
+  {
+    printf "Tecplot file %s contained wrong number(%d) of zones.\n", $filename,$zonecount;
+    $retval = 2;
+  }
+
+   # check the number of DATASETAUXDATA outputs
+  $datasetauxdatacount = `grep -ic datasetauxdata $filename 2>/dev/null`;
+  if ($datasetauxdatacount =~ 1)
+  {
+    printf "Tecplot file %s contained correct number(%d) of datasetauxdata's.\n", $filename,$datasetauxdatacount;
+  }
+  else
+  {
+    printf "Tecplot file %s contained wrong number(%d) of datasetauxdata's.\n", $filename,$datasetauxdatacount;
+    $retval = 2;
+  }
+
+  return $retval;
+}

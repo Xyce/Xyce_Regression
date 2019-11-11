@@ -1,6 +1,7 @@
 ***********************************************************************
 * Netlist to test that homotopy output in RAW format defaults to
-* STD format (.prn file with an Index column)
+* STD format (.prn file with an Index column).  This also tests that
+* FORMAT=<TOUCHSTONE|TOUCHSTONE2> defaults to STD format.
 *
 * This netlist will fail to get a DCOP in normal newton solves.
 * It contains options necessary to run the DCOP using GMIN stepping instead.
@@ -36,6 +37,8 @@ Q1  7  3  5  BFT92
 .TRAN 1e-10 1.0us
 .PRINT TRAN I(VB) I(VIC) 
 .PRINT HOMOTOPY format=RAW I(VB) I(VIC)
+.PRINT HOMOTOPY format=TOUCHSTONE file=homotopy-raw-defaults-to-prn.cir.HOMOTOPY.ts1 I(VB) I(VIC)
+.PRINT HOMOTOPY format=TOUCHSTONE2 file=homotopy-raw-defaults-to-prn.cir.HOMOTOPY.ts2 I(VB) I(VIC)
 
 .options nonlin maxstep=200 continuation=gmin reltol=1.0e-2 abstol=1.0e-6 rhstol=1.0e-4
 

@@ -1,5 +1,12 @@
 * MPDE test of -r output ASCII format.
 * See SON Bug 969 for more details.
+*
+* Another important note is that this netlist uses GEAR, rather
+* than TRAP as the time integrator for MDPE.  The MPDE/WaMPDE
+* interpolation functions are not implemented yet for the Gear
+* method, so the <netlistName>.raw file ONLY has the output for the
+* DCOP.  This is sufficient for this RAW format test.  It also
+* illustrates the issue with GEAR vs. TRAP.
 
 *simple LC Tank Oscillator
 

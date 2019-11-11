@@ -32,39 +32,25 @@ $XYCE_VERIFY=$ARGV[1];
 $CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
 
-# remove old NOISE.prn file if it exists
-`rm -f $CIRFILE.NOISE.prn $CIRFILE.err`;
-`rm -f $CIRFILE.noise.out $CIRFILE.noise.err`;
+# remove old HOMOTOPY.prn file if it exists
+`rm -f $CIRFILE.HOMOTOPY.prn $CIRFILE.prn`;
+`rm -f $CIRFILE.homotopy.out $CIRFILE.homotopy.err`;
 
 # run Xyce
-$CMD="$XYCE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err";
-$retval = system("$CMD");
-if ($retval != 0) 
-{
-  if ($retval & 127)
-  {
-    print "Exit code = 13\n"; 
-    printf STDERR "Xyce crashed with signal %d on file %s\n",($retval&127),$CIRFILE; 
-    exit 13;
-  }
-  else
-  {
-    print "Exit code = 10\n"; 
-    printf STDERR "Xyce exited with exit code %d on %s\n",$retval>>8,$CIRFILE; 
-    exit 10;
-  }
-}
+$retval = -1;
+$retval=$Tools->wrapXyce($XYCE,$CIRFILE);
+if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
 
-# Exit if the NOISE.prn file was not made
-if (not -s "$CIRFILE.NOISE.prn" )
+# Exit if the HOMOTOPY.prn file was not made
+if (not -s "$CIRFILE.HOMOTOPY.prn" )
 {
-  print "$CIRFILE.NOISE.prn file is missing\n"; 
+  print "$CIRFILE.HOMOTOPY.prn file is missing\n"; 
   print "Exit code = 14\n"; 
   exit 14;
 }
 
 # these strings should be in the output of this successful Xyce run
-@searchstrings = ("Netlist warning: Noise output cannot be written in PROBE, RAW or Touchstone",
+@searchstrings = ("Netlist warning: Homotopy output cannot be written in PROBE, RAW or Touchstone",
                   "format, using standard format instead"
 );
 
@@ -75,26 +61,28 @@ if ($retval != 0)
   print "Exit code = $retval\n"; exit $retval; 
 } 
 
-# Now check the .NOISE.prn file
+# Now check the .HOMOTOPY.prn file
 $absTol=1e-5;
 $relTol=1e-3;
 $zeroTol=1e-10;
 $fc = $XYCE_VERIFY;
 $fc=~ s/xyce_verify/file_compare/;
-$GOLDPRN = substr($GOLDPRN,0,-3)."NOISE.prn";
-$CMD="$fc $CIRFILE.NOISE.prn $GOLDPRN $absTol $relTol $zeroTol > $CIRFILE.noise.out 2> $CIRFILE.noise.err";
+$GOLDPRN = substr($GOLDPRN,0,-3)."HOMOTOPY.prn";
+$CMD="$fc $CIRFILE.HOMOTOPY.prn $GOLDPRN $absTol $relTol $zeroTol > $CIRFILE.homotopy.out 2> $CIRFILE.homotopy.err";
 $retval = system("$CMD");
 if ( $retval != 0 )
 {
-  print "test Failed comparison of NOISE.prn file vs. gold NOISE.prn file!\n";
+  print "test Failed comparison of HOMOTOPY.prn file vs. gold HOMOTOPY.prn file!\n";
   print "Exit code = 2\n";
   exit 2;
 }
 else
 {
-  print "Passed comparison of NOISE.prn files\n";
+  print "Passed comparison of HOMOTOPY.prn files\n";
   print "Exit code = 0\n";
   exit 0;
 }
+
+
 
 

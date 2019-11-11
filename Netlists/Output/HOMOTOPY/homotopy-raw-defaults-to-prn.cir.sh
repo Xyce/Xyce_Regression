@@ -41,7 +41,7 @@ $retval = -1;
 $retval=$Tools->wrapXyce($XYCE,$CIRFILE);
 if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
 
-# Exit if the HOMOTOPY.prn file was not made
+# Check for the output files
 if (not -s "$CIRFILE.HOMOTOPY.prn" )
 {
   print "$CIRFILE.HOMOTOPY.prn file is missing\n"; 
@@ -49,8 +49,24 @@ if (not -s "$CIRFILE.HOMOTOPY.prn" )
   exit 14;
 }
 
+if ( not -s "$CIRFILE.HOMOTOPY.ts1")
+{
+    print STDERR "Missing output file $CIRFILE.HOMOTOPY.ts1\n";
+    print "Exit code = 14\n"; exit 14;
+}
+
+if ( not -s "$CIRFILE.HOMOTOPY.ts2")
+{
+    print STDERR "Missing output file $CIRFILE.HOMOTOPY.ts2\n";
+    print "Exit code = 14\n"; exit 14;
+}
+
 # these strings should be in the output of this successful Xyce run
-@searchstrings = ("Netlist warning: Homotopy output cannot be written in RAW or Touchstone",
+@searchstrings = ("Netlist warning: Homotopy output cannot be written in PROBE, RAW or Touchstone",
+                  "format, using standard format instead",
+                  "Netlist warning: Homotopy output cannot be written in PROBE, RAW or Touchstone",
+                  "format, using standard format instead",
+                  "Netlist warning: Homotopy output cannot be written in PROBE, RAW or Touchstone",
                   "format, using standard format instead"
 );
 
@@ -62,6 +78,9 @@ if ($retval != 0)
 } 
 
 # Now check the .HOMOTOPY.prn file
+print "Now checking output files\n";
+
+$retcode=0;
 $absTol=1e-5;
 $relTol=1e-3;
 $zeroTol=1e-10;
@@ -70,19 +89,25 @@ $fc=~ s/xyce_verify/file_compare/;
 $GOLDPRN = substr($GOLDPRN,0,-3)."HOMOTOPY.prn";
 $CMD="$fc $CIRFILE.HOMOTOPY.prn $GOLDPRN $absTol $relTol $zeroTol > $CIRFILE.homotopy.out 2> $CIRFILE.homotopy.err";
 $retval = system("$CMD");
-if ( $retval != 0 )
-{
-  print "test Failed comparison of HOMOTOPY.prn file vs. gold HOMOTOPY.prn file!\n";
-  print "Exit code = 2\n";
-  exit 2;
-}
-else
-{
-  print "Passed comparison of HOMOTOPY.prn files\n";
-  print "Exit code = 0\n";
-  exit 0;
+if ( $retval != 0 ){
+  print STDERR "Comparator exited with exit code $retval on file $CIRFILE.HOMOTOPY.prn\n";
+  $retcode = 2;
 }
 
+# The other two output files should be identical to $CIRFILE.HOMOTOPY.prn
+$CMD="diff $CIRFILE.HOMOTOPY.prn $CIRFILE.HOMOTOPY.ts1 > $CIRFILE.HOMOTOPY.ts1.out";
+if (system("$CMD") != 0) {
+    print STDERR "Verification failed on file $CIRFILE.HOMOTOPY.ts1, see $CIRFILE.HOMOTOPY.ts1\n";
+    $retcode = 2;
+}
+
+$CMD="diff $CIRFILE.HOMOTOPY.prn $CIRFILE.HOMOTOPY.ts2 > $CIRFILE.HOMOTOPY.ts2.out";
+if (system("$CMD") != 0) {
+    print STDERR "Verification failed on file $CIRFILE.HOMOTOPY.ts2, see $CIRFILE.HOMOTOPY.ts2\n";
+    $retcode = 2;
+}
+
+print "Exit code = $retcode\n"; exit $retcode;
 
 
 

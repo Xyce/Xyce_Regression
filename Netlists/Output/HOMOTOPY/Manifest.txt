@@ -2,6 +2,9 @@ arclengthSimple.cir
 arclengthSimple.cir.sh
 arclengthSimple.cir.tags
 exclude
+homotopy-probe-defaults-to-prn.cir
+homotopy-probe-defaults-to-prn.cir.sh
+homotopy-probe-defaults-to-prn.cir.tags
 homotopy-raw-defaults-to-prn.cir
 homotopy-raw-defaults-to-prn.cir.sh
 homotopy-raw-defaults-to-prn.cir.tags
@@ -14,14 +17,6 @@ homotopy-prn-noindex.cir.tags
 homotopy-csv.cir
 homotopy-csv.cir.sh
 homotopy-prn.cir
-homotopy-probe.cir
-homotopy-probe.cir.sh
-homotopy-probe.cir.tags
-homotopy-probe.cir.GSfile
-homotopy-step-probe.cir
-homotopy-step-probe.cir.sh
-homotopy-step-probe.cir.tags
-homotopy-step-probe.cir.GSfile
 homotopy-tecplot.cir
 homotopy-tecplot.cir.sh
 homotopy-step-tecplot.cir

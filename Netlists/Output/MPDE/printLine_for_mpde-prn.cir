@@ -4,7 +4,7 @@
 * It isn't supposed to be run, and will exit with error.
 *
 
-.tran 1.0e-8
-.print tran {v(1)+2}
-
-.end
+.mpde 0 1.0e-8
+.print mpde {v(1)+2}
+.print mpde_ic {v(1)+3}
+.print mpde_startup {v(1)+4}

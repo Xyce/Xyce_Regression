@@ -30,8 +30,14 @@ $XYCE_COMPARE=$ARGV[2];
 #$CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
 
+$CONVERT_TO_PRN=$XYCE_VERIFY;
+$CONVERT_TO_PRN =~ s/xyce_verify.pl/convertToPrn2.py/;
+
 $CIR1="mpde-csv.cir";
 $CIR2="mpde-csv-fallback.cir";
+
+$TMPCIRFILE1="printLine_for_mpde-csv.cir";
+$TMPCIRFILE2="printLine_for_mpde-csv-fallback.cir";
 
 $GOLDDIR = dirname($GOLDPRN);
 $GOLD1 = "$GOLDDIR/$CIR1";
@@ -40,6 +46,7 @@ $GOLD2 = "$GOLDDIR/$CIR2";
 # remove previous output files
 system("rm -f $CIR1.prn $CIR1.MPDE.* $CIR1.mpde_ic.* $CIR1.startup.* $CIR1.out $CIR1.err");
 system("rm -f $CIR2.prn $CIR2.MPDE.* $CIR2.mpde_ic.* $CIR2.startup.* $CIR2.out $CIR2.err");
+system("rm -f $CIR1.prn.* $CIR2.prn.*");
 
 # run Xyce on both netlists
 $CMD="$XYCE $CIR1 > $CIR1.out 2>$CIR1.err";
@@ -49,14 +56,14 @@ if ($retval != 0)
 {
   if ($retval & 127)
   {
-    print "Exit code = 13\n"; 
-    printf STDERR "Xyce crashed with signal %d on file %s\n",($retval&127),$CIR1; 
+    print "Exit code = 13\n";
+    printf STDERR "Xyce crashed with signal %d on file %s\n",($retval&127),$CIR1;
     exit 13;
   }
   else
   {
-    print "Exit code = 10\n"; 
-    printf STDERR "Xyce exited with exit code %d on %s\n",$retval>>8,$CIR1; 
+    print "Exit code = 10\n";
+    printf STDERR "Xyce exited with exit code %d on %s\n",$retval>>8,$CIR1;
     exit 10;
   }
 }
@@ -85,14 +92,14 @@ if ($retval != 0)
 {
   if ($retval & 127)
   {
-    print "Exit code = 13\n"; 
-    printf STDERR "Xyce crashed with signal %d on file %s\n",($retval&127),$CIR2; 
+    print "Exit code = 13\n";
+    printf STDERR "Xyce crashed with signal %d on file %s\n",($retval&127),$CIR2;
     exit 13;
   }
   else
   {
-    print "Exit code = 10\n"; 
-    printf STDERR "Xyce exited with exit code %d on %s\n",$retval>>8,$CIR2; 
+    print "Exit code = 10\n";
+    printf STDERR "Xyce exited with exit code %d on %s\n",$retval>>8,$CIR2;
     exit 10;
   }
 }
@@ -134,6 +141,33 @@ if ( !(-f "$CIR2.startup.csv")) {
 }
 
 if (defined ($xyceexit)) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
+
+$xyceexit = 0;
+# convert the various .csv files
+if (system("$CONVERT_TO_PRN $CIR1.mpde_ic.csv") != 0){
+  print STDERR "Failed to convert $CIR1.mpde_ic.csv to prn\n";
+  $xyceexit = 10;
+}
+
+# convert the various .csv files
+if (system("$CONVERT_TO_PRN $CIR1.startup.csv") != 0){
+  print STDERR "Failed to convert $CIR1.startup.csv to prn\n";
+  $xyceexit = 10;
+}
+
+# convert the various .csv files
+if (system("$CONVERT_TO_PRN $CIR2.mpde_ic.csv") != 0){
+  print STDERR "Failed to convert $CIR2.mpde_ic.csv to prn\n";
+  $xyceexit = 10;
+}
+
+# convert the various .csv files
+if (system("$CONVERT_TO_PRN $CIR2.startup.csv") != 0){
+  print STDERR "Failed to convert $CIR2.startup.csv to prn\n";
+  $xyceexit = 10;
+}
+
+if ( $xyceexit != 0 ) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
 
 $retcode = 0;
 # check for absence of simulation footer text (for CSV format)
@@ -206,44 +240,62 @@ else
 }
 
 # check contents of MPDE-specific output files for both netlists.
-#print "Checking contents of output files\n";
+print "Checking contents of output files\n";
 
-#$CMD="$fc $CIR1.MPDE.csv $GOLD1.MPDE.csv $abstol $reltol $zerotol > $CIR1.MPDE.csv.out 2> $CIR1.MPDE.csv.err";
-#if (system("$CMD") != 0) {
-#    print STDERR "Verification failed on file $CIR1.MPDE.csv, see $CIR1.MPDE.csv.err\n";
-#    $retcode = 2;
-#}
+# Only check header line in <netlistName>.MPDE.csv files
+`head -n1 $CIR1.MPDE.csv > $CIR1.MPDE.csv.headerLine`;
+$CMD="diff -bi $CIR1.MPDE.csv.headerLine $CIR1.goldHeader";
+if (system("$CMD") != 0)
+{
+  print STDERR "Incorrect header line in $CIR1.MPDE.csv\n";
+  $retcode = 2;
+}
 
-#$CMD="$XYCE_VERIFY $CIR1 $GOLD1.mpde_ic.csv $CIR1.mpde_ic.csv > $CIR1.mpde_ic.csv.out 2> $CIR1.mpde_ic.csv.err";
-#if (system("$CMD") != 0) {
-#    print STDERR "Verification failed on file $CIR1.mpde_ic.csv, see $CIR1.mpde_ic.csv.err\n";
-#    $retcode = 2;
-#}
+$CMD="$XYCE_VERIFY --printline=mpde_ic $TMPCIRFILE1 $GOLD1.mpde_ic.prn $CIR1.mpde_ic.csv_converted.prn > $CIR1.mpde_ic.csv.out 2> $CIR1.mpde_ic.csv.err";
+if (system("$CMD") != 0) {
+    print STDERR "Verification failed on file $CIR1.mpde_ic.csv, see $CIR1.mpde_ic.csv.err\n";
+    $retcode = 2;
+}
 
-#$CMD="$XYCE_VERIFY $CIR1 $GOLD1.startup.csv $CIR1.startup.csv > $CIR1.startup.csv.out 2> $CIR1.startup.csv.err";
-#if (system("$CMD") != 0) {
-#    print STDERR "Verification failed on file $CIR1.startup.csv, see $CIR1.startup.csv.err\n";
-#    $retcode = 2;
-#}
+$CMD="$XYCE_VERIFY --printline=mpde_startup $TMPCIRFILE1 $GOLD1.startup.prn $CIR1.startup.csv_converted.prn > $CIR1.startup.csv.out 2> $CIR1.startup.csv.err";
+if (system("$CMD") != 0) {
+    print STDERR "Verification failed on file $CIR1.startup.csv, see $CIR1.startup.csv.err\n";
+    $retcode = 2;
+}
+
+$CMD="$XYCE_VERIFY $CIR1 $GOLD1.prn $CIR1.prn > $CIR1.prn.out 2> $CIR1.prn.err";
+if (system("$CMD") != 0) {
+    print STDERR "Verification failed on file $CIR1.prn, see $CIR1.prn.err\n";
+    $retcode = 2;
+}
 
 # netlist 2
 
-#$CMD="$fc $CIR2.MPDE.csv $GOLD2.MPDE.csv $abstol $reltol $zerotol > $CIR2.MPDE.csv.out 2> $CIR2.MPDE.csv.err";
-#if (system("$CMD") != 0) {
-#    print STDERR "Verification failed on file $CIR2.MPDE.csv, see $CIR2.MPDE.csv.err\n";
-#    $retcode = 2;
-#}
+`head -n1 $CIR2.MPDE.csv > $CIR2.MPDE.csv.headerLine`;
+$CMD="diff -bi $CIR2.MPDE.csv.headerLine $CIR2.goldHeader";
+if (system("$CMD") != 0)
+{
+  print STDERR "Incorrect header line in $CIR2.MPDE.csv\n";
+  $retcode = 2;
+}
 
-#$CMD="$XYCE_VERIFY $CIR2 $GOLD2.mpde_ic.csv $CIR2.mpde_ic.csv > $CIR2.mpde_ic.csv.out 2> $CIR2.mpde_ic.csv.err";
-#if (system("$CMD") != 0) {
-#    print STDERR "Verification failed on file $CIR2.mpde_ic.csv, see $CIR2.mpde_ic.csv.err\n";
-#    $retcode = 2;
-#}
+$CMD="$XYCE_VERIFY --printline=mpde $TMPCIRFILE2 $GOLD2.mpde_ic.prn $CIR2.mpde_ic.csv_converted.prn > $CIR2.mpde_ic.csv.out 2> $CIR2.mpde_ic.csv.err";
+print "$CMD\n";
+if (system("$CMD") != 0) {
+    print STDERR "Verification failed on file $CIR2.mpde_ic.csv, see $CIR2.mpde_ic.csv.err\n";
+    $retcode = 2;
+}
 
-#$CMD="$XYCE_VERIFY $CIR2 $GOLD2.startup.csv $CIR2.startup.csv > $CIR2.startup.csv.out 2> $CIR2.startup.csv.err";
-#if (system("$CMD") != 0) {
-#    print STDERR "Verification failed on file $CIR2.startup.csv, see $CIR2.startup.csv.err\n";
-#    $retcode = 2;
-#}
+$CMD="$XYCE_VERIFY --printline=mpde $TMPCIRFILE2 $GOLD2.startup.prn $CIR2.startup.csv_converted.prn > $CIR2.startup.csv.out 2> $CIR2.startup.csv.err";
+if (system("$CMD") != 0) {
+    print STDERR "Verification failed on file $CIR2.startup.csv, see $CIR2.startup.csv.err\n";
+    $retcode = 2;
+}
+
+$CMD="$XYCE_VERIFY $CIR2 $GOLD2.prn $CIR2.prn > $CIR2.prn.out 2> $CIR2.prn.err";
+if (system("$CMD") != 0) {
+    print STDERR "Verification failed on file $CIR2.prn, see $CIR2.prn.err\n";
+    $retcode = 2;
+}
 
 print "Exit code = $retcode\n"; exit $retcode;
