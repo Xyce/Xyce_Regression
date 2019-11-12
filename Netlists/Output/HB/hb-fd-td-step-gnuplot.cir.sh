@@ -68,12 +68,6 @@ if ( !(-f "$CIRFILE.HB.FD.splot.prn"))
   $xyceexit=14;
 }
 
-#if ( !(-f "$CIRFILE.startup.prn")) 
-#{
-#  print STDERR "Missing output file $CIRFILE.startup.prn\n";
-#  $xyceexit=14;
-#}
-
 if (defined ($xyceexit)) 
 {
   print "Exit code = $xyceexit\n"; 
@@ -114,13 +108,6 @@ if (system($CMD) != 0)
   print STDERR "Verification failed on file $CIRFILE.HB.FD.splot.prn, see $CIRFILE.HB.FD.splot.prn.err\n";
   $retcode = 2;
 }
-
-#$CMD="$fc $CIRFILE.startup.prn $GOLDPRN.startup.prn $absTol $relTol $zeroTol > $CIRFILE.startup.prn.out 2> $CIRFILE.startup.prn.err";
-#if (system($CMD) != 0) 
-#{
-#  print STDERR "Verification failed on file $CIRFILE.startup.prn, see $CIRFILE.startup.prn.err\n";
-#  $retcode = 2;
-#}
 
 print "Exit code = $retcode\n"; 
 exit $retcode;
