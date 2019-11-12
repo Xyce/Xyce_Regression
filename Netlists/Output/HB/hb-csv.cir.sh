@@ -28,6 +28,9 @@ $GOLDCSV =~ s/\.prn$//; # remove the .prn at the end.
 $XYCE_ACVERIFY = $XYCE_VERIFY;
 $XYCE_ACVERIFY =~ s/xyce_verify/ACComparator/;
 
+$CONVERT_TO_PRN=$XYCE_VERIFY;
+$CONVERT_TO_PRN =~ s/xyce_verify.pl/convertToPrn2.py/;
+
 # comparison tolerances for ACComparator.pl
 $abstol=1e-6;
 $reltol=1e-3;  #0.1%
@@ -36,6 +39,7 @@ $freqreltol=1e-6;
 
 # remove previous output files
 system("rm -f $CIRFILE.HB.TD.* $CIRFILE.HB.FD.* $CIRFILE.hb_ic.* $CIRFILE.out $CIRFILE.err");
+system("rm -f $CIRFILE.HB.TD.csv_converted.prn $CIRFILE.hb_ic.csv_converted.prn");
 
 # run Xyce
 $CMD="$XYCE $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
@@ -94,7 +98,45 @@ if ($XYCE_VERIFY =~ m/valgrind_check/)
     }
 }
 
-$CMD="$XYCE_VERIFY $CIRFILE $GOLDCSV.HB.TD.csv $CIRFILE.HB.TD.csv > $CIRFILE.HB.TD.csv.out 2> $CIRFILE.HB.TD.csv.err";
+$xyceexit = 0;
+# convert the various .csv files, excluding the FD one
+if (system("$CONVERT_TO_PRN $CIRFILE.HB.TD.csv") != 0){
+  print STDERR "Failed to convert $CIRFILE.HB.TD.csv to prn\n";
+  $xyceexit = 10;
+}
+
+if (system("$CONVERT_TO_PRN $CIRFILE.hb_ic.csv") != 0){
+  print STDERR "Failed to convert $CIRFILE.hb_ic.csv  to prn\n";
+  $xyceexit = 10;
+}
+
+if ($xyceexit !=0) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
+
+# check for absence of simulation footer text (for CSV format), excluding the FD one
+$xyceEndCount = `grep -ic "End of Xyce(TM) Simulation" $CIRFILE.HD.TD.csv 2>/dev/null`;
+if ($xyceEndCount == 0)
+{
+  printf "Output file $CIRFILE.HD.TD.csv contained correct number(%d) of \"End of Xyce(TM) Simulation\" statements.\n",$xyceEndCount;
+}
+else
+{
+  printf "Output file $CIRFILE.HD.TD.csv contained wrong number(%d) of \"End of Xyce(TM) Simulation\" statements.\n",$xyceEndCount;
+  $retcode = 2;
+}
+
+$xyceEndCount = `grep -ic "End of Xyce(TM) Simulation" $CIRFILE.hb_ic.csv 2>/dev/null`;
+if ($xyceEndCount == 0)
+{
+  printf "Output file $CIRFILE.hb_ic.csv contained correct number(%d) of \"End of Xyce(TM) Simulation\" statements.\n",$xyceEndCount;
+}
+else
+{
+  printf "Output file $CIRFILE.hb_ic.csv contained wrong number(%d) of \"End of Xyce(TM) Simulation\" statements.\n",$xyceEndCount;
+  $retcode = 2;
+}
+
+# compare output files
+$CMD="$XYCE_VERIFY $CIRFILE $GOLDCSV.HB.TD.prn $CIRFILE.HB.TD.csv_converted.prn > $CIRFILE.HB.TD.csv.out 2> $CIRFILE.HB.TD.csv.err";
 if (system($CMD) != 0 ) {
     print STDERR "Verification failed on file $CIRFILE.HB.TD.csv, see $CIRFILE.HB.TD.csv.err\n";
     $retcode = 2;
@@ -106,7 +148,7 @@ if (system($CMD) != 0) {
     $retcode = 2;
 }
 
-$CMD="$XYCE_VERIFY $CIRFILE $GOLDCSV.hb_ic.csv $CIRFILE.hb_ic.csv > $CIRFILE.hb_ic.csv.out 2> $CIRFILE.hb_ic.csv.err";
+$CMD="$XYCE_VERIFY $CIRFILE $GOLDCSV.hb_ic.prn $CIRFILE.hb_ic.csv_converted.prn > $CIRFILE.hb_ic.csv.out 2> $CIRFILE.hb_ic.csv.err";
 if (system($CMD) != 0 ) {
     print SFDERR "Verification failed on file $CIRFILE.hb_ic.csv, see $CIRFILE.hb_ic.csv.err\n";
     $retcode = 2;
