@@ -28,9 +28,18 @@ $XYCE_COMPARE=$ARGV[2];
 $CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
 
+$XYCE_ACVERIFY = $XYCE_VERIFY;
+$XYCE_ACVERIFY =~ s/xyce_verify/ACComparator/;
+
+# comparison tolerances for ACComparator.pl
+$abstol=1e-6;
+$reltol=1e-3;  #0.1%
+$zerotol=1e-10;
+$freqreltol=1e-6;
+
 #$retval=$Tools->wrapXyce($XYCE,$CIRFILE);
 #if ($retval != 14) { print "Exit code = $retval\n"; exit $retval; }
-system("rm -f $CIRFILE.HB.TD.prn $CIRFILE.hb_ic.prn");
+system("rm -f $CIRFILE.HB.TD.* $CIRFILE.HB.FD.* $CIRFILE.hb_ic.* $CIRFILE.out $CIRFILE.err");
 $CMD="$XYCE $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
 
 if (system($CMD) != 0)
@@ -47,81 +56,41 @@ if (defined ($xyceexit)) {print "Exit code = 10\n"; exit 10;}
 
 $GOLDPRN =~ s/\.prn$//; # remove the .prn at the end.
 
-if ((-f "$CIRFILE.HB.TD.prn") && (-f "$CIRFILE.HB.FD.prn") && (-f "$CIRFILE.hb_ic.prn"))
-{
-  $CMD="$XYCE_VERIFY $CIRFILE $GOLDPRN.HB.TD.prn $CIRFILE.HB.TD.prn > $CIRFILE.TD.prn.out 2> $CIRFILE.TD.prn.err";
-  $retval = system("$CMD");
-  if ($retval == 0) 
-  { 
-    $CMD="$XYCE_VERIFY $CIRFILE $GOLDPRN.hb_ic.prn $CIRFILE.hb_ic.prn > $CIRFILE.hb_ic.prn.out 2> $CIRFILE.hb_ic.prn.err";
-    $retval = system("$CMD");
-    if ($retval == 0)
-    { 
-      open(RESULTS, "$CIRFILE.HB.FD.prn");
-      # Grab the first line since it has the labels, figure out which one is FREQ
-      $line=<RESULTS>;
-      chop $line;
-      $line =~ s/^\s*//;
-      @lineOfDataFromXyce = (split(/[\s,]+/, $line));
-      $freqCol = -1;
-      for ($i=0; $i<$#lineOfDataFromXyce; $i++)
-      {
-        if ( $lineOfDataFromXyce[$i] eq 'FREQ' )
-        {
-          $freqCol = $i;
-          last;
-        }
-      }
-      # If FREQ was not found, exit with a test failure.
-      if ($freqCol < 0)
-      {
-        $retcode = 2;
-        last;
-      }
-      $resultLines = 0;
-      $oldVal = 0.0;
-      $newVal = 0.0;
-      while( $line=<RESULTS> )
-      {
-        # Exit loop on last line of data file, successful if there was lines processed in this file.       
-        if ($line =~ /End of Xyce/)
-        {
-          if ($resultLines > 0) { $retcode = 0; }
-          else { $retcode = 2; }
-          last;
-        }
-
-        chop $line;
-        $line =~ s/^\s*//;
-        @lineOfDataFromXyce = (split(/[\s,]+/, $line));
-
-        # For first data line, just set newVal and wait for next data line
-        if ($resultLines == 0) { $newVal = $lineOfDataFromXyce[$freqCol]; }
-
-        # Compare frequency values to make sure they are in ascending order
-        if ($resultLines > 0)
-        {
-          $oldVal = $newVal;
-          $newVal = $lineOfDataFromXyce[$freqCol];
-          if ($oldVal > $newVal)
-          {
-            print "Frequency value $oldVal is greater than $newVal, frequencies should be output in ascending order.\n";
-            $retcode = 2;
-            last;
-          }
-          else { $retcode = 0; }        
-        }
-        $resultLines++;
-      }
-      close(RESULTS);
-    }
-    else { $retcode = 2; }
-  }
-  else { $retcode = 2; }
+# check for output files
+if ( !(-f "$CIRFILE.HB.TD.prn")) {
+    print STDERR "Missing output file $CIRFILE.HB.TD.prn\n";
+    $xyceexit=14;
 }
-else
-{
-  $retcode = 14;
+if ( !(-f "$CIRFILE.HB.FD.prn")) {
+    print STDERR "Missing output file $CIRFILE.HB.FD.prn\n";
+    $xyceexit=14;
+}
+if ( !(-f "$CIRFILE.hb_ic.prn")) {
+    print STDERR "Missing output file $CIRFILE.hb_ic.prn\n";
+    $xyceexit=14;
+}
+
+if (defined ($xyceexit)) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
+
+# check output files
+$retcode = 0;
+
+$CMD="$XYCE_VERIFY $CIRFILE $GOLDPRN.HB.TD.prn $CIRFILE.HB.TD.prn > $CIRFILE.HB.TD.prn.out 2> $CIRFILE.HB.TD.prn.err";
+if (system($CMD) != 0) {
+    print STDERR "Verification failed on file $CIRFILE.HB.TD.prn, see $CIRFILE.HB.TD.prn.err\n";
+    $retcode = 2;
+}
+
+$CMD="$XYCE_ACVERIFY $GOLDPRN.HB.FD.prn $CIRFILE.HB.FD.prn $abstol $reltol $zerotol $freqreltol > $CIRFILE.HB.FD.prn.out 2> $CIRFILE.HB.FD.prn.err";
+if (system($CMD) != 0) {
+    print STDERR "Verification failed on file $CIRFILE.HB.FD.prn, see $CIRFILE.HB.FD.prn.err\n";
+    $retcode = 2;
+}
+
+$CMD="$XYCE_VERIFY $CIRFILE $GOLDPRN.hb_ic.prn $CIRFILE.hb_ic.prn > $CIRFILE.hb_ic.prn.out 2> $CIRFILE.hb_ic.prn.err";
+if (system($CMD) != 0) {
+    print STDERR "Verification failed on file $CIRFILE.hb_ic.prn, see $CIRFILE.hb_ic.prn.err\n";
+    $retcode = 2;
 }
 
 print "Exit code = $retcode\n"; exit $retcode;
