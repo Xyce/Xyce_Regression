@@ -1,5 +1,11 @@
 simple LC Tank Oscillator
 *
+* An important note is that this netlist uses GEAR, rather
+* than TRAP as the time integrator for MDPE.  The MPDE/WaMPDE
+* interpolation functions are not implemented yet for the Gear
+* method, so the <netlistName>.prn file ONLY has the output for the
+* DCOP.  See SON Bugs 361 and 969 for more details.
+
 
 *.tran 0 1.0e-8 
 .mpde 0 1.0e-8 

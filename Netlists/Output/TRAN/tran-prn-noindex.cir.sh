@@ -42,9 +42,33 @@ if ( !(-f "$CIRFILE.prn")) {
 
 if (defined ($xyceexit)) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
 
+# If this is a VALGRIND run, we don't do our normal verification, we
+# merely run "valgrind_check.sh" as if it were xyce_verify.pl
+if ($XYCE_VERIFY =~ m/valgrind_check/)
+{
+    print STDERR "DOING VALGRIND RUN INSTEAD OF REAL RUN!";
+    if (system("$XYCE_VERIFY $CIRFILE $GOLDCSV $CIRFILE.prn > $CIRFILE.prn.out 2>&1 $CIRFILE.prn.err"))
+    {
+        print "Exit code = 2 \n";
+        exit 2;
+    }
+    else
+    {
+        print "Exit code = 0 \n";
+        exit 0;
+    }
+}
+
+# compare gold and test files
 $retcode = 0;
 
-$CMD="$XYCE_VERIFY $CIRFILE $GOLDPRN $CIRFILE.prn > $CIRFILE.prn.out 2> $CIRFILE.prn.err";
+$absTol=1e-5;
+$relTol=1e-3;
+$zeroTol=1e-8;
+$fc = $XYCE_VERIFY;
+$fc=~ s/xyce_verify/file_compare/;
+
+$CMD="$fc $GOLDPRN $CIRFILE.prn $absTol $relTol $zeroTol > $CIRFILE.prn.out 2> $CIRFILE.prn.err";
 if (system("$CMD") != 0) {
     print STDERR "Verification failed on file $CIRFILE.prn, see $CIRFILE.prn.err\n";
     $retcode = 2;

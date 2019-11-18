@@ -4,9 +4,11 @@ TRAN test of print output format
 *
 
 R1 1 0 10
-V1 1 0 sin (0 10 10MEG 0 0)
+V1 1 0 sin (0 1 1 0 0)
+
+.OPTIONS OUTPUT INITIAL_INTERVAL=0.01
 
 .print TRAN FORMAT=NOINDEX v(1) I(v1)
-.tran 1ns 10ns
+.tran 0 1
 
 .end

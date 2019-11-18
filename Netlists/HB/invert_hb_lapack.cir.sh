@@ -119,10 +119,10 @@ if (system($CMD) != 0) {
     $retcode = 2;
 }
 
-#$CMD="$XYCE_VERIFY $CIRFILE $GOLDPRN.startup.prn $CIRFILE.startup.prn > $CIRFILE.startup.prn.out 2> $CIRFILE.startup.prn.err";
-#if (system($CMD) != 0) {
-#    print STDERR "Verification failed on file $CIRFILE.startup.prn, see $CIRFILE.startup.prn.err\n";
-#    $retcode = 2;
-#}
+$CMD="$XYCE_VERIFY $CIRFILE $GOLDPRN.startup.prn $CIRFILE.startup.prn > $CIRFILE.startup.prn.out 2> $CIRFILE.startup.prn.err";
+if (system($CMD) != 0) {
+    print STDERR "Verification failed on file $CIRFILE.startup.prn, see $CIRFILE.startup.prn.err\n";
+    $retcode = 2;
+}
 
 print "Exit code = $retcode\n"; exit $retcode;

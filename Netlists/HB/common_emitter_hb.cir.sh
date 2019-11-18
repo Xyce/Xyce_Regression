@@ -73,6 +73,14 @@ if ( !(-f "$CIRFILE.HB.FD.prn")) {
     print STDERR "Missing output file $CIRFILE.HB.FD.prn\n";
     $xyceexit=14;
 }
+if ( !(-f "$CIRFILE.hb_ic.prn")) {
+    print STDERR "Missing output file $CIRFILE.hb_ic.prn\n";
+    $xyceexit=14;
+}
+if ( !(-f "$CIRFILE.startup.prn")) {
+    print STDERR "Missing output file $CIRFILE.startup.prn\n";
+    $xyceexit=14;
+}
 
 if (defined ($xyceexit)) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
 
