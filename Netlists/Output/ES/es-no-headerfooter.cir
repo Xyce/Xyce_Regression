@@ -1,5 +1,5 @@
 *************************************************************
-* Test Embedded Sampling output for .DC for FORMAT<STD|CSV>
+* Test Embedded Sampling output for .DC for FORMAT=STD
 * with .OPTIONS OUTPUT PRINTHEADER=FALSE PRINTFOOTER=FALSE
 *
 * See SON Bugs 1201 and 1252 for more details.
@@ -30,7 +30,6 @@ v1 2 0 10V
 + stdoutput=true
 
 .PRINT ES
-.PRINT ES PRECISION=6 FORMAT=CSV FILE=es-no-headerfooter.cir.ES.csv
 
 .OPTIONS OUTPUT PRINTHEADER=FALSE PRINTFOOTER=FALSE
 
