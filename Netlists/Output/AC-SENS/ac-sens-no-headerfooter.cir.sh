@@ -53,12 +53,6 @@ if ( not -s "$CIRFILE.FD.SENS.prn")
   $xyce_exit = 14;
 }
 
-if ( not -s "$CIRFILE.FD.SENS.csv")
-{
-  print "Missing output file $CIRFILE.FD.SENS.csv\n";
-  $xyce_exit = 14;
-}
-
 if ($xyce_exit != 0) { print "Exit code = $xyce_exit\n"; exit $xyce_exit;}
 
 # now compare the test and gold file .prn files for .PRINT SENS
@@ -70,15 +64,6 @@ $zeroTol=1e-10;
 $freqreltol=1e-6;
 $XYCE_ACVERIFY = $XYCE_VERIFY;
 $XYCE_ACVERIFY =~ s/xyce_verify/ACComparator/;
-
-$CMD="$XYCE_ACVERIFY --gsformat=xycecsv $CIRFILE.FD.SENS.csv $GOLDPRN.FD.SENS.csv $absTol $relTol $zeroTol $freqreltol > $CIRFILE.FD.SENS.csv.out 2> $CIRFILE.FD.SENS.csv.err";
-$retval = system("$CMD");
-$retval = $retval >> 8;
-if ($retval != 0)
-{
-  print STDERR "Comparator exited with exit code $retval on file $CIRFILE.FD.SENS.csv\n";
-  $retcode = 2;
-}
 
 $CMD="$XYCE_ACVERIFY --gsformat=xycecsv $CIRFILE.FD.SENS.prn $GOLDPRN.FD.SENS.prn $absTol $relTol $zeroTol $freqreltol > $CIRFILE.FD.SENS.prn.out 2> $CIRFILE.FD.SENS.prn.err";
 $retval = system("$CMD");
