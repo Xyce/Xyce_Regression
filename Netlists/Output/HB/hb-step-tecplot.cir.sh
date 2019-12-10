@@ -62,7 +62,8 @@ if ($retval != 0)
   }
 }
 
-# check if the 3 tecplot output files exist.
+# Check if the 3 tecplot output files exist.  The tmp file, used to
+# help make the HB_IC output for the .STEP case, should have been deleted.
 if ( !(-f "$CIRFILE.HB.TD.dat")) {
     print STDERR "Missing output file $CIRFILE.HB.TD.dat\n";
     $xyceexit=14;
@@ -73,6 +74,10 @@ if ( !(-f "$CIRFILE.HB.FD.dat")) {
 }
 if ( !(-f "$CIRFILE.hb_ic.dat")) {
     print STDERR "Missing output file $CIRFILE.hb_ic.dat\n";
+    $xyceexit=14;
+}
+if ( (-f "$CIRFILE.hb_ic.dat.tmp")) {
+    print STDERR "Tmp file $CIRFILE.hb_ic.dat.tmp was not properly deleted\n";
     $xyceexit=14;
 }
 
@@ -139,7 +144,7 @@ else
 $retcode = testFileBasic("$CIRFILE.hb_ic.dat");
 
 # convert and compare the *hb_ic.dat file.
-$result = system( "$TRANSLATE $CIRFILE.hb_ic.dat"); 
+$result = system( "$TRANSLATE $CIRFILE.hb_ic.dat");
 if ( $result != 0 )
 {
   print "Failed to translate TECPLOT to STD\n";
