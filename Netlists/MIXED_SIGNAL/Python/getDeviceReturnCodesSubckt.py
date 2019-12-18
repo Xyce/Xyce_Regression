@@ -1,16 +1,20 @@
-# This netlist is used to test the return codes for the 
+# This netlist is used to test the return codes for the
 # Python methods getDeviceNames() and getDACDeviceNames()
 # for the cases of devices in subcircuits:
-#   
+#
 #    1) Success (1) for a valid non-Y device type (L)
 #       that exists in the netlist.
-#       
+#
 #    2) Success for a valid Y device types (e.g. YADC
 #       and YDAC) that exist in the netlist.  This also
 #       tests that just DAC works for a Y device.
 #
-#    3) Success for a valid U device type (e.g. BUF) that 
+#    3) Success for a valid U device type (e.g. BUF) that
 #       exists in the netlist.
+#
+# It also tests the getTotalNumDevices() and getAllDeviceNames()
+# methods with subcircuits.
+
 import sys
 from xyce_interface import xyce_interface
 
@@ -51,6 +55,14 @@ print( names )
 
 (result, names) = xyceObj.getDeviceNames("BUF")
 print( "return value from getDeviceNames for BUF model group is %d" % result )
+print( names )
+
+(result, numDevices, maxDeviceNameLength) = xyceObj.getTotalNumDevices()
+print( "return value from getTotalNumDevices is %d" % result )
+print( "Total number devices and max name length are %d %d" % (numDevices, maxDeviceNameLength) )
+
+(result, names) = xyceObj.getAllDeviceNames()
+print( "return value from getAllDeviceNames is %d" % result )
 print( names )
 
 print( "calling close")

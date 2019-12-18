@@ -86,7 +86,7 @@ else
                   "return value from getDeviceNames for YADC model group is 1",
                   "\\['YADC!ADC1'\\]",
                   "return value from getDeviceNames for BUF model group is 1",
-                  "\\['UBUF!BUF1'\\]",
+                  "\\['UBUF!BUF12'\\]",
                   "Netlist warning: No devices from model group YDAC found in netlist",
                   "return value from getDeviceNames for YDAC model group is 0",
                   "Netlist warning: No DAC devices found in netlist",
@@ -94,7 +94,12 @@ else
                   "Netlist warning: No devices from model group BOGO found in netlist",
                   "return value from getDeviceNames for BOGO model group is 0",
                   "Netlist warning: No devices from model group I found in netlist",
-                  "return value from getDeviceNames for I model group is 0"                 
+                  "return value from getDeviceNames for I model group is 0",
+                  "return value from getTotalNumDevices is 1",
+                  "Total number devices and max name length are 9 10",
+                  "return value from getAllDeviceNames is 1",
+                  "\\['VIN', 'V_DPN', 'YADC!ADC1', 'R2', 'B2', 'R1', 'V1', 'UBUF!BUF12', 'RBUF'\\]"
+
 );
 if ( $Tools->checkError("$CIRFILE.out",@searchstrings) != 0) 
 {
