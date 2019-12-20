@@ -91,7 +91,12 @@ else
                   "return value from getDACDeviceNames for YDAC model group is 1",
                   "\\['X1:YDAC!DAC1'\\]",
                   "return value from getDeviceNames for BUF model group is 1",
-                  "\\['X1:UBUF!BUF1'\\]" 
+                  "\\['X1:UBUF!BUF1'\\]",
+                  "return value from getTotalNumDevices is 1",
+                  "Total number devices and max name length are 10 12",
+                  "return value from getAllDeviceNames is 1",
+  "\\['X1:YADC!ADC1', 'X1:R2', 'X1:RBUF', 'X1:UBUF!BUF1', 'X1:VIN', 'X1:V_DPN', 'X1:YDAC!DAC1', 'V1', 'X1:L2', 'R1'\\]"
+ 
 );
 if ( $Tools->checkError("$CIRFILE.out",@searchstrings) != 0) 
 {

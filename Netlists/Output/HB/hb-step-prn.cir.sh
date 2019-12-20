@@ -57,7 +57,8 @@ if ($retval != 0)
   }
 }
 
-#check for output files
+# check for output files.  The tmp file, used to help make the
+# HB_IC output for the .STEP case, should have been deleted.
 if ( !(-f "$CIRFILE.HB.TD.prn")) {
     print STDERR "Missing output file $CIRFILE.HB.TD.prn\n";
     $xyceexit=14;
@@ -68,6 +69,10 @@ if ( !(-f "$CIRFILE.HB.FD.prn")) {
 }
 if ( !(-f "$CIRFILE.hb_ic.prn")) {
     print STDERR "Missing output file $CIRFILE.hb_ic.prn\n";
+    $xyceexit=14;
+}
+if ( (-f "$CIRFILE.hb_ic.prn.tmp")) {
+    print STDERR "Tmp file $CIRFILE.hb_ic.prn.tmp was not properly deleted\n";
     $xyceexit=14;
 }
 

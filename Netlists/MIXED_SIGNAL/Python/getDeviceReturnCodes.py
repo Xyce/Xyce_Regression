@@ -1,24 +1,28 @@
-# This netlist is used to test the return codes for the 
+# This netlist is used to test the return codes for the
 # Python methods getDeviceNames() and getDACDeviceNames()
 # for the cases of:
 #
 #    1) Success (1) for a valid non-Y device type (B) that
 #       exists in the netlist.
-#       
-#    2) Success for a valid Y device type (e.g. YADC) that 
+#
+#    2) Success for a valid Y device type (e.g. YADC) that
 #       exists in the netlist.
 #
-#    3) Success for a valid U device type (e.g. BUF) that 
+#    3) Success for a valid U device type (e.g. BUF) that
 #       exists in the netlist.
-#   
+#
 #    4) failure (0) since this netlist has no YDAC devices,
 #       but YADC is a valid Y device type.
 #
-#    5) failure if the device type (BOGO) does not exist 
+#    5) failure if the device type (BOGO) does not exist
 #       in Xyce.
 #
-#    6) Failure for a valid non-Y device type (e.g. I) that 
+#    6) Failure for a valid non-Y device type (e.g. I) that
 #       does not exist in the netlist.
+#
+# It also tests the getTotalNumDevices() and getAllDeviceNames()
+# methods.
+
 import sys
 from xyce_interface import xyce_interface
 
@@ -65,6 +69,14 @@ print( "return value from getDeviceNames for BOGO model group is %d" % result )
 
 (result, names) = xyceObj.getDeviceNames("I")
 print( "return value from getDeviceNames for I model group is %d" % result )
+
+(result, numDevices, maxDeviceNameLength) = xyceObj.getTotalNumDevices()
+print( "return value from getTotalNumDevices is %d" % result )
+print( "Total number devices and max name length are %d %d" % (numDevices, maxDeviceNameLength) )
+
+(result, names) = xyceObj.getAllDeviceNames()
+print( "return value from getAllDeviceNames is %d" % result )
+print( names )
 
 print( "calling close")
 xyceObj.close()
