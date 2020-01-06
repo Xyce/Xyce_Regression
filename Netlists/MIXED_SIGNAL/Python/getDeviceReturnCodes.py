@@ -20,8 +20,9 @@
 #    6) Failure for a valid non-Y device type (e.g. I) that
 #       does not exist in the netlist.
 #
-# It also tests the getTotalNumDevices() and getAllDeviceNames()
-# methods.
+# It also tests the getTotalNumDevices(), getAllDeviceNames(),
+# checkDeviceParamName() and getDeviceParamVal() methods for both
+# valid and invalid device names and parameter names.
 
 import sys
 from xyce_interface import xyce_interface
@@ -77,6 +78,38 @@ print( "Total number devices and max name length are %d %d" % (numDevices, maxDe
 (result, names) = xyceObj.getAllDeviceNames()
 print( "return value from getAllDeviceNames is %d" % result )
 print( names )
+
+# valid devices and parameter
+result = xyceObj.checkDeviceParamName("R1:R")
+print ("Return value for checkDeviceParamName for R1:R is %d" % result)
+
+result = xyceObj.checkDeviceParamName("YADC!ADC1:WIDTH")
+print ("Return value for checkDeviceParamName for YADC!ADC1:WIDTH is %d" % result)
+
+# test invalid device and invalid parameter
+result = xyceObj.checkDeviceParamName("RBOGO:R")
+print ("Return value for checkDeviceParamName for RBOGO:R is %d" % result)
+
+result = xyceObj.checkDeviceParamName("R1:BOGO")
+print ("Return value for checkDeviceParamName for R1:BOGO is %d" % result)
+
+# get param values for valid devices
+(result, value) = xyceObj.getDeviceParamVal("R1:R")
+print ("Return value for getDeviceParamVal for R1:R is %d" % result)
+print ("R1:R value is %d" % value)
+
+(result, value) = xyceObj.getDeviceParamVal("YADC!ADC1:WIDTH")
+print ("Return value for getDeviceParamVal for YADC!ADC1:WIDTH is %d" % result)
+print ("YADC!ADC1:WIDTH value is %d" % value)
+
+# test invalid device and invalid parameter
+(result, value) = xyceObj.getDeviceParamVal("RBOGO:R")
+print ("Return value for getDeviceParamVal for RBOGO:R is %d" % result)
+print ("RBOGO:R value is %d" % value)
+
+(result, value) = xyceObj.getDeviceParamVal("R1:BOGO")
+print ("Return value for getDeviceParamVal for R1:BOGO is %d" % result)
+print ("R1:BOGO value is %d" % value)
 
 print( "calling close")
 xyceObj.close()

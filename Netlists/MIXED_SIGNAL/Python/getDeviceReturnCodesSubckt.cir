@@ -12,15 +12,16 @@
 *    3) Success for a valid U device type (e.g. BUF) that
 *       exists in the netlist.
 *
-* It also tests the getTotalNumDevices() and getAllDeviceNames()
-* methods with subcircuits.
+* It also tests the getTotalNumDevices(), getAllDeviceNames(),
+* checkDeviceParamName() and getDeviceParamVal() methods with
+* subcircuits.
 
 V1 1 0 SIN(0 1 1e3)
 X1 1 2 SUB1
 R1 2 0 1
 
 .SUBCKT SUB1 a c
-R2 a b 1
+R2 a b 2
 L2 b c 1e-3
 
 YADC adc1 a b simpleADC R=1T WIDTH=1
