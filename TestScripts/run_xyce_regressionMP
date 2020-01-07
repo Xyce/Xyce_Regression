@@ -933,8 +933,8 @@ sub runTestsInSubProc
       #print ("Calling runTest with command \"$runTestCommand\"");
       #system( $runTestCommand );
       # start a new process to run a test.  Save process ID to monitor its progress
-      my $stdOutFile="$wdir/$ckt.pstdout";
-      my $stdErrFile="$wdir/$ckt.pstderr";
+      my $stdOutFile="$wdir/$ckt.stdout";
+      my $stdErrFile="$wdir/$ckt.stderr";
     
       my $testPID=$Tools->forkCommand( $runTestCommand, $stdOutFile, $stdErrFile );
       if ($testPID < 0)
