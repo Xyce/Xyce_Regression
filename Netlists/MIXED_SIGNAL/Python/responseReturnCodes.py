@@ -19,8 +19,9 @@ print( "calling initialize with netlist %s" % argv[1] )
 result = xyceObj.initialize(argv)
 print( "return value from initialize is %d" % result )
 
-# check return codes for valid (MAXV1) and invalid (BOGO) names
-result = xyceObj.checkResponseVarName('MAXV1')
+# Check return codes for valid (MAXV1) and invalid (BOGO) names.
+# Used mixed case for the valid measure name.
+result = xyceObj.checkResponseVarName('maxV1')
 print( "return value from checkResponseVarName for MAXV1 is %d" % result )
 
 result = xyceObj.checkResponseVarName('BOGO')
