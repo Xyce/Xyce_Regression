@@ -39,7 +39,7 @@ $PYFILE =~s/cir/py/;
 $XYCE_BASE = $XYCE;
 
 # remove files from previous runs
-system("rm -f $CIRFILE.out $CIRFILE.prn $CIRFILE.mt0");
+system("rm -f $CIRFILE.out $CIRFILE.prn $CIRFILE.gidArrays");
 
 $XYCE_LIB_DIR="";
 
@@ -90,8 +90,81 @@ if ($retval != 0)
 );
 if ( $Tools->checkError("$CIRFILE.out",@searchstrings) != 0)
 {
- print "Failed to find all of the correct XyceCInterface return codes in stdout\n";
- $retval = 2;
+  print "Failed to find all of the correct XyceCInterface return codes in stdout\n";
+  $retval = 2;
+}
+
+# now check that the GIDs are sensible
+print "Checking GID values for consistency\n";
+$CMD = "grep \"\\[\" $CIRFILE.out > $CIRFILE.gidArrays";
+$retcode = system($CMD);
+if ($retcode != 0)
+{
+  print "Error grepping for GIDs in $CIRFILE.out\n";
+  $retval = 2;
+}
+else
+{
+  if (not -s "$CIRFILE.gidArrays" )
+  {
+    print STDERR "Missing Test file: $CIRFILE.gidArrays\n";
+    $retval = 2;
+  }
+  else
+  {
+    open(TESTFILE,"$CIRFILE.gidArrays");
+    $lineCount=0;
+    $prevLine="";
+    $prevGID = -2 ; # this GID number is invalid
+    while ( ($line=<TESTFILE>) && ($lineCount < 5) )
+    {
+      $lineCount++;
+      chop $line;
+      # Remove leading spaces on lineGS, otherwise the spaces become
+      # element 0 of "@gsData" instead of the first column of data.
+      $line =~ s/^\s*//;
+      @lineData = (split(/[\s,]+/, $line));
+
+      if ($lineCount == 1)
+      {
+	if ( ($lineData[0] ne "\[-1") || ($#lineData !=1) )
+        {
+          print "Invalid GIDs for line 1 in $CIRFILE.gidArrays\n";
+          $retval = 2;
+        }
+      }
+      elsif ( $lineCount < 5)
+      {
+        $tmpStr = $lineData[0];
+        $tmpStr =~ s/^.//s;
+ 	$currGID = $tmpStr;
+        #print "currGID and prevGID =  $currGID $prevGID\n";
+        if ( ($currGID ne $prevGID) || ($#lineData !=1) )
+        {
+          print "Invalid GIDs for line $lineCount and previous line in $CIRFILE.gidArrays\n";
+          $retval = 2;
+        }
+      }
+      else
+      {
+        if ($line ne $prevLine)
+        {
+          print "Invalid GIDs for line $lineCount and previous line in $CIRFILE.gidArrays\n";
+          $retval = 2;
+        }
+      }
+
+      if ($#lineData ==1)
+      {
+        $tmpStr = $lineData[1];
+        $tmpStr =~ s/.$//s;
+        $prevGID = $tmpStr;
+        $prevLine = $line;
+      }
+    }
+
+    close(TESTFILE);
+  }
 }
 
 print "Exit code = $retval\n"; exit $retval;
