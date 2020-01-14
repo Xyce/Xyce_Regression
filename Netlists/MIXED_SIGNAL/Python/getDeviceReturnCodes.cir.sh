@@ -98,8 +98,23 @@ else
                   "return value from getTotalNumDevices is 1",
                   "Total number devices and max name length are 9 10",
                   "return value from getAllDeviceNames is 1",
-                  "\\['VIN', 'V_DPN', 'YADC!ADC1', 'R2', 'B2', 'R1', 'V1', 'UBUF!BUF12', 'RBUF'\\]"
-
+                  "\\['VIN', 'V_DPN', 'YADC!ADC1', 'R2', 'B2', 'R1', 'V1', 'UBUF!BUF12', 'RBUF'\\]",
+                  "Return value for checkDeviceParamName for R1:R is 1",
+                  "Return value for checkDeviceParamName for YADC!ADC1:WIDTH is 1",
+                  "Netlist warning: Device entity not found for RBOGO:R",
+                  "Return value for checkDeviceParamName for RBOGO:R is 0",
+                  "Netlist warning: Device parameter not found for R1:BOGO",
+                  "Return value for checkDeviceParamName for R1:BOGO is 0",
+                  "Return value for getDeviceParamVal for R1:R is 1",
+                  "R1:R value is 2",
+                  "Return value for getDeviceParamVal for YADC!ADC1:WIDTH is 1",
+                  "YADC!ADC1:WIDTH value is 2",
+                  "Netlist warning: Device entity not found for RBOGO:R",
+                  "Return value for getDeviceParamVal for RBOGO:R is 0",
+                  "RBOGO:R value is 0",
+                  "Netlist warning: Device parameter not found for R1:BOGO",
+                  "Return value for getDeviceParamVal for R1:BOGO is 0",
+                  "R1:BOGO value is 0"
 );
 if ( $Tools->checkError("$CIRFILE.out",@searchstrings) != 0) 
 {

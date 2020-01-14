@@ -12,8 +12,9 @@
 #    3) Success for a valid U device type (e.g. BUF) that
 #       exists in the netlist.
 #
-# It also tests the getTotalNumDevices() and getAllDeviceNames()
-# methods with subcircuits.
+# It also tests the getTotalNumDevices(), getAllDeviceNames(),
+# checkDeviceParamName() and getDeviceParamVal() methods with
+# subcircuits.
 
 import sys
 from xyce_interface import xyce_interface
@@ -64,6 +65,13 @@ print( "Total number devices and max name length are %d %d" % (numDevices, maxDe
 (result, names) = xyceObj.getAllDeviceNames()
 print( "return value from getAllDeviceNames is %d" % result )
 print( names )
+
+result = xyceObj.checkDeviceParamName("X1:R2:R")
+print ("Return value for checkDeviceParamName for X1:R2:R is %d" % result)
+
+(result, value) = xyceObj.getDeviceParamVal("X1:R2:R")
+print ("Return value for getDeviceParamVal for X1:R2:R is %d" % result)
+print ("X1:R2:R value is %d" % value)
 
 print( "calling close")
 xyceObj.close()

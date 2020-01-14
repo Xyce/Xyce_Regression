@@ -95,8 +95,10 @@ else
                   "return value from getTotalNumDevices is 1",
                   "Total number devices and max name length are 10 12",
                   "return value from getAllDeviceNames is 1",
-  "\\['X1:YADC!ADC1', 'X1:R2', 'X1:RBUF', 'X1:UBUF!BUF1', 'X1:VIN', 'X1:V_DPN', 'X1:YDAC!DAC1', 'V1', 'X1:L2', 'R1'\\]"
- 
+  "\\['X1:YADC!ADC1', 'X1:R2', 'X1:RBUF', 'X1:UBUF!BUF1', 'X1:VIN', 'X1:V_DPN', 'X1:YDAC!DAC1', 'V1', 'X1:L2', 'R1'\\]",
+                  "Return value for checkDeviceParamName for X1:R2:R is 1",
+                  "Return value for getDeviceParamVal for X1:R2:R is 1",
+                  "X1:R2:R value is 2"
 );
 if ( $Tools->checkError("$CIRFILE.out",@searchstrings) != 0) 
 {

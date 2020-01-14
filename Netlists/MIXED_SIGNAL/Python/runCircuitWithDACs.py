@@ -49,8 +49,8 @@ for i in steps:
   (result, actual_time) = xyceObj.simulateUntil( requested_time )
   print( "simulateUntil status = %d and actual_time = %f" % (result, actual_time) )
   
-  # get some result from the ciruit
-  (result,value) = xyceObj.obtainResponse('YMEMRISTORRES')
+  # get some result from the circuit.  Use mixed case for the measure name.
+  (result,value) = xyceObj.obtainResponse('YMEMRISTORres')
   print( "return value from obtainResponse = %d" % result)
   print( "R= %f " % value )
 

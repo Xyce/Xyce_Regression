@@ -20,17 +20,18 @@
 *    6) Failure for a valid non-Y device type (e.g. I) that
 *       does not exist in the netlist.
 *
-* It also tests the getTotalNumDevices() and getAllDeviceNames()
-* methods.
+* It also tests the getTotalNumDevices(), getAllDeviceNames(),
+* checkDeviceParamName() and getDeviceParamVal() methods for both
+* valid and invalid device names and parameter names.
 
 V1 1 0 SIN(0 1 1)
-R1 1 0 1
+R1 1 0 2
 
 B2 2 0 V={2*V(1)}
 R2 2 0 1
 
 * Test Y device
-YADC adc1 1 0 simpleADC R=1T WIDTH=1
+YADC adc1 1 0 simpleADC R=1T WIDTH=2
 .model simpleADC ADC(settlingtime=50ns uppervoltagelimit=2 lowervoltagelimit=0)
 
 * Test U device.  Have its name length be 10, to be different from there

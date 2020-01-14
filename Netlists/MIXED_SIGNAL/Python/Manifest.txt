@@ -40,6 +40,9 @@ ADCStateTest.cir.TSarrayGoldData
 noADCtest.cir
 noADCtest.cir.sh
 noADCtest.py
+adjacentNodes.cir
+adjacentNodes.cir.sh
+adjacentNodes.py
 runMultipleSims.cir
 runMultipleSims1.cir
 runMultipleSims2.cir
