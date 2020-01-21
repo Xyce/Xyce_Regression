@@ -1,3 +1,6 @@
+AvgTestAC.cir
+AvgTestAC.cir.sh
+AvgTestACGSfile
 ErrorTestAC.cir
 ErrorTestAC.cir.sh
 ErrorTestACCommaDelimRawData.FD.prn

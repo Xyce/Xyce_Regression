@@ -1,4 +1,7 @@
 tags
+AvgTest1DC.cir
+AvgTest1DC.cir.sh
+AvgTest1DCGSfile
 ErrorTest1DC.cir
 ErrorTest1DC.cir.sh
 ErrorTest1DCGSfile

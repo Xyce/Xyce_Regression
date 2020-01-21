@@ -21,8 +21,9 @@ $GOLDPRN=$ARGV[4];
 if (defined($verbose)) { $Tools->setVerbose(1); }
 
 # check various error cases
-# this string should be in the output of this failed Xyce run  
-@searchstrings = ( "Netlist error in file unsupported_ac_measure_types.cir at or near line 26",
+# this string should be in the output of this failed Xyce run
+@searchstrings = (
+    "Netlist error in file unsupported_ac_measure_types.cir at or near line 26",
     "Only ERROR, EQN/PARAM, MIN, MAX and PP measure types are supported for AC",
     "measure mode",
     "Netlist error in file unsupported_ac_measure_types.cir at or near line 27",
@@ -53,9 +54,6 @@ if (defined($verbose)) { $Tools->setVerbose(1); }
     "Only ERROR, EQN/PARAM, MIN, MAX and PP measure types are supported for AC",
     "measure mode",
     "Netlist error in file unsupported_ac_measure_types.cir at or near line 36",
-    "Only ERROR, EQN/PARAM, MIN, MAX and PP measure types are supported for AC",
-    "measure mode",
-    "Netlist error in file unsupported_ac_measure_types.cir at or near line 37",
     "Only ERROR, EQN/PARAM, MIN, MAX and PP measure types are supported for AC",
     "measure mode"
  );

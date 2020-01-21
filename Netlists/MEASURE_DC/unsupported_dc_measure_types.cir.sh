@@ -22,7 +22,8 @@ if (defined($verbose)) { $Tools->setVerbose(1); }
 
 # check various error cases
 # this string should be in the output of this failed Xyce run  
-@searchstrings = ("Netlist error in file unsupported_dc_measure_types.cir at or near line 24",
+@searchstrings = (
+"Netlist error in file unsupported_dc_measure_types.cir at or near line 24",
   "Only ERROR, EQN/PARAM, MIN, MAX and PP measure types are supported for DC",
   "measure mode",
 "Netlist error in file unsupported_dc_measure_types.cir at or near line 25",
@@ -30,10 +31,10 @@ if (defined($verbose)) { $Tools->setVerbose(1); }
   "measure mode",
 "Netlist error in file unsupported_dc_measure_types.cir at or near line 26",
   "Only ERROR, EQN/PARAM, MIN, MAX and PP measure types are supported for DC",
-  "measure mode",
+  "mode",
 "Netlist error in file unsupported_dc_measure_types.cir at or near line 27",
   "Only ERROR, EQN/PARAM, MIN, MAX and PP measure types are supported for DC",
-  "mode",
+  "measure mode",
 "Netlist error in file unsupported_dc_measure_types.cir at or near line 28",
   "Only ERROR, EQN/PARAM, MIN, MAX and PP measure types are supported for DC",
   "measure mode",
@@ -53,9 +54,6 @@ if (defined($verbose)) { $Tools->setVerbose(1); }
   "Only ERROR, EQN/PARAM, MIN, MAX and PP measure types are supported for DC",
   "measure mode",
 "Netlist error in file unsupported_dc_measure_types.cir at or near line 34",
-  "Only ERROR, EQN/PARAM, MIN, MAX and PP measure types are supported for DC",
-  "measure mode",
-"Netlist error in file unsupported_dc_measure_types.cir at or near line 35",
   "Only ERROR, EQN/PARAM, MIN, MAX and PP measure types are supported for DC",
   "measure mode"
 );

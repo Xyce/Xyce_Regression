@@ -1,6 +1,6 @@
 Test errors for measure types that are not supported for AC 
 **********************************************************************
-* At present, only the EQN/PARAM, ERROR, MAX, MIN and PP measure types 
+* At present, only the AVG, EQN/PARAM, ERROR, MAX, MIN and PP measure types
 * are supported for AC mode for .MEASURE.  This tests the error 
 * messages from the other valid types, that aren't supported for AC.
 * 
@@ -23,7 +23,6 @@ rload 1 0 1000
 * These measure types are not supported for AC mode. The exact syntax
 * of each measure line doesn't matter.  Just that it has ac as the
 * second word.
-.measure ac avgVal avg VM(1)
 .measure ac derivVal deriv VM(1) WHEN V(1)=0.5
 .measure ac dutyVal duty VM(1)
 .measure ac whenVal WHEN VM(1)=0.5

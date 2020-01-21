@@ -9,6 +9,13 @@ DotOpOnlyGSfile
 DoubleDCOP.cir
 DoubleDCOP.cir.sh
 DoubleDCOPGSfile
+AvgTest1DC.cir
+AvgTest1DC.cir.sh
+AvgTest1DCGSfile
+AvgTest1DC.cir.tags
+AvgTest2DC.cir
+AvgTest2DC.cir.sh
+AvgTest2DCGSfile
 ErrorTest1DC.cir
 ErrorTest1DC.cir.sh
 ErrorTest1DCGSfile
