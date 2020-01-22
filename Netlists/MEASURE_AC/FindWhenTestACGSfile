@@ -24,4 +24,19 @@ Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+04
 FINDVPCWHENVPB50 = 5.000000e+01 at freq = 6.758158e+04
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+05
 
+FINDVMCWHENVMBEXP1 = 2.000000e-01 at freq = 3.505275e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 3.981072e+04
+
+FINDVMCWHENVMBEXP2 = 2.500000e-01 at freq = 4.685318e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 6.309573e+04
+
+FINDVMCWHENVMBEXP3 = 1.200000e+00 at freq = 3.505275e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 3.981072e+04
+
+FINDVMCWHENVMBEXP4 = 1.250000e+00 at freq = 4.685318e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 6.309573e+04
+
+FINDVRCWHENVMBEXP5 = 2.436158e-01 at freq = 7.960617e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+05
+
 
