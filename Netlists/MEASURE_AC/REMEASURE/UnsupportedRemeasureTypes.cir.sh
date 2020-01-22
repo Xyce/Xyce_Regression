@@ -23,8 +23,8 @@ if (defined($verbose)) { $Tools->setVerbose(1); }
 # check various error cases
 # this string should be in the output of this failed Xyce run  
 @searchstrings = ( "Netlist error in file UnsupportedRemeasureTypes.cir at or near line 18",
-                   "Only ERROR, EQN/PARAM, MIN, MAX and PP measure types are supported for AC",
-                   "measure mode");
+                   "Only AVG, ERROR, EQN/PARAM, FIND, MIN, MAX, PP and WHEN measure types are",
+                   "supported for AC measure mode");
 
 # turn this into a re-measure line
 $XYCE = "$XYCE -remeasure UnsupportedRemeasureTypes.cir.FD.prn";

@@ -1,0 +1,54 @@
+ ***** Measure Functions ***** 
+
+WHENVMB0.5 = 4.685318e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 6.309573e+04
+
+WHENVRB0.5 = 8.168864e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+05
+
+WHENVIB0.1 = 8.051952e+03
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+04
+
+WHENVBP50 = 6.758158e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+05
+
+FINDVMCWHENVMB0.5 = 2.500000e-01 at freq = 4.685318e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 6.309573e+04
+
+FINDVRCWHENVRB0.5 = 2.500000e-01 at freq = 8.168864e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+05
+
+FINDVICWHENVIB0.1 = 5.000000e-02 at freq = 8.051952e+03
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+04
+
+FINDVPCWHENVPB50 = 5.000000e+01 at freq = 6.758158e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+05
+
+LASTMEASURE = 9.968487e-01 at freq = 1.000000e+06
+ ***** Measure Functions ***** 
+
+WHENVMB0.5 = 3.126459e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 3.981072e+04
+
+WHENVRB0.5 = 5.423560e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 6.309573e+04
+
+WHENVIB0.1 = 5.366556e+03
+Measure Start Freq= 1.000000e+02	Measure End Freq= 6.309573e+03
+
+WHENVBP50 = 4.536549e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 6.309573e+04
+
+FINDVMCWHENVMB0.5 = 1.666667e-01 at freq = 3.126459e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 3.981072e+04
+
+FINDVRCWHENVRB0.5 = 1.666667e-01 at freq = 5.423560e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 6.309573e+04
+
+FINDVICWHENVIB0.1 = 3.333333e-02 at freq = 5.366556e+03
+Measure Start Freq= 1.000000e+02	Measure End Freq= 6.309573e+03
+
+FINDVPCWHENVPB50 = 5.000000e+01 at freq = 4.536549e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 6.309573e+04
+
+LASTMEASURE = 9.985957e-01 at freq = 1.000000e+06

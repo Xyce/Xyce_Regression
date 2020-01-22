@@ -15,6 +15,10 @@ ErrorTestACRawData.FD.csv
 EquationEvalTestAC.cir
 EquationEvalTestAC.cir.sh
 EquationEvalTestACGSfile
+FindWhenTestAC.cir
+FindWhenTestAC.cir.sh
+FindWhenTestACGSfile
+FindWhenTestAC.cir.tags
 MaxMinPPTestAC.cir
 MaxMinPPTestAC.cir.sh
 MaxMinPPTestACGSfile

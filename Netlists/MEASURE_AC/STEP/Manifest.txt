@@ -10,6 +10,9 @@ ErrorTestACRawData.FD.prn
 EquationEvalTestAC.cir
 EquationEvalTestAC.cir.sh
 EquationEvalTestACGSfile
+FindWhenTestAC.cir
+FindWhenTestAC.cir.sh
+FindWhenTestACGSfile
 MaxMinPPTestAC.cir
 MaxMinPPTestAC.cir.sh
 MaxMinPPTestACGSfile
