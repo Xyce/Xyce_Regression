@@ -31,6 +31,11 @@ V1 a 0 DC 0V AC 1
 .MEASURE AC findvicwhenvib0.1 find vi(c) when vi(b)= 0.1
 .MEASURE AC findvpcwhenvpb50 find vp(c) when vp(b)= 50.0
 
+* Expressions with WHEN measure
+.MEASURE AC whenExp1 when vr(b)=vi(b)
+.MEASURE AC whenExp2 when {vm(b)+0.1}=0.5
+.MEASURE AC whenExp3 when vm(b)={0.3+0.2}
+
 * Expressions, with FIND-WHEN measure
 .MEASURE AC findvmcwhenvmbExp1 find vm(c) when {vm(b)+0.1}=0.5
 .MEASURE AC findvmcwhenvmbExp2 find vm(c) when vm(b)={0.3+0.2}
