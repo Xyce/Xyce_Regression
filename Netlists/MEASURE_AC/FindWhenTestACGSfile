@@ -12,6 +12,9 @@ Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+04
 WHENVBP50 = 6.758158e+04
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+05
 
+WHENIMV10.25 = 4.685318e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 6.309573e+04
+
 FINDVMCWHENVMB0.5 = 2.500000e-01 at freq = 4.685318e+04
 Measure Start Freq= 1.000000e+02	Measure End Freq= 6.309573e+04
 

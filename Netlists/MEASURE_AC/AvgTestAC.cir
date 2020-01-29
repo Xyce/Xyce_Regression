@@ -2,6 +2,7 @@
 * To be conservative, there are subtests for each
 * valid operator (V, VR, VI, VP, VM and VDB) for
 * each measure type.  Expressions are also tested.
+* One current operator (IM) is tested for a branch current.
 *
 * See SON Bug 1267 for more details.
 *****************************************************
@@ -11,7 +12,7 @@ R1 b 0 2
 C1 a b 1u
 V1 a 0 DC 0V AC 1
 
-.print AC vr(b) vi(b) vm(b) vp(b) vdb(b)
+.print AC vr(b) vi(b) vm(b) vp(b) vdb(b) im(v1)
 .ac dec 5 100Hz 1e6
 
 * avg
@@ -27,6 +28,9 @@ V1 a 0 DC 0V AC 1
 
 * add FROM-TO
 .MEASURE AC avgvmbFromTo avg vm(b) FROM=1e3 TO=1e5
+
+* branch current
+.MEASURE AC avgimv1 avg im(v1)
 
 * FROM=TO value is a failed measure, by definition
 * for AVG measure.

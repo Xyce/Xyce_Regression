@@ -39,6 +39,9 @@ Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 EQNVMBFROMTO = 1.782479e+00
 Measure Start Freq= 1.000000e+03	Measure End Freq= 1.000000e+05
 
+EQNIMV1 = 1.498424e+00
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
+
 Netlist warning: EQNRETURNNEGONE failed. FROM value > highest frequency value
 EQNRETURNNEGONE = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06

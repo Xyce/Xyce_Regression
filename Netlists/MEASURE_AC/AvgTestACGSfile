@@ -24,6 +24,9 @@ Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 AVGVMBFROMTO = 4.818027e-01
 Measure Start Freq= 1.000000e+03	Measure End Freq= 1.000000e+05
 
+AVGIMV1 = 4.605865e-01
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
+
 AVGVMBFROMTO1PT = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 

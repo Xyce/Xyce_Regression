@@ -1,7 +1,8 @@
 * Test AC mode support for the FIND-WHEN and WHEN measures.
 * To be conservative, there are subtests for each
 * valid operator (V, VR, VI, VP, VM and VDB) for
-* each measure type.
+* each measure type.  One current operator (IM) is tested
+* for a branch current for the FIND measure.
 *
 * See SON Bug 1270 for more details.
 *****************************************************
@@ -14,7 +15,7 @@ C1 a b 1u
 V1 a 0 DC 0V AC 1
 
 .print AC vr(b) vi(b) vm(b) vp(b) vdb(b)
-+ vr(b) vi(b) vm(b) vp(b) vdb(b)
++ vr(c) vi(c) vm(c) vp(c) vdb(c) im(v1)
 .ac dec 5 100Hz 1e6
 
 * WHEN
@@ -22,6 +23,7 @@ V1 a 0 DC 0V AC 1
 .MEASURE AC whenvrb0.5 WHEN vr(b)= 0.5
 .MEASURE AC whenvib0.1 WHEN vi(b)= 0.1
 .MEASURE AC whenvbp50 WHEN vp(b)= 50
+.MEASURE AC whenimv10.25 WHEN im(v1) = 0.25
 
 * FIND-WHEN
 .MEASURE AC findvmcwhenvmb0.5 find vm(c) when vm(b)= 0.5
