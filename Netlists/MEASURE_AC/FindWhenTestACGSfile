@@ -42,4 +42,13 @@ Measure Start Freq= 1.000000e+02	Measure End Freq= 6.309573e+04
 FINDVRCWHENVMBEXP5 = 2.436158e-01 at freq = 7.960617e+04
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+05
 
+EQNVMC = 4.984243e-01
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
+
+WHENEQNVMC = 1.625879e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 2.511886e+04
+
+FINDWHENEQNVMC = 2.500000e-01 at freq = 4.685318e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 6.309573e+04
+
 

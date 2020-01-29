@@ -38,4 +38,9 @@ V1 a 0 DC 0V AC 1
 .MEASURE AC findvmcwhenvmbExp4 find {vm(c)+1} when vm(b)={0.3+0.2}
 .MEASURE AC findvrcwhenvmbExp5 find vr(c) when vr(b)=vi(b)
 
+* Use of other measures in WHEN and FIND-WHEN
+.MEASURE AC eqnvmc EQN {vm(c)}
+.MEASURE AC wheneqnvmc when EQNVMC=0.1
+.MEASURE AC findwheneqnvmc find eqnvmc when vm(b)=0.5
+
 .END
