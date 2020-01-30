@@ -1,0 +1,37 @@
+* Test DC mode support for AVG Measures
+*
+* This bug covers:
+*   1) the case of one variable in the .DC line,
+*      without a .STEP statement.
+*
+*   2) the use of FROM and TO statements, where the FROM
+*      value is always greater than the TO value.
+*
+* See SON Bug 1267 for more details.
+********************************************************
+
+vsrc1   1a 0 1
+rload1a 1a 1b 0.1
+rload1b 1b 0 1
+
+.DC vsrc1 1 5 1
+
+* Note: vsrc1:DCV0 is the syntax for printing the DC value of vsrc1,
+* at it is swept.
+.print dc vsrc1:DCV0 v(1a) v(1b)
+.PREPROCESS REPLACEGROUND TRUE
+
+.meas dc avgv1b  avg v(1b)
+.measure dc avg1bgnd avg v(gnd,1b)
+.measure dc avgv1bFT avg v(1b) FROM=3 TO=1
+
+* FROM=TO value is a failed measure by definition
+* for AVG measure.
+.measure dc avg1bFT1PT avg v(1b) FROM=4 TO=4
+
+* Tests should return -1 or -100, since the FROM-T0 window
+* does not overlap with the stepped values for VSRC1:DCV0
+.measure dc avgReturnNegOne avg v(1b) FROM=-4 TO=-2
+.measure dc avgReturnNeg100 avg v(1b) FROM=-2 TO=-4 DEFAULT_VAL=-100
+
+.end

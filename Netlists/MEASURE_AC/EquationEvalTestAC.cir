@@ -1,7 +1,8 @@
 * Test AC mode support for the EQN measure.
 * To be conservative, there are subtests for each
 * valid operator (V, VR, VI, VP, VM and VDB) for
-* each measure type.
+* each measure type.  One current operator (IM) is
+* tested for a branch current.
 *
 * See SON Bug 1140 for more details
 *****************************************************
@@ -11,7 +12,7 @@ R1 b 0 2
 C1 a b 1u
 V1 a 0 DC 0V AC 1
 
-.print AC vr(b) vi(b) vm(b) vp(b) vdb(b)
+.print AC vr(b) vi(b) vm(b) vp(b) vdb(b) im(V1)
 .ac dec 5 100Hz 1e6
 
 * EQN
@@ -32,6 +33,9 @@ V1 a 0 DC 0V AC 1
 
 * add FROM-TO
 .MEASURE AC eqnvmbFromTo eqn {1+vm(b)} FROM=1e3 TO=1e5
+
+* branch current 
+.MEASURE AC eqnimv1 eqn {1+im(v1)}
 
 * Tests should return -1 or -100, since the FROM-T0 window 
 * has various problems

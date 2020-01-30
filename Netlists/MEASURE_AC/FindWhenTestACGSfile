@@ -1,0 +1,63 @@
+ ***** Measure Functions ***** 
+
+WHENVMB0.5 = 4.685318e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 6.309573e+04
+
+WHENVRB0.5 = 8.168864e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+05
+
+WHENVIB0.1 = 8.051952e+03
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+04
+
+WHENVBP50 = 6.758158e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+05
+
+WHENIMV10.25 = 4.685318e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 6.309573e+04
+
+FINDVMCWHENVMB0.5 = 2.500000e-01 at freq = 4.685318e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 6.309573e+04
+
+FINDVRCWHENVRB0.5 = 2.500000e-01 at freq = 8.168864e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+05
+
+FINDVICWHENVIB0.1 = 5.000000e-02 at freq = 8.051952e+03
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+04
+
+FINDVPCWHENVPB50 = 5.000000e+01 at freq = 6.758158e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+05
+
+WHENEXP1 = 7.960617e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+05
+
+WHENEXP2 = 3.505275e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 3.981072e+04
+
+WHENEXP3 = 4.685318e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 6.309573e+04
+
+FINDVMCWHENVMBEXP1 = 2.000000e-01 at freq = 3.505275e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 3.981072e+04
+
+FINDVMCWHENVMBEXP2 = 2.500000e-01 at freq = 4.685318e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 6.309573e+04
+
+FINDVMCWHENVMBEXP3 = 1.200000e+00 at freq = 3.505275e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 3.981072e+04
+
+FINDVMCWHENVMBEXP4 = 1.250000e+00 at freq = 4.685318e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 6.309573e+04
+
+FINDVRCWHENVMBEXP5 = 2.436158e-01 at freq = 7.960617e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+05
+
+EQNVMC = 4.984243e-01
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
+
+WHENEQNVMC = 1.625879e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 2.511886e+04
+
+FINDWHENEQNVMC = 2.500000e-01 at freq = 4.685318e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 6.309573e+04
+
+

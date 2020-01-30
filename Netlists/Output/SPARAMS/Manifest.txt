@@ -20,6 +20,8 @@ dashRNotSupported.cir.options
 tags
 RCladderSP1.cir
 RCladderSP1.cir.sh
+RCladderSP1_step.cir
+RCladderSP1_step.cir.sh
 ac.cir
 ac.cir.sh
 NegativeZ0.cir
@@ -38,6 +40,10 @@ InvalidRFParamOp-NoLin.cir
 InvalidRFParamOp-NoLin.cir.sh
 InvalidRFParamOp-NoLin.cir.tags
 InvalidRFParamOp-NoLin.cir.options
+InvalidRFParamOp-Step-NoLin.cir
+InvalidRFParamOp-Step-NoLin.cir.sh
+InvalidRFParamOp-Step-NoLin.cir.tags
+InvalidRFParamOp-Step-NoLin.cir.options
 InvalidDotLinParams.cir
 InvalidDotLinParams1.cir
 InvalidDotLinParams2.cir

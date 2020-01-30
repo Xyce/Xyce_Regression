@@ -2,6 +2,10 @@ DotOpNoAC.cir
 DotOpNoAC.cir.options
 DotOpNoAC.cir.sh
 DotOpNoAC.cir.tags
+AvgTestAC.cir
+AvgTestAC.cir.sh
+AvgTestACGSfile
+AvgTestAC.cir.tags
 ErrorTestAC.cir
 ErrorTestAC.cir.sh
 ErrorTestACGSfile
@@ -11,6 +15,10 @@ ErrorTestACRawData.FD.csv
 EquationEvalTestAC.cir
 EquationEvalTestAC.cir.sh
 EquationEvalTestACGSfile
+FindWhenTestAC.cir
+FindWhenTestAC.cir.sh
+FindWhenTestACGSfile
+FindWhenTestAC.cir.tags
 MaxMinPPTestAC.cir
 MaxMinPPTestAC.cir.sh
 MaxMinPPTestACGSfile

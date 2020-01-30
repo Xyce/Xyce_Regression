@@ -2,6 +2,7 @@
 * To be conservative, there are subtests for each
 * valid operator (V, VR, VI, VP, VM and VDB) for
 * each measure type.  Expressions are also tested.
+* One current operator (IM) is tested for a branch current.
 *
 * See SON Bug 1140 for more details
 *****************************************************
@@ -11,7 +12,7 @@ R1 b 0 2
 C1 a b 1u
 V1 a 0 DC 0V AC 1
 
-.print AC vr(b) vi(b) vm(b) vp(b) vdb(b)
+.print AC vr(b) vi(b) vm(b) vp(b) vdb(b) im(v1)
 .ac dec 5 100Hz 1e6
 
 * MAX
@@ -54,6 +55,11 @@ V1 a 0 DC 0V AC 1
 * OUTPUT= qualifier
 .MEASURE AC FreqOfMaxvb max vr(b) OUTPUT=FREQ
 .MEASURE AC FreqOfMinvb min vr(b) OUTPUT=FREQ
+
+* branch currents
+.MEASURE AC maximv1 max IM(V1)
+.MEASURE AC minimv1 min IM(V1)
+.MEASURE AC ppimv1 pp IM(V1)
 
 * Tests should return -1 or -100, since the FROM-T0 window 
 * has various problems.

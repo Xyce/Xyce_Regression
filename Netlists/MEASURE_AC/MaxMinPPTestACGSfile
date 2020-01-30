@@ -87,6 +87,15 @@ Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 FREQOFMINVB = 1.579134e-06 at freq = 1.000000e+02
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
+MAXIMV1 = 4.984243e-01 at freq = 1.000000e+06
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
+
+MINIMV1 = 6.283180e-04 at freq = 1.000000e+02
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
+
+PPIMV1 = 4.977960e-01 with max at freq= 1.000000e+06 and min at freq= 1.000000e+02
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
+
 Netlist warning: MAXRETURNNEGONE failed. FROM value > highest frequency value
 MAXRETURNNEGONE = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06

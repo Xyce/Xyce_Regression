@@ -1,53 +1,64 @@
  ***** Measure Functions ***** 
 
-EQNVB = 1.993707e+00
+AVGVB = 5.901385e-01
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-EQNVMB = 1.996849e+00
+AVGVMB = 7.248821e-01
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-EQNVRB = 1.993707e+00
+AVGVRB = 5.901385e-01
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-EQNVIB = 1.079077e+00
+AVGVIB = 3.787119e-01
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-EQNVPB = 5.549865e+00
+AVGVPB = 3.988427e+01
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-EQNVDBB = 9.725847e-01
+AVGVDBB = -4.012674e+00
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-PARAMVB = 1.993707e+00
+AVGVRBEXP = 1.590139e+00
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-PARAMVMB = 1.996849e+00
+Netlist warning: AVGRETURNNEGONE failed. FROM value > highest frequency value
+AVGRETURNNEGONE = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-PARAMVRB = 1.993707e+00
+Netlist warning: AVGRETURNNEG100 failed. TO value < FROM value
+AVGRETURNNEG100 = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-PARAMVIB = 1.079077e+00
+LASTMEASURE = 7.248821e-01
+ ***** Measure Functions ***** 
+
+AVGVB = 8.776204e-01
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-PARAMVPB = 5.549865e+00
+AVGVMB = 9.211731e-01
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-PARAMVDBB = 9.725847e-01
+AVGVRB = 8.776204e-01
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-EQNVMBFROMTO = 1.782479e+00
-Measure Start Freq= 1.000000e+03	Measure End Freq= 1.000000e+05
-
-EQNIMV1 = 1.498424e+00
+AVGVIB = 2.046388e-01
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-Netlist warning: EQNRETURNNEGONE failed. FROM value > highest frequency value
-EQNRETURNNEGONE = FAILED
+AVGVPB = 1.642710e+01
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-Netlist warning: MAXRETURNNEG100 failed. TO value < FROM value
-MAXRETURNNEG100 = FAILED
+AVGVDBB = -1.087514e+00
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
+AVGVRBEXP = 1.877620e+00
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
+Netlist warning: AVGRETURNNEGONE failed. FROM value > highest frequency value
+AVGRETURNNEGONE = FAILED
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
+
+Netlist warning: AVGRETURNNEG100 failed. TO value < FROM value
+AVGRETURNNEG100 = FAILED
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
+
+LASTMEASURE = 9.211731e-01
