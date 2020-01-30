@@ -33,6 +33,10 @@ ErrorTest2DCCommaDelimRawData.prn
 EquationEvalTestDC.cir
 EquationEvalTestDC.cir.sh
 EquationEvalTestDCGSfile
+FindWhenTest1DC.cir
+FindWhenTest1DC.cir.sh
+FindWhenTest1DCGSfile
+FindWhenTest1DC.cir.tags
 LeadCurrentAndPowerTestDC.cir
 LeadCurrentAndPowerTestDC.cir.sh
 LeadCurrentAndPowerTestDCGSfile
