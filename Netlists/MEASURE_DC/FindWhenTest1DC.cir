@@ -1,0 +1,51 @@
+* Test DC mode support for FIND and FIND-WHEN Measures
+*
+* This bug covers:
+*   1) the case of one variable in the .DC line,
+*      without a .STEP statement.
+*
+*
+* See SON Bug 1270 for more details.
+********************************************************
+
+vsrc1   1a 0 1
+rload1a 1a 1b 0.2
+rload1b 1b 1c 0.4
+rload1c 1c 0  0.4
+
+.DC vsrc1 1 5 1
+
+* Note: vsrc1:DCV0 is the syntax for printing the DC value of vsrc1,
+* at it is swept.
+.print dc vsrc1:DCV0 v(1a) v(1b) v(1c)
+
+* WHEN
+.MEASURE DC whenv1b2 WHEN v(1b)=2
+
+* FIND-WHEN
+.MEASURE DC findv1cwhenv1b2 find v(1c) when v(1b)=2
+
+* Expressions with WHEN measure
+.MEASURE DC whenExp1 when {v(1b)+1}=4
+*.MEASURE DC whenExp2 when v(1b)={v(1c)+1}
+.MEASURE DC whenExp3 when {v(1b)-1}=v(1c)
+
+* Expressions, with FIND-WHEN measure
+.MEASURE DC findv1cwhenv1bExp1 find v(1c) when {v(1b)+1}=4
+.MEASURE DC findv1cwhenv1bExp2 find {v(1c)+1} when {v(1b)+1}=4
+
+* Use of other measures in WHEN and FIND-WHEN
+.MEASURE DC eqnv1c EQN {v(1c)}
+.MEASURE DC wheneqnv1c when EQNV1C=1.5
+.MEASURE DC findwheneqnv1c find eqnv1c when v(1b)=3
+
+* FROM=TO value should work in this case, even though this
+* is a pathological case
+.MEASURE DC findwhen1Pt FIND v(1c) WHEN v(1a)=2 FROM=2 TO=2
+
+* Tests should return -1 or -100, since the FROM-T0 window
+* does not overlap with the stepped values for VSRC1:DCV0
+.MEASURE DC whenReturnNegOne WHEN v(1b)=2 FROM=-4 TO=-2
+.MEASURE DC whenReturnNeg100 WHEN v(1b)=2 FROM=-2 TO=-4 DEFAULT_VAL=-100
+
+.end

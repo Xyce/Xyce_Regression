@@ -1,6 +1,6 @@
 Test errors for measure types that are not supported for DC 
 **************************************************************************************
-* At present, only the AVG, EQN/PARAM, ERROR, MAX, MIN and PP measure types are supported
+* At present, only the AVG, EQN/PARAM, ERROR, FIND, MAX, MIN, PP and WHEN measure types are supported
 * for DC mode for .MEASURE.  This tests the error messages from the other valid types,
 * that aren't supported for DC.
 *
@@ -23,8 +23,6 @@ rload1b 1b 0 1
 * second word.
 .measure dc derivVal deriv V(1) WHEN V(1)=0.5
 .measure dc dutyVal duty V(1)
-.measure dc whenVal WHEN V(1)=0.5
-.measure dc findWhenVal FIND V(2) WHEN V(1)=0.5
 .measure dc fourfail FOUR V(1) AT=1e6 TD=2e-3
 .measure dc freqVal FREQ v(1) ON=0.75 OFF=0.25
 .measure dc integVal integ V(1)
