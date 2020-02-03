@@ -48,4 +48,13 @@ V1 a 0 DC 0V AC 1
 .MEASURE AC wheneqnvmc when EQNVMC=0.1
 .MEASURE AC findwheneqnvmc find eqnvmc when vm(b)=0.5
 
+* measures should fail
+.measure ac FAIL1 WHEN vm(b)=2
+.measure ac FAIL2 FIND vm(c) WHEN vm(b)=2
+
+* Tests should return -1 or -100, since the FROM-T0 window
+* has various problems.
+.measure ac whenReturnNegOne WHEN vm(b)=0.5 FROM=1e7 TO=1e8
+.measure ac findWhenReturnNeg100 FIND vm(c) WHEN vm(b)=0.5 FROM=1e6 TO=1e2 DEFAULT_VAL=-100
+
 .END
