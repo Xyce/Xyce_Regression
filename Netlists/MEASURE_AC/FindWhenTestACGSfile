@@ -36,6 +36,9 @@ Measure Start Freq= 1.000000e+02	Measure End Freq= 3.981072e+04
 WHENEXP3 = 4.685318e+04
 Measure Start Freq= 1.000000e+02	Measure End Freq= 6.309573e+04
 
+WHENEXP4 = 1.278452e+05
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.584893e+05
+
 FINDVMCWHENVMBEXP1 = 2.000000e-01 at freq = 3.505275e+04
 Measure Start Freq= 1.000000e+02	Measure End Freq= 3.981072e+04
 

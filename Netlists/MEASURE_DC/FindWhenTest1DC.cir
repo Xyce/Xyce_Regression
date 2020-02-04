@@ -27,7 +27,7 @@ rload1c 1c 0  0.4
 
 * Expressions with WHEN measure
 .MEASURE DC whenExp1 when {v(1b)+1}=4
-*.MEASURE DC whenExp2 when v(1b)={v(1c)+1}
+.MEASURE DC whenExp2 when v(1b)={v(1c)+1.2}
 .MEASURE DC whenExp3 when {v(1b)-1}=v(1c)
 
 * Expressions, with FIND-WHEN measure
