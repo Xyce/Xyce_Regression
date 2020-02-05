@@ -33,6 +33,12 @@ Measure Start VSRC1 Value= 1.000000e+00	Measure End VSRC1 Value= 4.000000e+00
 FINDWHEN1PT = 8.000000e-01 at VSRC1 value = 2.000000e+00
 Measure Start VSRC1 Value= 2.000000e+00	Measure End VSRC1 Value= 2.000000e+00
 
+FAIL1 = FAILED
+Measure Start VSRC1 Value= 1.000000e+00	Measure End VSRC1 Value= 5.000000e+00
+
+FAIL2 = FAILED
+Measure Start VSRC1 Value= 1.000000e+00	Measure End VSRC1 Value= 5.000000e+00
+
 WHENRETURNNEGONE = FAILED
 Measure Start VSRC1 Value= 1.000000e+00	Measure End VSRC1 Value= 5.000000e+00
 

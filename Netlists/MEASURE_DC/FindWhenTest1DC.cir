@@ -43,6 +43,10 @@ rload1c 1c 0  0.4
 * is a pathological case
 .MEASURE DC findwhen1Pt FIND v(1c) WHEN v(1a)=2 FROM=2 TO=2
 
+* measures should fail
+.measure dc FAIL1 WHEN v(1b)=10
+.measure dc FAIL2 FIND v(1c) WHEN v(1b)=10
+
 * Tests should return -1 or -100, since the FROM-T0 window
 * does not overlap with the stepped values for VSRC1:DCV0
 .MEASURE DC whenReturnNegOne WHEN v(1b)=2 FROM=-4 TO=-2

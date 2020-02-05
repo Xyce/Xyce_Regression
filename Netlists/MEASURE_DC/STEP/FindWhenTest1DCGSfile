@@ -1,0 +1,18 @@
+***** Measure Functions ***** 
+
+WHENV1B3 = 3.800000e+00
+Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= 3.000000e+00
+
+FINDV2BWHENV1B3 = 2.500000e+00 at VSRC1 value = 3.800000e+00
+Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= 3.000000e+00
+
+LASTMEASURE = 3.750000e+00 at VSRC1 value = 5.000000e+00
+ ***** Measure Functions ***** 
+
+WHENV1B3 = 2.300000e+00
+Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= 2.000000e+00
+
+FINDV2BWHENV1B3 = 4.000000e+00 at VSRC1 value = 2.300000e+00
+Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= 2.000000e+00
+
+LASTMEASURE = 4.687500e+00 at VSRC1 value = 5.000000e+00

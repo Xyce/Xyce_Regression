@@ -12,6 +12,9 @@ ErrorTest1DCCommaDelimRawData.prn
 EquationEvalTestDC.cir
 EquationEvalTestDC.cir.sh
 EquationEvalTestDCGSfile
+FindWhenTest1DC.cir
+FindWhenTest1DC.cir.sh
+FindWhenTest1DCGSfile
 MaxMinPPTest1DC.cir
 MaxMinPPTest1DC.cir.sh
 MaxMinPPTest1DCGSfile
