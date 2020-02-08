@@ -16,6 +16,8 @@ R2 2 1 1
 .MEASURE DC minv2 MIN V(2)
 .MEASURE DC ppv2 PP V(2)
 .measure dc FitErrorInfPrn error v(2) file=DotOpDotDCRawData.prn comp_function=infnorm indepvarcol=1 depvarcol=2
+.MEASURE DC avgv2 AVG v(2)
+.MEASURE DC whenv2 WHEN v(2)=4
 
 .END
 

@@ -27,7 +27,7 @@ rload1c 1c 0  0.4
 
 * Expressions with WHEN measure
 .MEASURE DC whenExp1 when {v(1b)+1}=4
-*.MEASURE DC whenExp2 when v(1b)={v(1c)+1}
+.MEASURE DC whenExp2 when v(1b)={v(1c)+1.2}
 .MEASURE DC whenExp3 when {v(1b)-1}=v(1c)
 
 * Expressions, with FIND-WHEN measure
@@ -42,6 +42,10 @@ rload1c 1c 0  0.4
 * FROM=TO value should work in this case, even though this
 * is a pathological case
 .MEASURE DC findwhen1Pt FIND v(1c) WHEN v(1a)=2 FROM=2 TO=2
+
+* measures should fail
+.measure dc FAIL1 WHEN v(1b)=10
+.measure dc FAIL2 FIND v(1c) WHEN v(1b)=10
 
 * Tests should return -1 or -100, since the FROM-T0 window
 * does not overlap with the stepped values for VSRC1:DCV0

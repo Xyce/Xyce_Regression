@@ -118,6 +118,13 @@ foreach $j (0 .. $numMeasures-1)
     $findGiven[$j] = 1;
     $findColIdx = 2;
   }
+  elsif ($j==3)
+  {
+    # when v(1)={v(3)+0.1}
+    $colIdx=1;
+    $whenIdx = 4;
+    $findGiven[$j] = 0;
+  }
   else
   {
     print ("Invalid measure number in test\n"); $retval=2;

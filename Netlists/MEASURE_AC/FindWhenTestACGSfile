@@ -36,6 +36,9 @@ Measure Start Freq= 1.000000e+02	Measure End Freq= 3.981072e+04
 WHENEXP3 = 4.685318e+04
 Measure Start Freq= 1.000000e+02	Measure End Freq= 6.309573e+04
 
+WHENEXP4 = 1.278452e+05
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.584893e+05
+
 FINDVMCWHENVMBEXP1 = 2.000000e-01 at freq = 3.505275e+04
 Measure Start Freq= 1.000000e+02	Measure End Freq= 3.981072e+04
 
@@ -59,5 +62,19 @@ Measure Start Freq= 1.000000e+02	Measure End Freq= 2.511886e+04
 
 FINDWHENEQNVMC = 2.500000e-01 at freq = 4.685318e+04
 Measure Start Freq= 1.000000e+02	Measure End Freq= 6.309573e+04
+
+FAIL1 = FAILED
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
+
+FAIL2 = FAILED
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
+
+Netlist warning: WHENRETURNNEGONE failed. FROM value > highest frequency value
+WHENRETURNNEGONE = FAILED
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
+
+Netlist warning: FINDWHENRETURNNEG100 failed. TO value < FROM value
+FINDWHENRETURNNEG100 = FAILED
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 
