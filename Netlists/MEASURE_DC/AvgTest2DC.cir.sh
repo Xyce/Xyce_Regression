@@ -40,50 +40,6 @@ system("rm -f $CIRFILE.ms0 $CIRFILE.out $CIRFILE.err* $CIRFILE.remeasure*");
 #
 MeasureCommon::checkDCFilesExist($XYCE,$CIRFILE);
 
-# If this is a VALGRIND run, we don't do our normal verification, we
-# merely run "valgrind_check.sh", instead of the rest of this .sh file, and then exit
-if ($XYCE_VERIFY =~ m/valgrind_check/)
-{
-  print STDERR "DOING VALGRIND RUN INSTEAD OF REAL RUN!";
-  # do a measure run
-  if (system("$XYCE_VERIFY $CIRFILE junk $CIRFILE.prn > $CIRFILE.prn.out 2>&1 $CIRFILE.prn.err"))
-  {
-    print "Only did measure run\n";
-    print "Exit code = 2 \n";
-    exit 2;
-  }
-  else
-  {
-    # re-name the files from the measure run, so that the
-    # data from the re-measure run does not overwrite them
-    print "Measure passed valgrind testing\n";
-    move("$CIRFILE.mt0","$CIRFILE.measure.mt0");
-    move("$CIRFILE.out","$CIRFILE.measure.out");
-    move("$CIRFILE.err","$CIRFILE.measure.err");
-  }
-
-  #now do a re-measure run
-  print "Testing re-measure\n";
-  $CMD="$XYCE -remeasure $CIRFILE.prn $CIRFILE > $CIRFILE.out 2> $CIRFILE.err";
-  $retval=system($CMD);
-  $retval = $retval>>8;
-
-  if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
-  if (not -s "$CIRFILE.prn" ) { print "Exit code = 14\n"; exit 14; }
-
-  if (system("$XYCE_VERIFY $CIRFILE junk $CIRFILE.prn > $CIRFILE.prn.out 2>&1 $CIRFILE.prn.err"))
-  {
-    print "Exit code = 2 \n";
-    exit 2;
-  }
-  else
-  {
-    print "Re-measure passed valgrind testing\n";
-    print "Exit code = 0 \n";
-    exit 0;
-  }
-}
-
 # The next three blocks of code are used to compare the .MEASURE output
 # to stdout to the "gold" stdout in the $GSFILE (AvgTest2DCGSfile).
 
