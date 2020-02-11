@@ -51,6 +51,10 @@ runMultipleSims.py
 noRun.cir
 noRun.cir.sh
 noRun.py
+bug_1275_son.cir
+bug_1275_son.cir.sh
+bug_1275_son.py
+bug_1275_son.cir.GoldData
 interfaceErrorMessages.cir
 interfaceErrorMessages.cir.sh
 interfaceErrorMessages.py
