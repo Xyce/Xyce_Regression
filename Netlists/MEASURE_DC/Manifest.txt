@@ -37,6 +37,9 @@ FindWhenTest1DC.cir
 FindWhenTest1DC.cir.sh
 FindWhenTest1DCGSfile
 FindWhenTest1DC.cir.tags
+FindWhenTest2DC.cir
+FindWhenTest2DC.cir.sh
+FindWhenTest2DCGSfile
 LeadCurrentAndPowerTestDC.cir
 LeadCurrentAndPowerTestDC.cir.sh
 LeadCurrentAndPowerTestDCGSfile
