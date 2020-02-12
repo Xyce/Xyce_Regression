@@ -4,6 +4,9 @@ runACircuit.py
 runACircuitInSteps.cir
 runACircuitInSteps.cir.sh
 runACircuitInSteps.py
+runACircuitWithBackwardStep.cir
+runACircuitWithBackwardStep.cir.sh
+runACircuitWithBackwardStep.py
 runCircuitWithDACs.cir
 runCircuitWithDACs.cir.sh
 runCircuitWithDACs.py
