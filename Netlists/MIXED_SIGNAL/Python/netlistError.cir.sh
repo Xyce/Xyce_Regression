@@ -97,5 +97,12 @@ else
   }
 }
 
+# check that python return code is 1
+if ($pythonRetcode != 1)
+{
+  print "Python script exited with unexpected code\n";
+  $retval=2;
+}
+
 print "Exit code = $retval\n"; exit $retval;
 
