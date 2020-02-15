@@ -3,10 +3,10 @@
 use XyceRegression::Tools;
 $Tools = XyceRegression::Tools->new();
 
-# The input arguments to this script are: 
+# The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
 # $ARGV[1] = location of xyce_verify.pl script
-# $ARGV[2] = location of compare script 
+# $ARGV[2] = location of compare script
 # $ARGV[3] = location of circuit file to test
 # $ARGV[4] = location of gold standard prn file
 
@@ -20,7 +20,7 @@ $Tools = XyceRegression::Tools->new();
 # from the comparison program.  The outside script, run_xyce_regression,
 # expects the STDERR output from Xyce to go into $CIRFILE.err, the STDOUT
 # output from comparison to go into $CIRFILE.prn.out and the STDERR output from
-# comparison to go into $CIRFILE.prn.err.  
+# comparison to go into $CIRFILE.prn.err.
 
 use Getopt::Long;
 
@@ -35,18 +35,20 @@ $GOLDPRN=$ARGV[4];
 $PYFILE=$CIRFILE;
 $PYFILE =~s/cir/py/;
 
+# make name of gold .mt0 file
+$GOLDMT0 = $GOLDPRN;
+$GOLDMT0 =~ s/prn/mt0/;
+
 # find root of Xyce build directory
 $XYCE_BASE = $XYCE;
 
-$retval=0;
-
 # remove files from previous runs
-system("rm -f $CIRFILE.out $CIRFILE.prn");
+system("rm -f $CIRFILE.out $CIRFILE.prn $CIRFILE.mt0");
 
 $XYCE_LIB_DIR="";
 
 # set the environment variables
-$LD_LIBRARY_PATH=$ENV{'LD_LIBRARY_PATH'}; 
+$LD_LIBRARY_PATH=$ENV{'LD_LIBRARY_PATH'};
 
 if($XYCE_BASE =~ s/\/src\/Xyce$// )
 { # uninstalled copy of Xyce.  Look for extra libraries in utils/XyceCInterface directory
@@ -64,45 +66,59 @@ if($XYCE_BASE =~ s/\/bin\/Xyce$// )
 $ENV{'LD_LIBRARY_PATH'} = $LD_LIBRARY_PATH;
 print "setting ld library path to $LD_LIBRARY_PATH\n";
 
-$pythonRetcode=0;
+$retval=0;
 # run the netlist via the Python version of XyceCInterface
-$pythonRetcode = system("python $PYFILE $XYCE_LIB_DIR > $CIRFILE.out");
-$pythonRetcode = $pythonRetcode>>8;
-print ("Python return code was: $pythonRetcode\n");
-
-if ($pythonRetcode == 0)
+$retval = system("python $PYFILE $XYCE_LIB_DIR > $CIRFILE.out");
+if ($retval != 0)
 {
-  print "Netlist ran via Python-based XyceCInterface to completion, when it shouldn't\n";
+  print "Netlist failed to run via Python-based XyceCInterface\n";
   print "Exit code = 2\n"; exit 2;
 }
 else
 {
-
-  # In this case the output .prn file should not be made
-  if (-s "$CIRFILE.prn" ) 
-  { 
-    print ".prn file made when it should not\n";
-    print "Exit code = 2\n"; exit 2;
-  }
-
-  # check for error messages in Xyce stdout.
-  @searchstrings = ("Netlist error: No analysis specified",
-  "Simulation aborted due to error.  There are 0 MSG_FATAL errors and 1 MSG_ERROR",
-  "Xyce Abort"
-  );
-  if ( $Tools->checkError("$CIRFILE.out",@searchstrings) != 0) 
-  {
-    print "Failed to find all of the correct Xyce error messages in stdout\n"; 
-    $retval=2;
-  }
+  # check output files
+  if (not -s "$CIRFILE.prn" ) { print "Exit code = 14\n"; exit 14; }
+  if (not -s "$CIRFILE.mt0" ) { print "Exit code = 17\n"; exit 17; }
 }
 
-# check that python return code is 1
-if ($pythonRetcode != 1)
+# Verify that the .prn and .mt0 files are correct.
+$retval=0;
+$fc = $XYCE_VERIFY;
+$fc=~ s/xyce_verify/file_compare/;
+$absTol=1e-3;
+$relTol=1e-2;
+$zeroTol=1e-10;
+
+# check .prn file
+$CMD="$XYCE_VERIFY $CIRFILE $GOLDPRN $CIRFILE.prn";
+if (system($CMD) != 0)
 {
-  print "Python script exited with unexpected code\n";
-  $retval=2;
+  print STDERR "Verification failed on file $CIRFILE.prn";
+  $retval = 2;
+}
+
+#check .mt0 file
+$CMD="$fc $CIRFILE.mt0 $GOLDMT0 $absTol $relTol $zeroTol";
+if (system($CMD) != 0)
+{
+  print STDERR "Verification failed on file $CIRFILE.mt0";
+  $retval = 2;
+}
+
+# check for XyceCInterface return codes in stdout
+@searchstrings = ("return value from initialize is 1",
+                  "Calling simulateUntil for requested_time = 0.500",
+                  "simulateUntil status = 1 and actual_time = 0.500",
+                  "Calling simulateUntil for backwards requested_time = 0.400",
+                  "Netlist warning: requestedUntilTime < current simulation time in",
+                  "simulateUntil\\(\\) call.  Simulation will now run to completion",
+                  "calling close",
+                  "xyce_close after delete xycePtr"
+);
+if ( $Tools->checkError("$CIRFILE.out",@searchstrings) != 0)
+{
+ print "Failed to find all of the correct XyceCInterface information in stdout\n";
+ $retval = 2;
 }
 
 print "Exit code = $retval\n"; exit $retval;
-

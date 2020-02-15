@@ -1,7 +1,6 @@
 #!/usr/bin/env perl
 
 use MeasureCommon;
-use File::Copy;
 
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
@@ -41,7 +40,7 @@ system("rm -f $CIRFILE.ms0 $CIRFILE.out $CIRFILE.err* $CIRFILE.remeasure*");
 MeasureCommon::checkDCFilesExist($XYCE,$CIRFILE);
 
 # The next three blocks of code are used to compare the .MEASURE output
-# to stdout to the "gold" stdout in the $GSFILE (AvgTest2DCGSfile).
+# to stdout to the "gold" stdout in the $GSFILE (FindWhenTest2CGSfile).
 
 # check that .out file exists, and open it if it does
 if (not -s "$CIRFILE.out" )
@@ -76,7 +75,7 @@ close(ERRMSG);
 
 # test that the values and strings in the .out file match to the required
 # tolerances
-my $GSFILE="AvgTest2DCGSfile";
+my $GSFILE="FindWhenTest2DCGSfile";
 my $absTol=1e-5;
 my $relTol=1e-3;
 my $zeroTol=1e-10;

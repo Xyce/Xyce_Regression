@@ -4,6 +4,9 @@ runACircuit.py
 runACircuitInSteps.cir
 runACircuitInSteps.cir.sh
 runACircuitInSteps.py
+runACircuitWithBackwardStep.cir
+runACircuitWithBackwardStep.cir.sh
+runACircuitWithBackwardStep.py
 runCircuitWithDACs.cir
 runCircuitWithDACs.cir.sh
 runCircuitWithDACs.py
@@ -51,6 +54,10 @@ runMultipleSims.py
 noRun.cir
 noRun.cir.sh
 noRun.py
+bug_1275_son.cir
+bug_1275_son.cir.sh
+bug_1275_son.py
+bug_1275_son.cir.GoldData
 interfaceErrorMessages.cir
 interfaceErrorMessages.cir.sh
 interfaceErrorMessages.py
