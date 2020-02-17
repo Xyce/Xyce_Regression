@@ -129,6 +129,9 @@ my $forwardDiff;
 my $measureTime;
 my $measureLastRFC;
 
+# This code ONLY works if the target value (a) in the WHEN clause
+# (e.g., WHEN V(1)=a ) is a FIXED value.  It does NOT work for the
+# WHEN V(1)=V(2) case.
 foreach $j (0 .. $numMeasures-1){
   if ($tdVals[$j] > $toVals[$j])
   {
