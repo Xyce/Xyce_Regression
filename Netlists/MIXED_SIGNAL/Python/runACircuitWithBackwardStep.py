@@ -38,6 +38,7 @@ for i in steps:
 requested_time = requested_time - 0.1
 print( "Calling simulateUntil for backwards requested_time = %f" % requested_time )
 (result, actual_time) = xyceObj.simulateUntil( requested_time )
+print( "simulateUntil status = %d and actual_time = %f" % (result, actual_time) )
 
 print( "calling close")
 xyceObj.close()

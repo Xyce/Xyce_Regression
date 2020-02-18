@@ -112,6 +112,7 @@ if (system($CMD) != 0)
                   "Calling simulateUntil for backwards requested_time = 0.400",
                   "Netlist warning: requestedUntilTime < current simulation time in",
                   "simulateUntil\\(\\) call.  Simulation will now run to completion",
+                  "simulateUntil status = 1 and actual_time = 1.000",
                   "calling close",
                   "xyce_close after delete xycePtr"
 );
