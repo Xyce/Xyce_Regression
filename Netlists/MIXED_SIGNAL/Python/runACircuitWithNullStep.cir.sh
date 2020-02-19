@@ -89,7 +89,7 @@ else
   @searchstrings = ("return value from initialize is 1",
     "Calling simulateUntil for requested_time = 0.500",
     "simulateUntil status = 1 and actual_time = 0.500",
-    "Calling simulateUntil for backwards requested_time = 0.400",
+    "Calling simulateUntil with requested_time = 0.500",
     "Netlist error: requestedUntilTime <= current simulation time in",
     "simulateUntil\\(\\) call.  Simulation will abort.",
     "Simulation aborted due to error.  There are 0 MSG_FATAL errors and 1 MSG_ERROR",

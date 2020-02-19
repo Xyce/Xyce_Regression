@@ -17,7 +17,7 @@ else:
   xyceObj = xyce_interface()
 print( xyceObj )
 
-argv= ['runACircuitWithBackwardStep.cir']
+argv= ['runACircuitWithNullStep.cir']
 print( "calling initialize with, %s" % argv[0] )
 
 result = xyceObj.initialize(argv)
@@ -33,12 +33,12 @@ for i in steps:
   if (result == 0):
     break
 
-# Now step backwards, and see what happens.  The simulation should abort cleanly.
-requested_time = requested_time - 0.1
-print( "Calling simulateUntil for backwards requested_time = %f" % requested_time )
+# Use a null step.  The simulation should abort cleanly.
+requested_time = 0.5
+print( "Calling simulateUntil with requested_time = %f" % requested_time )
 (result, actual_time) = xyceObj.simulateUntil( requested_time )
 print( "simulateUntil status = %d and actual_time = %f" % (result, actual_time) )
 
-# this statement will not be reached
+# This statement will not be reached
 print( "calling close")
 xyceObj.close()
