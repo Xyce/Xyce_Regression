@@ -7,6 +7,9 @@ runACircuitInSteps.py
 runACircuitWithBackwardStep.cir
 runACircuitWithBackwardStep.cir.sh
 runACircuitWithBackwardStep.py
+runACircuitWithNullStep.cir
+runACircuitWithNullStep.cir.sh
+runACircuitWithNullStep.py
 runCircuitWithDACs.cir
 runCircuitWithDACs.cir.sh
 runCircuitWithDACs.py

@@ -28,6 +28,7 @@ FindWhenTestInc.cir
 FindWhenTestInc.cir.sh
 FindWhenVariableTest.cir
 FindWhenVariableTest.cir.sh
+FindWhenVariableTestGSfile
 FourierTest.cir
 FourierTest.cir.tags
 FreqTest.cir

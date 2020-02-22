@@ -12,7 +12,10 @@ Measure Start VSRC1 Value= 1.000000e+00	Measure End VSRC1 Value= 4.000000e+00
 WHENEXP2 = 3.000000e+00
 Measure Start VSRC1 Value= 1.000000e+00	Measure End VSRC1 Value= 3.000000e+00
 
-WHENEXP3 = 2.750000e+00
+WHENEXP3 = 2.500000e+00
+Measure Start VSRC1 Value= 1.000000e+00	Measure End VSRC1 Value= 3.000000e+00
+
+WHENEXP4 = 2.500000e+00
 Measure Start VSRC1 Value= 1.000000e+00	Measure End VSRC1 Value= 3.000000e+00
 
 FINDV1CWHENV1BEXP1 = 1.500000e+00 at VSRC1 value = 3.750000e+00
