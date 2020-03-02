@@ -1,1 +1,5 @@
-ylin.cir
+ylin-2port-linAnalysis.cir
+ylin-2port-hbAnalysis.cir
+ylin-2port-yparam-freqMultkHz.cir
+ylin-2port-yparam-freqMultMHz.cir
+ylin-2port-yparam-freqMultGHz.cir
