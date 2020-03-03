@@ -8,6 +8,10 @@ ErrorMessageTest.cir
 ErrorMessageTest.cir.sh
 ErrorMessageTest.cir.tags
 ErrorMessageTest.cir.options
+IncorrectNumNodes.cir
+IncorrectNumNodes.cir.sh
+IncorrectNumNodes.cir.tags
+IncorrectNumNodes.cir.options
 noValidLines.s1p
 shortVersionLine.s1p
 invalidVersion.s1p
@@ -47,3 +51,6 @@ ylin-2port-yparam-freqMult.cir.y2p
 ylin-2port-yparam-freqMultkHz.cir.y2p
 ylin-2port-yparam-freqMultMHz.cir.y2p
 ylin-2port-yparam-freqMultGHz.cir.y2p
+ylin-5port-yparam.cir
+ylin-5port-yparam.cir.sh
+ylin-5port-yparam.cir.y5p
