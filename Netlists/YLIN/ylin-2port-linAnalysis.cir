@@ -3,7 +3,7 @@
 * on the .LIN lines.  This netlist is not run as part of
 * any regression test.
 
-P1 1 0 port=1
+P1 1 0 port=1 ; this analysis uses a default Z0=50 for each port
 P2 2 0 port=2
 
 .LIN lintype=s FILE=ylin-2port-sparam.cir.s2p format=touchstone2 precision=12

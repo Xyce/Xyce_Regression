@@ -33,6 +33,9 @@ idealGain.cir.21_12.s2p
 ylin-2port-sparam.cir
 ylin-2port-sparam.cir.sh
 ylin-2port-sparam.cir.s2p
+ylin-2port-diffZ0-sparam.cir
+ylin-2port-diffZ0-sparam.cir.sh
+ylin-2port-diffZ0-sparam.cir.s2p
 ylin-2port-yparam.cir
 ylin-2port-yparam.cir.sh
 ylin-2port-yparam.cir.y2p
