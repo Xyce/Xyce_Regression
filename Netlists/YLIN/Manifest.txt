@@ -58,3 +58,5 @@ ylin-2port-yparam-freqMultGHz.cir.y2p
 ylin-5port-yparam.cir
 ylin-5port-yparam.cir.sh
 ylin-5port-yparam.cir.y5p
+ylin-5port-yparam-cw.cir
+ylin-5port-yparam-cw.cir.y5p

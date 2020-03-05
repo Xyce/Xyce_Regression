@@ -28,6 +28,8 @@ $GOLDPRN =~ s/\.prn$//; # remove the .prn at the end.
 $XYCE_ACVERIFY = $XYCE_VERIFY;
 $XYCE_ACVERIFY =~ s/xyce_verify/ACComparator/;
 
+$CIRCW = "ylin-5port-yparam-cw.cir";
+
 # comparison tolerances for ACComparator.pl
 $abstol=1e-6;
 $reltol=1e-4;  #0.1%
@@ -36,6 +38,7 @@ $freqreltol=1e-6;
 
 # remove previous output files
 system("rm -f $CIRFILE.HB.TD.* $CIRFILE.HB.FD.* $CIRFILE.out $CIRFILE.err");
+system("rm -f $CIRCW.HB.TD.* $CIRCW.HB.FD.* $CIRCW.out $CIRCW.err");
 
 # run Xyce
 $CMD="$XYCE $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
@@ -82,5 +85,59 @@ if (system($CMD) != 0) {
     print STDERR "Verification failed on file $CIRFILE.HB.FD.prn, see $CIRFILE.HB.FD.prn.err\n";
     $retcode = 2;
 }
+
+if ($retcode == 0) {print "Passed base case comparison\n";}
+
+# repeat for netlist with "column-wrapped" version of input file
+$CMD="$XYCE $CIRCW > $CIRCW.out 2>$CIRCW.err";
+$retval=system($CMD);
+
+if ($retval != 0)
+{
+  if ($retval & 127)
+  {
+    print "Exit code = 13\n";
+    printf STDERR "Xyce crashed with signal %d on file %s\n",($retval&127),$CIRCW;
+    exit 13;
+  }
+  else
+  {
+    print "Exit code = 10\n";
+    printf STDERR "Xyce exited with exit code %d on %s\n",$retval>>8,$CIRCW;
+    exit 10;
+  }
+}
+
+# check for output files
+if ( !(-f "$CIRCW.HB.TD.prn")) {
+    print STDERR "Missing output file $CIRCW.HB.TD.prn\n";
+    $xyceexit=14;
+}
+if ( !(-f "$CIRCW.HB.FD.prn")) {
+    print STDERR "Missing output file $CIRCW.HB.FD.prn\n";
+    $xyceexit=14;
+}
+
+if (defined ($xyceexit)) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
+
+$CMD="diff $CIRCW.HB.FD.prn $CIRFILE.HB.FD.prn > $CIRCW.HB.FD.prn.out 2> $CIRCW.HB.FD.prn.err";
+$retval = system($CMD);
+$retval = $retval >> 8;
+if ($retval != 0)
+{
+  print STDERR "Diff failed on file $CIRCW.HB.FD.prn with exit code $retval\n";
+  $retcode = 2;
+}
+
+$CMD="diff $CIRCW.HB.TD.prn $CIRFILE.HB.TD.prn > $CIRCW.HB.TD.prn.out 2> $CIRCW.HB.TD.prn.err";
+$retval = system($CMD);
+$retval = $retval >> 8;
+if ($retval != 0)
+{
+  print STDERR "Diff failed on file $CIRCW.HB.TD.prn with exit code $retval\n";
+  $retcode = 2;
+}
+
+if ($retcode == 0) {print "Passed column-wrapped case comparison\n";}
 
 print "Exit code = $retcode\n"; exit $retcode;

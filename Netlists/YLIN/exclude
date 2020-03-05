@@ -5,3 +5,4 @@ ylin-2port-yparam-freqMultMHz.cir
 ylin-2port-yparam-freqMultGHz.cir
 ylin-5port-linAnalysis.cir
 ylin-5port-hbAnalysis.cir
+ylin-5port-yparam-cw.cir

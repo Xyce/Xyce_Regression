@@ -8,11 +8,11 @@
 *     12_21 and 21_12, where the default value is 12_21.
 *
 *  3) The input S-parameter matrices, for this test were made by-hand.
-*     The gold standard was verified by inspection, since 
+*     The gold standard was verified by inspection, since
 *     V(3) = V(2) = 5*V(1), and I(V1) = V(1)/25.
 *
 *  4) This also verifies that multiple YLIN devices can be used in
-*     a netlist.
+*     a netlist, and that two different .MODEL YLIN statements work.
 ********************************************************************
 
 .options hbint numfreq=10 tahb=0
