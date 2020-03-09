@@ -49,11 +49,17 @@ $CIRFILE=$ARGV[3];
      "Netlist error: Unable to parse \\[Network Data Section\\] in file invalidLines.s2p",
      "for model YLIN_MOD7.  Number of ports or frequencies < 1"],
     ["Netlist error: Number of lines in \\[Network Data\\] does not match \\[Number of",
-     "Frequencies\\] in file tooFewNetworkDataLines.s2p for model YLIN_MOD8"],
-    ["Netlist error: Number of lines in \\[Network Data\\] does not match \\[Number of",
-     "Frequencies\\] in file tooManyNetworkDataLines.s2p for model YLIN_MOD9"],
-    ["Netlist error: Incorrect number of entries for network data on lineNum 9 in",
-     "file shortNetworkDataLine.s1p for model YLIN_MOD10"]
+     "Frequencies\\] in file tooFewNetworkDataLines.s2p for model YLIN_MOD8",
+     "Netlist error: Incorrect number of entries in \\[Network Data\\] block found in",
+     "file tooFewNetworkDataLines.s2p for model YLIN_MOD8. Found 90. Expected 99"],
+     ["Netlist error: Number of lines in \\[Network Data\\] does not match \\[Number of",
+     "Frequencies\\] in file tooManyNetworkDataLines.s2p for model YLIN_MOD9",
+     "Netlist error: Incorrect number of entries in \\[Network Data\\] block found in",
+     "file tooManyNetworkDataLines.s2p for model YLIN_MOD9. Found 99. Expected 90"],
+    ["Netlist error: No valid \\[Network Data\\] block of lines found in file",
+     "shortNetworkDataLine.s1p for model YLIN_MOD10",
+     "Netlist error: Incorrect number of entries in \\[Network Data\\] block found in",
+     "file shortNetworkDataLine.s1p for model YLIN_MOD10. Found 32. Expected 33"]
 );
 $retval = $Tools->runAndCheckGroupedError($CIRFILE,$XYCE,@searchstrings);
 
