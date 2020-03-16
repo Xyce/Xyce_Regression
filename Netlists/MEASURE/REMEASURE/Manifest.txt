@@ -64,4 +64,8 @@ RemeasureLeadCurrents.cir
 RemeasureLeadCurrents.cir.sh
 RemeasureDotData.cir
 RemeasureDotData.cir.sh
+ErrorFuncTest.cir
+ErrorFuncTest.cir.sh
+ErrorFuncTestGSfile
+ErrorFuncTest.cir.remeasure.prn
 

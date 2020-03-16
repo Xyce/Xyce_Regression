@@ -15,18 +15,18 @@ use Getopt::Long;
 &GetOptions( "verbose!" => \$verbose );
 $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
-$CIRFILE=$ARGV[3]; 
+$CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
 
 if (defined($verbose)) { $Tools->setVerbose(1); }
 
 # check various error cases
-# this string should be in the output of this failed Xyce run  
-@searchstrings = ( "Netlist error in file UnsupportedRemeasureTypes.cir at or near line 18",
-                   "Only AVG, EQN/PARAM, ERR, ERR1, ERR2, ERROR, FIND, MIN, MAX, PP and WHEN",
-                   "measure types are supported for AC measure mode");
+# these strings should be in the output of this failed Xyce run
+@searchstrings = ( "Netlist error: YMIN or IGNORE keyword for measure ERR1 must be non-negative",
+                   "Netlist error: YMAX keyword for measure ERR2 must be positive",
+                   "Netlist error: ERR1INC has incomplete MEASURE line",
+                   "Netlist error: ERR2INC has incomplete MEASURE line"
+);
 
-# turn this into a re-measure line
-$XYCE = "$XYCE -remeasure UnsupportedRemeasureTypes.cir.FD.prn";
 $retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);
-print "Exit code = $retval\n"; exit $retval; 
+print "Exit code = $retval\n"; exit $retval;

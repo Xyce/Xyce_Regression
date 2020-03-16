@@ -31,6 +31,10 @@ ErrorTestRawData.prn
 ErrorTestCommaDelimRawData.prn
 ErrorTestRawData.csd
 ErrorTestRawData.csv
+ErrorFuncTest.cir
+ErrorFuncTest.s0.cir
+ErrorFuncTest.s1.cir
+ErrorFuncTest.cir.sh
 ErrorMessageTest.cir
 ErrorMessageTestGSfile
 ErrorMessageTest.cir.sh
