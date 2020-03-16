@@ -23,8 +23,8 @@ R2  2  0  100
 
 * Measures should return -1 or -100, since the FROM-T0 window 
 * does not overlap with the stepped values for VSRC1:DCV0
-.measure tran eqnReturnNegOne EQN {v(1b)+1.0} FROM=-4 TO=-2
-.measure tran eqnReturnNeg100 EQN {v(1b)+1.0} FROM=8 TO=6 DEFAULT_VAL=-100
+.measure tran eqnReturnNegOne EQN {v(1)+1.0} FROM=-4 TO=-2
+.measure tran eqnReturnNeg100 EQN {v(1)+1.0} FROM=8 TO=6 DEFAULT_VAL=-100
 
 .END
 
