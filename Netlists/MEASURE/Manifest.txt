@@ -89,6 +89,9 @@ bad_dot_measure_line6_Mt0GSFile
 bad_dot_measure_line7.cir
 bad_dot_measure_line7.cir.sh
 bad_dot_measure_line7.cir.tags
+bad_dot_measure_line8.cir
+bad_dot_measure_line8.cir.sh
+bad_dot_measure_line8.cir.tags
 LeadCurrentNotOnPrintLineTest.cir
 LeadCurrentNotOnPrintLineTest.cir.sh
 LeadCurrentNotOnPrintLineTestMt0GSFile
