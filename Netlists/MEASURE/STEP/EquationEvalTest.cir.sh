@@ -48,6 +48,12 @@ if ($retval == 0)
   }
 }
 
+if ($retval != 0)
+{
+  print "Exit code = $retval\n";
+  exit $retval;
+}
+
 # Also test that the EQN measures are correct in the output .prn file
 # use file_compare since xyce verify doesn't like NOINDEX format.  This
 # check currently uses a gold standard .prn file.

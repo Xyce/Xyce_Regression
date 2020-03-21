@@ -7,6 +7,9 @@ ErrorTestACCommaDelimRawData.FD.prn
 ErrorTestACGSfile
 ErrorTestACRawData.FD.csv
 ErrorTestACRawData.FD.prn
+ErrorFuncTestAC.cir
+ErrorFuncTestAC.cir.sh
+ErrorFuncTestACGSfile
 EquationEvalTestAC.cir
 EquationEvalTestAC.cir.sh
 EquationEvalTestACGSfile

@@ -30,6 +30,9 @@ ErrorTest2DCRawData.prn
 ErrorTest2DCRawData.csd
 ErrorTest2DCRawData.csv
 ErrorTest2DCCommaDelimRawData.prn
+ErrorFuncTest1DC.cir
+ErrorFuncTest1DC.cir.sh
+ErrorFuncTest1DCGSfile
 EquationEvalTestDC.cir
 EquationEvalTestDC.cir.sh
 EquationEvalTestDCGSfile

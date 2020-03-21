@@ -1,0 +1,53 @@
+* Test DC mode support for ERR, ERR1 and ERR2 Measures
+*
+* This bug covers:
+*   1) the case of one variable in the .DC line,
+*      without a .STEP statement.
+*
+*   2) the use of FROM and TO statements.
+*
+*   3) Use of a global parameter.
+*
+* See SON Bug 1278 for more details.
+**********************************************************
+
+.GLOBAL_PARAM P1=2.5
+
+V3 3 0 2.5
+R3 3 0 1
+
+.DC V1 -5 5 1
+.PRINT DC V(1) V(2) V(3) I(R1) I(R3)
+
+V1 1 0 1
+R1 1 2 1
+R2 2 0 3
+
+* ERR and ERR1 measures
+.MEASURE DC ERR ERR V(1) V(2)
+.MEASURE DC ERR1 ERR1 V(1) V(2)
+.MEASURE DC ERR1RO ERR1 V(2) V(1)
+.MEASURE DC ERR1MV1.5 ERR1 V(1) V(2) MINVAL=1.5
+.MEASURE DC ERR1YMIN2.5 ERR1 V(1) V(3) YMIN=2.5
+.MEASURE DC ERR1IGNOR2.5 ERR1 V(1) V(3) IGNOR=2.5
+.MEASURE DC ERR1YMAX3.5 ERR1 V(1) {P1} YMAX=3.5
+.MEASURE DC ERR1FT ERR1 {V(1)*V(1)} V(1) FROM=0 TO=4
+
+* ERR2 measures
+.MEASURE DC ERR2 ERR2 V(1) V(2)
+.MEASURE DC ERR2RO ERR2 V(2) V(1)
+.MEASURE DC ERR2MV1.5 ERR2 V(1) V(2) MINVAL=1.5
+.MEASURE DC ERR2YMIN2.5 ERR2 V(1) V(3) YMIN=2.5
+.MEASURE DC ERR2IGNORE2.5 ERR2 V(1) V(3) IGNORE=2.5
+.MEASURE DC ERR2YMAX3.5 ERR2 V(1) {P1} YMAX=3.5
+.MEASURE DC ERR2FT ERR2 {V(1)*V(1)} V(1) FROM=0 TO=4
+
+* Current OP
+.MEASURE DC ERR1I ERR1 I(R1) I(R3)
+
+* Tests should return -1 or -100, since the FROM-T0 window
+* does not overlap with the stepped values for VSRC1:DCV0
+.measure dc maxReturnNegOne ERR1 v(1) v(2) FROM=-8 TO=-6
+.measure dc maxReturnNeg100 ERR2 v(1) v(2) FROM=8 TO=6 DEFAULT_VAL=-100
+
+.END

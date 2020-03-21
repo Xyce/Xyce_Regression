@@ -129,14 +129,14 @@ sub checkTranStepResults
     # Did we make a measure file for the non-step netlist
     if (not -s "$NSF.mt0" ) { return 17; }
 
-    my $CMD="diff $CIRFILE.mt$idx $NSF.mt0 > $CIRFILE.mt.out 2> $CIRFILE.mt.err";
+    my $CMD="diff $CIRFILE.mt$idx $NSF.mt0 > $CIRFILE.mt$idx.out 2> $CIRFILE.mt$idx.err";
     $retval = system($CMD);
     $retval = $retval >> 8;
 
     # check the return value
     if ( $retval != 0 )
     {
-      print "Diff Failed for Step $idx. See $CIRFILE.mt.out and $CIRFILE.mt.err\n";
+      print "Diff Failed for Step $idx. See $CIRFILE.mt$idx.out and $CIRFILE.mt$idx.err\n";
       return 2;
     }
   }

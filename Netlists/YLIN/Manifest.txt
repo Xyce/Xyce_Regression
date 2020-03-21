@@ -30,6 +30,9 @@ idealGain.cir
 idealGain.cir.sh
 idealGain.cir.12_21.s2p
 idealGain.cir.21_12.s2p
+opAmpWithIsc.cir
+opAmpWithIsc.cir.sh
+opAmpWithIsc.cir.s2p
 ylin-2port-sparam.cir
 ylin-2port-sparam.cir.sh
 ylin-2port-sparam.cir.s2p

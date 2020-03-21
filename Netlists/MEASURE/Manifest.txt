@@ -16,6 +16,9 @@ ErrorTestRawData.prn
 ErrorTestCommaDelimRawData.prn
 ErrorTestRawData.csd
 ErrorTestRawData.csv
+ErrorFuncTest.cir
+ErrorFuncTest.cir.sh
+ErrorFuncTestGSfile
 bad_error_measure_line1.cir
 bad_error_measure_line1.cir.sh
 bad_error_measure_line1.cir.tags
@@ -83,6 +86,12 @@ bad_dot_measure_line6.cir.sh
 bad_dot_measure_line6.cir.tags
 bad_dot_measure_line6_GSFile
 bad_dot_measure_line6_Mt0GSFile
+bad_dot_measure_line7.cir
+bad_dot_measure_line7.cir.sh
+bad_dot_measure_line7.cir.tags
+bad_dot_measure_line8.cir
+bad_dot_measure_line8.cir.sh
+bad_dot_measure_line8.cir.tags
 LeadCurrentNotOnPrintLineTest.cir
 LeadCurrentNotOnPrintLineTest.cir.sh
 LeadCurrentNotOnPrintLineTestMt0GSFile
@@ -162,6 +171,7 @@ bad_dot_measure_line3.cir.options
 bad_dot_measure_line4.cir.options
 bad_dot_measure_line5.cir.options
 bad_dot_measure_line6.cir.options
+bad_dot_measure_line7.cir.options
 bad_error_measure_line1.cir.options
 measure_tran_analysis_mismatch.cir.options
 dotOpNoTran.cir.options
