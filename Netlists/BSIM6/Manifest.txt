@@ -1,3 +1,5 @@
+bsim6_nmos_outvars.cir
+bsim6_pmos_outvars.cir
 gummel_nmos_xyce.cir
 gummel_pmos_xyce.cir
 idvd_nmos_xyce.cir
