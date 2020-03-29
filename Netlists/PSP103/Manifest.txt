@@ -23,6 +23,8 @@ psp_symm_nmos_idvg0_swimpact1.cir
 psp_symm_nmos_idvg0_swimpact1.cir.res.gs
 psp_symm_nmos_idvgh.cir
 psp_symm_nmos_idvgh.cir.res.gs
+psp_symm_nmos_idvgh_outvars.cir
+psp_symm_nmos_idvgh_outvars.cir.res.gs
 psp_symm_nmos_idvgh_allsw0.cir
 psp_symm_nmos_idvgh_allsw0.cir.res.gs
 psp_symm_nmos_idvgh_swigate1.cir
