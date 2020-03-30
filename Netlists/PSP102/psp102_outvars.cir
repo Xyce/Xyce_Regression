@@ -294,7 +294,8 @@ x2 d2 g2 s2 b2 mysub
 
 .dc v_g -1.0 1.2 0.01
 *COMP {N(X1:M1:gm)-{((N(X2:M1:ids)+N(X2:M1:idb)-N(X2:M1:igd))-(N(X1:M1:ids)+N(X1:M1:idb)-N(X1:M1:igd)))/(V(g2)-V(g))}} abstol=1e-8
-*COMP {((N(X2:M1:ids)++N(X2:M1:idb)-N(X2:M1:igd))-(N(X1:M1:ids)+N(X1:M1:idb)-N(X1:M1:igd)))/(V(g2)-V(g))} abstol=1e-8 reltol=2e-2
+*COMP {((N(X2:M1:ids)+N(X2:M1:idb)-N(X2:M1:igd))-(N(X1:M1:ids)+N(X1:M1:idb)-N(X1:M1:igd)))/(V(g2)-V(g))} abstol=1e-8
+*COMP {N(X1:M1:gm)} abstol=1e-8 reltol=2e-2 offset=5e-6
 * PSP "Ids" is only one term of the thing gm differentiates.
 .print dc v(g) v(d) {N(X1:M1:ids)+N(X1:M1:idb)-N(X1:M1:igd)}
 + {((N(X2:M1:ids)+N(X2:M1:idb)-N(X2:M1:igd))-(N(X1:M1:ids)+N(X1:M1:idb)-N(X1:M1:igd)))/(V(g2)-V(g))}
