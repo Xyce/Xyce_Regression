@@ -38,7 +38,7 @@ M2 D2 G2 S2 B2 pspqan W=10.0e-6 L=0.1e-6 AS=5e-12 AD=5e-12 PS=21e-6 PD=21e-6
 .dc Vg -1 1.2 0.01  Vd LIST 0.05 1.0
 .step TEMP LIST 27 -50 150
 *COMP {N(M1:gm)-{((N(M2:ids)+N(M2:idedge)+N(M2:idb)-N(M2:igd))-(N(M1:ids)+N(M1:idedge)+N(M1:idb)-N(M1:igd)))/(V(g2)-V(g))}} abstol=1e-8
-*COMP {((N(M2:ids)+N(M2:idedge)+N(M2:idb)-N(M2:igd))-(N(M1:ids)+N(M1:idedge)+N(M1:idb)-N(M1:igd)))/(V(g2)-V(g))} abstol=1e-9
+*COMP {((N(M2:ids)+N(M2:idedge)+N(M2:idb)-N(M2:igd))-(N(M1:ids)+N(M1:idedge)+N(M1:idb)-N(M1:igd)))/(V(g2)-V(g))} abstol=1e-8
 * PSP "Ids" is only one term of the thing gm differentiates.
 .print dc v(g) v(d) {N(M1:ids)+N(M1:idedge)+N(M1:idb)-N(M1:igd)}
 + {((N(M2:ids)+N(M2:idedge)+N(M2:idb)-N(M2:igd))-(N(M1:ids)+N(M1:idedge)+N(M1:idb)-N(M1:igd)))/(V(g2)-V(g))}
