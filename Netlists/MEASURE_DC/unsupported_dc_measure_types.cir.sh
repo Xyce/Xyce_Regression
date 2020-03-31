@@ -23,33 +23,24 @@ if (defined($verbose)) { $Tools->setVerbose(1); }
 # check various error cases
 # this string should be in the output of this failed Xyce run  
 @searchstrings = (
-"Netlist error in file unsupported_dc_measure_types.cir at or near line 24",
-  "Only AVG, EQN/PARAM, ERR, ERR1, ERR2, ERROR, FIND, MIN, MAX, PP and WHEN",
-  "measure types are supported for DC measure mode",
 "Netlist error in file unsupported_dc_measure_types.cir at or near line 25",
-  "Only AVG, EQN/PARAM, ERR, ERR1, ERR2, ERROR, FIND, MIN, MAX, PP and WHEN",
-  "measure types are supported for DC measure mode",
+  "Only AVG, DERIV, EQN/PARAM, ERR, ERR1, ERR2, ERROR, FIND, INTEG, MIN, MAX,",
+  "PP, RMS and WHEN measure types are supported for DC measure mode",
 "Netlist error in file unsupported_dc_measure_types.cir at or near line 26",
-  "Only AVG, EQN/PARAM, ERR, ERR1, ERR2, ERROR, FIND, MIN, MAX, PP and WHEN",
-  "measure types are supported for DC measure mode",
+  "Only AVG, DERIV, EQN/PARAM, ERR, ERR1, ERR2, ERROR, FIND, INTEG, MIN, MAX,",
+  "PP, RMS and WHEN measure types are supported for DC measure mode",
 "Netlist error in file unsupported_dc_measure_types.cir at or near line 27",
-  "Only AVG, EQN/PARAM, ERR, ERR1, ERR2, ERROR, FIND, MIN, MAX, PP and WHEN",
-  "measure types are supported for DC measure mode",
+  "Only AVG, DERIV, EQN/PARAM, ERR, ERR1, ERR2, ERROR, FIND, INTEG, MIN, MAX,",
+  "PP, RMS and WHEN measure types are supported for DC measure mode",
 "Netlist error in file unsupported_dc_measure_types.cir at or near line 28",
-  "Only AVG, EQN/PARAM, ERR, ERR1, ERR2, ERROR, FIND, MIN, MAX, PP and WHEN",
-  "measure types are supported for DC measure mode",
+  "Only AVG, DERIV, EQN/PARAM, ERR, ERR1, ERR2, ERROR, FIND, INTEG, MIN, MAX,",
+  "PP, RMS and WHEN measure types are supported for DC measure mode",
 "Netlist error in file unsupported_dc_measure_types.cir at or near line 29",
-  "Only AVG, EQN/PARAM, ERR, ERR1, ERR2, ERROR, FIND, MIN, MAX, PP and WHEN",
-  "measure types are supported for DC measure mode",
+  "Only AVG, DERIV, EQN/PARAM, ERR, ERR1, ERR2, ERROR, FIND, INTEG, MIN, MAX,",
+  "PP, RMS and WHEN measure types are supported for DC measure mode",
 "Netlist error in file unsupported_dc_measure_types.cir at or near line 30",
-  "Only AVG, EQN/PARAM, ERR, ERR1, ERR2, ERROR, FIND, MIN, MAX, PP and WHEN",
-  "measure types are supported for DC measure mode",
-"Netlist error in file unsupported_dc_measure_types.cir at or near line 31",
-  "Only AVG, EQN/PARAM, ERR, ERR1, ERR2, ERROR, FIND, MIN, MAX, PP and WHEN",
-  "measure types are supported for DC measure mode",
-"Netlist error in file unsupported_dc_measure_types.cir at or near line 32",
-  "Only AVG, EQN/PARAM, ERR, ERR1, ERR2, ERROR, FIND, MIN, MAX, PP and WHEN",
-  "measure types are supported for DC measure mode"
+  "Only AVG, DERIV, EQN/PARAM, ERR, ERR1, ERR2, ERROR, FIND, INTEG, MIN, MAX,",
+  "PP, RMS and WHEN measure types are supported for DC measure mode"
 );
 
 $retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);

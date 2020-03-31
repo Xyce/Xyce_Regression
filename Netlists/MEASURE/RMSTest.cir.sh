@@ -164,9 +164,9 @@ foreach $j (0 .. $numMeasures-1){
 
           if ($initialized > 0)
           {
-            $calcVals[$j] += 0.25*($dataFromXyce[$i][0] - $dataFromXyce[$i-1][0])*
-                             ($dataFromXyce[$i][$colIdx] + $dataFromXyce[$i-1][$colIdx])*
-                             ($dataFromXyce[$i][$colIdx] + $dataFromXyce[$i-1][$colIdx]);
+            $calcVals[$j] += 0.5*($dataFromXyce[$i][0] - $dataFromXyce[$i-1][0])*
+                             ($dataFromXyce[$i][$colIdx] * $dataFromXyce[$i][$colIdx] +
+                              $dataFromXyce[$i-1][$colIdx] * $dataFromXyce[$i-1][$colIdx]);
             $measureInterval[$j] += $dataFromXyce[$i][0] - $dataFromXyce[$i-1][0];
           }
           # mimicking how the C++ code handles initial value.  The result is that both ends 

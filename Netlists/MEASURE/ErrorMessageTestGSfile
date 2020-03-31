@@ -328,14 +328,14 @@ Netlist warning: PPFAILCROSS failed. Measured Rise,Fall,Cross=(2,1,1)
 PPFAILCROSS = FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
-RMSVAL = 7.064653e-01
+RMSVAL = 7.067303e-01
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
-RMSVALCROSSLAST = 7.063311e-01
+RMSVALCROSSLAST = 7.065822e-01
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 Last Cross: Start Time= 5.000000e-04	End Time= 1.000000e-03
 
-RMSVALRFCLEVEL = 8.509411e-01
+RMSVALRFCLEVEL = 8.510593e-01
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 Cross 1: Start Time= 9.000000e-05	End Time= 4.100000e-04
 

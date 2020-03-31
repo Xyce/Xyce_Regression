@@ -322,14 +322,14 @@ Netlist warning: PPFAILCROSS failed. Measured Rise,Fall,Cross=(2,1,1)
 PPFAILCROSS = FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
-RMSVAL = 7.066480e-01
+RMSVAL = 7.067979e-01
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
-RMSVALCROSSLAST = 7.097959e-01
+RMSVALCROSSLAST = 7.099235e-01
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 Last Cross: Start Time= 5.046271e-04	End Time= 1.000000e-03
 
-RMSVALRFCLEVEL = 8.449355e-01
+RMSVALRFCLEVEL = 8.450071e-01
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 Cross 1: Start Time= 8.519670e-05	End Time= 4.128767e-04
 
@@ -698,14 +698,14 @@ Netlist warning: PPFAILCROSS failed. Measured Rise,Fall,Cross=(2,1,1)
 PPFAILCROSS = FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
-RMSVAL = 1.413241e+00
+RMSVAL = 1.413587e+00
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
-RMSVALCROSSLAST = 1.416210e+00
+RMSVALCROSSLAST = 1.416570e+00
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 Last Cross: Start Time= 5.023365e-04	End Time= 1.000000e-03
 
-RMSVALRFCLEVEL = 1.548906e+00
+RMSVALRFCLEVEL = 1.549125e+00
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 Cross 1: Start Time= 4.587510e-05	End Time= 4.587519e-04
 

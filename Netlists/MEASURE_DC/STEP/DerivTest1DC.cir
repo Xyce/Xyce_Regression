@@ -1,0 +1,53 @@
+* Test DC mode support for DERIV Measures. This bug covers:
+*
+*   1) The case of one variable (vsrc1) on the .DC line,
+*      with one variable (vsrc2) in the .STEP statement.
+*
+*   2) The DC values of the swept variable (vsrc1) are monotonically
+*      decreasing.
+*
+* See SON Bug 1282 for more details.
+****************************************************************
+
+V1 1 0 1
+R1 1 0 1
+
+E2 2 0 VALUE={V(1)*V(1)}
+R2a 2 2a 2
+R2b 2a 0 2
+
+.DC V1 5 1 -1
+.STEP R2b 2 4 2
+.PRINT DC V(1) V(2a) I(R2b)
+
+* DERIV
+.MEASURE DC DERIVV2AT2.5 DERIV V(2a) AT=2.5
+
+* test AT value at start of sweep
+.MEASURE DC DERIVV2AT1 DERIVATIVE V(2a) AT=1
+
+* WHEN syntaxes
+.MEASURE DC DERIVV2WHEN10 deriv V(2a) WHEN V(2a)=10
+
+* Expressions in WHEN clause
+.MEASURE DC derivExp1 DERIV V(2a) when v(2a)={2*v(1)}
+.MEASURE DC derivExp2 DERIV V(2a) when {v(2a)+1}=6
+.MEASURE DC derivExp3 DERIV V(2a) when v(2a)={3+2}
+.MEASURE DC derivExp4 DERIV V(2a) when v(2a)={v(1)+6}
+
+* Expression in DERIV clause
+.MEASURE DC derivExp5 DERIV {V(1)-V(2a)} when v(2a)=10
+
+* lead current
+.MEASURE DC derivir2at2.5 deriv I(R2b) AT=2.5
+
+* Tests should return -1 or -100
+.measure dc derivRetNeg1 deriv v(1) AT=10
+.measure dc derivReturnNeg100 deriv v(1) when v(1)=10 DEFAULT_VAL=-100
+
+* Signifies end of test. .sh file looks for a measure named lastMeasure.
+* This is needed for compatibility for testing with a verbose build, which
+* is often used by the Xyce developers.
+.measure dc lastMeasure max v(2a)
+
+.end
