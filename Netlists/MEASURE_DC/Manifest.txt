@@ -16,6 +16,10 @@ AvgTest1DC.cir.tags
 AvgTest2DC.cir
 AvgTest2DC.cir.sh
 AvgTest2DCGSfile
+DerivTest1DC.cir
+DerivTest1DC.cir.sh
+DerivTest1DCGSfile
+DerivTest1DC.cir.tags
 ErrorTest1DC.cir
 ErrorTest1DC.cir.sh
 ErrorTest1DCGSfile
@@ -43,6 +47,10 @@ FindWhenTest1DC.cir.tags
 FindWhenTest2DC.cir
 FindWhenTest2DC.cir.sh
 FindWhenTest2DCGSfile
+IntegTest1DC.cir
+IntegTest1DC.cir.sh
+IntegTest1DCGSfile
+IntegTest1DC.cir.tags
 LeadCurrentAndPowerTestDC.cir
 LeadCurrentAndPowerTestDC.cir.sh
 LeadCurrentAndPowerTestDCGSfile
@@ -52,6 +60,10 @@ MaxMinPPTest1DCGSfile
 MaxMinPPTest2DC.cir
 MaxMinPPTest2DC.cir.sh
 MaxMinPPTest2DCGSfile
+RMSTest1DC.cir
+RMSTest1DC.cir.sh
+RMSTest1DCGSfile
+RMSTest1DC.cir.tags
 measure_dc_analysis_mismatch.cir
 measure_dc_analysis_mismatch.cir.sh
 measure_dc_analysis_mismatch.cir.tags

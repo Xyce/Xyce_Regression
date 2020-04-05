@@ -1,0 +1,27 @@
+ ***** Measure Functions ***** 
+
+RMSV1B = 1.620185e+00
+Measure Start VSRC1 Value= 1.000000e+00	Measure End VSRC1 Value= 5.000000e+00
+
+RMSGND1B = 1.620185e+00
+Measure Start VSRC1 Value= 1.000000e+00	Measure End VSRC1 Value= 5.000000e+00
+
+RMSV1BFT1 = 1.060660e+00
+Measure Start VSRC1 Value= 1.000000e+00	Measure End VSRC1 Value= 3.000000e+00
+
+RMSV1BFT2 = 1.060660e+00
+Measure Start VSRC1 Value= 1.000000e+00	Measure End VSRC1 Value= 3.000000e+00
+
+RMSV1BPT = FAILED
+Measure Start VSRC1 Value= 4.000000e+00	Measure End VSRC1 Value= 4.000000e+00
+
+RMSV1BSQ = 3.225872e+00
+Measure Start VSRC1 Value= 1.000000e+00	Measure End VSRC1 Value= 5.000000e+00
+
+RMSRETURNNEGONE = FAILED
+Measure Start VSRC1 Value= 1.000000e+00	Measure End VSRC1 Value= 5.000000e+00
+
+RMSRETURNNEG100 = FAILED
+Measure Start VSRC1 Value= 1.000000e+00	Measure End VSRC1 Value= 5.000000e+00
+
+

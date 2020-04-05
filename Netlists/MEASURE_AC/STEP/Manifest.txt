@@ -1,6 +1,9 @@
 AvgTestAC.cir
 AvgTestAC.cir.sh
 AvgTestACGSfile
+DerivTestAC.cir
+DerivTestAC.cir.sh
+DerivTestACGSfile
 ErrorTestAC.cir
 ErrorTestAC.cir.sh
 ErrorTestACCommaDelimRawData.FD.prn
@@ -16,6 +19,13 @@ EquationEvalTestACGSfile
 FindWhenTestAC.cir
 FindWhenTestAC.cir.sh
 FindWhenTestACGSfile
+IntegTestAC.cir
+IntegTestAC.cir.sh
+IntegTestACGSfile
+AvgTestAC.cir.tags
 MaxMinPPTestAC.cir
 MaxMinPPTestAC.cir.sh
 MaxMinPPTestACGSfile
+RMSTestAC.cir
+RMSTestAC.cir.sh
+RMSTestACGSfile

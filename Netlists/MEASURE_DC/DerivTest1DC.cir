@@ -1,0 +1,44 @@
+* Test DC mode support for DERIV Measures
+*
+* This bug covers:
+*   1) the case of one variable in the .DC line,
+*      without a .STEP statement.
+*
+* See SON Bug 1282 for more details.
+********************************************************
+
+V1 1 0 1
+R1 1 0 1
+
+E2 2 0 VALUE={V(1)*V(1)}
+R2 2 0 3
+
+.DC V1 1 5 1
+.PRINT DC V(1) V(2) I(R2)
+
+* DERIV
+.MEASURE DC DERIVV2AT2.5 DERIV V(2) AT=2.5
+
+* test AT value at start of sweep
+.MEASURE DC DERIVV2AT1 DERIVATIVE V(2) AT=1
+
+* WHEN syntaxes
+.MEASURE DC DERIVV2WHEN10 deriv V(2) WHEN V(2)=10
+
+* Expressions in WHEN clause
+.MEASURE DC derivExp1 DERIV V(2) when v(2)={4*v(1)}
+.MEASURE DC derivExp2 DERIV V(2) when {v(2)+1}=6
+.MEASURE DC derivExp3 DERIV V(2) when v(2)={3+2}
+.MEASURE DC derivExp4 DERIV V(2) when v(2)={v(1)+6}
+
+* Expression in DERIV clause, and derivative is negative
+.MEASURE DC derivExp5 DERIV {V(1)-V(2)} when v(2)=10
+
+* lead current
+.MEASURE DC derivir2at2.5 deriv I(R2) AT=2.5
+
+* Tests should return -1 or -100
+.measure dc derivRetNeg1 deriv v(1) AT=10
+.measure dc derivReturnNeg100 deriv v(1) when v(1)=10 DEFAULT_VAL=-100
+
+.end

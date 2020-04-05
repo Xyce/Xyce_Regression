@@ -2,6 +2,7 @@ ac.cir
 ac.cir.sh
 ac.cir.tags
 gummel_n.cir
+gummel_n_outvars.cir
 gummel_p.cir
 inverter_transient.cir
 modelcard.nmos_xyce

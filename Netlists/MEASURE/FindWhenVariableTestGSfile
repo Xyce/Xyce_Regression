@@ -15,6 +15,15 @@ Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e+00
 V4HITV2 = 2.500000e-01
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e+00
 
+V4HITV2EXP = 2.750000e-01
+Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e+00
+
+DERIVV4HITV2 = 2.000000e+00 at time = 2.500000e-01
+Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e+00
+
+DERIVV4HITV2EXP = 2.000000e+00 at time = 2.750000e-01
+Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e+00
+
 WHENEXP1 = 1.500000e-01
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e+00
 

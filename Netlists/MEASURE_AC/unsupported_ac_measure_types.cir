@@ -1,9 +1,9 @@
-Test errors for measure types that are not supported for AC 
-**********************************************************************
-* At present, only the AVG, FIND-WHEN, EQN/PARAM, ERROR, MAX,
-* MIN, PP and WHEN measure types are supported for AC mode for .MEASURE.
-* This tests the error messages from the other valid types, that
-* aren't supported for AC.
+Test errors for measure types that are not supported for AC
+******************************************************************************
+* At present, only the AVG, DERIV, FIND-WHEN, EQN/PARAM, ERR, ERR1, ERR2,
+* ERROR, INTEG, MAX, MIN, PP, RMS and WHEN measure types are supported for
+* for AC mode for .MEASURE.  This tests the error messages from the other
+* valid types, that aren't supported for AC.
 *
 * The netlist and .AC print/analysis statements in this netlist
 * don't really matter.
@@ -23,14 +23,11 @@ rload 1 0 1000
 * These measure types are not supported for AC mode. The exact syntax
 * of each measure line doesn't matter.  Just that it has ac as the
 * second word.
-.measure ac derivVal deriv VM(1) WHEN V(1)=0.5
 .measure ac dutyVal duty VM(1)
 .measure ac fourfail FOUR VM(1) AT=1e6 TD=2e-3
 .measure ac freqVal FREQ VM(1) ON=0.75 OFF=0.25
-.measure ac integVal integ VM(1)
 .measure ac offVal off_time VM(1) OFF=0
 .measure ac onVal on_time VM(1) ON=0
-.measure ac rmsVal rms VM(1)
 .measure ac trigTargVal TRIG vm(1)=0.1 TARG vm(1)=0.99
 
 .END
