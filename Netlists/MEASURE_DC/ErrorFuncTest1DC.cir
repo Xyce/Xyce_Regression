@@ -8,6 +8,9 @@
 *
 *   3) Use of a global parameter.
 *
+*   4) That the WEIGHT qualifier has no effect on the
+*      measure values, and does not cause parsing errors.
+*
 * See SON Bug 1278 for more details.
 **********************************************************
 
@@ -26,6 +29,7 @@ R2 2 0 3
 * ERR and ERR1 measures
 .MEASURE DC ERR ERR V(1) V(2)
 .MEASURE DC ERR1 ERR1 V(1) V(2)
+.MEASURE DC ERR1WT ERR1 V(1) V(2) WEIGHT=2
 .MEASURE DC ERR1RO ERR1 V(2) V(1)
 .MEASURE DC ERR1MV1.5 ERR1 V(1) V(2) MINVAL=1.5
 .MEASURE DC ERR1YMIN2.5 ERR1 V(1) V(3) YMIN=2.5
@@ -35,6 +39,7 @@ R2 2 0 3
 
 * ERR2 measures
 .MEASURE DC ERR2 ERR2 V(1) V(2)
+.MEASURE DC ERR2WT ERR1 V(1) V(2) WEIGHT=2
 .MEASURE DC ERR2RO ERR2 V(2) V(1)
 .MEASURE DC ERR2MV1.5 ERR2 V(1) V(2) MINVAL=1.5
 .MEASURE DC ERR2YMIN2.5 ERR2 V(1) V(3) YMIN=2.5
