@@ -1,6 +1,13 @@
 #!/usr/bin/env perl
 
+use XyceRegression::Tools;
 use MeasureCommon;
+
+$Tools = XyceRegression::Tools->new();
+#$Tools->setDebug(1);
+#$Tools->setVerbose(1);
+
+if (defined($verbose)) { $Tools->setVerbose(1); }
 
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
@@ -21,26 +28,26 @@ use MeasureCommon;
 # output from comparison to go into $CIRFILE.prn.out and the STDERR output from
 # comparison to go into $CIRFILE.prn.err.
 
+use Getopt::Long;
+use File::Basename;
+use File::Copy;
+
+&GetOptions( "verbose!" => \$verbose );
 $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
 #$XYCE_COMPARE=$ARGV[2];
 $CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
 
-$fc=$XYCE_VERIFY;
-$fc =~ s/xyce_verify/file_compare/;
-
-# remove files from previous runs
-system("rm -f $CIRFILE.ms0 $CIRFILE.out $CIRFILE.err* $CIRFILE.remeasure*");
-
 #
 # Steps common to all of the measure tests are in the Perl module
-# MeasureCommon.pm.  This file assumes the analysis type was .DC
+# MeasureCommon.pm.  This file assumes the analysis type was .ac
 #
-MeasureCommon::checkDCFilesExist($XYCE,$CIRFILE);
+MeasureCommon::checkNoiseFilesExist($XYCE,$CIRFILE);
 
 # The next three blocks of code are used to compare the .MEASURE output
-# to stdout to the "gold" stdout in the $GSFILE (FindWhenTest1DCGSfile).
+# to stdout to the "gold" stdout in the $GSFILE (FindWhenTestNoiseGSfile).  This
+# output contains the information for both steps.
 
 # check that .out file exists, and open it if it does
 if (not -s "$CIRFILE.out" )
@@ -54,7 +61,13 @@ else
   open(ERRMSG,">$CIRFILE.errmsg") or die $!;
 }
 
-# parse the .out file to find the text related to .MEASURE
+# Parse the .out file to find the text related to .MEASURE for all steps.
+# The measure output in the stdout text for the first step is bracketed by
+# lines that contain "Measure Functions" and "Beginning DC Operating Point
+# Calculation".  The measure output in the stdout text for the second step
+# is bracketed by lines that contain "Measure Functions" and "Solution Summary".
+# The code has not been tested for more than two steps, and may not work in that
+# case.
 my $foundStart=0;
 my $foundEnd=0;
 my @outLine;
@@ -74,7 +87,8 @@ while( $line=<NETLIST> )
     $foundEnd = 1;
     $foundStart = 0;
   }
-  elsif ( ($foundStart > 0) && ($line =~ /Solution Summary/) )
+  elsif ( ($foundStart > 0 && $line =~ /Solution Summary/) ||
+       ($foundStart > 0 && $line =~ /Beginning DC Operating Point Calculation/) )
   {
     $foundEnd = 1;
   }
@@ -88,13 +102,15 @@ while( $line=<NETLIST> )
 close(NETLIST);
 close(ERRMSG);
 
-# test that the values and strings in the .out file match to the required
-# tolerances
-my $GSFILE="FindWhenTest1DCGSfile";
-my $absTol=1e-5;
-my $relTol=1e-3;
-my $zeroTol=1e-10;
+# test that the values and strings in the files $CIRFILE.errmsg and $GSFILE, for all steps,
+# match to the required tolerances
+$GSFILE="FindWhenTestNoiseGSfile";
+$absTol=1e-5;
+$relTol=1e-3;
+$zeroTol=1e-10;
 
+my $dirname = dirname($XYCE_VERIFY);
+my $fc = "$dirname/file_compare.pl";
 #print "$fc $CIRFILE.errmsg $GSFILE $absTol $relTol $zeroTol\n";
 `$fc $CIRFILE.errmsg $GSFILE $absTol $relTol $zeroTol > $CIRFILE.errmsg.out 2> $CIRFILE.errmsg.err`;
 my $retval=$? >> 8;
@@ -118,41 +134,39 @@ foreach $stepNum (1 .. $numSteps)
 {
   print "Processing data for step $stepNum\n";
 
-  # The next two blocks of code are used to compare the measured .msX file
-  # with the "Gold" .msX file, which is in OutputData/MEASURE_DC/STEP/
-  # Check that the Gold .msX file exists
-  $msSuffix=$stepNum-1;
-  $msxString= "ms$msSuffix";
-  $GOLDMSX = $GOLDPRN;
-  $GOLDMSX =~ s/prn$/$msxString/;
-  #print "GOLDMSX file = $GOLDMSX\n";
-  if (not -s "$GOLDMSX" )
+  # The next two blocks of code are used to compare the measured .maX file
+  # with the "Gold" .maX file, which is in OutputData/MEASURE_CONT/STEP/FindWhenTestNoise.cir.maX
+  # Check that the Gold .maX file exists
+  $maSuffix=$stepNum-1;
+  $ma0String= "ma$maSuffix";
+  $GOLDMA0 = $GOLDPRN;
+  $GOLDMA0 =~ s/prn$/$ma0String/;
+  #print "GOLDMA0 file = $GOLDMA0\n";
+  $maSuffix = $stepNum-1;
+  if (not -s "$GOLDMA0" )
   {
-    print "GOLD $msxstring file does not exist\n";
+    print "GOLD $ma0String file does not exist\n";
     print "Exit code = 17\n";
-   exit 17;
+    exit 17;
   }
 
-  # compare gold and measured .ms0 files
-  $MEASUREMSX = "$CIRFILE.ms$msSuffix";
-  #print "$fc $MEASUREMS0 $GOLDMS0 $absTol $relTol $zeroTol\n";
-  `$fc $MEASUREMSX $GOLDMSX $absTol $relTol $zeroTol > $CIRFILE.errmsg.out 2> $CIRFILE.errmsg.err`;
+  # compare gold and measured .ma files, for this step.
+  $MEASUREMAX = "$CIRFILE.ma$maSuffix";
+  #print "$fc $MEASUREMAX $GOLDMA0 $absTol $relTol $zeroTol\n";
+  `$fc $MEASUREMAX $GOLDMA0 $absTol $relTol $zeroTol > $CIRFILE.errmsg.out 2> $CIRFILE.errmsg.err`;
   my $retval=$? >> 8;
 
   if ( $retval != 0 )
   {
-    print "test Failed comparison of Gold and measured .ms$msSuffix file!\n";
+    print "test Failed comparison of Gold and measured .ma$maSuffix files!\n";
     print "Exit code = $retval\n";
     exit $retval;
   }
   else
   {
-    print "Passed comparison of .ms$msSuffix files\n";
+    print "Passed comparison of .ma$maSuffix files\n";
   }
 }
-
-# Also test remeasure if the basic measure function works
-$retval = MeasureCommon::checkRemeasure($XYCE,$XYCE_VERIFY,$CIRFILE,$absTol,$relTol,$zeroTol,'prn',$numSteps,'ms');
 
 print "Exit code = $retval\n";
 exit $retval;

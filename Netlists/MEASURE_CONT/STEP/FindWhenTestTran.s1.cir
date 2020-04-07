@@ -1,0 +1,40 @@
+* This netlist is equivalent to Step 1 for the FindWhenTranTest.cir
+* netlist.  It has R1b=200.
+*
+* See SON Bug 1274 for more details.
+********************************************************
+*
+VPWL1 1  0  pwl(0 0 2.5m 1 5m 0)
+VPWL2 2  0  pwl(0 0.5 2.5m 0 5m 0.5)
+
+R1a  1  1a  100
+R1b  1a  0  200
+R2   2   0  100
+
+.TRAN 0 5ms
+.PRINT TRAN V(1) V(1a) V(2)
+
+* Non-continuous version should return first crossing.
+* Continuous version should return all crossings.
+.measure tran whenCrossTest1 when v(1a)=0.2
+.measure TRAN_CONT whenCrossContTest1 when v(1a)=0.2
+*.measure tran findCrossTest1 find v(2) when v(1a)=0.2
+*.measure tran_cont findCrossContTest1 find v(2) when v(1a)=0.2
+
+* These should give the same answer
+.measure tran whenCrossTest2 when v(1a)=0.2 RISE=1
+.measure tran_cont whenCrossContTest2 when v(1a)=0.2 RISE=1
+*.measure tran findCrossTest2 find v(2) when v(1a)=0.2 RISE=1
+*.measure tran_cont findCrossContTest2 find v(2) when v(1a)=0.2 RISE=1
+
+* These should give the same answer
+.measure tran whenCrossTest3 when v(1a)=0.2 CROSS=LAST
+.measure tran_cont whenCrossContTest3 when v(1a)=0.2 CROSS=LAST
+*.measure tran findCrossTest3 find v(2) when v(1a)=0.2 CROSS=LAST
+*.measure tran_cont findCrossContTest3 find v(2) when v(1a)=0.2 CROSS=LAST
+
+* These should give the same answer
+.measure tran atTest find v(1a) at=1e-3
+.measure tran_cont atContTest find v(1a) at=1e-3
+
+.END

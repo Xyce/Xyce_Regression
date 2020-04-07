@@ -22,7 +22,9 @@ system("rm -f $CIRFILE.out $CIRFILE.err");
 # These strings should be in the output of this failed Xyce run. 
 # Note that ( ) and : characters must be escaped with \\
 @searchstrings = ("Netlist error\\: Netlist analysis statement and measure mode \\(TRAN\\) for measure",
-   "TRANMAX do not agree"
+   "TRANMAX do not agree",
+   "Netlist error: Netlist analysis statement and measure mode \\(TRAN_CONT\\) for",
+   "measure TRAN_CONT_WHEN do not agree"
 );
 
 # re-measure should not work, but should produced a clean exit

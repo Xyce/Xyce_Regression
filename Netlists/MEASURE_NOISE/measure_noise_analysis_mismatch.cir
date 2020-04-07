@@ -1,10 +1,10 @@
 Testing .MEASURE lines that are mismatched with the Analysis Types
 *********************************************************************
-* This tests the error messages that should occur if a TRAN, AC or
-* DC mode measure is requested for a netlist that is doing a
-* .NOISE analysis.
+* This tests the error messages that should occur if a TRAN, TRAN_CONT,
+* AC, AC_CONT, DC or DC_CONT mode measure is requested for a netlist
+* that is doing a .NOISE analysis.
 *
-* See SON Bug 1301 for more details.
+* See SON Bugs 1274 and 1301 for more details.
 *
 *
 *********************************************************************
@@ -22,10 +22,13 @@ CLP1  4 0 1.59NF
 .NOISE  V(4)  V1  DEC  5 100 100MEG 1
 .PRINT NOISE INOISE ONOISE
 
-* Test what happens when a TRAN, AC or DC measure is requested for
-* a .NOISE netlist
-.MEASURE DC dcmax max v(b)
-.MEASURE TRAN tranmax max v(b)
-.MEASURE AC acmax max v(b)
+* Test what happens when a TRAN, TRAN_CONT, AC, AC_CONT, DC or DC_CONT
+* measure is requested for a .NOISE netlist
+.MEASURE DC dcmax max v(4)
+.MEASURE DC_CONT dc_cont_when when v(4)=0.5
+.MEASURE TRAN tranmax max v(4)
+.MEASURE TRAN_CONT tran_cont_when when v(4)=0.5
+.MEASURE AC acmax max v(4)
+.MEASURE AC_CONT ac_cont_when when v(4)=0.5
 
 .END

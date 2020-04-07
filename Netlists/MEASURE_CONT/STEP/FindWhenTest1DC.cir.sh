@@ -119,7 +119,7 @@ foreach $stepNum (1 .. $numSteps)
   print "Processing data for step $stepNum\n";
 
   # The next two blocks of code are used to compare the measured .msX file
-  # with the "Gold" .msX file, which is in OutputData/MEASURE_DC/STEP/
+  # with the "Gold" .msX file, which is in OutputData/MEASURE_CONT/STEP/
   # Check that the Gold .msX file exists
   $msSuffix=$stepNum-1;
   $msxString= "ms$msSuffix";

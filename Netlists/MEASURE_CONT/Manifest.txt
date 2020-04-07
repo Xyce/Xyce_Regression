@@ -1,0 +1,16 @@
+FindWhenTestAC.cir
+FindWhenTestAC.cir.sh
+FindWhenTestACGSfile
+FindWhenTest1DC.cir
+FindWhenTest1DC.cir.sh
+FindWhenTest1DCGSfile
+FindWhenTestNoise.cir
+FindWhenTestNoise.cir.sh
+FindWhenTestNoiseGSfile
+FindWhenTestTran.cir
+FindWhenTestTran.cir.sh
+FindWhenTestTranGSfile
+unsupported_cont_measure_types.cir
+unsupported_cont_measure_types.cir.sh
+unsupported_cont_measure_types.cir.tags
+unsupported_cont_measure_types.cir.options
