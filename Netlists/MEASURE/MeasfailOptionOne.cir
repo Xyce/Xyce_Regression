@@ -28,6 +28,10 @@ R2  2  0  100
 *EQN
 .measure tran eqnFailTo EQN {V(1)-1} FROM=1 TO=1e-3 DEFAULT_VAL=2
 
+* ERR1 and ERR2
+.measure tran err1Fail ERR1 V(1) V(2) FROM=1 TO=1e-3 DEFAULT_VAL=2
+.measure tran err2Fail ERR2 V(1) V(2) FROM=1 TO=1e-3 DEFAULT_VAL=2
+
 * FIND WHEN
 .measure tran whenValFail WHEN V(1)=5 DEFAULT_VAL=2
 .measure tran findWhenVal FIND V(2) WHEN V(1)=5 DEFAULT_VAL=2

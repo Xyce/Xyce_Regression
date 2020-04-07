@@ -18,6 +18,14 @@ Netlist warning: EQNFAILTO failed. TO value < FROM value
 EQNFAILTO = FAILED
 Measure Start Time= 1.000000e+00	Measure End Time= 1.000000e-03
 
+Netlist warning: ERR1FAIL failed. TO value < FROM value
+ERR1FAIL = FAILED
+Measure Start Time= 1.000000e+00	Measure End Time= 1.000000e-03
+
+Netlist warning: ERR2FAIL failed. TO value < FROM value
+ERR2FAIL = FAILED
+Measure Start Time= 1.000000e+00	Measure End Time= 1.000000e-03
+
 WHENVALFAIL = FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
