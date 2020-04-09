@@ -1,4 +1,4 @@
-* Test DC mode support for FIND and FIND-WHEN Measures
+* Test DC mode support for FIND-AT, FIND-WHEN and WHEN Measures.
 *
 * This bug covers:
 *   1) the case of one variable in the .DC line,
@@ -25,6 +25,11 @@ rload1c 1c 0  0.4
 * FIND-WHEN
 .MEASURE DC findv1cwhenv1b2 find v(1c) when v(1b)=2
 
+* FIND-AT
+.MEASURE DC v1bat2 find v(1b) at=2
+.MEASURE DC v1bat2.5 find v(1b) at=2.5
+.MEASURE DC v1bexpat2.5 find {v(1b)+1} at=2.5
+
 * Expressions with WHEN measure
 .MEASURE DC whenExp1 when {v(1b)+1}=4
 .MEASURE DC whenExp2 when v(1b)={v(1c)+1.2}
@@ -47,6 +52,7 @@ rload1c 1c 0  0.4
 * measures should fail
 .measure dc FAIL1 WHEN v(1b)=10
 .measure dc FAIL2 FIND v(1c) WHEN v(1b)=10
+.measure dc FAIL3 FIND v(1c) AT=10
 
 * Tests should return -1 or -100, since the FROM-T0 window
 * does not overlap with the stepped values for VSRC1:DCV0

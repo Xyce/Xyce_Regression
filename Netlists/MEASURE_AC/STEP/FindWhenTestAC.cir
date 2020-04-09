@@ -1,5 +1,5 @@
-* Test AC mode support for the FIND-WHEN and WHEN measures.
-* To be conservative, there are subtests for each
+* Test AC mode support for the FIND-AT, FIND-WHEN and WHEN
+* measures.  To be conservative, there are subtests for each
 * valid operator (V, VR, VI, VP, VM and VDB) for
 * each measure type.
 *
@@ -29,6 +29,10 @@ V1 a 0 DC 0V AC 1
 .MEASURE AC findvrcwhenvrb0.5 find vr(c) when vr(b)= 0.5
 .MEASURE AC findvicwhenvib0.1 find vi(c) when vi(b)= 0.1
 .MEASURE AC findvpcwhenvpb50 find vp(c) when vp(b)= 50.0
+
+* FIND-AT
+.MEASURE AC vibat3e4 FIND vi(b) at 3e4
+.MEASURE AC vibexpat5e4 FIND {vi(b)+1} at 5e4
 
 * Expressions, with FIND-WHEN measure
 .MEASURE AC findvmcwhenvmbExp1 find vm(c) when {vm(b)+0.1}=0.5

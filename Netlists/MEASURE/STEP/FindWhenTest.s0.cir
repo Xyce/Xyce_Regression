@@ -76,10 +76,17 @@ R5  5  0  100
 .measure tran v4Fall2RFClevel20 when v(4)=0.1 RFC_LEVEL=0.2 FALL=2
 .measure tran v4Cross2RFClevel20 when v(4)=0.1 RFC_LEVEL=0.2 CROSS=2
 
+* test FIND-AT
+.measure tran findv1AT find v(1) at=1.2e-3
+.measure tran findv1ExpAT find {v(1)+1} at=1.2e-3
+
 *test Failed measures for rise/fall/cross
 .measure tran v4fallfail when v(4)=0 fall=250
 .measure tran v5risefail when v(5)=0 rise=250
 .measure tran v4crossfail when v(4)=0 cross=250
+
+* test failed FIND-AT measure
+.measure tran atFail find v(1) AT=10e-3
 
 .END
 

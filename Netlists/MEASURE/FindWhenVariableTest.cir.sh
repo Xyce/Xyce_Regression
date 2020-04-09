@@ -46,6 +46,23 @@ $fc =~ s/xyce_verify/file_compare/;
 #
 MeasureCommon::checkTranFilesExist($XYCE,$CIRFILE);
 
+# If this is a VALGRIND run, we don't do our normal verification, we
+# merely run "valgrind_check.sh", instead of the rest of this .sh file, and then exit
+if ($XYCE_VERIFY =~ m/valgrind_check/)
+{
+  print STDERR "DOING VALGRIND RUN INSTEAD OF REAL RUN!";
+  if (system("$XYCE_VERIFY $CIRFILE junk $CIRFILE.prn > $CIRFILE.prn.out 2>&1 $CIRFILE.prn.err"))
+  {
+    print "Exit code = 2 \n";
+    exit 2;
+  }
+  else
+  {
+    print "Exit code = 0 \n";
+    exit 0;
+  }
+}
+
 # The next three blocks of code are used to compare the .MEASURE output
 # to stdout to the "gold" stdout in the $GSFILE (FindWhenVariableTestGSfile).
 

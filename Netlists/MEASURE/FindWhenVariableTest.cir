@@ -8,7 +8,9 @@ A test of the measure find/when functionality.
 * measure for the case where those two WHEN clauses use
 * two voltages that are variable.
 *
-* See SON Bugs 1273 and 1282 for more details.
+* This also tests the FIND-AT syntax.
+*
+* See SON Bugs 1273, 1282 and 1289 for more details.
 ********************************************************
 *
 V1  1  0  PWL 0 0 0.25 1 0.5 0 0.75 1 1 0
@@ -42,5 +44,10 @@ R4  4  0  100
 
 .measure tran findexp1 find v(2) when v(1)={v(3)+0.1}
 .measure tran findexp2 find v(2) when {v(1)-0.1}=v(3)
+
+* test FIND-AT
+.measure tran findv1at0.25 find v(1) at=0.25
+.measure tran findv1at0.6 find v(1) at=0.6
+.measure tran findv1expat0.6 find {v(1)+1} at=0.6
 
 .END

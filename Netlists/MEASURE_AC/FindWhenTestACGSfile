@@ -27,6 +27,12 @@ Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+04
 FINDVPCWHENVPB50 = 5.000000e+01 at freq = 6.758158e+04
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+05
 
+VIBAT1E4 = 1.237102e-01 for AT = 1.000000e+04
+
+VIBAT3E4 = 3.246212e-01 for AT = 3.000000e+04
+
+VIBEXPAT5E4 = 1.438071e+00 for AT = 5.000000e+04
+
 WHENEXP1 = 7.956996e+04
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+05
 
@@ -68,6 +74,9 @@ Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 FAIL2 = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
+
+Netlist warning: FAIL3 failed. AT value outside frequency sweep window
+FAIL3 = FAILED for AT = 1.000000e+07
 
 Netlist warning: WHENRETURNNEGONE failed. FROM value > highest frequency value
 WHENRETURNNEGONE = FAILED
