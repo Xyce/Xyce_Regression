@@ -101,6 +101,10 @@ gummel_n.cir
 gummel_n.cir.sh
 gummel_n.cir.tags
 gummel_nFD.cir
+gummel_n_110.cir
+gummel_n_110.cir.sh
+gummel_n_110.cir.tags
+gummel_n_110FD.cir
 gummel_nmos_xyce.cir
 gummel_nmos_xyce.cir.sh
 gummel_nmos_xyce.cir.tags
@@ -109,6 +113,10 @@ gummel_p.cir
 gummel_p.cir.sh
 gummel_p.cir.tags
 gummel_pFD.cir
+gummel_p_110.cir
+gummel_p_110.cir.sh
+gummel_p_110.cir.tags
+gummel_p_110FD.cir
 gummel_pmos_xyce.cir
 gummel_pmos_xyce.cir.sh
 gummel_pmos_xyce.cir.tags
