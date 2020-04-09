@@ -1,5 +1,11 @@
 #!/usr/bin/env perl
 
+use XyceRegression::Tools;
+
+$Tools = XyceRegression::Tools->new();
+#$Tools->setDebug(1);
+#$Tools->setVerbose(1);
+
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
 # $ARGV[1] = location of xyce_verify.pl script
@@ -19,26 +25,13 @@
 # comparison to go into $CIRFILE.prn.err.
 
 $XYCE=$ARGV[0];
-$XYCE_VERIFY=$ARGV[1];
+#$XYCE_VERIFY=$ARGV[1];
 $XYCE_COMPARE=$ARGV[2];
 $CIRFILE=$ARGV[3];
-$GOLDPRN=$ARGV[4];
-
-$GOLDPRN =~ s/\.prn$//; # remove the .prn at the end.
-$XYCE_ACVERIFY = $XYCE_VERIFY;
-$XYCE_ACVERIFY =~ s/xyce_verify/ACComparator/;
-
-# comparison tolerances for ACComparator.pl
-$abstol=1e-6;
-$reltol=1e-4;  #0.1%
-$zerotol=1e-10;
-$freqreltol=1e-6;
-
-# remove previous output files
-system("rm -f $CIRFILE.HB.TD.* $CIRFILE.HB.FD.* $CIRFILE.out $CIRFILE.err");
+#$GOLDPRN=$ARGV[4];
 
 # run Xyce
-$CMD="$XYCE $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
+$CMD="$XYCE -norun $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
 $retval=system($CMD);
 
 if ($retval != 0)
@@ -57,30 +50,7 @@ if ($retval != 0)
   }
 }
 
-# check for output files
-if ( !(-f "$CIRFILE.HB.TD.prn")) {
-    print STDERR "Missing output file $CIRFILE.HB.TD.prn\n";
-    $xyceexit=14;
-}
-if ( !(-f "$CIRFILE.HB.FD.prn")) {
-    print STDERR "Missing output file $CIRFILE.HB.FD.prn\n";
-    $xyceexit=14;
-}
-
-if (defined ($xyceexit)) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
-
-$retcode = 0;
-
-$CMD="$XYCE_VERIFY $CIRFILE $GOLDPRN.HB.TD.prn $CIRFILE.HB.TD.prn > $CIRFILE.HB.TD.prn.out 2> $CIRFILE.HB.TD.prn.err";
-if (system($CMD) != 0) {
-    print STDERR "Verification failed on file $CIRFILE.HB.TD.prn, see $CIRFILE.HB.TD.prn.err\n";
-    $retcode = 2;
-}
-
-$CMD="$XYCE_ACVERIFY $GOLDPRN.HB.FD.prn $CIRFILE.HB.FD.prn $abstol $reltol $zerotol $freqreltol > $CIRFILE.HB.FD.prn.out 2> $CIRFILE.HB.FD.prn.err";
-if (system($CMD) != 0) {
-    print STDERR "Verification failed on file $CIRFILE.HB.FD.prn, see $CIRFILE.HB.FD.prn.err\n";
-    $retcode = 2;
-}
+@searchstrings = ("Syntax and topology analysis complete");
+$retcode = $Tools->checkError("$CIRFILE.out",@searchstrings);
 
 print "Exit code = $retcode\n"; exit $retcode;
