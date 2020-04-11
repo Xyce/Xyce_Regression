@@ -25,6 +25,14 @@ ampSens_fbhPNP.cir
 ampSens_fbhPNP.cir.sh
 ampSens_fbhPNP.cir.tags
 ampSens_fbhPNPFD.cir
+ampSens_hicum.cir
+ampSens_hicum.cir.sh
+ampSens_hicum.cir.tags
+ampSens_hicumFD.cir
+ampSens_hicumL0.cir
+ampSens_hicumL0.cir.sh
+ampSens_hicumL0.cir.tags
+ampSens_hicumL0FD.cir
 ampSens_mextram.cir
 ampSens_mextram.cir.sh
 ampSens_mextram.cir.tags
@@ -101,6 +109,10 @@ gummel_n.cir
 gummel_n.cir.sh
 gummel_n.cir.tags
 gummel_nFD.cir
+gummel_n_110.cir
+gummel_n_110.cir.sh
+gummel_n_110.cir.tags
+gummel_n_110FD.cir
 gummel_nmos_xyce.cir
 gummel_nmos_xyce.cir.sh
 gummel_nmos_xyce.cir.tags
@@ -109,6 +121,10 @@ gummel_p.cir
 gummel_p.cir.sh
 gummel_p.cir.tags
 gummel_pFD.cir
+gummel_p_110.cir
+gummel_p_110.cir.sh
+gummel_p_110.cir.tags
+gummel_p_110FD.cir
 gummel_pmos_xyce.cir
 gummel_pmos_xyce.cir.sh
 gummel_pmos_xyce.cir.tags

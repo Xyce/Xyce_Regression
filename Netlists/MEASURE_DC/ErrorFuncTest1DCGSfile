@@ -6,6 +6,9 @@ Measure Start V1 Value= -5.000000e+00	Measure End V1 Value= 5.000000e+00
 ERR1 = 2.500000e-01
 Measure Start V1 Value= -5.000000e+00	Measure End V1 Value= 5.000000e+00
 
+ERR1WT = 2.500000e-01
+Measure Start V1 Value= -5.000000e+00	Measure End V1 Value= 5.000000e+00
+
 ERR1RO = 3.333333e-01
 Measure Start V1 Value= -5.000000e+00	Measure End V1 Value= 5.000000e+00
 
@@ -25,6 +28,9 @@ ERR1FT = 5.605677e-01
 Measure Start V1 Value= 0.000000e+00	Measure End V1 Value= 4.000000e+00
 
 ERR2 = 2.500000e-01
+Measure Start V1 Value= -5.000000e+00	Measure End V1 Value= 5.000000e+00
+
+ERR2WT = 2.500000e-01
 Measure Start V1 Value= -5.000000e+00	Measure End V1 Value= 5.000000e+00
 
 ERR2RO = 3.333333e-01

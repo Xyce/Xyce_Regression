@@ -14,6 +14,8 @@ ampSensFD.cir
 ampSensFDa.cir 
 ampSensFDb.cir 
 ampSensFDc.cir 
+ampSens_hicumFD.cir
+ampSens_hicumL0FD.cir
 ampSens_vbicFD.cir
 ampSens_vbicPNPdefaultFD.cir
 ampSens_mextramFD.cir
@@ -27,6 +29,8 @@ gummel_nmos_xyceFD.cir
 gummel_pmos_xyceFD.cir
 gummel_nFD.cir
 gummel_pFD.cir
+gummel_n_110FD.cir
+gummel_p_110FD.cir
 150nm_nmosFD.cir
 150nm_pmosFD.cir
 bug797Adjoint.cir
