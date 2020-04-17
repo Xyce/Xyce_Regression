@@ -59,11 +59,15 @@ IC_And_NODESET_Specified.cir
 IC_And_NODESET_Specified.cir.sh
 IC_At_Missing_Node_Warning.cir
 IC_At_Missing_Node_Warning.cir.sh
+IC_No_Args_Warning.cir
+IC_No_Args_Warning.cir.sh
 Invalid_TimeInt.cir
 Invalid_TimeInt.cir.sh
 checkpt0.2
 NODESET_At_Missing_Node_Warning.cir
 NODESET_At_Missing_Node_Warning.cir.sh
+NODESET_No_Args_Warning.cir
+NODESET_No_Args_Warning.cir.sh
 NOISE_doInit.cir
 NOISE_doInit.cir.sh
 NOISE_extractNOISEData.cir
