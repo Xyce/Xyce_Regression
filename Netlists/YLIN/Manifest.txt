@@ -17,6 +17,7 @@ shortVersionLine.s1p
 invalidVersion.s1p
 noOptionLine.s1p
 shortLines.s1p
+invalidMatrixFormat.s1p
 ErrorMessageTest1.cir
 ErrorMessageTest1.cir.sh
 ErrorMessageTest1.cir.tags
@@ -62,6 +63,13 @@ ylin-2port-yparam.cir.tags
 ylin-2port-zparam.cir
 ylin-2port-zparam.cir.z2p
 ylin-2port-zparam.cir.sh
+ylin-2port-yparam-matrixFormat.cir
+ylin-2port-yparam-matrixFormat.cir.sh
+ylin-2port-yparam-matrixFormatLower.cir
+ylin-2port-yparam-matrixFormatUpper.cir
+ylin-2port-yparam-matrixFormat.cir.y2p
+ylin-2port-yparam-matrixFormatLower.cir.y2p
+ylin-2port-yparam-matrixFormatUpper.cir.y2p
 ylin-2port-yparam-ma.cir
 ylin-2port-yparam-ma.cir.sh
 ylin-2port-yparam-ma.cir.y2p
