@@ -4,7 +4,7 @@
 [Two-Port Data Order] 12_21
 [Number of Frequencies] 11
 [Reference] 50 50
-[Matrix Format] Lower
+[Matrix Format] loWer
 [Network Data]
 !        Freq                magdbY11               angY11               magdbY21               angY21               magdbY22               angY22        
    0.000000000000e+00   -6.020599913303e+00   -0.000000000000e+00   -6.020599913272e+00   -1.800000000000e+02    3.521825181127e+00   -0.000000000000e+00

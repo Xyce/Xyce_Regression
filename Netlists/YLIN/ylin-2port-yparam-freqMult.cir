@@ -1,4 +1,4 @@
-* 2-port example. Input is Y-parameter data in RI format
+* 2-port example. Input is Y-parameter data in DB format
 * with a frequency multiplier of Hz.
 *
 * Note that this netlist does not have the R2 load resistor in it.
