@@ -1,5 +1,4 @@
-* 2-port example. Input is Y-parameter data in DB format
-* with a frequency multiplier of Hz.
+* 2-port example. Input is Y-parameter data is in "Lower" matrix format
 *
 * Note that this netlist does not have the R2 load resistor in it.
 * This is because that resistance is already included in the
@@ -13,7 +12,7 @@
 
 v1 1 0  sin  0 5 1e5
 YLIN YLIN1 1 0 2 0 YLIN_MOD1
-.MODEL YLIN_MOD1 LIN TSTONEFILE=ylin-2port-yparam-freqMult.cir.y2p
+.MODEL YLIN_MOD1 LIN TSTONEFILE= ylin-2port-yparam-matrixFormatLower.cir.y2p
 d1  2 0 diod
 
 .end

@@ -51,7 +51,11 @@ $CIRFILE=$ARGV[3];
      "Netlist error: Invalid \\[Number of Frequencies\\] line in file shortLines.s1p for",
      "model YLIN_MOD5 at line 5"],
     ["Netlist error: Invalid \\[Reference\\] line in file shortLines.s1p for model",
-     "YLIN_MOD5 at line 6"]
+     "YLIN_MOD5 at line 6"],
+    ["Netlist error: File invalidMatrixFormat.s1p for model YLIN_MOD6 had invalid",
+     "value on \\[Matrix Format\\] line"],
+    ["Netlist error: Touchstone2 input file \"bogoFile.s1p\" for model YLIN_MOD7 could",
+     "not be found"]
 );
 $retval = $Tools->runAndCheckGroupedError($CIRFILE,$XYCE,@searchstrings);
 
