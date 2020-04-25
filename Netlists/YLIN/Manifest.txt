@@ -63,6 +63,9 @@ ylin-2port-yparam.cir.tags
 ylin-2port-zparam.cir
 ylin-2port-zparam.cir.z2p
 ylin-2port-zparam.cir.sh
+ylin-2port-defaultOptions.cir
+ylin-2port-defaultOptions.cir.sh
+ylin-2port-defaultOptions.cir.s2p
 ylin-2port-yparam-matrixFormat.cir
 ylin-2port-yparam-matrixFormat.cir.sh
 ylin-2port-yparam-matrixFormatLower.cir

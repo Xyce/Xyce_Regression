@@ -12,6 +12,11 @@ P2 2 0 port=2
 .LIN lintype=y FILE=ylin-2port-yparam-ma.cir.y2p format=touchstone2 dataformat=ma precision=12
 .LIN lintype=y FILE=ylin-2port-yparam-db.cir.y2p format=touchstone2 dataformat=db precision=12
 
+* Note this file was subsequently manually edited since the default frequency multiplier for
+* Touchstone 2 files is GHz.  The Option line was also manually edited to only have a # character
+* on it.
+.LIN lintype=s FILE=ylin-2port-defaultOptions.cir.s2p format=touchstone2 dataformat=ma precision=12
+
 .model testLine  transline r=0.2 g=0 l=9.13e-9 c=3.65e-12
 ytransline  line1  1 2  testLine len=10 lumps=5000
 
