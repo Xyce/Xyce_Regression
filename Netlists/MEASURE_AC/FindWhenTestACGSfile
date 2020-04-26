@@ -69,6 +69,9 @@ Measure Start Freq= 1.000000e+02	Measure End Freq= 2.511886e+04
 FINDWHENEQNVMC = 2.500000e-01 at freq = 4.685318e+04
 Measure Start Freq= 1.000000e+02	Measure End Freq= 6.309573e+04
 
+FINDFREQWHENVMB0.5 = 4.685318e+04 at freq = 4.685318e+04
+Measure Start Freq= 1.000000e+02	Measure End Freq= 6.309573e+04
+
 FAIL1 = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
