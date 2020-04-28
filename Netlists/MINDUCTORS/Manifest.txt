@@ -1,3 +1,5 @@
 MINDUCTORS.cir
 cpldLMIs.cir
+MINDUCTORS_IC.cir
+cpldLMIs_ic.cir
 tags
