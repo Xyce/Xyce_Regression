@@ -2,4 +2,6 @@ MINDUCTORS.cir
 cpldLMIs.cir
 MINDUCTORS_IC.cir
 cpldLMIs_ic.cir
+NonLinInductor.cir
+NonLinInductor_ic.cir
 tags
