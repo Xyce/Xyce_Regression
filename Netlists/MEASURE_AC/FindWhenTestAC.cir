@@ -54,6 +54,10 @@ V1 a 0 DC 0V AC 1
 .MEASURE AC wheneqnvmc when EQNVMC=0.1
 .MEASURE AC findwheneqnvmc find eqnvmc when vm(b)=0.5
 
+* Use of FREQ special variable in FIND measure.  (Note: this is
+* essentially a bad way to do a WHEN measure, but it should work.)
+.MEASURE AC findFreqwhenvmb0.5 find {FREQ} when vm(b)= 0.5
+
 * measures should fail
 .measure ac FAIL1 WHEN vm(b)=2
 .measure ac FAIL2 FIND vm(c) WHEN vm(b)=2

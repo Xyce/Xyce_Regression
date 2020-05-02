@@ -31,6 +31,10 @@ $GOLDPRN=$ARGV[4];
 $fc=$XYCE_VERIFY;
 $fc =~ s/xyce_verify/file_compare/;
 
+$GOLDPRN =~ s/\.prn$//; # remove the .prn at the end.
+$XYCE_ACVERIFY = $XYCE_VERIFY;
+$XYCE_ACVERIFY =~ s/xyce_verify/ACComparator/;
+
 # remove files from previous runs
 system("rm -f $CIRFILE.ma0 $CIRFILE.out $CIRFILE.err*");
 
@@ -99,8 +103,7 @@ else
 # The next two blocks of code are used to compare the measured .ma0 file
 # with the "Gold" .ma0 file, which is in OutputData/MEASURE_AC/
 # Check that the Gold .ma0 file exists
-$GOLDMA0 = $GOLDPRN;
-$GOLDMA0 =~ s/prn$/ma0/;
+$GOLDMA0 = "$GOLDPRN.ma0";
 #print "GOLDMA0 file = $GOLDMA0\n";
 if (not -s "$GOLDMA0" ) 
 { 
@@ -126,7 +129,22 @@ else
   print "Passed comparison of .ma0 files\n";
 }
 
-print "Exit code = $retval\n";
-exit $retval;
+# also compare output .FD.prn file. Comparison tolerances for ACComparator.pl
+$abstol=1e-6;
+$reltol=1e-3;  #0.1%
+$zerotol=1e-8;
+$freqreltol=1e-6;
+
+# compare gold and test files
+$retcode = 0;
+$CMD="$XYCE_ACVERIFY $GOLDPRN.FD.prn $CIRFILE.FD.prn $abstol $reltol $zerotol $freqreltol";
+$retval = system($CMD);
+$retval = $retval >> 8;
+if ($retval != 0){
+  print STDERR "Comparator exited on file $CIRFILE.FD.prn with exit code $retval\n";
+  $retcode = 2;
+}
+
+print "Exit code = $retcode\n"; exit $retcode;
 
 

@@ -28,7 +28,7 @@ if (defined($verbose)) { $Tools->setVerbose(1); }
       "Netlist error: Too many dependent variables for EQN measure, \"EQN\"",
       "Netlist error: Too many dependent variables for ERROR measure, \"ERROR\"",
       "Netlist error: Too many dependent variables for FOUR measure, \"FOUR\"",
-      "Netlist error: Too many dependent variables for FREQ  measure, \"FREQ\"",
+      "Netlist error: Too many dependent variables for FREQ measure, \"FREQ\"",
       "Netlist error: Too many dependent variables for INTEG measure, \"INTEG\"",
       "Netlist error: Too many dependent variables for MAX measure, \"MAX\"",
       "Netlist error: Too many dependent variables for MIN measure, \"MIN\"",
