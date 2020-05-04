@@ -73,18 +73,6 @@ Netlist warning: DUTYFAILEARLYSTART failed. TO value <= 0
 DUTYFAILEARLYSTART = FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= -1.000000e+00
 
-Netlist warning: DUTYFAILRISE failed. Measured Rise,Fall,Cross=(2,1,1)
-DUTYFAILRISE = FAILED
-Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
-
-Netlist warning: DUTYFAILFALL failed. Measured Rise,Fall,Cross=(2,1,1)
-DUTYFAILFALL = FAILED
-Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
-
-Netlist warning: DUTYFAILCROSS failed. Measured Rise,Fall,Cross=(2,1,1)
-DUTYFAILCROSS = FAILED
-Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
-
 EQNVAL = 1.000000e+01
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
@@ -448,18 +436,6 @@ Measure Start Time= 1.000000e+00	Measure End Time= 1.000000e-03
 Netlist warning: DUTYFAILEARLYSTART failed. TO value <= 0
 DUTYFAILEARLYSTART = FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= -1.000000e+00
-
-Netlist warning: DUTYFAILRISE failed. Measured Rise,Fall,Cross=(2,1,1)
-DUTYFAILRISE = FAILED
-Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
-
-Netlist warning: DUTYFAILFALL failed. Measured Rise,Fall,Cross=(2,1,1)
-DUTYFAILFALL = FAILED
-Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
-
-Netlist warning: DUTYFAILCROSS failed. Measured Rise,Fall,Cross=(2,1,1)
-DUTYFAILCROSS = FAILED
-Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
 EQNVAL = 1.000000e+01
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03

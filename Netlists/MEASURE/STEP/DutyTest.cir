@@ -4,18 +4,13 @@ A test of the measure duty functionality
 * a few sources of different types
 VS1  1  0  SIN(0 1.0 100HZ 0 0)
 VP   2  0  PULSE( 0 100 2ms 2ms 2ms 10ms 20ms )
-VS3  3  0  SIN(-0.5 1.0 100HZ 0 0.5)
-VS4  4  0  SIN(0.5 -1.0 100HZ 0 0.5)
 
 R1  1  0  100
 R2  2  0  100
-R3  3  0  100
-R4  4  0  100
 
 .TRAN 0 0.5
 .step VS1:VA 1 2 1.0 
-.step VS3:V0 -0.25 -0.5 -0.25
-.PRINT TRAN FORMAT=NOINDEX V(1) V(2) V(3) V(4)
+.PRINT TRAN FORMAT=NOINDEX V(1) V(2)
 
 *.measure tran dutyAll DUTY V(1) ON=0.75 OFF=0.25
 .measure tran dutyTop Duty V(2) ON=75 OFF=25
@@ -34,28 +29,6 @@ R4  4  0  100
 
 *this test should return 0
 .measure tran dutyZero DUTY V(1) ON=2.0 OFF=1.5
-
-* add tests for rise/fall/cross.  V3 and VS4 have a DC offset
-* and are damped sinusoids
-.measure tran dutyv3fall2 duty v(3) fall=2
-.measure tran dutyv4rise1 duty v(4) rise=1
-.measure tran dutyv3cross2 duty v(3) cross=2 ON=-0.6 OFF=-1
-
-* test LAST for rise/fall/cross
-.measure tran duty3falllast duty v(3) fall=last ON=-0.75 OFF=-1.0
-.measure tran duty4riselast duty v(4) rise=last ON=1.0 OFF=0.75
-.measure tran duty3crosslast duty v(3) cross=last ON=-0.75 OFF=-1.0
-.measure tran duty4crosslast duty v(4) cross=last ON=1.0 OFF=0.75
-
-* test RFC_LEVEL keyword
-.measure tran duty1Rise1RFClevel50 duty V(1) RFC_LEVEL=0.25 RISE=1 ON=0.75 OFF=0.5
-.measure tran duty1Fall1RFClevel50 duty V(1) RFC_LEVEL=0.75 FALL=1 ON=0.50 OFF=0.25
-.measure tran duty1Cross1RFClevel50 duty V(1) RFC_LEVEL=0.25 CROSS=1 ON=0.75 OFF=0.5
-
-*test Failed measures for rise/fall/cross
-.measure tran duty3fallfail duty v(3) fall=250
-.measure tran duty4risefail duty v(4) rise=250
-.measure tran dutyv3crossfail duty v(3) cross=250
 
 .END
 

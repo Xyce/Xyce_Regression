@@ -38,9 +38,6 @@ R2  2  0  100
 .measure tran dutyFailTo duty V(1) FROM=1 TO=1e-3
 .measure tran dutyFailTd duty V(1) FROM=1e-4 TO=1e-3 TD=1
 .measure tran dutyFailEarlyStart duty V(1) FROM=-2 TO=-1
-.measure tran dutyFailRise duty V(1) RISE=4
-.measure tran dutyFailFall duty V(1) FALL=4
-.measure tran dutyFailCross duty V(1) CROSS=4
 
 *EQN
 .measure tran eqnVal EQN {V(1)+10}

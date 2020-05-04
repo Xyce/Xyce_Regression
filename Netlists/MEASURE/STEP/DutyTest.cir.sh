@@ -28,7 +28,7 @@ $CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
 
 # number of steps in the netlist CIRFILE
-$numSteps=4;  
+$numSteps=2;
 
 # Verify that measure works with .STEP.
 $retval=MeasureCommon::checkTranStepResults($XYCE,$CIRFILE,$numSteps);
