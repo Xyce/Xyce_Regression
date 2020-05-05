@@ -57,7 +57,7 @@ Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 ERR1FT = 3.031828e+01
 Measure Start Freq= 1.000000e+03	Measure End Freq= 1.000000e+05
 
-ERR1VR = 5.000000e-01
+ERR1IM = 5.000000e-01
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 Netlist warning: ERR1RETURNNEGONE failed. FROM value > highest frequency value

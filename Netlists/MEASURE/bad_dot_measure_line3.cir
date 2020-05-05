@@ -17,8 +17,8 @@ R1  1  0  100
 * bogo measure line that will cause a fatal error within
 * the *makeOp() function in N_UTL_Op.C
 .MEASURE TRAN MAX1 MAX I()
-.MEASURE TRAN MAX1 MAX P()
-.MEASURE TRAN MAX1 MAX W()
+.MEASURE TRAN MAX2 MAX P()
+.MEASURE TRAN MAX3 MAX W()
 
 .END
 
