@@ -1,0 +1,7 @@
+Eiger2-1port-linear.cir
+Eiger2-1port-linear.cir.sh
+Eiger2-1port-linear.cir.tags
+wire1.txt
+opAmpWithFDIsc.cir
+opAmpWithFDIsc.cir.sh
+opAmpWithFDIsc.cir.s2p

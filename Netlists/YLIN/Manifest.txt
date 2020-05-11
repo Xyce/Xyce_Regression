@@ -31,9 +31,6 @@ idealGain.cir
 idealGain.cir.sh
 idealGain.cir.12_21.s2p
 idealGain.cir.21_12.s2p
-opAmpWithIsc.cir
-opAmpWithIsc.cir.sh
-opAmpWithIsc.cir.s2p
 ylin-2port-sparam.cir
 ylin-2port-sparam.cir.sh
 ylin-2port-sparam.cir.s2p
@@ -77,7 +74,3 @@ ylin-5port-yparam.cir.sh
 ylin-5port-yparam.cir.y5p
 ylin-5port-yparam-cw.cir
 ylin-5port-yparam-cw.cir.y5p
-Eiger2.cir
-
-wire1.txt
-Eiger2.cir.sh

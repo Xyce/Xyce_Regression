@@ -4,6 +4,8 @@
 [Number of Frequencies] 61
 [Reference] 50
 [Network Data]
+! This is not a "standard" Touchstone 2 file.  It also has the extra columns
+! for the frequency-domain ISC data.
 ! Freq             ReY11          ImY11              ReIsc1        ImIsc1
 0.0    -0    -0    0    0
 10000000.0    2.851314042758031e-09    0.0001174008858158038    7.282981259543946e-07    0.02147383240615873

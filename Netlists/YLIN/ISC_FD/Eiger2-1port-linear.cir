@@ -1,4 +1,6 @@
-*2-port example. Input is Y-parameter data in RI format.
+* 1-port example. Input is Y-parameter data in RI format, but also
+* includes the frequency-domain short-circuit current data for
+* that port.
 *
 * Note that this netlist does not have the R2 load resistor in it.
 * This is because that resistance is already included in the
