@@ -36,13 +36,13 @@ $CIRFILE=$ARGV[3];
        ["Netlist error: ISC_TD_FILE_FORMAT for model YLIN_MOD2 must be STD, NOINDEX or",
         "CSV"],
        ["Netlist error: Problem determining ISC_TD_FILE_FORMAT for file",
-        "\"ErrorMessageTest2_isc_td_input.csd\" for model YLIN_MOD3"],
+        "\"ErrorMessageTest_isc_td_input.csd\" for model YLIN_MOD3"],
        ["Netlist error: Incorrect number of entries found in ISC_TD_FILE",
-        "\"ErrorMessageTest2_isc_td_input.prn\" for model YLIN_MOD4"],
+        "\"ErrorMessageTest_isc_td_input.prn\" for model YLIN_MOD4"],
        ["Netlist error: Incorrect number of entries found in ISC_TD_FILE",
-        "\"ErrorMessageTest2_isc_td_input.csv\" for model YLIN_MOD5"],
+        "\"ErrorMessageTest_isc_td_input.csv\" for model YLIN_MOD5"],
        ["Netlist error: Incorrect number of entries found in ISC_TD_FILE",
-        "\"ErrorMessageTest2_isc_td_input.noindex\" for model YLIN_MOD6"]
+        "\"ErrorMessageTest_isc_td_input.noindex\" for model YLIN_MOD6"]
 );
 $retval = $Tools->runAndCheckGroupedError($CIRFILE,$XYCE,@searchstrings);
 
