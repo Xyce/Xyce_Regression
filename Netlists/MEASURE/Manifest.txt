@@ -1,6 +1,9 @@
 AverageTestInc.cir
 AverageTestInc.cir.sh
 DerivativeVariableTest.cir
+DuplicateMeasureNames.cir
+DuplicateMeasureNames.cir.sh
+DuplicateMeasureNamesGSfile
 EquationEvalTest.cir
 ExpressionSyntaxes.cir
 ExpressionSyntaxes.cir.sh

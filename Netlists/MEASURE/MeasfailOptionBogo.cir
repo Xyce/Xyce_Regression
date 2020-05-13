@@ -24,7 +24,7 @@ R2  2  0  100
 .measure tran derivValAtFail deriv V(1) AT=5 DEFAULT_VAL=2
 
 * DUTY
-.measure tran dutyFailRise duty V(1) RISE=4 DEFAULT_VAL=2
+.measure tran dutyFailFrom duty V(1) FROM=2ms DEFAULT_VAL=2
 
 *EQN
 .measure tran eqnFailTo EQN {V(1)-1} FROM=1 TO=1e-3 DEFAULT_VAL=2

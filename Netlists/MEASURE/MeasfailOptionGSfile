@@ -10,9 +10,9 @@ Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 Netlist warning: DERIVVALATFAIL failed. AT value outside sim window
 DERIVVALATFAIL = FAILED for AT = 5.000000e+00
 
-Netlist warning: DUTYFAILRISE failed. Measured Rise,Fall,Cross=(2,1,1)
-DUTYFAILRISE = FAILED
-Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
+Netlist warning: DUTYFAILFROM failed. FROM or TD value > sim end time
+DUTYFAILFROM = FAILED
+Measure Start Time= 2.000000e-03	Measure End Time= 1.000000e-03
 
 Netlist warning: EQNFAILTO failed. TO value < FROM value
 EQNFAILTO = FAILED

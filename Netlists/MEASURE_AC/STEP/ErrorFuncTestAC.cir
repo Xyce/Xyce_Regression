@@ -43,7 +43,7 @@ V1 a 0 DC 0V AC 1
 .MEASURE AC ERR1FT ERR1 VM(b) VM(a) FROM=1e3 TO=1e5
 
 * Branch current Op
-.MEASURE AC ERR1VR  ERR1 VM(b) IM(V1)
+.MEASURE AC ERR1IM  ERR1 VM(b) IM(V1)
 
 * Tests should return -1 or -100, since the FROM-T0 window
 * has various problems.

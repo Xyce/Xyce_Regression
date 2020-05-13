@@ -11,7 +11,7 @@
 
 v1 1 0  sin  0 1 1e4
 YLIN YLIN1 1 0 2 0 YLIN_MOD1
-.MODEL YLIN_MOD1 LIN TSTONEFILE=opAmpWithIsc.cir.s2p ISC_FD=true
+.MODEL YLIN_MOD1 LIN TSTONEFILE=opAmpWithFDIsc.cir.s2p ISC_FD=true
 R2 2 0 50
 
 .end
