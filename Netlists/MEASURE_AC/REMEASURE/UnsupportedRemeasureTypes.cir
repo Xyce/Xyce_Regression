@@ -1,7 +1,7 @@
 ******************************************************************
 * The purpose of this file is to show that trying to remeasure
 * a .MEASURE line with a valid mode (e.g., .AC) but an invalid
-* measure type (e.g., AVG for .AC) will produce a graceful exit.
+* measure type (e.g., DUTY for .AC) will produce a graceful exit.
 *
 *
 *
@@ -15,7 +15,7 @@ cload1 1b 0 1
 .AC lin 13 10 120
 
 * AVG measure type is not supported yet for .AC
-.MEASURE AC AVG VM(1a)
+.MEASURE AC DUTY1 DUTY VM(1a)
 
 .END
 
