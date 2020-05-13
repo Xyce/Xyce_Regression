@@ -17,7 +17,7 @@ K1 L1 L2 1 nlcore
 
 * Note. The two voltage signals are offset by 0.2 to avoid crossing
 * the zero axis.  Axis crossings cause problems for xyce_verify.
-.PRINT TRAN I(VS) {V(2)+0.2} {V(3)+0.2}
+.PRINT TRAN I(VS) {V(2)+0.2} {V(3)+0.2} I(L1) I(L2)
 
 *COMP V(2) reltol=0.02
 *COMP V(3) reltol=0.02

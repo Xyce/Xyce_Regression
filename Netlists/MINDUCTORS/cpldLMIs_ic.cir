@@ -48,7 +48,7 @@ VS 1 0 SIN(0 169.7 60HZ)
 R1 1 2 1K
 L1 2 0 1mH
 R2 3 0 1K
-L2 3 0 1mH IC=0.01
+L2 3 0 1mH IC=-0.01
 K1 L1 L2 0.75
 R3 4 0 1K
 L3 4 0 1mH
@@ -61,6 +61,6 @@ K2 L1 L3 0.8
 
 * Note. The three voltage signals are offset by 0.2 to avoid crossing
 * the zero axis.  Axis crossings cause problems for xyce_verify.
-.PRINT TRAN I(VS) {V(2)+0.2} {V(3)+0.2} {V(4)+0.2}
+.PRINT TRAN I(VS) {V(2)+0.2} {V(3)+0.2} {V(4)+0.2} i(L2)
 .END
 
