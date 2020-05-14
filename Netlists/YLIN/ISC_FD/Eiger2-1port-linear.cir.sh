@@ -37,7 +37,7 @@ $CIR[0]="Eiger2-1port-linear-ma.cir";
 
 # comparison tolerances for ACComparator.pl
 $abstol=1e-6;
-$reltol=1e-1;  #0.1%
+$reltol=1e-4;
 $zerotol=1e-9;
 $freqreltol=1e-6;
 

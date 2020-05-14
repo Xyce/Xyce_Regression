@@ -4,6 +4,9 @@ Eiger2-1port-linear.cir.sh
 Eiger2-1port-linear.cir.tags
 wire1.txt
 wire1-ma.txt
+Eiger1-1port-nonlinear.cir
+Eiger1-1port-nonlinear.cir.sh
+wire5.s1p
 opAmpWithFDIsc.cir
 opAmpWithFDIsc.cir.sh
 opAmpWithFDIsc.cir.s2p
