@@ -21,7 +21,8 @@ R2  2  0  100
 .measure tran avgFailEarlyStart avg V(1) FROM=-2 TO=-1
 .measure tran avgFailRise avg V(1) RISE=4
 .measure tran avgFailFall avg V(1) FALL=4
-.measure tran avgFailCross avg V(1) CROSS=4 
+.measure tran avgFailCross avg V(1) CROSS=4
+.measure tran avg1Pt avg V(1) from=5e-4 to=5e-4
 
 *DERIV
 .measure tran derivValWhen deriv V(1) WHEN V(1)=0.5
@@ -135,7 +136,8 @@ R2  2  0  100
 .measure tran rmsFailEarlyStart rms V(1) FROM=-2 TO=-1
 .measure tran rmsFailRise rms V(1) RISE=4
 .measure tran rmsFailFall rms V(1) FALL=4
-.measure tran rmsFailCross rms V(1) CROSS=4 
+.measure tran rmsFailCross rms V(1) CROSS=4
+.measure tran rms1Pt rms V(1) from=5e-4 to=5e-4
 
 *TRIG/TARG (RiseFallDelay)
 .measure tran trigTargVal TRIG v(1) 0.1 TARG v(1)=0.99

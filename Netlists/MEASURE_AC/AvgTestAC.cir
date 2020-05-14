@@ -12,7 +12,7 @@ R1 b 0 2
 C1 a b 1u
 V1 a 0 DC 0V AC 1
 
-.print AC vr(b) vi(b) vm(b) vp(b) vdb(b) im(v1)
+.print AC vr(b) vi(b) vm(b) vp(b) vdb(b) im(v1) avgvmb
 .ac dec 5 100Hz 1e6
 
 * avg

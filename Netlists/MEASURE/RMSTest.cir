@@ -13,7 +13,7 @@ R3  3  0  100
 R4  4  0  100
 
 .TRAN 0  30ms
-.PRINT TRAN FORMAT=NOINDEX V(1) V(2) V(3) V(4) V(1,0)
+.PRINT TRAN FORMAT=NOINDEX V(1) V(2) V(3) V(4) V(1,0) rmsAll
 
 .measure tran rmsAll RMS v(1)
 .measure tran rms10All RMS v(1,0)

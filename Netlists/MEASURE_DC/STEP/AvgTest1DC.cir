@@ -26,7 +26,7 @@ rload2a 2a 1b 0.2
 
 * Note: vsrc1:DCV0 is the syntax for printing the DC value of vsrc1,
 * at it is swept.
-.print dc vsrc1:DCV0 vsrc2:DCV0 v(1a) v(2a) v(1b)
+.print dc vsrc1:DCV0 vsrc2:DCV0 v(1a) v(2a) v(1b) avgv1b
 
 .measure dc avgv1b   avg v(1b)
 .measure dc avgv1bFT avg v(1b) FROM=1 TO=3
