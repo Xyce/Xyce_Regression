@@ -1,4 +1,4 @@
-*2-port example. Input is Y-parameter data in RI format, but also
+* 1-port example. Input is Y-parameter data in RI format, but also
 * includes the frequency-domain short-circuit current data for
 * that port.
 *

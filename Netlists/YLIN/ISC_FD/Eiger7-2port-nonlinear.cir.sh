@@ -61,46 +61,62 @@ if ( !(-f "$CIRFILE.HB.TD.prn")) {
     $xyceexit=14;
 }
 
-# have separate output files for VM() and VP() because of the large
-# difference in the values for those two columns.
-if ( !(-f "$CIRFILE.HB.FD.vm.prn")) {
-    print STDERR "Missing output file $CIRFILE.HB.FD.vm.prn\n";
+# have separate output files for V(1) and V(2) because of the large
+# difference in the values for those two signals.
+if ( !(-f "$CIRFILE.HB.FD.v1.prn")) {
+    print STDERR "Missing output file $CIRFILE.HB.FD.v1.prn\n";
     $xyceexit=14;
 }
-if ( !(-f "$CIRFILE.HB.FD.vp.prn")) {
-    print STDERR "Missing output file $CIRFILE.HB.FD.vp.prn\n";
+if ( !(-f "$CIRFILE.HB.FD.v2.prn")) {
+    print STDERR "Missing output file $CIRFILE.HB.FD.v2.prn\n";
     $xyceexit=14;
 }
 
 if (defined ($xyceexit)) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
 
+#If this is a VALGRIND run, we don't do our normal verification, we
+# merely run "valgrind_check.sh" as if it were xyce_verify.pl
+if ($XYCE_VERIFY =~ m/valgrind_check/)
+{
+    print STDERR "DOING VALGRIND RUN INSTEAD OF REAL RUN!";
+    if (system("$XYCE_VERIFY $CIRFILE $GOLDCSV $CIRFILE.prn > $CIRFILE.prn.out 2>&1 $CIRFILE.prn.err"))
+    {
+        print "Exit code = 2 \n";
+        exit 2;
+    }
+    else
+    {
+        print "Exit code = 0 \n";
+        exit 0;
+    }
+}
+
 # verify output files
 $retcode = 0;
 
-# comparison tolerances for ACComparator.pl.  This checks the VM signal
-$abstol=0.3;
-$reltol=1e-3;
-$zerotol=1e-9;
-$freqreltol=1e-6;
-$CMD="$XYCE_ACVERIFY $GOLDPRN.HB.FD.vm.prn $CIRFILE.HB.FD.vm.prn $abstol $reltol $zerotol $freqreltol > $CIRFILE.HB.FD.vm.prn.out 2> $CIRFILE.HB.FD.vm.prn.err";
-if (system($CMD) != 0) {
-    print STDERR "Verification failed on file $CIRFILE.HB.FD.vm.prn, see $CIRFILE.HB.FD.vm.prn.err\n";
-    $retcode = 2;
-}
-
-# This checks the VP signal
-$abstol=5e-3;
+# this checks the V(1) signal
+$abstol=1e-7;
 $reltol=1e-4;
-$zerotol=1e-2;
+$zerotol=1e-8;
 $freqreltol=1e-6;
 
-$CMD="$XYCE_ACVERIFY $GOLDPRN.HB.FD.vp.prn $CIRFILE.HB.FD.vp.prn $abstol $reltol $zerotol $freqreltol > $CIRFILE.HB.FD.vp.prn.out 2> $CIRFILE.HB.FD.vp.prn.err";
+$CMD="$XYCE_ACVERIFY $GOLDPRN.HB.FD.v1.prn $CIRFILE.HB.FD.v1.prn $abstol $reltol $zerotol $freqreltol > $CIRFILE.HB.FD.v1.prn.out 2> $CIRFILE.HB.FD.v1.prn.err";
 if (system($CMD) != 0) {
-    print STDERR "Verification failed on file $CIRFILE.HB.FD.vp.prn, see $CIRFILE.HB.FD.vp.prn.err\n";
+    print STDERR "Verification failed on file $CIRFILE.HB.FD.v1.prn, see $CIRFILE.HB.FD.v1.prn.err\n";
     $retcode = 2;
 }
 
-# Now check the time-domain output
+# This checks the V(2) signal
+$abstol=0.5;
+$reltol=1e-3;
+$zerotol=1e-5;
+$freqreltol=1e-6;
+$CMD="$XYCE_ACVERIFY $GOLDPRN.HB.FD.v2.prn $CIRFILE.HB.FD.v2.prn $abstol $reltol $zerotol $freqreltol > $CIRFILE.HB.FD.v2.prn.out 2> $CIRFILE.HB.FD.v2.prn.err";
+if (system($CMD) != 0) {
+    print STDERR "Verification failed on file $CIRFILE.HB.FD.v2.prn, see $CIRFILE.HB.FD.v2.prn.err\n";
+    $retcode = 2;
+}
+
 $CMD="$XYCE_VERIFY $CIRFILE $GOLDPRN.HB.TD.prn $CIRFILE.HB.TD.prn > $CIRFILE.HB.TD.prn.out 2> $CIRFILE.HB.TD.prn.err";
 if (system($CMD) != 0) {
     print STDERR "Verification failed on file $CIRFILE.HB.TD.prn, see $CIRFILE.HB.TD.prn.err\n";
