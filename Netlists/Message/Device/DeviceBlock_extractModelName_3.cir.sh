@@ -27,8 +27,8 @@ use Getopt::Long;
 
 # these search strings are supposed to occur one right after the other in the
 # error output.
-@searchstrings = ( "Model is required for device D1 and no valid model card found",
-"Model is required for device DCR5 and no valid model card found." );
+@searchstrings = ( ["Model is required for device D1 and no valid model card found"],
+["Model is required for device DCR5 and no valid model card found."] );
 
 &GetOptions( "verbose!" => \$verbose );
 $XYCE=$ARGV[0];
@@ -41,7 +41,7 @@ if (defined($verbose)) { $Tools->setVerbose(1); }
 
 $Tools->setVerbose(1);
 
-$retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);
+$retval = $Tools->runAndCheckGroupedError($CIRFILE,$XYCE,@searchstrings);
 print "Exit code = $retval\n";
 exit $retval
 
