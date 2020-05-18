@@ -37,7 +37,7 @@ $CIR[0]="Eiger2-1port-linear-ma.cir";
 
 # comparison tolerances for ACComparator.pl
 $abstol=1e-6;
-$reltol=1e-1;  #0.1%
+$reltol=1e-4;
 $zerotol=1e-9;
 $freqreltol=1e-6;
 
@@ -80,23 +80,6 @@ if ( !(-f "$CIRFILE.HB.FD.prn")) {
 }
 
 if (defined ($xyceexit)) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
-
-#If this is a VALGRIND run, we don't do our normal verification, we
-# merely run "valgrind_check.sh" as if it were xyce_verify.pl
-if ($XYCE_VERIFY =~ m/valgrind_check/)
-{
-    print STDERR "DOING VALGRIND RUN INSTEAD OF REAL RUN!";
-    if (system("$XYCE_VERIFY $CIRFILE $GOLDCSV $CIRFILE.prn > $CIRFILE.prn.out 2>&1 $CIRFILE.prn.err"))
-    {
-        print "Exit code = 2 \n";
-        exit 2;
-    }
-    else
-    {
-        print "Exit code = 0 \n";
-        exit 0;
-    }
-}
 
 # verify output files
 $retcode = 0;

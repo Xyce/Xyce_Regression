@@ -35,6 +35,9 @@ Netlist warning: AVGFAILCROSS failed. Measured Rise,Fall,Cross=(2,1,1)
 AVGFAILCROSS = FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
+AVG1PT = FAILED
+Measure Start Time= 5.000000e-04	Measure End Time= 5.000000e-04
+
 DERIVVALWHEN = 5.467851e+03 at time = 8.335581e-05
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
@@ -345,6 +348,9 @@ Netlist warning: RMSFAILCROSS failed. Measured Rise,Fall,Cross=(2,1,1)
 RMSFAILCROSS = FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
+RMS1PT = FAILED
+Measure Start Time= 5.000000e-04	Measure End Time= 5.000000e-04
+
 TRIGTARGVAL = 2.119274e-04 with trig time= 1.594577e-05 and targ time= 2.278731e-04
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
@@ -398,6 +404,9 @@ Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 Netlist warning: AVGFAILCROSS failed. Measured Rise,Fall,Cross=(2,1,1)
 AVGFAILCROSS = FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
+
+AVG1PT = FAILED
+Measure Start Time= 5.000000e-04	Measure End Time= 5.000000e-04
 
 DERIVVALWHEN = 1.211714e+04 at time = 4.022109e-05
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
@@ -708,6 +717,9 @@ Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 Netlist warning: RMSFAILCROSS failed. Measured Rise,Fall,Cross=(2,1,1)
 RMSFAILCROSS = FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
+
+RMS1PT = FAILED
+Measure Start Time= 5.000000e-04	Measure End Time= 5.000000e-04
 
 TRIGTARGVAL = 7.447893e-05 with trig time= 7.962449e-06 and targ time= 8.244137e-05
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03

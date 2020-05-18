@@ -18,7 +18,7 @@ rload1b 1b 0 1
 
 * Note: vsrc1:DCV0 is the syntax for printing the DC value of vsrc1,
 * at it is swept.
-.print dc vsrc1:DCV0 v(1a) v(1b)
+.print dc vsrc1:DCV0 v(1a) v(1b) avgv1b
 .PREPROCESS REPLACEGROUND TRUE
 
 .meas dc avgv1b  avg v(1b)
