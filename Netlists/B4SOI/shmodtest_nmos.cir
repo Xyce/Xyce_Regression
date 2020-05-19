@@ -177,7 +177,7 @@ m1 d g s b mymodel
 + UB1=-8.835E-019
 + UC1=-6E-011
 + PRT=51.149
-+ RTH0=0.001
++ RTH0=0.02
 + CTH0=1E-005
 + AT=8479
 + TPBSWG=5.86E-005

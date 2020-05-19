@@ -18,6 +18,5 @@ test7.cir
 test7.cir.res.gs
 test8.cir
 test8.cir.res.gs
-modelcard.nmos_shmod1_xyce
 shmodtest_nmos.cir
 test1_shmod1.cir
