@@ -26,7 +26,9 @@ if (defined($verbose)) { $Tools->setVerbose(1); }
 @searchstrings = ("Netlist error\\: Netlist analysis statement and measure mode \\(DC\\) for measure",
    "DCMAX do not agree",
    "Netlist error\\: Netlist analysis statement and measure mode \\(AC\\) for measure",
-   "ACMAX do not agree"
+   "ACMAX do not agree",
+   "Netlist error\\: Netlist analysis statement and measure mode \\(NOISE\\) for measure",
+   "NOISEMAX do not agree"
  );
 
 $retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);

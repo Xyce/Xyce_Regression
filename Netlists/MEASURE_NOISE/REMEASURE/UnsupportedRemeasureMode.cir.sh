@@ -15,21 +15,16 @@ use Getopt::Long;
 &GetOptions( "verbose!" => \$verbose );
 $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
-$CIRFILE=$ARGV[3]; 
+$CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
 
 if (defined($verbose)) { $Tools->setVerbose(1); }
 
 # check various error cases
-# These strings should be in the output of this failed Xyce run. 
-# Note that ( ) and : characters must be escaped with \\
-@searchstrings = ("Netlist error\\: Netlist analysis statement and measure mode \\(DC\\) for measure",
-   "DCMAX do not agree",
-   "Netlist error\\: Netlist analysis statement and measure mode \\(TRAN\\) for measure",
-   "TRANMAX do not agree",
-   "Netlist error\\: Netlist analysis statement and measure mode \\(NOISE\\) for measure",
-   "NOISEMAX do not agree"
- );
+# this string should be in the output of this failed Xyce run
+@searchstrings = ( "Remeasure only supports .TRAN, .AC and .DC analysis modes");
 
+# turn this into a re-measure line
+$XYCE = "$XYCE -remeasure UnsupportedRemeasureTypes.cir.FD.prn";
 $retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);
-print "Exit code = $retval\n"; exit $retval; 
+print "Exit code = $retval\n"; exit $retval;
