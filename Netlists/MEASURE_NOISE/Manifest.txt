@@ -1,6 +1,9 @@
 AvgTestNoise.cir
 AvgTestNoise.cir.sh
 AvgTestNoiseGSfile
+DerivTestNoise.cir
+DerivTestNoise.cir.sh
+DerivTestNoiseGSfile
 EquationEvalTestNoise.cir
 EquationEvalTestNoise.cir.sh
 EquationEvalTestNoiseGSfile
