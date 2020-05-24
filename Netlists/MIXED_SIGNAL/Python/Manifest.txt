@@ -61,6 +61,9 @@ bug_1275_son.cir
 bug_1275_son.cir.sh
 bug_1275_son.py
 bug_1275_son.cir.GoldData
+bug_1301_son.cir
+bug_1301_son.cir.sh
+bug_1301_son.py
 interfaceErrorMessages.cir
 interfaceErrorMessages.cir.sh
 interfaceErrorMessages.py
