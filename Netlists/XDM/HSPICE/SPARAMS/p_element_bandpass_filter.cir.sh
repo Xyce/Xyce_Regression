@@ -142,16 +142,14 @@ if (not -s "$CIR.s2p" )
 }
 
 @searchStrings = (
-  "Param removed. No param defined internally in XML: DC",
-  "Param removed. No param defined internally in XML: AC",
   "Param removed. No param defined internally in XML: NOISECALC",
   "Expression contains unsupported output variable: s11.",
   "Expression contains unsupported output variable: s12.",
   "Expression contains unsupported output variable: s21.",
   "Expression contains unsupported output variable: s22.",
-  "Total critical issues reported 			 = 0:", 
+  "Total critical issues reported 			 = 0:",
   "Total          errors reported 			 = 0:",
-  "Total          warnings reported 			 = 11:", 
+  "Total          warnings reported 			 = 9:",
   "Total          information messages reported 	 = 0:",
   "SUCCESS: xdm completion status flag = 0:",
 );

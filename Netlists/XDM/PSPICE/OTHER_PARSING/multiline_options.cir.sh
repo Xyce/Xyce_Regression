@@ -43,9 +43,9 @@ $xdmOutputSearchStringsPtr=\@xdmOutputSearchStrings;
 
 # these strings should be in the translated Xyce netlist
 @translatedXyceNetlistSearchStrings= (".OPTIONS DEVICE GMIN=1.0E-9",
+  ".OPTIONS NONLIN-TRAN MAXSTEP=20 RELTOL=0.01 ABSTOL=100u",
   ".OPTIONS TIMEINT RELTOL=0.01 METHOD=TRAP",
   ".OPTIONS NONLIN RELTOL=0.01 ABSTOL=100u",
-  ".OPTIONS NONLIN-TRAN RELTOL=0.01 ABSTOL=100u MAXSTEP=20"
 );
 $translatedXyceNetlistSearchStringsPtr=\@translatedXyceNetlistSearchStrings;
 

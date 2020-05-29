@@ -139,13 +139,12 @@ if (not -s "$CIR.prn" )
   exit 14;
 }
 
-@searchStrings = ("Expression contains unsupported special variable: hertz.",
-  "Expression contains variable that conflicts with a special variable in target language: VT.",
+@searchStrings = ("Expression contains variable that conflicts with a special variable in target language: VT.",
   "Expression contains variable that conflicts with a special variable in target language: vt.",
   "Total critical issues reported 			 = 0:", 
   "Total          errors reported 			 = 0:",
-  "Total          warnings reported 			 = 4:", 
-  "Total          information messages reported 	 = 0:",
+  "Total          warnings reported 			 = 2:", 
+  "Total          information messages reported 	 = 0:", 
   "SUCCESS: xdm completion status flag = 0:",
 );
 $xdmOutputSearchStringsPtr=\@searchStrings;
