@@ -16,6 +16,12 @@ IntegTestNoiseGSfile
 MaxMinPPTestNoise.cir
 MaxMinPPTestNoise.cir.sh
 MaxMinPPTestNoiseGSfile
+InputNoiseOps.cir
+InputNoiseOps.cir.sh
+InputNoiseOpsGSfile
+OutputNoiseOps.cir
+OutputNoiseOps.cir.sh
+OutputNoiseOpsGSfile
 RMSTestNoise.cir
 RMSTestNoise.cir.sh
 RMSTestNoiseGSfile
