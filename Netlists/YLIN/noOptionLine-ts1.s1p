@@ -1,10 +1,5 @@
-! All control lines, but the [Version] and Option lines, are commented out
-[Version] 2.0
-# Hz S RI R 50
-![Number of Ports] 1
-![Number of Frequencies] 11
-![Reference] 50
-![Network Data]
+! Option line is commented out in a Touchstone 1 file
+!# Hz S RI R 50
 !      Freq              ReS11             ImS11
    1.00000000e+01   -9.97178373e-01   -6.35467433e-02
    1.25892541e+01   -9.97924081e-01   -5.04958196e-02
@@ -17,4 +12,3 @@
    6.30957344e+01   -9.99149481e-01   -1.00814201e-02
    7.94328235e+01   -9.99168242e-01   -8.00803178e-03
    1.00000000e+02   -9.99180080e-01   -6.36104341e-03
-[End]

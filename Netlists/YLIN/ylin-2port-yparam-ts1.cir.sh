@@ -26,14 +26,10 @@ $GOLDPRN=$ARGV[4];
 
 $GOLDDIR = `dirname $GOLDPRN`;
 chomp $GOLDDIR;
-$GOLDPRN = "$GOLDDIR/ylin-5port-yparam.cir";
+$GOLDPRN = "$GOLDDIR/ylin-2port.cir";
 
 $XYCE_ACVERIFY = $XYCE_VERIFY;
 $XYCE_ACVERIFY =~ s/xyce_verify/ACComparator/;
-
-@CIR;
-$CIR[0] = "ylin-5port-yparam-cw.cir";
-$CIR[1] = "ylin-5port-yparam-ts1.cir";
 
 # comparison tolerances for ACComparator.pl
 $abstol=1e-6;
@@ -43,11 +39,6 @@ $freqreltol=1e-6;
 
 # remove previous output files
 system("rm -f $CIRFILE.HB.TD.* $CIRFILE.HB.FD.* $CIRFILE.out $CIRFILE.err");
-
-foreach $i (0 ..1)
-{
-  system("rm -f $CIR[$i].HB.TD.* $CIR[$i].HB.FD.* $CIR[$i].out $CIR[$i].err");
-}
 
 # run Xyce
 $CMD="$XYCE $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
@@ -69,7 +60,7 @@ if ($retval != 0)
   }
 }
 
-# check for the base case output
+# check for output files
 if ( !(-f "$CIRFILE.HB.TD.prn")) {
     print STDERR "Missing output file $CIRFILE.HB.TD.prn\n";
     $xyceexit=14;
@@ -80,6 +71,23 @@ if ( !(-f "$CIRFILE.HB.FD.prn")) {
 }
 
 if (defined ($xyceexit)) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
+
+#If this is a VALGRIND run, we don't do our normal verification, we
+# merely run "valgrind_check.sh" as if it were xyce_verify.pl
+if ($XYCE_VERIFY =~ m/valgrind_check/)
+{
+    print STDERR "DOING VALGRIND RUN INSTEAD OF REAL RUN!";
+    if (system("$XYCE_VERIFY $CIRFILE $GOLDPRN $CIRFILE.prn > $CIRFILE.prn.out 2>&1 $CIRFILE.prn.err"))
+    {
+        print "Exit code = 2 \n";
+        exit 2;
+    }
+    else
+    {
+        print "Exit code = 0 \n";
+        exit 0;
+    }
+}
 
 $retcode = 0;
 
@@ -94,61 +102,5 @@ if (system($CMD) != 0) {
     print STDERR "Verification failed on file $CIRFILE.HB.FD.prn, see $CIRFILE.HB.FD.prn.err\n";
     $retcode = 2;
 }
-
-if ($retcode == 0) {print "Passed base case comparison\n";}
-
-# now run the non-base cases, and diff the results against the base case
-foreach $i (0 ..1)
-{
-  $CMD="$XYCE $CIR[$i] > $CIR[$i].out 2>$CIR[$i].err";
-  $retval=system($CMD);
-
-  if ($retval != 0)
-  {
-    if ($retval & 127)
-    {
-      print "Exit code = 13\n";
-      printf STDERR "Xyce crashed with signal %d on file %s\n",($retval&127),$CIR[$i];
-      exit 13;
-    }
-    else
-    {
-      print "Exit code = 10\n";
-      printf STDERR "Xyce exited with exit code %d on %s\n",$retval>>8,$CIR[$i];
-      exit 10;
-    }
-  }
-
-  if ( !(-f "$CIR[$i].HB.TD.prn")) {
-    print STDERR "Missing output file $CIR[$i].HB.TD.prn\n";
-    $xyceexit=14;
-  }
-  if ( !(-f "$CIR[$i].HB.FD.prn")) {
-    print STDERR "Missing output file $CIR[$i].HB.FD.prn\n";
-    $xyceexit=14;
-  }
-
-  if (defined ($xyceexit)) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
-
-  $CMD="diff $CIR[$i].HB.FD.prn $CIRFILE.HB.FD.prn > $CIR[$i].HB.FD.prn.out 2> $CIR[$i].HB.FD.prn.err";
-  $retval = system($CMD);
-  $retval = $retval >> 8;
-  if ($retval != 0)
-  {
-    print STDERR "Diff failed on file $CIR[$i].HB.FD.prn with exit code $retval\n";
-    $retcode = 2;
-  }
-
-  $CMD="diff $CIR[$i].HB.TD.prn $CIRFILE.HB.TD.prn > $CIR[$i].HB.TD.prn.out 2> $CIR[$i].HB.TD.prn.err";
-  $retval = system($CMD);
-  $retval = $retval >> 8;
-  if ($retval != 0)
-  {
-    print STDERR "Diff failed on file $CIR[$i].HB.TD.prn with exit code $retval\n";
-    $retcode = 2;
-  }
-}
-
-if ($retcode == 0) {print "Passed column-wrapped and TS1 case comparisons\n";}
 
 print "Exit code = $retcode\n"; exit $retcode;

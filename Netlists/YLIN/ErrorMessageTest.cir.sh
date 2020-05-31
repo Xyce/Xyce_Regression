@@ -32,9 +32,9 @@ $CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
 
 # these strings should be in the output of this failed Xyce run
-@searchstrings = (["Netlist error: File noValidLines.s1p for model YLIN_MOD1 lacked valid",
-     "\\[Version\\] and/or Option lines",
-     "Netlist error: No valid \\[Number of Ports\\] line found in file noValidLines.s1p",
+@searchstrings = (["Netlist error: No valid \\[Version\\] or Option line in file",
+     "noVersionOptionLines.s1p for model YLIN_MOD0 at line 4"],
+    ["Netlist error: No valid \\[Number of Ports\\] line found in file noValidLines.s1p",
      "for model YLIN_MOD1",
      "Netlist error: No valid \\[Number of Frequencies\\] line found in file",
      "noValidLines.s1p for model YLIN_MOD1",
@@ -54,7 +54,7 @@ $CIRFILE=$ARGV[3];
      "YLIN_MOD5 at line 6"],
     ["Netlist error: File invalidMatrixFormat.s1p for model YLIN_MOD6 had invalid",
      "value on \\[Matrix Format\\] line"],
-    ["Netlist error: Touchstone2 input file \"bogoFile.s1p\" for model YLIN_MOD7 could",
+    ["Netlist error: Touchstone input file \"bogoFile.s1p\" for model YLIN_MOD7 could",
      "not be found"]
 );
 $retval = $Tools->runAndCheckGroupedError($CIRFILE,$XYCE,@searchstrings);

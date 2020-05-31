@@ -1,8 +1,10 @@
 Eiger2-1port-linear.cir
 Eiger2-1port-linear-ma.cir
+Eiger2-1port-linear-ts1.cir
 Eiger2-1port-linear.cir.sh
 wire1.txt
 wire1-ma.txt
+wire1-ts1.txt
 Eiger1-1port-nonlinear.cir
 Eiger1-1port-nonlinear.cir.sh
 wire5.s1p
