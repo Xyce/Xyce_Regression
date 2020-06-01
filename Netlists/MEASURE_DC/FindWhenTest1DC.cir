@@ -59,4 +59,9 @@ rload1c 1c 0  0.4
 .MEASURE DC whenReturnNegOne WHEN v(1b)=2 FROM=-4 TO=-2
 .MEASURE DC whenReturnNeg100 WHEN v(1b)=2 FROM=-2 TO=-4 DEFAULT_VAL=-100
 
+* FROM and TO qualifiers take precedence over AT.
+* So, these are failed measures.
+.MEASURE DC atFailFrom FIND V(1b) AT=1 FROM=3 TO=4
+.MEASURE DC atFailTo find V(1b) AT=2 TO=1
+
 .end

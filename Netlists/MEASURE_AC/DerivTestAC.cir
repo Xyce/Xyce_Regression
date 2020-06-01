@@ -46,4 +46,9 @@ V1 a 0 DC 0V AC 1
 .measure ac derivRetNeg1 deriv v(b) AT=1e4
 .measure ac derivReturnNeg100 deriv vm(b) when vm(b)=2 DEFAULT_VAL=-100
 
+* FROM and TO qualifiers take precedence over AT.
+* So, these are failed measures.
+.MEASURE AC atFailFrom DERIV VI(b) AT=8 FROM=10
+.MEASURE AC atFailTo DERIV VI(b) AT=8 TO=5
+
 .end

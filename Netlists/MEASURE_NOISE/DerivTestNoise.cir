@@ -50,4 +50,9 @@ C1 1 Vb 10u
 .measure noise derivRetNeg1 deriv v(out) AT=1e4
 .measure noise derivReturnNeg100 deriv vm(out) when vm(out)=10 DEFAULT_VAL=-100
 
+* FROM and TO qualifiers take precedence over AT.
+* So, these are failed measures.
+.MEASURE NOISE atFailFrom DERIV VI(out) AT=1 FROM=10
+.MEASURE NOISE atFailTo DERIV VI(out) AT=10 TO=5
+
 .end

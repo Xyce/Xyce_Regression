@@ -89,4 +89,10 @@ Netlist warning: FINDWHENRETURNNEG100 failed. TO value < FROM value
 FINDWHENRETURNNEG100 = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
+Netlist warning: ATFAILFROM failed. AT value outside measurement window
+ATFAILFROM = FAILED for AT = 8.000000e+02
+
+Netlist warning: ATFAILTO failed. AT value outside measurement window
+ATFAILTO = FAILED for AT = 8.000000e+02
+
 

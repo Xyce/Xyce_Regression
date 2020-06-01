@@ -68,4 +68,9 @@ V1 a 0 DC 0V AC 1
 .measure ac whenReturnNegOne WHEN vm(b)=0.5 FROM=1e7 TO=1e8
 .measure ac findWhenReturnNeg100 FIND vm(c) WHEN vm(b)=0.5 FROM=1e6 TO=1e2 DEFAULT_VAL=-100
 
+* FROM and TO qualifiers take precedence over AT.
+* So, these are failed measures.
+.MEASURE AC atFailFrom DERIV VI(b) AT=800 FROM=1000
+.MEASURE AC atFailTo DERIV VI(b) AT=800 TO=500
+
 .END
