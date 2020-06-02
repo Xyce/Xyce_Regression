@@ -70,7 +70,7 @@ V1 a 0 DC 0V AC 1
 
 * FROM and TO qualifiers take precedence over AT.
 * So, these are failed measures.
-.MEASURE AC atFailFrom DERIV VI(b) AT=800 FROM=1000
-.MEASURE AC atFailTo DERIV VI(b) AT=800 TO=500
+.MEASURE AC atFailFrom find VI(b) AT=800 FROM=1000
+.MEASURE AC atFailTo find VI(b) AT=800 TO=500
 
 .END
