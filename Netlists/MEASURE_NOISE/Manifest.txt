@@ -10,6 +10,9 @@ EquationEvalTestNoiseGSfile
 ErrorFuncTestNoise.cir
 ErrorFuncTestNoise.cir.sh
 ErrorFuncTestNoiseGSfile
+FindWhenTestNoise.cir
+FindWhenTestNoise.cir.sh
+FindWhenTestNoiseGSfile
 IntegTestNoise.cir
 IntegTestNoise.cir.sh
 IntegTestNoiseGSfile

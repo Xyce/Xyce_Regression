@@ -1,0 +1,46 @@
+* Test NOISE mode support for the FIND-AT, FIND-WHEN and WHEN measures.
+* It was deemed sufficient to mostly just test with the VR and VI operators.
+* Expressions are also tested. One current operator (IM) is tested for a
+* branch current.
+*
+* See SON Bug 1301 for more details.
+********************************************************************
+
+* RESISTOR DIVIDER
+V1  1 0 DC 5.0 AC  1.0
+R1  1 2 100K
+R2  2 0 100K
+*
+* AMP AND LP FILTER
+EAMP   3 0 2 0 1
+RLP1a  3 3a 50
+RLP1b  3a 4 50
+CLP1   4 0  2e-4 ; value chosen to match sweep range
+
+.NOISE  V(4)  V1  DEC  10 1 100
+.PRINT NOISE V(4) VR(4) VI(4) VR(3a) VI(3a)
+
+* WHEN
+.MEASURE NOISE whenvr4 WHEN vr(4)=0.45
+.MEASURE NOISE whenvi4 WHEN vi(4)=-0.1
+
+* FIND-WHEN
+.MEASURE NOISE whenvr3 FIND VR(3a) WHEN vr(4)=0.45
+.MEASURE NOISE whenvi3 FIND VR(3a) WHEN vi(4)=-0.1
+
+* FIND-AT
+.MEASURE NOISE at10 FIND vr(4) at 1e1
+.MEASURE NOISE at30 FIND vi(4) at 3e1
+.MEASURE NOISE at50 FIND {vi(4)+1} at 5e1
+
+* Tests should return -1 or -100, since the FROM-T0 window
+* has various problems.
+.measure noise whenReturnNegOne WHEN vm(4)=0.5 FROM=1e3 TO=1e4
+.measure noise findWhenReturnNeg100 FIND vm(3a WHEN vm(4)=0.5 FROM=100 TO=1 DEFAULT_VAL=-100
+
+* FROM and TO qualifiers take precedence over AT.
+* So, these are failed measures.
+.MEASURE NOISE atFailFrom find VI(4) AT=8 FROM=10
+.MEASURE NOISE atFailTo find VI(4) AT=8 TO=5
+
+.END

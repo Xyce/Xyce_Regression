@@ -1,0 +1,35 @@
+ ***** Measure Functions ***** 
+
+WHENVR4 = 2.645338e+00
+Measure Start Freq= 1.000000e+00	Measure End Freq= 3.162278e+00
+
+WHENVI4 = 1.662966e+00
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.995262e+00
+
+WHENVR3 = 4.750000e-01 at freq = 2.645338e+00
+Measure Start Freq= 1.000000e+00	Measure End Freq= 3.162278e+00
+
+WHENVI3 = 4.894632e-01 at freq = 1.662966e+00
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.995262e+00
+
+AT10 = 1.938633e-01 for AT = 1.000000e+01
+
+AT30 = -1.247232e-01 for AT = 3.000000e+01
+
+AT50 = 9.223482e-01 for AT = 5.000000e+01
+
+Netlist warning: WHENRETURNNEGONE failed. FROM value > highest frequency value
+WHENRETURNNEGONE = FAILED
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+02
+
+Netlist warning: FINDWHENRETURNNEG100 failed. TO value < FROM value
+FINDWHENRETURNNEG100 = FAILED
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+02
+
+Netlist warning: ATFAILFROM failed. AT value outside measurement window
+ATFAILFROM = FAILED for AT = 8.000000e+00
+
+Netlist warning: ATFAILTO failed. AT value outside measurement window
+ATFAILTO = FAILED for AT = 8.000000e+00
+
+
