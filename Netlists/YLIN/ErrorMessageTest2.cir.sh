@@ -41,7 +41,9 @@ $CIRFILE=$ARGV[3];
     ["Netlist error: Invalid network data line in file unequalLines1-ts1.s1p for",
      "model YLIN_MOD4 at line 7"],
     ["Netlist error: Invalid network data line in file unequalLines2-ts1.s1p for",
-     "model YLIN_MOD5 at line 22"]
+     "model YLIN_MOD5 at line 22"],
+    ["Netlist error: Error determining number of ports from file",
+     "shortLine-ts1.s1pfor model YLIN_MOD6"]
 );
 $retval = $Tools->runAndCheckGroupedError($CIRFILE,$XYCE,@searchstrings);
 

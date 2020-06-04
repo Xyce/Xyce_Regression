@@ -12,6 +12,9 @@ Eiger7-2port-nonlinear.cir
 Eiger7-2port-nonlinear.cir.sh
 Eiger7-2port-nonlinear.cir.tags
 wire2p1.txt
+Eiger7-2port-nonlinear-ts1.cir
+Eiger7-2port-nonlinear-ts1.cir.sh
+wire2p1-ts1.txt
 opAmpWithFDIsc.cir
 opAmpWithFDIsc.cir.sh
 opAmpWithFDIsc.cir.s2p
