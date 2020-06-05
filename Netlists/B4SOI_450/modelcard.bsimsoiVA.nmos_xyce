@@ -1,11 +1,11 @@
-* BSIMSOI4.6.1 beta example modelcard
+* BSIMSOI4.5 example modelcard
 
-.model nmos1 nmos level=70 version=4.6
+.model nmos1 nmos level=70450 version=4.5 
 + type=1
 + binunit=1
 + mobmod=1
 + capmod=3
-+ shmod=1
++ shmod=0
 + paramchk=0
 + soimod=0
 + igcmod=1
@@ -161,7 +161,7 @@
 + ub1=-8.835e-019
 + uc1=-6e-011
 + prt=51.149
-+ rth0=0.00025
++ rth0=0.02
 + cth0=1e-005
 + at=8479
 + tpbswg=5.86e-005

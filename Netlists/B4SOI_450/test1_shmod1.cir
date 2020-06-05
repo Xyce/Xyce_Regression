@@ -1,9 +1,10 @@
-*Id-Vd Characteristics for NMOS 
+*Id-Vd Characteristics for NMOS -- Tanvir Morshed 2010
 
-*.option abstol=1e-6 reltol=1e-6 post ingold
+*.option abstol=1e-6 reltol=1e-6 post ingold 
 
-*.hdl "../code/bsimsoi.va"
-.include "modelcard.nmos_xyce"
+*.hdl "bsimsoi450.va"
+.include "modelcard.bsimsoiVA.nmos_xyce"
+.options device temp=25
 
 * --- Voltage Sources ---
 vd drain  0 dc 0
@@ -17,6 +18,5 @@ m1 drain gate source substrate  nmos1 W=1e-6 L=1e-7 soimod=0 shmod=1
 * --- DC Analysis ---
 .dc vd 0 1.2 0.01 vg 0.2 1.2 0.1
 
-.options device temp=25
-.print dc V(drain) V(gate) id(m1) N(M1_t)
+.print dc v(drain) v(gate) id(m1)
 .end

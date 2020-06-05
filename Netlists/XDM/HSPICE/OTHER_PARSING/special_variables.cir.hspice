@@ -4,8 +4,8 @@ $special variables
 * appropriate translation if possible or comments
 * out the line if not. Only the HSPICE special
 * variable "temper" can be translated, into "temp"
-* in Xyce. Expressions using "hertz" will
-* have warnings and be commented out.
+* in Xyce. Special variable "hertz" will
+* be translated into variable the "freq".
 * A parameter name of "vt" or an expression
 * that uses a parameter "vt" in HSPICE will 
 * have warnings and be commented out (see issue

@@ -15,7 +15,7 @@ f_b b_x 0 v_b   -1
 m1 d g s b mymodel
 + W=0.2e-6
 + L=0.04e-6
-.model mymodel nmos level=70
+.model mymodel nmos level=70450
 + TYPE=1
 + BINUNIT=1
 + MOBMOD=1
