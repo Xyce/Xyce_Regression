@@ -33,5 +33,6 @@ X10 11 12 0 RCBlock
 
 .AC LIN 11 0 10e4
 .LIN LINTYPE=Y FILE=ylin-5port-yparam.cir.y5p format=touchstone2 precision=12
+.LIN LINTYPE=Y FILE=ylin-5port-yparam.cir-ts1.y5p format=touchstone precision=12
 
 .END

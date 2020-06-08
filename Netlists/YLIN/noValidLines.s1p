@@ -1,6 +1,6 @@
-! All control lines are commented out
-![Version] 2.0
-!# Hz S RI R 50
+! All control lines, but the [Version] and Option lines, are commented out
+[Version] 2.0
+# Hz S RI R 50
 ![Number of Ports] 1
 ![Number of Frequencies] 11
 ![Reference] 50

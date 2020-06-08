@@ -1,6 +1,6 @@
 Testing .MEASURE lines that are mismatched with the Analysis Types
 *********************************************************************
-* This tests the error messages that should occur if a TRAN or
+* This tests the error messages that should occur if a TRAN, NOISE or
 * DC mode measure is requested for a netlist that is doing a
 * .AC analysis. 
 * 
@@ -18,9 +18,10 @@ V1 a 0 DC 0V AC 1
 
 .ac dec 5 100Hz 10e6
 
-* Test what happens when a TRAN or DC measure is requested for a .AC netlist
+* Test what happens when a TRAN, NOISE or DC measure is requested for a .AC netlist
 .MEASURE DC dcmax max v(b)
-.MEASURE TRAN tranmax max v(b) 
+.MEASURE TRAN tranmax max v(b)
+.MEASURE NOISE noisemax max v(b)
 
 .END
 

@@ -41,4 +41,9 @@ R2 2 0 3
 .measure dc derivRetNeg1 deriv v(1) AT=10
 .measure dc derivReturnNeg100 deriv v(1) when v(1)=10 DEFAULT_VAL=-100
 
+* FROM and TO qualifiers take precedence over AT.
+* So, these are failed measures.
+.MEASURE DC atFailFrom DERIV V(2) AT=1 FROM=3 TO=4
+.MEASURE DC atFailTo DERIV V(2) AT=2 TO=1
+
 .end

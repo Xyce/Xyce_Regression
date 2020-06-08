@@ -55,6 +55,12 @@ Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 Netlist warning: DERIVVALATFAIL failed. AT value outside sim window
 DERIVVALATFAIL = FAILED for AT = 5.000000e+00
 
+Netlist warning: DERIVATFAILFROM failed. AT value outside measurement window
+DERIVATFAILFROM = FAILED for AT = 5.000000e-04
+
+Netlist warning: DERIVATFAILTO failed. AT value outside measurement window
+DERIVATFAILTO = FAILED for AT = 5.000000e-04
+
 DERIVRISELAST = 4.150659e+03 at time = 8.647806e-04
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
@@ -113,6 +119,12 @@ Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
 FINDWHENLAST75 = -7.500000e-01 at time = 1.350482e-04
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
+
+Netlist warning: FWATFAILFROM failed. AT value outside measurement window
+FWATFAILFROM = FAILED for AT = 5.000000e-04
+
+Netlist warning: FWATFAILTO failed. AT value outside measurement window
+FWATFAILTO = FAILED for AT = 5.000000e-04
 
 FOURFAIL: FAILED
 

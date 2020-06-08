@@ -31,6 +31,8 @@ R2  2  0  100
 .measure tran derivValAt deriv V(1) AT=5e-04
 .measure tran derivValWhenFail deriv V(1) WHEN V(1)=5
 .measure tran derivValAtFail deriv V(1) AT=5
+.measure tran derivAtFailFrom deriv V(1) AT=5e-4 FROM=7e-4
+.measure tran derivAtFailTo deriv V(1) AT=5e-4 TO=1e-4
 .measure tran derivriselast deriv v(1) when v(1)=-0.75 RISE=LAST
 .measure tran derivriselastfail deriv v(1) when v(1)=2 RISE=LAST
 
@@ -55,6 +57,8 @@ R2  2  0  100
 .measure tran findWhenValFail find v(2) when v(1)=5
 .measure tran whenLast75 when v(1)=0.75 RISE=LAST
 .measure tran FindWhenLast75 find v(2) when v(1)=0.75 RISE=LAST
+.measure tran FWAtFailFrom find v(2) AT=5e-4 FROM=7e-4
+.measure tran FWAtFailTo find v(2) AT=5e-4 TO=1e-4
 
 *FOUR
 .measure tran fourfail FOUR V(1) AT=1e6 TD=2e-3

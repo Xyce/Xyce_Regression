@@ -34,6 +34,7 @@ $XYCE_ACVERIFY =~ s/xyce_verify/ACComparator/;
 
 @CIR;
 $CIR[0]="Eiger2-1port-linear-ma.cir";
+$CIR[1]="Eiger2-1port-linear-ts1.cir";
 
 # comparison tolerances for ACComparator.pl
 $abstol=1e-6;
@@ -44,7 +45,7 @@ $freqreltol=1e-6;
 # remove previous output files
 system("rm -f $CIRFILE.out $CIRFILE.err $CIRFILE.HB.* $CIRFILE.hb_ic.* $CIRFILE.startup.*");
 
-foreach $i (0 ..0)
+foreach $i (0 .. 1)
 {
   system("rm -f $CIR[$i].HB.TD.* $CIR[$i].HB.FD.* $CIR[$i].out $CIR[$i].err");
 }
@@ -92,7 +93,7 @@ if (system($CMD) != 0) {
 if ($retcode == 0) {print "Passed base case (RI) comparison\n"; }
 
 # now run the non-base cases, and diff the results against the base case
-foreach $i (0 ..0)
+foreach $i (0 .. 1)
 {
   $CMD="$XYCE $CIR[$i] > $CIR[$i].out 2>$CIR[$i].err";
   $retval=system($CMD);
@@ -134,7 +135,7 @@ foreach $i (0 ..0)
   }
 }
 
-if ($retcode == 0) {print "Passed other case (MA) comparison\n"; }
+if ($retcode == 0) {print "Passed other case (MA and TS1) comparisons\n"; }
 
 
 print "Exit code = $retcode\n"; exit $retcode;

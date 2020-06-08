@@ -43,12 +43,31 @@ sub checkACFilesExist
 {
   my ($XYCE,$CIRFILE)=@_;
 
-  # here is the command to run xyce with remeasure
+  # here is the command to run xyce
   my $CMD="$XYCE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err";
   my $retval=system($CMD)>>8;
   
   if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
   if (not -s "$CIRFILE.FD.prn" ) { print "Exit code = 14\n"; exit 14; }
+
+  # Did we make a measure file
+  if (not -s "$CIRFILE.ma0" ) { print "Exit code = 17\n"; exit 17; }
+}
+
+#
+# Check that all of the needed files exist for a .MEASURE
+# statement for a .NOISE analysis.  NOISE output uses ma file suffix.
+#
+sub checkNoiseFilesExist
+{
+  my ($XYCE,$CIRFILE)=@_;
+
+  # here is the command to run xyce
+  my $CMD="$XYCE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err";
+  my $retval=system($CMD)>>8;
+
+  if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
+  if (not -s "$CIRFILE.NOISE.prn" ) { print "Exit code = 14\n"; exit 14; }
 
   # Did we make a measure file
   if (not -s "$CIRFILE.ma0" ) { print "Exit code = 17\n"; exit 17; }
@@ -62,7 +81,7 @@ sub checkDCFilesExist
 {
   my ($XYCE,$CIRFILE)=@_;
 
-  # here is the command to run xyce with remeasure
+  # here is the command to run xyce
   my $CMD="$XYCE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err";
   my $retval=system($CMD)>>8;
   

@@ -52,8 +52,8 @@ R1  1  0  100
 .MEASURE TRAN M11 PP V(1) FROM=t1
 .MEASURE TRAN M11 PP V(1) FROM=
 
-* NOISE mode isn't supported.  Just TRAN, AC and DC
-.MEASURE NOISE MN MAX V(1)
+* HB mode isn't supported.  Just TRAN, AC, DC and NOISE
+.MEASURE HB MHB MAX V(1)
 
 .END
 

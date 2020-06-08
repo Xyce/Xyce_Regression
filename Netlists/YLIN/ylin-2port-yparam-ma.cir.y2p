@@ -1,9 +1,12 @@
+! Mix in some blank lines as a parsing test
+
 [Version] 2.0
 # Hz Y ma R 50
 [Number of Ports] 2
 [Two-Port Data Order] 12_21
 [Number of Frequencies] 11
 [Reference] 50 50
+
 [Network Data]
 !        Freq                 magY11                angY11                magY12                angY12                magY21                angY21                magY22                angY22        
    0.000000000000e+00    4.999999999986e-01   -0.000000000000e+00    5.000000000004e-01   -1.800000000000e+02    5.000000000004e-01   -1.800000000000e+02    1.500000000002e+00   -0.000000000000e+00

@@ -40,4 +40,10 @@ DERIVRETNEG1 = FAILED for AT = 1.000000e+04
 DERIVRETURNNEG100 = FAILED
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
+Netlist warning: ATFAILFROM failed. AT value outside measurement window
+ATFAILFROM = FAILED for AT = 8.000000e+00
+
+Netlist warning: ATFAILTO failed. AT value outside measurement window
+ATFAILTO = FAILED for AT = 8.000000e+00
+
 
