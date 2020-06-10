@@ -6,8 +6,17 @@ Measure Start VSRC1 Value= 5.000000e+00 Measure End VSRC1 Value= 1.000000e+00
 VV2 = 1.325000e+01
 Measure Start VSRC1 Value= 5.000000e+00 Measure End VSRC1 Value= 1.000000e+00
 
+VV2FROM = 1.325000e+01
+Measure Start VSRC1 Value= 4.000000e+00	Measure End VSRC1 Value= 1.000000e+00
+
+VV2TO = 1.512500e+01
+Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= 4.000000e+00
+
 VV2FT = 1.387500e+01
 Measure Start VSRC1 Value= 4.000000e+00 Measure End VSRC1 Value= 2.000000e+00
+
+VV2TF = 1.387500e+01
+Measure Start VSRC1 Value= 4.000000e+00	Measure End VSRC1 Value= 2.000000e+00
 
 DIF = -1.100000e+01
 Measure Start VSRC1 Value= 5.000000e+00 Measure End VSRC1 Value= 1.000000e+00
@@ -27,8 +36,17 @@ Measure Start VSRC1 Value= 5.000000e+00 Measure End VSRC1 Value= 1.000000e+00
 VV2 = 1.418750e+01
 Measure Start VSRC1 Value= 5.000000e+00 Measure End VSRC1 Value= 1.000000e+00
 
+VV2FROM = 1.418750e+01
+Measure Start VSRC1 Value= 4.000000e+00	Measure End VSRC1 Value= 1.000000e+00
+
+VV2TO = 1.606250e+01
+Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= 4.000000e+00
+
 VV2FT = 1.481250e+01
 Measure Start VSRC1 Value= 4.000000e+00 Measure End VSRC1 Value= 2.000000e+00
+
+VV2TF = 1.481250e+01
+Measure Start VSRC1 Value= 4.000000e+00	Measure End VSRC1 Value= 2.000000e+00
 
 DIF = -1.100000e+01
 Measure Start VSRC1 Value= 5.000000e+00 Measure End VSRC1 Value= 1.000000e+00

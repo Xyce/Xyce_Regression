@@ -4,8 +4,7 @@
 *   1) the case of one variable in the .DC line,
 *      without a .STEP statement.
 *
-*   2) the use of FROM and TO statements, where the FROM
-*      value is always greater than the TO value.
+*   2) An ascending sweep variable.
 *
 * See SON Bug 1267 for more details.
 ********************************************************
@@ -23,7 +22,12 @@ rload1b 1b 0 1
 
 .meas dc avgv1b  avg v(1b)
 .measure dc avg1bgnd avg v(gnd,1b)
+.meas dc avgv1bFrom  avg v(1b) FROM=3
+.meas dc avgv1bTo    avg v(1b) TO=4
+
+* These should get the same answer
 .measure dc avgv1bFT avg v(1b) FROM=3 TO=1
+.measure dc avgv1bTF avg v(1b) FROM=1 TO=3
 
 * FROM=TO value is a failed measure by definition
 * for AVG measure.
