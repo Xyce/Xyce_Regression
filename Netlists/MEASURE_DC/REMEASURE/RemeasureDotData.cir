@@ -31,7 +31,7 @@ R2  5 0 5
 .DC data=test
 
 .print DC {R1:R} {R2:R} V(4) V(5)
-.MEASURE DC MAXV4 MAX V(5)
+.MEASURE DC MAXV5 MAX V(5)
 
 .END
 
