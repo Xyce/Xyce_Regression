@@ -2,7 +2,8 @@
 *
 * This bug covers:
 *   1) the case of one variable in the .DC line,
-*      without a .STEP statement.
+*      without a .STEP statement.  The sweep variable
+*      is ascending.
 *
 *   2) the use of FROM and TO statements.
 *
@@ -35,7 +36,10 @@ R2 2 0 3
 .MEASURE DC ERR1YMIN2.5 ERR1 V(1) V(3) YMIN=2.5
 .MEASURE DC ERR1IGNOR2.5 ERR1 V(1) V(3) IGNOR=2.5
 .MEASURE DC ERR1YMAX3.5 ERR1 V(1) {P1} YMAX=3.5
+.MEASURE DC ERR1From ERR1 PAR('V(1)*V(1)') V(1) FROM=3
+.MEASURE DC ERR1To ERR1 PAR('V(1)*V(1)') V(1) TO=3
 .MEASURE DC ERR1FT ERR1 {V(1)*V(1)} V(1) FROM=0 TO=4
+.MEASURE DC ERR1TF ERR1 {V(1)*V(1)} V(1) FROM=4 TO=0
 
 * ERR2 measures
 .MEASURE DC ERR2 ERR2 V(1) V(2)
@@ -45,7 +49,10 @@ R2 2 0 3
 .MEASURE DC ERR2YMIN2.5 ERR2 V(1) V(3) YMIN=2.5
 .MEASURE DC ERR2IGNORE2.5 ERR2 V(1) V(3) IGNORE=2.5
 .MEASURE DC ERR2YMAX3.5 ERR2 V(1) {P1} YMAX=3.5
+.MEASURE DC ERR2From ERR2 PAR('V(1)*V(1)') V(1) FROM=3
+.MEASURE DC ERR2To ERR2 PAR('V(1)*V(1)') V(1) TO=3
 .MEASURE DC ERR2FT ERR2 {V(1)*V(1)} V(1) FROM=0 TO=4
+.MEASURE DC ERR2FT ERR2 {V(1)*V(1)} V(1) FROM=4 TO=0
 
 * Current OP
 .MEASURE DC ERR1I ERR1 I(R1) I(R3)

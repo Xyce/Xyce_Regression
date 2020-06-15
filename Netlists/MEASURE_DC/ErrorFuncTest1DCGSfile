@@ -24,7 +24,16 @@ Measure Start V1 Value= -5.000000e+00	Measure End V1 Value= 5.000000e+00
 ERR1YMAX3.5 = 1.958481e+00
 Measure Start V1 Value= -5.000000e+00	Measure End V1 Value= 5.000000e+00
 
+ERR1FROM = 7.409328e-01
+Measure Start V1 Value= 3.000000e+00	Measure End V1 Value= 5.000000e+00
+
+ERR1TO = 1.210616e+00
+Measure Start V1 Value= -5.000000e+00	Measure End V1 Value= 3.000000e+00
+
 ERR1FT = 5.605677e-01
+Measure Start V1 Value= 0.000000e+00	Measure End V1 Value= 4.000000e+00
+
+ERR1TF = 5.605677e-01
 Measure Start V1 Value= 0.000000e+00	Measure End V1 Value= 4.000000e+00
 
 ERR2 = 2.500000e-01
@@ -47,6 +56,12 @@ Measure Start V1 Value= -5.000000e+00	Measure End V1 Value= 5.000000e+00
 
 ERR2YMAX3.5 = 1.583333e+00
 Measure Start V1 Value= -5.000000e+00	Measure End V1 Value= 5.000000e+00
+
+ERR2FROM = 7.388889e-01
+Measure Start V1 Value= 3.000000e+00	Measure End V1 Value= 5.000000e+00
+
+ERR2TO = 1.056250e+00
+Measure Start V1 Value= -5.000000e+00	Measure End V1 Value= 3.000000e+00
 
 ERR2FT = 4.791667e-01
 Measure Start V1 Value= 0.000000e+00	Measure End V1 Value= 4.000000e+00

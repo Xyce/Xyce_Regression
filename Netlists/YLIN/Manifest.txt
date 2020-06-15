@@ -95,3 +95,8 @@ ylin-5port-yparam-cw.cir
 ylin-5port-yparam-ts1.cir
 ylin-5port-yparam-cw.cir.y5p
 ylin-5port-yparam-ts1.cir.y5p
+miscParsing.cir
+miscParsing.cir.sh
+miscParsing-ts1.cir
+miscParsing.cir.y2p
+miscParsing-ts1.cir.y2p

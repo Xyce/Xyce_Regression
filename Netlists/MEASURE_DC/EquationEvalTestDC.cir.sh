@@ -31,7 +31,7 @@ $fc=$XYCE_VERIFY;
 $fc =~ s/xyce_verify/file_compare/;
 
 # remove files from previous runs
-system("rm -f $CIRFILE.ms0 $CIRFILE.out $CIRFILE.err* $CIRFILE.remeasure*");
+system("rm -f $CIRFILE.ms0 $CIRFILE.out $CIRFILE.err* $CIRFILE.prn* $CIRFILE.remeasure*");
 
 #
 # Steps common to all of the measure tests are in the Perl module
@@ -123,6 +123,22 @@ if ( $retval != 0 )
 else
 {
   print "Passed comparison of .ms0 files\n";
+}
+
+# also compare output .prn file.
+$CMD="$fc $CIRFILE.prn $GOLDPRN $absTol $relTol $zeroTol > $CIRFILE.prn.errmsg.out 2> $CIRFILE.prn.errmsg.err";
+$retval=system($CMD);
+$retval = $retval >> 8;
+
+if ( $retval != 0 )
+{
+  print STDERR "test failed comparison of Gold and Test .prn files with exit code $retval\n";
+  print "Exit code = 2\n";
+  exit 2;
+}
+else
+{
+  print "Passed comparison of .prn files\n";
 }
 
 # Also test remeasure if the basic measure function works

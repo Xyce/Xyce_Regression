@@ -21,7 +21,16 @@ Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= -5.000000e+00
 ERR1YMAX3.5 = 2.440300e+00
 Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= -5.000000e+00
 
+ERR1FROM = 1.382429e+00
+Measure Start VSRC1 Value= 3.000000e+00	Measure End VSRC1 Value= -5.000000e+00
+
+ERR1TO = 6.733443e-01
+Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= 3.000000e+00
+
 ERR1FT = 5.366894e-01
+Measure Start VSRC1 Value= 4.000000e+00	Measure End VSRC1 Value= 0.000000e+00
+
+ERR1TF = 5.366894e-01
 Measure Start VSRC1 Value= 4.000000e+00	Measure End VSRC1 Value= 0.000000e+00
 
 ERR2 = 4.250000e-01
@@ -42,7 +51,16 @@ Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= -5.000000e+00
 ERR2YMAX3.5 = 1.874074e+00
 Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= -5.000000e+00
 
+ERR2FROM = 1.150000e+00
+Measure Start VSRC1 Value= 3.000000e+00	Measure End VSRC1 Value= -5.000000e+00
+
+ERR2TO = 6.711111e-01
+Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= 3.000000e+00
+
 ERR2FT = 5.093333e-01
+Measure Start VSRC1 Value= 4.000000e+00	Measure End VSRC1 Value= 0.000000e+00
+
+ERR2TF = 5.093333e-01
 Measure Start VSRC1 Value= 4.000000e+00	Measure End VSRC1 Value= 0.000000e+00
 
 MAXRETURNNEGONE = FAILED
@@ -75,7 +93,16 @@ Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= -5.000000e+00
 ERR1YMAX3.5 = 4.129156e+00
 Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= -5.000000e+00
 
+ERR1FROM = 1.849552e+00
+Measure Start VSRC1 Value= 3.000000e+00	Measure End VSRC1 Value= -5.000000e+00
+
+ERR1TO = 7.505417e-01
+Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= 3.000000e+00
+
 ERR1FT = 6.181742e-01
+Measure Start VSRC1 Value= 4.000000e+00	Measure End VSRC1 Value= 0.000000e+00
+
+ERR1TF = 6.181742e-01
 Measure Start VSRC1 Value= 4.000000e+00	Measure End VSRC1 Value= 0.000000e+00
 
 ERR2 = 7.260417e-01
@@ -96,7 +123,16 @@ Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= -5.000000e+00
 ERR2YMAX3.5 = 2.784448e+00
 Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= -5.000000e+00
 
+ERR2FROM = 1.381081e+00
+Measure Start VSRC1 Value= 3.000000e+00	Measure End VSRC1 Value= -5.000000e+00
+
+ERR2TO = 7.498679e-01
+Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= 3.000000e+00
+
 ERR2FT = 6.020477e-01
+Measure Start VSRC1 Value= 4.000000e+00	Measure End VSRC1 Value= 0.000000e+00
+
+ERR2TF = 6.020477e-01
 Measure Start VSRC1 Value= 4.000000e+00	Measure End VSRC1 Value= 0.000000e+00
 
 MAXRETURNNEGONE = FAILED
