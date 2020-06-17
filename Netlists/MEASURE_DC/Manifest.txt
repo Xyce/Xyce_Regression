@@ -1,4 +1,7 @@
 tags
+DotData.cir
+DotData.cir.sh
+DotDataGSfile
 DotOpDotDC.cir
 DotOpDotDC.cir.sh
 DotOpDotDCGSfile
