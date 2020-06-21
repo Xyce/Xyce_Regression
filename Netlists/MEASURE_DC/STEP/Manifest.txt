@@ -2,6 +2,9 @@ tags
 AvgTest1DC.cir
 AvgTest1DC.cir.sh
 AvgTest1DCGSfile
+DotData.cir
+DotData.cir.sh
+DotDataGSfile
 DerivTest1DC.cir
 DerivTest1DC.cir.sh
 DerivTest1DCGSfile

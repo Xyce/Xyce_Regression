@@ -22,8 +22,6 @@ remeasure_dc_analysis_mismatch.cir.tags
 remeasure_dc_analysis_mismatch.cir.options
 RemeasureLeadCurrents.cir
 RemeasureLeadCurrents.cir.sh
-RemeasureDotData.cir
-RemeasureDotData.cir.sh
 RemeasureStepNumCol.cir
 RemeasureStepNumCol.cir.sh
 RemeasureStepNumColGSfile
