@@ -16,9 +16,12 @@ E2 2 0 VALUE={V(1)*V(1)}
 R2a 2 2a 2
 R2b 2a 0 2
 
+E3 3 0 VALUE={(V(2a)-5)*(V(2a)-5)}
+R3 3 0 3
+
 .DC V1 5 1 -1
 .STEP R2b 2 4 2
-.PRINT DC V(1) V(2a) I(R2b)
+.PRINT DC V(1) V(2a) V(3) I(R2b)
 
 * DERIV
 .MEASURE DC DERIVV2AT2.5 DERIV V(2a) AT=2.5
@@ -37,6 +40,10 @@ R2b 2a 0 2
 
 * Expression in DERIV clause
 .MEASURE DC derivExp5 DERIV {V(1)-V(2a)} when v(2a)=10
+
+* FROM
+.MEASURE DC from1 DERIV V(3) WHEN V(3)=10
+.MEASURE DC from2 DERIV V(3) WHEN V(3)=10 FROM=2.5
 
 * lead current
 .MEASURE DC derivir2at2.5 deriv I(R2b) AT=2.5

@@ -40,6 +40,9 @@ V1 a 0 DC 0V AC 1
 * Expression in DERIV clause
 .MEASURE AC derivExp5 DERIV {VR(b)+VI(b)} when vm(b)=0.5
 
+* FROM
+.MEASURE AC derivvibfrom100 DERIV VI(b) when vi(b)=0.4 FROM=100
+
 * branch current
 .MEASURE AC derivimv1at50 deriv im(v1) AT=50
 

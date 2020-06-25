@@ -22,6 +22,12 @@ Measure Start V1 Value= 5.000000e+00	Measure End V1 Value= 4.000000e+00
 DERIVEXP5 = -3.500000e+00 at V1 value = 4.444444e+00
 Measure Start V1 Value= 5.000000e+00	Measure End V1 Value= 4.000000e+00
 
+FROM1 = 4.725000e+01 at V1 value = 4.021164e+00
+Measure Start V1 Value= 5.000000e+00	Measure End V1 Value= 4.000000e+00
+
+FROM2 = -1.125000e+01 at V1 value = 1.911111e+00
+Measure Start V1 Value= 5.000000e+00	Measure End V1 Value= 1.000000e+00
+
 DERIVIR2AT2.5 = 1.250000e+00 for AT = 2.500000e+00
 
 DERIVRETNEG1 = FAILED for AT = 1.000000e+01
@@ -53,6 +59,12 @@ Measure Start V1 Value= 5.000000e+00	Measure End V1 Value= 3.000000e+00
 
 DERIVEXP5 = -3.666667e+00 at V1 value = 3.857143e+00
 Measure Start V1 Value= 5.000000e+00	Measure End V1 Value= 3.000000e+00
+
+FROM1 = 3.111111e+01 at V1 value = 3.289286e+00
+Measure Start V1 Value= 5.000000e+00	Measure End V1 Value= 3.000000e+00
+
+FROM2 = -1.333333e+01 at V1 value = 1.658333e+00
+Measure Start V1 Value= 5.000000e+00	Measure End V1 Value= 1.000000e+00
 
 DERIVIR2AT2.5 = 8.333333e-01 for AT = 2.500000e+00
 
