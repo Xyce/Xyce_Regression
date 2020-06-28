@@ -44,6 +44,9 @@ C1 1 Vb 10u
 * Expression in DERIV clause
 .MEASURE NOISE derivExp5 DERIV {VR(out)+VI(out)} when vm(out)=1
 
+* FROM
+.MEASURE NOISE DERIVVIOUTFROM1 DERIVATIVE VI(OUT) WHEN VI(OUT)=-0.5 FROM=1
+
 * branch current
 .measure noise derivimv1 DERIV {1e4*IM(v1)} at=0.05
 

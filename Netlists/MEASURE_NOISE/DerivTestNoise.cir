@@ -43,6 +43,19 @@ C1 1 Vb 10u
 * Expression in DERIV clause
 .MEASURE NOISE derivExp5 DERIV {VR(out)+VI(out)} when vm(out)=1
 
+* FROM and TO
+.MEASURE NOISE FROM1 DERIV VI(OUT) WHEN VI(OUT)=-0.5 FROM=1
+
+* Test that the interpolated WHEN time is within the measure window.
+* So, the FROM2 measure should find the first time vi(out)=-0.5.
+* FROM3 should find the second time.
+.MEASURE NOISE FROM2 DERIV VI(OUT) WHEN VI(OUT)=-0.5 FROM=0.28
+.MEASURE NOISE FROM3 DERIV VI(OUT) WHEN VI(OUT)=-0.5 FROM=0.3
+
+* The TO1 measure should fail.
+.MEASURE NOISE TO1 DERIV VR(OUT) WHEN VR(OUT)=-5.0 TO=10.5
+.MEASURE NOISE TO2 DERIV VR(OUT) WHEN VR(OUT)=-5.0 TO=12
+
 * branch current
 .measure noise derivimv1 DERIV {1e4*IM(v1)} at=0.05
 

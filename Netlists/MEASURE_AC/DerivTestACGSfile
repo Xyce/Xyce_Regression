@@ -32,6 +32,21 @@ Measure Start Freq= 1.000000e+00	Measure End Freq= 1.584893e+02
 DERIVEXP5 = 1.170374e-02 at freq = 4.685318e+01
 Measure Start Freq= 1.000000e+00	Measure End Freq= 6.309573e+01
 
+DERIVVIBFROM100 = -6.513692e-04 at freq = 3.861472e+02
+Measure Start Freq= 1.000000e+02	Measure End Freq= 3.981072e+02
+
+DERIVVIBFROM8 = 1.217124e-02 at freq = 8.051952e+00
+Measure Start Freq= 1.000000e+01	Measure End Freq= 1.000000e+01
+
+DERIVVIBFROM9 = -1.221276e-04 at freq = 8.286769e+02
+Measure Start Freq= 1.000000e+01	Measure End Freq= 1.000000e+03
+
+DERIVVRBTO250 = 1.188080e-03 at freq = 2.185396e+02
+Measure Start Freq= 1.000000e+00	Measure End Freq= 2.511886e+02
+
+DERIVVRBTO200 = FAILED
+Measure Start Freq= 1.000000e+00	Measure End Freq= 2.511886e+02
+
 DERIVIMV1AT50 = 3.733691e-03 for AT = 5.000000e+01
 
 Netlist warning: DERIVRETNEG1 failed. AT value outside frequency sweep window

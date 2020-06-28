@@ -39,6 +39,19 @@ V1 a 0 DC 0V AC 1
 * Expression in DERIV clause
 .MEASURE AC derivExp5 DERIV {VR(b)+VI(b)} when vm(b)=0.5
 
+* FROM and TO
+.MEASURE AC derivvibfrom100 DERIV VI(b) when vi(b)=0.2 FROM=100
+
+* Test that the interpolated WHEN time is within the measure window.
+* So, the first measure should find the first time vi(b)=0.1.
+* The second one should find the second time.
+.MEASURE AC derivvibfrom8 DERIV VI(b) when vi(b)=0.1 FROM=8
+.MEASURE AC derivvibfrom9 DERIV VI(b) when vi(b)=0.1 FROM=9
+
+* The second measure should fail.
+.MEASURE AC derivvrbto250 DERIV VR(b) when vr(b)=0.87 TO=250
+.MEASURE AC derivvrbto200 DERIV VR(b) when vr(b)=0.87 TO=200
+
 * branch current
 .MEASURE AC derivimv1at50 deriv im(v1) AT=50
 
