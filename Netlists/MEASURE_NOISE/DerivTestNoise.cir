@@ -47,10 +47,11 @@ C1 1 Vb 10u
 .MEASURE NOISE FROM1 DERIV VI(OUT) WHEN VI(OUT)=-0.5 FROM=1
 
 * Test that the interpolated WHEN time is within the measure window.
-* So, the FROM2 measure should find the first time vi(out)=-0.5.
+* So, the FROM2 and FROM4 measures should find the first time vi(out)=-0.5.
 * FROM3 should find the second time.
 .MEASURE NOISE FROM2 DERIV VI(OUT) WHEN VI(OUT)=-0.5 FROM=0.28
 .MEASURE NOISE FROM3 DERIV VI(OUT) WHEN VI(OUT)=-0.5 FROM=0.3
+.MEASURE NOISE FROM4 DERIV VI(OUT) WHEN VI(OUT)=-0.5 FROM=0.26 TO=0.29
 
 * The TO1 measure should fail.
 .MEASURE NOISE TO1 DERIV VR(OUT) WHEN VR(OUT)=-5.0 TO=10.5

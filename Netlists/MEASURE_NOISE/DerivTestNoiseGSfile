@@ -35,6 +35,9 @@ Measure Start Freq= 2.800000e-01	Measure End Freq= 1.000000e+03
 FROM3 = 1.286611e-02 at freq = 3.311124e+01
 Measure Start Freq= 3.000000e-01	Measure End Freq= 1.000000e+03
 
+FROM4 = -1.712949e+00 at freq = 2.889384e-01
+Measure Start Freq= 2.600000e-01	Measure End Freq= 2.900000e-01
+
 TO1 = FAILED
 Measure Start Freq= 1.000000e-02	Measure End Freq= 1.050000e+01
 
