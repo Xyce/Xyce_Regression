@@ -3,8 +3,6 @@
 use XyceRegression::Tools;
 
 $Tools = XyceRegression::Tools->new();
-#$Tools->setDebug(1);
-#$Tools->setVerbose(1);
 
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
@@ -25,9 +23,6 @@ $Tools = XyceRegression::Tools->new();
 # output from comparison to go into $CIRFILE.TD.prn.out and the STDERR output from
 # comparison to go into $CIRFILE.TD.prn.err.  
 
-use Getopt::Long;
-
-&GetOptions( "verbose!" => \$verbose );
 $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
 $XYCE_VERIFY=~ s/xyce_verify/ACComparator/; 
@@ -41,10 +36,6 @@ $abstol=1e-6;
 $reltol=1e-3;  #0.1%
 $zerotol=1e-8;
 $freqreltol=1e-6;
-
-if (defined($verbose)) { $Tools->setVerbose(1); }
-
-sub verbosePrint { $Tools->verbosePrint(@_); }
 
 $CMD="$XYCE $CIRFILE > $CIRFILE.out ";
 $retval = system($CMD);

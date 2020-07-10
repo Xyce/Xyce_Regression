@@ -3,8 +3,6 @@
 use XyceRegression::Tools;
 
 $Tools = XyceRegression::Tools->new();
-#$Tools->setDebug(1);
-#$Tools->setVerbose(1);
 
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
@@ -25,24 +23,15 @@ $Tools = XyceRegression::Tools->new();
 # output from comparison to go into $CIRFILE.prn.out and the STDERR output from
 # comparison to go into $CIRFILE.prn.err.  
 
-use Getopt::Long;
-
-&GetOptions( "verbose!" => \$verbose );
 $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
 #$XYCE_COMPARE=$ARGV[2];
 #$CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
 
-if (defined($verbose)) { $Tools->setVerbose(1); }
-
-$Tools->setVerbose(1);
-
-sub verbosePrint { $Tools->verbosePrint(@_); }
-
 $CIR1="vbicNandStep.cir";
 
-verbosePrint "Running $CIR1...\n";
+print "Running $CIR1...\n";
 $retval=$Tools->wrapXyce($XYCE,$CIR1);
 if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
 
@@ -52,12 +41,12 @@ if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
 
 @STEPRES1 = (9.0e+5, 1e6);# rta1 value
 
-verbosePrint "Generating vbicNandStep.cir.prn.gs\n";
+print "Generating vbicNandStep.cir.prn.gs\n";
 open(GS,">$CIR1.prn.gs");
 $first_run=1;
 foreach $CIR (@CIRLIST)
 {
-  verbosePrint "Running $CIR...\n";
+  print "Running $CIR...\n";
   $retval=$Tools->wrapXyce($XYCE,$CIR);
   if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
   if (not -s "$CIR.prn") { print "Exit code = 14\n"; exit 14; }
@@ -74,7 +63,7 @@ foreach $CIR (@CIRLIST)
 print GS   "End of Xyce(TM) Parameter Sweep\n";
 close(GS);
 
-verbosePrint "Generating vbicNandStep.cir.res.gs\n";
+print "Generating vbicNandStep.cir.res.gs\n";
 $GOLDRES = "vbicNandStep.cir.res.gs";
 open(GRES,">$GOLDRES");
 print GRES "STEP           XN1:RTA1:R\n";
@@ -85,19 +74,17 @@ for ($i=0 ; $i<= $#STEPRES1 ; $i++)
 print GRES "End of Xyce(TM) Parameter Sweep\n";
 close(GRES);
 
-verbosePrint "Comparing vbicNandStep.cir...\n";
+print "Comparing vbicNandStep.cir...\n";
 $CMD="$XYCE_VERIFY --goodres=$GOLDRES --testres=vbicNandStep.cir.res vbicNandStep.cir vbicNandStep.cir.prn.gs vbicNandStep.cir.prn > vbicNandStep.cir.prn.out 2> vbicNandStep.cir.prn.err";
 if (system("$CMD") != 0) { $failure = 1; }
 
 
 if ($failure)
 {
-  verbosePrint "Test Failed!\n";
   print "Exit code = 2\n"; exit 2;
 }
 else
 {
-  verbosePrint "Test Passed!\n";
   print "Exit code = 0\n"; exit 0;
 }
 

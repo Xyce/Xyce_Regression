@@ -21,9 +21,6 @@ use MeasureCommon;
 # output from comparison to go into $CIRFILE.prn.out and the STDERR output from
 # comparison to go into $CIRFILE.prn.err.
 
-use Getopt::Long;
-
-&GetOptions( "verbose!" => \$verbose );
 $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
 #$XYCE_COMPARE=$ARGV[2];

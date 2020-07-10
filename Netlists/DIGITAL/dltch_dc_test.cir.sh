@@ -17,12 +17,6 @@ $XYCE_VERIFY=$ARGV[1];
 $CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
 
-# define verbosePrint
-use Getopt::Long;
-&GetOptions( "verbose!" => \$verbose );
-if (defined($verbose)) { $Tools->setVerbose(1); }
-sub verbosePrint { $Tools->verbosePrint(@_); }
-
 # these are the tolerances used in comparing the .prn file
 # and the Gold Standard
 $absTol = 1.0e-8;

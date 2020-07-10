@@ -20,9 +20,6 @@ $Tools = XyceRegression::Tools->new();
 # error output from Xyce.  The script run_xyce_regression captures the test
 # output and handles the resulting files.
 
-use Getopt::Long;
-&GetOptions( "verbose!" => \$verbose );
-
 $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
 #$XYCE_COMPARE=$ARGV[2];

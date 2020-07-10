@@ -4,8 +4,6 @@ use XyceRegression::Tools;
 use MeasureCommon;
 
 $Tools = XyceRegression::Tools->new();
-#$Tools->setDebug(1);
-#$Tools->setVerbose(1);
 
 # The input arguments to this script are: 
 # $ARGV[0] = location of Xyce binary
@@ -26,9 +24,6 @@ $Tools = XyceRegression::Tools->new();
 # output from comparison to go into $CIRFILE.prn.out and the STDERR output from
 # comparison to go into $CIRFILE.prn.err.  
 
-use Getopt::Long;
-
-&GetOptions( "verbose!" => \$verbose );
 $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
 #$XYCE_COMPARE=$ARGV[2];
@@ -42,10 +37,6 @@ $GOLDPRN=$ARGV[4];
 my $absTol = 0.01;
 my $relTol = 0.03;
 my $zeroTol = 1.0e-5;
-
-if (defined($verbose)) { $Tools->setVerbose(1); }
-
-sub verbosePrint { $Tools->verbosePrint(@_); }
 
 $retval = -1;
 $retval=$Tools->wrapXyce($XYCE,$CIRFILE);
@@ -97,7 +88,7 @@ close(RESULTS);
 
 if( $numMeasures != $numMeasuresFound )
 {
-  verbosePrint "Number of requested measures did not match number of printed measures.\n";
+  print "Number of requested measures did not match number of printed measures.\n";
   print "Exit code = 2\n"; exit 2; 
 }
 
@@ -122,7 +113,6 @@ for (my $i=0; $i < $numMeasures; $i++)
 
 if ( $retval != 0 )
 {
-  verbosePrint "test Failed!\n";
   print "Exit code = $retval\n";
   exit $retval;
 }
@@ -291,12 +281,10 @@ if ($retval == 0)
 
 if ( $retval != 0 )
 {
-  verbosePrint "test Failed!\n";
   print "Exit code = $retval\n"; 
   exit $retval;
 }
-  
-verbosePrint "test Passed!\n";
+
 print "Exit code = $retval\n"; 
 exit $retval;
 

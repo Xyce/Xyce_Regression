@@ -3,8 +3,6 @@
 use XyceRegression::Tools;
 
 $Tools = XyceRegression::Tools->new();
-#$Tools->setDebug(1);
-#$Tools->setVerbose(1);
 
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
@@ -31,26 +29,17 @@ $XYCE=$ARGV[0];
 $CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
 
-use Getopt::Long;
-&GetOptions( "verbose!" => \$verbose );
-if (defined($verbose)) { $Tools->setVerbose(1); }
-
-sub verbosePrint { $Tools->verbosePrint(@_); }
-
 $retval=$Tools->wrapXyce($XYCE,$CIRFILE);
 if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
 
 open(CIRIN,"$CIRFILE");
 while ($line = <CIRIN>)
 {
-  #verbosePrint "$line";
   if ($line =~ m/^\.tran/i)
   {
     @linelist = split(" ",$line);
     $maxdt = $Tools->modVal2Float($linelist[4]);
     $mag = 10**(log($maxdt)/log(10));
-    verbosePrint "mag = $mag\n";
-    verbosePrint "maxdt = $maxdt\n";
   }
 }
 close(CIRIN);
@@ -59,7 +48,6 @@ open(CIRPRN,"$CIRFILE.prn") or $retval=14;
 if ($retval == 14) {print "Exit code = 14\n"; exit 14;}
 while ($line = <CIRPRN>)
 {
-  #verbosePrint "$line";
   if ($line =~ m/^Index/) { next; }
   if ($line =~ m/^End/) { next; }
   @linelist = split(" ",$line);
@@ -72,7 +60,6 @@ while ($line = <CIRPRN>)
     $diff = $dt-$maxdt;
     if ($diff > $zerotol*$mag)
     {
-      verbosePrint "Test Failed!\n";
       print "Exit code = 2\n"; exit 2;
     }
   }
@@ -80,9 +67,7 @@ while ($line = <CIRPRN>)
   {
     $digits = $linelist[1];
     $digits = length($digits)-6;
-    verbosePrint "digits = $digits\n";
     $zerotol = 10**(-$digits+1);
-    verbosePrint "zerotol = $zerotol\n";
   }
   $time_old = $time;
 }
@@ -91,7 +76,6 @@ close(CIRPRN);
 # At this point the test has passed, so lets remove the Xyce error output.
 `rm -f $CIRFILE.err`; 
 
-verbosePrint "Test Passed!\n";
 print "Exit code = 0\n"; exit 0;
 
 

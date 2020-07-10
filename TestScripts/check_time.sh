@@ -20,19 +20,11 @@
 # comparison to go into $CIRFILE.prn.err.  
 
 use Time::Local;
-use Getopt::Long;
-
-&GetOptions( "verbose!" => \$verbose );
 $XYCE=$ARGV[0];
 #$XYCE_VERIFY=$ARGV[1];
 #$XYCE_COMPARE=$ARGV[2];
 $CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
-
-sub verbosePrint
-{
-  printf @_ if ($verbose);
-}
 
 %month = ( 1  =>"Jan", 2  =>"Feb", 3  =>"Mar", 4  =>"Apr", 5  =>"May", 6  =>"Jun", 
            7  =>"Jul", 8  =>"Aug", 9  =>"Sep", 10 =>"Oct", 11 =>"Nov", 12 =>"Dec");
@@ -44,8 +36,6 @@ $m += 1;
 if ($H < 12) { $AMPM = "AM" } else { $AMPM = "PM"; if ($H > 12) { $H -= 12; } }
 $TIME = sprintf("%2.2d:%2.2d:%2.2d %s",$H,$M,$S,$AMPM);
 $DATE = sprintf("%s %2.2d, %4.4d",$month{$m},$d,$y);
-verbosePrint "    TIME  = $TIME\n";
-verbosePrint "    DATE  = $DATE\n";
 
 ($S2,$M2,$H2,$d2,$m2,$y2) = (localtime($time2)) [0..5];
 $y2 %= 100; $y2 += 2000;
@@ -53,8 +43,6 @@ $m2 += 1;
 if ($H2 < 12) { $AMPM = "AM" } else { $AMPM = "PM"; if ($H2 > 12) { $H2 -= 12; } }
 $TIME2 = sprintf("%2.2d:%2.2d:%2.2d %s",$H2,$M2,$S2,$AMPM2);
 $DATE2 = sprintf("%s %2.2d, %4.4d",$month{$m2},$d2,$y2);
-verbosePrint "    TIME2 = $TIME2\n";
-verbosePrint "    DATE2 = $DATE2\n";
 
 #sleep(1);
 
@@ -73,8 +61,6 @@ while ($line = <PRN>)
     $testTIME =~ s/\'//g;
     $testDATE = $splitline[3];
     $testDATE =~ s/\'//g;
-    verbosePrint "testTIME  = $testTIME\n";
-    verbosePrint "testDATE  = $testDATE\n";
     if ( ( ($DATE  eq $testDATE) and ($TIME  eq $testTIME) ) or 
          ( ($DATE2 eq $testDATE) and ($TIME2 eq $testTIME) )     )
     { undef $failure; }
@@ -84,13 +70,11 @@ while ($line = <PRN>)
 
 if (defined($failure)) 
 {
-  verbosePrint "Test Failed!\n";
   print "Exit code = 2\n";
   exit 2
 }
 else
 {
-  verbosePrint "Test Passed!\n";
   print "Exit code = 0\n";
   exit 0
 }

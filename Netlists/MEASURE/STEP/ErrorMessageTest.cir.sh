@@ -4,10 +4,6 @@ use XyceRegression::Tools;
 use MeasureCommon;
 
 $Tools = XyceRegression::Tools->new();
-#$Tools->setDebug(1);
-#$Tools->setVerbose(1);
-
-if (defined($verbose)) { $Tools->setVerbose(1); }
 
 # The input arguments to this script are: 
 # $ARGV[0] = location of Xyce binary
@@ -28,10 +24,8 @@ if (defined($verbose)) { $Tools->setVerbose(1); }
 # output from comparison to go into $CIRFILE.prn.out and the STDERR output from
 # comparison to go into $CIRFILE.prn.err.  
 
-use Getopt::Long;
 use File::Basename;
 
-&GetOptions( "verbose!" => \$verbose );
 $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
 #$XYCE_COMPARE=$ARGV[2];

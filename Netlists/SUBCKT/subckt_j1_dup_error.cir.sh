@@ -3,7 +3,6 @@
 use XyceRegression::Tools;
 
 $Tools = XyceRegression::Tools->new();
-#$Tools->setDebug(1);
 
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
@@ -23,15 +22,12 @@ $Tools = XyceRegression::Tools->new();
 # output from comparison to go into $CIRFILE.prn.out and the STDERR output from
 # comparison to go into $CIRFILE.prn.err.  
 
-use Getopt::Long;
-
 # these search strings are supposed to occur one right after the other in the
 # error output.
 @searchstrings = ("Duplicate nodes in .subckt ONEBIT point to different nodes in X line invocation",
                   "Error invoking subcircuit ONEBIT instance X1"
 );
 
-&GetOptions( "verbose!" => \$verbose );
 $XYCE=$ARGV[0];
 #$XYCE_VERIFY=$ARGV[1];
 #$XYCE_COMPARE=$ARGV[2];
@@ -39,8 +35,6 @@ $CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
 
 $XYCE="$XYCE -error-test";
-
-if (defined($verbose)) { $Tools->setVerbose(1); }
 
 $retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);
 print "Exit code = $retval\n"; exit $retval;

@@ -19,19 +19,11 @@
 # output from comparison to go into $CIRFILE.prn.out and the STDERR output from
 # comparison to go into $CIRFILE.prn.err.  
 
-use Getopt::Long;
-
-&GetOptions( "verbose!" => \$verbose );
 $XYCE=$ARGV[0];
 #$XYCE_VERIFY=$ARGV[1];
 #$XYCE_COMPARE=$ARGV[2];
 $CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
-
-sub verbosePrint
-{
-  printf @_ if ($verbose);
-}
 
 $NUMRUNS = 2;
 for($i=0;$i<$NUMRUNS;$i++)
@@ -43,7 +35,6 @@ for($i=0;$i<$NUMRUNS;$i++)
   $line = <OUT>;
   $line = <OUT>;
   ($INDX,$TIME,$V1,$V2,$V3,$V4) = split(" ",$line);
-  verbosePrint "V1 = $V1, V2 = $V2, V3 = $V3, V4 = $V4\n";
   if ( ($V1 < 1) or ($V1 > 2) or 
        ($V2 < 1) or ($V2 > 2) or 
        ($V3 < 1) or ($V3 > 2) or 
@@ -68,11 +59,9 @@ for($i=0;$i<$NUMRUNS;$i++)
 
 if (defined($failure))
 {
-  verbosePrint "Test Failed!\n";
   print "Exit code = 2\n"; exit 2;
 }
 else
 { 
-  verbosePrint "Test Passed!\n";
   print "Exit code = 0\n"; exit 0;
 }

@@ -3,7 +3,6 @@
 use XyceRegression::Tools;
 
 $Tools = XyceRegression::Tools->new();
-#$Tools->setDebug(1);
 
 # The input arguments to this script are: 
 # $ARGV[0] = location of Xyce binary
@@ -22,10 +21,6 @@ $Tools = XyceRegression::Tools->new();
 # expects the STDERR output from Xyce to go into $CIRFILE.err, the STDOUT
 # output from comparison to go into $CIRFILE.prn.out and the STDERR output from
 # comparison to go into $CIRFILE.prn.err.  
-
-use Getopt::Long;
-&GetOptions( "verbose!" => \$verbose );
-if (defined($verbose)) { $Tools->setVerbose(1); }
 
 $XYCE=$ARGV[0];
 #$XYCE_VERIFY=$ARGV[1];

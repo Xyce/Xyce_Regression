@@ -3,8 +3,6 @@
 use XyceRegression::Tools;
 
 $Tools = XyceRegression::Tools->new();
-#$Tools->setDebug(1);
-#$Tools->setVerbose(1);
 
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
@@ -25,9 +23,6 @@ $Tools = XyceRegression::Tools->new();
 # output from comparison to go into $CIRFILE.prn.out and the STDERR output from
 # comparison to go into $CIRFILE.prn.err.  
 
-use Getopt::Long;
-
-&GetOptions( "verbose!" => \$verbose );
 $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
 #$XYCE_COMPARE=$ARGV[2];
@@ -37,10 +32,6 @@ $GOLDPRN=$ARGV[4];
 $HD5file=$CIRFILE;
 $HD5file =~ s/\.cir//;
 $HD5file .= "_hd5.dat.h5d";
-
-if (defined($verbose)) { $Tools->setVerbose(1); }
-
-sub verbosePrint { $Tools->verbosePrint(@_); }
 
 $retval = -1;
 $retval=$Tools->wrapXyce($XYCE,$CIRFILE);
@@ -53,7 +44,6 @@ if (not -s "$CIRFILE.prn" ) { print "Exit code = 14\n"; exit 14; }
 if (not -e "$HD5file" || -z "$HD5file" ) { print "Exit code = 17\n"; exit 17; }
 
 
-verbosePrint "test Passed!\n";
 print "Exit code = 0\n"; 
 exit 0;
 

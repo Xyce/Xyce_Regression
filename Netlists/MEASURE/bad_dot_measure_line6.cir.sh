@@ -5,7 +5,6 @@ use XyceRegression::Tools;
 use MeasureCommon;
 
 $Tools = XyceRegression::Tools->new();
-#$Tools->setDebug(1);
 
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
@@ -14,16 +13,12 @@ $Tools = XyceRegression::Tools->new();
 # $ARGV[3] = location of circuit file to test
 # $ARGV[4] = location of gold standard prn file
 
-use Getopt::Long;
 use File::Basename;
 
-&GetOptions( "verbose!" => \$verbose );
 $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
 $CIRFILE=$ARGV[3]; 
 $GOLDPRN=$ARGV[4];
-
-if (defined($verbose)) { $Tools->setVerbose(1); }
 
 # check various error cases
 # this string should be in the warning messages of this Xyce run  

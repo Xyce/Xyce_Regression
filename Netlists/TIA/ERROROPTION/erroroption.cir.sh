@@ -30,12 +30,6 @@ $XYCE=$ARGV[0];
 $CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
 
-$verbose = 1;
-use Getopt::Long;
-&GetOptions( "verbose!" => \$verbose );
-
-sub verbosePrint { print @_ if ($verbose); }
-
 $tempfile = $Tools->modifyTest($CIRFILE,('timestepsreversal=1'));
 print "TESTING timestepreversal=1 with temp cirfile = $tempfile\n";
 $failed1 = runTest($XYCE,$tempfile);
@@ -96,49 +90,49 @@ sub runTest {
     chomp($line);
     if ($line =~ s/ERROROPTION=[01]:\s+DeltaT Grow =\s+([0-9e+-\.]+)/\1/) {
       $dtgrow = $line;
-      verbosePrint "\$dtgrow = $dtgrow\n";
+      print "\$dtgrow = $dtgrow\n";
       $settings++;
     }
     elsif ($line =~ s/ERROROPTION=[01]:\s+DeltaT Cut =\s+([0-9e+-\.]+)/\1/) {
       $dtcut = $line;
-      verbosePrint "\$dtcut = $dtcut\n";
+      print "\$dtcut = $dtcut\n";
       $settings++;
     }
     elsif ($line =~ s/ERROROPTION=[01]:\s+NL MIN =\s+([0-9]+)/\1/) {
       $nlmin = $line;
-      verbosePrint "\$nlmin = $nlmin\n";
+      print "\$nlmin = $nlmin\n";
       $settings++;
     }
     elsif ($line =~ s/ERROROPTION=[01]:\s+NL MAX =\s+([0-9]+)/\1/) {
       $nlmax = $line;
-      verbosePrint "\$nlmax = $nlmax\n";
+      print "\$nlmax = $nlmax\n";
       $settings++;
       if ($nlmax < $nlmin) {
-        verbosePrint "Error, \$nlmin = $nlmin > $nlmax = \$nlmax!\n";
+        print "Error, \$nlmin = $nlmin > $nlmax = \$nlmax!\n";
         print "Exit code = 2";
         exit 2;
       }
     }
     elsif ($line =~ s/ERROROPTION=[01]:\s+DELMAX =\s+([0-9e+-\.]+)/\1/) {
       $delmax = $line;
-      verbosePrint "\$delmax = $delmax\n";
+      print "\$delmax = $delmax\n";
       $settings++;
     }
     elsif ($line =~ s/ERROROPTION=[01]:\s+DOREJECTSTEP =\s+([01])/\1/) {
       $doRejectStep = $line;
-      verbosePrint "\$doRejectStep = $doRejectStep\n";
+      print "\$doRejectStep = $doRejectStep\n";
       $settings++;
     }
     elsif ($line =~ s/ERROROPTION=[01]:\s+TimeStepLimitedbyBP =\s+([01])/\1/) {
       if (($bpLimited == 1) and ($line == 0)) {
         $beginningIntegration = 2;
-        verbosePrint "Setting beginningIntegration=$beginningIntegration\n";
+        print "Setting beginningIntegration=$beginningIntegration\n";
       } else {
         $beginningIntegration = max(0,$beginningIntegration-1);
-        verbosePrint "Setting beginningIntegration=$beginningIntegration\n";
+        print "Setting beginningIntegration=$beginningIntegration\n";
       }
       $bpLimited = $line;
-      verbosePrint "\$bpLimited = $bpLimited\n";
+      print "\$bpLimited = $bpLimited\n";
     }
     elsif ($line =~ m/Transient Analysis:  rejecting time step/) {
       $rejectingStep = 1;
@@ -148,57 +142,57 @@ sub runTest {
     }
     elsif ($line =~ s/ERROROPTION=[01]:\s+NL Its =\s+([0-9]+)/\1/) {
       $nlits = $line;
-      verbosePrint "\$nlits = $nlits\n";
+      print "\$nlits = $nlits\n";
     }
     elsif ($line =~ s/ERROROPTION=[01]:\s+New DeltaT =\s+([0-9e+-\.]+)/\1/) {
 #   We can't determine what the step-size should be in these cases:
       $olddt = $newdt;
       $newdt = $line;
-      verbosePrint "Xyce Old DeltaT = $olddt\n";
-      verbosePrint "Xyce New DeltaT = $newdt\n";
+      print "Xyce Old DeltaT = $olddt\n";
+      print "Xyce New DeltaT = $newdt\n";
       if ($bpLimited == 1) {
-        verbosePrint "Skipping this data due to limited by breakpoint\n";
+        print "Skipping this data due to limited by breakpoint\n";
         next;
       }
       if ($beginningIntegration > 0) {
-        verbosePrint "Skipping this data due to beginningIntegration=$beginningIntegration\n";
+        print "Skipping this data due to beginningIntegration=$beginningIntegration\n";
         next;
       }
       if ($olddt == 0) {
-        verbosePrint "Skipping this data due to first step\n";
+        print "Skipping this data due to first step\n";
         next;
       }
       $dt = $olddt;
       if ($nlits <= $nlmin) {
-        verbosePrint "Too few Newton iterations, expecting increase\n";
+        print "Too few Newton iterations, expecting increase\n";
         $dt = $dtgrow*$olddt;
-        verbosePrint "Xyce olddt = $olddt, Expected newdt = $dt\n";
+        print "Xyce olddt = $olddt, Expected newdt = $dt\n";
       }
       elsif ($nlits > $nlmax) {
-        verbosePrint "Too many Newton iterations, expecting decrease\n";
+        print "Too many Newton iterations, expecting decrease\n";
         $dt = $dtcut*$olddt;
-        verbosePrint "Xyce olddt = $olddt, Expected newdt = $dt\n";
+        print "Xyce olddt = $olddt, Expected newdt = $dt\n";
         if (($doRejectStep == 1) and ($rejectingStep == 0)) {
-          verbosePrint "FAILURE:  \$doRejectStep == 1 but we're not rejecting this step!\n";
+          print "FAILURE:  \$doRejectStep == 1 but we're not rejecting this step!\n";
           $failed = 1;
         } elsif (($doRejectStep == 1) and ($rejectingStep == 1)) {
-          verbosePrint "SUCCESS:  \$doRejectStep == 1 and we're rejecting this step!\n";
+          print "SUCCESS:  \$doRejectStep == 1 and we're rejecting this step!\n";
         } elsif (($doRejectStep == 0) and ($rejectingStep == 1)) {
-          verbosePrint "\$doRejectStep == 0 and we're rejecting this step, probably due to max nonlinear iterations.\n";
+          print "\$doRejectStep == 0 and we're rejecting this step, probably due to max nonlinear iterations.\n";
         } elsif (($doRejectStep == 0) and ($rejectingStep == 0)) {
-          verbosePrint "SUCCESS:  \$doRejectStep == 0 and we're not rejecting this step.\n";
+          print "SUCCESS:  \$doRejectStep == 0 and we're not rejecting this step.\n";
         }
       }
       if ($dt > $delmax) {
-        verbosePrint "Reducing Expected newdt due to delmax = $delmax\n";
+        print "Reducing Expected newdt due to delmax = $delmax\n";
       }
       $dt = min($dt,$delmax);
-      verbosePrint "Xyce newdt = $newdt, Expected newdt = $dt\n";
+      print "Xyce newdt = $newdt, Expected newdt = $dt\n";
       if (fuzzyEquality($newdt,$dt,$eps)) {
-        verbosePrint "SUCCESS:  Took a step consistent with erroroption=1\n";
+        print "SUCCESS:  Took a step consistent with erroroption=1\n";
         $goodsteps++;
       } else {
-        verbosePrint "FAILURE:  Took a step inconsistent with erroroption=1\n";
+        print "FAILURE:  Took a step inconsistent with erroroption=1\n";
         $failed = 1;
       }
     }
@@ -206,11 +200,11 @@ sub runTest {
   close(CIROUT);
 
   if ($goodsteps == 0) {
-    verbosePrint "Took no valid steps\n";
+    print "Took no valid steps\n";
     $failed = 1;
   }
   if ($settings < 6) {
-    verbosePrint "Did not set appropriate variables for erroroption=1\n";
+    print "Did not set appropriate variables for erroroption=1\n";
     $failed = 1;
   }
   return $failed;

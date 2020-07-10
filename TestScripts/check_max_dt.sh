@@ -25,9 +25,6 @@ $XYCE=$ARGV[0];
 $CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
 
-use Getopt::Long;
-&GetOptions( "verbose!" => \$verbose );
-
 # this takes a value with modifiers (k, u, meg, mil, m, etc.) and
 # returns the actual numeric value by multiplying by the appropriate scale
 # factor
@@ -60,25 +57,17 @@ sub modVal2Float
   return $i;
 }
 
-sub verbosePrint 
-{
-  print @_ if ($verbose);
-}
-
 #$CMD="$XYCE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err";
 #if (system("$CMD") != 0) { print "Exit code = 10\n"; exit 10 }
 
 open(CIRIN,"$CIRFILE");
 while ($line = <CIRIN>)
 {
-  #verbosePrint "$line";
   if ($line =~ m/^\.tran/i)
   {
     @linelist = split(" ",$line);
     $maxdt = modVal2Float($linelist[4]);
     $mag = 10**(log($maxdt)/log(10));
-    verbosePrint "mag = $mag\n";
-    verbosePrint "maxdt = $maxdt\n";
   }
 }
 close(CIRIN);
@@ -86,7 +75,6 @@ close(CIRIN);
 open(CIRPRN,"$CIRFILE.prn");
 while ($line = <CIRPRN>)
 {
-  #verbosePrint "$line";
   if ($line =~ m/^Index/) { next; }
   if ($line =~ m/^End/) { next; }
   @linelist = split(" ",$line);
@@ -99,7 +87,6 @@ while ($line = <CIRPRN>)
     $diff = $dt-$maxdt;
     if ($diff > $zerotol*$mag)
     {
-      verbosePrint "Test Failed!\n";
       print "Exit code = 2\n";
       exit 2
     }
@@ -108,9 +95,7 @@ while ($line = <CIRPRN>)
   {
     $digits = $linelist[1];
     $digits = length($digits)-6;
-    verbosePrint "digits = $digits\n";
     $zerotol = 10**(-$digits+1);
-    verbosePrint "zerotol = $zerotol\n";
   }
   $time_old = $time;
 }
@@ -119,7 +104,6 @@ close(CIRPRN);
 # At this point the test has passed, so lets remove the Xyce error output.
 `rm -f $CIRFILE.err`; 
 
-verbosePrint "Test Passed!\n";
 print "Exit code = 0\n";
 exit 0
 

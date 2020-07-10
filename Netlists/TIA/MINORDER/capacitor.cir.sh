@@ -27,12 +27,6 @@ $XYCE=$ARGV[0];
 $CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
 
-$verbose = 1;
-use Getopt::Long;
-&GetOptions( "verbose!" => \$verbose );
-
-sub verbosePrint { print @_ if ($verbose); }
-
 $failed1 = runTest($XYCE,$CIRFILE);
 $failed2 = runTest($XYCE,"invert.cir");
 if (defined($failed1) or defined($failed2)) {
@@ -66,17 +60,13 @@ sub runTest {
         $newline = <CIRFILE>;
         $line = "$line $newline";
       }
-#    verbosePrint "\$line = $line\n";
       $line =~ s/\s*=\s*/=/g;
       @opts = split(/\s/,$line);
       foreach $op (@opts) {
-#      verbosePrint "\$op = $op\n";
         if ($op =~ s/maxord=([0-9])/\1/i) {
           $maxord = $op;
-#        verbosePrint "\$maxord = $maxord\n";
         } elsif ($op =~ s/minord=([0-9])/\1/i) {
           $minord = $op;
-#        verbosePrint "\$minord = $minord\n";
         }
       }
     }
@@ -85,8 +75,8 @@ sub runTest {
   $minord = max(1,$minord);
   $maxord = min(5,$maxord);
   if ($minord > $maxord) { $minord = $maxord; }
-  verbosePrint "\$minord = $minord\n";
-  verbosePrint "\$maxord = $maxord\n";
+  print "\$minord = $minord\n";
+  print "\$maxord = $maxord\n";
 
   $foundOrder = 0;
   $phase = 0; # Initial phase
@@ -106,7 +96,7 @@ sub runTest {
       if ($newiter == $iter+1) {
         $iter++;
         if ($NEWusedOrder != $currOrder) {
-          verbosePrint "FAILED:  Iteration count increased, but previous current order ($currOrder) != usedOrder ($NEWusedOrder)!\n";
+          print "FAILED:  Iteration count increased, but previous current order ($currOrder) != usedOrder ($NEWusedOrder)!\n";
           $failed =1;
           break;
         } else {
@@ -115,13 +105,13 @@ sub runTest {
         if ($NEWusedOrder >= $minord) { $phase = 1; }
         if ($phase == 0) {
           if ($NEWnextOrder != $currOrder+1) {
-            verbosePrint "FAILED:  In initial ramp-up phase and next order = $NEWnextOrder did not increase from current order = $currOrder\n";
+            print "FAILED:  In initial ramp-up phase and next order = $NEWnextOrder did not increase from current order = $currOrder\n";
             $failed = 1;
             break;
           }
         } else {
           if (($NEWnextOrder < $minord) or ($NEWnextOrder > $maxord)) {
-            verbosePrint "FAILED:  next order = $NEWnextOrder is not in [$minord,$maxord]!\n";
+            print "FAILED:  next order = $NEWnextOrder is not in [$minord,$maxord]!\n";
             $failed = 1;
             break;
           }
@@ -132,10 +122,10 @@ sub runTest {
   close(CIROUT);
 
   if ($foundOrder == 0) {
-    verbosePrint "Found no order information!\n";
+    print "Found no order information!\n";
     $failed = 1;
   } else {
-    verbosePrint "Found $foundOrder lines containing order information\n";
+    print "Found $foundOrder lines containing order information\n";
   }
   return $failed;
 }

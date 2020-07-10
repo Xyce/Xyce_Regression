@@ -3,8 +3,6 @@
 use XyceRegression::Tools;
 
 $Tools = XyceRegression::Tools->new();
-#$Tools->setDebug(1);
-#$Tools->setVerbose(1);
 
 # Notes on what this test does:
 #
@@ -57,19 +55,11 @@ $Tools = XyceRegression::Tools->new();
 # output from comparison to go into $CIRFILE.prn.out and the STDERR output from
 # comparison to go into $CIRFILE.prn.err.
 
-use Getopt::Long;
-
-&GetOptions( "verbose!" => \$verbose );
-
 $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
 #$XYCE_COMPARE=$ARGV[2];
 $CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
-
-if (defined($verbose)) { $Tools->setVerbose(1); }
-
-sub verbosePrint { $Tools->verbosePrint(@_); }
 
 # set an absTol and relTol for comparing the values from the raw files
 # absTol may seem high, but some value are of the order 1e4 and we are limited

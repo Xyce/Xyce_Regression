@@ -3,8 +3,6 @@
 use XyceRegression::Tools;
 
 $Tools = XyceRegression::Tools->new();
-#$Tools->setDebug(1);
-#$Tools->setVerbose(1);
 
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
@@ -25,10 +23,8 @@ $Tools = XyceRegression::Tools->new();
 # output from comparison to go into $CIRFILE.prn.out and the STDERR output from
 # comparison to go into $CIRFILE.prn.err.  
 
-use Getopt::Long;
 use Scalar::Util qw(looks_like_number);
 
-&GetOptions( "verbose!" => \$verbose );
 $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
 #$XYCE_COMPARE=$ARGV[2];
@@ -42,10 +38,6 @@ my $absTol = 1.0e-8;
 $GOLDSENS = $CIRFILE . "_dodp.txt.gs";
 $ADJOINTFILE = $CIRFILE . "0_dodpAdjoint.txt";
 $DIRECTFILE = $CIRFILE . "0_dodpDirect.txt";
-
-if (defined($verbose)) { $Tools->setVerbose(1); }
-
-sub verbosePrint { $Tools->verbosePrint(@_); }
 
 $retval = -1;
 $retval=$Tools->wrapXyce($XYCE,$CIRFILE);
@@ -191,12 +183,10 @@ else
 
 if ( $retval != 0 )
 {
-  verbosePrint "test Failed!\n";
   print "Exit code = $retval\n"; 
   exit $retval;
 }
-  
-verbosePrint "test Passed!\n";
+
 print "Exit code = $retval\n"; 
 exit $retval;
 

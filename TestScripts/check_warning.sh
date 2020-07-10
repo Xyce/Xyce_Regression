@@ -19,31 +19,21 @@
 # output from comparison to go into $CIRFILE.prn.out and the STDERR output from
 # comparison to go into $CIRFILE.prn.err.  
 
-use Getopt::Long;
-
 # these search strings are supposed to occur one right after the other in the
 # error output.
 @searchstring = ( "Dev Warning: Voltage Node [(]X0:X6:HANGING[)] connected to only 1 device Terminal",
                   "Dev Warning: Voltage Node [(]X0:X6:HANGING[)] does not have a DC path to ground" );
 
-&GetOptions( "verbose!" => \$verbose );
 $XYCE=$ARGV[0];
 #$XYCE_VERIFY=$ARGV[1];
 #$XYCE_COMPARE=$ARGV[2];
 $CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
 
-sub verbosePrint
-{
-  printf @_ if ($verbose);
-}
-
-
 $CMD="$XYCE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err";
 $retval = system("$CMD");
 if ($retval != 0)
 {
-  verbosePrint "Xyce EXITED WITH ERROR\n";
   print "Exit code = 10\n";
   exit 10
 }
@@ -52,24 +42,19 @@ $found = 0;
 open(OUT,"$CIRFILE.out");
 while ($line = <OUT>)
 {
-  verbosePrint "$line";
-  verbosePrint "searching for >>$searchstring[$found]<<\n";
   if ($line =~ "$searchstring[$found]")
   { $found++; }
-  verbosePrint "found = $found\n";
   if ($found == $#searchstring+1) 
   { close(OUT); }
 }
 
 if ($found == $#searchstring+1)
 {
-  verbosePrint "Test Passed!\n";
   print "Exit code = 0\n";
   exit 0
 }
 else
 {
-  verbosePrint "Test Failed!\n";
   print "Exit code = 2\n";
   exit 2 
 }

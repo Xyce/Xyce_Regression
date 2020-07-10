@@ -22,8 +22,6 @@ $Tools = XyceRegression::Tools->new();
 # output from comparison to go into $CIRFILE.txt.out and the STDERR output from
 # comparison to go into $CIRFILE.txt.err.
 
-use Getopt::Long;
-&GetOptions( "verbose!" => \$verbose );
 $XYCE=$ARGV[0];
 #$XYCE_VERIFY=$ARGV[1];
 #$XYCE_COMPARE=$ARGV[2];
@@ -43,8 +41,6 @@ if ($retval == 0)
   print "Exit code = 2";
   exit 2;
 }
-
-if (defined($verbose)) { $Tools->setVerbose(1); }
 
 # check various error cases
 # these strings should be in the output of this failed Xyce run  

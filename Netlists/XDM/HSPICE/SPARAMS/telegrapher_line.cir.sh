@@ -2,8 +2,6 @@
 
 use XyceRegression::Tools;
 use XdmCommon;
-use Getopt::Long;
-&GetOptions( "verbose!" => \$verbose );
 
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
@@ -31,7 +29,6 @@ $RUNTIMES2P="telegrapher_line_file_opt";
 substr($GOLDS2P,-8,8) = "_file_opt.s2p";
 
 $Tools = XyceRegression::Tools->new();
-if (defined($verbose)) { $Tools->setVerbose(1); }
 
 @CIR;
 $CIR="telegrapher_line.cir";
