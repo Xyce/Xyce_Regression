@@ -17,12 +17,16 @@ $GOLDPRN=$ARGV[4];
 
 # Check various error cases.
 # These strings should be in the output of this failed Xyce run.
-@searchstrings = ("Netlist error: TIME, FREQ, TEMP and VT are not allowed in .PARAM statements:",
-                  "PA",
-                  "Netlist error: TIME, FREQ, TEMP and VT are not allowed in .PARAM statements:",
-                  "PB",
-                  "Netlist error: TIME, FREQ, TEMP and VT are not allowed in .PARAM statements:",
-                  "PC");
+@searchstrings = (["Netlist error: TIME, FREQ, TEMP and VT are not allowed in .PARAM statements:",
+                  "PA"],
+                  ["Netlist error: TIME, FREQ, TEMP and VT are not allowed in .PARAM statements:",
+                  "PB"],
+                  ["Netlist error: TIME, FREQ, TEMP and VT are not allowed in .PARAM statements:",
+                  "PC"]);
 
-$retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);
+$retval = $Tools->runAndCheckGroupedError($CIRFILE,$XYCE,@searchstrings);
+
+
+
+
 print "Exit code = $retval\n"; exit $retval; 

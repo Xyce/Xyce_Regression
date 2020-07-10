@@ -24,9 +24,9 @@ $Tools = XyceRegression::Tools->new();
 
 # these search strings are supposed to occur one right after the other in the
 # error output.
-@searchstrings = ( "Unable to resolve parameter BLETCH found in .PARAM statement", 
-                   "Unable to resolve parameter PUKE found in .PARAM statement",
-                   "RANCID.X. contains an undefined parameter or function"
+@searchstrings = ( ["Unable to resolve parameter BLETCH found in .PARAM statement"], 
+                   ["Unable to resolve parameter PUKE found in .PARAM statement"],
+                   ["RANCID.X. contains an undefined parameter or function"]
 );
 
 $XYCE=$ARGV[0];
@@ -37,7 +37,7 @@ $CIRFILE=$ARGV[3];
 
 $XYCE="$XYCE -error-test";
 
-$retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);
+$retval = $Tools->runAndCheckGroupedError($CIRFILE,$XYCE,@searchstrings);
 print "Exit code = $retval\n";
 exit $retval
 
