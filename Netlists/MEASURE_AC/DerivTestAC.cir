@@ -43,10 +43,11 @@ V1 a 0 DC 0V AC 1
 .MEASURE AC derivvibfrom100 DERIV VI(b) when vi(b)=0.2 FROM=100
 
 * Test that the interpolated WHEN time is within the measure window.
-* So, the first measure should find the first time vi(b)=0.1.
+* So, the first and third measures should find the first time vi(b)=0.1.
 * The second one should find the second time.
 .MEASURE AC derivvibfrom8 DERIV VI(b) when vi(b)=0.1 FROM=8
 .MEASURE AC derivvibfrom9 DERIV VI(b) when vi(b)=0.1 FROM=9
+.MEASURE AC derivvibft DERIV VI(b) when vi(b)=0.1 FROM=7 TO=9
 
 * The second measure should fail.
 .MEASURE AC derivvrbto250 DERIV VR(b) when vr(b)=0.87 TO=250

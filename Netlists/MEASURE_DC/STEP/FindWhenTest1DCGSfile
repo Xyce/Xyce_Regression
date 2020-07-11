@@ -1,7 +1,7 @@
 ***** Measure Functions ***** 
 
 WHENV1B3 = 4.300000e+00
-Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= 4.000000e+00
+Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= 1.000000e+00
 
 WHENEXP1 = 1.420000e+00
 Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= 1.000000e+00
@@ -10,7 +10,7 @@ WHENEXP2 = 1.420000e+00
 Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= 1.000000e+00
 
 FINDV2BWHENV1B3 = 2.000000e+00 at VSRC1 value = 4.300000e+00
-Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= 4.000000e+00
+Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= 1.000000e+00
 
 V1BAT2 = 1.562500e+00 for AT = 2.000000e+00
 
@@ -22,16 +22,16 @@ LASTMEASURE = 3.437500e+00 at VSRC1 value = 5.000000e+00
  ***** Measure Functions ***** 
 
 WHENV1B3 = 2.800000e+00
-Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= 2.000000e+00
+Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= 1.000000e+00
 
 WHENEXP1 = 4.720000e+00
-Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= 4.000000e+00
+Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= 1.000000e+00
 
 WHENEXP2 = 4.720000e+00
-Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= 4.000000e+00
+Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= 1.000000e+00
 
 FINDV2BWHENV1B3 = 3.500000e+00 at VSRC1 value = 2.800000e+00
-Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= 2.000000e+00
+Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= 1.000000e+00
 
 V1BAT2 = 2.500000e+00 for AT = 2.000000e+00
 

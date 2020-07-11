@@ -3,7 +3,6 @@
 use XyceRegression::Tools;
 
 $Tools = XyceRegression::Tools->new();
-#$Tools->setDebug(1);
 
 # The input arguments to this script are: 
 # $ARGV[0] = location of Xyce binary
@@ -23,8 +22,6 @@ $Tools = XyceRegression::Tools->new();
 # output from comparison to go into $CIRFILE.prn.out and the STDERR output from
 # comparison to go into $CIRFILE.prn.err.  
 
-use Getopt::Long;
-
 # these search strings are supposed to occur one right after the other in the
 # error output.
 @searchstrings = (["V0, VA and FREQ are required for the SIN source function"],
@@ -33,16 +30,11 @@ use Getopt::Long;
                   ["Device instance V1D: Cannot convert parameter V0 to a numeric value from fred"]
 );
 
-&GetOptions( "verbose!" => \$verbose );
 $XYCE=$ARGV[0];
 #$XYCE_VERIFY=$ARGV[1];
 #$XYCE_COMPARE=$ARGV[2];
 $CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
-
-if (defined($verbose)) { $Tools->setVerbose(1); }
-
-$Tools->setVerbose(1);
 
 print "Testing $CIRFILE\n";
 

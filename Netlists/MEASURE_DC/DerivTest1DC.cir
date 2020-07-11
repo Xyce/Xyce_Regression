@@ -40,10 +40,11 @@ R3 3 0 3
 * FROM and TO
 * Test that the interpolated WHEN time is within the measure window.
 * The FROM1 and FROM3 measures should find the second time v(3)=0.5
-* The FROM2 measure should find the first time.
+* The FROM2 and FROM4 measures should find the first time.
 .MEASURE DC FROM1 DERIV V(3) WHEN V(3)=0.5 FROM=3
 .MEASURE DC FROM2 DERIV V(3) WHEN V(3)=0.5 FROM=2.25
 .MEASURE DC FROM3 DERIV V(3) WHEN V(3)=0.5 FROM=2.75
+.MEASURE DC FROM4 DERIV V(3) WHEN V(3)=0.5 FROM=2.25 TO=2.75
 
 * The TO2 measure should fail, since the TO1 measure succeeds at V(1)=3.4
 .MEASURE DC TO1 DERIV V(2) WHEN V(2)=12 TO=3.75

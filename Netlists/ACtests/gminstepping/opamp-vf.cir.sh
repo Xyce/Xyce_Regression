@@ -27,11 +27,6 @@ $XYCE=$ARGV[0];
 $CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
 
-use Getopt::Long;
-&GetOptions( "verbose!" => \$verbose );
-if (defined($verbose)) { $Tools->setVerbose(1); }
-$Tools->setVerbose(1);
-
 # these search strings are supposed to occur one right after the other in the
 # output from the failed Xyce run.
 @searchstrings = ("Netlist error: Solving for DC operating point failed! Cannot continue AC",

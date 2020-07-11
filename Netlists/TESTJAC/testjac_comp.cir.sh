@@ -15,12 +15,6 @@ $Tools = XyceRegression::Tools->new();
 $XYCE=$ARGV[0];
 $CIRFILE=$ARGV[3];
 
-# define verbosePrint
-use Getopt::Long;
-&GetOptions( "verbose!" => \$verbose );
-if (defined($verbose)) { $Tools->setVerbose(1); }
-sub verbosePrint { $Tools->verbosePrint(@_); }
-
 # these are the tolerances used in comparing the .output file
 # and the Gold Standard
 my $absTol = 1.0e-10;
@@ -158,13 +152,11 @@ else
 # print success or failure
 if ( $retval != 0 )
 {
-     verbosePrint "Test Failed!\n";
      print "Exit code = $retval\n"; 
      exit $retval;
 }
 else            
 {
-     verbosePrint "Test Passed!\n";
      print "Exit code = $retval\n"; 
      exit $retval;
 }

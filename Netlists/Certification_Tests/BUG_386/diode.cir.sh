@@ -4,13 +4,8 @@ $verbose = 1;
 
 use XyceRegression::Tools;
 use Time::Local;
-use Getopt::Long;
-
-&GetOptions( "verbose!" => \$verbose );
 
 $Tools = XyceRegression::Tools->new();
-$Tools->setDebug(1);
-$Tools->setVerbose($verbose);
 
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
@@ -36,9 +31,6 @@ $XYCE=$ARGV[0];
 #$XYCE_COMPARE=$ARGV[2];
 $CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
-
-$Tools->verbosePrint("\n");
-
 
 # save start of date/time window
 $startTime = time;
@@ -75,7 +67,6 @@ while ($line = <PRN>)
 
     # parse time subcomponents
     $tempTIME = $splitline[1];
-    $Tools->verbosePrint ("found TIME = $tempTIME\n");
     $tempTIME =~ s/\'//g;
     $tempTIME =~ s/\s([AP]M)//g;
     ($hours, $minutes, $seconds) = split (":", $tempTIME);
@@ -86,7 +77,6 @@ while ($line = <PRN>)
 
     # parse date subcomponents
     $tempDATE = $splitline[3];
-    $Tools->verbosePrint ("found DATE = $tempDATE\n");
     $tempDATE =~ s/\'//g;
     $tempDATE =~ s/\,//g;
     ($month, $day, $year) = split (" ", $tempDATE);
@@ -98,10 +88,8 @@ while ($line = <PRN>)
 
 
     # test that time fits within run-time window
-    $Tools->verbosePrint ("Checking:  $startTime <= $testTime <= $endTime\n");
     if ( ($startTime <= $testTime) and ($testTime <= $endTime) )
     { 
-      $Tools->verbosePrint ("PASSED:  TIME/DATE is accurate\n");
       print "Test Passed!\n";
       print "Exit code = 0\n"; 
       exit 0;
@@ -109,7 +97,6 @@ while ($line = <PRN>)
 
     else 
     {
-      $Tools->verbosePrint ("FAILED:  TIME/DATE is not accurate\n");
       print "Test Failed!\n";
       print "Exit code = 2\n"; 
       exit 2;

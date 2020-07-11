@@ -2,7 +2,6 @@
 
 use XyceRegression::Tools;
 $Tools = XyceRegression::Tools->new();
-#$Tools->setDebug(1);
 
 use MeasureCommon;
 use File::Copy;
@@ -14,14 +13,10 @@ use File::Copy;
 # $ARGV[3] = location of circuit file to test
 # $ARGV[4] = location of gold standard prn file
 
-use Getopt::Long;
-&GetOptions( "verbose!" => \$verbose );
 $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
 $CIRFILE=$ARGV[3]; 
 $GOLDPRN=$ARGV[4];
-
-if (defined($verbose)) { $Tools->setVerbose(1); }
 
 # check various error cases
 # this string should be in the output of this failed Xyce run  

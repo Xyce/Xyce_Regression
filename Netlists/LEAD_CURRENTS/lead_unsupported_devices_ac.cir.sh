@@ -3,7 +3,6 @@
 use XyceRegression::Tools;
 
 $Tools = XyceRegression::Tools->new();
-#$Tools->setDebug(1);
 
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
@@ -23,8 +22,6 @@ $Tools = XyceRegression::Tools->new();
 # output from comparison to go into $CIRFILE.prn.out and the STDERR output from
 # comparison to go into $CIRFILE.prn.err.
 
-use Getopt::Long;
-
 # these search strings are supposed to occur one right after the other in the
 # error output.  Note that parens are escaped with \\
 @searchstrings = ("Netlist error: Function or variable I\\(I3\\) is not defined",
@@ -34,14 +31,11 @@ use Getopt::Long;
                   "Netlist error: Function or variable IM\\(RLP1\\) is not defined",
                   "Netlist error: Function or variable IDB\\(R3\\) is not defined");
 
-&GetOptions( "verbose!" => \$verbose );
 $XYCE=$ARGV[0];
 #$XYCE_VERIFY=$ARGV[1];
 #$XYCE_COMPARE=$ARGV[2];
 $CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
-
-if (defined($verbose)) { $Tools->setVerbose(1); }
 
 $retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);
 print "Exit code = $retval\n";

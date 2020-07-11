@@ -2,8 +2,6 @@
 
 use XyceRegression::Tools;
 use XdmCommon;
-use Getopt::Long;
-&GetOptions( "verbose!" => \$verbose );
 
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
@@ -28,7 +26,6 @@ $CIR=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
 
 $Tools = XyceRegression::Tools->new();
-if (defined($verbose)) { $Tools->setVerbose(1); }
 
 # remove old files if they exist
 system("rm -f $CIR.csd*");

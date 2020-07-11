@@ -21,10 +21,6 @@ $Tools = XyceRegression::Tools->new();
 # output from comparison to go into $CIRFILE.raw.out and the STDERR output from
 # comparison to go into $CIRFILE.raw.err.
 
-use Getopt::Long;
-&GetOptions( "verbose!" => \$verbose );
-if (defined($verbose)) { $Tools->setVerbose(1); }
-
 $XYCE=$ARGV[0];
 #$XYCE_VERIFY=$ARGV[1];
 #$XYCE_COMPARE=$ARGV[2];

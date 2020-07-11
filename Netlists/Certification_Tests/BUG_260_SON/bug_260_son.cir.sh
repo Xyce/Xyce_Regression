@@ -3,8 +3,6 @@
 use XyceRegression::Tools;
 
 $Tools = XyceRegression::Tools->new();
-#$Tools->setDebug(1);
-#$Tools->setVerbose(1);
 
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
@@ -25,19 +23,12 @@ $Tools = XyceRegression::Tools->new();
 # output from comparison to go into $CIRFILE.prn.out and the STDERR output from
 # comparison to go into $CIRFILE.prn.err.  
 
-use Getopt::Long;
-
-&GetOptions( "verbose!" => \$verbose );
 # make Xyce output an ASCI raw file so we can check it as part of this test.
 $XYCE="$ARGV[0] -a ";
 $XYCE_VERIFY=$ARGV[1];
 #$XYCE_COMPARE=$ARGV[2];
 $CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
-
-if (defined($verbose)) { $Tools->setVerbose(1); }
-
-sub verbosePrint { $Tools->verbosePrint(@_); }
 
 $retval = -1;
 $failure = 0;
@@ -67,7 +58,6 @@ open(ERR,">>$CIRFILE.prn.err");
 if (not -f "$CIRFILE.raw") # was the raw file created?
 { 
   print ERR "The file >>$CIRFILE.raw<< was not created!\n";
-  verbosePrint "The file >>$CIRFILE.raw<< was not created!\n";
   $failure = 1; 
 } 
 
@@ -78,7 +68,6 @@ if (not -f "$CIRFILE.raw") # was the raw file created?
 #if ( $numPlotnames ne "3" )  # Did Xyce finish integrating?
 #{ 
 #  print ERR "Xyce never printed \"End of Xyce(TM) Simulation\" at the end of $CIRFILE.raw\n";
-#  verbosePrint "Xyce never printed \"End of Xyce(TM) Simulation\" at the end of $CIRFILE.raw\n";
 #  $failure = 1; 
 #}
 
@@ -100,7 +89,6 @@ while ($line = <OUT>)
 if( $numPlotnames != 3 )
 {
   print ERR "Incorrect number of Plotname sections in raw file $CIRFILE.raw\n";
-  verbosePrint "Incorrect number of Plotname sections in raw file $CIRFILE.raw\n";
   $failure = 1;
 }
 
@@ -109,12 +97,10 @@ close(ERR);
 
 if ($failure)
 {
-  verbosePrint "Test Failed!\n";
   print "Exit code = 2\n"; exit 2;
 }
 else
 {
-  verbosePrint "test Passed!\n";
   print "Exit code = 0\n"; exit 0;
 }
 

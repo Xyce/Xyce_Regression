@@ -3,7 +3,6 @@
 use XyceRegression::Tools;
 
 $Tools = XyceRegression::Tools->new();
-#$Tools->setDebug(1);
 
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
@@ -23,14 +22,11 @@ $Tools = XyceRegression::Tools->new();
 # output from comparison to go into $CIRFILE.prn.out and the STDERR output from
 # comparison to go into $CIRFILE.prn.err.  
 
-use Getopt::Long;
-
 # these search strings are supposed to occur one right after the other in the
 # error output.
 @searchstrings = ("Voltage Node [(]X0:X6:HANGING[)] connected to only 1 device Terminal",
                   "Voltage Node [(]X0:X6:HANGING[)] does not have a DC path to ground" );
 
-&GetOptions( "verbose!" => \$verbose );
 $XYCE=$ARGV[0];
 #$XYCE_VERIFY=$ARGV[1];
 #$XYCE_COMPARE=$ARGV[2];
@@ -38,8 +34,6 @@ $CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
 
 $XYCE="$XYCE -error-test";
-
-if (defined($verbose)) { $Tools->setVerbose(1); }
 
 $retval=$Tools->wrapXyce($XYCE,$CIRFILE);
 #if ($retval != 0) { exit $retval; } # tscoffe 05/02/06 No need to check xyce exit status for this test.

@@ -2,8 +2,6 @@
 
 use XyceRegression::Tools;
 use XdmCommon;
-use Getopt::Long;
-&GetOptions( "verbose!" => \$verbose );
 
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
@@ -30,7 +28,6 @@ $GOLDPRN=$ARGV[4];
 substr($GOLDPRN,-3,3) = "s2p";
 
 $Tools = XyceRegression::Tools->new();
-if (defined($verbose)) { $Tools->setVerbose(1); }
 
 @CIR;
 $CIR="p_element_bandpass_filter.cir";
