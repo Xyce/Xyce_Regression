@@ -953,6 +953,12 @@ sub ReadDataFile
   # this shifts out the "Sweep Variable" deal
   shift (@dataline) if ($dcsweep && $filetype eq "spice");
 
+  # Try to detect bad numbers (NaN/NAN/nan) in data file.  Puke if find one.
+  foreach $datum (@dataline)
+  {
+    return -40 if ($datum =~ /nan/mi);
+  }
+
   @dataline=replaceZeros($expectdataref,@dataline);
 
   #store a reference to an anonymous array containing the elements of dataline
@@ -982,6 +988,10 @@ sub ReadDataFile
     # and any "voltage_sweep" column that SPICE stuffed in
     shift (@dataline) if ($dcsweep && $filetype eq "spice");
 
+    foreach $datum (@dataline)
+    {
+      return -40 if ($datum =~ /nan/mi);
+    }
     @dataline=replaceZeros($expectdataref,@dataline);
 
     # Now, this is an *INCREDIBLE* kludge, but sometimes a simulator
@@ -1065,6 +1075,8 @@ sub DataFileErrorHandle
   { print STDERR "$filename: Error: Results file line first column does not match line number.\n"; exit -$errorcode}
   elsif ($errorcode == -65)
   { print STDERR "$filename: Error: Step parameter value in results file line  not match value expected.\n"; exit -$errorcode}
+  elsif ($errorcode == -40)
+  { print STDERR "$filename: Data file contains not-a-number fields.\n"; exit -$errorcode}
   elsif ($errorcode == -30)
   { print STDERR "$filename: Failed compare --- missing data in test file.\n"; exit -$errorcode}
   elsif ($errorcode == -20)
