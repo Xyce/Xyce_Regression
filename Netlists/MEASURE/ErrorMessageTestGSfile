@@ -3,14 +3,6 @@
 AVGVAL = 1.243254e-04
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
-AVGVALRISELAST = -6.234035e-01
-Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
-Last Rise: Start Time= 7.583585e-04	End Time= 1.000000e-03
-
-AVGVALRFCLEVEL = 8.393813e-01
-Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
-Cross 1: Start Time= 9.000000e-05	End Time= 4.100000e-04
-
 Netlist warning: AVGFAILTO failed. TO value < FROM value
 AVGFAILTO = FAILED
 Measure Start Time= 1.000000e+00	Measure End Time= 1.000000e-03
@@ -22,18 +14,6 @@ Measure Start Time= 1.000000e+00	Measure End Time= 1.000000e-03
 Netlist warning: AVGFAILEARLYSTART failed. TO value <= 0
 AVGFAILEARLYSTART = FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= -1.000000e+00
-
-Netlist warning: AVGFAILRISE failed. Measured Rise,Fall,Cross=(2,1,1)
-AVGFAILRISE = FAILED
-Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
-
-Netlist warning: AVGFAILFALL failed. Measured Rise,Fall,Cross=(2,1,1)
-AVGFAILFALL = FAILED
-Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
-
-Netlist warning: AVGFAILCROSS failed. Measured Rise,Fall,Cross=(2,1,1)
-AVGFAILCROSS = FAILED
-Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
 AVG1PT = FAILED
 Measure Start Time= 5.000000e-04	Measure End Time= 5.000000e-04
@@ -148,14 +128,6 @@ Measure Start Time= 0.000000e+00	Measure End Time= -1.000000e+00
 INTEGVAL = 1.243254e-07
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
-INTEGVALRISELAST = -1.506401e-04
-Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
-Last Rise: Start Time= 7.583585e-04	End Time= 1.000000e-03
-
-INTEGVALRFCLEVEL = 2.686020e-04
-Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
-Cross 1: Start Time= 9.000000e-05	End Time= 4.100000e-04
-
 Netlist warning: INTEGFAILTO failed. TO value < FROM value
 INTEGFAILTO = FAILED
 Measure Start Time= 1.000000e+00	Measure End Time= 1.000000e-03
@@ -167,18 +139,6 @@ Measure Start Time= 1.000000e+00	Measure End Time= 1.000000e-03
 Netlist warning: INTEGFAILEARLYSTART failed. TO value <= 0
 INTEGFAILEARLYSTART = FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= -1.000000e+00
-
-Netlist warning: INTEGFAILRISE failed. Measured Rise,Fall,Cross=(2,1,1)
-INTEGFAILRISE = FAILED
-Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
-
-Netlist warning: INTEGFAILFALL failed. Measured Rise,Fall,Cross=(2,1,1)
-INTEGFAILFALL = FAILED
-Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
-
-Netlist warning: INTEGFAILCROSS failed. Measured Rise,Fall,Cross=(2,1,1)
-INTEGFAILCROSS = FAILED
-Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
 MAXVAL = 9.997576e-01 at time = 2.490367e-04
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
@@ -334,14 +294,6 @@ Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 RMSVAL = 7.067303e-01
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
-RMSVALCROSSLAST = 7.065822e-01
-Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
-Last Cross: Start Time= 5.000000e-04	End Time= 1.000000e-03
-
-RMSVALRFCLEVEL = 8.510593e-01
-Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
-Cross 1: Start Time= 9.000000e-05	End Time= 4.100000e-04
-
 Netlist warning: RMSFAILTO failed. TO value < FROM value
 RMSFAILTO = FAILED
 Measure Start Time= 1.000000e+00	Measure End Time= 1.000000e-03
@@ -353,18 +305,6 @@ Measure Start Time= 1.000000e+00	Measure End Time= 1.000000e-03
 Netlist warning: RMSFAILEARLYSTART failed. TO value <= 0
 RMSFAILEARLYSTART = FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= -1.000000e+00
-
-Netlist warning: RMSFAILRISE failed. Measured Rise,Fall,Cross=(2,1,1)
-RMSFAILRISE = FAILED
-Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
-
-Netlist warning: RMSFAILFALL failed. Measured Rise,Fall,Cross=(2,1,1)
-RMSFAILFALL = FAILED
-Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
-
-Netlist warning: RMSFAILCROSS failed. Measured Rise,Fall,Cross=(2,1,1)
-RMSFAILCROSS = FAILED
-Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
 RMS1PT = FAILED
 Measure Start Time= 5.000000e-04	Measure End Time= 5.000000e-04

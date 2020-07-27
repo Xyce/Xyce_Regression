@@ -30,27 +30,5 @@ R4  4  0  100
 * this test should return -1
 .measure tran returnNegOne avg V(1) FROM=0.2e-3 TO=0.25e-3 TD=0.5e-3
 
-* add tests for rise/fall/cross.  V3 and VS4 have a DC offset
-* and are damped sinusoids
-.measure tran avgv3fall2 avg v(3) fall=2
-.measure tran avgv4rise1 avg v(4) rise=1
-.measure tran avgv3cross2 avg v(3) cross=2
-
-* test LAST for rise/fall/cross
-.measure tran avg3falllast avg v(3) fall=last
-.measure tran avg4riselast avg v(4) rise=last
-.measure tran avg3crosslast avg v(3) cross=last
-.measure tran avg4crosslast avg v(4) cross=last
-
-* test RFC_LEVEL keyword
-.measure tran avg1Rise1RFClevel50 avg V(1) RFC_LEVEL=0.5 RISE=1
-.measure tran avg1Fall1RFClevel50 avg V(1) RFC_LEVEL=0.5 FALL=1
-.measure tran avg1Cross1RFClevel50 avg V(1) RFC_LEVEL=0.5 CROSS=1 
-
-*test Failed measures for rise/fall/cross
-.measure tran avg3fallfail avg v(3) fall=250
-.measure tran avg4risefail avg v(4) rise=250
-.measure tran avgv3crossfail avg v(3) cross=250
-
 .END
 

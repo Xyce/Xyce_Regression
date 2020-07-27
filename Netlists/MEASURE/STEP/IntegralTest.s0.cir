@@ -33,26 +33,5 @@ R4  4  0  100
 
 .measure tran returnNeg100 integ V(1) FROM=0.2e-3 TO=0.25e-3 TD=0.5e-3 default_val=-100
 
-* add tests for rise/fall/cross.  V3 and VS4 have a DC offset
-* and are damped sinusoids
-.measure tran intv3fall2 integ v(3) fall=2
-.measure tran intv4rise1 integ v(4) rise=1
-.measure tran intv3cross2 integ v(3) cross=2
-
-* test LAST for rise/fall/cross
-.measure tran int3falllast integ v(3) fall=last
-.measure tran int4riselast integ v(4) rise=last
-.measure tran int3crosslast integ v(3) cross=last
-
-* test RFC_LEVEL keyword
-.measure tran intv3Rise1RFClevel25 integral V(3) RFC_LEVEL=-0.25 RISE=1
-.measure tran intv3Fall1RFClevel25 integral V(3) RFC_LEVEL=-0.25 FALL=1
-.measure tran intv3Cross1RFClevel25 integral V(3) RFC_LEVEL=-0.25 CROSS=1 
-
-*test Failed measures for rise/fall/cross
-.measure tran int3fallfail integ v(3) fall=25
-.measure tran int4risefail integ v(4) rise=25
-.measure tran intv3crossfail integ v(3) cross=25
-
 .END
 

@@ -33,27 +33,5 @@ R4  4  0  100
 
 .measure tran returnNeg100 rms V(1) FROM=0.2e-3 TO=0.25e-3 TD=0.5e-3 default_val=-100
 
-* add tests for rise/fall/cross.  VS3 and VS4 have a DC offset
-* and are damped sinusoids
-.measure tran rmsv3fall2 rms v(3) fall=2
-.measure tran rmsv4rise1 rms v(4) rise=1
-.measure tran rmsv3cross2 rms v(3) cross=2
-
-* test LAST for rise/fall/cross
-.measure tran rmsv3falllast rms v(3) fall=last
-.measure tran rmsv4riselast rms v(4) rise=last
-.measure tran rmsv3crosslast rms v(3) cross=last
-.measure tran rmsv4crosslast rms v(4) cross=last
-
-* test RFC_LEVEL keyword
-.measure tran rmsv1Rise1RFClevel50 rms V(1) RFC_LEVEL=0.5 RISE=1
-.measure tran rmsv1Fall1RFClevel50 rms V(1) RFC_LEVEL=0.5 FALL=1
-.measure tran rmsv1Cross1RFClevel50 rms V(1) RFC_LEVEL=0.5 CROSS=1 
-
-*test Failed measures for rise/fall/cross
-.measure tran rmsv3fallfail rms v(3) fall=100
-.measure tran rmsv4risefail rms v(4) rise=100
-.measure tran rmsv3crossfail rms v(3) cross=100
-
 .END
 
