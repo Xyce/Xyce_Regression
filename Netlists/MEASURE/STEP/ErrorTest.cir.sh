@@ -115,9 +115,9 @@ my $retval=$? >> 8;
 
 if ( $retval != 0 )
 {
-  print "test Failed comparison of stdout vs. GSfile!\n";
-  print "Exit code = $retval\n";
-  exit $retval;
+  print STDERR "test failed comparison of stdout vs. GSfile with exit code $retval\n";
+  print "Exit code = 2\n";
+  exit 2;
 }
 else
 {
@@ -164,9 +164,9 @@ foreach $stepNum (1 .. $numSteps)
 
   if ( $retval != 0 )
   {
-    print "test Failed comparison of Gold and measured .mt$mtSuffix files!\n";
-    print "Exit code = $retval\n";
-    exit $retval;
+    print "test failed comparison of Gold and measured .mt$mtSuffix files with exit code $retval\n";
+    print "Exit code = 2\n";
+    exit 2;
   }
   else
   {

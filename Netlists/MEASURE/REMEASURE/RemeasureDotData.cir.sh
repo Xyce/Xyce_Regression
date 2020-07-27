@@ -74,9 +74,9 @@ foreach $stepNum (1 .. $numSteps)
 
   if ( $retval != 0 )
   {
-    print "test Failed comparison of Gold and measured .mt$mtSuffix file!\n";
-    print "Exit code = $retval\n";
-    exit $retval;
+    print STDERR "test failed comparison of Gold and measured .mt$mtSuffix file with exit code $retval\n";
+    print "Exit code = 2\n";
+    exit 2;
   }
   else
   {

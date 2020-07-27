@@ -179,9 +179,9 @@ my $retval=$? >> 8;
 
 if ( $retval != 0 )
 {
-  print "test Failed comparison vs. GSfile!\n";
-  print "Exit code = $retval\n";
-  exit $retval;
+  print STDERR "test failed comparison of stdout vs. GSfile with exit code $retval\n";
+  print "Exit code = 2\n";
+  exit 2;
 }
 
 # check that the numbers in the .out file are formatted correctly in 

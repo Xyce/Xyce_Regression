@@ -64,7 +64,9 @@ $retval = system($CMD);
 $retval= $retval >> 8;
 if ($retval !=0 )
 {
-  print "Failed comparison of EQN Measure values in output .prn file\n";
+  print STDERR "Failed comparison of EQN Measure values in output .prn file with $retval\n";
+  print "Exit code = 2\n";
+  exit 2;
 }
 
 print "Exit code = $retval\n";
