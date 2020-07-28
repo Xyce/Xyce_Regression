@@ -29,6 +29,7 @@ R2  2  0  100
 .measure tran derivAtFailFrom deriv V(1) AT=5e-4 FROM=7e-4
 .measure tran derivAtFailTo deriv V(1) AT=5e-4 TO=1e-4
 .measure tran derivriselast deriv v(1) when v(1)=-0.75 RISE=LAST
+.measure tran derivrisenegone deriv v(1) when v(1)=-0.75 RISE=-1
 .measure tran derivriselastfail deriv v(1) when v(1)=2 RISE=LAST
 
 * DUTY
@@ -45,6 +46,7 @@ R2  2  0  100
 * FIND WHEN
 .measure tran whenVal WHEN V(1)=0.5
 .measure tran whenLastMinus75 when v(1)=-0.75 RISE=LAST
+.measure tran whenNegOneMinus75 when v(1)=-0.75 RISE=-1
 .measure tran whenFirst75 when v(1)=0.75 RISE=1
 .measure tran whenRFClevel when v(1)=0.25 CROSS=2 RFC_LEVEL=0.5
 .measure tran whenValFail WHEN V(1)=5
@@ -76,6 +78,7 @@ R2  2  0  100
 .measure tran timeOfMaxVal max V(1) OUTPUT=TIME
 .measure tran maxValRise1 max V(1) RISE 1
 .measure tran maxValRiseLast max V(1) RISE LAST
+.measure tran maxValRiseNegOne max V(1) RISE -1
 .measure tran maxValRFClevel max v(1) CROSS=1 RFC_LEVEL=0.5
 .measure tran maxFailTo max V(1) FROM=1 TO=1e-3
 .measure tran maxFailTd max V(1) FROM=1e-4 TO=1e-3 TD=1
@@ -88,6 +91,7 @@ R2  2  0  100
 .measure tran minVal min V(1)
 .measure tran timeOfMinVal min V(1) OUTPUT=TIME
 .measure tran minValFallLast min V(1) FALL LAST
+.measure tran minValFallNegOne min V(1) FALL -1
 .measure tran minValRFClevel min v(1) CROSS=1 RFC_LEVEL=0.5
 .measure tran minFailTo min V(1) FROM=1 TO=1e-3
 .measure tran minFailTd min V(1) FROM=1e-4 TO=1e-3 TD=1
@@ -113,6 +117,7 @@ R2  2  0  100
 * PP
 .measure tran ppVal pp V(1)
 .measure tran ppValCrossLast pp V(1) Cross=LAST
+.measure tran ppValCrossNegOne pp V(1) Cross=-1
 .measure tran ppValRFClevel pp v(1) CROSS=1 RFC_LEVEL=0.5
 .measure tran ppFailTo pp V(1) FROM=1 TO=1e-3
 .measure tran ppFailTd pp V(1) FROM=1e-4 TO=1e-3 TD=1
@@ -131,6 +136,7 @@ R2  2  0  100
 *TRIG/TARG (RiseFallDelay)
 .measure tran trigTargVal TRIG v(1) 0.1 TARG v(1)=0.99
 .measure tran trigRiseLastFallLast trig v(1)=0.25 RISE=LAST targ v(1)=0.25 FALL=LAST
+.measure tran trigRiseNegOneFallNegOne trig v(1)=0.25 RISE=-1 targ v(1)=0.25 FALL=-1
 .measure tran trigLastFail trig v(1)=0.25 FALL=LAST targ v(1)=0.25 CROSS=1
 .measure tran trigTargFail trig v(1) frac_max=0.1 targ v(1) frac_max=2
 .measure tran trigTargAtFail TRIG AT=2e-3 TARG V(2)=0.5

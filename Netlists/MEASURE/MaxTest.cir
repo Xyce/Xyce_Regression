@@ -42,6 +42,11 @@ R3  3  0  100
 .measure tran maxv2crosslast max v(2) cross=last
 .measure tran maxv3crosslast max v(3) cross=last
 
+* These should also give the maximum value at the last rise/fall/cross
+.measure tran maxv2fallNegOne max v(2) fall=-1
+.measure tran maxv3riseNegOne max v(3) rise=-1
+.measure tran maxv2crossNegOne max v(2) cross=-1
+
 * test RFC_LEVEL keyword
 .measure tran maxv1Rise1RFClevel50 max V(1) RFC_LEVEL=0.5 RISE=1
 .measure tran maxv1Fall1RFClevel50 max V(1) RFC_LEVEL=0.5 FALL=1
