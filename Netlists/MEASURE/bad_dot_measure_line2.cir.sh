@@ -26,6 +26,9 @@ $GOLDPRN=$ARGV[4];
                    "Netlist error: THREEB has incomplete MEASURE line",
                    "AT keyword not allowed in TARG block for measure FOURA",
                    "Netlist error: FIVEA has incomplete MEASURE line",
+                   "Netlist error: Invalid value for RISE, FALL or CROSS for measure RISEBOGO",
+                   "Netlist error: Invalid value for RISE, FALL or CROSS for measure FALLBOGO",
+                   "Netlist error: Invalid value for RISE, FALL or CROSS for measure CROSSBOGO",
                    "Netlist error: Attempt to evaluate expression STARTTIME, which contains",
                    "unknowns");
 
