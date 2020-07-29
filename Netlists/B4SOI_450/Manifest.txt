@@ -1,5 +1,6 @@
 modelcard.bsimsoiVA.nmos_xyce
 modelcard.bsimsoiVA.pmos_xyce
+invert_b4soi_4.5.cir
 inverter_tr.cir
 ring_osc.cir
 tags
