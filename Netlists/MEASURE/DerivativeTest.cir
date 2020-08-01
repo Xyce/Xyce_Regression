@@ -52,6 +52,11 @@ R4  4  0  100
 .measure tran deriv3riselast deriv v(3) when v(3)=0.25 rise=last
 .measure tran deriv2crosslast deriv v(2) when v(2)=0.25 cross=last
 
+* These should also give the derivative at the last rise/fall/cross
+.measure tran deriv2fallNegOne deriv v(2) when v(2)=0.25 fall=-1
+.measure tran deriv3riseNegOne deriv v(3) when v(3)=0.25 rise=-1
+.measure tran deriv2crossNegOne deriv v(2) when v(2)=0.25 cross=-1
+
 * test RFC_LEVEL keyword
 .measure tran deriv4Rise2RFClevel50 deriv v(4) when v(4)=0.75 RFC_LEVEL=0.5 RISE=2
 .measure tran deriv4Fall2RFClevel50 deriv v(4) when v(4)=0.25 RFC_LEVEL=0.5 FALL=2

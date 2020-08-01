@@ -43,6 +43,11 @@ R4  4  0  100
 .measure tran ppv3crosslast pp v(3) cross=last
 .measure tran ppv4crosslast pp v(4) cross=last
 
+* These should also give the peak-to-peak value at the last rise/fall/cross
+.measure tran ppv3fallNegOne pp v(3) fall=-1
+.measure tran ppv4riseNegOne pp v(4) rise=-1
+.measure tran ppv3crossNegOne pp v(3) cross=-1
+
 * test RFC_LEVEL keyword
 .measure tran ppv1Rise1RFClevel50 pp V(1) RFC_LEVEL=0.5 RISE=1
 .measure tran ppv1Fall1RFClevel50 pp V(1) RFC_LEVEL=0.5 FALL=1

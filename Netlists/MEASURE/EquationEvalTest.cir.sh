@@ -155,9 +155,9 @@ else
 # Also test remeasure if the basic measure function works
 if ($retval != 0)
 { 
-  print "Failed comparison of .prn file with gold .prn file\n";
-  print "Exit code = $retval\n";
-  exit $retval;
+  print "Failed comparison of .prn file with gold .prn file with exit code $retval\n";
+  print "Exit code = 2\n";
+  exit 2;
 }
 else
 { 

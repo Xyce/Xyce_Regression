@@ -33,6 +33,11 @@ R2   2  0  100
 * Invalid PARAM usage
 .measure tran fivea param=
 
+* Invalid RISE/FALL/CROSS value
+.measure TRAN riseBogo when v(1)=0.2 RISE=BOGO
+.measure TRAN fallBogo when v(1)=0.2 FALL=BOGO
+.measure TRAN crossBogo when v(1)=0.2 CROSS=BOGO
+
 * these two lines will cause a fatal error within measureBase, because
 * the FROM qualifer for five cannot depend on another measure
 * statement

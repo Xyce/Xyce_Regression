@@ -1,6 +1,7 @@
 modelcard.nmos_xyce
 modelcard.pmos_xyce
 inverter_tr.cir
+invert_b4soi.cir
 ring_osc.cir
 test1.cir
 test1.cir.res.gs

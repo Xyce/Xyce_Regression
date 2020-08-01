@@ -44,9 +44,12 @@ R4  4  0  100K
 .measure tran Cross1Cross2V3 trig v(3)=0.25 CROSS=1 targ v(3)=0.25 CROSS=2
 .measure tran Rise2Fall2V3 trig v(3)=0.25 RISE=2 targ v(3)=0.25 FALL=2
 
-* test LAST
+* test LAST and its integer equivalent of -1
 .measure tran Rise1CrossLast trig v(1)=0.25 RISE=1 targ v(1)=0.25 CROSS=LAST
 .measure tran RiseLastFallLast trig v(1)=0.25 RISE=LAST targ v(1)=0.25 FALL=LAST
+.measure tran Rise1CrossNeg1 trig v(1)=0.25 RISE=1 targ v(1)=0.25 CROSS=-1
+.measure tran RiseLastFallNeg1 trig v(1)=0.25 RISE=-1 targ v(1)=0.25 FALL=-1
+
 
 * test TO/FROM and TD
 .measure tran riseSine3td TRIG v(3)=0.1 TARG v(3)=0.4 TD=0.1

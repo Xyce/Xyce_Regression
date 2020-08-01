@@ -14,14 +14,9 @@ R2  2  0  100
 
 * AVG
 .measure tran avgVal avg V(1)
-.measure tran avgValRiseLast avg V(1) RISE LAST
-.measure tran avgValRFClevel avg v(1) CROSS=1 RFC_LEVEL=0.5
 .measure tran avgFailTo avg V(1) FROM=1 TO=1e-3
 .measure tran avgFailTd avg V(1) FROM=1e-4 TO=1e-3 TD=1
 .measure tran avgFailEarlyStart avg V(1) FROM=-2 TO=-1
-.measure tran avgFailRise avg V(1) RISE=4
-.measure tran avgFailFall avg V(1) FALL=4
-.measure tran avgFailCross avg V(1) CROSS=4
 .measure tran avg1Pt avg V(1) from=5e-4 to=5e-4
 
 *DERIV
@@ -34,6 +29,7 @@ R2  2  0  100
 .measure tran derivAtFailFrom deriv V(1) AT=5e-4 FROM=7e-4
 .measure tran derivAtFailTo deriv V(1) AT=5e-4 TO=1e-4
 .measure tran derivriselast deriv v(1) when v(1)=-0.75 RISE=LAST
+.measure tran derivrisenegone deriv v(1) when v(1)=-0.75 RISE=-1
 .measure tran derivriselastfail deriv v(1) when v(1)=2 RISE=LAST
 
 * DUTY
@@ -50,6 +46,7 @@ R2  2  0  100
 * FIND WHEN
 .measure tran whenVal WHEN V(1)=0.5
 .measure tran whenLastMinus75 when v(1)=-0.75 RISE=LAST
+.measure tran whenNegOneMinus75 when v(1)=-0.75 RISE=-1
 .measure tran whenFirst75 when v(1)=0.75 RISE=1
 .measure tran whenRFClevel when v(1)=0.25 CROSS=2 RFC_LEVEL=0.5
 .measure tran whenValFail WHEN V(1)=5
@@ -72,20 +69,16 @@ R2  2  0  100
 
 * INTEG
 .measure tran integVal integ V(1)
-.measure tran integValRiseLast integ V(1) RISE LAST
-.measure tran integValRFClevel integ v(1) CROSS=1 RFC_LEVEL=0.5
 .measure tran integFailTo integ V(1) FROM=1 TO=1e-3
 .measure tran integFailTd integ V(1) FROM=1e-4 TO=1e-3 TD=1
 .measure tran integFailEarlyStart integ V(1) FROM=-2 TO=-1
-.measure tran integFailRise integ V(1) RISE=4
-.measure tran integFailFall integ V(1) FALL=4
-.measure tran integFailCross integ V(1) CROSS=4
 
 * MAX
 .measure tran maxVal max V(1)
 .measure tran timeOfMaxVal max V(1) OUTPUT=TIME
 .measure tran maxValRise1 max V(1) RISE 1
 .measure tran maxValRiseLast max V(1) RISE LAST
+.measure tran maxValRiseNegOne max V(1) RISE -1
 .measure tran maxValRFClevel max v(1) CROSS=1 RFC_LEVEL=0.5
 .measure tran maxFailTo max V(1) FROM=1 TO=1e-3
 .measure tran maxFailTd max V(1) FROM=1e-4 TO=1e-3 TD=1
@@ -98,6 +91,7 @@ R2  2  0  100
 .measure tran minVal min V(1)
 .measure tran timeOfMinVal min V(1) OUTPUT=TIME
 .measure tran minValFallLast min V(1) FALL LAST
+.measure tran minValFallNegOne min V(1) FALL -1
 .measure tran minValRFClevel min v(1) CROSS=1 RFC_LEVEL=0.5
 .measure tran minFailTo min V(1) FROM=1 TO=1e-3
 .measure tran minFailTd min V(1) FROM=1e-4 TO=1e-3 TD=1
@@ -123,6 +117,7 @@ R2  2  0  100
 * PP
 .measure tran ppVal pp V(1)
 .measure tran ppValCrossLast pp V(1) Cross=LAST
+.measure tran ppValCrossNegOne pp V(1) Cross=-1
 .measure tran ppValRFClevel pp v(1) CROSS=1 RFC_LEVEL=0.5
 .measure tran ppFailTo pp V(1) FROM=1 TO=1e-3
 .measure tran ppFailTd pp V(1) FROM=1e-4 TO=1e-3 TD=1
@@ -133,19 +128,15 @@ R2  2  0  100
 
 * RMS
 .measure tran rmsVal rms V(1)
-.measure tran rmsValCrossLast rms V(1) CROSS=LAST
-.measure tran rmsValRFClevel rms v(1) CROSS=1 RFC_LEVEL=0.5
 .measure tran rmsFailTo rms V(1) FROM=1 TO=1e-3
 .measure tran rmsFailTd rms V(1) FROM=1e-4 TO=1e-3 TD=1
 .measure tran rmsFailEarlyStart rms V(1) FROM=-2 TO=-1
-.measure tran rmsFailRise rms V(1) RISE=4
-.measure tran rmsFailFall rms V(1) FALL=4
-.measure tran rmsFailCross rms V(1) CROSS=4
 .measure tran rms1Pt rms V(1) from=5e-4 to=5e-4
 
 *TRIG/TARG (RiseFallDelay)
 .measure tran trigTargVal TRIG v(1) 0.1 TARG v(1)=0.99
 .measure tran trigRiseLastFallLast trig v(1)=0.25 RISE=LAST targ v(1)=0.25 FALL=LAST
+.measure tran trigRiseNegOneFallNegOne trig v(1)=0.25 RISE=-1 targ v(1)=0.25 FALL=-1
 .measure tran trigLastFail trig v(1)=0.25 FALL=LAST targ v(1)=0.25 CROSS=1
 .measure tran trigTargFail trig v(1) frac_max=0.1 targ v(1) frac_max=2
 .measure tran trigTargAtFail TRIG AT=2e-3 TARG V(2)=0.5

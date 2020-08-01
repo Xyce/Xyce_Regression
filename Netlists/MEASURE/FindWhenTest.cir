@@ -55,6 +55,7 @@ R5  5  0  100
 .measure tran find30hit1_75 find v(3,0) when v(1)=0.75 MINVAL=0.02
 .measure tran find3rise2_75 FIND v(3) When v(1)=0.75 RISE=2
 .measure tran find3riseLast_minus75 find v(3) when v(1)=-0.75 RISE=LAST
+.measure tran find3riseNegOneLast_minus75 find v(3) when v(1)=-0.75 RISE=-1
 .measure tran riseFindWhenLast_75 find v(3) when v(1)=0.75 RISE=LAST
 .measure tran find3hit1_75_ft find v(3) when v(1)=0.75 FROM=0.002 TO=0.006
 .measure tran find3hit1_75_td find v(3) when v(1)=0.75 TD=0.004
@@ -63,11 +64,13 @@ R5  5  0  100
 .measure tran find3cross4_90 find v(3) WHEN V(1)=0.9 CROSS=4
 .measure tran find3cross4_90_wtd find v(3) WHEN V(1)=0.9 Cross=4 TD=0.001
 .measure tran find3crossLast_90 find v(3) WHEN V(1)=0.9 CROSS=LAST
+.measure tran find3crossNegOne_90 find v(3) WHEN V(1)=0.9 CROSS=-1
 
 .measure tran find3fall1_80 find v(3) WHEN V(1)=0.8 fall=1
 .measure tran find3fall4_80 find v(3) WHEN V(1)=0.8 FALL=4
 .measure tran find3fall4_80_wtd find v(3) WHEN V(1)=0.8 Fall=4 TD=0.001
 .measure tran find3fallLast_80 find v(3) WHEN V(1)=0.8 fall=LAST
+.measure tran find3fallNegOne_80 find v(3) WHEN V(1)=0.8 fall=-1
 
 * add tests for rise/fall/cross.  VS4 and VS5 have a DC offset
 * and are damped sinusoids

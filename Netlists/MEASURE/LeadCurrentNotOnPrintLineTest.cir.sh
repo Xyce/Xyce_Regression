@@ -85,9 +85,9 @@ my $retval=$? >> 8;
 
 if ( $retval != 0 )
 {
-  print "test Failed comparison vs. GSfile!\n";
-  print "Exit code = $retval\n";
-  exit $retval;
+  print STDERR "test failed comparison of stdout vs. GSfile with exit code $retval\n";
+  print "Exit code = 2\n";
+  exit 2;
 }
 
 # check the info in the .mt0 file
@@ -96,9 +96,9 @@ my $retval=$? >> 8;
 
 if ( $retval != 0 )
 {
-  print "test Failed comparison vs. GSfile!\n";
-  print "Exit code = $retval\n";
-  exit $retval;
+  print STDERR "test failed comparison of Gold and measured .mt0 files with exit code $retval\n";
+  print "Exit code = 2\n";
+  exit 2;
 }
 
 # do final checks on return value 

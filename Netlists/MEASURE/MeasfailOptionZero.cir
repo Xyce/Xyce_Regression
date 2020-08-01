@@ -16,7 +16,7 @@ R2  2  0  100
 
 * test at least one failed measure for each measure type
 * AVG
-.measure tran avgFailRise avg V(1) RISE=4 DEFAULT_VAL=2
+.measure tran avgFailFrom avg V(1) FROM=2e-3 DEFAULT_VAL=2
 
 *DERIV
 .measure tran derivValWhenFail deriv V(1) WHEN V(1)=5 DEFAULT_VAL=2
@@ -43,7 +43,7 @@ R2  2  0  100
 .measure tran freqFailTo FREQ v(1) ON=0.75 OFF=0.25 FROM=1 TO=1e-3 DEFAULT_VAL=2
 
 * INTEG
-.measure tran integFailRise integ V(1) RISE=4 DEFAULT_VAL=2
+.measure tran integFailFrom integ V(1) From=2e-3 DEFAULT_VAL=2
 
 * MAX
 .measure tran maxFailRise max V(1) RISE=4 DEFAULT_VAL=2
@@ -61,7 +61,7 @@ R2  2  0  100
 .measure tran ppFailFall pp V(1) FALL=4 DEFAULT_VAL=2
 
 * RMS
-.measure tran rmsFailCross rms V(1) CROSS=4 DEFAULT_VAL=2
+.measure tran rmsFailFrom rms V(1) FROM=2e-3 DEFAULT_VAL=2
 
 *TRIG/TARG (RiseFallDelay)
 .measure tran trigTargFail trig v(1) frac_max=0.1 targ v(1) frac_max=2 DEFAULT_VAL=2

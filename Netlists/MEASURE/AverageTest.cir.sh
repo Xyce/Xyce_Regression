@@ -73,20 +73,6 @@ my @toVals = MeasureCommon::parseKeyWord($CIRFILE,"TO",$endTime);
 my @tdVals = MeasureCommon::parseKeyWord($CIRFILE,"TD",$endTime);
 my @defaultVals = MeasureCommon::parseKeyWord($CIRFILE,"DEFAULT_VAL",$endTime); 
 
-# for these keywords, whether they were given matters later in the .sh file
-my ($riseValsPtr,$riseGivenPtr) =  MeasureCommon::parseKeyWord($CIRFILE,"RISE",$endTime);
-my @riseVals = @$riseValsPtr;
-my @riseGiven = @$riseGivenPtr;
-my ($fallValsPtr,$fallGivenPtr) =  MeasureCommon::parseKeyWord($CIRFILE,"FALL",$endTime);
-my @fallVals = @$fallValsPtr;
-my @fallGiven = @$fallGivenPtr;
-my ($crossValsPtr,$crossGivenPtr) =  MeasureCommon::parseKeyWord($CIRFILE,"CROSS",$endTime);  
-my @crossVals = @$crossValsPtr;
-my @crossGiven = @$crossGivenPtr;
-my ($rfcLevelValsPtr,$rfcLevelGivenPtr) =  MeasureCommon::parseKeyWord($CIRFILE,"RFC_LEVEL",$endTime);  
-my @rfcLevelVals = @$rfcLevelValsPtr;
-my @rfcLevelGiven = @$rfcLevelGivenPtr;
-
 #
 # now calculate the values for this measures.  This is the part of 
 # the test script may also different for each test. 
@@ -96,14 +82,6 @@ my @rfcLevelGiven = @$rfcLevelGivenPtr;
 my @calcVals;
 my @measureInterval = (0,0);
 my $colIdx;
-my $validRFCwindow;
-my $firstTimeStepInWindow;
-my $isRising;
-my $isFalling;
-my $riseCount;
-my $fallCount;
-my $crossCount;
-my $previousVal;
 
 foreach $j (0 .. $numMeasures-1){
   if ($tdVals[$j] > $toVals[$j])
@@ -116,15 +94,6 @@ foreach $j (0 .. $numMeasures-1){
     # find the correct column in the output data, collected from the .prn file
     $colIdx = MeasureCommon::findColumnInPrnFile($measureQuants[$j],\@headerVarNames);
 
-    # reset validRFCwindow and firstTimeStepInWindow flags
-    $validRFCwindow=0;
-    $firstTimeStepInWindow=0;
-    $isRising=0;
-    $isFalling=0;
-    $riseCount=0;
-    $fallCount=0;
-    $crossCount=0;
- 
     # process that column.  This code section will be specific to each measure
     $initialized=0; # mimicking how the C++ code handles the first value
     for $i (0 .. $#dataFromXyce )
@@ -132,44 +101,15 @@ foreach $j (0 .. $numMeasures-1){
       if (($dataFromXyce[$i][0]>=$tdVals[$j]) && ($dataFromXyce[$i][0]>=$fromVals[$j]) && 
          ($dataFromXyce[$i][0]<=$toVals[$j]))
       {
-        # set prevValue variable at first time step in window
-        if ($firstTimeStepInWindow < 1)
+        if ($initialized > 0)
         {
-	  $firstTimeStepInWindow = 1;
-          $previousVal = $dataFromXyce[$i][$colIdx];
+          $calcVals[$j] += 0.5*($dataFromXyce[$i][0] - $dataFromXyce[$i-1][0])*
+                           ($dataFromXyce[$i][$colIdx] + $dataFromXyce[$i-1][$colIdx]);
+          $measureInterval[$j] += $dataFromXyce[$i][0] - $dataFromXyce[$i-1][0];
         }
-
-        # determine if we're within the RFC window    
-        ($riseCount,$fallCount,$crossCount,$isRising,$isFalling,
-           $validRFCwindow,$previousVal,$newRFCwindowForLast) = 
-              MeasureCommon::withinRFCwindow($dataFromXyce[$i][$colIdx],$previousVal,
-		  $isRising,$isFalling,$riseCount,$fallCount,$crossCount,
-                  $riseGiven[$j],$fallGiven[$j],$crossGiven[$j],
-                  $riseVals[$j],$fallVals[$j],$crossVals[$j],
-                  $rfcLevelVals[$j],$rfcLevelGiven[$j]);
-        
-        #print ("For index $i, validRFCwindow = $validRFCwindow\n");
-        if ($validRFCwindow > 0)
-        {
-          if ($newRFCwindowForLast > 0) 
-          {
-	    $initialized=0;
-            $calcVals[$j]=0.0;
-            $measureInterval[$j] = 0.0;
-            #print "New RFC window at time $dataFromXyce[$i][0]\n";
-            #print "RFC Counts=($riseCount,$fallCount,$crossCount)\n";
-          }
-
-          if ($initialized > 0)
-          {
-            $calcVals[$j] += 0.5*($dataFromXyce[$i][0] - $dataFromXyce[$i-1][0])*
-                             ($dataFromXyce[$i][$colIdx] + $dataFromXyce[$i-1][$colIdx]);
-            $measureInterval[$j] += $dataFromXyce[$i][0] - $dataFromXyce[$i-1][0];
-          }
-          # mimicking how the C++ code handles initial value.  The result is that both ends 
-          # of the time interval have to be within the time-measurement window
-          $initialized=1; 
-        }
+        # mimicking how the C++ code handles initial value.  The result is that both ends 
+        # of the time interval have to be within the time-measurement window
+        $initialized=1; 
       }
     }
     if ($initialized > 0)

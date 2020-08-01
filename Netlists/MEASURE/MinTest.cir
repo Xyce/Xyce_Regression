@@ -41,6 +41,11 @@ R3  3  0  100
 .measure tran minv2crosslast min v(2) cross=last
 .measure tran minv3crosslast min v(3) cross=last
 
+* These should also give the minimum value at the last rise/fall/cross
+.measure tran minv2fallNegOne min v(2) fall=-1
+.measure tran minv3riseNegOne min v(3) rise=-1
+.measure tran minv2crossNegOne min v(2) cross=-1
+
 * test RFC_LEVEL keyword
 .measure tran minv1Rise1RFClevel50 min V(1) RFC_LEVEL=0.5 RISE=1
 .measure tran minv1Fall1RFClevel50 min V(1) RFC_LEVEL=0.5 FALL=1

@@ -1,8 +1,8 @@
  ***** Measure Functions ***** 
 
-Netlist warning: AVGFAILRISE failed. Measured Rise,Fall,Cross=(2,1,1)
-AVGFAILRISE = FAILED
-Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
+Netlist warning: AVGFAILFROM failed. FROM or TD value > sim end time
+AVGFAILFROM = FAILED
+Measure Start Time= 2.000000e-03	Measure End Time= 1.000000e-03
 
 DERIVVALWHENFAIL = FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
@@ -38,9 +38,9 @@ Netlist warning: FREQFAILTO failed. TO value < FROM value
 FREQFAILTO = FAILED
 Measure Start Time= 1.000000e+00	Measure End Time= 1.000000e-03
 
-Netlist warning: INTEGFAILRISE failed. Measured Rise,Fall,Cross=(2,1,1)
-INTEGFAILRISE = FAILED
-Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
+Netlist warning: INTEGFAILFROM failed. FROM or TD value > sim end time
+INTEGFAILFROM = FAILED
+Measure Start Time= 2.000000e-03	Measure End Time= 1.000000e-03
 
 Netlist warning: MAXFAILRISE failed. Measured Rise,Fall,Cross=(2,1,1)
 MAXFAILRISE = FAILED
@@ -62,9 +62,9 @@ Netlist warning: PPFAILFALL failed. Measured Rise,Fall,Cross=(2,1,1)
 PPFAILFALL = FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
-Netlist warning: RMSFAILCROSS failed. Measured Rise,Fall,Cross=(2,1,1)
-RMSFAILCROSS = FAILED
-Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
+Netlist warning: RMSFAILFROM failed. FROM or TD value > sim end time
+RMSFAILFROM = FAILED
+Measure Start Time= 2.000000e-03	Measure End Time= 1.000000e-03
 
 TRIGTARGFAIL = FAILED with trig time= 1.594597e-05 and targ time= 0.000000e+00
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
