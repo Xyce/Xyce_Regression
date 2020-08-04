@@ -36,6 +36,14 @@ $GOLDPRN=$ARGV[4];
 #
 MeasureCommon::checkTranFilesExist($XYCE,$CIRFILE);
 
+# check the warning message
+@searchstrings = ("Netlist warning: RFC_LEVEL will be ignored for measure WHEN_IGNORE_RFC_LEVEL");
+if( $Tools->checkError("$CIRFILE.out",@searchstrings) != 0)
+{
+  print "Failed to find correct warning messages\n";
+  print "Exit code = 2\n"; exit 2;
+}
+
 # Parse the .cir to get the number of measures. Then deference to get the
 # underlying array. This makes the subsequent code more readable since the
 # variable are arrays or scalars, and aren't mixed in with array references. 
@@ -93,9 +101,6 @@ my @fallGiven = @$fallGivenPtr;
 my ($crossValsPtr,$crossGivenPtr) =  MeasureCommon::parseKeyWord($CIRFILE,"CROSS",$endTime);  
 my @crossVals = @$crossValsPtr;
 my @crossGiven = @$crossGivenPtr;
-my ($rfcLevelValsPtr,$rfcLevelGivenPtr) =  MeasureCommon::parseKeyWord($CIRFILE,"RFC_LEVEL",$endTime);  
-my @rfcLevelVals = @$rfcLevelValsPtr;
-my @rfcLevelGiven = @$rfcLevelGivenPtr;
 
 #
 # now calculate the values for this measures.  This is the part of 
@@ -214,15 +219,7 @@ foreach $j (0 .. $numMeasures-1){
             $previousVal = $dataFromXyce[$i][$colIdx];
           }
 
-          # determine if we're within the RFC window  
-          if ($rfcLevelGiven[$j] > 0)
-          {
-	    $rfcVal = $rfcLevelVals[$j];
-          }
-          else
-          {
-	    $rfcVal = $whenVals[$j];
-          }    
+          $rfcVal = $whenVals[$j];
           # WHEN is always given for this measure, so the last value in the
           # argument list is set to 1.
           ($riseCount,$fallCount,$crossCount,$isRising,$isFalling,

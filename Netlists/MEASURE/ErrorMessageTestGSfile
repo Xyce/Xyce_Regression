@@ -24,9 +24,6 @@ Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 DERIVVALWHENRISE1 = 5.404441e+03 at time = 8.339518e-05
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
-DERIVVALCROSS2RFCLEVEL50 = -6.102453e+03 at time = 4.597633e-04
-Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
-
 DERIVVALAT = -6.275832e+03 for AT = 5.000000e-04
 
 DERIVVALWHENFAIL = FAILED
@@ -86,9 +83,6 @@ WHENNEGONEMINUS75 = 8.647806e-04
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
 WHENFIRST75 = 1.350482e-04
-Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
-
-WHENRFCLEVEL = 4.597633e-04
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
 WHENVALFAIL = FAILED

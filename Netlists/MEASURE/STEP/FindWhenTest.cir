@@ -70,11 +70,6 @@ R5  5  0  100
 .measure tran findv1_v5riselast find v(1) when v(5)=0.25 rise=last
 .measure tran findv1_v4crosslast find v(1) when v(4)=0.25 cross=last
 
-* test RFC_LEVEL keyword
-.measure tran v4Rise2RFClevel20 when v(4)=0.1 RFC_LEVEL=0.2 RISE=2
-.measure tran v4Fall2RFClevel20 when v(4)=0.1 RFC_LEVEL=0.2 FALL=2
-.measure tran v4Cross2RFClevel20 when v(4)=0.1 RFC_LEVEL=0.2 CROSS=2
-
 * test FIND-AT
 .measure tran findv1AT find v(1) at=1.2e-3
 .measure tran findv1ExpAT find {v(1)+1} at=1.2e-3

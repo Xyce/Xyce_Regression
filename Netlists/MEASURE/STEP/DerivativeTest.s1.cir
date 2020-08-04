@@ -43,11 +43,6 @@ R4  4  0  100
 .measure tran deriv4riselast deriv v(4) when v(4)=0.25 rise=last
 .measure tran deriv3crosslast deriv v(3) when v(3)=0.25 cross=last
 
-* test RFC_LEVEL keyword
-.measure tran deriv1Rise2RFClevel50 deriv v(1) when v(1)=0.75 RFC_LEVEL=0.5 RISE=2
-.measure tran deriv1Fall2RFClevel50 deriv v(1) when v(1)=0.25 RFC_LEVEL=0.5 FALL=2
-.measure tran deriv1Cross2RFClevel50 deriv v(1) when v(1)=0.25 RFC_LEVEL=0.5 CROSS=2
-
 *test Failed measures for rise/fall/cross
 .measure tran deriv3fallfail deriv v(3) when v(3)=0.25 fall=250
 .measure tran deriv4risefail deriv v(4) when v(4)=0.25 rise=250
