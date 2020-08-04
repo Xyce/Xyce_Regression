@@ -114,7 +114,7 @@ R3 3 0 1
 * Signifies end of test. .sh file looks for a measure named lastMeasure.
 * This is needed for compatibility for testing with a verbose build, which
 * is often used by the Xyce developers.
-.measure dc lastMeasure max v(2)
+.measure dc lastMeasure min v(2)
 
 .END
 
