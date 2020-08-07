@@ -76,6 +76,17 @@ R3 3 0 1
 .MEASURE DC_CONT findFallContTest2 FIND V(3) WHEN V(2)=7 FALL=2
 .MEASURE DC_CONT findFallContTest3 FIND V(3) WHEN V(2)=7 FALL=LAST
 
+************************************************************************
+* Use of FROM-TO.  Only the rise, fall or cross values within the
+* FROM-TO windows should be returned, starting at the requested value.
+* For CROSS=LAST, only the last one within the FROM-TO window is returned
+.MEASURE DC_CONT whenCross1ContFrom25 WHEN V(2)=5 CROSS=1 FROM=2.5
+.MEASURE DC_CONT whenCross2ContFrom25 WHEN V(2)=5 CROSS=2 FROM=2.5
+.MEASURE DC_CONT whenCrossContTo75 WHEN V(2)=5 CROSS=1 TO=7.5
+.MEASURE DC_CONT whenRiseContFrom5 WHEN V(2)=5 RISE=1 FROM=5
+.MEASURE DC_CONT whenFallContTo5 WHEN V(2)=5 FALL=1 TO=5
+.MEASURE DC_CONT whenCrossContToLast WHEN V(2)=5 CROSS=LAST TO=7.5
+
 *********************************************************
 * Test negative values
 .MEASURE DC_CONT whenCrossContNeg1 WHEN V(2)=5 CROSS=-1
