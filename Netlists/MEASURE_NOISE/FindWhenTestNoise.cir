@@ -55,6 +55,16 @@ RLP1b  5 0 50
 * essentially a bad way to do a WHEN measure, but it should work.)
 .MEASURE NOISE findFreqwhenvm4 find {FREQ} when vm(4)= 0.4
 
+* FROM
+.MEASURE NOISE whenvi4from10 when vi(4)=0.21 FROM=10
+
+* Test that the interpolated WHEN frequency is within the measure window.
+* So, the first and third measures should find the first time vi(b)=0.1.
+* The second one should find the second time.
+.MEASURE NOISE whenvi4from4 when vi(4)=0.21 FROM=4
+.MEASURE NOISE whenvi4from5 when vi(4)=0.21 FROM=5
+.MEASURE NOISE whenvi4ft when vi(4)=0.21 FROM=4 TO=5
+
 * measures should fail
 .measure noise FAIL1 WHEN vm(4)=2
 .measure noise FAIL2 FIND vm(5) WHEN vm(4)=2
