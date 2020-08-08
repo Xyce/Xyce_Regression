@@ -50,6 +50,9 @@ R5  5  0  100
 .measure tran fall4_80_wtd WHEN V(1)=0.8 Fall=4 TD=0.001
 .measure tran fallLast_80 WHEN V(1)=0.8 fall=LAST
 
+* RFC level should be ignored (with a warning message)
+.measure tran when_ignore_rfc_level when v(1)=0.1 RFC_LEVEL=0.9
+
 * FIND-WHEN measures
 .measure tran find3hit1_75 find v(3) when v(1)=0.75 MINVAL=0.02
 .measure tran find30hit1_75 find v(3,0) when v(1)=0.75 MINVAL=0.02
@@ -85,11 +88,6 @@ R5  5  0  100
 .measure tran findv1_v4falllast find v(1) when v(4)=0.25 fall=last
 .measure tran findv1_v5riselast find v(1) when v(5)=0.25 rise=last
 .measure tran findv1_v4crosslast find v(1) when v(4)=0.25 cross=last
-
-* test RFC_LEVEL keyword
-.measure tran v4Rise2RFClevel20 when v(4)=0.1 RFC_LEVEL=0.2 RISE=2
-.measure tran v4Fall2RFClevel20 when v(4)=0.1 RFC_LEVEL=0.2 FALL=2
-.measure tran v4Cross2RFClevel20 when v(4)=0.1 RFC_LEVEL=0.2 CROSS=2
 
 *test Failed measures for rise/fall/cross
 .measure tran v4fallfail when v(4)=0 fall=250

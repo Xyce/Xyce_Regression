@@ -19,9 +19,11 @@ $GOLDPRN=$ARGV[4];
 # These strings should be in the output of this failed Xyce run. 
 # Note that underscore (_) characters must be escaped with \\
 @searchstrings = ( "Netlist error in file bad_dot_measure_line1.cir at or near line 21",
-      "Illegal name in .MEASURE line.  Cannot be AC, DC, NOISE or TRAN/TR",
+      "Illegal name in .MEASURE line.  Cannot be AC, DC, NOISE, TRAN/TR, AC_CONT",
+      "DC_CONT, NOISE_CONT or TRAN_CONT",
       "Netlist error in file bad_dot_measure_line1.cir at or near line 22",
-      "Unknown mode in .MEASURE line.  Should be TRAN/TR, DC, AC or NOISE",
+      "Unknown mode in .MEASURE line.  Should be TRAN/TR, DC, AC, NOISE, TRAN_CONT",
+      "DC_CONT, AC_CONT or NOISE_CONT",
       "Netlist error in file bad_dot_measure_line1.cir at or near line 23",
       "Too few items on .MEASURE line.  Need at least .MEASURE <mode> <name> <type>",
       "Netlist warning in file bad_dot_measure_line1.cir at or near line 23",
@@ -76,7 +78,8 @@ $GOLDPRN=$ARGV[4];
       "Netlist error in file bad_dot_measure_line1.cir at or near line 53",
       "Invalid Measure Line",
       "Netlist error in file bad_dot_measure_line1.cir at or near line 56",
-      "Unknown mode in .MEASURE line.  Should be TRAN/TR, DC, AC or NOISE"
+      "Unknown mode in .MEASURE line.  Should be TRAN/TR, DC, AC, NOISE, TRAN_CONT,",
+      "DC_CONT, AC_CONT or NOISE_CONT"
  );
 
 $retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);

@@ -1,10 +1,10 @@
 Testing .MEASURE lines that are mismatched with the Analysis Types
 *********************************************************************
-* This tests the error messages that should occur if an AC, NOISE or
-* TRAN mode measure is requested for a netlist that is doing a
-* .DC analysis. 
-* 
-* See SON Bug 889 for more details.
+* This tests the error messages that should occur if an AC, AC_CONT,
+* NOISE, NOISE_CONT, TRAN or TRAN_CONT mode measure is requested for
+* a netlist that is doing a .DC analysis.
+*
+* See SON Bugs 889 and 1274 for more details.
 *
 *
 *********************************************************************
@@ -16,10 +16,14 @@ rload1b 1b 0 1
 .DC vsrc1 1 5 1
 .print dc vsrc1:DCV0 v(1a) v(1b)
 
-* Test what happens when a TRAN or AC measure is requested for a .DC netlist
+* Test what happens when a TRAN, TRAN_CONT, AC, AC_CONT, NOISE or NOISE_CONT
+* measure is requested for a .DC netlist
 .MEASURE TRAN tranmax max v(1a)
+.MEASURE TRAN_CONT tran_cont_when when v(1a)=2.5
 .MEASURE AC acerror ERROR vm(1b) FILE=ErrorTestACRawData.FD.prn COMP_FUNCTION=L1NORM INDEPVARCOL=1 DEPVARCOL=3
+.MEASURE AC_CONT ac_cont_find find v(1b) when v(1a)=2.5
 .MEASURE NOISE noisemax max v(1a)
+.MEASURE NOISE_CONT noise_cont_find find v(1b) when v(1a)=2.5
 
 .END
 

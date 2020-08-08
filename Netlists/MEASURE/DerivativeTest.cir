@@ -27,6 +27,9 @@ R4  4  0  100
 .measure tran deriv10_when_025 deriv v(1) WHEN v(1,0)=0.025
 .measure tran deriv_when_025_ft deriv V(1) WHEN v(1)=0.25 from=0 to=25e-3
 
+* RFC level should be ignored (with a warning message)
+.measure tran deriv_ignore_rfc_level deriv v(1) WHEN v(1)=0.025 RFC_LEVEL=0.75
+
 * mix in TDs before and after FROM value.
 .measure tran deriv_when_075_tda deriv V(1) WHEN v(1)=0.75 FROM=20e-3 TO=40e-3 TD=30e-3
 .measure tran deriv_when_075_tdb deriv V(1) WHEN v(1)=0.75 FROM=30e-3 TO=40e-3 TD=20e-3
@@ -56,11 +59,6 @@ R4  4  0  100
 .measure tran deriv2fallNegOne deriv v(2) when v(2)=0.25 fall=-1
 .measure tran deriv3riseNegOne deriv v(3) when v(3)=0.25 rise=-1
 .measure tran deriv2crossNegOne deriv v(2) when v(2)=0.25 cross=-1
-
-* test RFC_LEVEL keyword
-.measure tran deriv4Rise2RFClevel50 deriv v(4) when v(4)=0.75 RFC_LEVEL=0.5 RISE=2
-.measure tran deriv4Fall2RFClevel50 deriv v(4) when v(4)=0.25 RFC_LEVEL=0.5 FALL=2
-.measure tran deriv4Cross2RFClevel50 deriv v(4) when v(4)=0.25 RFC_LEVEL=0.5 CROSS=2
 
 *test Failed measures for rise/fall/cross
 .measure tran deriv2fallfail deriv v(2) when v(2)=0.25 fall=250

@@ -40,7 +40,7 @@ system("rm -f $CIRFILE.ms0 $CIRFILE.out $CIRFILE.err* $CIRFILE.remeasure*");
 MeasureCommon::checkDCFilesExist($XYCE,$CIRFILE);
 
 # The next three blocks of code are used to compare the .MEASURE output
-# to stdout to the "gold" stdout in the $GSFILE (FindWhenTest1DCTestGSfile).
+# to stdout to the "gold" stdout in the $GSFILE (FindWhenTest1DCGSfile).
 
 # check that .out file exists, and open it if it does
 if (not -s "$CIRFILE.out" )

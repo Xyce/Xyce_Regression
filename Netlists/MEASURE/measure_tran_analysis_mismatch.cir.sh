@@ -20,10 +20,16 @@ $GOLDPRN=$ARGV[4];
 # Note that ( ) and : characters must be escaped with \\
 @searchstrings = ("Netlist error\\: Netlist analysis statement and measure mode \\(DC\\) for measure",
    "DCMAX do not agree",
+   "Netlist error: Netlist analysis statement and measure mode \\(DC_CONT\\) for",
+   "measure DC\\_CONT_WHEN do not agree",
    "Netlist error\\: Netlist analysis statement and measure mode \\(AC\\) for measure",
    "ACMAX do not agree",
+   "Netlist error: Netlist analysis statement and measure mode \\(AC_CONT\\) for",
+   "measure AC_CONT_FIND do not agree",
    "Netlist error\\: Netlist analysis statement and measure mode \\(NOISE\\) for measure",
-   "NOISEMAX do not agree"
+   "NOISEMAX do not agree",
+   "Netlist error\\: Netlist analysis statement and measure mode \\(NOISE_CONT\\) for",
+   "measure NOISE_CONT_FIND do not agree"
  );
 
 $retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);

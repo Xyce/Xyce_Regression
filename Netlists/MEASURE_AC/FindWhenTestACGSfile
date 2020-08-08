@@ -72,6 +72,18 @@ Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 FINDFREQWHENVMB0.5 = 4.685318e+04 at freq = 4.685318e+04
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
+WHENVIBFROM10K = 1.666781e+04
+Measure Start Freq= 1.000000e+04	Measure End Freq= 1.000000e+06
+
+WHENVIBFROM8K = 8.051952e+03
+Measure Start Freq= 8.000000e+03	Measure End Freq= 1.000000e+06
+
+WHENVIBFROM9K = 8.286769e+05
+Measure Start Freq= 9.000000e+03	Measure End Freq= 1.000000e+06
+
+WHENVIBFT = 8.051952e+03
+Measure Start Freq= 7.000000e+03	Measure End Freq= 9.000000e+03
+
 FAIL1 = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 

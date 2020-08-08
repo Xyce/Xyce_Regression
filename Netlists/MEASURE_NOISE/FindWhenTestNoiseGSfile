@@ -57,6 +57,18 @@ Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+02
 FINDFREQWHENVM4 = 1.072230e+01 at freq = 1.072230e+01
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+02
 
+WHENVI4FROM10 = 1.462627e+01
+Measure Start Freq= 1.000000e+01	Measure End Freq= 1.000000e+02
+
+WHENVI4FROM4 = 4.384150e+00
+Measure Start Freq= 4.000000e+00	Measure End Freq= 1.000000e+02
+
+WHENVI4FROM5 = 1.462627e+01
+Measure Start Freq= 5.000000e+00	Measure End Freq= 1.000000e+02
+
+WHENVI4FT = 4.384150e+00
+Measure Start Freq= 4.000000e+00	Measure End Freq= 5.000000e+00
+
 FAIL1 = FAILED
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+02
 

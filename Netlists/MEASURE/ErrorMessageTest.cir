@@ -22,7 +22,6 @@ R2  2  0  100
 *DERIV
 .measure tran derivValWhen deriv V(1) WHEN V(1)=0.5
 .measure tran derivValWhenRise1 deriv V(1) WHEN V(1)=0.5 RISE 1
-.measure tran derivValCross2RFClevel50 deriv v(1) when v(1)=0.25 RFC_LEVEL=0.5 CROSS=2
 .measure tran derivValAt deriv V(1) AT=5e-04
 .measure tran derivValWhenFail deriv V(1) WHEN V(1)=5
 .measure tran derivValAtFail deriv V(1) AT=5
@@ -48,7 +47,6 @@ R2  2  0  100
 .measure tran whenLastMinus75 when v(1)=-0.75 RISE=LAST
 .measure tran whenNegOneMinus75 when v(1)=-0.75 RISE=-1
 .measure tran whenFirst75 when v(1)=0.75 RISE=1
-.measure tran whenRFClevel when v(1)=0.25 CROSS=2 RFC_LEVEL=0.5
 .measure tran whenValFail WHEN V(1)=5
 .measure tran findWhenVal FIND V(2) WHEN V(1)=0.5
 .measure tran findWhenValFail find v(2) when v(1)=5

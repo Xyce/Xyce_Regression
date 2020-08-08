@@ -1,0 +1,56 @@
+* Test TRAN mode support for the TRAN_CONT version of
+* FIND-AT, FIND-WHEN and WHEN Measures.
+*
+* See SON Bug 1274 for more details.
+********************************************************
+*
+VPWL1 1  0  pwl(0 0.1 2.5m 0.5 5m 0 7.5m 0.4 10m 0)
+VPWL2 2  0  pwl(0 0.5 10m 0)
+
+R1  1  0  100
+R2  2  0  100
+
+.TRAN 0 10ms
+.PRINT TRAN V(1) V(2)
+
+* Non-continuous version should return first crossing.
+* Continuous version should return all crossings.
+*.measure tran whenCrossTest1 when v(1)=0.2
+*.measure TRAN_CONT whenCrossContTest1 when v(1)=0.2
+
+* Non-continuous version should return first crossing.
+* Continuous version should return all crossings, starting
+* with the first one.
+.measure tran whenCrossTest2 when v(1)=0.2 CROSS=1
+.measure TRAN_CONT whenCrossContTest2 when v(1)=0.2 CROSS=1
+
+* Non-continuous version should return second crossing.
+* Continuous version should return all crossings, starting
+* with the second one.
+.measure tran whenCrossTest3 when v(1)=0.2 CROSS=2
+.measure TRAN_CONT whenCrossContTest3 when v(1)=0.2 CROSS=2
+
+* These should both return the last crossing
+.measure tran whenCrossTest4 when v(1)=0.2 CROSS=LAST
+.measure TRAN_CONT whenCrossContTest4 when v(1)=0.2 CROSS=LAST
+
+* FIND-AT measures
+* These should give the same answer
+.measure tran atTest find v(1) at=2e-3
+.measure tran_cont atContTest find v(1) at=2e-3
+
+******************************************************
+* Repeat WHEN tests as FIND-WHEN measures
+*.measure TRAN findCrossTest1 find V(2) when v(1)=0.2
+*.measure TRAN_CONT findCrossContTest1 find V(2) when v(1)=0.2
+
+*.measure TRAN findCrossTest2 find V(2) when v(1)=0.2 CROSS=1
+*.measure TRAN_CONT findCrossContTest2 find V(2) when v(1)=0.2 CROSS=1
+
+*.measure TRAN findCrossTest3 find V(2) when v(1)=0.2 CROSS=2
+*.measure TRAN_CONT findCrossContTest3 find V(2) when v(1)=0.2 CROSS=2
+
+*.measure TRAN findCrossTest4 find V(2) when v(1)=0.2 CROSS=LAST
+*.measure TRAN_CONT findCrossContTest4 find V(2) when v(1)=0.2 CROSS=last
+
+.END
