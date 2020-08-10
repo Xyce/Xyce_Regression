@@ -32,6 +32,10 @@ R2  2  0  1
 B3  3  0  V={ATANH(V(2))}
 R3  3  0  1
 .TRAN 0.1MS 2MS
+
+*COMP V(1) OFFSET=1
+*COMP V(2) OFFSET=1
+*COMP V(3) OFFSET=1
 .PRINT TRAN V(1) V(2) V(3)
 .options nonlin-tran searchmethod=1
 
