@@ -33,6 +33,7 @@ $fc =~ s/xyce_verify/file_compare/;
 
 # remove files from previous runs
 system("rm -f $CIRFILE.ms0 $CIRFILE.out $CIRFILE.err* $CIRFILE.remeasure*");
+system("rm -f $CIRFILE.prn.errmsg.*");
 
 #
 # Steps common to all of the measure tests are in the Perl module
