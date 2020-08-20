@@ -12,8 +12,8 @@ R2  2  0  100
 
 .TRAN 0 10ms
 .PRINT TRAN V(1) V(2)
-+ whenCrossContTest2 whenCrossContTest3 whenCrossContTest4
-+ whenCrossContNeg2 whenCrossContNeg5
++ whenCrossContTest2 whenCrossContTest2 whenCrossContTest3 whenCrossContTest4
++ whenCrossNeg2 whenCrossContNeg2 whenCrossNeg5 whenCrossContNeg5
 
 * Non-continuous version should return first crossing.
 * Continuous version should return all crossings.
@@ -86,18 +86,25 @@ R2  2  0  100
 
 *********************************************************
 * Test negative values
+.MEASURE TRAN whenCrossNeg2 WHEN V(1)=0.2 CROSS=-2
+.MEASURE TRAN whenCrossNeg3 WHEN V(1)=0.2 CROSS=-3
+.MEASURE TRAN whenCrossNeg5 WHEN V(1)=0.2 CROSS=-5
 .MEASURE TRAN_CONT whenCrossContNeg1 WHEN V(1)=0.2 CROSS=-1
 .MEASURE TRAN_CONT whenCrossContNeg2 WHEN V(1)=0.2 CROSS=-2
 .MEASURE TRAN_CONT whenCrossContNeg3 WHEN V(1)=0.2 CROSS=-3
 .MEASURE TRAN_CONT whenCrossContNeg5 WHEN V(1)=0.2 CROSS=-5
 
+.MEASURE TRAN whenRiseNeg2 WHEN V(1)=0.2 RISE=-2
+.MEASURE TRAN whenRiseNeg3 WHEN V(1)=0.2 RISE=-3
 .MEASURE TRAN_CONT whenRiseContNeg1 WHEN V(1)=0.2 RISE=-1
 .MEASURE TRAN_CONT whenRiseContNeg2 WHEN V(1)=0.2 RISE=-2
 .MEASURE TRAN_CONT whenRiseContNeg3 WHEN V(1)=0.2 RISE=-3
 
+.MEASURE TRAN whenFallNeg2 WHEN V(1)=0.2 FALL=-2
+.MEASURE TRAN whenFallNeg3 WHEN V(1)=0.2 FALL=-3
 .MEASURE TRAN_CONT whenFallContNeg1 WHEN V(1)=0.2 FALL=-1
 .MEASURE TRAN_CONT whenFallContNeg2 WHEN V(1)=0.2 FALL=-2
-.MEASURE TRAN_CONT whenFallContNeg3 WHEN V(1)=0.2 FALL=-4
+.MEASURE TRAN_CONT whenFallContNeg3 WHEN V(1)=0.2 FALL=-3
 
 *************************************************
 * test failed measures

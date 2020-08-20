@@ -174,7 +174,7 @@ else
 }
 
 # also compare output .prn file.
-$CMD="$fc $CIRFILE.prn $GOLDPRN $absTol $relTol $zeroTol > $CIRFILE.prn.errmsg.out 2> $CIRFILE.prn.errmsg.err";
+$CMD="$XYCE_VERIFY $CIRFILE $GOLDPRN $CIRFILE.prn > $CIRFILE.prn.out 2> $CIRFILE.prn.err";
 $retval=system($CMD);
 $retval = $retval >> 8;
 

@@ -131,6 +131,15 @@ Measure Start Time= 5.000000e-03	Measure End Time= 1.000000e-02
 WHENCROSSCONTTOLAST = 6.250000e-03
 Measure Start Time= 0.000000e+00	Measure End Time= 8.000000e-03
 
+WHENCROSSNEG2 = 6.250000e-03
+Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
+
+WHENCROSSNEG3 = 4.000000e-03
+Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
+
+WHENCROSSNEG5 = FAILED
+Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
+
 WHENCROSSCONTNEG1 = 8.750000e-03
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
@@ -143,6 +152,12 @@ Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 WHENCROSSCONTNEG5 = FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
+WHENRISENEG2 = 6.250000e-04
+Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
+
+WHENRISENEG3 = FAILED
+Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
+
 WHENRISECONTNEG1 = 6.250000e-03
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
@@ -150,6 +165,12 @@ WHENRISECONTNEG2 = 6.250000e-04
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
 WHENRISECONTNEG3 = FAILED
+Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
+
+WHENFALLNEG2 = 4.000000e-03
+Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
+
+WHENFALLNEG3 = FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
 WHENFALLCONTNEG1 = 8.750000e-03

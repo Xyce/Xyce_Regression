@@ -131,6 +131,15 @@ Measure Start V1 Value= 1.000000e+00	Measure End V1 Value= 5.000000e+00
 WHENCROSSCONTTOLAST = 6.336111e+00
 Measure Start V1 Value= 1.000000e+00	Measure End V1 Value= 7.500000e+00
 
+WHENCROSSNEG2 = 6.336111e+00
+Measure Start V1 Value= 1.000000e+00	Measure End V1 Value= 1.000000e+01
+
+WHENCROSSNEG3 = 3.663889e+00
+Measure Start V1 Value= 1.000000e+00	Measure End V1 Value= 1.000000e+01
+
+WHENCROSSNEG5 = FAILED
+Measure Start V1 Value= 1.000000e+00	Measure End V1 Value= 1.000000e+01
+
 WHENCROSSCONTNEG1 = 8.142143e+00
 Measure Start V1 Value= 1.000000e+00	Measure End V1 Value= 1.000000e+01
 
@@ -146,6 +155,12 @@ Measure Start V1 Value= 1.000000e+00	Measure End V1 Value= 1.000000e+01
 WHENCROSSCONTNEG5 = FAILED
 Measure Start V1 Value= 1.000000e+00	Measure End V1 Value= 1.000000e+01
 
+WHENRISENEG2 = 3.663889e+00
+Measure Start V1 Value= 1.000000e+00	Measure End V1 Value= 1.000000e+01
+
+WHENRISENEG3 = FAILED
+Measure Start V1 Value= 1.000000e+00	Measure End V1 Value= 1.000000e+01
+
 WHENRISECONTNEG1 = 8.142143e+00
 Measure Start V1 Value= 1.000000e+00	Measure End V1 Value= 1.000000e+01
 
@@ -153,6 +168,12 @@ WHENRISECONTNEG2 = 3.663889e+00
 Measure Start V1 Value= 1.000000e+00	Measure End V1 Value= 1.000000e+01
 
 WHENRISECONTNEG3 = FAILED
+Measure Start V1 Value= 1.000000e+00	Measure End V1 Value= 1.000000e+01
+
+WHENFALLNEG2 = 1.857857e+00
+Measure Start V1 Value= 1.000000e+00	Measure End V1 Value= 1.000000e+01
+
+WHENFALLNEG3 = FAILED
 Measure Start V1 Value= 1.000000e+00	Measure End V1 Value= 1.000000e+01
 
 WHENFALLCONTNEG1 = 6.336111e+00

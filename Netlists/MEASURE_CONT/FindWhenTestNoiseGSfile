@@ -144,6 +144,15 @@ Measure Start Freq= 5.000000e+01	Measure End Freq= 1.000000e+03
 WHENCROSSCONTTOLAST = 8.296111e+01
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+02
 
+WHENCROSSNEG2 = 1.149737e+02
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
+
+WHENCROSSNEG3 = 8.296111e+01
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
+
+WHENCROSSNEG6 = FAILED
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
+
 WHENCROSSCONTNEG1 = 1.334847e+02
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
@@ -156,6 +165,12 @@ Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 WHENCROSSCONTNEG6 = FAILED
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
+WHENRISENEG2 = 5.461130e+01
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
+
+WHENRISENEG3 = FAILED
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
+
 WHENRISECONTNEG1 = 1.149737e+02
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
@@ -165,13 +180,19 @@ Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 WHENRISECONTNEG3 = FAILED
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
+WHENFALLNEG2 = 8.296111e+01
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
+
+WHENFALLNEG4 = FAILED
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
+
 WHENFALLCONTNEG1 = 1.334847e+02
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
 WHENFALLCONTNEG2 = 8.296111e+01
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
-WHENFALLCONTNEG3 = FAILED
+WHENFALLCONTNEG4 = FAILED
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
 WHENCROSSCONTFAIL1 = FAILED

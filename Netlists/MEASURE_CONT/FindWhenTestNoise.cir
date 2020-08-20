@@ -30,7 +30,7 @@ RL e 0 1.0
 .NOISE  V(e)  V1  DEC  20 1 1000
 .PRINT NOISE VM(3) vm(b) vm(c) vm(d) vm(e)
 + whenCrossContTest2 whenCrossContTest3 whenCrossContTest4
-+ whenCrossContNeg2 whenCrossContNeg6
++ whenCrossNeg2 whenCrossContNeg2 whenCrossNeg6 whenCrossContNeg6
 
 * The non-continuous version should return the first crossing.
 * The continuous version should return all crossings.
@@ -103,18 +103,25 @@ RL e 0 1.0
 
 *********************************************************
 * Test negative values
+.MEASURE NOISE whenCrossNeg2 WHEN VM(e)=0.45 CROSS=-2
+.MEASURE NOISE whenCrossNeg3 WHEN VM(e)=0.45 CROSS=-3
+.MEASURE NOISE whenCrossNeg6 WHEN VM(e)=0.45 CROSS=-6
 .MEASURE NOISE_CONT whenCrossContNeg1 WHEN VM(e)=0.45 CROSS=-1
 .MEASURE NOISE_CONT whenCrossContNeg2 WHEN VM(e)=0.45 CROSS=-2
 .MEASURE NOISE_CONT whenCrossContNeg3 WHEN VM(e)=0.45 CROSS=-3
 .MEASURE NOISE_CONT whenCrossContNeg6 WHEN VM(e)=0.45 CROSS=-6
 
+.MEASURE NOISE whenRiseNeg2 WHEN VM(e)=0.45 RISE=-2
+.MEASURE NOISE whenRiseNeg3 WHEN VM(e)=0.45 RISE=-3
 .MEASURE NOISE_CONT whenRiseContNeg1 WHEN VM(e)=0.45 RISE=-1
 .MEASURE NOISE_CONT whenRiseContNeg2 WHEN VM(e)=0.45 RISE=-2
 .MEASURE NOISE_CONT whenRiseContNeg3 WHEN VM(e)=0.45 RISE=-3
 
+.MEASURE NOISE whenFallNeg2 WHEN VM(e)=0.45 FALL=-2
+.MEASURE NOISE whenFallNeg4 WHEN VM(e)=0.45 FALL=-4
 .MEASURE NOISE_CONT whenFallContNeg1 WHEN VM(e)=0.45 FALL=-1
 .MEASURE NOISE_CONT whenFallContNeg2 WHEN VM(e)=0.45 FALL=-2
-.MEASURE NOISE_CONT whenFallContNeg3 WHEN VM(e)=0.45 FALL=-4
+.MEASURE NOISE_CONT whenFallContNeg4 WHEN VM(e)=0.45 FALL=-4
 
 *************************************************
 * test failed measures
