@@ -99,7 +99,7 @@ RL e 0 1.0
 
 .MEASURE AC_CONT whenFallContNeg1 WHEN VM(e)=0.45 FALL=-1
 .MEASURE AC_CONT whenFallContNeg2 WHEN VM(e)=0.45 FALL=-2
-.MEASURE AC_CONT whenFallContNeg3 WHEN VM(e)=0.45 FALL=-4
+.MEASURE AC_CONT whenFallContNeg4 WHEN VM(e)=0.45 FALL=-4
 
 *************************************************
 * test failed measures
