@@ -1,3 +1,15 @@
+DerivTestAC.cir
+DerivTestAC.cir.sh
+DerivTestACGSfile
+DerivTest1DC.cir
+DerivTest1DC.cir.sh
+DerivTest1DCGSfile
+DerivTestNoise.cir
+DerivTestNoise.cir.sh
+DerivTestNoiseGSfile
+DerivTestTran.cir
+DerivTestTran.cir.sh
+DerivTestTranGSfile
 FindWhenTestAC.cir
 FindWhenTestAC.cir.sh
 FindWhenTestACGSfile
