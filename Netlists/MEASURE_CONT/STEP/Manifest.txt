@@ -1,3 +1,9 @@
+DerivTestAC.cir
+DerivTestAC.cir.sh
+DerivTestACGSfile
+DerivTestNoise.cir
+DerivTestNoise.cir.sh
+DerivTestNoiseGSfile
 DerivTestTran.cir
 DerivTestTran.s0.cir
 DerivTestTran.s1.cir
