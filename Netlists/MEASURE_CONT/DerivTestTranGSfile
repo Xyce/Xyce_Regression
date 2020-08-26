@@ -97,7 +97,7 @@ Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 DERIVCROSSCONTNEG3 = -2.000000e+02 at time = 4.000000e-03
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
-WHENCROSSCONTNEG5 = FAILED
+DERIVCROSSCONTNEG5 = FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
 DERIVRISENEG2 = 1.600000e+02 at time = 6.250000e-04
@@ -130,7 +130,7 @@ Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 DERIVFALLCONTNEG3 = FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
-WHENCROSSCONTFAIL1 = FAILED
+DERIVCROSSCONTFAIL1 = FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
 Netlist warning: ATCONTFAIL failed. AT value outside sim window

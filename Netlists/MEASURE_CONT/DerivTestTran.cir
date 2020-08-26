@@ -12,6 +12,8 @@ R2  2  0  100
 
 .TRAN 0 10ms
 .PRINT TRAN V(1) V(2)
++ derivCrossContTest2 derivCrossContTest2 derivCrossContTest3 derivCrossContTest4
++ derivCrossNeg2 derivCrossContNeg2 derivCrossNeg5 derivCrossContNeg5
 
 * Non-continuous version should return first crossing.
 * Continuous version should return all crossings.
@@ -68,7 +70,7 @@ R2  2  0  100
 .MEASURE TRAN_CONT derivCrossContNeg1 deriv v(1) when v(1)=0.2 CROSS=-1
 .MEASURE TRAN_CONT derivCrossContNeg2 deriv v(1) when v(1)=0.2 CROSS=-2
 .MEASURE TRAN_CONT derivCrossContNeg3 deriv v(1) when v(1)=0.2 CROSS=-3
-.MEASURE TRAN_CONT whenCrossContNeg5 deriv v(1) when v(1)=0.2 CROSS=-5
+.MEASURE TRAN_CONT derivCrossContNeg5 deriv v(1) when v(1)=0.2 CROSS=-5
 
 .MEASURE TRAN derivRiseNeg2 deriv v(1) when v(1)=0.2 RISE=-2
 .MEASURE TRAN derivRiseNeg3 deriv v(1) when v(1)=0.2 RISE=-3
@@ -84,7 +86,7 @@ R2  2  0  100
 
 *************************************************
 * test failed measures
-.MEASURE TRAN_CONT whenCrossContFail1 deriv v(1) when v(1)=1
+.MEASURE TRAN_CONT derivCrossContFail1 deriv v(1) when v(1)=1
 .MEASURE TRAN_CONT atContFail deriv V(1) at=20e-3
 .MEASURE TRAN_CONT derivCrossContFail2 deriv v(1) when v(1)=0.2 CROSS=5
 .MEASURE TRAN_CONT derivRiseContFail deriv v(1) when v(1)=0.2 RISE=3

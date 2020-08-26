@@ -28,8 +28,10 @@ L6 d e {0.912/scaleFactor}
 C7 e 0 {2.8650/scaleFactor}
 RL e 0 1.0
 
-.print NOISE vr(e) vi(e) vm(e) vp(e) vdb(e) im(v1)
 .NOISE  V(e)  V1  DEC 20 1e-2 10
+.print NOISE vm(3) vm(b) vm(c) vm(d) vm(e)
++ derivCrossContTest2 derivCrossContTest3 derivCrossContTest4
++ derivCrossNeg2 derivCrossContNeg2 derivCrossNeg6 derivCrossContNeg6
 
 * The non-continuous version should return the first crossing.
 * The continuous version should return all crossings.

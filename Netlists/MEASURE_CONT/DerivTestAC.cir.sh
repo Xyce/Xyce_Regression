@@ -153,13 +153,13 @@ $zerotol=1e-8;
 $freqreltol=1e-6;
 
 # compare gold and test files
-#$CMD="$XYCE_ACVERIFY $GOLDPRN.FD.prn $CIRFILE.FD.prn $abstol $reltol $zerotol $freqreltol";
-#$retval = system($CMD);
-#$retval = $retval >> 8;
-#if ($retval != 0){
-#  print STDERR "Comparator exited on file $CIRFILE.FD.prn with exit code $retval\n";
-#  $retval = 2;
-#}
+$CMD="$XYCE_ACVERIFY $GOLDPRN.FD.prn $CIRFILE.FD.prn $abstol $reltol $zerotol $freqreltol";
+$retval = system($CMD);
+$retval = $retval >> 8;
+if ($retval != 0){
+  print STDERR "Comparator exited on file $CIRFILE.FD.prn with exit code $retval\n";
+  $retval = 2;
+}
 
 print "Exit code = $retval\n";
 exit $retval;

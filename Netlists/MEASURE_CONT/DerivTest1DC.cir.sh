@@ -171,20 +171,20 @@ else
 }
 
 # also compare output .prn file.
-#$CMD="$fc $CIRFILE.prn $GOLDPRN $absTol $relTol $zeroTol > $CIRFILE.prn.errmsg.out 2> $CIRFILE.prn.errmsg.err";
-#$retval=system($CMD);
-#$retval = $retval >> 8;
+$CMD="$fc $CIRFILE.prn $GOLDPRN $absTol $relTol $zeroTol > $CIRFILE.prn.errmsg.out 2> $CIRFILE.prn.errmsg.err";
+$retval=system($CMD);
+$retval = $retval >> 8;
 
-#if ( $retval != 0 )
-#{
-#  print STDERR "test failed comparison of Gold and Test .prn files with exit code $retval\n";
-#  print "Exit code = 2\n";
-#  exit 2;
-#}
-#else
-#{
-#  print "Passed comparison of .prn files\n";
-#}
+if ( $retval != 0 )
+{
+  print STDERR "test failed comparison of Gold and Test .prn files with exit code $retval\n";
+  print "Exit code = 2\n";
+  exit 2;
+}
+else
+{
+  print "Passed comparison of .prn files\n";
+}
 
 # Re-measure test uses the same approach as the FOUR measure.
 $retval = MeasureCommon::checkRemeasure($XYCE,$XYCE_VERIFY,$CIRFILE,$absTol,$relTol,$zeroTol,'prn',1,'ms');

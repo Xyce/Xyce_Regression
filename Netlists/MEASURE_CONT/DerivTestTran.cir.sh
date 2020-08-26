@@ -174,20 +174,20 @@ else
 }
 
 # also compare output .prn file.
-#$CMD="$XYCE_VERIFY $CIRFILE $GOLDPRN $CIRFILE.prn > $CIRFILE.prn.out 2> $CIRFILE.prn.err";
-#$retval=system($CMD);
-#$retval = $retval >> 8;
+$CMD="$XYCE_VERIFY $CIRFILE $GOLDPRN $CIRFILE.prn > $CIRFILE.prn.out 2> $CIRFILE.prn.err";
+$retval=system($CMD);
+$retval = $retval >> 8;
 
-#if ( $retval != 0 )
-#{
-#  print STDERR "test failed comparison of Gold and Test .prn files with exit code $retval\n";
-#  print "Exit code = 2\n";
-#  exit 2;
-#}
-#else
-#{
-#  print "Passed comparison of .prn files\n";
-#}
+if ( $retval != 0 )
+{
+  print STDERR "test failed comparison of Gold and Test .prn files with exit code $retval\n";
+  print "Exit code = 2\n";
+  exit 2;
+}
+else
+{
+  print "Passed comparison of .prn files\n";
+}
 
 # Also test remeasure if the basic measure function works
 $retval = MeasureCommon::checkRemeasure($XYCE,$XYCE_VERIFY,$CIRFILE,$absTol,$relTol,$zeroTol);
