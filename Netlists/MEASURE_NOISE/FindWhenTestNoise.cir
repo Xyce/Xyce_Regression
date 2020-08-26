@@ -65,6 +65,10 @@ RLP1b  5 0 50
 .MEASURE NOISE whenvi4from5 when vi(4)=0.21 FROM=5
 .MEASURE NOISE whenvi4ft when vi(4)=0.21 FROM=4 TO=5
 
+* The second measure should fail.
+.MEASURE NOISE whenvr4to25 when vr(4)=0.45 TO=25
+.MEASURE NOISE whenvr4to20 when vr(4)=0.45 TO=20
+
 * measures should fail
 .measure noise FAIL1 WHEN vm(4)=2
 .measure noise FAIL2 FIND vm(5) WHEN vm(4)=2

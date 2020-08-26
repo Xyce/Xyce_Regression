@@ -68,6 +68,10 @@ V1 a 0 DC 0V AC 1
 .MEASURE AC whenvibfrom9K when vi(b)=0.1 FROM=9e3
 .MEASURE AC whenvibft when vi(b)=0.1 FROM=7e3 TO=9e3
 
+* The second measure should fail.
+.MEASURE AC whenvrbto25e4 when vr(b)=0.87 TO=2.5e5
+.MEASURE AC whenvrbto20e4 when vr(b)=0.87 TO=2e5
+
 * measures should fail
 .measure ac FAIL1 WHEN vm(b)=2
 .measure ac FAIL2 FIND vm(c) WHEN vm(b)=2
