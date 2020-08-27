@@ -42,6 +42,16 @@ rload2b 2b 1b 0.1
 .MEASURE DC v1bat2.5 find v(1b) at=2.5
 .MEASURE DC v1bexpat2.5 find {v(1b)+1} at=2.5
 
+* measures should fail
+.measure dc FAIL1 WHEN v(1b)=10
+.measure dc FAIL2 FIND v(2b) WHEN v(1b)=10
+.measure dc FAIL3 FIND v(1b) AT=10
+
+* Test case of both FROM and TO given, but both are outside of the
+* measurement window
+.measure dc FAIL4 WHEN v(2b)=2 FROM=6 TO=10
+.measure dc FAIL5 WHEN v(2b)=2 FROM=-5 TO=0
+
 * Signifies end of test. .sh file looks for a measure named lastMeasure.
 * This is needed for compatibility for testing with a verbose build, which
 * is often used by the Xyce developers.

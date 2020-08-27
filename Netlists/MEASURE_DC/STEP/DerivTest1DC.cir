@@ -45,8 +45,21 @@ R3 3 0 3
 .MEASURE DC from1 DERIV V(3) WHEN V(3)=10
 .MEASURE DC from2 DERIV V(3) WHEN V(3)=10 FROM=2.5
 
+* These should get the same answer
+.MEASURE DC from3 DERIV V(3) WHEN V(3)=5 FROM=2 TO=4
+.MEASURE DC from4 DERIV V(3) WHEN V(3)=5 TO=2  FROM=4
+
 * lead current
 .MEASURE DC derivir2at2.5 deriv I(R2b) AT=2.5
+
+* measures should fail
+.measure dc FAIL1 DERIV v(2a) WHEN v(3)=200
+.measure dc FAIL2 DERIV v(2a) AT=10
+
+* Test case of both FROM and TO given, but both are outside of the
+* measurement window
+.measure dc FAIL3 DERIV v(2a) WHEN v(2a)=2 FROM=6 TO=10
+.measure dc FAIL4 DERIV v(2a) WHEN v(2a)=2 FROM=-5 TO=0
 
 * Tests should return -1 or -100
 .measure dc derivRetNeg1 deriv v(1) AT=10
