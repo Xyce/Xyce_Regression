@@ -1,5 +1,7 @@
 #!/usr/bin/env perl
 
+use Math::Complex;
+
 open(INPUT,"abmpow3.cir.prn");
 open(OUTPUT,">abmpow3.cir.prn.gs");
 
@@ -13,33 +15,37 @@ while ($line = <INPUT>)
   }
   @s = split(" ",$line);
 
+  # Note:  The new Xyce expression library implements raising negative
+  # numbers to fractional powers correctly.  However, it does this by 
+  # using complex numbers internally.  The correctly solution to 
+  # (-V(1))**2.1, when -V(1) is negative, is a complex number.
+  #
+  # However, for a DC calculation, Xyce assumes everything is real, so 
+  # it only uses the real part of an expression evaluation.  As that is 
+  # what Xyce is doing, that is what is being evaluated here by perl as 
+  # well.  
+  #
+  # This is really not correct, because for real-valued inputs and outputs, a 
+  # fractional power applied to a negative number isn't valid. That 
+  # calculation would, for a purely real-numbered computation, return Nan.  But 
+  # for the code to be well-behaved and stable, it is important to have the Bsrc 
+  # evaluate to something well-behaved.  So, having the Bsrc use the real part 
+  # of the complex result is about the best we can do in this case.
   $a[0] = $s[0];
   $a[1] = $s[1];
-  # Note:  The Xyce expression library does NOT implement raising negative
-  # numbers to fractional powers correctly.  It deliberately does
-  # sign(x)*(abs(x)**power) to avoid having behavioral sources throw
-  # NaNs during the Newton iterations.  This test prints {V(1)**2.1} and
-  # (-V(1))**3.1 with V(1) going between -2.5 and 2.5.  It is incorrect to
-  # have perl just compute these, because half of them are NaN.
-  # Since this is a Xyce regression test and not a test of the power operator,
-  # it is necessary that this generation script emit what we expect from Xyce,
-  # not what we expect from math.
-  # This highlights the dangers of ABM:  if one constructs a netlist that
-  # has expressions that are ill-formed over the entire range of values
-  # that newton iteration might throw at it, one gets an unstable model.
-  # The expression library tries (for good or ill) to desensitize Xyce from
-  # that sort of problem, but at the expense of the power operator doing the
-  # wrong thing when there's a domain error.
-  $a[2] = (( $a[1])**(2.1)) if ($a[1]>=0);
-  $a[2] = -((-$a[1])**(2.1)) if ($a[1]<0);
-  $a[3] = -(($a[1])**(3.1)) if ($a[1]>=0); 
-  $a[3] = ((-$a[1])**(3.1)) if ($a[1]<0);
+
+  $ac1 = cplxe($a[1], 0.0); 
+  $ac2 = cplxe(0.0,0.0); 
+  $ac3 = cplxe(0.0,0.0);
+
+  $ac2 = (( $ac1)**(2.1)) ;
+  $ac3 = ((-$ac1)**(3.1)) ;
 
   $end=3;
   printf OUTPUT "%2g  ",$s[0];
   printf OUTPUT "    %14.8e",$a[1];
-  printf OUTPUT "    %14.8e",$a[2];
-  printf OUTPUT "  %14.8e  \n",$a[3];
+  printf OUTPUT "    %14.8e",Re($ac2);
+  printf OUTPUT "  %14.8e  \n",Re($ac3);
 }
 close(INPUT);
 close(OUTPUT);
