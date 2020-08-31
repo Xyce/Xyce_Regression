@@ -13,14 +13,14 @@ $TAGSLIST=$ARGV[5];
 
 
 # This test checks for the presence of version number annotations
-# and Xyce/XyceRad name
+# and Xyce/XyceNF/XyceRad name
 
 # get build capabilities:
 $capabilities=`$XYCE -capabilities`;
 print STDERR "Xyce Capabilities:\n$capabilities\n";
 
 $haverad = ($capabilities =~ m/Radiation models/);
-$havenonfree = ($capabilities =~ m/Non-GPL device models/);
+$havenonfree = ($capabilities =~ m/Non-Free device models/);
 $haveATHENA = ($capabilities =~ m/ATHENA/);
 $haveDakota = ($capabilities =~ m/Dakota/);
 
@@ -39,13 +39,14 @@ chomp($XYCE_VER);
 
 print "Got version $XYCE_VER\n";
 
-$haveXyceName=($XYCE_VER =~ m/^(Xyce|XyceRad) /);
+$haveXyceName=($XYCE_VER =~ m/^(Xyce|XyceNF|XyceRad) /);
 $XyceName=$1;
 $annotation="";
 $have_annotation=($XYCE_VER =~ m/(-noATHENA$|-nononfree$|-noATHENA-nononfree$|-opensource$|-dakota$)/);
 $annotation=$1 if $have_annotation;
 
-$ExpectedName="Xyce" if !$haverad;
+$ExpectedName="Xyce" if (!$haverad && !$havenonfree);
+$ExpectedName="XyceNF" if (!$haverad && $havenonfree);
 $ExpectedName="XyceRad" if $haverad;
 $ExpectedAnnotation="-noATHENA-nononfree" if ($haverad && !$haveATHENA && !$havenonfree);
 $ExpectedAnnotation="-nononfree" if ($haverad && $haveATHENA && !$havenonfree);
