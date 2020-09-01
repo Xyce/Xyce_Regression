@@ -18,6 +18,18 @@ V1BAT2.5 = 1.875000e+00 for AT = 2.500000e+00
 
 V1BEXPAT2.5 = 2.875000e+00 for AT = 2.500000e+00
 
+FROM1 = 3.466667e+00
+Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= 1.000000e+00
+
+FROM2 = 1.709091e+00
+Measure Start VSRC1 Value= 2.500000e+00	Measure End VSRC1 Value= 1.000000e+00
+
+FROM3 = 3.466667e+00
+Measure Start VSRC1 Value= 4.000000e+00	Measure End VSRC1 Value= 2.000000e+00
+
+FROM4 = 3.466667e+00
+Measure Start VSRC1 Value= 4.000000e+00	Measure End VSRC1 Value= 2.000000e+00
+
 FAIL1 = FAILED
 Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= 1.000000e+00
 
@@ -52,6 +64,18 @@ V1BAT2 = 2.500000e+00 for AT = 2.000000e+00
 V1BAT2.5 = 2.812500e+00 for AT = 2.500000e+00
 
 V1BEXPAT2.5 = 3.812500e+00 for AT = 2.500000e+00
+
+FROM1 = 3.188889e+00
+Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= 1.000000e+00
+
+FROM2 = 1.936364e+00
+Measure Start VSRC1 Value= 2.500000e+00	Measure End VSRC1 Value= 1.000000e+00
+
+FROM3 = 3.188889e+00
+Measure Start VSRC1 Value= 4.000000e+00	Measure End VSRC1 Value= 2.000000e+00
+
+FROM4 = 3.188889e+00
+Measure Start VSRC1 Value= 4.000000e+00	Measure End VSRC1 Value= 2.000000e+00
 
 FAIL1 = FAILED
 Measure Start VSRC1 Value= 5.000000e+00	Measure End VSRC1 Value= 1.000000e+00
