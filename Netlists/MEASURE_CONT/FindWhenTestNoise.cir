@@ -94,6 +94,13 @@ RL e 0 1.0
 * Use of FROM-TO.  Only the rise, fall or cross values within the
 * FROM-TO windows should be returned, starting at the requested value.
 * For CROSS=LAST, only the last one within the FROM-TO window is returned
+.MEASURE NOISE whenCross1From50 WHEN VM(e)=0.45 CROSS=1 FROM=50
+.MEASURE NOISE whenCross2From50 WHEN VM(e)=0.45 CROSS=2 FROM=50
+.MEASURE NOISE whenCrossTo100 WHEN VM(e)=0.45 CROSS=1 TO=100
+.MEASURE NOISE whenRiseTo100 WHEN VM(e)=0.45 RISE=1 TO=100
+.MEASURE NOISE whenFallFrom50 WHEN VM(e)=0.45 FALL=1 FROM=50
+.MEASURE NOISE whenCrossToLast WHEN VM(e)=0.45 CROSS=LAST TO=100
+
 .MEASURE NOISE_CONT whenCross1ContFrom50 WHEN VM(e)=0.45 CROSS=1 FROM=50
 .MEASURE NOISE_CONT whenCross2ContFrom50 WHEN VM(e)=0.45 CROSS=2 FROM=50
 .MEASURE NOISE_CONT whenCrossContTo100 WHEN VM(e)=0.45 CROSS=1 TO=100

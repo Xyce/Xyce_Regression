@@ -58,6 +58,13 @@ R3 3 0 1
 * Use of FROM-TO.  Only the rise, fall or cross values within the
 * FROM-TO windows should be returned, starting at the requested value.
 * For CROSS=LAST, only the last one within the FROM-TO window is returned
+.MEASURE DC derivCross1From25 DERIV V(2) WHEN V(2)=5 CROSS=1 FROM=2.5
+.MEASURE DC derivCross2From25 DERIV V(2) WHEN V(2)=5 CROSS=2 FROM=2.5
+.MEASURE DC derivCrossTo75 DERIV V(2) WHEN V(2)=5 CROSS=1 TO=7.5
+.MEASURE DC derivRiseFrom5 DERIV V(2) WHEN V(2)=5 RISE=1 FROM=5
+.MEASURE DC derivFallTo5 DERIV V(2) WHEN V(2)=5 FALL=1 TO=5
+.MEASURE DC derivCrosstToLast DERIV V(2) WHEN V(2)=5 CROSS=LAST TO=7.5
+
 .MEASURE DC_CONT derivCross1ContFrom25 DERIV V(2) WHEN V(2)=5 CROSS=1 FROM=2.5
 .MEASURE DC_CONT derivCross2ContFrom25 DERIV V(2) WHEN V(2)=5 CROSS=2 FROM=2.5
 .MEASURE DC_CONT derivCrossContTo75 DERIV V(2) WHEN V(2)=5 CROSS=1 TO=7.5

@@ -73,6 +73,13 @@ RL e 0 1.0
 * Use of FROM-TO.  Only the rise, fall or cross values within the
 * FROM-TO windows should be returned, starting at the requested value.
 * For CROSS=LAST, only the last one within the FROM-TO window is returned
+.MEASURE NOISE derivCross1From DERIV VM(d) WHEN VM(e)=0.45 CROSS=1 FROM=0.5
+.MEASURE NOISE derivCross2From DERIV VM(d) WHEN VM(e)=0.45 CROSS=2 FROM=0.5
+.MEASURE NOISE derivCrossTo DERIV VM(d) WHEN VM(e)=0.45 CROSS=1 TO=1
+.MEASURE NOISE derivRiseTo DERIV VM(d) WHEN VM(e)=0.45 RISE=1 TO=1
+.MEASURE NOISE derivFallFrom DERIV VM(d) WHEN VM(e)=0.45 FALL=1 FROM=0.5
+.MEASURE NOISE derivCrossToLast DERIV VM(d) WHEN VM(e)=0.45 CROSS=LAST TO=1
+
 .MEASURE NOISE_CONT derivCross1ContFrom DERIV VM(d) WHEN VM(e)=0.45 CROSS=1 FROM=0.5
 .MEASURE NOISE_CONT derivCross2ContFrom DERIV VM(d) WHEN VM(e)=0.45 CROSS=2 FROM=0.5
 .MEASURE NOISE_CONT derivCrossContTo DERIV VM(d) WHEN VM(e)=0.45 CROSS=1 TO=1

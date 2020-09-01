@@ -77,6 +77,13 @@ R2  2  0  100
 * Use of FROM-TO.  Only the rise, fall or cross values within the
 * FROM-TO windows should be returned, starting at the requested value.
 * For CROSS=LAST, only the last one within the FROM-TO window is returned
+.MEASURE TRAN whenCross1From1ms WHEN V(1)=0.2 CROSS=1 FROM=1e-3
+.MEASURE TRAN whenCross2From1ms WHEN V(1)=0.2 CROSS=2 FROM=1e-3
+.MEASURE TRAN whenCrossTo8ms WHEN V(1)=0.2 CROSS=1 TO=8e-3
+.MEASURE TRAN whenRiseTo5ms WHEN V(1)=0.2 RISE=1 TO=5e-3
+.MEASURE TRAN whenFallFrom5ms WHEN V(1)=0.2 FALL=1 FROM=5e-3
+.MEASURE TRAN whenCrossToLast WHEN V(1)=0.2 CROSS=LAST TO=8e-3
+
 .MEASURE TRAN_CONT whenCross1ContFrom1ms WHEN V(1)=0.2 CROSS=1 FROM=1e-3
 .MEASURE TRAN_CONT whenCross2ContFrom1ms WHEN V(1)=0.2 CROSS=2 FROM=1e-3
 .MEASURE TRAN_CONT whenCrossContTo8ms WHEN V(1)=0.2 CROSS=1 TO=8e-3
