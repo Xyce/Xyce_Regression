@@ -35,6 +35,7 @@ DERIVVALATFAIL = FAILED for AT = 5.000000e+00
 DERIVRISELAST = 4.061657e+03 at time = 8.648854e-04
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
+Netlist warning: DERIVRISELASTFAIL failed. Measured Rise,Fall,Cross=(0,0,0)
 DERIVRISELASTFAIL = FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
@@ -339,6 +340,7 @@ DERIVVALATFAIL = FAILED for AT = 5.000000e+00
 DERIVRISELAST = 1.163279e+04 at time = 9.387504e-04
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
+Netlist warning: DERIVRISELASTFAIL failed. Measured Rise,Fall,Cross=(0,0,0)
 DERIVRISELASTFAIL = FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
