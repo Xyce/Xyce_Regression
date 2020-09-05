@@ -22,7 +22,6 @@ rload1b 1b 0 1
 * of each measure line doesn't matter.  Just that it has dc as the
 * second word.
 .measure dc_cont avgVal avg V(1)
-.measure dc_cont derivVal deriv V(1) WHEN V(1)=0.5
 .measure dc_cont dutyVal duty V(1)
 .measure dc_cont eqnVal EQN {V(1)+10}
 .measure dc_cont err1Val ERR1 v(1a) v(1b)

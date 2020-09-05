@@ -69,6 +69,12 @@ Measure Start Freq= 5.000000e+00	Measure End Freq= 1.000000e+02
 WHENVI4FT = 4.384150e+00
 Measure Start Freq= 4.000000e+00	Measure End Freq= 5.000000e+00
 
+WHENVR4TO25 = 2.413227e+01
+Measure Start Freq= 1.000000e+00	Measure End Freq= 2.500000e+01
+
+WHENVR4TO20 = FAILED
+Measure Start Freq= 1.000000e+00	Measure End Freq= 2.000000e+01
+
 FAIL1 = FAILED
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+02
 

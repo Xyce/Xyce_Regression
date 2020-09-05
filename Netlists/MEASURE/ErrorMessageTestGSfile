@@ -44,6 +44,7 @@ Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 DERIVRISENEGONE = 4.150659e+03 at time = 8.647806e-04
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
+Netlist warning: DERIVRISELASTFAIL failed. Measured Rise,Fall,Cross=(0,0,0)
 DERIVRISELASTFAIL = FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 

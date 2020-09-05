@@ -58,6 +58,14 @@ R2 2 0 1
 .MEASURE DC whenv2from3 WHEN v(2)=2 FROM=1.8
 .MEASURE DC whenv2from4 WHEN v(2)=2 FROM=1.5 TO=1.8
 
+* This should get the same value as the whenv2from4 measure
+.MEASURE DC whenv2from5 WHEN v(2)=2 TO=1.5 FROM=1.8
+
+* The TO2 measure should fail, since the TO1 measure succeeds
+* at a sweep value of 1.33
+.MEASURE DC TO1 WHEN V(2)=3 TO=1.5
+.MEASURE DC TO2 WHEN V(2)=3 TO=1.1
+
 * FROM=TO value should work in this case, even though this
 * is a pathological case
 .MEASURE DC findwhen1Pt FIND v(1c) WHEN v(1a)=2 FROM=2 TO=2
@@ -66,6 +74,11 @@ R2 2 0 1
 .measure dc FAIL1 WHEN v(1b)=10
 .measure dc FAIL2 FIND v(1c) WHEN v(1b)=10
 .measure dc FAIL3 FIND v(1c) AT=10
+
+* Test case of both FROM and TO given, but both are outside of the
+* measurement window
+.measure dc FAIL4 WHEN v(2)=2 FROM=6 TO=10
+.measure dc FAIL5 WHEN v(2)=2 FROM=-5 TO=0
 
 * Tests should return -1 or -100, since the FROM-T0 window
 * does not overlap with the stepped values for VSRC1:DCV0
