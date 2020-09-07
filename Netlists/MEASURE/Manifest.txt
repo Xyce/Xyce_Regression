@@ -35,6 +35,10 @@ FindWhenTestInc.cir.sh
 FindWhenVariableTest.cir
 FindWhenVariableTest.cir.sh
 FindWhenVariableTestGSfile
+WhenInterpolationTest.cir
+WhenInterpolationTest.csv
+WhenInterpolationTest.cir.sh
+WhenInterpolationTestGSfile
 FourierTest.cir
 FourierTest.cir.tags
 FreqTest.cir
