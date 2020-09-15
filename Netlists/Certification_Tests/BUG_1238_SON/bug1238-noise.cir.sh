@@ -30,11 +30,15 @@ $freqreltol=1e-6;
 # This is the list of fields that must be in the output.
 # Use of unordered maps in Xyce means they might not come out in the
 # same order on different platforms.
-@expectedOutputs=("Index", "FREQ", "VR\\(4\\)", "VR\\(3\\)"," VR\\(1\\)", "VR\\(2\\)",
+@expectedOutputs=("Index", "FREQ",
+        "Re\\(V\\(4\\)\\)","Im\\(V\\(4\\)\\)","Re\\(V\\(3\\)\\)","Im\\(V\\(3\\)\\)",
+        "Re\\(V\\(1\\)\\)","Im\\(V\\(1\\)\\)","Re\\(V\\(2\\)\\)","Im\\(V\\(2\\)\\)",
+        "VR\\(4\\)", "VR\\(3\\)"," VR\\(1\\)", "VR\\(2\\)",
         "VI\\(4\\)", "VI\\(3\\)"," VI\\(1\\)", "VI\\(2\\)",
         "VM\\(4\\)", "VM\\(3\\)"," VM\\(1\\)", "VM\\(2\\)",
         "VP\\(4\\)", "VP\\(3\\)"," VP\\(1\\)", "VP\\(2\\)",
         "VDB\\(4\\)", "VDB\\(3\\)"," VDB\\(1\\)", "VDB\\(2\\)",
+         "Re\\(I\\(V1\\)\\)","Im\\(I\\(V1\\)\\)","Re\\(I\\(EAMP\\)\\)","Im\\(I\\(EAMP\\)\\)",
         "IR\\(V1\\)", "IR\\(EAMP\\)", "II\\(V1\\)", "II\\(EAMP\\)", "IM\\(V1\\)",
         "IM\\(EAMP\\)", "IP\\(V1\\)", "IP\\(EAMP\\)", "IDB\\(V1\\)", "IDB\\(EAMP\\)");
 
@@ -118,7 +122,23 @@ if ($retval==0)
             print CIRFILE2 ".print noise";
             foreach $field (@headerfields)
             {
-                print CIRFILE2 " $field";
+                if ( (substr($field,0,4) eq "Re(V" && substr($field,-1,1) eq ")") ||
+                     (substr($field,0,4) eq "Re(I" && substr($field,-1,1) eq ")") )
+                {
+                  # these fields should generate a V() or I() operator on the .PRINT line
+                  $outField = substr($field,3,length($field)-4);
+                  print CIRFILE2 " $outField";
+                }
+                elsif ( (substr($field,0,4) eq "Im(V" && substr($field,-1,1) eq ")") ||
+                        (substr($field,0,4) eq "Im(I" && substr($field,-1,1) eq ")") )
+                {
+                  # no op, to account for the expansion of V() or I() in their real
+                  # and imaginary parts.
+                }
+                else
+                {
+                  print CIRFILE2 " $field";
+                }
             }
             print CIRFILE2 "\n";
         }
