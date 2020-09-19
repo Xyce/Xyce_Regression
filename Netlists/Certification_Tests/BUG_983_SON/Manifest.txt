@@ -6,6 +6,8 @@ mesfet.cir
 mesfet.cir.sh
 mosfet.cir
 mosfet.cir.sh
+nsoi.cir
+nsoi.cir.sh
 noThreeTerminal.cir
 noThreeTerminal.cir.sh
 tags

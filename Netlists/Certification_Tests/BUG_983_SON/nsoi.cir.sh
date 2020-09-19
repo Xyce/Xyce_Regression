@@ -12,15 +12,6 @@ $Tools = XyceRegression::Tools->new();
 
 $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
-
-$fc = $XYCE_VERIFY;
-$fc =~ s/xyce_verify/file_compare/;
-
-# comparison tolerances for file_compare.pl
-$abstol=1e-6;
-$reltol=1e-3;  #0.1%
-$zerotol=1e-8;
-
 $CIRFILE=$ARGV[3];
 $PRNOUT=$CIRFILE.".prn";
 
@@ -30,11 +21,11 @@ system("rm -f $CIRFILE\_faked*");
 # This is the list of fields that must be in the output.
 # Use of unordered maps in Xyce means they might not come out in the
 # same order on different platforms.
-@expectedOutputs=("Index", "V\\(1\\)", "IB\\(Q1\\)", "IB\\(Q2\\)",
-           "IC\\(Q1\\)", "IC\\(Q2\\)", "IE\\(Q1\\)", "IE\\(Q2\\)",
-           "IS\\(Q1\\)", "IS\\(Q2\\)");
+@expectedOutputs=("Index", "TIME", "ID\\(MN1\\)", "ID\\(MN2\\)",
+           "IG\\(MN1\\)", "IG\\(MN2\\)", "IS\\(MN1\\)", "IS\\(MN2\\)",
+           "IE\\(MN1\\)", "IE\\(MN2\\)", "IB\\(MN1\\)", "IB\\(MN2\\)");
 
-# Now run the main netlist, which has the IB(*) IC(*) IE(*) IS(*) print line in it.
+# Now run the main netlist, which has the ID(*) IG(*) IS(*) IE(*) IB(*) print line in it.
 $retval = -1;
 $retval=$Tools->wrapXyce($XYCE,$CIRFILE);
 if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
@@ -80,7 +71,8 @@ elsif ($numMatch != ($#expectedOutputs + 1))
 if ($retval==0)
 {
     @headerfields=split(' ',$headerline);
-    # Get rid of Index
+    # Get rid of Index and Time
+    shift(@headerfields);
     shift(@headerfields);
 
     open(CIRFILE,"<$CIRFILE");
@@ -90,7 +82,7 @@ if ($retval==0)
     {
         if (/.print/i)
         {
-            print CIRFILE2 ".print dc";
+            print CIRFILE2 ".print tran";
             foreach $field (@headerfields)
             {
                 print CIRFILE2 " $field";
@@ -106,19 +98,14 @@ if ($retval==0)
     close(CIRFILE2);
 
     # we have now created a new circuit file that should have a .print line that matches what the
-    # IB(*) IC(*) IE(*) version did
+    # ID(*) IG(*) IS(*) IB(*) version did
     $retval=$Tools->wrapXyce($XYCE,$CIRFILE2);
     if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
     if (not -s "$CIRFILE2.prn" ) { print "Exit code = 14\n"; exit 14; }
 
-    # use file_compare because of the two-variable dc sweep
-    $CMD="$fc $CIRFILE2.prn $CIRFILE.prn $abstol $reltol $zerotol > $CIRFILE.prn.out 2> $CIRFILE.prn.err";
-    $retcode = system($CMD);
-    $retcode = $retcode >> 8;
-    if ($retcode!= 0){
-      print STDERR "Comparator exited on file $CIRFILE.prn with exit code $retcode\n";
-      $retcode = 2;
-    }
+    # Have to use the faked cirfile here so that xyce_verify gets the right header expectations
+    $CMD="$XYCE_VERIFY $CIRFILE2 $PRNOUT $CIRFILE2.prn > $CIRFILE.prn.out 2> $CIRFILE.prn.err";
+    $retcode=system($CMD);
     $retval=2 if $retcode != 0;
 }
 
