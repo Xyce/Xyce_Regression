@@ -11,6 +11,8 @@ starInNames.cir.sh
 headerGold
 ac.cir
 ac.cir.sh
+multiterminal_devices.cir
+multiterminal_devices.cir.sh
 invalid_wildcards.cir
 invalid_wildcards.cir.sh
 invalid_wildcards.cir.tags
