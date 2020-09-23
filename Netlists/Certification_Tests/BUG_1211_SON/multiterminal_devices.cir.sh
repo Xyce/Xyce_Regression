@@ -21,10 +21,11 @@ system("rm -f $CIRFILE\_faked*");
 # This is the list of fields that must be in the output.
 # Use of unordered maps in Xyce means they might not come out in the
 # same order on different platforms.
-@expectedOutputs=("Index", "TIME", "I\\(VDD1\\)", "I\\(R1A\\)");
+@expectedOutputs=("Index", "TIME", "I\\(VDD1\\)", "I\\(R1A\\)",
+   "P\\(VDD1\\)", "P\\(R1A\\)", "P\\(J1\\)", "P\\(M1\\)", "P\\(Q1\\)", "P\\(Z1\\)",
+   "W\\(VDD1\\)", "W\\(R1A\\)", "W\\(J1\\)", "W\\(M1\\)", "W\\(Q1\\)", "W\\(Z1\\)");
 
-
-# Now run the main netlist, which has the I() wilcard print line in it.
+# Now run the main netlist, which has the I() P() W()  wildcard print line in it.
 $retval = -1;
 $retval=$Tools->wrapXyce($XYCE,$CIRFILE);
 if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
@@ -97,7 +98,7 @@ if ($retval==0)
     close(CIRFILE2);
 
     # we have now created a new circuit file that should have a .print line that matches
-    # what the I() wilcard version did
+    # what the I() P() W() wildcard version did
     $retval=$Tools->wrapXyce($XYCE,$CIRFILE2);
     if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
     if (not -s "$CIRFILE2.prn" ) { print "Exit code = 14\n"; exit 14; }

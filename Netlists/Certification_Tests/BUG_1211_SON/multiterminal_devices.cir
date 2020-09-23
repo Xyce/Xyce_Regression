@@ -1,11 +1,13 @@
 ****************************************************************
 * Test that I(*1) does not include the multi-terminal devices.
 * It should only include the V and R devices in this example.
+* The P(*1) and W(*1) wildcards should include the J, M, Q and
+* Z devices though.
 *
 * See SON Bug 1211 for more details.
 ****************************************************************
-.tran 1ns 50us
-.PRINT TRAN I(*1)
+.tran 1ns 1us
+.PRINT TRAN I(*1) P(*1) W(*1)
 
 * PMOS Level 1
 VDD1 2 0 DC 5V

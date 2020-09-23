@@ -25,7 +25,7 @@ system("rm -f $CIRFILE\_faked*");
           "I\\(X1:X2:V1\\)", "I\\(X1:X2:R1\\)", "I\\(X1:X2:R2\\)", "I\\(X1:X2:L1\\)");
 
 
-# Now run the main netlist, which has the I() wilcard print line in it.
+# Now run the main netlist, which has the I() wildcard print line in it.
 $retval = -1;
 $retval=$Tools->wrapXyce($XYCE,$CIRFILE);
 if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
@@ -98,7 +98,7 @@ if ($retval==0)
     close(CIRFILE2);
 
     # we have now created a new circuit file that should have a .print line that matches
-    # what the I() wilcard version did
+    # what the I() wildcard version did
     $retval=$Tools->wrapXyce($XYCE,$CIRFILE2);
     if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
     if (not -s "$CIRFILE2.prn" ) { print "Exit code = 14\n"; exit 14; }
