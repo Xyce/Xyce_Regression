@@ -21,9 +21,9 @@ system("rm -f $CIRFILE\_faked*");
 # This is the list of fields that must be in the output.
 # Use of unordered maps in Xyce means they might not come out in the
 # same order on different platforms.
-@expectedOutputs=("Index", "TIME", "I\\(VDD1\\)", "I\\(R1A\\)",
-   "P\\(VDD1\\)", "P\\(R1A\\)", "P\\(J1\\)", "P\\(M1\\)", "P\\(Q1\\)", "P\\(Z1\\)",
-   "W\\(VDD1\\)", "W\\(R1A\\)", "W\\(J1\\)", "W\\(M1\\)", "W\\(Q1\\)", "W\\(Z1\\)");
+@expectedOutputs=("Index", "TIME", "V\\(2\\)", "I\\(VDD1\\)", "I\\(R1\\)",
+   "P\\(VDD1\\)", "P\\(R1\\)", "P\\(J1\\)", "P\\(M1\\)", "P\\(Q1\\)", "P\\(Z1\\)",
+   "W\\(VDD1\\)", "W\\(R1\\)", "W\\(J1\\)", "W\\(M1\\)", "W\\(Q1\\)", "W\\(Z1\\)");
 
 # Now run the main netlist, which has the I() P() W()  wildcard print line in it.
 $retval = -1;

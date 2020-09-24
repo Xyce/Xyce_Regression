@@ -1,18 +1,18 @@
 ****************************************************************
 * Test that I(*1) does not include the multi-terminal devices.
-* It should only include the V and R devices in this example.
-* The P(*1) and W(*1) wildcards should include the J, M, Q and
-* Z devices though.
+* It should only include the VDD1 and R1 device in this example.
+* It should not include the R1A device. The P(*1) and W(*1)
+* wildcards should include the J, M, Q and Z devices though.
 *
 * See SON Bug 1211 for more details.
 ****************************************************************
 .tran 1ns 1us
-.PRINT TRAN I(*1) P(*1) W(*1)
+.PRINT TRAN V(*2) I(*1) P(*1) W(*1)
 
 * PMOS Level 1
 VDD1 2 0 DC 5V
-R1a 2 1 50K
-R2 1 0 50K
+R1 2 1 50K
+R1a 1 0 50K
 RD 4 0 7.5K
 M1 4 1 2 2 PFET L=10U W=160U
 .MODEL PFET PMOS(LEVEL=1 KP=25U VTO=-0.8V)
