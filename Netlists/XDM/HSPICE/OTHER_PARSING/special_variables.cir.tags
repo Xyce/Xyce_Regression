@@ -1,0 +1,4 @@
+serial, nightly
+required:xdm
+hspice
+exclude
