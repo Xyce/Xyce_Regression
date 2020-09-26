@@ -31,9 +31,10 @@ system("rm -f $CIRFILE\_faked*");
 # Use of unordered maps in Xyce means they might not come out in the
 # same order on different platforms.
 @expectedOutputs=("Index", "V\\(1\\)", "IB\\(Q1\\)", "IB\\(Q2\\)",
-           "IC\\(Q1\\)", "IC\\(Q2\\)", "IE\\(Q1\\)", "IE\\(Q2\\)");
+           "IC\\(Q1\\)", "IC\\(Q2\\)", "IE\\(Q1\\)", "IE\\(Q2\\)",
+           "IS\\(Q1\\)", "IS\\(Q2\\)");
 
-# Now run the main netlist, which has the IB(*) IC(*) IE(*) print line in it.
+# Now run the main netlist, which has the IB(*) IC(*) IE(*) IS(*) print line in it.
 $retval = -1;
 $retval=$Tools->wrapXyce($XYCE,$CIRFILE);
 if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }

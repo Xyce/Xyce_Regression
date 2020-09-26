@@ -13,7 +13,7 @@ $Tools = XyceRegression::Tools->new();
 
 # these search strings are supposed to occur one right after the other in the
 # error output.  Note that parens are escaped with \\
-@searchstrings = ("Netlist error: Syntax error in expression");
+@searchstrings = ("Netlist error: syntax error in expression");
 
 $XYCE=$ARGV[0];
 #$XYCE_VERIFY=$ARGV[1];

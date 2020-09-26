@@ -9,8 +9,14 @@ pwstar.cir.sh
 starInNames.cir
 starInNames.cir.sh
 headerGold
+ac.cir
+ac.cir.sh
+multiterminal_devices.cir
+multiterminal_devices.cir.sh
 invalid_wildcards.cir
 invalid_wildcards.cir.sh
 invalid_wildcards.cir.tags
 invalid_wildcards.cir.options
+unsupported_wildcards.cir
+unsupported_wildcards.cir.sh
 tags

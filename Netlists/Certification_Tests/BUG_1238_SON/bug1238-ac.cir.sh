@@ -30,8 +30,11 @@ $freqreltol=1e-6;
 # This is the list of fields that must be in the output.
 # Use of unordered maps in Xyce means they might not come out in the
 # same order on different platforms.
-@expectedOutputs=("Index", "FREQ", "VR\\(A\\)", "VR\\(B\\)", "VI\\(A\\)", "VI\\(B\\)",
+@expectedOutputs=("Index", "FREQ",
+        "Re\\(V\\(A\\)\\)","Im\\(V\\(A\\)\\)","Re\\(V\\(B\\)\\)","Im\\(V\\(B\\)\\)",
+        "VR\\(A\\)", "VR\\(B\\)", "VI\\(A\\)", "VI\\(B\\)",
         "VM\\(A\\)", "VM\\(B\\)", "VP\\(A\\)", "VP\\(B\\)", "VDB\\(A\\)", "VDB\\(B\\)",
+        "Re\\(I\\(L1\\)\\)","Im\\(I\\(L1\\)\\)","Re\\(I\\(V1\\)\\)","Im\\(I\\(V1\\)\\)",
         "IR\\(L1\\)", "IR\\(V1\\)", "II\\(L1\\)", "II\\(V1\\)", "IM\\(L1\\)", "IM\\(V1\\)",
         "IP\\(L1\\)", "IP\\(V1\\)", "IDB\\(L1\\)","IDB\\(V1\\)");
 
@@ -115,7 +118,23 @@ if ($retval==0)
             print CIRFILE2 ".print ac";
             foreach $field (@headerfields)
             {
-                print CIRFILE2 " $field";
+                if ( (substr($field,0,4) eq "Re(V" && substr($field,-1,1) eq ")") ||
+                     (substr($field,0,4) eq "Re(I" && substr($field,-1,1) eq ")") )
+                {
+                  # these fields should generate a V() or I() operator on the .PRINT line
+                  $outField = substr($field,3,length($field)-4);
+                  print CIRFILE2 " $outField";
+                }
+                elsif ( (substr($field,0,4) eq "Im(V" && substr($field,-1,1) eq ")") ||
+                        (substr($field,0,4) eq "Im(I" && substr($field,-1,1) eq ")") )
+                {
+                  # no op, to account for the expansion of V() or I() in their real
+                  # and imaginary parts.
+                }
+                else
+                {
+                  print CIRFILE2 " $field";
+                }
             }
             print CIRFILE2 "\n";
         }

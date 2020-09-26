@@ -97,7 +97,7 @@ if ($retval==0)
     close(CIRFILE2);
 
     # we have now created a new circuit file that should have a .print line that matches
-    # what the P() wilcard version did
+    # what the P() wildcard version did
     $retval=$Tools->wrapXyce($XYCE,$CIRFILE2);
     if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
     if (not -s "$CIRFILE2.prn" ) { print "Exit code = 14\n"; exit 14; }

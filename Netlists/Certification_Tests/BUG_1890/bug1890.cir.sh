@@ -39,7 +39,8 @@ open(XYCE_OUTPUT, "$CIRFILE.out");
 my $foundCorrectErrorMsg=0;
 while( $line=<XYCE_OUTPUT> )
 {
-  if( $line =~ /Can\'t find context for expression variable IVS in expression/)
+  #if( $line =~ /Can\'t find context for expression variable IVS in expression/)
+  if( $line =~ /Function IVS is not resolved/)
   { 
     $foundCorrectErrorMsg=1;
     break;

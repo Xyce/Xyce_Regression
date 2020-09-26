@@ -15,8 +15,8 @@ R3 6 0 1
 R1 1 3a RESISTANCE
 R2 3a 3b 1
 X3 3b 4a R2
-R4 4a 4b 1
-R5 4b 5 1
+R4 4a 4ab 1
+R5 4ab 5 1
 .ENDS
 
 .SUBCKT R2 d f

@@ -20,19 +20,19 @@ $CIRFILE=$ARGV[3];
 # Note: must escape ( ) and * and + with \\ to get the CheckError() function to work.  
 @searchstrings = ( 
   ["Netlist error: Wrong number of arguments for user defined function",
-   "UDFA\\(MU,SIGMA\\) in expression \\(V\\(2\\)\\+UDFA\\(0.01, 1e-06, 23\\)\\)/50"],
+   "UDFA\\(MU,SIGMA\\) in expression \\(V\\(2\\)\\+udfA\\(10m,1u,23\\)\\)/50"],
   ["Netlist error: Wrong number of arguments for user defined function",
-   "UDFA\\(MU,SIGMA\\) in expression UDFA\\(0.01, 1e-06, 23\\)/50"],
+   "UDFA\\(MU,SIGMA\\) in expression udfA\\(10m,1u,23\\)/50"],
   ["Netlist error: Wrong number of arguments for user defined function",
-   "UDFA\\(MU,SIGMA\\) in expression UDFA\\(0.01, 1e-06, 23\\)\\+V\\(2\\)"],
+   "UDFA\\(MU,SIGMA\\) in expression udfA\\(10m,1u,23\\)\\+V\\(2\\)"],
   ["Netlist error: Wrong number of arguments for user defined function",
-   "UDFA\\(MU,SIGMA\\) in expression UDFA\\(0.01, 1e-06, 23\\)"],
+   "UDFA\\(MU,SIGMA\\) in expression udfA\\(10m,1u,23\\)"],
   ["Netlist error: Wrong number of arguments for user defined function",
-   "UDFB\\(MU,SIGMA,T\\) in expression \\(V\\(2\\)\\+UDFB\\(0.01, 1e-06\\)\\)/50"],
+   "UDFB\\(MU,SIGMA,T\\) in expression \\(V\\(2\\)\\+udfB\\(10m,1u\\)\\)/50"],
   ["Netlist error: Wrong number of arguments for user defined function",
-   "UDFB\\(MU,SIGMA,T\\) in expression \\(UDFB\\(0.01, 1e-06\\)\\+V\\(2\\)\\)/50"],
+   "UDFB\\(MU,SIGMA,T\\) in expression \\(udfB\\(10m,1u\\)\\+V\\(2\\)\\)/50"],
   ["Netlist error: Wrong number of arguments for user defined function",
-   "UDFB\\(MU,SIGMA,T\\) in expression UDFB\\(0.02, 1e-06\\)/50"]
+  "UDFB\\(MU,SIGMA,T\\) in expression \\(udfB\\(20m,1u\\)\\)/50"]
    );
 
 $retval = $Tools->runAndCheckGroupedError($CIRFILE,$XYCE,@searchstrings);

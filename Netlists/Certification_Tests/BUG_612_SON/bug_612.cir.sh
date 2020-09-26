@@ -24,7 +24,7 @@ $Tools = XyceRegression::Tools->new();
 
 # these search strings are supposed to occur one right after the other in the
 # error output.
-@searchstrings = ( "Syntax error in expression" );
+@searchstrings = ( "syntax error in expression" );
 
 $XYCE=$ARGV[0];
 #$XYCE_VERIFY=$ARGV[1];

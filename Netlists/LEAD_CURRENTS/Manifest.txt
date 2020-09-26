@@ -105,6 +105,9 @@ lead_for_invalid_device.cir.tags
 lead_unsupported_devices.cir
 lead_unsupported_devices.cir.sh
 lead_unsupported_devices.cir.tags
+lead_unsupported_multiterm_syntax.cir
+lead_unsupported_multiterm_syntax.cir.sh
+lead_unsupported_multiterm_syntax.cir.tags
 lead_unsupported_devices_ac.cir
 lead_unsupported_devices_ac.cir.sh
 lead_unsupported_devices_ac.cir.tags
