@@ -7,6 +7,10 @@
 * See SON Bug 1140 for more details
 *****************************************************
 
+.PARAM P1=100.0
+.PARAM P2=10000.0
+.PARAM P3=1000.0
+
 * Trivial high-pass filter (V-C-R) circuit
 R1 b 0 2
 C1 a b 1u
@@ -51,6 +55,11 @@ V1 a 0 DC 0V AC 1
 .MEASURE AC maxvmbFromTo max vm(b) FROM=1e3 TO=1e5
 .MEASURE AC minvmbFromTo min vm(b) FROM=1e3 TO=1e5
 .MEASURE AC ppvmbFromTo pp vm(b) FROM=1e3 TO=1e5
+
+* FROM and TO as expressions
+.MEASURE AC maxvibfromexp max vi(b) FROM={9.0e4+P2}
+.MEASURE AC maxvmbtoexp max vm(b) TO={900.0+P1}
+.MEASURE AC ppvmbfromtoexp pp vm(b) FROM={9000.0+P3} TO={9.0e4+P2}
 
 * OUTPUT= qualifier
 .MEASURE AC FreqOfMaxvb max vr(b) OUTPUT=FREQ

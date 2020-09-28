@@ -54,6 +54,18 @@ Measure Start VSRC1 Value= 2.000000e+00	Measure End VSRC1 Value= 4.000000e+00
 PPV1BTF = 1.818182e+00 with max at VSRC1 value= 4.000000e+00 and min at VSRC1 value= 2.000000e+00
 Measure Start VSRC1 Value= 2.000000e+00	Measure End VSRC1 Value= 4.000000e+00
 
+PPV1BFTEXP = 1.818182e+00 with max at VSRC1 value= 4.000000e+00 and min at VSRC1 value= 2.000000e+00
+Measure Start VSRC1 Value= 2.000000e+00	Measure End VSRC1 Value= 4.000000e+00
+
+PPV1BTFEXP = 1.818182e+00 with max at VSRC1 value= 4.000000e+00 and min at VSRC1 value= 2.000000e+00
+Measure Start VSRC1 Value= 2.000000e+00	Measure End VSRC1 Value= 4.000000e+00
+
+MAXFROMEXP = 4.545455e+00 at VSRC1 value = 5.000000e+00
+Measure Start VSRC1 Value= 4.000000e+00	Measure End VSRC1 Value= 5.000000e+00
+
+MAXTOEXP = 3.636364e+00 at VSRC1 value = 4.000000e+00
+Measure Start VSRC1 Value= 1.000000e+00	Measure End VSRC1 Value= 4.000000e+00
+
 MAXRETURNNEGONE = FAILED
 Measure Start VSRC1 Value= 1.000000e+00	Measure End VSRC1 Value= 5.000000e+00
 
