@@ -11,8 +11,6 @@ $Tools = XyceRegression::Tools->new();
 # $ARGV[3] = location of circuit file to test
 # $ARGV[4] = location of gold standard prn file
 
-use Getopt::Long;
-&GetOptions( "verbose!" => \$verbose );
 $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
 $CIRFILE=$ARGV[3];
