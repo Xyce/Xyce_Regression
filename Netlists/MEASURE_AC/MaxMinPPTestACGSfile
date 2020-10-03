@@ -81,6 +81,15 @@ Measure Start Freq= 1.000000e+03	Measure End Freq= 1.000000e+05
 PPVMBFROMTO = 7.699136e-01 with max at freq= 1.000000e+05 and min at freq= 1.000000e+03
 Measure Start Freq= 1.000000e+03	Measure End Freq= 1.000000e+05
 
+MAXVIBFROMEXP = 4.872317e-01 at freq = 1.000000e+05
+Measure Start Freq= 1.000000e+05	Measure End Freq= 1.000000e+06
+
+MAXVMBTOEXP = 1.256538e-02 at freq = 1.000000e+03
+Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+03
+
+PPVMBFROMTOEXP = 6.577959e-01 with max at freq= 1.000000e+05 and min at freq= 1.000000e+04
+Measure Start Freq= 1.000000e+04	Measure End Freq= 1.000000e+05
+
 FREQOFMAXVB = 9.937073e-01 at freq = 1.000000e+06
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 

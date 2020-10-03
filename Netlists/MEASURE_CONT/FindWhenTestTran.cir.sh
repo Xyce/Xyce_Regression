@@ -21,7 +21,6 @@ use MeasureCommon;
 # output from comparison to go into $CIRFILE.prn.out and the STDERR output from
 # comparison to go into $CIRFILE.prn.err.
 
-use Getopt::Long;
 use File::Basename;
 use File::Copy;
 

@@ -107,6 +107,28 @@ fi
 # should be set last, because they work by creating a second tags list
  # based on what we've done so far.  If we do these earlier, some tests
 # can fall through the cracks.
+
+# ADMS models are compiled in by default, but sometimes developers shut them
+# off to speed up builds
+grep 'Verilog-A' $TMP_CAPABILITIES_FILE>/dev/null 2>&1
+if [ $? = 0 ]
+then
+    TAGLIST="${TAGLIST}?adms"
+else
+    TAGLIST="${TAGLIST}-adms"
+fi
+
+# Analytic sensitivity code can be slow to compile and takes a lot of
+# memory (or at least it used to).  Some users on tiny machines might turn
+# it off.
+grep 'sensitivities in ADMS' $TMP_CAPABILITIES_FILE>/dev/null 2>&1
+if [ $? = 0 ]
+then
+    TAGLIST="${TAGLIST}?admssens"
+else
+    TAGLIST="${TAGLIST}-admssens"
+fi
+
 # NonFree models
 BUILD_IS_OS=0
 grep 'Non-Free device models' $TMP_CAPABILITIES_FILE>/dev/null 2>&1
