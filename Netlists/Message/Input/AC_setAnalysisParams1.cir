@@ -3,7 +3,7 @@
 * <num points> entry, that is not an integer.  This also
 * covers the case of <num points> less than 1.
 *
-* See SON Bug 1146 for more details.
+* See SON Bugs 1146 and 1321 for more details.
 ********************************************************
 
 * Trivial high-pass filter (V-C-R) circuit.

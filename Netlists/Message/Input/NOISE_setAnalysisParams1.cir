@@ -3,7 +3,7 @@
 * <num points> entry, that is not an integer.  This also
 * covers the case of <num points> less than 1.
 *
-* See SON Bug 1042 for more details.
+* See SON Bugs 1042 and 1321 for more details.
 ********************************************************
 
 v1  1 0 dc 5.0 ac 1
