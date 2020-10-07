@@ -31,13 +31,11 @@ sub getXdmWrapVersion
 {
   my $XDMWRAP;
 
-  # the xdm_wrap script sets up (and cleans-up) the environment
-  # (e.g., python version) required to run xdm.  The xdm_wrap
-  # line should be used to test against the "current released
-  # version" of xdm.  The other lines are used to select a particular
-  # version of xdm for testing.
-  # xdm 1.4.0 is the current released version of xdm.  So, xdm_wrap
-  # will point to that version also.
+  # Originally, the xdm_wrap script set up (and cleans-up) the environment
+  # (e.g., python version) required to run xdm. 
+  # Currently, this just points to the installed version of xdm
+  # in the test envrinment.  It will be called "xdm_bdl" because
+  # xdm referes to the "X Windows display manager on unix systems.
   my $XDMWRAP="xdm_bdl";
 
   return $XDMWRAP;
@@ -66,6 +64,16 @@ sub setXDMvariables
   {
     $FROMSPICEXML="pspice";
     $OUTFILETYPE="csd";
+  }
+  elsif ($FROMSPICE eq "tspice")
+  {
+    $FROMSPICEXML="tspice";
+    $OUTFILETYPE="prn";
+  }
+  elsif ($FROMSPICE eq "tspice")
+  {
+    $FROMSPICEXML="tspice";
+    $OUTFILETYPE="prn";
   }
   elsif ($FROMSPICE eq "spectre")
   {
@@ -252,6 +260,10 @@ sub verifyXDMtranslation
   if ($FROMSPICE eq "pspice")
   {
     $retval = XdmCommon::compareCSDfiles("$CIRFILE.csd","./$TRANSLATEDDIR/$CIRFILE.csd",$absTol,$relTol,$zeroTol);
+  }
+  elsif ($FROMSPICE eq "tspice")
+  {
+    $retval = system("$XYCE_VERIFY $CIRFILE ./$TRANSLATEDDIR/$CIRFILE.prn $CIRFILE.prn > $CIRFILE.out 2> $CIRFILE.err");
   }
   elsif ($FROMSPICE eq "spectre")
   {
@@ -458,6 +470,10 @@ sub translateAndCheckXyceMessages
   # are used.
   chdir "./$TRANSLATEDDIR";
   if ($FROMSPICE eq "hspice")
+  {
+    $retval=system("$XYCE $CIRFILE -o $CIRFILE.prn > $CIRFILE.out 2> $CIRFILE.err");
+  }
+  elsif ($FROMSPICE eq "tspice")
   {
     $retval=system("$XYCE $CIRFILE -o $CIRFILE.prn > $CIRFILE.out 2> $CIRFILE.err");
   }
