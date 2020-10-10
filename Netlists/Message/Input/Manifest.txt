@@ -125,6 +125,10 @@ SweepParams_convertData1.cir
 SweepParams_convertData.cir.sh
 SweepParams_processDataStatements.cir
 SweepParams_processDataStatements.cir.sh
+SweepParams_parseSweepParams.cir
+SweepParams_parseSweepParams.cir.sh
+SweepParams_parseSweepParams1.cir
+SweepParams_parseSweepParams2.cir
 exclude
 tags
 DeviceBlock_extractSourceFields_2.cir.sh

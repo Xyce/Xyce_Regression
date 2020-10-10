@@ -38,7 +38,8 @@ $CIR[3]="NOISE_setAnalysisParams4.cir";
 $exitcode = 0;
 
 print "Testing $CIR[0]\n";
-@searchstrings = ("Netlist error: Points Value parameter on .NOISE line must be non-negative");
+@searchstrings = ("Netlist error: Points Value parameter on .NOISE line must be an integer",
+    "Netlist error: Points Value parameter on .NOISE line must be >= 1");
 
 $retval = $Tools->runAndCheckError($CIR[0],$XYCE,@searchstrings);
 if ($retval !=0)

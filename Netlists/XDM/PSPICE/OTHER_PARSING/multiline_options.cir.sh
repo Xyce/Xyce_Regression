@@ -1,6 +1,10 @@
 #!/usr/bin/env perl
 
+use XyceRegression::Tools;
 use XdmCommon;
+
+#$Tools = XyceRegression::Tools->new();
+#$Tools->setDebug(1);
 
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
@@ -9,6 +13,8 @@ use XdmCommon;
 # $ARGV[3] = location of circuit file to test
 # $ARGV[4] = location of gold standard prn file
 
+use Getopt::Long;
+&GetOptions( "verbose!" => \$verbose );
 $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
 $CIRFILE=$ARGV[3]; 
@@ -38,8 +44,8 @@ $xdmOutputSearchStringsPtr=\@xdmOutputSearchStrings;
 # these strings should be in the translated Xyce netlist
 @translatedXyceNetlistSearchStrings= (".OPTIONS DEVICE GMIN=1.0E-9",
   ".OPTIONS NONLIN-TRAN MAXSTEP=20 RELTOL=0.01 ABSTOL=100u",
-  ".OPTIONS TIMEINT RELTOL=0.01 METHOD=TRAP",
   ".OPTIONS NONLIN RELTOL=0.01 ABSTOL=100u",
+  ".OPTIONS TIMEINT RELTOL=0.01 METHOD=TRAP",
 );
 $translatedXyceNetlistSearchStringsPtr=\@translatedXyceNetlistSearchStrings;
 

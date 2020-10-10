@@ -26,4 +26,6 @@ SAMPLING_setAnalysisParams1.cir
 SAMPLING_setAnalysisParams2.cir
 SAMPLING_setAnalysisParams3.cir
 SweepParams_convertData1.cir
+SweepParams_parseSweepParams1.cir
+SweepParams_parseSweepParams2.cir
 
