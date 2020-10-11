@@ -52,19 +52,21 @@ Regression test for simple normal distribution sampling.
 .global_param testNorm={agauss(0.5K,0.05K,1)}
 .global_param R1value={testNorm*2.0}
 
-R2 1 0 7K
-R1 1 2 {R1value}
-v1 2 0 1000V
+r2 1 0 7k
+r1 1 2 {r1value}
+v1 2 0 1000v
 
-.op
+.dc v1 1000 1000 1
 
-* normally distributed samples, mean=3K; std deviation=1K
-.SAMPLING 
+* normally distributed samples, mean=3k; std deviation=1k
+.embeddedsampling 
 + useExpr=true
 
-.options samples numsamples=25000
-+ outputs={R1:R},{V(1)}
-+ sample_type=mc
+* embedded outputs for device parameters like r1:r don't work yet.  erk. 2/8/2019
+.options embeddedsamples numsamples=10000
+*+ outputs={r1:r},{v(1)}
++ outputs={V(1)}
++ sample_type=lhs
 + stdoutput=true
 
 .end

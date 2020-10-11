@@ -25,15 +25,17 @@ Regression test for simple normal distribution sampling.
 
 R2 1 0 6K
 R1 1 2 {R1value}
-v1 2 0 1000V
+v1 2 0 1000v
 
 .dc v1 1000 1000 1
 
-.sampling 
+.embeddedsampling 
 + useExpr=true
 
-.options samples numsamples=25000
-+ outputs={R1:R},{V(1)}
+* embedded outputs for device parameters like r1:r don't work yet.  erk. 2/8/2019
+.options embeddedsamples numsamples=25000
+*+ outputs={r1:r},{v(1)}
++ outputs={V(1)}
 + sample_type=mc
 + stdoutput=true
 

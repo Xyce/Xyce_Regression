@@ -18,10 +18,6 @@ VS1  2  0  SIN(0 {Vmax} 1KHZ 0 0)
 * normally distributed samples, mean=3K; std deviation=1K
 .SAMPLING 
 + USEEXPR=true
-*+ param=testNorm
-*+ type=normal
-*+ means=0.5K
-*+ std_deviations=0.05k
 
 .options samples numsamples=1000
 + outputs={R1:R}

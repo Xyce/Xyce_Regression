@@ -31,10 +31,6 @@ v1 2 0 1000V
 
 .SAMPLING 
 + useExpr=true
-*+ param=testNorm
-*+ type=uniform
-*+ lower_bounds=1k 
-*+ upper_bounds=3k 
 
 .options samples numsamples=10000
 + outputs={R1:R},{V(1)}

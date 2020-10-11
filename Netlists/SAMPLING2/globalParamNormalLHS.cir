@@ -61,10 +61,6 @@ v1 2 0 1000v
 * normally distributed samples, mean=3k; std deviation=1k
 .sampling 
 + useExpr=true
-*+ param=testnorm
-*+ type=normal
-*+ means=0.5k
-*+ std_deviations=0.05k
 
 .options samples numsamples=10000
 + outputs={R1:R},{V(1)}

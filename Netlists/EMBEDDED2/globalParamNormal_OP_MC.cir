@@ -58,12 +58,14 @@ v1 2 0 1000V
 
 .op
 
-* normally distributed samples, mean=3K; std deviation=1K
-.SAMPLING 
+* normally distributed samples, mean=3k; std deviation=1k
+.embeddedsampling 
 + useExpr=true
 
-.options samples numsamples=25000
-+ outputs={R1:R},{V(1)}
+* embedded outputs for device parameters like r1:r don't work yet.  erk. 2/8/2019
+.options embeddedsamples numsamples=25000
++ outputs={V(1)}
+*+ outputs={r1:r},{v(1)}
 + sample_type=mc
 + stdoutput=true
 

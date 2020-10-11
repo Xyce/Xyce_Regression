@@ -28,10 +28,6 @@ X3 4 5 0 RCBlock
 
 .SAMPLING 
 + useExpr=true
-*+ param=res
-*+ type=uniform
-*+ lower_bounds=0.5K
-*+ upper_bounds=1.5K
 
 .options SAMPLES numsamples=5
 

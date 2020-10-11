@@ -5,7 +5,6 @@ Regression test for simple normal distribution sampling.
 * (1) the use of global parameters as sampling variables  (testNorm)
 * (2) the mean, std dev, variance, skew and kurtosis of a derived sampling input variable, R1 - does not use ckt solution 
 * (3) the mean, std dev, variance, skew and kurtosis of a circuit solution output variable, V(1)
-* (4) the use of all of this with LHS sampling, rather than MC.
 *
 * The circuit is a simple voltage divider, so it has an analytic solution
 * Also, the propagated mean, variance, etc can be computed analytically as well.
@@ -56,14 +55,16 @@ R2 1 0 7K
 R1 1 2 {R1value}
 v1 2 0 1000V
 
-.op
+.dc v1 1000 1000 1
 
-* normally distributed samples, mean=3K; std deviation=1K
-.SAMPLING 
+* normally distributed samples, mean=3k; std deviation=1k
+.embeddedsampling 
 + useExpr=true
 
-.options samples numsamples=25000
-+ outputs={R1:R},{V(1)}
+* embedded outputs for device parameters like r1:r don't work yet.  erk. 2/8/2019
+.options embeddedsamples numsamples=25000
+*+ outputs={r1:r},{v(1)}
++ outputs={V(1)}
 + sample_type=mc
 + stdoutput=true
 

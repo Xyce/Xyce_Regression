@@ -23,10 +23,6 @@ MP1   VOUT IN VDD VDD CD4012_PMOS L=5u W=270u
 * 10 normally distributed samples
 .SAMPLING 
 + useExpr=true
-*+ param=R1
-*+ type=normal
-*+ means=10K
-*+ std_deviations=0.5K
 
 .options SAMPLES numsamples=10
 
