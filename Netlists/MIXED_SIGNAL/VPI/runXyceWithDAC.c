@@ -77,10 +77,13 @@ static int runXyceWithDAC_calltf(char*user_data)
 	printf("DAC Name %d: %s\n",i,DACnames[i]);
       }
 
+      int status;
+      status = xyce_checkResponseVar(p,(char *)"YMEMRISTORRES");
+      printf("return value from checkResponseVarName for YMEMRISTORRES is %d\n",status);
+
       // A bug in the DAC device (put there for Habinero support) only takes
       // the last time in the time voltage pairs list if the current sim time is 0.
       // So simulate a bit first.
-      int status;
       double requested_time = 1.0e-10;
       double actual_time, value;
       double* actual_time_ptr = &actual_time;
