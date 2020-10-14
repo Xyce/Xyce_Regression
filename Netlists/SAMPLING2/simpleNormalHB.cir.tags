@@ -1,4 +1,4 @@
-serial, nightly,  hb, normal, expression
+serial, nightly, parallel, hb, normal, expression
 valgrind
 capacitor
 sampling

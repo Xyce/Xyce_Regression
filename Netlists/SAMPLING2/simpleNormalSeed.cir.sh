@@ -19,7 +19,7 @@ $XYCE=$ARGV[0];
 $CIRFILE="simpleNormalSeed.cir";
 
 # Now run that netlist
-$CMD="$XYCE $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
+$CMD="$XYCE -hspice-ext all $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
 if (system($CMD) != 0)
 {
     `echo "Xyce EXITED WITH ERROR! on $CIRFILE" >> $CIRFILE.err`;
@@ -41,7 +41,7 @@ $CIRPRN_save=$CIRPRN."_save";
 `mv $CIRPRN $CIRPRN_save`;
 
 #Now re-run Xyce  on same circuit.  The seed is set in the netlist, so the answer should be identical
-$CMD="$XYCE $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
+$CMD="$XYCE -hspice-ext all $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
 if (system($CMD) != 0)
 {
     `echo "Xyce EXITED WITH ERROR! on $CIRFILE" >> $CIRFILE.err`;

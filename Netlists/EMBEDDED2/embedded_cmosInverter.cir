@@ -48,8 +48,7 @@ M2 drain gate vdd vdd PMOS  w =0.54e-6 ; l=0.18e-6
 + lwl=0 cgdo=6.41e-10 cj=1.200422e-3 cjsw=2.001802e-10 cjswg=4.22e-10 cf=0 
 + pk2=1.799383e-3 pu0=-1.3399122 pvsat=-50 l =0.18e-6 tox =4.1e-9 
 *+ vth0 =-0.3835898 
-*+ vth0 ={-aunif(0.55,0.15)}
-+ vth0 ={aunif(-0.55,-0.15)}
++ vth0 ={-aunif(0.55,0.15)}
 + k3 =0 nlx =1.20187e-7 dvt2w =0 dvt1=0.2286816 ua=1.125454e-9 
 + vsat=1.593712e5 b0=5.263128e-7 a1=0.2276342 prwg=0.5 wint=0 voff=-0.0878287 
 + cdsc=2.4e-4 eta0=0.1672562 pclm=2.2249148 pdiblcb=-1e-3 pscbe2=3.099395e-9 
