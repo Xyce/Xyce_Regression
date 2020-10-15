@@ -1,0 +1,34 @@
+embedded sampling version of a CMOS inverter
+*
+* This "circuit" exists to provide a meaningful .PRINT line to xyce_verify.pl.  
+*
+* It isn't supposed to be run, and will exit with error.
+*
+
+*COMP v(drain)quad_pce_mean      OFFSET=1.0
+*COMP v(drain)quad_pce_meanPlus  OFFSET=1.0
+*COMP v(drain)quad_pce_meanMinus OFFSET=1.0
+*COMP v(drain)quad_pce_meanPlusTwoSigma  OFFSET=1.0
+*COMP v(drain)quad_pce_meanMinusTwoSigma OFFSET=1.0
+*COMP v(drain)quad_pce_stddev    OFFSET=1.0
+*COMP v(drain)quad_pce_variance  OFFSET=1.0
+
+*COMP v(5)quad_pce_mean       OFFSET=1.0
+*COMP v(5)quad_pce_meanPlus   OFFSET=1.0
+*COMP v(5)quad_pce_meanMinus  OFFSET=1.0
+*COMP v(5)quad_pce_meanPlusTwoSigma   OFFSET=1.0
+*COMP v(5)quad_pce_meanMinusTwoSigma  OFFSET=1.0
+*COMP v(5)quad_pce_stddev     OFFSET=1.0
+*COMP v(5)quad_pce_variance   OFFSET=1.0
+*COMP v(2)quad_pce_mean       OFFSET=1.0
+*COMP v(2)quad_pce_meanPlus   OFFSET=1.0
+*COMP v(2)quad_pce_meanMinus  OFFSET=1.0
+*COMP v(2)quad_pce_meanPlusTwoSigma   OFFSET=1.0
+*COMP v(2)quad_pce_meanMinusTwoSigma  OFFSET=1.0
+*COMP v(2)quad_pce_stddev     OFFSET=1.0
+*COMP v(2)quad_pce_variance   OFFSET=1.0
+
+.print tran V(5)mean    V(5)meanPlus    V(5)meanMinus    V(5)meanPlusTwoSigma    V(5)meanMinusTwoSigma    V(5)stddev    V(5)variance    V(5)quad_pce_mean    V(5)quad_pce_meanPlus    V(5)quad_pce_meanMinus    V(5)quad_pce_meanPlusTwoSigma    V(5)quad_pce_meanMinusTwoSigma    V(5)quad_pce_stddev    V(5)quad_pce_variance    V(2)mean    V(2)meanPlus    V(2)meanMinus    V(2)meanPlusTwoSigma    V(2)meanMinusTwoSigma    V(2)stddev    V(2)variance    V(2)quad_pce_mean    V(2)quad_pce_meanPlus    V(2)quad_pce_meanMinus    V(2)quad_pce_meanPlusTwoSigma    V(2)quad_pce_meanMinusTwoSigma    V(2)quad_pce_stddev    V(2)quad_pce_variance    
+
+.tran 1ns 1.5e-6
+
