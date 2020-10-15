@@ -39,4 +39,8 @@ simpleNormalSeed.cir
 simpleNormalSeed.cir.sh
 simpleNormalSeed.cir.tags
 tags
+multipleAgauss.cir.tags
+multipleAgauss.cir 
+multipleAgauss.cir.sh    
+referenceMultipleAgauss.cir
 exclude
