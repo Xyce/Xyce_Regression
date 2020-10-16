@@ -38,6 +38,9 @@ transLineStepDataGlobalPar.cir.tags
 simpleNormalSeed.cir 
 simpleNormalSeed.cir.sh
 simpleNormalSeed.cir.tags
+voltageDivider.cir 
+voltageDivider.cir.sh  
+voltageDivider.cir.tags
 tags
 multipleAgauss.cir.tags
 multipleAgauss.cir 
