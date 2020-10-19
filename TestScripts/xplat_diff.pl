@@ -60,6 +60,16 @@ foreach $file (@files)
 }
 
 
+# on some HPC systems with distributed IO the files written in the prior loop
+# may not yet be fully written by the time the system call to diff is done
+# check that the files are ready and if they are not then pause the script 
+# for a few seconds.  
+if( !(-e $outfiles[0]) || !(-e $outfiles[1]))
+{
+  # files haven't finished being written to file system yet.  pause script for a few seconds.
+  sleep(2);
+}
+    
 # now actually do the diff on the processed files.
 $cmdstat=system("diff $diffopts $outfiles[0] $outfiles[1] > $$.tmpout 2> $$.tmperr");
 $exitcode= $? >> 8;

@@ -35,12 +35,11 @@ $retval = -1;
 $retval=$Tools->wrapXyce($XYCE,$CIRFILE);
 if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
 
-# First test that can parse the W() or P() on the .print line
+# First test that a .prn file was made
 if (not -s "$CIRFILE.prn" ) { print "Exit code = 14\n"; exit 14; }
 
 #If this is a VALGRIND run, we don't do our normal verification, we
 # merely run "valgrind_check.sh" as if it were xyce_verify.pl
-             
 if ($XYCE_VERIFY =~ m/valgrind_check/)
 {
   print STDERR "DOING VALGRIND RUN INSTEAD OF REAL RUN!";

@@ -39,6 +39,23 @@ if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
 # First test that a prn file was made. 
 if (not -s "$CIRFILE.prn" ) { print "Exit code = 14\n"; exit 14; }
 
+#If this is a VALGRIND run, we don't do our normal verification, we
+# merely run "valgrind_check.sh" as if it were xyce_verify.pl
+if ($XYCE_VERIFY =~ m/valgrind_check/)
+{
+  print STDERR "DOING VALGRIND RUN INSTEAD OF REAL RUN!";
+  if (system("$XYCE_VERIFY $CIRFILE junk $CIRFILE.prn > $CIRFILE.prn.out 2>&1 $CIRFILE.prn.err"))
+  {
+    print "Exit code = 2 \n";
+    exit 2;
+  }
+  else
+  {
+    print "Exit code = 0 \n";
+    exit 0;
+  }
+}
+
 # get the data in the .PRN file, return as an array
 @prnData = PowerCommon::parseTranPrnFile($CIRFILE);
 if ($#prnData == 0)
