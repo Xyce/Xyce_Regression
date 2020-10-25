@@ -1,0 +1,5 @@
+bsim3.cir
+bsim3.cir.sh
+bsim3_modpar.cir
+tags
+exclude
