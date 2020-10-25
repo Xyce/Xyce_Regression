@@ -1,11 +1,21 @@
-TEST1 - BSIM3
+Test for bug 1190 SON, for bsim3
+*
+* This is re-purposed from the bug 647 SON test.
+*
+* The point of this test, like all tests in this directory, is to
+* prove that a complex device, which has a "processParams" functions,
+* can have a device parameter depend on a .param, which in turn 
+* depends on a .global_param, which in turn is modified during
+* the calculation via .STEP.
+*
+* This is possible now, with the new expression library, as it does 
+* not treat .param as constants.  
+*
+* This circuit is the "baseline" in that it doesn't use .param or .global_param 
+* to set the W,L.  The .STEP statement is applied directly to the model parameters.
+*
 *****Single NMOS Transistor For BSIM3V3  general purpose check (Id-Vd) ***
 *** circuit description ***
-* BUG 647 test:
-* The BSIM3 has 2 instance parameters that get set from the model (L,W) 
-* if they are not provided on the instance line.  Check that sweeping them
-* works both ways (meaning they are properly copied in the processParams
-* function rather than the instance constructor).
 
 m1 2 1 0 0 n1
 vgs 1 0 3.5 
@@ -13,8 +23,7 @@ vds 2 0 3.5
 .dc vds 0 3.5 0.5 vgs 0 3.5 0.5 
 .step lin N1:L 0.35u 0.4u 0.01u
 .step lin N1:W 8u 12u 1u
-*.step lin TEMP 25 29 1
-.print dc v(2) v(1) i(vds) M1:L M1:W M1:TEMP
+.print dc v(2) v(1) i(vds) M1:L M1:W 
 
 .model n1 NMOS
 +l=0.35u
