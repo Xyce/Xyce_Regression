@@ -4,6 +4,9 @@ bsim3_modpar.cir
 bsim4.cir
 bsim4.cir.sh
 bsim4_modpar.cir
+diode.cir
+diode.cir.sh
+diodeRef.cir
 mutInd1.cir.sh
 mutInd1.cir
 mutInd1_baseline.cir
