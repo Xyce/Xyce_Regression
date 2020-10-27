@@ -1,6 +1,6 @@
 ****************************************************
-* Test error messages from invalid uses of the
-* TEMP instance parameter as a dependent parameter
+* Test error messages from invalid uses of the TEMP
+* instance parameter as an expresson-based parameter.
 *
 * See SON Bug 1203 for more details
 ****************************************************

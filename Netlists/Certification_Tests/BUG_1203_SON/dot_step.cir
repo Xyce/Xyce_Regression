@@ -1,8 +1,8 @@
 *******************************************************
 * Test that parameters and global parameters work when
-* the TEMP variable is a dependent parameter and .STEP
-* is used to set the device temperature.  See SON Bug
-* 1203 for more details.
+* the TEMP instance parameter is an expression-based
+* parameter and .STEP is used to set the device temperature.
+* See SON Bug 1203 for more details.
 *
 *******************************************************
 

@@ -1,7 +1,7 @@
 *******************************************************
 * Test that parameters and global parameters work when
-* the TEMP variable is a dependent parameter.  This uses
-* the default temperature of 27C.
+* the TEMP instance parameter is an expression-based
+* parameter. This uses the default temperature of 27C.
 *
 * See SON Bug 1203 for more details.
 *******************************************************
