@@ -1,20 +1,11 @@
 Test of Function Handling in Expression Lib
 ********************************************************************************
-* Tier No.:     1
-* Directory/Circuit Name: ABM_FUNC/func.cir
-* Description:  Test of the XYCE analog behavioral modeling user defined
-*               function handling
-* Input: VX, VY, VZ
-* Output: V(F)
-* Analysis:
-*    Through nested function definitions, a function is defined:
-*      f(x,y,z) = y - z - 4 + x**2
-*    The circuit generated x, y, and z values as voltage nodes and
-*    a sourse sets the value of node f to the result of the function.
+* BUG 1085 was about the old expression library not being able to 
+* handle .func names that started with "I" and had 2 characters.  It would
+* confuse them with lead currents.
 *
-*********************************************************************************
-* This also tests the case of a function that does not contain all the independent
-* variables in the definition
+* This is the "test" circuit, that includes a function named I0.
+********************************************************************************
 .func I0(x,y) {y}
 .func diff(x,y) {x-y}
 .FUNC f(x,y,z) {diff(y,z)-4+I0(z,x)**2}
