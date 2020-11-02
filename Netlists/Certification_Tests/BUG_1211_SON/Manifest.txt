@@ -13,6 +13,12 @@ ac.cir
 ac.cir.sh
 multiterminal_devices.cir
 multiterminal_devices.cir.sh
+questionMark1.cir
+questionMark1.cir.sh
+questionMark2.cir
+questionMark2.cir.sh
+specialChars.cir
+specialChars.cir.sh
 invalid_wildcards.cir
 invalid_wildcards.cir.sh
 invalid_wildcards.cir.tags

@@ -1,7 +1,7 @@
 *********************************************************
 * Test that parameters and global parameters work when
-* the TEMP variable is a dependent parameter and a
-* .OPTIONS DEVICE TEMP=<val> line is used to set the
+* the TEMP instance variable is an expression-based parameter
+* and a .OPTIONS DEVICE TEMP=<val> line is used to set the
 * device temperature.  See SON Bug 1203 for more details.
 *
 *******************************************************

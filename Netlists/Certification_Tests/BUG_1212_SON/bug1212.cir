@@ -2,9 +2,12 @@
 * Verify that the special variable FREQ works
 * for global parameters, dependent parameters,
 * function arguments, and on .PRINT and .FUNC
-* lines.
+* lines.  This also tests that HERTZ and TEMPER
+* work correctly on a .PRINT line when they are
+* outside of an expression, which was part of
+* SON Bug 50.
 *
-* See SON Bug 1212 for more details.
+* See SON Bugs 50 and 1212 for more details.
 ************************************************
 
 .GLOBAL_PARAM OMEGA={2*PI*FREQ}
@@ -24,7 +27,9 @@ R3 3a 0  {OMEGA}
 C3 3  3a 1u
 V3 3  0  DC 0V AC 1
 
-.print AC {2*PI*FREQ} OMEGA FREQ {F1(FREQ)} {F2(2)} R2:R R3:R vm(1a)
+.print AC {2*PI*FREQ} OMEGA FREQ HERTZ {F1(FREQ)} {F2(2)}
++ R2:R R3:R vm(1a) TEMPER
+
 .ac dec 5 100Hz 10e6
 
 .end

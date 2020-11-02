@@ -22,11 +22,11 @@ $GOLDPRN=$ARGV[4];
                   ["Netlist error: TIME, FREQ, TEMP and VT are not allowed in .PARAM statements:",
                   "PB"],
                   ["Netlist error: TIME, FREQ, TEMP and VT are not allowed in .PARAM statements:",
-                  "PC"]);
+                  "PC"],
+                  ["Netlist error: TIME, FREQ, TEMP and VT are not allowed in .PARAM statements:",
+                  "PD"]
+);
 
 $retval = $Tools->runAndCheckGroupedError($CIRFILE,$XYCE,@searchstrings);
 
-
-
-
-print "Exit code = $retval\n"; exit $retval; 
+print "Exit code = $retval\n"; exit $retval;
