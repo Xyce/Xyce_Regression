@@ -145,7 +145,8 @@ else
   open(ERRMSG,">$CIRFILE.errmsg") or die $!;
 }
 
-# parse the .out file to find the text related to .MEASURE
+# parse the .out file to find the text related to .MEASURE.  Also
+# include any Netlist Warnings that precede that text.
 my $foundStart=0;
 my $foundEnd=0;
 my @outLine;
@@ -155,7 +156,8 @@ while( $line=<NETLIST> )
   if ($line =~ /Measure Functions/) { $foundStart = 1; }
   if ($foundStart > 0 && $line =~ /Total Simulation/) { $foundEnd = 1; }  
 
-  if ($foundStart > 0 && $foundEnd < 1)
+  if ( ($foundStart > 0 && $foundEnd < 1) ||
+       ($foundStart < 1 && ($line =~ /Netlist warning/)) )
   {
     print ERRMSG $line;
   } 

@@ -1,7 +1,7 @@
 A test of the .MEASURE Error Messages
 *******************************************************************************
 ** This verifies the correct and erroneous .MEASURE statements print out
-** the correct information to std output.  The unit tests for each 
+** the correct information to std output.  The unit tests for each
 ** measure verify the correctness of the .mt0 files for failed measures
 VS1  1  0  SIN(0 1.0 1KHZ 0 0.9)
 VS2  2  0  SIN(0 -1.0 1KHz 0 0.9)
@@ -77,6 +77,7 @@ R2  2  0  100
 .measure tran maxValRise1 max V(1) RISE 1
 .measure tran maxValRiseLast max V(1) RISE LAST
 .measure tran maxValRiseNegOne max V(1) RISE -1
+.measure tran maxValRiseNegTwo max V(1) RISE -2
 .measure tran maxValRFClevel max v(1) CROSS=1 RFC_LEVEL=0.5
 .measure tran maxFailTo max V(1) FROM=1 TO=1e-3
 .measure tran maxFailTd max V(1) FROM=1e-4 TO=1e-3 TD=1
@@ -88,8 +89,9 @@ R2  2  0  100
 * MIN
 .measure tran minVal min V(1)
 .measure tran timeOfMinVal min V(1) OUTPUT=TIME
-.measure tran minValFallLast min V(1) FALL LAST
-.measure tran minValFallNegOne min V(1) FALL -1
+.measure tran minValFallLast min V(2) FALL LAST
+.measure tran minValFallNegOne min V(2) FALL -1
+.measure tran minValFallNegTwo min V(2) FALL -2
 .measure tran minValRFClevel min v(1) CROSS=1 RFC_LEVEL=0.5
 .measure tran minFailTo min V(1) FROM=1 TO=1e-3
 .measure tran minFailTd min V(1) FROM=1e-4 TO=1e-3 TD=1
@@ -116,6 +118,7 @@ R2  2  0  100
 .measure tran ppVal pp V(1)
 .measure tran ppValCrossLast pp V(1) Cross=LAST
 .measure tran ppValCrossNegOne pp V(1) Cross=-1
+.measure tran ppValCrossNegTwo pp V(1) Cross=-2
 .measure tran ppValRFClevel pp v(1) CROSS=1 RFC_LEVEL=0.5
 .measure tran ppFailTo pp V(1) FROM=1 TO=1e-3
 .measure tran ppFailTd pp V(1) FROM=1e-4 TO=1e-3 TD=1

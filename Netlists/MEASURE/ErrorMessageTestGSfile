@@ -1,3 +1,6 @@
+Netlist warning: RISE value for MAX measure MAXVALRISENEGTWO set to LAST (-1)
+Netlist warning: FALL value for MIN measure MINVALFALLNEGTWO set to LAST (-1)
+Netlist warning: CROSS value for PP measure PPVALCROSSNEGTWO set to LAST (-1)
  ***** Measure Functions ***** 
 
 AVGVAL = 1.243254e-04
@@ -159,6 +162,10 @@ MAXVALRISENEGONE = -2.447112e-16 at time = 1.000000e-03
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 Last Rise: Start Time= 7.583585e-04	End Time= 1.000000e-03
 
+MAXVALRISENEGTWO = -2.447112e-16 at time = 1.000000e-03
+Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
+Last Rise: Start Time= 7.583585e-04	End Time= 1.000000e-03
+
 MAXVALRFCLEVEL = 9.997576e-01 at time = 2.490367e-04
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 Cross 1: Start Time= 9.000000e-05	End Time= 4.100000e-04
@@ -193,13 +200,17 @@ Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 TIMEOFMINVAL = -9.991578e-01 at time = 7.500000e-04
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
-MINVALFALLLAST = -9.991578e-01 at time = 7.500000e-04
+MINVALFALLLAST = 2.447112e-16 at time = 1.000000e-03
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
-Last Fall: Start Time= 2.500000e-04	End Time= 1.000000e-03
+Last Fall: Start Time= 7.583585e-04	End Time= 1.000000e-03
 
-MINVALFALLNEGONE = -9.991578e-01 at time = 7.500000e-04
+MINVALFALLNEGONE = 2.447112e-16 at time = 1.000000e-03
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
-Last Fall: Start Time= 2.500000e-04	End Time= 1.000000e-03
+Last Fall: Start Time= 7.583585e-04	End Time= 1.000000e-03
+
+MINVALFALLNEGTWO = 2.447112e-16 at time = 1.000000e-03
+Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
+Last Fall: Start Time= 7.583585e-04	End Time= 1.000000e-03
 
 MINVALRFCLEVEL = 5.355170e-01 at time = 4.100000e-04
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
@@ -273,6 +284,10 @@ Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 Last Cross: Start Time= 5.000000e-04	End Time= 1.000000e-03
 
 PPVALCROSSNEGONE = 9.991578e-01 with max at time= 1.000000e-03 and min at time= 7.500000e-04
+Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
+Last Cross: Start Time= 5.000000e-04	End Time= 1.000000e-03
+
+PPVALCROSSNEGTWO = 9.991578e-01 with max at time= 1.000000e-03 and min at time= 7.500000e-04
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 Last Cross: Start Time= 5.000000e-04	End Time= 1.000000e-03
 
