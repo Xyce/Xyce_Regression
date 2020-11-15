@@ -38,14 +38,19 @@ $CIRFILE="FFTInterface.cir";
 $TESTROOT = cwd;
 
 # DEBUG: paths are hardcoded!
+$PREFIX="";
 $XYCEROOT="missing ";
 
-# Try to decode Xyce root directory by stripping off bin/Xyce or src/Xyce
-$XYCE =~ m/(.*)\/bin\/Xyce.*/;
-if (-d "$1") { $XYCEROOT=$1; }
+print "XYCE = $XYCE\n";
 
-$XYCE =~ m/(.*)\/src\/Xyce.*/;
-if (-d "$1") { $XYCEROOT=$1; }
+# Try to decode Xyce root directory by stripping off bin/Xyce or src/Xyce
+$XYCE =~ m/([^\/]*)(.*)\/bin\/Xyce.*/;
+if (-d "$2") { $PREFIX=$1; $XYCEROOT=$2; }
+
+$XYCE =~ m/([^\/]*)(.*)\/src\/Xyce.*/;
+if (-d "$2") { $PREFIX=$1; $XYCEROOT=$2; }
+
+print "XYCEROOT = $XYCEROOT\n";
 
 #Check if we need a ".exe" extension (simply check for cygwin in uname)
 $EXT="";
@@ -82,8 +87,9 @@ if (-d "$MAKEROOT") {
 
 if (-x $XYCE_LIBTEST) 
 {
+  $CMD="$PREFIX$XYCE_LIBTEST > $XYCE_LIBTEST.out 2> $XYCE_LIBTEST.err";
   print "NOTICE:   running ----------------------\n";
-  $retval = system("$XYCE_LIBTEST");
+  $retval = system("$CMD");
 
   if($retval != 0) 
   { 
@@ -93,7 +99,7 @@ if (-x $XYCE_LIBTEST)
 
     if ($retval == -1)
     {
-        print "    failure to execute $XYCE_LIBTEST\n";
+        print "    failure to execute $PREFIX$XYCE_LIBTEST\n";
         $retval = 1;  # SHELL SCRIPT EXITED WITH ERROR
     } 
     else 

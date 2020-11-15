@@ -22,6 +22,8 @@ invert_hb_accurate_nostartup.cir
 invert_hb_accurate_nostartup.cir.sh
 invert_hb_lapack.cir
 invert_hb_lapack.cir.sh
+invert_hb_corrected.cir
+invert_hb_corrected.cir.sh
 tags
 exclude
 gilbert_cell_hbTdsamples.cir.sh

@@ -21,17 +21,23 @@ $CIRFILE=$ARGV[3];
 
 $CIRFILE="rlc_series_vccs_AC.cir";
 $CIRFILE2="rlc_series_vccs_AC_nogenext.cir";
+
 $TESTROOT = cwd;
 
 # DEBUG: paths are hardcoded!
+$PREFIX="";
 $XYCEROOT="missing ";
 
-# Try to decode Xyce root directory by stripping off bin/Xyce or src/Xyce
-$XYCE =~ m/(.*)\/bin\/Xyce.*/;
-if (-d "$1") { $XYCEROOT=$1; }
+print "XYCE = $XYCE\n";
 
-$XYCE =~ m/(.*)\/src\/Xyce.*/;
-if (-d "$1") { $XYCEROOT=$1; }
+# Try to decode Xyce root directory by stripping off bin/Xyce or src/Xyce
+$XYCE =~ m/([^\/]*)(.*)\/bin\/Xyce.*/;
+if (-d "$2") { $PREFIX=$1; $XYCEROOT=$2; }
+
+$XYCE =~ m/([^\/]*)(.*)\/src\/Xyce.*/;
+if (-d "$2") { $PREFIX=$1; $XYCEROOT=$2; }
+
+print "XYCEROOT = $XYCEROOT\n";
 
 #Check if we need a ".exe" extension (simply check for cygwin in uname)
 $EXT="";
