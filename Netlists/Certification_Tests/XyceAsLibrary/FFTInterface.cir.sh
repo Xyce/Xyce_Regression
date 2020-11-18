@@ -70,14 +70,28 @@ if (-d "$MAKEROOT/CMakeFiles")
 $XYCE_LIBTEST = "$XYCEROOT/src/test/FFTInterface/testFFTInterface$EXT";
 
 if (-d "$MAKEROOT") {
-  chdir($MAKEROOT);
-  print "NOTICE:   make clean -------------------\n";
-  $result = system("make clean");
-  print "NOTICE:   make -------------------------\n";
-  $result += system("make testFFTInterface$EXT");
-  if($result) {
-    print "WARNING:  make failures! ---------------\n";
-    $retval = $result;
+  if (-e "$MAKEROOT/Makefile") {
+    chdir($MAKEROOT);
+    print "Building testFFTInterface in $MAKEROOT\n";
+    print "NOTICE:   make clean -------------------\n";
+    $result = system("make clean");
+    print "NOTICE:   make testFFTInterface ------------------\n";
+    $result += system("make testFFTInterface$EXT");
+    if($result) {
+      print "WARNING:  make failures! ---------------\n";
+      $retval = $result;
+    }
+  } elsif (-d "$MAKEROOT/CMakeFiles") {
+    chdir($XYCEROOT);
+    print "Building testFFTInterface in $MAKEROOT\n";
+    $result += system("cmake --build . --target testFFTInterface");
+    if($result) {
+      print "WARNING:  build failures! ---------------\n";
+      $retval = $result;
+    }
+  } else {
+    print "ERROR:    No build files!\n";
+    $retval = 1;
   }
   chdir($TESTROOT);
 } else {

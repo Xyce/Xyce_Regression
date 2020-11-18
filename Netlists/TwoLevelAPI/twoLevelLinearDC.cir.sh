@@ -72,16 +72,29 @@ $TestProgram="twoLevelNewtonLinearDC$EXT";
 $XYCE_LIBTEST = "$MAKEROOT/$TestProgram";
 
 if (-d "$MAKEROOT") {
-  print "The MAKEROOT directory exists\n";
-  chdir($MAKEROOT);
-  print "NOTICE:   make clean -------------------\n";
-  $result = system("make clean");
-  print "NOTICE:   make -------------------------\n";
-  $result += system("make $TestProgram");
-
-  if($result) {
-    print "WARNING:  make failures! ---------------\n";
-    $retval = $result;
+  if (-e "$MAKEROOT/Makefile") {
+    print "The MAKEROOT directory exists\n";
+    chdir($MAKEROOT);
+    print "NOTICE:   make clean -------------------\n";
+    $result = system("make clean");
+    print "NOTICE:   make -------------------------\n";
+    $result += system("make $TestProgram");
+    if($result) {
+      print "WARNING:  make failures! ---------------\n";
+      $retval = $result;
+    }
+  } elsif (-d "$MAKEROOT/CMakeFiles") {
+    print "The MAKEROOT directory exists\n";
+    chdir($XYCEROOT);
+    print "Building $TestProgram in $MAKEROOT\n";
+    $result += system("cmake --build . --target $TestProgram");
+    if($result) {
+      print "WARNING:  build failures! ---------------\n";
+      $retval = $result;
+    }
+  } else {
+    print "ERROR:    No build files!\n";
+    $retval = 1;
   }
   chdir($TESTROOT);
 } 
