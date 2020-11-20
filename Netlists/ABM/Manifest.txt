@@ -3,6 +3,8 @@ ascth.cir.tags
 ddt.cir
 ddt.cir.prn.gs.pl
 ifstatement.cir
+limit.cir
+limit.cir.tags
 meg.cir
 meg.cir.tags
 scth.cir
