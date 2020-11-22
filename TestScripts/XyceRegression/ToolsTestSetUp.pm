@@ -1932,6 +1932,17 @@ sub setupCVSSandbox {
   }
   
   foreach $file (@files) {
+    my $slashidx = rindex($file,'/');
+    if ($slashidx > 0)
+    {
+      my $subdirpath = substr($file,0,$slashidx);
+      if (!-d "$destinationdir/$subdirpath")
+      {
+        $self->debugPrint("setupCVSSandbox:  Creating directory:  $destinationdir/$subdirpath\n");
+        `mkdir -p $destinationdir/$subdirpath`;
+      }
+    }
+
     $self->debugPrint("setupCVSSandbox:  Copying file \"$sourcedir/$file\" to $destinationdir/$file\n");
     cp("$sourcedir/$file","$destinationdir/$file");
     $self->debugPrint("setupCVSSandbox:  Setting execute bit on .sh and .pl files.\n");
