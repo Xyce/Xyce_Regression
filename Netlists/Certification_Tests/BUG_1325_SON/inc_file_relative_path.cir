@@ -1,0 +1,11 @@
+* This netlist includes various files that use relative paths
+* on their .INC lines.
+
+.INC sub1/include1
+
+.DC V1 1 5 1
+.PRINT DC V(1) I(R1)
+
+V1 1 0 1
+
+.END

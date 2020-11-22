@@ -1,0 +1,4 @@
+* The include path in this file is relative to the
+* directory of top-level netlist.
+
+.INC sub1/sub2/include2_path_rel_top
