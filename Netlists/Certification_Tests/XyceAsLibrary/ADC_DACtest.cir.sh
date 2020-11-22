@@ -11,7 +11,7 @@ $Tools = XyceRegression::Tools->new();
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
 # $ARGV[1] = location of xyce_verify.pl script
-# $ARGV[2] = location of compare script 
+# $ARGV[2] = location of compare script
 # $ARGV[3] = location of circuit file to test
 # $ARGV[4] = location of gold standard prn file
 
@@ -54,7 +54,7 @@ print "XYCEROOT = $XYCEROOT\n";
 #Check if we need a ".exe" extension (simply check for cygwin in uname)
 $EXT="";
 $result=system("uname | grep -i -q cygwin");
-if ($result == 0) 
+if ($result == 0)
 {
   $EXT=".exe";
 }
@@ -69,15 +69,28 @@ if (-d "$MAKEROOT/CMakeFiles")
 $XYCE_LIBTEST = "$XYCEROOT/src/test/DeviceInterface/DeviceInterfaceTest$EXT";
 
 if (-d "$MAKEROOT") {
-  chdir($MAKEROOT);
-  print "Building DeviceInterfaceTest in $MAKEROOT\n";
-  print "NOTICE:   make clean -------------------\n";
-  $result = system("make clean");
-  print "NOTICE:   make DeviceInterfaceTest -------------\n";
-  $result += system("make DeviceInterfaceTest$EXT");
-  if($result) {
-    print "WARNING:  make failures! ---------------\n";
-    $retval = $result;
+  if (-e "$MAKEROOT/Makefile") {
+    chdir($MAKEROOT);
+    print "Building DeviceInterfaceTest in $MAKEROOT\n";
+    print "NOTICE:   make clean -------------------\n";
+    $result = system("make clean");
+    print "NOTICE:   make DeviceInterfaceTest -------------\n";
+    $result += system("make DeviceInterfaceTest$EXT");
+    if($result) {
+      print "WARNING:  make failures! ---------------\n";
+      $retval = $result;
+    }
+  } elsif (-d "$MAKEROOT/CMakeFiles") {
+    chdir($XYCEROOT);
+    print "Building DeviceInterfaceTest in $MAKEROOT\n";
+    $result = system("cmake --build . --target DeviceInterfaceTest");
+    if($result) {
+      print "WARNING:  build failures! ---------------\n";
+      $retval = $result;
+    }
+  } else {
+    print "ERROR:    No build files!\n";
+    $retval = 1;
   }
   chdir($TESTROOT);
 } else {

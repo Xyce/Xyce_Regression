@@ -1,10 +1,12 @@
-* Test NOISE mode support for the ERR, ERR1 and ERR2 measures. It was
+* Test NOISE mode support for the ERR, ERR1, ERR2 and ERR3 measures. It was
 * deemed sufficient to mostly just test with the VR and VI operators.
 * Expressions are also tested. One current operator (IM) is tested
 * for a branch current.
 *
-* See SON Bug 1301 for more details.
+* See SON Bugs 1279 and 1301 for more details.
 ********************************************************************
+
+.GLOBAL_PARAM P1=-1.5
 
 * RESISTOR DIVIDER
 V1  1 0 DC 5.0 AC  1.0
@@ -38,6 +40,14 @@ CLP1  5 0 1.59NF
 .MEASURE NOISE ERR2IGNORE0.3 ERR2 VR(4) VR(5) IGNORE=0.45
 .MEASURE NOISE ERR2YMAX0.7 ERR2 VR(4) VR(5) YMAX=0.495
 .MEASURE NOISE ERR2EXP ERR2 {VR(4)+1} {VR(5)+1}
+
+* ERR3 measures
+.MEASURE NOISE ERR3 ERR3 VP(5) {P1}
+.MEASURE NOISE ERR3MV2 ERR3 VP(5) {P1} MINVAL=2
+.MEASURE NOISE ERR3YMIN2 ERR3 VP(5) {P1} YMIN=2
+.MEASURE NOISE ERR3IGNORE2 ERR3 VP(5) {P1} IGNORE=2
+.MEASURE NOISE ERR3YMAX2 ERR3 VP(5) {P1} YMAX=2
+.MEASURE NOISE ERR3MINUSP1 ERR3 VP(5) {-P1}
 
 * test VI() operator, for ERR1 only
 .MEASURE NOISE ERR1VI ERR1 vi(4) vi(5)
