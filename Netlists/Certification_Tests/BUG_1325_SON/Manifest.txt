@@ -2,5 +2,6 @@ inc_file_absolute_path.cir
 inc_file_absolute_path.cir.sh
 sub1/sub2/include2_abs_path
 inc_file_relative_path.cir
+include_dot_top
 sub1/include1
 sub1/sub2/include2_path_rel_top

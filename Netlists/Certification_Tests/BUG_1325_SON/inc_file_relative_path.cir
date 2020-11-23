@@ -1,10 +1,14 @@
 * This netlist includes various files that use relative paths
 * on their .INC lines.
 
+* This is tested by the current through R1
 .INC sub1/include1
 
+* This is tested by the current through R2
+.INC ./include_dot_top
+
 .DC V1 1 5 1
-.PRINT DC V(1) I(R1)
+.PRINT DC V(1) I(R1) I(R2)
 
 V1 1 0 1
 
