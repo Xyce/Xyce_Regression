@@ -31,7 +31,10 @@ while(<CIRFILE>)
 {
   if (/^.INC/i)
   {
-    print CIRFILE2 ".INC $dirname/$includeFileName";
+    $fullFileName = "$dirname/$includeFileName";
+    # the next substition accounts for testing Xyce on Windows under cygwin
+    $fullFileName =~ s/^\/cygdrive\/c/C:/;
+    print CIRFILE2 ".INC $fullFileName";
   }
   else
   {
