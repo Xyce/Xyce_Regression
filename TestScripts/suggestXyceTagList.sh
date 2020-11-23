@@ -185,6 +185,8 @@ then
         TAGLIST_RAD_SHOULDFAIL="${TAGLIST_RAD_SHOULDFAIL}?qaspr"
         TAGLIST="${TAGLIST}-qaspr"
     fi
+else
+   TAGLIST="${TAGLIST}-rxn"
 fi
 
 #Now output the tags lists
