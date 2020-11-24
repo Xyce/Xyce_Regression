@@ -17,9 +17,13 @@ $CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
 
 $dirname = getcwd;
+# the next substition accounts for testing Xyce on Windows under cygwin
+$dirname =~ s/^\/cygdrive\/c/C:/;
 
 # hard code the name of the include file
 $includeFileName = "sub1/sub2/include2_abs_path";
+$libFileName = "sub1/sub2/lib2_abs_path";
+$libName = "LIB_ABS";
 
 # remove old output files
 system("rm -f $CIRFILE\_modified*");
@@ -32,9 +36,12 @@ while(<CIRFILE>)
   if (/^.INC/i)
   {
     $fullFileName = "$dirname/$includeFileName";
-    # the next substition accounts for testing Xyce on Windows under cygwin
-    $fullFileName =~ s/^\/cygdrive\/c/C:/;
-    print CIRFILE2 ".INC $fullFileName";
+    print CIRFILE2 ".INC $fullFileName\n";
+  }
+  elsif (/^.LIB/i)
+  {
+    $fullFileName = "$dirname/$libFileName";
+    print CIRFILE2 ".LIB $fullFileName $libName\n";
   }
   else
   {
