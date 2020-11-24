@@ -1,4 +1,3 @@
 nightly, serial, parallel, pce
 output, errorexit
 required:stokhos
-required:cxx11

@@ -2,4 +2,3 @@ nightly, serial, pce, tran
 embeddedsampling
 regression_pce
 required:stokhos
-required:cxx11

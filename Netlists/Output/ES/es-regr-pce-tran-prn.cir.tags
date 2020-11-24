@@ -3,5 +3,3 @@ embeddedsampling
 regression_pce
 output
 required:stokhos
-required:cxx11
-

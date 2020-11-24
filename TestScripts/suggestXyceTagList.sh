@@ -73,11 +73,6 @@ then
     TAGLIST="${TAGLIST}?fft"
 fi
 #Now tests that depend on specific compiler usage (C++11, 14, etc.)
-grep 'C++11' $TMP_CAPABILITIES_FILE>/dev/null 2>&1
-if [ $? = 0 ]
-then
-    TAGLIST="${TAGLIST}?cxx11"
-fi
 grep 'C++14' $TMP_CAPABILITIES_FILE>/dev/null 2>&1
 if [ $? = 0 ]
 then

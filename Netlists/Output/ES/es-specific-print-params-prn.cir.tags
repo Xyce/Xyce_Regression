@@ -3,5 +3,3 @@ embeddedsampling
 profection_pce
 output
 required:stokhos
-required:cxx11
-
