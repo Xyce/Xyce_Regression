@@ -1,0 +1,5 @@
+* The paths in this file are relative to the
+* directory of top-level netlist.
+
+.INC sub1/sub2/include2_path_rel_top
+.LIB sub1/sub2/lib2_path_rel_top LIB_REL1

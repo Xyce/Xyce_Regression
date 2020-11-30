@@ -3,4 +3,3 @@ embeddedsampling
 quadrature_pce
 output
 required:stokhos
-required:cxx11

@@ -2,4 +2,3 @@ nightly, serial, parallel, pce
 embeddedsampling
 errorexit
 required:stokhos
-required:cxx11

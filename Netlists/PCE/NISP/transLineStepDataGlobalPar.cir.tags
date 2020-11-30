@@ -2,5 +2,4 @@ nightly, serial, sensitivity, pce, tran
 quadrature_pce
 nisp
 required:stokhos
-required:cxx11
 exclude

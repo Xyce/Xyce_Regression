@@ -3,5 +3,4 @@ embeddedsampling
 pce
 regression_pce
 required:stokhos
-required:cxx11
 valgrind
