@@ -1,0 +1,13 @@
+Manifest.txt
+exclude
+gain-stage.cir
+gain-stage.cir.sh
+gain-stage_adj.cir
+gain-stage_fd.cir
+op-amp.cir
+op-amp.cir.sh
+op-amp_fd.cir
+op-amp_unique.cir
+op-amp_unique.cir.sh
+op-amp_unique_fd.cir
+tags
