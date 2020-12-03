@@ -41,14 +41,14 @@ X10 11 12 0 RCBlock
 
 * also test output of RF parameters via .PRINT AC line
 .PRINT AC S(1,1) SR(1,1) SI(1,1) SM(1,1) SP(1,1) SDB(1,1)
-+ S(1,2) SR(1,2) SI(1,2) SM(1,2) SP(1,2) SDB(1,2)
++ s(1,2) sr(1,2) si(1,2) sm(1,2) sp(1,2) sdb(1,2)
 + S(2,1) SR(2,1) SI(2,1) SM(2,1) SP(2,1) SDB(2,1)
 + S(2,2) SR(2,2) SI(2,2) SM(2,2) SP(2,2) SDB(2,2)
 + Y(1,1) YR(1,1) YI(1,1) YM(1,1) YP(1,1) YDB(1,1)
-+ Y(1,2) YR(1,2) YI(1,2) YM(1,2) YP(1,2) YDB(1,2)
++ y(1,2) yr(1,2) yi(1,2) ym(1,2) yp(1,2) ydb(1,2)
 + Y(2,1) YR(2,1) YI(2,1) YM(2,1) YP(2,1) YDB(2,1)
 + Y(2,2) YR(2,2) YI(2,2) YM(2,2) YP(2,2) YDB(2,2)
-+ Z(1,1) ZR(1,1) ZI(1,1) ZM(1,1) ZP(1,1) ZDB(1,1)
++ z(1,1) zr(1,1) zi(1,1) zm(1,1) zp(1,1) zdb(1,1)
 + Z(1,2) ZR(1,2) ZI(1,2) ZM(1,2) ZP(1,2) ZDB(1,2)
 + Z(2,1) ZR(2,1) ZI(2,1) ZM(2,1) ZP(2,1) ZDB(2,1)
 + Z(2,2) ZR(2,2) ZI(2,2) ZM(2,2) ZP(2,2) ZDB(2,2)
