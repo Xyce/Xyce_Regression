@@ -1,6 +1,7 @@
 bsim3_modpar.cir
 bsim4_modpar.cir
-mutInd1.cir 
-mutInd1_baseline.cir 
+mutInd1.cir
+mutInd2.cir
+mutInd1_baseline.cir
 mutInd2_baseline.cir
 diodeRef.cir
