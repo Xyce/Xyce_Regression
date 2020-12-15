@@ -1,7 +1,4 @@
-gain-stage.cir
 gain-stage_adj.cir
 gain-stage_fd.cir
-op-amp.cir
 op-amp_fd.cir
-op-amp_unique.cir
 op-amp_unique_fd.cir
