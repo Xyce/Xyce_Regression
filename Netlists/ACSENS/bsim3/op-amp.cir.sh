@@ -112,8 +112,8 @@ $CPCMD="mv tmp $CIR1.FD.SENS.prn";
 if (-f "$CIR2.FD.SENS.prn")
 {
   #comparison tolerances for ACComparator.pl
-  $abstol=10000.0;
-  $reltol=3e-2;  #0.1%
+  $abstol=4.0e4; # probably overkill
+  $reltol=3e-2;  
   $zerotol=1e-8;
   $freqreltol=1e-6;
 
