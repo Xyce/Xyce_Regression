@@ -10,4 +10,7 @@ op-amp_fd.cir
 op-amp_unique.cir
 op-amp_unique.cir.sh
 op-amp_unique_fd.cir
+op-amp_expr.cir
+op-amp_expr.cir.sh
+op-amp_expr_fd.cir
 tags
