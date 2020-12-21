@@ -1,1 +1,1 @@
-nightly, serial, sens, ac, exclude
+nightly, serial, parallel, sens, ac, exclude
