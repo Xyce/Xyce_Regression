@@ -98,7 +98,7 @@ if (system($CMD) != 0) {
 
 if ($retcode == 0) {print "Passed base case (Full Matrix Format) comparison\n"; }
 
-# now run the non-base cases, and diff the results against the base case
+# now run the non-base cases, and also compare those results against the gold standard
 foreach $i (0 ..1)
 {
   $CMD="$XYCE $CIR[$i] > $CIR[$i].out 2>$CIR[$i].err";
@@ -131,21 +131,16 @@ foreach $i (0 ..1)
 
   if (defined ($xyceexit)) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
 
-  $CMD="diff $CIR[$i].HB.FD.prn $CIRFILE.HB.FD.prn > $CIR[$i].HB.FD.prn.out 2> $CIR[$i].HB.FD.prn.err";
-  $retval = system($CMD);
-  $retval = $retval >> 8;
-  if ($retval != 0)
-  {
-    print STDERR "Diff failed on file $CIR[$i].HB.FD.prn with exit code $retval\n";
+  # verify the non-base cases
+  $CMD="$XYCE_VERIFY $CIR[$i] $GOLDPRN.HB.TD.prn $CIR[$i].HB.TD.prn > $CIR[$i].HB.TD.prn.out 2> $CIR[$i].HB.TD.prn.err";
+  if (system($CMD) != 0) {
+    print STDERR "Verification failed on file $CIR[$i].HB.TD.prn, see $CIR[$i].HB.TD.prn.err\n";
     $retcode = 2;
   }
 
-  $CMD="diff $CIR[$i].HB.TD.prn $CIRFILE.HB.TD.prn > $CIR[$i].HB.TD.prn.out 2> $CIR[$i].HB.TD.prn.err";
-  $retval = system($CMD);
-  $retval = $retval >> 8;
-  if ($retval != 0)
-  {
-    print STDERR "Diff failed on file $CIR[$i].HB.TD.prn with exit code $retval\n";
+  $CMD="$XYCE_ACVERIFY $GOLDPRN.HB.FD.prn $CIR[$i].HB.FD.prn $abstol $reltol $zerotol $freqreltol > $CIR[$i].HB.FD.prn.out 2> $CIR[$i].HB.FD.prn.err";
+  if (system($CMD) != 0) {
+    print STDERR "Verification failed on file $CIR[$i].HB.FD.prn, see $CIR[$i].HB.FD.prn.err\n";
     $retcode = 2;
   }
 }
