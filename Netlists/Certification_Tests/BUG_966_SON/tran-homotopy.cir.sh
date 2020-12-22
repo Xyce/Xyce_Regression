@@ -136,7 +136,6 @@ foreach $idx (0 .. 2)
 }
 
 # Assume that the base case works, based on tests in Output/TRAN.
-# So, just diff the other "filtered" output raw files against that base case.
 # The "filtered" file does not have the Date line.  Use file_compare.pl 
 # against a gold standard for the .HOMOTOPY.csv files.
 $retcode=0;
