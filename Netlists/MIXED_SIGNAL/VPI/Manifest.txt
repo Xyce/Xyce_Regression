@@ -12,4 +12,14 @@ runXyceWithDAC.c
 runXyceWithDAC.v
 runXyceWithDAC.cir
 runXyceWithDAC.cir.sh
+ADCtest.c
+ADCtest.v
+ADCtest.cir
+ADCtest.cir.sh
+ADCtest.cir.TVarrayGoldData
+ADCStateTest.c
+ADCStateTest.v
+ADCStateTest.cir
+ADCStateTest.cir.sh
+ADCStateTest.cir.TSarrayGoldData
 tags
