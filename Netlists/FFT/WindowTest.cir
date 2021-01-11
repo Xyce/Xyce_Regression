@@ -1,0 +1,20 @@
+*************************************************
+* Test of various FFT Window Types.
+*
+*
+*
+*************************************************
+.TRAN 0 1
+
+V1 1 0 1
+R1 1 2 1
+R2 2 0 1
+
+.PRINT TRAN V(1) V(2)
+
+.FFT V(1) NP=16 WINDOW=RECT
+.FFT V(2) NP=8 WINDOW=BART
+.FFT I(V1) NP=8 WINDOW=HANN
+.FFT {V(1)} NP=8 window=hamm
+
+.END
