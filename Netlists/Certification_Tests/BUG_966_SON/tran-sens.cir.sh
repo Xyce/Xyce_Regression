@@ -1,5 +1,7 @@
 #!/usr/bin/env perl
 
+use RawFileCommon;
+
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
 # $ARGV[1] = location of xyce_verify.pl script
@@ -134,7 +136,6 @@ foreach $idx (0 .. 2)
 }
 
 # Assume that the base case works, based on tests in Output/TRAN.
-# So, just diff the other "filtered" output raw files against that base case.
 # The "filtered" file does not have the Date line.  Use file_compare.pl 
 # against a gold standard for the .SENS.csv files.
 $retcode=0;
@@ -153,16 +154,12 @@ if (system("grep -v 'Date:' $BASECIR.raw > $BASECIR.raw.filtered 2>$BASECIR.raw.
 
 foreach $idx (0 .. 2)
 {
-  if (system("grep -v 'Date:' $CIR[$idx].raw > $CIR[$idx].raw.filtered 2>$CIR[$idx].raw.filtered.out") != 0)
+  print "testing raw output for $CIR[$idx]\n";
+  $compareVal = RawFileCommon::compareRawFiles($XYCE_VERIFY,$CIR[$idx],$BASECIR,$abstol,$reltol,$zerotol);
+  if ($compareVal != 0)
   {
-    print STDERR "Date line not found in file $CIR[$idx].raw.filtered, see $CIR[$idx].raw.filtered.out\n";
+    print "Verification failed on .raw file\n";
     $retcode = 2;
-  }
-
-  $CMD="diff $BASECIR.raw.filtered $CIR[$idx].raw.filtered > $CIR[$idx].raw.out";
-  if (system($CMD) != 0) {
-      print STDERR "Verification failed on file $CIR[$idx].raw, see $CIR[$idx].raw.out\n";
-      $retcode = 2;
   }
 
   $CMD="$fc $CSV[$idx] $GOLDCSV.SENS.csv $abstol $reltol $zerotol > $CSV[$idx].out 2> $CSV[$idx].err";

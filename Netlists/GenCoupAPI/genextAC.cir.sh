@@ -58,12 +58,25 @@ $TestProgram="testGenCoup$EXT";
 $XYCE_LIBTEST = "$MAKEROOT/$TestProgram";
 
 if (-d "$MAKEROOT") {
-  chdir($MAKEROOT);
-  print "NOTICE:   make -------------------------\n";
-  $result += system("make $TestProgram");
-  if($result) {
-    print "WARNING:  make failures! ---------------\n";
-    $retval = $result;
+  if (-e "$MAKEROOT/Makefile") {
+    chdir($MAKEROOT);
+    print "NOTICE:   make -------------------------\n";
+    $result += system("make $TestProgram");
+    if($result) {
+      print "WARNING:  make failures! ---------------\n";
+      $retval = $result;
+    }
+  } elsif (-d "$MAKEROOT/CMakeFiles") {
+     chdir($XYCEROOT);
+     print "Building $TestProgram in $MAKEROOT\n";
+     $result += system("cmake --build . --target $TestProgram");
+     if($result) {
+       print "WARNING:  build failures! ---------------\n";
+       $retval = $result;
+     }
+  } else {
+    print "ERROR:    No build files!\n";
+     $retval = 1;
   }
   chdir($TESTROOT);
 } else {

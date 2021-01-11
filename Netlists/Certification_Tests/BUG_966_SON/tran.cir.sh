@@ -1,5 +1,7 @@
 #!/usr/bin/env perl
 
+use RawFileCommon;
+
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
 # $ARGV[1] = location of xyce_verify.pl script
@@ -75,9 +77,12 @@ foreach $idx (0 .. 2)
 }
 
 # Assume that the base case works, based on tests in Output/TRAN.
-# So, just diff the other "filtered" output raw files against that base case.
 # The "filtered" files do not have their Date lines.
 $retcode=0;
+
+$abstol=1e-6;
+$reltol=1e-3;
+$zerotol=1e-8;
 
 if (system("grep -v 'Date:' $CIR[0].raw > $CIR[0].raw.filtered 2>$CIR[0].raw.filtered.out") != 0)
 {
@@ -87,16 +92,12 @@ if (system("grep -v 'Date:' $CIR[0].raw > $CIR[0].raw.filtered 2>$CIR[0].raw.fil
 
 foreach $idx (1 .. 2)
 {
-  if (system("grep -v 'Date:' $CIR[$idx].raw > $CIR[$idx].raw.filtered 2>$CIR[$idx].raw.filtered.out") != 0)
+  print "testing raw output for $CIR[$idx]\n";
+  $compareVal = RawFileCommon::compareRawFiles($XYCE_VERIFY,$CIR[$idx],$CIR[0],$abstol,$reltol,$zerotol);
+  if ($compareVal != 0)
   {
-    print STDERR "Date line not found in file $CIR[$idx].raw.filtered, see $CIR[$idx].raw.filtered.out\n";
+    print "Verification failed on .raw file\n";
     $retcode = 2;
-  }
-
-  $CMD="diff $CIR[0].raw.filtered $CIR[$idx].raw.filtered > $CIR[$idx].raw.out";
-  if (system($CMD) != 0) {
-      print STDERR "Verification failed on file $CIR[$idx].raw, see $CIR[$idx].raw.out\n";
-      $retcode = 2;
   }
 }
 
