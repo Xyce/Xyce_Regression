@@ -25,6 +25,13 @@ $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
 $XYCE_COMPARE=$ARGV[2];
 $CIRFILE=$ARGV[3];
+$GOLDPRN=$ARGV[4];
+
+$fc=$XYCE_VERIFY;
+$fc =~ s/xyce_verify/file_compare/;
+
+$GOLDFFT = $GOLDPRN;
+$GOLDFFT =~ s/\.prn$//;
 
 system("rm -f $CIRFILE.fft*");
 
@@ -48,10 +55,24 @@ if ($XYCE_VERIFY =~ m/valgrind_check/)
     }
 }
 
-$retval=0;
+$retcode=0;
 if ( !(-f "$CIRFILE.fft")) {
     print STDERR "Missing output file $CIRFILE.fft\n";
-    $retval=14;
+    print "Exit code = 14\n";
+    exit 14;
 }
 
-print "Exit code = $retval\n"; exit $retval;
+$absTol=1e-5;
+$relTol=1e-3;
+$zeroTol=1e-10;
+
+$CMD="$fc $CIRFILE.fft $GOLDFFT.fft $absTol $relTol $zeroTol > $CIRFILE.fft.out 2> $CIRFILE.fft.err";
+$retval = system("$CMD");
+$retval = $retval >> 8;
+if ($retval != 0){
+  print STDERR "Comparator exited with exit code $retval on file $CIRFILE.fft\n";
+  $retcode = 2;
+}
+
+print "Exit code = $retcode\n";
+exit $retcode;

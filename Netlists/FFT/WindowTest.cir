@@ -1,7 +1,9 @@
 *************************************************
-* Test of various FFT Window Types.
-*
-*
+* Test of various FFT Window Types, and the
+* FFTOUT=1 option.  This also tests that I(R1)
+* works on a .FFT line even if I(R1) does not
+* appear on the .PRINT TRAN line.  It also tests
+* expressions on the .FFT line.
 *
 *************************************************
 .TRAN 0 1
@@ -11,10 +13,13 @@ R1 1 2 1
 R2 2 0 1
 
 .PRINT TRAN V(1) V(2)
+.OPTIONS FFT FFTOUT=1
 
-.FFT V(1) NP=16 WINDOW=RECT
-.FFT V(2) NP=8 WINDOW=BART
-.FFT I(V1) NP=8 WINDOW=HANN
-.FFT {V(1)} NP=8 window=hamm
+.FFT V(1) NP=8 WINDOW=HANN
+.FFT I(R1) NP=8 WINDOW=Hann FORMAT=UNORM
+.FFT {V(1)} NP=8 window=hamm format=norm
+
+* I(V1) will have a phase angle of 180
+.FFT I(V1) NP=8 Window=Hamm FORMAT=unorm
 
 .END
