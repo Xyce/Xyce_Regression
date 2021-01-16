@@ -12,8 +12,6 @@ YRXN r1  BAS  GND  rxn1
 .MODEL rxn1 rxn (LEVEL=1
 + REACTION_FILE=verif_react1
 + NUMBER_REGIONS=1
-+ XLO=1.0e-5
-+ XHI=3.0e-4
 + )
 
 .options timeint debuglevel=-10   reltol=1.0e-5 
