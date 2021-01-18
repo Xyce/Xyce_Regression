@@ -1,0 +1,84 @@
+FFT analysis for V(1):
+  Window: HANN, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 4.000000e+00
+DC component    Norm. Mag= 8.413379e-01   Phase= 0.000000e+00
+       Index       Frequency       Norm. Mag           Phase
+           1    1.000000e+00    1.000000e+00   -1.575000e+02
+           2    2.000000e+00    1.026443e-01    4.500000e+01
+           3    3.000000e+00    2.602989e-02    6.750000e+01
+           4    4.000000e+00    1.509689e-16    0.000000e+00
+
+      THD = -1.950263e+01 dB ( 1.058934e-01 )
+     SNDR = 1.950263e+01 dB
+     ENOB = 2.947280e+00 bit
+     SFDR = 1.977330e+01 dB at frequency 2.000000e+00
+
+FFT analysis for I(R1):
+  Window: HANN, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 4.000000e+00
+DC component    Mag= 2.187500e-01   Phase= 0.000000e+00
+       Index       Frequency             Mag           Phase
+           1    1.000000e+00    2.600026e-01   -1.575000e+02
+           2    2.000000e+00    2.668778e-02    4.500000e+01
+           3    3.000000e+00    6.767839e-03    6.750000e+01
+           4    4.000000e+00    3.925231e-17    0.000000e+00
+
+      THD = -1.950263e+01 dB ( 1.058934e-01 )
+     SNDR = 1.950263e+01 dB
+     ENOB = 2.947280e+00 bit
+     SFDR = 1.977330e+01 dB at frequency 2.000000e+00
+
+FFT analysis for {V(1)}:
+  Window: HAMM, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 4.000000e+00
+DC component    Norm. Mag= 1.000000e+00   Phase= 0.000000e+00
+       Index       Frequency       Norm. Mag           Phase
+           1    1.000000e+00    9.915124e-01   -1.575000e+02
+           2    2.000000e+00    1.017731e-01    4.500000e+01
+           3    3.000000e+00    2.580896e-02    6.750000e+01
+           4    4.000000e+00    0.000000e+00    0.000000e+00
+
+      THD = -1.950263e+01 dB ( 1.058934e-01 )
+     SNDR = 1.950263e+01 dB
+     ENOB = 2.947280e+00 bit
+     SFDR = 1.977330e+01 dB at frequency 2.000000e+00
+
+FFT analysis for I(V1):
+  Window: HAMM, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 4.000000e+00
+DC component    Mag= 2.412500e-01   Phase= 1.800000e+02
+       Index       Frequency             Mag           Phase
+           1    1.000000e+00    2.392024e-01    2.250000e+01
+           2    2.000000e+00    2.455276e-02   -1.350000e+02
+           3    3.000000e+00    6.226412e-03   -1.125000e+02
+           4    4.000000e+00    0.000000e+00    0.000000e+00
+
+      THD = -1.950263e+01 dB ( 1.058934e-01 )
+     SNDR = 1.950263e+01 dB
+     ENOB = 2.947280e+00 bit
+     SFDR = 1.977330e+01 dB at frequency 2.000000e+00
+
+FFT analysis for V(2):
+  Window: HARRIS, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 4.000000e+00
+DC component    Norm. Mag= 6.706079e-01   Phase= 0.000000e+00
+       Index       Frequency       Norm. Mag           Phase
+           1    1.000000e+00    1.000000e+00   -1.575000e+02
+           2    2.000000e+00    3.951708e-01    4.500000e+01
+           3    3.000000e+00    6.801489e-02   -1.125000e+02
+           4    4.000000e+00    0.000000e+00    0.000000e+00
+
+      THD = -7.937518e+00 dB ( 4.009813e-01 )
+     SNDR = 7.937518e+00 dB
+     ENOB = 1.026166e+00 bit
+     SFDR = 8.064303e+00 dB at frequency 2.000000e+00
+
+FFT analysis for V(2):
+  Window: HARRIS, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 4.000000e+00
+DC component    Mag= 1.569569e-01   Phase= 0.000000e+00
+       Index       Frequency             Mag           Phase
+           1    1.000000e+00    2.340516e-01   -1.575000e+02
+           2    2.000000e+00    9.249037e-02    4.500000e+01
+           3    3.000000e+00    1.591900e-02   -1.125000e+02
+           4    4.000000e+00    0.000000e+00    0.000000e+00
+
+      THD = -7.937518e+00 dB ( 4.009813e-01 )
+     SNDR = 7.937518e+00 dB
+     ENOB = 1.026166e+00 bit
+     SFDR = 8.064303e+00 dB at frequency 2.000000e+00
+

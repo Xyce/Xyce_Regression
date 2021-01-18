@@ -1,3 +1,3 @@
-serial, nightly,  parallel
+serial, nightly,  parallel, poly
 valgrind
 bsrc

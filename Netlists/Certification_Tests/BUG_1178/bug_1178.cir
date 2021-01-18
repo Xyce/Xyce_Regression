@@ -41,7 +41,6 @@ YPDE YDIODE 3 4 PDEDIODE
 + deltaxtol=1.0
 + smallupdatetol=1.0e-6
 + rhstol=1.0E-6
-*+ normlvl=9
 
 .options timeint reltol=1.0e-3 abstol=1.0e-6 
 *.options timeint method=7 
