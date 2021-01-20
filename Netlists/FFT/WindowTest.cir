@@ -12,6 +12,9 @@ V1 1 0 1
 R1 1 2 1
 R2 2 0 1
 
+V3 3 0 SIN(0 1 1)
+R3 3 0 1
+
 .PRINT TRAN V(1) V(2)
 .OPTIONS FFT FFTOUT=1
 
@@ -24,5 +27,12 @@ R2 2 0 1
 
 .FFT V(2) NP=8 WINDOW=HARRIS
 .FFT V(2) NP=8 Window=harris Format=Unorm
+
+* Repeat some tests with a SIN source, to test the fix to the FFT
+* interface for an even number of samples.  The .FFT lines with
+* V(3) and I(V3) should have phases of 0 and 180 degrees, respectively,
+* for Index=4.
+.FFT V(3) NP=8 WINDOW=HANN
+.FFT I(V3) NP=8 WINDOW=HAMM
 
 .END
