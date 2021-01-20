@@ -35,4 +35,7 @@ R3 3 0 1
 .FFT V(3) NP=8 WINDOW=HANN
 .FFT I(V3) NP=8 WINDOW=HAMM
 
+* Test voltage difference syntax
+.FFT V(1,2) NP=8 Window=HANN
+
 .END

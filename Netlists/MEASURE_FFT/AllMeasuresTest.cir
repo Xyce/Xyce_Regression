@@ -1,0 +1,41 @@
+* Test ENOB, FIND, THD, SFDR and SNDR measures types
+* for .MEASURE FFT for a .TRAN analysis.  Test covers
+* voltage-difference operators, lead currents and
+* expressions.
+*
+* See SON Bugs 1280 and 1327 for more details.
+******************************************************
+
+.TRAN 0 1
+.OPTIONS FFT FFT_ACCURATE=1 FFTOUT=1
+
+V1 1 0 1
+R1 1 2 1
+R2 2 0 1
+
+V3 3 0 SIN(0 1 1)
+R3 3 0 1
+
+* test with multiple .FFT lines
+.FFT V(1) NP=8 WINDOW=HANN
+.FFT V(1,2) NP=8 WINDOW=HARRIS
+.FFT {I(V3)} NP=8 WINDOW=HANN
+.FFT I(R3) NP=8 WINDOW=HARRIS
+
+.MEASURE FFT THDV1 THD V(1)
+.MEASURE FFT SNDRV1 SNDR V(1)
+.MEASURE FFT ENOBV1 ENOB V(1)
+.MEASURE FFT SFDRV1 SFDR V(1)
+
+* Test with voltage difference syntax
+.MEASURE FFT THDV2 THD V(1,2)
+.MEASURE FFT SNDRV2 SNDR V(1,2)
+.MEASURE FFT ENOBV2 ENOB V(1,2)
+.MEASURE FFT SFDRV2 SFDR V(1,2)
+
+* Test expression and lead current
+.MEASURE FFT THDEXP THD {I(V3)}
+.MEASURE FFT SNDRIR3 SNDR I(R3)
+
+.PRINT TRAN V(1) V(2) V(3)
+.END

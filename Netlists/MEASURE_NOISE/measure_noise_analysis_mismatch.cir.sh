@@ -30,6 +30,8 @@ $GOLDPRN=$ARGV[4];
    "ACMAX do not agree",
    "Netlist error: Netlist analysis statement and measure mode \\(AC_CONT\\) for",
    "measure AC_CONT_WHEN do not agree",
+   "Netlist error: Netlist analysis statement and measure mode \\(FFT\\) for measure",
+   "THD do not agree"
  );
 
 $retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);
