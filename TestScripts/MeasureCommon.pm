@@ -36,6 +36,31 @@ sub checkTranFilesExist
 }
 
 #
+# Check that all of the needed files exist for a .MEASURE FFT
+# statement for a .TRAN analysis with a .FFT statement in the
+# netlist.  .MEASURE FFT output uses mt file suffix.
+#
+sub checkFFTFilesExist
+{
+  my ($XYCE,$CIRFILE)=@_;
+
+  use XyceRegression::Tools;
+  my $ModTools = XyceRegression::Tools->new();
+
+  # does the .prn file exist
+  my $retval = -1;
+  $retval=$ModTools->wrapXyce($XYCE,$CIRFILE);
+  if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
+  if (not -s "$CIRFILE.prn" ) { print "Exit code = 14\n"; exit 14; }
+
+  # Did we make a measure file
+  if (not -s "$CIRFILE.mt0" ) { print "Exit code = 17\n"; exit 17; }
+
+  # Did we make the .fft file
+  if (not -s "$CIRFILE.fft" ) { print "Exit code = 14\n"; exit 14; }
+}
+
+#
 # Check that all of the needed files exist for a .MEASURE
 # statement for a .AC analysis.  AC output uses ma file suffix.
 #

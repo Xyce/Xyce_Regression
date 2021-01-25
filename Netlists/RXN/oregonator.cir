@@ -15,8 +15,6 @@ YRXN r1  BAS  GND  rxn1
 .MODEL rxn1 rxn (LEVEL=1
 + REACTION_FILE=oregonator
 + NUMBER_REGIONS=1
-+ XLO=1.0e-5
-+ XHI=3.0e-4
 + )
 
 * this system requires super-accurate integration, or else densities go negative

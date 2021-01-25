@@ -82,3 +82,45 @@ DC component    Mag= 1.569569e-01   Phase= 0.000000e+00
      ENOB = 1.026166e+00 bit
      SFDR = 8.064303e+00 dB at frequency 2.000000e+00
 
+FFT analysis for V(3):
+  Window: HANN, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 4.000000e+00
+DC component    Norm. Mag= 2.374364e-01   Phase= 0.000000e+00
+       Index       Frequency       Norm. Mag           Phase
+           1    1.000000e+00    1.000000e+00   -9.258105e+01
+           2    2.000000e+00    6.319744e-01    1.135354e+02
+           3    3.000000e+00    6.368577e-02   -4.500000e+01
+           4    4.000000e+00    2.984182e-02    0.000000e+00
+
+      THD = -3.932554e+00 dB ( 6.358758e-01 )
+     SNDR = 3.932554e+00 dB
+     ENOB = 3.608894e-01 bit
+     SFDR = 3.986011e+00 dB at frequency 2.000000e+00
+
+FFT analysis for I(V3):
+  Window: HAMM, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 4.000000e+00
+DC component    Norm. Mag= 1.966620e-01   Phase= 1.800000e+02
+       Index       Frequency       Norm. Mag           Phase
+           1    1.000000e+00    1.000000e+00    8.786241e+01
+           2    2.000000e+00    5.234469e-01   -6.646459e+01
+           3    3.000000e+00    5.274916e-02    1.350000e+02
+           4    4.000000e+00    2.471716e-02    1.800000e+02
+
+      THD = -5.569091e+00 dB ( 5.266783e-01 )
+     SNDR = 5.569091e+00 dB
+     ENOB = 6.327394e-01 bit
+     SFDR = 5.622548e+00 dB at frequency 2.000000e+00
+
+FFT analysis for V(1,2):
+  Window: HANN, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 4.000000e+00
+DC component    Norm. Mag= 8.413379e-01   Phase= 0.000000e+00
+       Index       Frequency       Norm. Mag           Phase
+           1    1.000000e+00    1.000000e+00   -1.575000e+02
+           2    2.000000e+00    1.026443e-01    4.500000e+01
+           3    3.000000e+00    2.602989e-02    6.750000e+01
+           4    4.000000e+00    1.067512e-16    0.000000e+00
+
+      THD = -1.950263e+01 dB ( 1.058934e-01 )
+     SNDR = 1.950263e+01 dB
+     ENOB = 2.947280e+00 bit
+     SFDR = 1.977330e+01 dB at frequency 2.000000e+00
+

@@ -29,7 +29,9 @@ $GOLDPRN=$ARGV[4];
    "Netlist error\\: Netlist analysis statement and measure mode \\(NOISE\\) for measure",
    "NOISEMAX do not agree",
    "Netlist error\\: Netlist analysis statement and measure mode \\(NOISE_CONT\\) for",
-   "measure NOISE_CONT_FIND do not agree"
+   "measure NOISE_CONT_FIND do not agree",
+   "Netlist error: Netlist analysis statement and measure mode \\(FFT\\) for measure",
+   "THD do not agree"
  );
 
 $retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);

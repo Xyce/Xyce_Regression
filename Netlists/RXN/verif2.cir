@@ -13,12 +13,6 @@ YRXN R1  BAS  GND  rxn1
 + MODELRXNSPEC=true
 + REACTION_FILE=verif_react2
 + NUMBER_REGIONS=1
-+ XLO_BE=1.0e-5
-+ XHI_BE=3.0e-4
-+ X_EMIT_PEAK=1.0e-4
-+ X_BASE_PEAK=2.0e-4
-+ Nemit=2.0e+19
-+ Nbase=1.5e+16
 + )
 
 .options timeint debuglevel=-10   reltol=1.0e-5
