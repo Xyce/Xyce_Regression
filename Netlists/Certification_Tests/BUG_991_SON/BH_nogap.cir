@@ -27,7 +27,7 @@
 *comp n(ymin!ktrans1_b) offset=5000
 
 
-.print tran format=csv v(1)  i(Lp1) n(ymin!ktrans1_m) n(ymin!ktrans1_h) n(ymin!ktrans1_b)
+.print tran v(1)  i(Lp1) n(ymin!ktrans1_m) n(ymin!ktrans1_h) n(ymin!ktrans1_b)
 Rt1       1 0  1
 Lp1       1 0  20
 

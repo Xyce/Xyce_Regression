@@ -1,6 +1,6 @@
-BH_gapless.cir 
+BH_nogap.cir 
 BH_test.cir
 BH_test_lv2.cir
-BH_gapless_lv2.cir
+BH_nogap_lv2.cir
 Manifest.txt
 tags
