@@ -37,7 +37,7 @@ I3 1 0 sin(0 .8 1Hz 3)
 
 ktrans1  Lp1 1 TX39-20-13_3C80_25C
 
-.model TX39-20-13_3C80_25C core (MS=510K A=62 C=0.92 K=25 ALPHA=3.7e-4
+.model TX39-20-13_3C80_25C core (level=2 MS=510K A=62 C=0.92 K=25 ALPHA=3.7e-4
 + Area=1.12 gap=0.005 Path=8.49 )
 
 .end
