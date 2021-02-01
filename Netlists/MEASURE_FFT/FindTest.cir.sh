@@ -92,7 +92,7 @@ close(ERRMSG);
 
 # test that the values and strings in the .out file match to the required
 # tolerances
-my $GSFILE="AllMeasuresTestGSfile";
+my $GSFILE="FindTestGSfile";
 my $absTol=1e-5;
 my $relTol=1e-3;
 my $zeroTol=1e-10;

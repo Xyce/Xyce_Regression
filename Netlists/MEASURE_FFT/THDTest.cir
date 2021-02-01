@@ -1,7 +1,6 @@
-* Test ENOB, FIND, THD, SFDR and SNDR measures types
-* for .MEASURE FFT for a .TRAN analysis.  Test covers
-* voltage-difference operators, lead currents and
-* expressions.
+* Test THD measure type for .MEASURE FFT for a .TRAN
+* analysis.  Test covers voltage-difference operators,
+* lead currents and expressions.
 *
 * See SON Bugs 1280 and 1327 for more details.
 ******************************************************
@@ -24,19 +23,13 @@ R3 3 0 1
 .FFT I(R3) NP=8 WINDOW=HARRIS
 
 .MEASURE FFT THDV1 THD V(1)
-.MEASURE FFT SNDRV1 SNDR V(1)
-.MEASURE FFT ENOBV1 ENOB V(1)
-.MEASURE FFT SFDRV1 SFDR V(1)
 
 * Test with voltage difference syntax
-.MEASURE FFT THDV2 THD V(1,2)
-.MEASURE FFT SNDRV2 SNDR V(1,2)
-.MEASURE FFT ENOBV2 ENOB V(1,2)
-.MEASURE FFT SFDRV2 SFDR V(1,2)
+.MEASURE FFT THDV12 THD V(1,2)
 
 * Test expression and lead current
 .MEASURE FFT THDEXP THD {I(V3)}
-.MEASURE FFT SNDRIR3 SNDR I(R3)
+.MEASURE FFT THDIR3 THD I(R3)
 
 * test NBHARM qualifier for THD measure
 .MEASURE FFT NBHARM0 THD V(3) NBHARM=0

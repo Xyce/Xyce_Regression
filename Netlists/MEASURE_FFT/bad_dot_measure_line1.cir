@@ -1,0 +1,37 @@
+********************************************************************
+* Test error message for various invalid .MEASURE FFT lines.
+*
+* The netlist and .TRAN print/analysis statements in this
+* netlist  don't really matter.  However, there must be matching
+* .FFT statements for the output variables used on the various
+* invalid .MEASURE FFT
+*
+*******************************************************************
+
+.TRAN 0 1
+
+V1 1 0 1
+R1 1 2 1
+R2 2 0 1
+
+.FFT V(1)
+.FFT I(V1)
+.FFT {V(1)}
+.FFT P(V1)
+.FFT W(V1)
+
+* At present, only V() and I() operators are supported for the
+* ENOB, SFDR, SNDR and THD measures
+.MEASURE FFT M1 ENOB VR(1)
+.MEASURE FFT M2 SFDR II(V1)
+.MEASURE FFT M3 SNDR VM(1)
+.MEASURE FFT M4 THD IP(V1)
+.MEASURE FFT M5 THD VDB(1)
+
+* expressions, P() and W() are not supported yet for FIND measures
+.MEASURE FFT M6 FIND {V(1)} AT=2
+.MEASURE FFT M7 FIND P(V1) AT=2
+.MEASURE FFT M8 FIND W(V1) AT=2
+
+.PRINT TRAN V(1) V(2)
+.END
