@@ -1,6 +1,9 @@
 WindowTest.cir
 WindowTest.cir.sh
 WindowTest.cir.tags
+fftoutOptionZero.cir
+fftoutOptionZero.cir.sh
+fftoutOptionZero.cir.tags
 bad_fft_line1.cir
 bad_fft_line1.cir.sh
 bad_fft_line1.cir.options
