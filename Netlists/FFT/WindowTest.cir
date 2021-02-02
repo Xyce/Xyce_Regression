@@ -25,6 +25,8 @@ R3 3 0 1
 * I(V1) will have a phase angle of 180
 .FFT I(V1) NP=8 Window=Hamm FORMAT=unorm
 
+* Test BLACK and HARRIS window types
+.FFT V(1) NP=8 WINDOW=BLACK FORMAT=UNORM
 .FFT V(2) NP=8 WINDOW=HARRIS
 .FFT V(2) NP=8 Window=harris Format=Unorm
 
