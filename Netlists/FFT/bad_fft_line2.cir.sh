@@ -19,7 +19,8 @@ $GOLDPRN=$ARGV[4];
 # These strings should be in the output of this failed Xyce run.
 # Note that underscore (_) characters must be escaped with \\
 @searchstrings = ("Netlist error: Invalid WINDOW type BOGO on .FFT line",
-     "Netlist error: Invalid FORMAT type BOGO on .FFT line"
+     "Netlist error: Invalid FORMAT type BOGO on .FFT line",
+     "Netlist error: NP value on .FFT line must be a power of 2, and >=4"
  );
 
 $retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);
