@@ -3,6 +3,9 @@ MiscParsing.cir.sh
 WindowTest.cir
 WindowTest.cir.sh
 WindowTest.cir.tags
+fft_accurateOptionZero.cir
+fft_accurateOptionZero.cir.sh
+fft_accurateOptionZero.cir.tags
 fftoutOptionZero.cir
 fftoutOptionZero.cir.sh
 fftoutOptionZero.cir.tags

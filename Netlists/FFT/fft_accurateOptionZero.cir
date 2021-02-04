@@ -1,0 +1,18 @@
+* **********************************************************
+* Test non-default value (0) for .OPTIONS FFT FFT_ACCURATE,
+* which then uses interpolation to get the waveform values
+* at the requested sample times.  Also test that the WINDOW
+* qualifier defaults to RECT.
+*
+************************************************************
+.TRAN 0 1
+
+.OPTIONS FFT FFT_ACCURATE=0
+
+V1 1 0 PWL 0 0 0.5 1 1 0
+R1 1 0 1
+
+.PRINT TRAN V(1)
+.FFT V(1) NP=8
+
+.END
