@@ -15,8 +15,15 @@ R2 2 0 1
 V3 3 0 SIN(0 1 1)
 R3 3 0 1
 
-.PRINT TRAN V(1) V(2)
+V4 4 0 PWL 0 0 0.5 1 1 0
+R4 4 0 1
+
+.PRINT TRAN V(1) V(2) V(3) V(4)
 .OPTIONS FFT FFTOUT=1
+
+* Test explicitly setting the window to RECT,
+* which is also the default window
+.FFT V(4) NP=16 WINDOW=RECT
 
 .FFT V(1) NP=8 WINDOW=HANN
 .FFT I(R1) np=8 WINDOW=Hann FORMAT=UNORM

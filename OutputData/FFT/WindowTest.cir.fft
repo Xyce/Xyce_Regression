@@ -1,3 +1,21 @@
+FFT analysis for V(4):
+  Window: RECT, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
+DC component    Norm. Mag= 1.000000e+00   Phase= 0.000000e+00
+       Index       Frequency       Norm. Mag           Phase
+           1    1.000000e+00    8.210669e-01    1.800000e+02
+           2    2.000000e+00    0.000000e+00    0.000000e+00
+           3    3.000000e+00    1.012447e-01    1.800000e+02
+           4    4.000000e+00    0.000000e+00    0.000000e+00
+           5    5.000000e+00    4.520196e-02    1.800000e+02
+           6    6.000000e+00    0.000000e+00    0.000000e+00
+           7    7.000000e+00    3.248644e-02    1.800000e+02
+           8    8.000000e+00    0.000000e+00    0.000000e+00
+
+      THD = -1.703306e+01 dB ( 1.407171e-01 )
+     SNDR = 1.703306e+01 dB
+     ENOB = 2.537054e+00 bit
+     SFDR = 1.818013e+01 dB at frequency 3.000000e+00
+
 FFT analysis for V(1):
   Window: HANN, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 4.000000e+00
 DC component    Norm. Mag= 8.413379e-01   Phase= 0.000000e+00
