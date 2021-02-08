@@ -15,5 +15,6 @@ R2 2 0 1
 .PRINT TRAN V(1) V(2)
 
 .FFT V(1) WINDOW=Bogo FORMAT=bogo
+.FFT V(1) NP=0
 
 .END
