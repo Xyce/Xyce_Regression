@@ -1,3 +1,5 @@
+FreqFminFmaxTest.cir
+FreqFminFmaxTest.cir.sh
 MiscParsing.cir
 MiscParsing.cir.sh
 WindowTest.cir
