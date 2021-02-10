@@ -57,7 +57,7 @@ if ($XYCE_VERIFY =~ m/valgrind_check/)
 }
 
 # The next three blocks of code are used to compare the .MEASURE FFT output
-# to stdout to the "gold" stdout in the $GSFILE (SNDRTestGSfile).
+# to stdout to the "gold" stdout in the $GSFILE (SNRTestGSfile).
 
 # check that .out file exists, and open it if it does
 if (not -s "$CIRFILE.out" )
@@ -92,7 +92,7 @@ close(ERRMSG);
 
 # test that the values and strings in the .out file match to the required
 # tolerances
-my $GSFILE="SNDRTestGSfile";
+my $GSFILE="SNRTestGSfile";
 my $absTol=1e-5;
 my $relTol=1e-3;
 my $zeroTol=1e-10;
