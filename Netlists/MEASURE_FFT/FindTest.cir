@@ -15,8 +15,10 @@ R2 2 0 1
 V3 3 0 SIN(0 1 1)
 R3 3 0 1
 
-* test with multiple .FFT lines.  Use UNORM format, because
-* the FFT coeffs are returned in unnormalized format.
+* Test with multiple .FFT lines.  Use UNORM format, because
+* the FFT coeffs are returned in unnormalized format. The second
+* .FFT V(1) line should get used by .MEASURE FFT.
+.FFT V(1) NP=8 WINDOW=RECT
 .FFT V(1) NP=8 WINDOW=HANN FORMAT=UNORM
 .FFT V(1,2) NP=8 WINDOW=HARRIS FORMAT=UNORM
 .FFT I(R3) NP=8 WINDOW=HARRIS FORMAT=UNORM
@@ -59,6 +61,10 @@ R3 3 0 1
 .MEASURE FFT FINDIM3 FIND IM(R3) AT=1.0
 .MEASURE FFT FINDIP3 FIND IP(R3) AT=1.0
 .MEASURE FFT FINDIDB3 FIND Idb(R3) AT=1.0
+
+* Test that TRAN and FFT measure modes
+* work in the same netlist
+.MEASURE TRAN MAXV3 MAX V(3)
 
 * Test rounding
 .MEASURE FFT FINDVR1ROUND1 FIND VR(1) AT=1.25

@@ -62,6 +62,9 @@ FINDIP3 = -1.047441e+02 at 1 Hz (rounded from 1.000000e+00 Hz)
 
 FINDIDB3 = -1.180219e+01 at 1 Hz (rounded from 1.000000e+00 Hz)
 
+MAXV3 = 1.000000e+00 at time = 2.500000e-01
+Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e+00
+
 FINDVR1ROUND1 = -4.804221e-01 at 1 Hz (rounded from 1.250000e+00 Hz)
 
 FINDVI1ROUND2A = 3.774222e-02 at 2 Hz (rounded from 1.750000e+00 Hz)
