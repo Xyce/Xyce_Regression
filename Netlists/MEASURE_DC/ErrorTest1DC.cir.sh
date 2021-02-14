@@ -32,7 +32,8 @@ $fc=$XYCE_VERIFY;
 $fc =~ s/xyce_verify/file_compare/;
 
 # remove files from previous runs
-system("rm -f $CIRFILE.ms0 $CIRFILE.out $CIRFILE.err* $CIRFILE.remeasure*");
+system("rm -f $CIRFILE.ms0 $CIRFILE.out $CIRFILE.err*");
+system("rm -f $CIRFILE.remeasure* $CIRFILE.measure*");
 
 #
 # Steps common to all of the measure tests are in the Perl module
@@ -57,7 +58,7 @@ if ($XYCE_VERIFY =~ m/valgrind_check/)
     # re-name the files from the measure run, so that the
     # data from the re-measure run does not overwrite them
     print "Measure passed valgrind testing\n";
-    move("$CIRFILE.mt0","$CIRFILE.measure.mt0");
+    move("$CIRFILE.ms0","$CIRFILE.measure.ms0");
     move("$CIRFILE.out","$CIRFILE.measure.out");
     move("$CIRFILE.err","$CIRFILE.measure.err");
   }
