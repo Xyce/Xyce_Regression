@@ -38,23 +38,6 @@ system("rm -f $CIRFILE.fft*");
 $retval=$Tools->wrapXyce($XYCE,$CIRFILE);
 if ($retval != 0) {print "Exit code = $retval\n"; exit $retval;}
 
-#If this is a VALGRIND run, we don't do our normal verification, we
-# merely run "valgrind_check.sh" as if it were xyce_verify.pl
-if ($XYCE_VERIFY =~ m/valgrind_check/)
-{
-    print STDERR "DOING VALGRIND RUN INSTEAD OF REAL RUN!";
-    if (system("$XYCE_VERIFY $CIRFILE $GOLDPRN $CIRFILE.prn > $CIRFILE.prn.out 2>&1 $CIRFILE.prn.err"))
-    {
-        print "Exit code = 2 \n";
-        exit 2;
-    }
-    else
-    {
-        print "Exit code = 0 \n";
-        exit 0;
-    }
-}
-
 $retcode=0;
 if ( !(-f "$CIRFILE.fft0")) {
     print STDERR "Missing output file $CIRFILE.fft0\n";
@@ -62,7 +45,7 @@ if ( !(-f "$CIRFILE.fft0")) {
     exit 2;
 }
 
-$absTol=1e-3;
+$absTol=1e-5;
 $relTol=1e-3;
 $zeroTol=1e-10;
 

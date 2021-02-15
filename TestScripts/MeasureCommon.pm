@@ -57,7 +57,7 @@ sub checkFFTFilesExist
   if (not -s "$CIRFILE.mt0" ) { print "Exit code = 17\n"; exit 17; }
 
   # Did we make the .fft file
-  if (not -s "$CIRFILE.fft" ) { print "Exit code = 14\n"; exit 14; }
+  if (not -s "$CIRFILE.fft0" ) { print "Exit code = 14\n"; exit 14; }
 }
 
 #

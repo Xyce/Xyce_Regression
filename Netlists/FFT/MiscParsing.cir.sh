@@ -38,21 +38,21 @@ system("rm -f $CIRFILE.fft*");
 $retval=$Tools->wrapXyce($XYCE,$CIRFILE);
 if ($retval != 0) {print "Exit code = $retval\n"; exit $retval;}
 
-if ( !(-f "$CIRFILE.fft")) {
-    print STDERR "Missing output file $CIRFILE.fft\n";
-    print "Exit code = 14\n";
-    exit 14;
+if ( !(-f "$CIRFILE.fft0")) {
+    print STDERR "Missing output file $CIRFILE.fft0\n";
+    print "Exit code = 2\n";
+    exit 2;
 }
 
 $absTol=1e-5;
 $relTol=1e-3;
 $zeroTol=1e-10;
 
-$CMD="$fc $CIRFILE.fft $GOLDFFT.fft $absTol $relTol $zeroTol > $CIRFILE.fft.out 2> $CIRFILE.fft.err";
+$CMD="$fc $CIRFILE.fft0 $GOLDFFT.fft0 $absTol $relTol $zeroTol > $CIRFILE.fft0.out 2> $CIRFILE.fft0.err";
 $retval = system("$CMD");
 $retval = $retval >> 8;
 if ($retval != 0){
-  print STDERR "Comparator exited with exit code $retval on file $CIRFILE.fft\n";
+  print STDERR "Comparator exited with exit code $retval on file $CIRFILE.fft0\n";
   print "Exit code = 2\n";
   exit 2;
 }

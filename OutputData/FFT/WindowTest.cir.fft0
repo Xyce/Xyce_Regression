@@ -14,6 +14,7 @@ DC component    Norm. Mag= 1.000000e+00   Phase= 0.000000e+00
       THD = -1.703306e+01 dB ( 1.407171e-01 )
      SNDR = 1.703306e+01 dB
      ENOB = 2.537054e+00 bit
+     SNR = 2.000000e+02 dB
      SFDR = 1.818013e+01 dB at frequency 3.000000e+00
 
 FFT analysis for V(1):
@@ -28,6 +29,7 @@ DC component    Norm. Mag= 8.413379e-01   Phase= 0.000000e+00
       THD = -1.950263e+01 dB ( 1.058934e-01 )
      SNDR = 1.950263e+01 dB
      ENOB = 2.947280e+00 bit
+     SNR = 2.000000e+02 dB
      SFDR = 1.977330e+01 dB at frequency 2.000000e+00
 
 FFT analysis for I(R1):
@@ -42,6 +44,7 @@ DC component    Mag= 2.187500e-01   Phase= 0.000000e+00
       THD = -1.950263e+01 dB ( 1.058934e-01 )
      SNDR = 1.950263e+01 dB
      ENOB = 2.947280e+00 bit
+     SNR = 2.000000e+02 dB
      SFDR = 1.977330e+01 dB at frequency 2.000000e+00
 
 FFT analysis for {V(1)}:
@@ -56,6 +59,7 @@ DC component    Norm. Mag= 1.000000e+00   Phase= 0.000000e+00
       THD = -1.950263e+01 dB ( 1.058934e-01 )
      SNDR = 1.950263e+01 dB
      ENOB = 2.947280e+00 bit
+     SNR = 2.000000e+02 dB
      SFDR = 1.977330e+01 dB at frequency 2.000000e+00
 
 FFT analysis for I(V1):
@@ -70,6 +74,7 @@ DC component    Mag= 2.412500e-01   Phase= 1.800000e+02
       THD = -1.950263e+01 dB ( 1.058934e-01 )
      SNDR = 1.950263e+01 dB
      ENOB = 2.947280e+00 bit
+     SNR = 2.000000e+02 dB
      SFDR = 1.977330e+01 dB at frequency 2.000000e+00
 
 FFT analysis for V(1):
@@ -84,6 +89,7 @@ DC component    Mag= 3.709387e-01   Phase= 0.000000e+00
       THD = -1.157331e+01 dB ( 2.638364e-01 )
      SNDR = 1.157331e+01 dB
      ENOB = 1.630117e+00 bit
+     SNR = 2.000000e+02 dB
      SFDR = 1.158150e+01 dB at frequency 2.000000e+00
 
 FFT analysis for V(2):
@@ -98,6 +104,7 @@ DC component    Norm. Mag= 6.706079e-01   Phase= 0.000000e+00
       THD = -7.937518e+00 dB ( 4.009813e-01 )
      SNDR = 7.937518e+00 dB
      ENOB = 1.026166e+00 bit
+     SNR = 2.000000e+02 dB
      SFDR = 8.064303e+00 dB at frequency 2.000000e+00
 
 FFT analysis for V(2):
@@ -112,6 +119,7 @@ DC component    Mag= 1.569569e-01   Phase= 0.000000e+00
       THD = -7.937518e+00 dB ( 4.009813e-01 )
      SNDR = 7.937518e+00 dB
      ENOB = 1.026166e+00 bit
+     SNR = 2.000000e+02 dB
      SFDR = 8.064303e+00 dB at frequency 2.000000e+00
 
 FFT analysis for V(3):
@@ -126,6 +134,7 @@ DC component    Norm. Mag= 2.374364e-01   Phase= 0.000000e+00
       THD = -3.932554e+00 dB ( 6.358758e-01 )
      SNDR = 3.932554e+00 dB
      ENOB = 3.608894e-01 bit
+     SNR = 2.000000e+02 dB
      SFDR = 3.986011e+00 dB at frequency 2.000000e+00
 
 FFT analysis for I(V3):
@@ -140,6 +149,7 @@ DC component    Norm. Mag= 1.966620e-01   Phase= 1.800000e+02
       THD = -5.569091e+00 dB ( 5.266783e-01 )
      SNDR = 5.569091e+00 dB
      ENOB = 6.327394e-01 bit
+     SNR = 2.000000e+02 dB
      SFDR = 5.622548e+00 dB at frequency 2.000000e+00
 
 FFT analysis for V(1,2):
@@ -154,5 +164,6 @@ DC component    Norm. Mag= 8.413379e-01   Phase= 0.000000e+00
       THD = -1.950263e+01 dB ( 1.058934e-01 )
      SNDR = 1.950263e+01 dB
      ENOB = 2.947280e+00 bit
+     SNR = 2.000000e+02 dB
      SFDR = 1.977330e+01 dB at frequency 2.000000e+00
 

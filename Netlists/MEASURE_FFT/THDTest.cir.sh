@@ -57,7 +57,7 @@ if ($XYCE_VERIFY =~ m/valgrind_check/)
 }
 
 # The next three blocks of code are used to compare the .MEASURE FFT output
-# to stdout to the "gold" stdout in the $GSFILE (AllMeasuresTestGSfile).
+# to stdout to the "gold" stdout in the $GSFILE (THDTestGSfile).
 
 # check that .out file exists, and open it if it does
 if (not -s "$CIRFILE.out" )

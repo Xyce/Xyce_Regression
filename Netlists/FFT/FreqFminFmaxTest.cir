@@ -1,0 +1,20 @@
+* Test of FREQ, FMIN and FMAX qualifier
+*
+*
+*****************************************
+
+.TRAN 0 1
+.OPTIONS FFT FFT_ACCURATE=1 FFTOUT=1
+
+V1 1 0 1
+R1 1 2 1
+R2 2 0 1
+
+V3 3 0 SIN(0 1 1)
+R3 3 0 1
+
+.FFT V(1) NP=16 WINDOW=HANN
+.FFT V(1) NP=16 WINDOW=HANN FREQ=2
+
+.PRINT TRAN V(1) V(2)
+.END

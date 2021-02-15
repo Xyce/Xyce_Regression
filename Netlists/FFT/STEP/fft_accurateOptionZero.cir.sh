@@ -27,14 +27,13 @@ $XYCE_COMPARE=$ARGV[2];
 $CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
 
-$fc=$XYCE_VERIFY;
-$fc =~ s/xyce_verify/file_compare/;
-
-$GOLDFFT = $GOLDPRN;
-$GOLDFFT =~ s/\.prn$//;
+$CB = $CIRFILE;
+$CB =~ s/.cir$//;
 
 system("rm -f $CIRFILE.fft*");
+system("rm -f $CB.s*.cir.prn $CB.s*.cir.out $CB.s*.cir.fft0 $CB.s*.cir.err");
 
+# create the output files for the Step netlist
 $retval=$Tools->wrapXyce($XYCE,$CIRFILE);
 if ($retval != 0) {print "Exit code = $retval\n"; exit $retval;}
 
@@ -55,23 +54,52 @@ if ($XYCE_VERIFY =~ m/valgrind_check/)
     }
 }
 
-$retcode=0;
+# Did we make both fft files for the step netlist
 if ( !(-f "$CIRFILE.fft0")) {
     print STDERR "Missing output file $CIRFILE.fft0\n";
-    print "Exit code = 2\n";
-    exit 2;
+    print "Exit code = 14\n";
+    exit 14;
 }
 
-$absTol=1e-3;
-$relTol=1e-3;
-$zeroTol=1e-10;
+if ( !(-f "$CIRFILE.fft1")) {
+    print STDERR "Missing output file $CIRFILE.fft1\n";
+    print "Exit code = 14\n";
+    exit 14;
+}
 
-$CMD="$fc $CIRFILE.fft0 $GOLDFFT.fft0 $absTol $relTol $zeroTol > $CIRFILE.fft0.out 2> $CIRFILE.fft0.err";
-$retval = system("$CMD");
-$retval = $retval >> 8;
-if ($retval != 0){
-  print STDERR "Comparator exited with exit code $retval on file $CIRFILE.fft0\n";
-  $retcode = 2;
+$retcode = 0;
+
+# Make the non-step output files and check each non-step .fft0 output file against the
+# corresponding .fftX output from the step netlist
+foreach my $idx (0 .. 1)
+{
+  $NSF="$CB.s$idx.cir"; # name of the non-step file
+  $retval=$Tools->wrapXyce($XYCE,"$NSF");
+  if ($retval != 0)
+  {
+    print "Xyce crashed running non-step netlist $NSF for Step $idx\n";
+    print "See $NSF.out and $NSF.err\n";
+    print "Exit code = $retval\n";
+    exit $retval;
+  }
+
+  # Did we make a .fft0 file for the non-step netlist
+  if (not -s "$NSF.fft0" )
+  {
+    print "Failed to make file $NSF.fft0";
+    $retcode = 17;
+  }
+
+  $CMD="diff $CIRFILE.fft$idx $NSF.fft0 > $CIRFILE.fft$idx.out 2> $CIRFILE.fft$idx.err";
+  $retval = system($CMD);
+  $retval = $retval >> 8;
+
+  # check the return value
+  if ( $retval != 0 )
+  {
+    print "Diff Failed for Step $idx. See $CIRFILE.fft$idx.out and $CIRFILE.fft$idx.err\n";
+    $retcode = 2;
+  }
 }
 
 print "Exit code = $retcode\n";
