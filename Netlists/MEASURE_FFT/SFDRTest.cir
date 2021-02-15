@@ -17,7 +17,7 @@ R3 3 0 1
 
 * Test with multiple .FFT lines. The second .FFT V(1)
 * line should get used by .MEASURE FFT.
-.FFT V(1) NP=8 WINDOW=RECT
+.FFT V(1) NP=8 WINDOW=BART
 .FFT V(1) NP=8 WINDOW=HANN
 .FFT V(1,2) NP=8 WINDOW=HARRIS
 .FFT V(3) NP=8 WINDOW=HARRIS
@@ -37,5 +37,5 @@ R3 3 0 1
 * work in the same netlist
 .MEASURE TRAN MAXV3 MAX V(3)
 
-.PRINT TRAN V(1) V(2) V(3)
+.PRINT TRAN V(1) V(2) V(3) I(V3) I(R3)
 .END

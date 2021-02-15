@@ -1,6 +1,7 @@
 #!/usr/bin/env perl
 
 use MeasureCommon;
+use File::Copy;
 
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
@@ -31,7 +32,8 @@ $fc=$XYCE_VERIFY;
 $fc =~ s/xyce_verify/file_compare/;
 
 # remove files from previous runs
-system("rm -f $CIRFILE.mt0 $CIRFILE.fft $CIRFILE.out $CIRFILE.err* $CIRFILE.remeasure*");
+system("rm -f $CIRFILE.mt0 $CIRFILE.fft0 $CIRFILE.out $CIRFILE.err*");
+system("rm -f $CIRFILE.remeasure* $CIRFILE.measure*");
 
 #
 # Steps common to all of the measure tests are in the Perl module
@@ -44,6 +46,33 @@ MeasureCommon::checkFFTFilesExist($XYCE,$CIRFILE);
 if ($XYCE_VERIFY =~ m/valgrind_check/)
 {
   print STDERR "DOING VALGRIND RUN INSTEAD OF REAL RUN!";
+  # do a measure run
+  if (system("$XYCE_VERIFY $CIRFILE junk $CIRFILE.prn > $CIRFILE.prn.out 2>&1 $CIRFILE.prn.err"))
+  {
+    print "Exit code = 2 \n";
+    print "Only did measure run\n";
+    exit 2;
+  }
+  else
+  {
+    # re-name the files from the measure run, so that the
+    # data from the re-measure run does not overwrite them
+    print "Measure passed valgrind testing\n";
+    move("$CIRFILE.mt0","$CIRFILE.measure.mt0");
+    move("$CIRFILE.fft0","$CIRFILE.measure.fft0");
+    move("$CIRFILE.out","$CIRFILE.measure.out");
+    move("$CIRFILE.err","$CIRFILE.measure.err");
+  }
+
+  #now do a re-measure run
+  print "Testing re-measure\n";
+  $CMD="$XYCE -remeasure $CIRFILE.prn $CIRFILE > $CIRFILE.out 2> $CIRFILE.err";
+  $retval=system($CMD);
+  $retval = $retval>>8;
+
+  if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
+  if (not -s "$CIRFILE.prn" ) { print "Exit code = 14\n"; exit 14; }
+
   if (system("$XYCE_VERIFY $CIRFILE junk $CIRFILE.prn > $CIRFILE.prn.out 2>&1 $CIRFILE.prn.err"))
   {
     print "Exit code = 2 \n";
@@ -51,6 +80,7 @@ if ($XYCE_VERIFY =~ m/valgrind_check/)
   }
   else
   {
+    print "Re-measure passed valgrind testing\n";
     print "Exit code = 0 \n";
     exit 0;
   }
@@ -130,6 +160,20 @@ $MEASUREMT0 = "$CIRFILE.mt0";
 $CMD="$fc $MEASUREMT0 $GOLDMT0 $absTol $relTol $zeroTol > $CIRFILE.errmsg.out 2> $CIRFILE.errmsg.err";
 $retval=system($CMD);
 $retval = $retval >> 8;
+
+if ( $retval != 0 )
+{
+  print STDERR "test failed comparison of Gold and measured .mt0 files with exit code $retval\n";
+  print "Exit code = 2\n";
+  exit $2;
+}
+else
+{
+  print "Passed comparison of .mt0 files\n";
+}
+
+# Re-measure test uses the same approach as the FOUR measure.
+$retval = MeasureCommon::checkRemeasureWithFFTFiles($XYCE,$XYCE_VERIFY,$CIRFILE,$absTol,$relTol,$zeroTol);
 
 print "Exit code = $retval\n";
 exit $retval;

@@ -18,7 +18,7 @@ R3 3 0 1
 * Test with multiple .FFT lines.  Use UNORM format, because
 * the FFT coeffs are returned in unnormalized format. The second
 * .FFT V(1) line should get used by .MEASURE FFT.
-.FFT V(1) NP=8 WINDOW=RECT
+.FFT V(1) NP=8 WINDOW=BART
 .FFT V(1) NP=8 WINDOW=HANN FORMAT=UNORM
 .FFT V(1,2) NP=8 WINDOW=HARRIS FORMAT=UNORM
 .FFT I(R3) NP=8 WINDOW=HARRIS FORMAT=UNORM
@@ -73,5 +73,5 @@ R3 3 0 1
 .MEASURE FFT FINDVP1ROUND3 FIND VP(1) AT=2.9
 .MEASURE FFT FINDVDB1ROUND0 FIND VDB(1) AT=0.3
 
-.PRINT TRAN V(1) V(2) V(3)
+.PRINT TRAN V(1) V(2) V(3) I(V3) I(R3)
 .END

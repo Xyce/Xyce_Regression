@@ -1,5 +1,6 @@
 #!/usr/bin/env perl
 
+use MeasureCommon;
 use XyceRegression::Tools;
 $Tools = XyceRegression::Tools->new();
 
@@ -103,6 +104,18 @@ foreach my $idx (0 .. 1)
     print "Diff Failed for Step $idx. See $CIRFILE.mt$idx.out and $CIRFILE.mt$idx.err\n";
     $retcode = 2;
   }
+}
+
+# If .MEASURE worked, then test -remeasure
+$numSteps=2;
+if ($retcode == 0)
+{
+  # -remeasure test must use tolerances, since measure and re-measure results may differ slightly
+  # on the same platform.
+  $absTol = 1.0e-4;
+  $relTol = 1.0e-3;
+  $zeroTol = 1.0e-10;
+  $retcode = MeasureCommon::checkRemeasureWithFFTFiles($XYCE,$XYCE_VERIFY,$CIRFILE,$absTol,$relTol,$zeroTol,"prn",$numSteps);
 }
 
 print "Exit code = $retcode\n";
