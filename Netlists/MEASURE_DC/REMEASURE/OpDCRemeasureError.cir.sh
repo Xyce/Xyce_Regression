@@ -22,7 +22,7 @@ $GOLDPRN=$ARGV[4];
 # this string should be in the output of this failed Xyce run  
 @searchstrings = ("Please comment out the .OP statement to get remeasure to work");
 
-# measure should work.  Just test that it runs and makes the .mt0 file
+# measure should work.  Just test that it runs and makes the .ms0 file
 MeasureCommon::checkDCFilesExist($XYCE,$CIRFILE);
 
 # if checkDCFilesExist didn't exit with an error then we reach here.

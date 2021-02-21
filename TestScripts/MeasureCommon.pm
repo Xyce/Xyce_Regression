@@ -1095,6 +1095,78 @@ sub checkRemeasure
   return $retval;
 }
 
+sub checkRemeasureWithFFTFiles
+{
+  my( $XYCE, $XYCE_VERIFY, $CIRFILE, $absTol, $relTol, $zeroTol, $fileExt, $stepNum, $mSuffix ) = @_;
+
+  # file extension allows checkRemeasure() to work with both prn and csd files.
+  # If not file extension is specified then the default is prn.  mSuffix allows
+  # this function to work with TRAN (mt), AC (ma) or DC (ms).  The default is mt.
+  if (not defined $fileExt) { $fileExt = "prn"; }
+  if (not defined $stepNum) {$stepNum = 1}
+  if (not defined $mSuffix) {$mSuffix = "mt"}
+
+  print "Testing Re-measure with added FFT output\n";
+
+  use File::Copy;
+  foreach my $i (0 .. $stepNum-1)
+  {
+    move("$CIRFILE.$mSuffix$i","$CIRFILE.temp.$mSuffix$i");
+    move("$CIRFILE.fft$i","$CIRFILE.temp.fft$i");
+  }
+
+  # remove files from previous runs
+  system("rm -f $CIRFILE.remeasure.mt* $CIRFILE.remeasure.fft*");
+
+  # here is the command to run xyce with remeasure
+  my $CMD="$XYCE -remeasure $CIRFILE.$fileExt $CIRFILE > $CIRFILE.remeasure.out";
+  my $retval=system($CMD)>>8;
+
+  if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
+  if (not -s "$CIRFILE.$fileExt" ) { print "Exit code = 14\n"; exit 14; }
+
+  # Did we make the measure and fft files
+  foreach my $i (0 .. $stepNum-1)
+  {
+    if (not -s "$CIRFILE.$mSuffix$i" ) { print "Exit code = 17\n"; exit 17; }
+    if (not -s "$CIRFILE.fft$i" ) { print "Exit code = 2\n"; exit 2; }
+  }
+
+  # use file_compare
+  my $dirname = `dirname $XYCE_VERIFY`;
+  chomp $dirname;
+  my $fc = "$dirname/file_compare.pl";
+
+  # rename the mtx and fftX files and compare them
+  foreach my $i (0 .. $stepNum-1)
+  {
+    move("$CIRFILE.$mSuffix$i","$CIRFILE.remeasure.$mSuffix$i");
+    move("$CIRFILE.temp.$mSuffix$i","$CIRFILE.$mSuffix$i");
+    `$fc $CIRFILE.remeasure.$mSuffix$i $CIRFILE.$mSuffix$i $absTol $relTol $zeroTol > $CIRFILE.remeasure.$mSuffix$i.out 2> $CIRFILE.remeasure.$mSuffix$i.err`;
+    $retval=$? >> 8;
+    if ($retval != 0)
+    {
+      print("Re-measure of mtX file failed for step $i\n");
+      return $retval;
+    }
+  }
+
+  foreach my $i (0 .. $stepNum-1)
+  {
+    move("$CIRFILE.fft$i","$CIRFILE.remeasure.fft$i");
+    move("$CIRFILE.temp.fft$i","$CIRFILE.fft$i");
+    `$fc $CIRFILE.remeasure.fft$i $CIRFILE.fft$i $absTol $relTol $zeroTol > $CIRFILE.remeasure.fft$i.out 2> $CIRFILE.remeasure.fft$i.err`;
+    $retval=$? >> 8;
+    if ($retval != 0)
+    {
+      print("Re-measure of fftX file failed for step $i\n");
+      return $retval;
+    }
+  }
+
+  return $retval;
+}
+
 sub checkNumberFormat
 {
   my ($val,$precKnown,$precVal) = @_;

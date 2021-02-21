@@ -107,7 +107,7 @@ if ( $retval != 0 )
 # also check the .mt0 file
 $GOLDMT0 = $GOLDPRN;
 $GOLDMT0 =~ s/prn$/mt0/;
-#print "GOLDMS0 file = $GOLDMS0\n";
+#print "GOLDMT0 file = $GOLDMT0\n";
 if (not -s "$GOLDMT0" ) 
 { 
   print "GOLD .mt0 file does not exist\n";
