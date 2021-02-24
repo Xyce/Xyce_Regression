@@ -213,7 +213,7 @@ sub runTest {
         $goodsteps++;
       } else {
         print "FAILURE:  Took a step inconsistent with erroroption=1\n";
-        $failedp = 1;
+        $failed = 1;
       }
     }
   }
