@@ -1,5 +1,5 @@
-serial
-pythonext
+serial, nightly
+required:pythonext
 tensorflow
 genext
 library

@@ -1,5 +1,4 @@
-serial
-pythonext
-pycompadre
+serial, nightly
+required:pythonext
 genext
 library
