@@ -56,6 +56,4 @@ c1 out 0 220fF
 *COMP V(out) offset=.2
 .print tran v(vdd) v(in) v(out)
 
-.options parser model_binning=true
-
 .end

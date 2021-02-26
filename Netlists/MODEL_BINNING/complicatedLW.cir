@@ -2,7 +2,6 @@ THIS CIRCUIT TESTS THE MOS LEVEL=10 MODEL AS A CHAIN OF INVERTERS IN SERIES
 *
 .options device debuglevel=-100
 .options timeint debuglevel=-100
-.options parser model_binning=true
 
 .param 
 + nstat=0
