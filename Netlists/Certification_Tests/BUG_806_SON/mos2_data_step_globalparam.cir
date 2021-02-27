@@ -60,6 +60,8 @@ M1 3 1 2 2 MOSNORM L={length} W={width} TEMP=27
 +          W = 1e-4
 + )
 
+.options  parser model_binning=false
+
 .DC VGG 0 18 1 VDD 0 18 1
 .PRINT DC precision=4 {V(2)+0.1}  M1:L M1:W
 .END
