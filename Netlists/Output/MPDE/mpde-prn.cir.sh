@@ -139,6 +139,13 @@ if ( !(-f "$CIR2.startup.prn")) {
 
 if (defined ($xyceexit)) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
 
+# For this test only, also verify that a <netlistName>.fft0 file is not made
+if (-s "$CIRFILE.fft0")
+{
+  print "FFT output file made, when it should not\n";
+  print "Exit code = 2\n"; exit 2;
+}
+
 $retcode = 0;
 # check for simulation footer text
 # Output from Netlist 1

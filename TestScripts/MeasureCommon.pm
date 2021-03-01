@@ -1038,6 +1038,7 @@ sub compareMeasureResultsFiles
   return $retval;
 }
 
+# This version is used when there are no .FFT lines in the netlist
 sub checkRemeasure
 {
   my( $XYCE, $XYCE_VERIFY, $CIRFILE, $absTol, $relTol, $zeroTol, $fileExt, $stepNum, $mSuffix ) = @_;
@@ -1073,6 +1074,16 @@ sub checkRemeasure
     if (not -s "$CIRFILE.$mSuffix$i" ) { print "Exit code = 17\n"; exit 17; }
   }
 
+  # There should not be any FFT output
+  foreach my $i (0 .. $stepNum-1)
+  {
+    if (-s "$CIRFILE.fft$i")
+    {
+      print "FFT output file made during -remeasure, when it should not\n";
+      print "Exit code = 2\n"; exit 2;
+    }
+  }
+
   # use file_compare 
   my $dirname = `dirname $XYCE_VERIFY`;
   chomp $dirname;
@@ -1095,6 +1106,7 @@ sub checkRemeasure
   return $retval;
 }
 
+# This version is used when there are both .MEASURE and .FFT lines in the netlist
 sub checkRemeasureWithFFTFiles
 {
   my( $XYCE, $XYCE_VERIFY, $CIRFILE, $absTol, $relTol, $zeroTol, $fileExt, $stepNum, $mSuffix ) = @_;

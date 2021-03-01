@@ -4,7 +4,10 @@
 * each measure type.  Expressions are also tested.
 * One current operator (IM) is tested for a branch current.
 *
-* See SON Bug 1267 for more details.
+* This also tests that a .FFT line is ignored for a
+* .AC analysis.
+
+* See SON Bugs 1267 and 1327 for more details.
 *****************************************************
 
 * Trivial high-pass filter (V-C-R) circuit
@@ -14,6 +17,9 @@ V1 a 0 DC 0V AC 1
 
 .print AC vr(b) vi(b) vm(b) vp(b) vdb(b) im(v1) avgvmb
 .ac dec 5 100Hz 1e6
+
+* This line should not actually produce any .FFT output
+.FFT V(a) NP=8
 
 * avg
 .MEASURE AC avgvb avg v(b)
