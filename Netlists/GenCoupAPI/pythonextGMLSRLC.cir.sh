@@ -88,7 +88,7 @@ if (-d "$MAKEROOT") {
 # Run the pythonGenCoup version:
 if (-x $XYCE_LIBTEST) {
   print "NOTICE:   running ----------------------\n";
-  $CMD="KOKKOS_PROFILE_LIBRARY=\"\" $XYCE_LIBTEST -iotest1 $CIRFILEPY > $CIRFILEPY.out 2> $CIRFILEPY.err";
+  $CMD="KOKKOS_NUM_THREADS=2 KOKKOS_PROFILE_LIBRARY=\"\" $XYCE_LIBTEST -iotest1 $CIRFILEPY > $CIRFILEPY.out 2> $CIRFILEPY.err";
   print "$CMD\n";
   $result = system("$CMD");
   if ($result == 0){ $retval=0;} else {$retval=10;}
