@@ -61,8 +61,6 @@ $XYCE_LIBTEST = "$MAKEROOT/$TestProgram";
 if (-d "$MAKEROOT") {
   if (-e "$MAKEROOT/Makefile") {
     chdir($MAKEROOT);
-    print "NOTICE:   make clean -------------------\n";
-    $result = system("make clean");
     print "NOTICE:   make -------------------------\n";
     $result += system("make $TestProgram");
     if($result) {
