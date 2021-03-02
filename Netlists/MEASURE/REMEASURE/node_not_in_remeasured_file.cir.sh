@@ -19,7 +19,7 @@ $GOLDPRN=$ARGV[4];
 # These strings should be in the output of this failed Xyce run.
 # Note that parens are escaped with \\ while _ is escaped with \ 
 @searchstrings = ( "In OutputMgr::remeasure",
-                   "file to reprocess through measure functions: node\_not\_in\_file.prn",
+                   "file to reprocess through measure and/or fft functions: node\_not\_in\_file.prn",
                    "Netlist error: Function or variable V\\(2\\) is not defined",
                     "Netlist error: Function or variable N\\(3\\) is not defined",
                    "Netlist error: Function or variable V\\(4\\) is not defined",

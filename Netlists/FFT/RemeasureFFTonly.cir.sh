@@ -33,7 +33,7 @@ $RMF= $CIRFILE;
 $RMF =~ s/cir$/csv/;
 
 # remove files from previous runs
-system("rm -f $CIRFILE.mt0 $CIRFILE.out $CIRFILE.err*");
+system("rm -f $CIRFILE.mt0 $CIRFILE.fft0 $CIRFILE.out $CIRFILE.err*");
 
 # run Xyce with -remeasure and check for the proper outputfiles
 $CMD="$XYCE -remeasure $RMF $CIRFILE > $CIRFILE.out";
@@ -55,7 +55,17 @@ if ($retval !=0)
   }
 }
 
-if (not -s "$CIRFILE.mt0" ) {"Exit code = 17\n"; exit 17; }
+if (not -s "$CIRFILE.fft0")
+{
+  print "$CIRFILE.fft0 file not made during -remeasure operation\n";
+  print "Exit code = 2\n"; exit 2;
+}
+
+if (-s "$CIRFILE.mt0")
+{
+  print "$CIRFILE.mt0 file made during -remeasure operation, when it should not\n";
+  print "Exit code = 2\n"; exit 2;
+}
 
 # check that .out file exists, and open it if it does
 if (not -s "$CIRFILE.out" )
@@ -77,18 +87,20 @@ my $lineCount=0;
 while( $line=<NETLIST> )
 {
   if ($line =~ /In OutputMgr::remeasure/) { $foundStart = 1; }
-  if ($foundStart > 0 && $line =~ /Remeasure analysis complete/) { $foundEnd = 1; }
 
   if ($foundStart > 0 && $foundEnd < 1)
   {
     print ERRMSG $line;
   }
+
+  # include the "complete" line in the test
+  if ($foundStart > 0 && $line =~ /Remeasure analysis complete/) { $foundEnd = 1; }
 }
 close(NETLIST);
 close(ERRMSG);
 
 # test that the values and strings in the .out file match to the required tolerances
-my $GSFILE="WhenInterpolationTestGSfile";
+my $GSFILE="RemeasureFFTonlyGSfile";
 my $absTol=1e-5;
 my $relTol=1e-3;
 my $zeroTol=1e-10;
@@ -108,30 +120,30 @@ else
   print "Passed comparison of stdout info\n";
 }
 
-# compare gold and re-measured .mt0 files
-$GOLDMT0 = $GOLDPRN;
-$GOLDMT0 =~ s/prn$/mt0/;
-if (not -s "$GOLDMT0" )
+# compare gold and re-measured .fft0 files
+$GOLDFFT0 = $GOLDPRN;
+$GOLDFFT0 =~ s/prn$/fft0/;
+if (not -s "$GOLDFFT0" )
 {
-  print "GOLD .mt0 file does not exist\n";
+  print "GOLD .fft0 file does not exist\n";
   print "Exit code = 17\n";
   exit 17;
 }
 
-$MEASUREMT0 = "$CIRFILE.mt0";
-$CMD="$fc $MEASUREMT0 $GOLDMT0 $absTol $relTol $zeroTol > $CIRFILE.errmsg.out 2> $CIRFILE.errmsg.err";
+$FFT0 = "$CIRFILE.fft0";
+$CMD="$fc $FFT0 $GOLDFFT0 $absTol $relTol $zeroTol > $CIRFILE.errmsg.out 2> $CIRFILE.errmsg.err";
 $retval=system($CMD);
 $retval = $retval >> 8;
 
 if ( $retval != 0 )
 {
-  print STDERR "test failed comparison of Gold and remeasured .mt0 files with exit code $retval\n";
+  print STDERR "test failed comparison of Gold and remeasured .fft0 files with exit code $retval\n";
   print "Exit code = 2\n";
   exit 2;
 }
 else
 {
-  print "Passed comparison of .mt0 files\n";
+  print "Passed comparison of .fft0 files\n";
 }
 
 print "Exit code = $retval\n";

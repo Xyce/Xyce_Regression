@@ -1,5 +1,5 @@
 In OutputMgr::remeasure 
-file to reprocess through measure functions: MeasprintOptionALL.cir.prn
+file to reprocess through measure and/or fft functions: MeasprintOptionALL.cir.prn
 
  ***** Measure Functions ***** 
 

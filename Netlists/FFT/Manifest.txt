@@ -2,6 +2,10 @@ FreqFminFmaxTest.cir
 FreqFminFmaxTest.cir.sh
 MiscParsing.cir
 MiscParsing.cir.sh
+RemeasureFFTonly.cir
+RemeasureFFTonly.cir.sh
+RemeasureFFTonly.csv
+RemeasureFFTonlyGSfile
 WindowTest.cir
 WindowTest.cir.sh
 WindowTest.cir.tags

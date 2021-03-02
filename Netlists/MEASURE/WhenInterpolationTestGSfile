@@ -1,5 +1,5 @@
 In OutputMgr::remeasure 
-file to reprocess through measure functions: WhenInterpolationTest.csv
+file to reprocess through measure and/or fft functions: WhenInterpolationTest.csv
 
  ***** Measure Functions ***** 
 
