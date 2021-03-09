@@ -88,7 +88,7 @@ if (-d "$MAKEROOT") {
 # Run the pythonGenCoup version:
 if (-x $XYCE_LIBTEST) {
   print "NOTICE:   running ----------------------\n";
-  $CMD="KOKKOS_NUM_THREADS=2 KOKKOS_PROFILE_LIBRARY=\"\" $XYCE_LIBTEST -iotest1 $CIRFILEPY > $CIRFILEPY.out 2> $CIRFILEPY.err";
+  $CMD="KOKKOS_NUM_THREADS=2 KOKKOS_PROFILE_LIBRARY=\"\" $XYCE_LIBTEST $CIRFILEPY > $CIRFILEPY.out 2> $CIRFILEPY.err";
   print "$CMD\n";
   $result = system("$CMD");
   if ($result == 0){ $retval=0;} else {$retval=10;}
@@ -135,101 +135,6 @@ if ($retval==0 && $result == 0)
     {
         print STDERR "Comparison failed between Xyce-only and GenExt test output.\n";
         $retval=2;
-    }
-    if ($retval == 0)
-    {
-        print "NOTICE:  Comparing .print and external out----------------\n";
-        $CMD="$XYCE_VERIFY $CIRFILEPY $CIRFILEPY.prn ioTest1.out >> $CIRFILEPY.prn.out 2>> $CIRFILEPY.prn.err";
-        $result = system("$CMD");
-        if ($result == 0)
-        { 
-            # Comparison passed... but did we get any warnings about duplicate 
-            # lines?
-            $CMD="grep 'WARNING.*Throwing away line with duplicate' $CIRFILEPY.prn.err";
-            $result= system("$CMD");
-            if ( $result==0)
-            {
-                #Found such a line, report as failure.
-                print STDERR "Comparison passed between GenExt .print output and ExternalOutput mechanism, but duplicate lines present so marking as failure.\n";
-                $retval=2;
-            }
-            else
-            {
-                $retval=0;
-            }
-        } 
-        else 
-        {
-            print STDERR "Comparison failed between GenExt .print output and ExternalOutput mechanism.\n";
-            $retval=2;
-        }
-    }
-    if ($retval == 0)
-    {
-        print "NOTICE:  Comparing .print starvars and external out----------------\n";
-
-        # Annoyance:  xyce_verify does not handle the case where
-        # there are two .print tran lines to different files.  It only
-        # looks at the last one for the purpose of header verification.
-        # It also has no concept of V(*) and I(*).
-        # So we're going to fake this out by constructing a FAKE netlist
-        # with a fake print line that wasn't actually used, by taking
-        # the header from starvars.prn and stripping off Index and TIME.
-
-        open(STARVARS,"<starvar.prn") || die "Cannot open starvar.prn";
-        $svhead=<STARVARS>;
-        close STARVARS;
-        chomp($svhead);
-        @svvars=split(" ",$svhead);
-        shift @svvars; shift @svvars;
-        
-        open (CIRFILEPY,"<$CIRFILEPY");
-        `rm -f fakecir`;
-        open (FAKECIR,">fakecir");
-        while (<CIRFILEPY>)
-        {
-            if (! (/^.print tran/i))
-            {
-                print FAKECIR;
-            }
-            else
-            {
-                print FAKECIR ".print tran ";
-                foreach $var (@svvars)
-                {
-                    print FAKECIR " $var";
-                }
-                print FAKECIR "\n.end\n";
-                last;
-            }
-        }
-        close FAKECIR;
-        close CIRFILEPY;
-        
-        $CMD="$XYCE_VERIFY fakecir starvar.prn ioTest1a.out >> $CIRFILEPY.prn.out 2>> $CIRFILEPY.prn.err";
-        $result = system("$CMD");
-        if ($result == 0)
-        { 
-            # Comparison passed... but did we get any warnings about duplicate 
-            # lines?
-            $CMD="grep 'WARNING.*Throwing away line with duplicate' $CIRFILEPY.prn.err";
-            $result= system("$CMD");
-            if ( $result==0)
-            {
-                #Found such a line, report as failure.
-            print STDERR "Comparison passed between GenExt .print starvar output and ExternalOutput mechanism, but duplicate lines present so marking as failure.\n";
-                $retval=2;
-            }
-            else
-            {
-                $retval=0;
-            }
-        } 
-        else 
-        {
-            print STDERR "Comparison failed between GenExt .print starvar output and ExternalOutput mechanism.\n";
-            $retval=2;
-        }
     }
 }    
 

@@ -39,7 +39,7 @@ Diode Circuit Netlist
 ************************************************************************* 
 VIN 1 0 PULSE ( 5 -1 0.05ms 100ns 100ns 0.1ms 0.2ms )
 R1 1 2 2K
-YGENEXT pd1 3 0
+YGENEXT pyd1 3 0
 + DPARAMS={NAME=IS VALUE=100FA}
 + SPARAMS={NAME=MODULENAME VALUE=./models/gmls_diode.py}
 VMON 2 3 0

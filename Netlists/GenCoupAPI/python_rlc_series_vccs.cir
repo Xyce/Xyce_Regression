@@ -8,10 +8,10 @@ Test of Python series RLC circuit
 
 V1 1 0 SIN (5v 5v 20MEG)
 * 1K ohm Resistor implemented as external device
-YGenExt P1 1 1a DPARAMS={NAME=R VALUE=1K}
+YGenExt PY1 1 1a DPARAMS={NAME=R VALUE=1K}
 + SPARAMS={NAME=MODULENAME VALUE=./models/resistor.py}
 * RLC network implemented as external device
-YGenExt P2 1a 0 DPARAMS={NAME=R,L,C VALUE=1K,1m,1p}
+YGenExt PY2 1a 0 DPARAMS={NAME=R,L,C VALUE=1K,1m,1p}
 + SPARAMS={NAME=MODULENAME VALUE=./models/rlc.py}
 
 * Voltage-controlled current source implemented as external device
@@ -19,7 +19,7 @@ YGenExt P2 1a 0 DPARAMS={NAME=R,L,C VALUE=1K,1m,1p}
 * nodes are NOT processed correctly unless a model name is found on the
 * instance line.  So it is necessary to specify one, even though
 * there are no model parameters for this device.
-YGenExt P3 2 0 1a 0  foobar DPARAMS={NAME=TRANSCONDUCTANCE VALUE=1}
+YGenExt PY3 2 0 1a 0  foobar DPARAMS={NAME=TRANSCONDUCTANCE VALUE=1}
 + SPARAMS={NAME=MODULENAME VALUE=./models/vccs.py}
 R1 2 0 1
 
