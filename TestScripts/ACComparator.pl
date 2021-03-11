@@ -152,6 +152,7 @@ if ($#gsheaderdata != $#testheaderdata)
 {
     print STDERR "Testfile and goodfile have a different # of elements on their header lines.\n";
     print STDERR "Testfile had $#testheaderdata elements. Goodfile had $#gsheaderdata elements.\n";
+    print STDERR " Test data:  @testheaderdata\n Good: @gsheaderdata\n";
     exit 2;
 }
 
@@ -387,6 +388,8 @@ sub ReadDataFile
     while ($line=<$fileh>)
     {
         chomp($line);
+        # Remove all leading spaces, otherwise split adds an extra field.
+        $line =~ s/^\s+//;
         if ($headread==0)
         {
             @$headerref=split(/[\s,]+/,$line);
