@@ -49,5 +49,8 @@ R4 4 0 1
 * specified on the associated .FFT line.
 .MEASURE FFT SNRV4 SNR V(4)
 
+* Test MAXFREQ
+.MEASURE FFT SNRMF2V1 SNR V(1) MAXFREQ=2
+
 .PRINT TRAN V(1) V(2) V(3) I(V3) I(R3) V(4)
 .END
