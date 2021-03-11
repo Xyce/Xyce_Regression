@@ -23,5 +23,6 @@ R1 2 0 1
 *Dummy model card just to get around Xyce parser limitation.
 .model foobar genext
 .ac dec 30 1 1e7
+.print ac FILE=ACnoindex.prn FORMAT=NOINDEX v(1) v(1a) I(v1) V(2)
 .print ac v(1) v(1a) I(v1) V(2)
 .end

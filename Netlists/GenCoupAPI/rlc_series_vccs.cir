@@ -28,7 +28,9 @@ R1 2 0 1
 *COMP I(v1) abstol=1.25e-6 offset=9e-5
 *COMP V(2) offset=-.1
 * Note:  Order is important here, because xyce_verify can't handle
-* multiple .print tran lines and gets cornfused.
+* multiple .print tran lines and gets cornfused.  The only one it understands
+* is the last one, which it will use to compare to gold standard
 .print tran file=starvar.prn v(*) I(*)
+.print tran file=noindex.prn FORMAT=NOINDEX V(1) V(1A) I(V1) V(2)
 .print tran v(1) v(1a) I(v1) V(2)
 .end
