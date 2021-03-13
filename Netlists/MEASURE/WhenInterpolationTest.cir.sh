@@ -125,7 +125,7 @@ $retval = $retval >> 8;
 
 if ( $retval != 0 )
 {
-  print STDERR "test failed comparison of Gold and measured .mt0 files with exit code $retval\n";
+  print STDERR "test failed comparison of Gold and remeasured .mt0 files with exit code $retval\n";
   print "Exit code = 2\n";
   exit 2;
 }

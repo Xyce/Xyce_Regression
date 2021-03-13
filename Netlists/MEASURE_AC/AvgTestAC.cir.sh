@@ -39,6 +39,13 @@ system("rm -f $CIRFILE.ma0 $CIRFILE.out $CIRFILE.err*");
 #
 MeasureCommon::checkACFilesExist($XYCE,$CIRFILE);
 
+# For this test only, also verify that a <netlistName>.fft0 file is not made
+if (-s "$CIRFILE.fft0")
+{
+  print "FFT output file made, when it should not\n";
+  print "Exit code = 2\n"; exit 2;
+}
+
 # If this is a VALGRIND run, we don't do our normal verification, we
 # merely run "valgrind_check.sh", instead of the rest of this .sh file, and then exit
 if ($XYCE_VERIFY =~ m/valgrind_check/)

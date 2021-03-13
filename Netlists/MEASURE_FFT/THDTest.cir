@@ -15,6 +15,10 @@ R2 2 0 1
 V3 3 0 SIN(0 1 1)
 R3 3 0 1
 
+* This will be used to test with FREQ=2 on the .FFT line
+V4 4 0 1
+R4 4 0 1
+
 * Test with multiple .FFT lines. The second .FFT V(1)
 * line should get used by .MEASURE FFT.
 .FFT V(1) NP=8 WINDOW=BART
@@ -23,6 +27,7 @@ R3 3 0 1
 .FFT V(3) NP=8 WINDOW=HARRIS
 .FFT {I(V3)} NP=8 WINDOW=HANN
 .FFT I(R3) NP=8 WINDOW=HARRIS
+.FFT V(4) NP=16 WINDOW=HANN FREQ=2
 
 .MEASURE FFT THDV1 THD V(1)
 
@@ -45,5 +50,14 @@ R3 3 0 1
 .MEASURE FFT NBHARM4 THD V(3) NBHARM=4
 .MEASURE FFT NBHARM5 THD V(3) NBHARM=5
 
-.PRINT TRAN V(1) V(2) V(3) I(V3) I(R3)
+* Test with FFT-mode measure values in EQN measures
+.MEASURE TRAN EQN1 EQN THDV1
+.MEASURE FFT EQN2 EQN THDV12
+.MEASURE FFT PARAM1 PARAM {THDEXP}
+
+* Test that .MEASURE FFT line uses the FREQ value
+* specified on the associated .FFT line.
+.MEASURE FFT THDV4 THD V(4)
+
+.PRINT TRAN V(1) V(2) V(3) I(V3) I(R3) V(4)
 .END

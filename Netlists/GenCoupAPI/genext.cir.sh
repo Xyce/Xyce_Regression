@@ -113,6 +113,8 @@ if ($retval==0)
 if ($retval==0 && $result == 0)
 {
     print "NOTICE:  Comparing ------------------------------------\n";
+    `echo "NOTICE:  Comparing ------------------------------------" > $CIRFILE.prn.out`;
+    `echo "NOTICE:  Comparing ------------------------------------" > $CIRFILE.prn.err`;
     $CMD="$XYCE_VERIFY $CIRFILE $CIRFILE2.prn $CIRFILE.prn > $CIRFILE.prn.out 2> $CIRFILE.prn.err";
     $result = system("$CMD");
     if ($result == 0)
@@ -140,6 +142,8 @@ if ($retval==0 && $result == 0)
     if ($retval == 0)
     {
         print "NOTICE:  Comparing .print and external out----------------\n";
+        `echo "NOTICE:  Comparing .print and external out----------------" >> $CIRFILE.prn.out`;
+        `echo "NOTICE:  Comparing .print and external out----------------" >> $CIRFILE.prn.err`;
         $CMD="$XYCE_VERIFY $CIRFILE $CIRFILE.prn ioTest1.out >> $CIRFILE.prn.out 2>> $CIRFILE.prn.err";
         $result = system("$CMD");
         if ($result == 0)
@@ -168,6 +172,8 @@ if ($retval==0 && $result == 0)
     if ($retval == 0)
     {
         print "NOTICE:  Comparing .print starvars and external out----------------\n";
+        `echo "NOTICE:  Comparing .print starvars and external out----------------" >> $CIRFILE.prn.out`;
+        `echo "NOTICE:  Comparing .print starvars and external out----------------" >> $CIRFILE.prn.err`;
 
         # Annoyance:  xyce_verify does not handle the case where
         # there are two .print tran lines to different files.  It only
@@ -229,6 +235,25 @@ if ($retval==0 && $result == 0)
         else 
         {
             print STDERR "Comparison failed between GenExt .print starvar output and ExternalOutput mechanism.\n";
+            $retval=2;
+        }
+    }
+    if ($retval == 0)
+    {
+        $fc = $XYCE_VERIFY;
+        $fc=~ s/xyce_verify/file_compare/;
+        print "NOTICE:  Comparing .print NOINDEX line and external out with prepended time ----------------\n";
+        `echo "NOTICE:  Comparing .print NOINDEX line and external out with prepended time ----------------" >> $CIRFILE.prn.out`;
+        `echo "NOTICE:  Comparing .print NOINDEX line and external out with prepended time ----------------" >> $CIRFILE.prn.err`;
+        $absTol=1e-5;
+        $relTol=1e-3;
+        $zeroTol=1e-16;
+        $CMD="$fc ioTest1_noindex.out noindex.prn $absTol $relTol $zeroTol >> $CIRFILE.prn.out 2>> $CIRFILE.prn.err";
+        $retval = system("$CMD");
+        $retval = $retval >> 8;
+        if ( $retval != 0 )
+        {
+            print STDERR "Comparison between noindex print line and external output with prepended time failed.";
             $retval=2;
         }
     }

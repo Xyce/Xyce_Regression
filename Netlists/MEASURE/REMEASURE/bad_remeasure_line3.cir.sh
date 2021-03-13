@@ -18,7 +18,7 @@ $GOLDPRN=$ARGV[4];
 # check various error cases
 # this string should be in the output of this failed Xyce run  
 @searchstrings = ( "In OutputMgr::remeasure",
-                   "file to reprocess through measure functions: bad_remeasure_line3.cir.raw",
+                   "file to reprocess through measure and/or fft functions: bad_remeasure_line3.cir.raw",
                    "Remeasure only supports .PRN, .CSV or .CSD formats");
 
 # turn this into a re-measure line

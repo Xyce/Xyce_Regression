@@ -1,5 +1,5 @@
 In OutputMgr::remeasure 
-file to reprocess through measure functions: ErrorFuncTest.cir.remeasure.prn
+file to reprocess through measure and/or fft functions: ErrorFuncTest.cir.remeasure.prn
 
  ***** Measure Functions ***** 
 

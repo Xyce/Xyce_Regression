@@ -100,12 +100,14 @@ my $lineCount=0;
 while( $line=<NETLIST> )
 {
   if ($line =~ /In OutputMgr::remeasure/) { $foundStart = 1; }
-  if ($foundStart > 0 && $line =~ /Remeasure analysis complete/) { $foundEnd = 1; }  
 
   if ($foundStart > 0 && $foundEnd < 1)
   {
     print ERRMSG $line;
-  } 
+  }
+
+  # include the "complete" line in the test
+  if ($foundStart > 0 && $line =~ /Remeasure analysis complete/) { $foundEnd = 1; }
 }
 
 close(NETLIST);

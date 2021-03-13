@@ -1,5 +1,5 @@
 In OutputMgr::remeasure 
-file to reprocess through measure functions: RemeasureStepNumCol.cir.prn
+file to reprocess through measure and/or fft functions: RemeasureStepNumCol.cir.prn
 
  ***** Measure Functions ***** 
 

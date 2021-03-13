@@ -18,7 +18,7 @@ $GOLDPRN=$ARGV[4];
 # check various error cases
 # this string should be in the output of this failed Xyce run  
 @searchstrings = ( "In OutputMgr::remeasure",
-                   "file to reprocess through measure functions: .",
+                   "file to reprocess through measure and/or fft functions: .",
                    "Could not find remeasure file: .");
 
 # turn this into a re-measure line

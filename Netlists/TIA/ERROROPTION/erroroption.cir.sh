@@ -31,12 +31,32 @@ $CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
 
 $tempfile = $Tools->modifyTest($CIRFILE,('timestepsreversal=1'));
-print "TESTING timestepreversal=1 with temp cirfile = $tempfile\n";
+print "****\n";
+print "TESTING timestepreversal=1 with temp cirfile = $tempfile:\n";
+print "****\n";
 $failed1 = runTest($XYCE,$tempfile);
+if (defined($failed1))
+{
+    print STDERR  "Failed runTest on $tempfile with return code $failed1\n";
+    print "Failed runTest on $tempfile with return code $failed1\n";
+}
+print "****\n";
+print "Finished testing timestepreversal=1 with temp cirfile = $tempfile:\n";
+print "****\n";
 
 $tempfile = $Tools->modifyTest($CIRFILE,('timestepsreversal=0'));
+print "****\n";
 print "TESTING timestepreversal=0 with temp cirfile = $tempfile\n";
+print "****\n";
 $failed2 = runTest($XYCE,$tempfile);
+if (defined($failed2))
+{
+    print STDERR  "Failed runTest on $tempfile with return code $failed2\n";
+    print "Failed runTest on $tempfile with return code $failed2\n";
+}
+print "****\n";
+print "Finished testing timestepreversal=0 with temp cirfile = $tempfile\n";
+print "****\n";
 
 $tempfile = $Tools->modifyTest($CIRFILE,('nlmin=3','nlmax=2'));
 print "TESTING nlmin > nlmax with temp cirfile = $tempfile\n";
@@ -200,11 +220,11 @@ sub runTest {
   close(CIROUT);
 
   if ($goodsteps == 0) {
-    print "Took no valid steps\n";
+    print "FAILURE: Took no valid steps\n";
     $failed = 1;
   }
   if ($settings < 6) {
-    print "Did not set appropriate variables for erroroption=1\n";
+    print "FAILURE: Did not set appropriate variables for erroroption=1\n";
     $failed = 1;
   }
   return $failed;

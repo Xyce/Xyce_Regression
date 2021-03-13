@@ -6,7 +6,10 @@
 *
 *   2) An ascending sweep variable.
 *
-* See SON Bug 1267 for more details.
+* This also tests that a .FFT line is ignored during a
+* normal and -remeasure run for a .DC analysis.
+*
+* See SON Bugs 1267 and 1327 for more details.
 ********************************************************
 
 vsrc1   1a 0 1
@@ -14,6 +17,9 @@ rload1a 1a 1b 0.1
 rload1b 1b 0 1
 
 .DC vsrc1 1 5 1
+
+* This line should not actually produce any .FFT output
+.FFT V(1a) NP=8
 
 * Note: vsrc1:DCV0 is the syntax for printing the DC value of vsrc1,
 * at it is swept.

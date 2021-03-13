@@ -137,6 +137,21 @@ if ($retval==0 && $result == 0)
             $retval=2;
         }
     }
+    if ($retval == 0)
+    {
+        print "NOTICE:  Comparing .print noindex and external out with prepended FREQ----------------\n";
+        $CMD="$AC_COMPARE ACnoindex.prn ioTest3_noindex.out  1e-6 2e-2 1e-16 1e-6 >> $CIRFILE.prn.out 2>> $CIRFILE.prn.err";
+        $result = system("$CMD");
+        if ($result == 0)
+        { 
+                $retval=0;
+        } 
+        else 
+        {
+            print STDERR "Comparison failed between GenExt .print noindex output and ExternalOutput mechanism.\n";
+            $retval=2;
+        }
+    }
 }
 
 print "Exit code = $retval\n"; exit $retval;

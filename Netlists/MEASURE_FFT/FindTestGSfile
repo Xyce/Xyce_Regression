@@ -75,4 +75,13 @@ FINDVP1ROUND3 = 6.750000e+01 at 3 Hz (rounded from 2.900000e+00 Hz)
 
 FINDVDB1ROUND0 = -7.180439e+00 at 0 Hz (rounded from 3.000000e-01 Hz)
 
+EQN1 = -4.804221e-01
+Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e+00
+
+EQN2 = -4.804221e-01
+Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e+00
+
+PARAM1 = -4.804221e-01
+Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e+00
+
 

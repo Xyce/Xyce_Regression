@@ -8,8 +8,8 @@ HB test of print output format
 *
 * Thus, we're driving this with a roughly square wave and making the 
 * circuit slightly non-linear.
-* 
 *
+* This also tests that a .FFT line is ignored for a .HB analysis.
 
 R1 1 0 1k
 C1 1 0 1p
@@ -22,5 +22,8 @@ v1 2 0 pulse 1V 2V  0 1e-5 1e-5 {1/1e4/2-1e-5 } {1/1e4}
 .hb 1e4
 
 .options hbint numfreq=50
+
+* This line should not actually produce any .FFT output
+.FFT V(2) NP=8
 
 .end

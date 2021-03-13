@@ -8,6 +8,8 @@
 * implemented yet for the Gear method.  If GEAR is used on the
 * .options timeint-mpde line then the <netlistName>.prn file
 * will have truncated output.
+*
+* This also tests that a .FFT line is ignored for a .MPDE analysis.
 
 *COMP {V(1)+2}  RELTOL=0.025
 
@@ -36,5 +38,8 @@ l1 1 0 L
 B1 1 0 I={satval*tanh(Gn/satval*V(1))}
 
 .ic V(1)=0.58
+
+* This line should not actually produce any .FFT output
+.FFT V(1) NP=8
 
 .end

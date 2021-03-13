@@ -24,6 +24,4 @@ Vb b 0 0.0
 .model nch.1 nmos ( version=4.7 level=14 lmin=0.1u lmax=20u wmin=0.1u wmax=10u  )
 .model nch.2 nmos ( version=4.7 level=14 lmin=0.1u lmax=20u wmin=10u  wmax=100u )
 
-.options parser model_binning=true
-
 .end
