@@ -1,4 +1,4 @@
-Demonstration of broken G source.
+Demonstration of broken G source.  (Morannon bug 696)
 
 V1 1 0 PULSE ( 0 5 0 1n 1n 1us 1s)
 R1 1 0 100meg
