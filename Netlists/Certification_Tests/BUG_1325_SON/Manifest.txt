@@ -1,3 +1,7 @@
+bad_inc_lib_paths.cir
+bad_inc_lib_paths.cir.sh
+bad_inc_lib_paths.cir.options
+sub1/include_with_bogo_line
 inc_lib_file_absolute_path.cir
 inc_lib_file_absolute_path.cir.sh
 sub1/sub2/include2_abs_path
@@ -8,4 +12,13 @@ lib_dot_top
 sub1/include1
 sub1/sub2/include2_path_rel_top
 sub1/sub2/lib2_path_rel_top
+sub1/sub2/include2_path_rel_sub1
+sub1/sub2/lib2_path_rel_sub1
+precedence/inc_precedence
+precedence/lib_precedence
+sub1/precedence/inc_precedence
+sub1/precedence/lib_precedence
+sub1/include1b
+sub1/include_dot_dot
+sub1/sub2/include2
 
