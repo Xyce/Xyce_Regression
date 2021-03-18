@@ -64,5 +64,10 @@ R4 4 0 1
 .MEASURE FFT THDNBH2V4 THD V(4) NBHARM=2
 .MEASURE FFT THDNBH5V4 THD V(4) NBHARM=5
 
+* Test that NBHARM has precedence over MAXFREQ, if both are
+* given.  This is not a "normal usage" but it should be tested.
+.MEASURE FFT NB2MF3V3 THD V(3) NBHARM=2 MAXFREQ=3
+.MEASURE FFT MF3NB2V3 THD V(3) MAXFREQ=3 NBHARM=2
+
 .PRINT TRAN V(1) V(2) V(3) I(V3) I(R3) V(4)
 .END
