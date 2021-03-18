@@ -1,5 +1,5 @@
 Title: RAW File Output test for Lumped Line
-Date: Wed Aug 12 02:30:10 2020
+Date: Thu Mar 18 12:06:18 2021
 Plotname: Transient Analysis
 Flags: real
 No. Variables: 13
@@ -13,11 +13,11 @@ Variables:
 	5	L:X_TL:X2:1#branch	current
 	6	L:X_TL:X3:1#branch	current
 	7	VSIGGEN#branch	current
-	8	X#TL:3	voltage
-	9	X#TL:4	voltage
-	10	X#TL:X1:3	voltage
-	11	X#TL:X2:3	voltage
-	12	X#TL:X3:3	voltage
+	8	X_TL:3	voltage
+	9	X_TL:4	voltage
+	10	X_TL:X1:3	voltage
+	11	X_TL:X2:3	voltage
+	12	X_TL:X3:3	voltage
 Values:
 0	0.00000000e+00
 	0.00000000e+00
