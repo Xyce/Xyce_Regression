@@ -21,6 +21,16 @@ R4 4 5 1
 R5 5 0 1
 R6 6 5 1
 
+* This is useful for testing SFDR with FMAX less than the
+* first harmonic frequency
+V7 7 0 SIN(0 2 1)
+V8 8 0 SIN(0 1 2)
+V9 9 0 SIN(0 2 4)
+R7 7 10 1
+R8 8 10 1
+R9 9 10 1
+R10 10 0 1
+
 .FFT V(1) NP=16 WINDOW=HANN
 
 * Test effect of FMIN on SFDR, and of FMAX on SNR and THD.
@@ -60,5 +70,11 @@ R6 6 5 1
 * SFDR found at F=1, since FMIN is given
 .FFT V(5) NP=16 WINDOW=HANN FREQ=3 FMIN=1
 
-.PRINT TRAN V(1) V(2) V(5)
+* Test various values of FMIN and FMAX for SFDR
+.FFT V(10) NP=16 WINDOW=HANN
+.FFT V(10) NP=16 WINDOW=HANN FREQ=4 FMAX=5
+.FFT V(10) NP=16 WINDOW=HANN FREQ=4 FMAX=2  ; defaults to FMIN=1
+.FFT V(10) NP=16 WINDOW=HANN FREQ=4 FMIN=2 FMAX=3
+
+.PRINT TRAN V(1) V(2) V(5) V(10)
 .END
