@@ -10,4 +10,5 @@ delay_veryshort.cir
 delay_veryshort.cir.prn.gs.pl
 delay_veryshort_nobp.cir
 delay_veryshort_nobp.cir.prn.gs.pl
+testbp.cir
 tags
