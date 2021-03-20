@@ -205,7 +205,7 @@ fi
 if [ $PARALLEL = 1 ]
 then
     echo "TAGLIST_KLU=${TAGLIST}+klu"
-    PbSrTAGLIST=`echo $TAGLIST|sed -e 's/+parallel/+serial/'`
+    PbSrTAGLIST=`echo $TAGLIST|sed -e 's/+parallel/+serial-nompi/'`
     PbSrTAGLIST="${PbSrTAGLIST}?ac?mpde?hb"
     echo "TAGLIST_PbSr=${PbSrTAGLIST}"
 

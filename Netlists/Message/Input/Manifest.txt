@@ -57,10 +57,13 @@ ES_stokhos_setEmbeddedSamplingOptions.cir.sh
 ES_stokhos_setEmbeddedSamplingOptions.cir.tags
 IC_And_NODESET_Specified.cir
 IC_And_NODESET_Specified.cir.sh
+IC_And_NODESET_Specified.cir.tags
 IC_At_Missing_Node_Warning.cir
 IC_At_Missing_Node_Warning.cir.sh
+IC_At_Missing_Node_Warning.cir.tags
 IC_No_Args_Warning.cir
 IC_No_Args_Warning.cir.sh
+IC_No_Args_Warning.cir.tags
 Invalid_TimeInt.cir
 Invalid_TimeInt.cir.sh
 checkpt0.2

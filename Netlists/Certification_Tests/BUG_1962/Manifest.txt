@@ -14,6 +14,8 @@ sens.cir.sh
 sens.cir.tags
 ic.cir
 ic.cir.tags
+ic2.cir
+ic2.cir.tags
 nodeset.cir
 nodeset.cir.tags
 tags

@@ -15,4 +15,8 @@ rlc_series_vccs_AC.cir
 rlc_series_vccs_AC_nogenext.cir
 genextLeadCurr.cir
 genextLeadCurr.cir.sh
+netlist_good.txt
+netlist_bad.txt
+TestGH19.cir
+TestGH19.cir.sh
 tags

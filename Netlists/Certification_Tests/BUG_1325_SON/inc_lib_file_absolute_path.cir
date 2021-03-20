@@ -1,4 +1,4 @@
-* This test will use absolute paths to files in
+* This test will use absolute paths to files in a
 * subdirectory two levels down.
 
 .DC V1 1 5 1

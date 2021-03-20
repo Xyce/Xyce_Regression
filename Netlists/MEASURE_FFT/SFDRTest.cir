@@ -48,6 +48,7 @@ R4 4 0 1
 * Test that .MEASURE FFT line uses the FREQ value
 * specified on the associated .FFT line.
 .MEASURE FFT SFDRV4 SFDR V(4)
+.MEASURE FFT SFDRMINF5V4 SFDR V(4) MINFREQ=5
 
 .PRINT TRAN V(1) V(2) V(3) I(V3) I(R3) V(4)
 .END
