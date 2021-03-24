@@ -36,6 +36,34 @@ done
 shift `echo $OPTIND-1 | bc`
 
 XYCE_BINARY=$1
+XYCE_DIR=`dirname $XYCE_BINARY`
+XYCE_ROOT=`dirname $XYCE_DIR`
+XYCE_BIN_OR_SRC=`basename $XYCE_DIR`
+
+HAVE_PLUGIN=0
+IS_INSTALLED=0
+IS_SHARED=0
+if [ "x$XYCE_BIN_OR_SRC" = "xbin" ]
+then
+    if [ -x ${XYCE_DIR}/buildxyceplugin ]
+    then
+        HAVE_PLUGIN=1
+        IS_INSTALLED=1
+    fi
+    if [ -d ${XYCE_ROOT}/lib -a -d ${XYCE_ROOT}/include ]
+    then
+        if [ -e ${XYCE_ROOT}/lib/libxyce.so -a -e ${XYCE_ROOT}/include/N_CIR_Xyce.h ]
+        then
+            IS_INSTALLED=1
+            IS_SHARED=1
+        fi
+        if [ -e ${XYCE_ROOT}/lib/libxyce.a -a -e ${XYCE_ROOT}/include/N_CIR_Xyce.h ]
+        then
+            IS_INSTALLED=1
+        fi
+    fi
+fi
+
 TMP_CAPABILITIES_FILE=/tmp/Xyce_capabilities.$$
 # Get capabilities
 $XYCE_BINARY -capabilities > $TMP_CAPABILITIES_FILE 2>&1
@@ -82,6 +110,26 @@ grep 'Stokhos enabled' $TMP_CAPABILITIES_FILE>/dev/null 2>&1
 if [ $? = 0 ]
 then
     TAGLIST="${TAGLIST}?stokhos"
+fi
+
+# If this is an installed build, do not try to run library tests, but
+# do run any tests that only work for installed:
+if [ $IS_INSTALLED -eq 1 ]
+then
+    TAGLIST="${TAGLIST}-library?installed"
+fi
+
+# If we have buildxyceplugin, run tests that need it:
+if [ $HAVE_PLUGIN -eq 1 ]
+then
+    TAGLIST="${TAGLIST}?buildplugin"
+fi
+
+# If we have an installed shared library build, enable any tests that might
+# expect that:
+if [ $IS_SHARED -eq 1 ]
+then
+    TAGLIST="${TAGLIST}?shared"
 fi
 
 #SPECIAL CASE:  For Dakota builds, we ONLY run Dakota tests, so use "+" here.
