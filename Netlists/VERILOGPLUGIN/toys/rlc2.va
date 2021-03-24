@@ -60,12 +60,17 @@ module rlc2 (p,n);
 
     totalCurrent=I(p,internal1);
     // Resistor voltage drop
+     
+`ifdef __XYCE__
     V(p,internal1) <+ R*totalCurrent;
     V(p,internal1) <+ L*ddt(totalCurrent);
+`else
+    V(p,internal1) <+ 5*R*totalCurrent;
+    V(p,internal1) <+ 5*L*ddt(totalCurrent);
+`endif
 
     CapacitorCharge = V(internal1,n)*C;
     I(internal1,n) <+ ddt(CapacitorCharge);
-    
 
   end
 endmodule
