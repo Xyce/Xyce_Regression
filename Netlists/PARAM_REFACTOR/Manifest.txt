@@ -2,4 +2,12 @@ paramDep1.cir
 paramDep2.cir
 paramDep2.cir.res
 paramDep2.cir.res.gs
+paramDep3.cir
+paramDep3.cir.res
+paramDep3.cir.res.gs
+paramDep4.cir
+paramDep4.cir.res
+paramDep4.cir.res.gs
+paramDep5.cir
+exclude
 tags
