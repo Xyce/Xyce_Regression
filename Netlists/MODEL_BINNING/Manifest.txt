@@ -6,6 +6,10 @@ dcModelBinning.cir
 dcModelBinning.cir.tags
 dcModelBinning.cir.sh
 exclude
+globalPar_comparatorBaseline.cir    
+globalPar_comparatorBinning.cir  
+globalPar_comparatorBinning.cir.sh   
+globalPar_comparatorBinning.cir.tags
 tags
 tranInverterBinning.cir
 tranInverterBinning.cir.sh

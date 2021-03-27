@@ -1,0 +1,15 @@
+inc_lib_file_relative_path.cir
+include_dot_top
+lib_dot_top
+sub1/include1
+sub1/sub2/include2_path_rel_top
+sub1/sub2/lib2_path_rel_top
+sub1/sub2/include2_path_rel_sub1
+sub1/sub2/lib2_path_rel_sub1
+precedence/inc_precedence
+precedence/lib_precedence
+sub1/precedence/inc_precedence
+sub1/precedence/lib_precedence
+sub1/include1b
+sub1/include_dot_dot
+sub1/sub2/include2

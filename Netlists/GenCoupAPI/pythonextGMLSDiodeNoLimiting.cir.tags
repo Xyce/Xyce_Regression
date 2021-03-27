@@ -1,0 +1,5 @@
+serial
+required:pythonext
+required:pycompadre
+genext
+library

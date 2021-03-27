@@ -1,0 +1,6 @@
+serial, weekly
+required:pythonext
+required:tensorflow
+tensorflow
+genext
+library

@@ -145,3 +145,56 @@ DC component    Norm. Mag= 1.442984e-01   Phase= 0.000000e+00
       SNR = -9.044753e+00 dB
      SFDR = -8.912724e+00 dB at frequency 1.000000e+00
 
+FFT analysis for V(10):
+  Window: HANN, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
+DC component    Norm. Mag= 9.690098e-02   Phase= 0.000000e+00
+       Index       Frequency       Norm. Mag           Phase
+           1    1.000000e+00    6.986607e-01   -8.726669e+01
+           2    2.000000e+00    1.242039e-01    1.698503e+02
+           3    3.000000e+00    7.732829e-01    8.574123e+01
+           4    4.000000e+00    1.000000e+00   -8.959085e+01
+           5    5.000000e+00    5.305673e-01    1.008889e+02
+           6    6.000000e+00    2.920840e-02   -6.155680e+01
+           7    7.000000e+00    1.187998e-02   -3.702357e+01
+           8    8.000000e+00    8.613410e-03    0.000000e+00
+
+      THD = 5.892972e+00 dB ( 1.970827e+00 )
+     SNDR = -5.892972e+00 dB
+     ENOB = -1.271258e+00 bit
+      SNR = 2.000000e+02 dB
+     SFDR = -3.114673e+00 dB at frequency 4.000000e+00
+
+FFT analysis for V(10):
+  Window: HANN, First Harmonic: 4.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 5.000000e+00
+DC component    Norm. Mag= 9.690098e-02   Phase= 0.000000e+00
+       Index       Frequency       Norm. Mag           Phase
+           4    4.000000e+00    1.000000e+00   -8.959085e+01
+
+      THD = -2.000000e+02 dB ( 0.000000e+00 )
+     SNDR = -1.411643e+00 dB
+     ENOB = -5.268510e-01 bit
+      SNR = -1.411643e+00 dB
+     SFDR = 5.505190e+00 dB at frequency 5.000000e+00
+
+FFT analysis for V(10):
+  Window: HANN, First Harmonic: 4.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 2.000000e+00
+DC component    Norm. Mag= 9.690098e-02   Phase= 0.000000e+00
+       Index       Frequency       Norm. Mag           Phase
+
+      THD = -2.000000e+02 dB ( 0.000000e+00 )
+     SNDR = -1.411643e+00 dB
+     ENOB = -5.268510e-01 bit
+      SNR = -1.411643e+00 dB
+     SFDR = 3.114673e+00 dB at frequency 1.000000e+00
+
+FFT analysis for V(10):
+  Window: HANN, First Harmonic: 4.000000e+00, Start Freq: 2.000000e+00, Stop Freq: 3.000000e+00
+DC component    Norm. Mag= 9.690098e-02   Phase= 0.000000e+00
+       Index       Frequency       Norm. Mag           Phase
+
+      THD = -2.000000e+02 dB ( 0.000000e+00 )
+     SNDR = -1.411643e+00 dB
+     ENOB = -5.268510e-01 bit
+      SNR = -1.411643e+00 dB
+     SFDR = 2.233232e+00 dB at frequency 3.000000e+00
+
