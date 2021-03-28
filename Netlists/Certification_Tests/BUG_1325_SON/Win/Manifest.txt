@@ -1,3 +1,7 @@
+inc_lib_file_absolute_path.cir
+inc_lib_file_absolute_path.cir.sh
+sub1/sub2/include2_abs_path
+sub1/sub2/lib2_abs_path
 inc_lib_file_relative_path.cir
 include_dot_top
 lib_dot_top
