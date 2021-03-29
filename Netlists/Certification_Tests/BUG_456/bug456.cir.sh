@@ -85,19 +85,11 @@ $failed=0;
 while ($line = <GOLDPRN> )
 {
 
-#  $line1 = <CIRPRN>;
-
   if ($line =~ m/^index/i) {$line1 = <CIRPRN>; next; }
   if ($line =~ m/^end/i) { next; }
 
   @linelist = split(" ",$line);
   $time = $linelist[1];
-  
-
-#  if ($N1 == 0) 
-#  { 
-#    $zerotol = 10e-15;
-#  }
 
   if ( ($time >= 2e-4-$zerotol) )
   {
@@ -115,7 +107,8 @@ while ($line = <GOLDPRN> )
     {
       $failed=1;   
 
-      break;
+
+      last;
     }
   }
 
