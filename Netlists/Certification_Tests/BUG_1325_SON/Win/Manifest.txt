@@ -17,3 +17,7 @@ sub1/precedence/lib_precedence
 sub1/include1b
 sub1/include_dot_dot
 sub1/sub2/include2
+drive_letter_no_slash_path.cir
+sub1/dlns_path
+inc_dlns_path
+lib_dlns_path
