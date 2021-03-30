@@ -18,7 +18,13 @@ $GOLDPRN=$ARGV[4];
 # check various error cases
 # These strings should be in the output of this failed Xyce run.
 # Note that ( ) and : characters must be escaped with \\
-@searchstrings = ("Netlist error: Complex operators such as VR not allowed for output variable",
+@searchstrings = ("Netlist error: Too many dependent variables for ENOB measure, \"M9\"",
+   "Netlist error: Too many dependent variables for FIND measure, \"M10\"",
+   "Netlist error: Too many dependent variables for SFDR measure, \"M11\"",
+   "Netlist error: Too many dependent variables for SNDR measure, \"M12\"",
+   "Netlist error: Too many dependent variables for SNR measure, \"M13\"",
+   "Netlist error: Too many dependent variables for THD measure, \"M14\"",
+   "Netlist error: Complex operators such as VR not allowed for output variable",
    "for ENOB measure M1 for FFT measure mode",
    "Netlist error: Complex operators such as II not allowed for output variable",
    "for SFDR measure M2 for FFT measure mode",
