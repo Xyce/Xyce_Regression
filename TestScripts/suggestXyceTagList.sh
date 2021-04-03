@@ -52,7 +52,7 @@ then
     fi
     if [ -d ${XYCE_ROOT}/lib -a -d ${XYCE_ROOT}/include ]
     then
-	if [ a -e ${XYCE_ROOT}/include/N_CIR_Xyce.h ]
+	if [ -e ${XYCE_ROOT}/include/N_CIR_Xyce.h ]
 	then
             if [ -e ${XYCE_ROOT}/lib/libxyce.so -o -e ${XYCE_ROOT}/lib/libxyce.dylib ]
             then
