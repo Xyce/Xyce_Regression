@@ -68,6 +68,7 @@ if ($result != 0)
     print "Plugin creation failed, see ${CIRFILE}_buildxyceplugin.log\n";
     system("mv buildxyceplugin.log ${CIRCFILE}_buildxyceplugin.log");
     print "Exit code = 1";
+    exit 1;
 }
 $PLUGINPATH="$TESTROOT/toys_rlc.so";
 print "The plugin path is $PLUGINPATH\n";
