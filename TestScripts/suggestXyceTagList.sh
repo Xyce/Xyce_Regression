@@ -45,22 +45,20 @@ IS_INSTALLED=0
 IS_SHARED=0
 if [ "x$XYCE_BIN_OR_SRC" = "xbin" ]
 then
+    IS_INSTALLED=1
     if [ -x ${XYCE_DIR}/buildxyceplugin ]
     then
         HAVE_PLUGIN=1
-        IS_INSTALLED=1
     fi
     if [ -d ${XYCE_ROOT}/lib -a -d ${XYCE_ROOT}/include ]
     then
-        if [ -e ${XYCE_ROOT}/lib/libxyce.so -a -e ${XYCE_ROOT}/include/N_CIR_Xyce.h ]
-        then
-            IS_INSTALLED=1
-            IS_SHARED=1
-        fi
-        if [ -e ${XYCE_ROOT}/lib/libxyce.a -a -e ${XYCE_ROOT}/include/N_CIR_Xyce.h ]
-        then
-            IS_INSTALLED=1
-        fi
+	if [ -e ${XYCE_ROOT}/include/N_CIR_Xyce.h ]
+	then
+            if [ -e ${XYCE_ROOT}/lib/libxyce.so -o -e ${XYCE_ROOT}/lib/libxyce.dylib ]
+            then
+		IS_SHARED=1
+            fi
+	fi
     fi
 fi
 
@@ -110,6 +108,16 @@ grep 'Stokhos enabled' $TMP_CAPABILITIES_FILE>/dev/null 2>&1
 if [ $? = 0 ]
 then
     TAGLIST="${TAGLIST}?stokhos"
+fi
+grep 'Amesos2.*Basker.*enabled' $TMP_CAPABILITIES_FILE>/dev/null 2>&1
+if [ $? = 0 ]
+then
+    TAGLIST="${TAGLIST}?amesos2basker"
+fi
+grep 'Amesos2.*KLU2.*enabled' $TMP_CAPABILITIES_FILE>/dev/null 2>&1
+if [ $? = 0 ]
+then
+    TAGLIST="${TAGLIST}?amesos2klu2"
 fi
 
 # If this is an installed build, do not try to run library tests, but

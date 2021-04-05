@@ -20,6 +20,16 @@ R2 2 0 1
 .FFT P(V1)
 .FFT W(V1)
 
+* Test bad measure lines that have too many variables
+* on their lines.  All of these measure types are only
+* allowed to have one variable.
+.MEASURE FFT M9 ENOB V(1) V(2)
+.MEASURE FFT M10 FIND V(1) V(2) AT=1
+.MEASURE FFT M11 SFDR V(1) V(2)
+.MEASURE FFT M12 SNDR V(1) V(2)
+.MEASURE FFT M13 SNR V(1) V(2)
+.MEASURE FFT M14 THD V(1) V(2)
+
 * At present, only V() and I() operators are supported for the
 * ENOB, SFDR, SNDR and THD measures
 .MEASURE FFT M1 ENOB VR(1)

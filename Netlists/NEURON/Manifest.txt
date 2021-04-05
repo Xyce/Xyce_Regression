@@ -1,4 +1,5 @@
 CG_Syn_TEST_1Pre_1Post_01.cir
+CG_Syn_TEST_1Pre_1Post_01.cir.tags
 CS_Cable.cir
 CS_Patch.cir
 Cable_HH_Membrane.cir

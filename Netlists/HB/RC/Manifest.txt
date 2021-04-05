@@ -12,6 +12,8 @@ simpleRC-hbIC1.cir
 simpleRC-hbIC1.cir.sh
 lcosc.cir
 lcosc.cir.sh
+lcosc.cir.tags
 lcstart.cir
 lcstart.cir.sh
+lcstart.cir.tags
 tags
