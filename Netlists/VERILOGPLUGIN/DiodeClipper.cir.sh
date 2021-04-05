@@ -58,6 +58,15 @@ if (! (-d "$XyceRoot/lib" && (-e "$XyceRoot/lib/libxyce.so" || -e "$XyceRoot/lib
     exit 1;
 }
 
+# is admsXml actually in our path?
+`admsXml -v > /dev/null`;
+if ( $? != 0 )
+{
+    print "admsXml is not in your path, so cannot build plugins!\n";
+    print "Exit code = 1\n";
+    exit 1;
+}
+
 #Hooray, we can run this test.
 $VERILOG_SOURCES="toys/capacitor.va toys/diode2.va toys/resistor.va toys/vsrc.va";
 
