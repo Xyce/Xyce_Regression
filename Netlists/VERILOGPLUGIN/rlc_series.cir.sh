@@ -50,7 +50,7 @@ if (! (-x "$XyceDir/buildxyceplugin"))
 $BUILDXYCEPLUGIN="$XyceDir/buildxyceplugin";
 
 # Are the libraries there?
-if (! (-d "$XyceRoot/lib" && (-e "$XyceRoot/lib/libxyce.so" || -e "$XyceRoot/lib/libxyce.dylib")))
+if (! (-d "$XyceRoot/lib" && (-e "$XyceRoot/lib/libxyce.so" || -e "$XyceRoot/lib/libxyce.dylib"))
 {
     print "the libraries were not found in $XyceRoot/lib\n";
     print "Exit code = 1\n";

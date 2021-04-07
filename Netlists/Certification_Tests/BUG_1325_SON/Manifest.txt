@@ -21,16 +21,4 @@ sub1/precedence/lib_precedence
 sub1/include1b
 sub1/include_dot_dot
 sub1/sub2/include2
-top_level_file_path_path.cir
-top_level_file_path.cir.sh
-tl_include1
-tl_include2
-tl_include3
-tl_include4
-top_level/top_level_file_path.cir
-top_level/tl_include1
-top_level/tl_include2
-top_level/tl_include5
-top_level/sub1/include_sub1
-top_level/sub1/tl_include1
 
