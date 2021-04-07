@@ -19,7 +19,7 @@ $XYCE_COMPARE=$ARGV[2];
 $CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
 
-$CIRFILEPY="python_rlc_series_vccs.cir";
+$CIRFILEPY="python_tfdnn_rlc_series_vccs.cir";
 $CIRFILEGOLD="rlc_series_vccs_nogenext.cir";
 
 $TESTROOT = cwd;
@@ -31,11 +31,8 @@ $XYCEROOT="missing ";
 
 print "XYCE = $XYCE\n";
 
-# Try to decode Xyce root directory by stripping off bin/Xyce or src/Xyce
-$XYCE =~ m/([^\/]*)(.*)\/bin\/Xyce.*/;
-if (-d "$2") { $PREFIX=$1; $XYCEROOT=$2; }
-
-$XYCE =~ m/([^\/]*)(.*)\/src\/Xyce.*/;
+# Decode Xyce root directory by stripping off Xyce
+$XYCE =~ m/([^\/]*)(.*)\/Xyce.*/;
 if (-d "$2") { $PREFIX=$1; $XYCEROOT=$2; }
 
 print "XYCEROOT = $XYCEROOT\n";
@@ -49,43 +46,15 @@ if ($result == 0)
 }
 
 # set build dir and bin name
-$MAKEROOT = "$XYCEROOT/src/test/GenExtTestHarnesses/";
 #UGH
-if (-d "$MAKEROOT/CMakeFiles")
+if (-d "$XYCEROOT/CMakeFiles")
 {
   $EXT="";
 }
-$TestProgram="pythonGenCoup$EXT";
-$XYCE_LIBTEST = "$MAKEROOT/$TestProgram";
+$TestProgram="Xyce-PyMi$EXT";
+$XYCE_LIBTEST = "$XYCEROOT/$TestProgram";
 
-if (-d "$MAKEROOT") {
-  if (-e "$MAKEROOT/Makefile") {
-    chdir($MAKEROOT);
-    print "NOTICE:   make -------------------------\n";
-    $result += system("make $TestProgram");
-    if($result) {
-      print "WARNING:  make failures! ---------------\n";
-      $retval = $result;
-    }
-  } elsif (-d "$MAKEROOT/CMakeFiles") {
-    chdir($XYCEROOT);
-    print "Building $TestProgram in $MAKEROOT\n";
-    $result += system("cmake --build . --target $TestProgram");
-    if($result) {
-      print "WARNING:  build failures! ---------------\n";
-      $retval = $result;
-    }
-  } else {
-    print "ERROR:    No build files!\n";
-    $retval = 1;
-  }
-  chdir($TESTROOT);
-} else {
-    print "ERROR:    cannot chdir to $MAKEROOT\n";
-  $retval = 1;
-}
-
-# Run the GenExt version:
+# Run the Xyce-PyMi version:
 if (-x $XYCE_LIBTEST) {
   print "NOTICE:   running ----------------------\n";
   $CMD="$XYCE_LIBTEST $CIRFILEPY > $CIRFILEPY.out 2> $CIRFILEPY.err";
@@ -100,7 +69,6 @@ if (-x $XYCE_LIBTEST) {
 
 if ($retval==0)
 {
-
 # Now run the Xyce-only version
     print "NOTICE:   running Xyce equivalent----------------------\n";
     $CMD="$XYCE $CIRFILEGOLD > $CIRFILEGOLD.out 2> $CIRFILEGOLD.err";

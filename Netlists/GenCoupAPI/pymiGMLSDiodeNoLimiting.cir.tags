@@ -1,5 +1,5 @@
 serial
-required:pythonext
+required:pymi
 required:pycompadre
 genext
 library
