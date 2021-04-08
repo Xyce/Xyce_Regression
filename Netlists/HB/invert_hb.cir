@@ -21,8 +21,7 @@ MOS LEVEL 1 MODEL CMOS INVERTER.  new-DAE baseline for MDPE test.
 .print hb {v(vout)+1.0} {v(in)+4.0}  {v(1)+4.0} ig(MP1) ig(MN1) is(MP1) id(MN1)  id(MP1)
 
 .options hbint numfreq=30 saveicdata=1 STARTUPPERIODS=2
-*.options hbint  numfreq=61 saveicdata=1
-*.options hbint numfreq=101 saveicdata=1
+*.options hbint  numfreq=30 saveicdata=1
 .options linsol-hb type=aztecoo prec_type=block_jacobi
 *.options device voltlim=0
 *.options timeint maxord=1
