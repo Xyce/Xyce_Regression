@@ -29,15 +29,19 @@ $GOLDPRN=$ARGV[4];
 # try a sampling of command line options, not all
 # possible ones.
 @XyceCMD;
-$XyceCMD[0]="$XYCE -hspice-ext random";
+#$XyceCMD[0]="$XYCE -hspice-ext random";
+#$XyceCMD[1]="$XYCE -hspice-ext all";
+#$XyceCMD[2]="$XYCE -hspice-ext random,units,math";
+
+$XyceCMD[0]="$XYCE ";
 $XyceCMD[1]="$XYCE -hspice-ext all";
-$XyceCMD[2]="$XYCE -hspice-ext random,units,math";
 
 # remove old files if they exist
 system("rm -f $CIRFILE.out $CIRFILE.err");
 
 $retcode = 0;
-foreach $i (0 ... 2)
+#foreach $i (0 ... 2)
+foreach $i (0 ... 1)
 {
   system("rm -f $CIRFILE.prn*");
   $retval = -1;

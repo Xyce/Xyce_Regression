@@ -16,3 +16,4 @@ bug39_sign.cir.sh
 gauss.cir
 gauss.cir.sh
 tags
+exclude
