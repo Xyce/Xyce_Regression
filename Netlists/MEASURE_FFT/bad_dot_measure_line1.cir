@@ -19,6 +19,7 @@ R2 2 0 1
 .FFT {V(1)}
 .FFT P(V1)
 .FFT W(V1)
+.FFT N(1)
 
 * Test bad measure lines that have too many variables
 * on their lines.  All of these measure types are only
@@ -38,10 +39,11 @@ R2 2 0 1
 .MEASURE FFT M4 THD IP(V1)
 .MEASURE FFT M5 THD VDB(1)
 
-* expressions, P() and W() are not supported yet for FIND measures
+* expressions, N(), P() and W() are not supported yet for FIND measures
 .MEASURE FFT M6 FIND {V(1)} AT=2
 .MEASURE FFT M7 FIND P(V1) AT=2
 .MEASURE FFT M8 FIND W(V1) AT=2
+.MEASURE FFT M15 FIND N(1) AT=2
 
 .PRINT TRAN V(1) V(2)
 .END

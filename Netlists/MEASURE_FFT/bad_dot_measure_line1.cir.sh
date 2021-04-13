@@ -39,7 +39,9 @@ $GOLDPRN=$ARGV[4];
    "Netlist error: Only V and I operators allowed for output variable for FIND",
    "measure M7 for FFT measure mode",
    "Netlist error: Only V and I operators allowed for output variable for FIND",
-   "measure M8 for FFT measure mode"
+   "measure M8 for FFT measure mode",
+   "Netlist error: Only V and I operators allowed for output variable for FIND",
+   "measure M15 for FFT measure mode"
 );
 
 $retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);

@@ -8,6 +8,8 @@ FindTest.cir
 FindTest.cir.sh
 FindTest.tags
 FindTestGSfile
+MiscOps.cir
+MiscOps.cir.sh
 OutputTimePoints.cir
 OutputTimePoints.cir.sh
 OutputTimePointsGSfile
