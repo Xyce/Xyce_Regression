@@ -10,6 +10,8 @@ FindTest.tags
 FindTestGSfile
 MiscOps.cir
 MiscOps.cir.sh
+multiterminal_devices.cir
+multiterminal_devices.cir.sh
 OutputTimePoints.cir
 OutputTimePoints.cir.sh
 OutputTimePointsGSfile

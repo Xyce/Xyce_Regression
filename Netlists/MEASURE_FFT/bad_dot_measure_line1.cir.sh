@@ -41,7 +41,19 @@ $GOLDPRN=$ARGV[4];
    "Netlist error: Only V and I operators allowed for output variable for FIND",
    "measure M8 for FFT measure mode",
    "Netlist error: Only V and I operators allowed for output variable for FIND",
-   "measure M15 for FFT measure mode"
+   "measure M15 for FFT measure mode",
+   "Netlist error: Multi-terminal lead current designator IB not allowed for",
+   "output variable for FIND measure M16 for FFT measure mode",
+   "Netlist error: Multi-terminal lead current designator IC not allowed for",
+   "output variable for FIND measure M17 for FFT measure mode",
+   "Netlist error: Multi-terminal lead current designator IE not allowed for",
+   "output variable for FIND measure M18 for FFT measure mode",
+   "Netlist error: Multi-terminal lead current designator ID not allowed for",
+   "output variable for FIND measure M19 for FFT measure mode",
+   "Netlist error: Multi-terminal lead current designator IS not allowed for",
+   "output variable for FIND measure M20 for FFT measure mode",
+   "Netlist error: Multi-terminal lead current designator IG not allowed for",
+   "output variable for FIND measure M21 for FFT measure mode"
 );
 
 $retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);

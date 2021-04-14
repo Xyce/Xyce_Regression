@@ -32,6 +32,7 @@ $fc =~ s/xyce_verify/file_compare/;
 
 # remove files from previous runs
 system("rm -f $CIRFILE.mt0 $CIRFILE.fft0 $CIRFILE.out $CIRFILE.err*");
+system("rm -f $CIRFILE.remeasure* $CIRFILE.measure*");
 
 #
 # Steps common to all of the measure tests are in the Perl module
@@ -40,7 +41,7 @@ system("rm -f $CIRFILE.mt0 $CIRFILE.fft0 $CIRFILE.out $CIRFILE.err*");
 MeasureCommon::checkFFTFilesExist($XYCE,$CIRFILE);
 
 # test tolerances
-my $absTol=1e-5;
+my $absTol=5e-4;
 my $relTol=1e-3;
 my $zeroTol=1e-10;
 
@@ -74,23 +75,8 @@ else
   print "Passed comparison of .mt0 files\n";
 }
 
-# also check .fft0 file
-$GOLDFFT = $GOLDPRN;
-$GOLDFFT =~ s/\.prn$//;
-
-$CMD="$fc $CIRFILE.fft0 $GOLDFFT.fft0 $absTol $relTol $zeroTol > $CIRFILE.fft0.out 2> $CIRFILE.fft0.err";
-$retval = system("$CMD");
-$retval = $retval >> 8;
-if ( $retval != 0 )
-{
-  print STDERR "test failed comparison of Gold and test .fft0 files with exit code $retval\n";
-  print "Exit code = 2\n";
-  exit 2;
-}
-else
-{
-  print "Passed comparison of .fft0 files\n";
-}
+# Re-measure test uses the same approach as the FOUR measure.
+$retval = MeasureCommon::checkRemeasureWithFFTFiles($XYCE,$XYCE_VERIFY,$CIRFILE,$absTol,$relTol,$zeroTol);
 
 print "Exit code = $retval\n";
 exit $retval;
