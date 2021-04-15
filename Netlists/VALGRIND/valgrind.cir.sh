@@ -10,7 +10,7 @@
 
 XYCE_IN=$1
 SUPPFILE=`pwd`/Xyce.supp
-XYCE="valgrind --tool=memcheck --leak-check=yes --suppressions=$SUPPFILE $XYCE_IN"
+XYCE="valgrind --tool=memcheck --leak-check=yes --gen-suppressions=all --suppressions=$SUPPFILE $XYCE_IN"
 XYCE_TEST=`echo $2 | sed 's/TestScripts\/xyce_verify.pl//'`
 #echo "XYCE_TEST = $XYCE_TEST"
 XYCE_VERIFY=`echo $2 | sed -e 's/xyce_verify.pl/valgrind_check.sh/'`
