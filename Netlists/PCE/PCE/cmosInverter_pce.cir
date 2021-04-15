@@ -1,4 +1,4 @@
-embedded sampling version of a CMOS inverter
+Intrusive PCE version of a CMOS inverter
 
 .param inFreq=1e6
 .param inPer={1/inFreq};
