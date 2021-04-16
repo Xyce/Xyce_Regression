@@ -1,4 +1,4 @@
-test of barycentric interpolation
+test of akima splines
 
 b1 1 0 v={akima("sinewave.dat")}
 r1 1 0 500

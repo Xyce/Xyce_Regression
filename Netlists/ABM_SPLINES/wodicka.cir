@@ -1,4 +1,4 @@
-test of barycentric interpolation
+test of wodicka splines
 
 b1 1 0 v={wodicka("sinewave.dat")}
 r1 1 0 500

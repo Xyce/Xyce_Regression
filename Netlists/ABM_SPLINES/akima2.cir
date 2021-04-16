@@ -1,6 +1,6 @@
-test of cubic splines
+test of akima splines
 
-b1 1 0 v={cubic("sinewave.dat")}
+b1 1 0 v={akimafile("sinewave.dat")}
 r1 1 0 500
 .tran 1us 10us
 

@@ -1,6 +1,6 @@
-test of cubic splines
+test of wodicka splines
 
-b1 1 0 v={cubic("sinewave.dat")}
+b1 1 0 v={wodickafile("sinewave.dat")}
 r1 1 0 500
 .tran 1us 10us
 
