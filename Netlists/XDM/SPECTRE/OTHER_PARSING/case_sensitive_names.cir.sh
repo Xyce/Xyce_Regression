@@ -34,7 +34,7 @@ $translatedXyceNetlistSearchStringsPtr=\@xyceSearchstrings;
 @xdmSearchstrings = ("xdm Detected multiple devices with the same case-insensitive names: \\['RR0', 'Rr0'\\]",
   "Total critical issues reported 			 = 0:", 
   "Total          errors reported 			 = 0:", 
-  "Total          warnings reported 			 = 14:", 
+  "Total          warnings reported 			 = 15:", 
   "Total          information messages reported 	 = 1:", 
   "SUCCESS: xdm completion status flag = 0:"     
 );

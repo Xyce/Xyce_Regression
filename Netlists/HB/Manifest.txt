@@ -30,3 +30,9 @@ gilbert_cell_hbTdsamples.cir.sh
 gilbert_cell_hbTran2.cir
 common_emitter_hb.cir
 common_emitter_hb.cir.sh
+common_emitter_hb_basker.cir
+common_emitter_hb_basker.cir.sh
+common_emitter_hb_basker.cir.tags
+common_emitter_hb_blockbasker.cir
+common_emitter_hb_blockbasker.cir.sh
+common_emitter_hb_blockbasker.cir.tags
