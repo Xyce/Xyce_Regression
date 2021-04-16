@@ -1,8 +1,8 @@
 serial, nightly,  parallel, analytic
-sampling
 pce
+intrusive_pce
 quadrature_pce
-nisp
 required:stokhos
 valgrind
+issue167
 issue84

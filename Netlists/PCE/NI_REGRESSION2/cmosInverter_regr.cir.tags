@@ -2,3 +2,4 @@ nightly, serial, pce, tran, expression
 embeddedsampling
 regression_pce
 required:stokhos
+issue84
