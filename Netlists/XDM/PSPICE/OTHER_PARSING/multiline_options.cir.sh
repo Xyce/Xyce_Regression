@@ -36,7 +36,7 @@ $zeroTol = 1.0e-10;
   "Total critical issues reported 			 = 0:", 
   "Total          errors reported 			 = 0:", 
   "Total          warnings reported 			 = 1:", 
-  "Total          information messages reported 	 = 5:", 
+  "Total          information messages reported 	 = 3:", 
   "SUCCESS: xdm completion status flag = 0:" 
 );
 $xdmOutputSearchStringsPtr=\@xdmOutputSearchStrings;
