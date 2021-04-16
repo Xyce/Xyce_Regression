@@ -1,0 +1,6 @@
+akima.cir
+barycentric.cir
+cubic.cir
+sinewave.dat
+tags
+wodicka.cir
