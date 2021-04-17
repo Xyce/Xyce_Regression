@@ -1,5 +1,4 @@
 serial, nightly
-valgrind
 resistor
 params
 issue157
