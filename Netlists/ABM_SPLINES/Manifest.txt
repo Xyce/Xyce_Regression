@@ -1,0 +1,14 @@
+akima.cir
+akima2.cir
+barycentric.cir
+barycentric2.cir
+cubic.cir
+cubic2.cir
+fasttable.cir
+fasttable2.cir
+sinewave.dat
+table.cir
+table2.cir
+tags
+wodicka.cir
+wodicka2.cir

@@ -5,3 +5,4 @@ quadrature_pce
 nisp
 required:stokhos
 valgrind
+issue84

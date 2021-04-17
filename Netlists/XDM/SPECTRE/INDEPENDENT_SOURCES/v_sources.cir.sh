@@ -30,7 +30,7 @@ $zeroTol = 1.0e-10;
 @searchstrings = (
   "Total critical issues reported 			 = 0:", 
   "Total          errors reported 			 = 0:", 
-  "Total          warnings reported 			 = 15:", 
+  "Total          warnings reported 			 = 14:", 
   "Total          information messages reported 	 = 1:", 
   "SUCCESS: xdm completion status flag = 0:"
 );

@@ -3,4 +3,6 @@ cables.lib
 exclude
 lumpedLine.cir
 lumpedLine.cir.sh
+lumpedLine_issue191.cir
+lumpedLine_issue191.cir.tags
 tags

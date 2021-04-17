@@ -2,6 +2,8 @@
 
 use XyceRegression::Tools;
 use XdmCommon;
+use Getopt::Long;
+&GetOptions( "verbose!" => \$verbose );
 
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
@@ -26,6 +28,7 @@ $CIR=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
 
 $Tools = XyceRegression::Tools->new();
+if (defined($verbose)) { $Tools->setVerbose(1); }
 
 # remove old files if they exist
 system("rm -f $CIR.prn*");
@@ -139,7 +142,7 @@ if (not -s "$CIR.prn" )
 @searchStrings = ("Total critical issues reported 			 = 0:",
   "Total          errors reported 			 = 0:", 
   "Total          warnings reported 			 = 0:", 
-  "Total          information messages reported 	 = 1:",
+  "Total          information messages reported 	 = 0:", 
   "SUCCESS: xdm completion status flag = 0:",
 );
 $xdmOutputSearchStringsPtr=\@searchStrings;

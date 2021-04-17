@@ -31,7 +31,6 @@ $zeroTol = 1.0e-10;
 # Do not have to escape { } or _.
 # Strings to test for in the diagnostic output from xdm.
 @xdmOutputSearchStrings = (
-  "at line\\:\\[8\\]. // include",
   "Unsupported parameter in spectre tran statement\\: errpreset Line\\(s\\)\\: \\[21, 22\\]",
   "Unsupported parameter in spectre tran statement\\: write Line\\(s\\)\\: \\[21, 22\\]",
   "Unsupported parameter in spectre tran statement\\: writefinal Line\\(s\\)\\: \\[21, 22\\]",
@@ -48,7 +47,7 @@ $zeroTol = 1.0e-10;
   "at line\\:\\[31\\]. Unsupported type\\: saveOptions. Retained \\(as a comment\\). Continuing.",
   "Total critical issues reported 			 = 0:", 
   "Total          errors reported 			 = 0:", 
-  "Total          warnings reported 			 = 15:", 
+  "Total          warnings reported 			 = 14:", 
   "Total          information messages reported 	 = 1:",
   "SUCCESS: xdm completion status flag = 0:"
 );

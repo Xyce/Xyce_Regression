@@ -1,3 +1,5 @@
+DefaultValTest.cir
+DefaultValTest.cir.sh
 ENOBTest.cir
 ENOBTest.cir.sh
 ENOBTest.cir.tags
@@ -6,6 +8,13 @@ FindTest.cir
 FindTest.cir.sh
 FindTest.tags
 FindTestGSfile
+MiscOps.cir
+MiscOps.cir.sh
+multiterminal_devices.cir
+multiterminal_devices.cir.sh
+OutputTimePoints.cir
+OutputTimePoints.cir.sh
+OutputTimePointsGSfile
 SFDRTest.cir
 SFDRTest.cir.sh
 SFDRTest.cir.tags
