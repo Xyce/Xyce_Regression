@@ -6,6 +6,8 @@ RemeasureFFTonly.cir
 RemeasureFFTonly.cir.sh
 RemeasureFFTonly.csv
 RemeasureFFTonlyGSfile
+StartStopTest.cir
+StartStopTest.cir.sh
 WindowTest.cir
 WindowTest.cir.sh
 WindowTest.cir.tags
