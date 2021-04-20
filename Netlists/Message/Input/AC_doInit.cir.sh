@@ -32,6 +32,7 @@ $XYCE=$ARGV[0];
 @CIR;
 $CIR[0]="AC_doInit1.cir";
 $CIR[1]="AC_doInit2.cir";
+$CIR[2]="AC_doInit3.cir";
 
 $exitcode = 0;
 
@@ -61,6 +62,21 @@ if ($retval !=0)
 else
 {
   print "test passed for $CIR[1]\n";
+}
+
+print "Testing $CIR[2]\n";
+@searchstrings = ("Netlist error: AC sensitivities cannot use both ACOBJFUNC and OBJVARS",
+   "specification");
+
+$retval = $Tools->runAndCheckError($CIR[2],$XYCE,@searchstrings);
+if ($retval !=0)
+{
+  print "test failed for $CIR[2], see $CIR[2].stdout\n";
+  $exitcode = $retval;
+}
+else
+{
+  print "test passed for $CIR[2]\n";
 }
 
 print "Exit code = $exitcode\n";
