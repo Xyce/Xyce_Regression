@@ -12,6 +12,7 @@ AC_doInit.cir
 AC_doInit1.cir
 AC_doInit2.cir
 AC_doInit3.cir
+AC_doInit4.cir
 AC_doInit.cir.sh
 AC_setAnalysisParams.cir
 AC_setAnalysisParams1.cir
