@@ -16,7 +16,7 @@
 
 $XYCE=$ARGV[0];
 #$XYCE_VERIFY=$ARGV[1];
-$CIRFILE="paramUniformPCE.cir";
+$CIRFILE="paramNormalPCE.cir";
 
 # Some platforms we test on (esp Windows) use a really bad random number generator.
 # To accomodate that I've made the comparison tolerances loose.  Also, if the test
@@ -45,46 +45,39 @@ while ($num_tries < 2 && $finished == 0)
   $CIRPRN=$CIRFILE;
   $CIRPRN =~ s/\.cir/\.cir\.prn/g;
 
-  $V1_analytical_mean = 600.0;
-  $V1_analytical_min  = 500.0;
-  $V1_analytical_max  = 750.0;
-  $V1_analytical_variance  = 5208.3333333333;
-  $V1_analytical_stddev  = 72.1687836487;
+  $V1_analytical_mean = 875.0;
+  $V1_analytical_stddev = 10.93;
 
   print STDERR  "\nTry # $num_tries :\n";
 
-  # Read in the Xyce std output and locate the mean, max and min of V(1)
-  print STDERR  "\n";
-
   $V1mean=`grep -m 1 'PCE mean of {V(1)}' $CIRFILE.out`;
   chomp($V1mean);
-  $V1mean=~ s/Intrusive PCE mean of \{V\(1\)\} = ([0-9]*)/\1/;
-  print STDERR  "v(1) PCE mean is $V1mean, analytical mean is $V1_analytical_mean\n";
+  $V1mean=~ s/\(traditional sampling\) regression PCE mean of \{V\(1\)\} = ([0-9]*)/\1/;
+  print STDERR  "V(1) PCE mean is $V1mean, analytical mean is $V1_analytical_mean\n";
 
   $V1stddev=`grep -m 1 'PCE stddev of {V(1)}' $CIRFILE.out`;
   chomp($V1stddev);
-  $V1stddev=~ s/Intrusive PCE stddev of \{V\(1\)\} = ([0-9]*)/\1/;
+  $V1stddev=~ s/\(traditional sampling\) regression PCE stddev of \{V\(1\)\} = ([0-9]*)/\1/;
   print STDERR  "V(1) PCE stddev is $V1stddev, analytical stddev is $V1_analytical_stddev\n";
 
   $passed=1;
   $reltol=5e-2;
-  $stddev_reltol=5e-2;
+  $stddev_reltol=1e-1;
 
   print STDERR  "\n";
-
-  $result4 = abs($V1mean-$V1_analytical_mean)/abs($V1mean);
-  print STDERR  "V1 mean result = $result4 \n"; 
-  if ($result4 >= $reltol)
+  $result3 = abs($V1mean-$V1_analytical_mean)/abs($V1mean);
+  print STDERR  "V1 mean result = $result3 \n"; 
+  if ($result3 >= $reltol)
   {
-    print STDERR "Try # $num_tries failed  :  V1 mean ($result4 >= $reltol)\n";
+    print STDERR "Try # $num_tries failed  :  V1 mean ($result3 >= $reltol)\n";
     $passed=0;
   }
 
-  $result6 = abs($V1stddev-$V1_analytical_stddev)/abs($V1stddev);
-  print STDERR "V1 stddev result = $result6 \n";
-  if ($result6 >= $stddev_reltol)
+  $result4 = abs($V1stddev-$V1_analytical_stddev)/abs($V1stddev);
+  print STDERR "V1 stddev result = $result4 \n";
+  if ($result4 >= $stddev_reltol)
   {
-    print STDERR "Try # $num_tries failed  :  V1 stddev ($result6 >= $stddev_reltol)\n";
+    print STDERR "Try # $num_tries failed  :  V1 stddev ($result4 >= $stddev_reltol)\n";
     $passed=0;
   }
 

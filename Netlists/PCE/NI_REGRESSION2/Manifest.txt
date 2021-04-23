@@ -7,6 +7,12 @@ exclude
 embeddedNormalPCE.cir
 embeddedNormalPCE.cir.sh
 embeddedNormalPCE.cir.tags
+paramNormalPCE.cir
+paramNormalPCE.cir.sh
+paramNormalPCE.cir.tags
+paramUniformPCE.cir
+paramUniformPCE.cir.sh
+paramUniformPCE.cir.tags
 simpleNormalPCE.cir
 simpleNormalPCE.cir.res
 simpleNormalPCE.cir.sh

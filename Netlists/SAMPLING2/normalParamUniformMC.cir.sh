@@ -16,7 +16,7 @@
 
 $XYCE=$ARGV[0];
 #$XYCE_VERIFY=$ARGV[1];
-$CIRFILE="paramUniformPCE.cir";
+$CIRFILE="normalParamUniformMC.cir";
 
 # Some platforms we test on (esp Windows) use a really bad random number generator.
 # To accomodate that I've made the comparison tolerances loose.  Also, if the test
@@ -45,32 +45,80 @@ while ($num_tries < 2 && $finished == 0)
   $CIRPRN=$CIRFILE;
   $CIRPRN =~ s/\.cir/\.cir\.prn/g;
 
+
+  $R1_analytical_mean = 4.0e+3;
+  $R1_analytical_min  = 2.0e+3;
+  $R1_analytical_max  = 6.0e+3;
+
   $V1_analytical_mean = 600.0;
   $V1_analytical_min  = 500.0;
   $V1_analytical_max  = 750.0;
-  $V1_analytical_variance  = 5208.3333333333;
-  $V1_analytical_stddev  = 72.1687836487;
 
   print STDERR  "\nTry # $num_tries :\n";
+
+  # Read in the Xyce std output and locate the mean, max and min of R1
+  $R1mean=`grep -m 1 'mean of {R1:R}' $CIRFILE.out`;
+  chomp($R1mean);
+  $R1mean=~ s/MC sampling mean of \{R1:R\} = ([0-9]*)/\1/;
+  print STDERR  "R1 sampling mean is $R1mean, analytical mean is $R1_analytical_mean\n";
+
+  $R1max=`grep -m 1 'max of {R1:R}' $CIRFILE.out`;
+  chomp($R1max);
+  $R1max=~ s/MC sampling max of \{R1:R\} = ([0-9]*)/\1/;
+  print STDERR  "R1 sampling max is $R1max, analytical max is $R1_analytical_max\n";
+
+  $R1min=`grep -m 1 'min of {R1:R}' $CIRFILE.out`;
+  chomp($R1min);
+  $R1min=~ s/MC sampling min of \{R1:R\} = ([0-9]*)/\1/;
+  print STDERR  "R1 sampling min is $R1min, analytical min is $R1_analytical_min\n";
 
   # Read in the Xyce std output and locate the mean, max and min of V(1)
   print STDERR  "\n";
 
-  $V1mean=`grep -m 1 'PCE mean of {V(1)}' $CIRFILE.out`;
+  $V1mean=`grep -m 1 'mean of {V(1)}' $CIRFILE.out`;
   chomp($V1mean);
-  $V1mean=~ s/Intrusive PCE mean of \{V\(1\)\} = ([0-9]*)/\1/;
-  print STDERR  "v(1) PCE mean is $V1mean, analytical mean is $V1_analytical_mean\n";
+  $V1mean=~ s/MC sampling mean of \{V\(1\)\} = ([0-9]*)/\1/;
+  print STDERR  "V(1) sampling mean is $V1mean, analytical mean is $V1_analytical_mean\n";
 
-  $V1stddev=`grep -m 1 'PCE stddev of {V(1)}' $CIRFILE.out`;
-  chomp($V1stddev);
-  $V1stddev=~ s/Intrusive PCE stddev of \{V\(1\)\} = ([0-9]*)/\1/;
-  print STDERR  "V(1) PCE stddev is $V1stddev, analytical stddev is $V1_analytical_stddev\n";
+  $V1max=`grep -m 1 'max of {V(1)}' $CIRFILE.out`;
+  chomp($V1max);
+  $V1max=~ s/MC sampling max of \{V\(1\)\} = ([0-9]*)/\1/;
+  print STDERR  "V(1) sampling max is $V1max, analytical max is $V1_analytical_max\n";
+
+  $V1min=`grep -m 1 'min of {V(1)}' $CIRFILE.out`;
+  chomp($V1min);
+  $V1min=~ s/MC sampling min of \{V\(1\)\} = ([0-9]*)/\1/;
+  print STDERR  "V(1) sampling min is $V1min, analytical min is $V1_analytical_min\n";
 
   $passed=1;
   $reltol=5e-2;
-  $stddev_reltol=5e-2;
+  $max_reltol=5e-2;
+  $min_reltol=5e-2;
 
   print STDERR  "\n";
+  $result1 = abs($R1mean-$R1_analytical_mean)/abs($R1mean);
+  print STDERR  "R1 mean result = $result1 \n"; 
+  if ($result1 >= $reltol)
+  {
+    print STDERR "Try # $num_tries failed  :  R1 mean ($result1 >= $reltol)\n";
+    $passed=0;
+  }
+
+  $result2 = abs($R1max-$R1_analytical_max)/abs($R1max);
+  print STDERR  "R1 max result = $result2 \n";
+  if ($result2 >= $max_reltol)
+  {
+    print STDERR "Try # $num_tries failed  :  R1 max ($result2 >= $max_reltol)\n";
+    $passed=0;
+  }
+
+  $result3 = abs($R1min-$R1_analytical_min)/abs($R1min);
+  print STDERR  "R1 min result = $result3 \n";
+  if ($result3 >= $min_reltol)
+  {
+    print STDERR "Try # $num_tries failed  :  R1 min ($result3 >= $min_reltol)\n";
+    $passed=0;
+  }
 
   $result4 = abs($V1mean-$V1_analytical_mean)/abs($V1mean);
   print STDERR  "V1 mean result = $result4 \n"; 
@@ -80,11 +128,19 @@ while ($num_tries < 2 && $finished == 0)
     $passed=0;
   }
 
-  $result6 = abs($V1stddev-$V1_analytical_stddev)/abs($V1stddev);
-  print STDERR "V1 stddev result = $result6 \n";
-  if ($result6 >= $stddev_reltol)
+  $result5 = abs($V1max-$V1_analytical_max)/abs($V1max);
+  print STDERR "V1 max result = $result5 \n";
+  if ($result5 >= $max_reltol)
   {
-    print STDERR "Try # $num_tries failed  :  V1 stddev ($result6 >= $stddev_reltol)\n";
+    print STDERR "Try # $num_tries failed  :  V1 max ($result5 >= $max_reltol)\n";
+    $passed=0;
+  }
+
+  $result6 = abs($V1min-$V1_analytical_min)/abs($V1min);
+  print STDERR "V1 min result = $result6 \n";
+  if ($result6 >= $min_reltol)
+  {
+    print STDERR "Try # $num_tries failed  :  V1 min ($result6 >= $min_reltol)\n";
     $passed=0;
   }
 

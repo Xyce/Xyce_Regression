@@ -9,6 +9,9 @@ latch_embedded_nisp_norm.cir.tags
 latch_embedded_nisp_norm.cir_ensemble.dat
 goldprn_latch_embedded_nisp_norm.cir_ensemble.dat
 printLine_for_latch_embedded_nisp_norm.cir
+paramUniformPCE.cir
+paramUniformPCE.cir.sh
+paramUniformPCE.cir.tags
 pceVoltageDividerQuad.cir
 pceVoltageDividerQuad.cir.sh
 pceVoltageDividerQuad.cir.tags

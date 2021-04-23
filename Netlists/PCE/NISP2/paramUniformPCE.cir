@@ -1,5 +1,5 @@
-Intrusive PCE circuit to propagate a simple uniform distribution. .param version, with expression operators
-*
+Regression test for simple uniform distribution propagation via projection (quadrature) PCE, .param version
+
 .param testNorm={aunif(2k,1k)}
 .param R1value={testNorm*2.0}
 
@@ -13,11 +13,14 @@ v1 2 0 1000V
 
 .result {v(1)}
 *
-.PCE useExpr=true
+.SAMPLING useExpr=true
 
-.options PCES 
+.options SAMPLES numsamples=10
++ projection_pce=true
 + order=5
 + outputs={v(1)}
++ sample_type=lhs
 + stdoutput=true
++ resample=true
 
 .end
