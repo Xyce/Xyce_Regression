@@ -45,8 +45,8 @@ VIN_b 1b 0 SIN {0.5*Vmag} {0.5*Vmag} 20MEG
 * Possibly formats:
 *
 ** do every sensitivity:
-.FOUR 20MEG sens
-.FOUR 40MEG sens
+.FOUR 20MEG V(2) sens
+.FOUR 40MEG V(2) sens
 
 .PRINT TRAN V(2) V(1)
 
