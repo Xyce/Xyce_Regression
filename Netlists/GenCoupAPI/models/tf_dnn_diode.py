@@ -1,6 +1,7 @@
 import numpy as np
 from BaseDevice import BaseDevice
 from TFModel import TFModel
+from XyceObjects import DeviceOptions, SolverState
 import DeviceSupport
 import os
 
@@ -46,7 +47,7 @@ class Device(BaseDevice):
     def setJacStamp(self, jacStamp, b_params, d_params, i_params, s_params):
         return 1
     
-    def computeXyceVectors(self, solV, fSV, stoV, t, voltageLimiterFlag, newtonIter, initJctFlag, inputOPFlag,
+    def computeXyceVectors(self, solV, fSV, stoV, t, voltageLimiterFlag, newtonIter, initJctFlag, inputOPflag,
             dcopFlag, locaEnabledFlag, origFlag, F, Q, B, dFdX, dQdX, dFdXdVp, dQdXdVp, 
             b_params, d_params, i_params, s_params):
         # solV, F, Q, and B are memory views

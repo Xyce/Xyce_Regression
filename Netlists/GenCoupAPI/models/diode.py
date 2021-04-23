@@ -1,6 +1,7 @@
 import numpy as np
 from BaseDevice import BaseDevice
 import DeviceSupport
+from XyceObjects import DeviceOptions, SolverState
 
 DEBUG=True
 
@@ -355,8 +356,8 @@ class Device(BaseDevice):
         #            jacStamp,    jacMap, jacMap2, 2, 0, 3);
         return 1
     
-    def computeXyceVectors(self, solV, fSV, stoV, t, voltageLimiterFlag, newtonIter, initJctFlag, inputOPFlag,
-            dcopFlag, locaEnabledFlag, origFlag, F, Q, B, dFdX, dQdX, dFdXdVp, dQdXdVp, 
+    def computeXyceVectors(self, solV, fSV, stoV, t, deviceOptions, solverState,
+            origFlag, F, Q, B, dFdX, dQdX, dFdXdVp, dQdXdVp, 
             b_params, d_params, i_params, s_params):
         # solV, F, Q, and B are memory views
         # cast them to numpy arrays without copying data
@@ -400,8 +401,8 @@ class Device(BaseDevice):
         tVcrit = d_params["tVcrit"]
         # Setup initial junction conditions if UIC enabled
         #------------------------------------------------
-        if newtonIter == 0:
-            if initJctFlag and voltageLimiterFlag:
+        if solverState.newtonIter == 0:
+            if solverState.initJctFlag_ and deviceOptions.voltageLimiterFlag:
                 if b_params["InitCondGiven"]:
                     Vd = d_params["InitCond"]
                     origFlag = false
@@ -409,7 +410,7 @@ class Device(BaseDevice):
                     Vd = 0.0
                     origFlag[0] = False
                 else:
-                    if inputOPFlag:
+                    if solverState.inputOPFlag:
                         if (fSV[0]==0 or fSV[1]==0):
                             Vd=tVcrit
                             origFlag[0] = False
@@ -418,14 +419,14 @@ class Device(BaseDevice):
                         origFlag[0] = False
             # assume there is no history -- then check if the
             # state vector can overwrite this
-            DEBUG and voltageLimiterFlag and print("Vd in limiting: ", Vd)
+            DEBUG and deviceOptions.voltageLimiterFlag and print("Vd in limiting: ", Vd)
             Vd_old = Vd
 
-            if (not dcopFlag or (locaEnabledFlag and dcopFlag)):
+            if (not solverState.dcopFlag or (solverState.locaEnabledFlag and solverState.dcopFlag)):
                 Vd_old = stoV[1][0] # [currStoVectorRawPtr,li_storevd]
         else:  # just do this whenever it isn't the first iteration
             Vd_old = stoV[0][0] # [nextStoVectorRawPtr,li_storevd]
-        DEBUG and voltageLimiterFlag and print("Vd_old in limiting: ", Vd_old)
+        DEBUG and deviceOptions.voltageLimiterFlag and print("Vd_old in limiting: ", Vd_old)
 
 
 
@@ -440,8 +441,8 @@ class Device(BaseDevice):
         ## 
         ## LIMITING
         ## 
-        if voltageLimiterFlag:
-            if (newtonIter >= 0):
+        if deviceOptions.voltageLimiterFlag:
+            if (solverState.newtonIter >= 0):
                 # removed breakdown check
                 (Vd, ichk) = DeviceSupport.pnjlim(Vd, Vd_old, Vte, tVcrit)
                 if ichk==1: origFlag[0] = False

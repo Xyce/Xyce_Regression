@@ -1,6 +1,7 @@
 import numpy as np
 from KokkosDevice import KokkosDevice
 from GMLS import GMLS
+from XyceObjects import DeviceOptions, SolverState
 
 class Device(KokkosDevice):
 
@@ -56,8 +57,8 @@ class Device(KokkosDevice):
     
         return 1
     
-    def computeXyceVectors(self, solV, fSV, stoV, t, voltageLimiterFlag, newtonIter, initJctFlag, inputOPflag,
-            dcopFlag, locaEnabledFlag, origFlag, F, Q, B, dFdX, dQdX, dFdXdVp, dQdXdVp, 
+    def computeXyceVectors(self, solV, fSV, stoV, t, deviceOptions, solverState,
+            origFlag, F, Q, B, dFdX, dQdX, dFdXdVp, dQdXdVp, 
             b_params, d_params, i_params, s_params):
     
         nodePos   = i_params['nodePos']

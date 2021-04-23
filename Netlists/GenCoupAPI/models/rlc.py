@@ -1,5 +1,6 @@
 import numpy as np
 from BaseDevice import BaseDevice
+from XyceObjects import DeviceOptions, SolverState
 
 class Device(BaseDevice):
 
@@ -83,8 +84,8 @@ class Device(BaseDevice):
     
         return 1
     
-    def computeXyceVectors(self, solV, fSV, stoV, t, voltageLimiterFlag, newtonIter, initJctFlag, inputOPflag,
-            dcopFlag, locaEnabledFlag, origFlag, F, Q, B, dFdX, dQdX, dFdXdVp, dQdXdVp, 
+    def computeXyceVectors(self, solV, fSV, stoV, t, deviceOptions, solverState,
+            origFlag, F, Q, B, dFdX, dQdX, dFdXdVp, dQdXdVp, 
             b_params, d_params, i_params, s_params):
     
         node1   = i_params['node1']

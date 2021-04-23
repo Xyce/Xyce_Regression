@@ -1,5 +1,6 @@
 import numpy as np
 from BaseDevice import BaseDevice
+from XyceObjects import DeviceOptions, SolverState
 
 class Device(BaseDevice):
     
@@ -20,8 +21,8 @@ class Device(BaseDevice):
     def setJacStamp(self, jacStamp, b_params, d_params, i_params, s_params):
         return
     
-    def computeXyceVectors(self, solV, fSV, stoV, t, voltageLimiterFlag, newtonIter, initJctFlag, inputOPflag,
-            dcopFlag, locaEnabledFlag, origFlag, F, Q, B, dFdX, dQdX, dFdXdVp, dQdXdVp, 
+    def computeXyceVectors(self, solV, fSV, stoV, t, deviceOptions, solverState,
+            origFlag, F, Q, B, dFdX, dQdX, dFdXdVp, dQdXdVp, 
             b_params, d_params, i_params, s_params):
         # solV, F, Q, and B are memory views
         # cast them to numpy arrays without copying data
