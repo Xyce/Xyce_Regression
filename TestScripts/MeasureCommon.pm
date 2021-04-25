@@ -275,6 +275,53 @@ sub getNumMeasuresInCirFile
   return ($numMeasures,\@measureQuants);
 }
 
+#
+# Get the names of the "continuous mode measures" in the the netlist. This subroutine
+# assume that the subroutine checkTranFilesExist() has already been run.
+#
+sub getContMeasureNamesInCirFile
+{
+  my ($CIRFILE)=@_;
+  my $numContMeasures=0;
+  my $contModeString;
+  my $line;
+  my @words;
+  my $token;
+  my @tokenParts;
+  my @contMeasureNames;
+  my $mqIdx;
+
+  open(NETLIST, "$CIRFILE");
+  while( $line=<NETLIST> )
+  {
+    if( ($line =~ /^\.measure/i) || ($line =~ /^\.meas/i) )
+    {
+      @words = split(/ /, $line);
+      if ( $#words < 3 )
+      {
+        print "Continuous Measure statement in file $CIRFILE lacked enough tokens\n";
+        print "Exit code = 2\n"; exit 2;
+      }
+
+      $contModeString = uc(substr($words[1],-4));
+      if ($contModeString eq "CONT")
+      {
+        $numContMeasures++;
+        $contMeasureNames[$numContMeasures-1] = lc($words[2]);
+      }
+    }
+  }
+  close(NETLIST);
+
+  if ( $numContMeasures == 0 )
+  {
+    print "No continuous mode measure statements found in file $CIRFILE\n";
+    print "Exit code = 2\n"; exit 2;
+  }
+
+  return ($numContMeasures,\@contMeasureNames);
+}
+
 # 
 # Determine the presence and output variable for a FIND clause
 # in a FIND-WHEN measure. 

@@ -3,6 +3,11 @@
 *
 * See SON Bugs 1274, 1304 and 1313 for more details.
 ********************************************************
+
+* For testing convenience send the output for the TRAN_CONT
+* measures to the <netlistName>.mt0 file.
+.OPTIONS MEASURE USE_CONT_FILES=0
+
 *
 VPWL1 1  0  pwl(0 0.1 2.5m 0.5 5m 0 7.4m 0.4 10m 0)
 VPWL2 2  0  pwl(0 0.5 10m 0)

@@ -1,9 +1,9 @@
 * Test of duplicate measure names in Xyce.  The first
-* M1 and M2 definitions should be ignored and produce
+* M1, M2 and M3 definitions should be ignored and produce
 * warning messages.  The EQN measures should produce
-* the values given by the second M1 and M2 definitions.
+* the values given by the second M1 and M2.
 *
-* See SON Bug 1300 for more details.
+* See SON Bugs 1274 and 1300 for more details.
 ******************************************************
 .TRAN 0 1
 .PRINT TRAN V(1) V(2)
@@ -21,5 +21,11 @@ R2 2 0 1
 .MEASURE TRAN EQNM2 EQN M2
 .MEASURE TRAN M2 MAX V(2)
 .MEASURE TRAN M2 MIN V(2)
+
+* Test that duplicate detection works for TRAN_CONT and TRAN mode.
+* The second M3 measure should be used, and no output file for
+* the TRAN_CONT measure should be made.
+.MEASURE TRAN_CONT M3 WHEN V(2)=0.4
+.MEASURE TRAN M3 MIN V(2)
 
 .END

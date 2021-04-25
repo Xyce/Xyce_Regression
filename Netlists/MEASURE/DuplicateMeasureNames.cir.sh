@@ -36,6 +36,9 @@ $GOLDPRN=$ARGV[4];
 $fc=$XYCE_VERIFY;
 $fc =~ s/xyce_verify/file_compare/;
 
+system("rm -f $CIRFILE.mt0 $CIRFILE.out $CIRFILE.err* $CIRFILE.remeasure*");
+system("rm -f $CIRFILE\_*.mt0");
+
 #
 # Steps common to all of the measure tests are in the Perl module
 # MeasureCommon.pm.  This file assumes the analysis type was .tran
@@ -85,6 +88,15 @@ if ($XYCE_VERIFY =~ m/valgrind_check/)
   }
 }
 
+# check that no output file was made for the TRAN_CONT measure (M3) that
+# was ignored.
+if ( -s "$CIRFILE\_m3.mt0" )
+{
+  print "$CIRFILE\_m3.mt0 made when it should not\n";
+  print "Exit code = 2\n";
+  exit 2;
+}
+
 # The next three blocks of code are used to compare the .MEASURE output
 # to stdout to the "gold" stdout in the $GSFILE (FindWhenVariableTestGSfile).
 
@@ -121,7 +133,8 @@ close(ERRMSG);
 
 # check the warning messages
 @searchstrings = ("Netlist warning: Measure \"M1\" redefined, ignoring any previous definitions",
-                  "Netlist warning: Measure \"M2\" redefined, ignoring any previous definitions"
+                  "Netlist warning: Measure \"M2\" redefined, ignoring any previous definitions",
+                  "Netlist warning: Measure \"M3\" redefined, ignoring any previous definitions"
 );
 if( $Tools->checkError("$CIRFILE.out",@searchstrings) != 0)
 {

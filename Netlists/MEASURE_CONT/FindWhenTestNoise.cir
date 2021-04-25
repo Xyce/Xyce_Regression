@@ -4,6 +4,10 @@
 * See SON Bugs 1274 and 1313 for more details.
 ********************************************************************
 
+* For testing convenience send the output for the NOISE_CONT
+* measures to the <netlistName>.ma0 file.
+.OPTIONS MEASURE USE_CONT_FILES=0
+
 * Used to adjust reference frequency from 1Hz to 1KHz
 .PARAM scaleFactor=1e3
 
@@ -15,7 +19,7 @@ R2  2 0 100K
 * AMP AND LP FILTER
 EAMP   3 0 2 0 2
 * 7th order Chebychev LPF with 2dB of passband ripple.
-* This is not a realistic passbad ripple level, but is
+* This is not a realistic passband ripple level, but is
 * useful for this test.
 RS 3 b 1
 C1 b 0 {2.865/scaleFactor}

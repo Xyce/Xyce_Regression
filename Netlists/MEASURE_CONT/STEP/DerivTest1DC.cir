@@ -10,6 +10,10 @@
 * See SON Bugs 1274, 1304 and 1313 for more details
 *****************************************************
 
+* For testing convenience send the output for the DC_CONT
+* measures to the <netlistName>.ms0 file.
+.OPTIONS MEASURE USE_CONT_FILES=0
+
 .GLOBAL_PARAM P1=4
 
 V1 1 0 1

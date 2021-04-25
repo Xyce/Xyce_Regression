@@ -1,0 +1,17 @@
+AC.cir
+AC.cir.sh
+ACGSfile
+DC.cir
+DC.cir.sh
+DCGSfile
+DuplicateMeasureNames.cir
+DuplicateMeasureNames.cir.sh
+DuplicateMeasureNamesGSfile
+DuplicateMeasureNames.cir.tags
+Noise.cir
+Noise.cir.sh
+NoiseGSfile
+Tran.cir
+Tran.cir.sh
+TranGSfile
+tags

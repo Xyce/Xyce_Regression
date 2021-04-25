@@ -36,11 +36,11 @@ $XYCE_ACVERIFY = $XYCE_VERIFY;
 $XYCE_ACVERIFY =~ s/xyce_verify/ACComparator/;
 
 # remove files from previous runs
-system("rm -f $CIRFILE.ma0 $CIRFILE.out $CIRFILE.err*");
+system("rm -f $CIRFILE.ma0 $CIRFILE.NOISE.prn $CIRFILE.out $CIRFILE.err*");
 
 #
 # Steps common to all of the measure tests are in the Perl module
-# MeasureCommon.pm.  This file assumes the analysis type was .AC
+# MeasureCommon.pm.  This file assumes the analysis type was .NOISE
 #
 MeasureCommon::checkNoiseFilesExist($XYCE,$CIRFILE);
 
