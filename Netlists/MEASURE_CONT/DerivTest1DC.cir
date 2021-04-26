@@ -31,13 +31,13 @@ R3 3 0 1
 * Continuous version should return all crossings, starting
 * with the first one.
 .MEASURE DC derivCrossTest2 DERIV V(2) WHEN V(2)=5 CROSS=1
-.MEASURE DC_CONT derivCrossContTest2 DERIV V(2) WHEN V(2)=5 CROSS=1
+.MEASURE DC_CONT derivCrossContTest2 deriv V(2) WHEN V(2)=5 CROSS=1
 
 * Non-continuous version should return second crossing.
 * Continuous version should return all crossings, starting
 * with the second one.
 .MEASURE DC derivCrossTest3 DERIV V(2) WHEN V(2)=5 CROSS=2
-.MEASURE DC_CONT derivCrossContTest3 DERIV V(2) WHEN V(2)=5 CROSS=2
+.MEASURE DC_CONT derivCrossContTest3 DERIVATIVE V(2) WHEN V(2)=5 CROSS=2
 
 * These should both return the last crossing
 .MEASURE DC derivCrossTest4 DERIV V(2) WHEN V(2)=5 CROSS=LAST

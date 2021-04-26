@@ -25,7 +25,7 @@ R3 3 0 1
 * Non-continuous version should return first crossing.
 * Continuous version should return all crossings.
 .MEASURE DC whenCrossTest1 WHEN V(2)=5
-.MEASURE DC_CONT whenCrossContTest1 WHEN V(2)=5
+.MEASURE DC_CONT whenCrossContTest1 when V(2)=5
 
 * Non-continuous version should return first crossing.
 * Continuous version should return all crossings, starting
@@ -47,7 +47,7 @@ R3 3 0 1
 * FIND-AT measures
 * These should give the same answer
 .MEASURE DC atTest FIND V(2) AT=2
-.MEASURE DC_CONT atContTest FIND V(2) AT=2
+.MEASURE DC_CONT atContTest find V(2) aT=2
 
 ******************************************************
 * Repeat WHEN tests as FIND-WHEN measures

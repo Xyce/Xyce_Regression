@@ -23,19 +23,19 @@ R2  2  0  100
 * Non-continuous version should return first crossing.
 * Continuous version should return all crossings.
 .measure tran derivCrossTest1 deriv v(1) when v(1)=0.2
-.measure TRAN_CONT derivCrossContTest1 deriv v(1) when v(1)=0.2
+.measure TRAN_CONT derivCrossContTest1 DERIVATIVE v(1) when v(1)=0.2
 
 * Non-continuous version should return first crossing.
 * Continuous version should return all crossings, starting
 * with the first one.
 .measure tran derivCrossTest2 deriv v(1) when v(1)=0.2 CROSS=1
-.measure TRAN_CONT derivCrossContTest2 deriv v(1) when v(1)=0.2 CROSS=1
+.measure TRAN_CONT derivCrossContTest2 DERIV v(1) when v(1)=0.2 CROSS=1
 
 * Non-continuous version should return second crossing.
 * Continuous version should return all crossings, starting
 * with the second one.
 .measure tran derivCrossTest3 deriv v(1) when v(1)=0.2 CROSS=2
-.measure TRAN_CONT derivCrossContTest3 deriv v(1) when v(1)=0.2 CROSS=2
+.measure TRAN_CONT derivCrossContTest3 derivative v(1) when v(1)=0.2 CROSS=2
 
 * These should both return the last crossing
 .measure tran derivCrossTest4 deriv v(1) when v(1)=0.2 CROSS=LAST

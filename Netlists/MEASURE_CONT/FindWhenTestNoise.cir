@@ -39,7 +39,7 @@ RL e 0 1.0
 * The non-continuous version should return the first crossing.
 * The continuous version should return all crossings.
 .MEASURE NOISE whenCrossTest1 WHEN vm(e)=0.45
-.MEASURE NOISE_CONT whenCrossContTest1 WHEN vm(e)=0.45
+.MEASURE NOISE_CONT whenCrossContTest1 when vm(e)=0.45
 
 * Non-continuous version should return first crossing.
 * Continuous version should return all crossings, starting
@@ -60,7 +60,7 @@ RL e 0 1.0
 * FIND-AT measures
 * These should give the same answer
 .MEASURE NOISE atTest FIND VM(e) AT=20
-.MEASURE NOISE_CONT atContTest FIND VM(e) AT=20
+.MEASURE NOISE_CONT atContTest FIND VM(e) At=20
 
 ******************************************************
 * Repeat WHEN tests as FIND-WHEN measures
