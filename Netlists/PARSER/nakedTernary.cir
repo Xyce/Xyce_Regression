@@ -43,6 +43,10 @@
 .param test8= (A==B)?C+0:D  ; this expression is acceptable
 .param test9= (A==B)?(C):D  ; this expression is acceptable
 
+.param test10= (A>=B)?(C):D
+.param test11= (A<=B)?(C):D
+.param test12= (A!=B)?(C):D
+
 R1 1 0 {test1}
 V1 1 0 1.0
 
@@ -52,6 +56,15 @@ V2 2 0 1.0
 R3 3 0 {test9}
 V3 3 0 1.0
 
+R4 4 0 {test10}
+V4 4 0 1.0
+
+R5 5 0 {test11}
+V5 5 0 1.0
+
+R6 6 0 {test12}
+V6 6 0 1.0
+
 .DC V1 1.0 1.0 1.0
-.PRINT DC V(1) V(2) V(3) {test1} {test8} {test9}
+.PRINT DC V(1) V(2) V(3) {test1} {test8} {test9} {test10} {test11} {test12}
 .end

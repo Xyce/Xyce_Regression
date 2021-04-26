@@ -22,6 +22,7 @@
 .param test3= if(A==B,C+0,D)
 .param test4= if(A>=B,C+0,D)
 .param test5= if(A<=B,C+0,D)
+.param test6= if(A!=B,C+0,D)
 
 R1 1 0 {test1}
 V1 1 0 1.0
@@ -38,7 +39,10 @@ V4 4 0 1.0
 R5 5 0 {test5}
 V5 5 0 1.0
 
+R6 6 0 {test6}
+V6 6 0 1.0
+
 .DC V1 1.0 1.0 1.0
-.PRINT DC V(1) V(2) V(3) V(4) V(5) {test1} {test2} {test3} {test4} {test5}
+.PRINT DC V(1) V(2) V(3) V(4) V(5) {test1} {test2} {test3} {test4} {test5} {test6}
 .end
 
