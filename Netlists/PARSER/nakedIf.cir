@@ -1,0 +1,18 @@
+
+
+.param x=3.0
+.param y=-3.0
+
+.param test1= if(x>0,2*x,0)
+.param test2= if((1+y>0),2*y,0+2)
+
+R1 1 0 {test1}
+V1 1 0 1.0
+
+R2 2 0 {test2}
+V2 2 0 1.0
+
+.DC V1 1.0 1.0 1.0
+.PRINT DC V(1) {test1} {test2}
+.end
+

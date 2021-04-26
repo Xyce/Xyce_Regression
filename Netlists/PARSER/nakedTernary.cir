@@ -1,0 +1,19 @@
+
+
+.param x=0.5
+
+* doesn't work, because the separated field tool removes the space
+*.param test1= x>0?2*x :0
+
+* works because the parens remove ambiguity
+.param test1= (x>0)?(2*x):(0)
+
+* works:
+*.param test1={x>0?2*x :0}
+
+R1 1 0 {test1}
+V1 1 0 1.0
+.DC V1 1.0 1.0 1.0
+.PRINT DC V(1) {test1}
+.end
+
