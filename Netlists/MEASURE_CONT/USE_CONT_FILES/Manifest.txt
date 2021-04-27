@@ -14,4 +14,8 @@ NoiseGSfile
 Tran.cir
 Tran.cir.sh
 TranGSfile
+TranStep.cir
+TranStep.s0.cir
+TranStep.s1.cir
+TranStep.cir.sh
 tags

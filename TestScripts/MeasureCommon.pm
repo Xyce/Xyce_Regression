@@ -124,12 +124,16 @@ sub checkDCFilesExist
 #
 sub checkTranStepResults
 {
-  if (@_ != 3)
+  if ( !((@_==3) || (@_==5)) )
   {
-    print "Invalid number of arguments for subroutine MeasureCommon::checkTranStepResults. Should be 3\n";
+    print "Invalid number of arguments for subroutine MeasureCommon::checkTranStepResults. Should be 3 or 5\n";
     return 1;
   }
-  my ($XYCE,$CIRFILE,$numSteps)=@_;
+  my ($XYCE,$CIRFILE,$numSteps,$numContMeasures,$contMeasureNamesRef)=@_;
+
+  my @contMeasureNames;
+  if (not defined $numContMeasures) {$numContMeasures = 0;}
+  if (defined $contMeasureNamesRef) {@contMeasureNames = @$contMeasureNamesRef;}
 
   use XyceRegression::Tools;
   my $ModTools = XyceRegression::Tools->new();
@@ -143,7 +147,13 @@ sub checkTranStepResults
 
   # Clean up from any previous runs
   system("rm -f $CIRFILE.prn $CIRFILE.res $CIRFILE.out $CIRFILE.err $CIRFILE.mt.out $CIRFILE.mt.err");
-  system("rm -f $CIRFILE.mt* $CB.s*.cir.prn $CB.s*.cir.out $CB.s*.cir.err $CB.s*.cir.mt0"); 
+  system("rm -f $CIRFILE.mt* $CB.s*.cir.prn $CB.s*.cir.out $CB.s*.cir.err $CB.s*.cir.mt0");
+  system("rm -f $CIRFILE.remeasure*");
+
+  if ($numContMeasures != 0)
+  {
+    system("rm -f $CIRFILE\_*.mt*  $CB.s*\_*.mt0");
+  }
 
   # create the output files for the Step netlist
   $retval=$ModTools->wrapXyce($XYCE,$CIRFILE);
@@ -183,8 +193,33 @@ sub checkTranStepResults
       print "Diff Failed for Step $idx. See $CIRFILE.mt$idx.out and $CIRFILE.mt$idx.err\n";
       return 2;
     }
+
+    # also check continuous mode measures, if separate output files were made for each one
+    if ($numContMeasures !=0)
+    {
+      my $NSFCONTFILE;
+      my $CONTFILE;
+      foreach my $cmnIdx (0 .. $numContMeasures-1)
+      {
+	$NSFCONTFILE = "$NSF\_$contMeasureNames[$cmnIdx].mt0";
+	$CONTFILE = "$CIRFILE\_$contMeasureNames[$cmnIdx].mt$idx";
+        if (not -s $NSFCONTFILE) { return 17; }
+        if (not -s $CONTFILE) { return 17; }
+
+        my $CMD="diff $CONTFILE $NSFCONTFILE > $CIRFILE.mt$idx.out 2> $CIRFILE.mt$idx.err";
+        $retval = system($CMD);
+        $retval = $retval >> 8;
+
+        # check the return value
+        if ( $retval != 0 )
+        {
+          print "Diff Failed for Step $idx for file $CONTFILE. See $CIRFILE.mt$idx.out and $CIRFILE.mt$idx.err\n";
+          return 2;
+        }
+      }
+    }
   }
-  
+
   return $retval
 }
 
@@ -1094,8 +1129,8 @@ sub checkRemeasure
   # If not file extension is specified then the default is prn.  mSuffix allows
   # this function to work with TRAN (mt), AC (ma) or DC (ms).  The default is mt.
   if (not defined $fileExt) { $fileExt = "prn"; }
-  if (not defined $stepNum) {$stepNum = 1}
-  if (not defined $mSuffix) {$mSuffix = "mt"}
+  if (not defined $stepNum) {$stepNum = 1;}
+  if (not defined $mSuffix) {$mSuffix = "mt";}
  
   print "Testing Re-measure\n";
  
@@ -1162,8 +1197,8 @@ sub checkRemeasureWithFFTFiles
   # If not file extension is specified then the default is prn.  mSuffix allows
   # this function to work with TRAN (mt), AC (ma) or DC (ms).  The default is mt.
   if (not defined $fileExt) { $fileExt = "prn"; }
-  if (not defined $stepNum) {$stepNum = 1}
-  if (not defined $mSuffix) {$mSuffix = "mt"}
+  if (not defined $stepNum) {$stepNum = 1;}
+  if (not defined $mSuffix) {$mSuffix = "mt";}
 
   print "Testing Re-measure with added FFT output\n";
 
