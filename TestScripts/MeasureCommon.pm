@@ -1123,7 +1123,10 @@ sub compareMeasureResultsFiles
 # This version is used when there are no .FFT lines in the netlist
 sub checkRemeasure
 {
-  my( $XYCE, $XYCE_VERIFY, $CIRFILE, $absTol, $relTol, $zeroTol, $fileExt, $stepNum, $mSuffix ) = @_;
+  my( $XYCE, $XYCE_VERIFY, $CIRFILE, $absTol, $relTol, $zeroTol, $fileExt, $stepNum, $mSuffix, $contMeasureNamesRef ) = @_;
+
+  my @contMeasureNames;
+  my $numContMeasures=0;
 
   # file extension allows checkRemeasure() to work with both prn and csd files.
   # If not file extension is specified then the default is prn.  mSuffix allows
@@ -1131,17 +1134,30 @@ sub checkRemeasure
   if (not defined $fileExt) { $fileExt = "prn"; }
   if (not defined $stepNum) {$stepNum = 1;}
   if (not defined $mSuffix) {$mSuffix = "mt";}
- 
+  if (defined $contMeasureNamesRef)
+  {
+    @contMeasureNames = @$contMeasureNamesRef;
+    $numContMeasures = $#contMeasureNames+1;
+  }
+
   print "Testing Re-measure\n";
- 
+
   use File::Copy;
   foreach my $i (0 .. $stepNum-1)
   {
     move("$CIRFILE.$mSuffix$i","$CIRFILE.temp.$mSuffix$i");
+    foreach my $j (0 .. $numContMeasures)
+    {
+      move("$CIRFILE\_$contMeasureNames[$j].$mSuffix$i", "$CIRFILE\_$contMeasureNames[$j].temp.$mSuffix$i");
+    }
   }
 
   # remove files from previous runs
-  system("rm -f $CIRFILE.remeasure.mt*"); 
+  system("rm -f $CIRFILE.remeasure.$mSuffix*");
+  foreach my $j (0 .. $numContMeasures-1)
+  {
+      system("rm -f $CIRFILE\_$contMeasureNames[$j].remeasure.$mSuffix*");
+  }
 
   # here is the command to run xyce with remeasure
   my $CMD="$XYCE -remeasure $CIRFILE.$fileExt $CIRFILE > $CIRFILE.remeasure.out";
@@ -1176,12 +1192,26 @@ sub checkRemeasure
   {
     move("$CIRFILE.$mSuffix$i","$CIRFILE.remeasure.$mSuffix$i");
     move("$CIRFILE.temp.$mSuffix$i","$CIRFILE.$mSuffix$i");
-    `$fc $CIRFILE.remeasure.$mSuffix$i $CIRFILE.$mSuffix$i $absTol $relTol $zeroTol > $CIRFILE.remeasure.$mSuffix$i.out 2> $CIRFILE.remeasure.$mSuffix$i.err`;  
+    `$fc $CIRFILE.remeasure.$mSuffix$i $CIRFILE.$mSuffix$i $absTol $relTol $zeroTol > $CIRFILE.remeasure.$mSuffix$i.out 2> $CIRFILE.remeasure.$mSuffix$i.err`;
     $retval=$? >> 8;
     if ($retval != 0)
     {
-      print("Re-measure failed for step $i\n");
+      print("Re-measure failed for step $i on file $CIRFILE.$mSuffix$i\n");
       return $retval;
+    }
+
+    for (my $j=0; $j<$numContMeasures; $j=$j+1)
+    {
+      move("$CIRFILE\_$contMeasureNames[$j].$mSuffix$i","$CIRFILE\_$contMeasureNames[$j].remeasure.$mSuffix$i");
+      move("$CIRFILE\_$contMeasureNames[$j].temp.$mSuffix$i", "$CIRFILE\_$contMeasureNames[$j].$mSuffix$i");
+
+      `$fc $CIRFILE\_$contMeasureNames[$j].remeasure.$mSuffix$i $CIRFILE\_$contMeasureNames[$j].$mSuffix$i $absTol $relTol $zeroTol > $CIRFILE.remeasure.$mSuffix$i.out 2> $CIRFILE.remeasure.$mSuffix$i.err`;
+      $retval=$? >> 8;
+      if ($retval != 0)
+      {
+        print("Re-measure failed for step $i on file $CIRFILE\_$contMeasureNames[$j].$mSuffix$i\n");
+        return $retval;
+      }
     }
   }
 

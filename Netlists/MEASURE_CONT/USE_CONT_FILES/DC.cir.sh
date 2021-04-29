@@ -181,7 +181,7 @@ if ($exitcode !=0)
 }
 
 # Re-measure test uses the same approach as the FOUR measure.
-$retval = MeasureCommon::checkRemeasure($XYCE,$XYCE_VERIFY,$CIRFILE,$absTol,$relTol,$zeroTol,'prn',1,'ms');
+$retval = MeasureCommon::checkRemeasure($XYCE,$XYCE_VERIFY,$CIRFILE,$absTol,$relTol,$zeroTol,'prn',1,'ms',$contMeasureNamesRef);
 
 print "Exit code = $retval\n";
 exit $retval;

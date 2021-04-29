@@ -51,7 +51,7 @@ if ($retval == 0)
   $absTol = 1.0e-5;
   $relTol = 1.0e-3;
   $zeroTol = 1.0e-10;
-  $retval = MeasureCommon::checkRemeasure($XYCE,$XYCE_VERIFY,$CIRFILE,$absTol,$relTol,$zeroTol,"prn",$numSteps);
+  $retval = MeasureCommon::checkRemeasure($XYCE,$XYCE_VERIFY,$CIRFILE,$absTol,$relTol,$zeroTol,"prn",$numSteps,'mt',$contMeasureNamesRef);
 }
 
 print "Exit code = $retval\n";
