@@ -226,7 +226,7 @@ class XyceRawDataFile:
 
         self.myFileName=filename
         try:
-            self.myFile=open(filename,'r', encoding = "ISO-8859-1")
+            self.myFile=open(filename,'r')
         except:
             print ("Open failed on %s\n"%filename)
             exit(1)
@@ -303,11 +303,11 @@ class XyceRawDataFile:
                 buffer=self.myFile.read(self.recordSize)
                 # Gotta check if we're at the start of a new plot, and
                 # skip over plot header
-                if buffer.startswith(b'Plotname:'):
+                if buffer.startswith('Plotname:'):
                     # Rewind back to beginning of last read data
                     self.myFile.seek(-len(buffer),1)
                     line=self.myFile.readline()
-                    while not line.startswith(b'Binary:'):
+                    while not line.startswith('Binary:'):
                         line=self.myFile.readline()
                     buffer=self.myFile.read(self.recordSize)
                     
@@ -747,7 +747,7 @@ class XyceCsvDataFile:
         return data
 
 def XyceDataFileFactory(filename):
-    input=open(filename,'r', encoding = "ISO-8859-1")
+    input=open(filename,'r')
     fields=input.readline().split()
     fields[0]=re.sub(r'[ ]',r'',fields[0])
     #HACK:  If we're a CSV file, there WERE no spaces to split on,
