@@ -47,8 +47,8 @@ class Device(BaseDevice):
     def setJacStamp(self, jacStamp, b_params, d_params, i_params, s_params):
         return 1
     
-    def computeXyceVectors(self, solV, fSV, stoV, t, voltageLimiterFlag, newtonIter, initJctFlag, inputOPflag,
-            dcopFlag, locaEnabledFlag, origFlag, F, Q, B, dFdX, dQdX, dFdXdVp, dQdXdVp, 
+    def computeXyceVectors(self, solV, fSV, stoV, t, deviceOptions, solverState,
+            origFlag, F, Q, B, dFdX, dQdX, dFdXdVp, dQdXdVp, 
             b_params, d_params, i_params, s_params):
         # solV, F, Q, and B are memory views
         # cast them to numpy arrays without copying data
@@ -187,6 +187,6 @@ class Device(BaseDevice):
 
         return 1
 
-    def initialize(self, b_params, d_params, i_params, s_params):
+    def initialize(self, deviceOptions, solverState, b_params, d_params, i_params, s_params):
         # setup Tensorflow DNN
         self.tf_model = TFModel(s_params["TFModelFileName"])

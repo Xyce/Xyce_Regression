@@ -539,7 +539,7 @@ class Device(BaseDevice):
         ## LIMITING
         ##
         # load the voltage limiter vector.
-        if(b_params["voltageLimiterFlag"]):
+        if deviceOptions.voltageLimiterFlag:
             np_dFdXdVp  = np.array( dFdXdVp, dtype=np.float64, copy=False)
             np_dQdXdVp  = np.array( dQdXdVp, dtype=np.float64, copy=False)
             dFdXdVpcontribs = np.zeros(shape=(numVars,),dtype=np.float64)
@@ -595,7 +595,7 @@ class Device(BaseDevice):
                 np_dFdX[i][j]=dFdXcontribs[i][j]
                 DEBUG and print("dFdX[%d][%d]"%(i,j),dFdXcontribs[i][j])
 
-        if b_params["voltageLimiterFlag"]:
+        if deviceOptions.voltageLimiterFlag:
             stoV[0][0] = Vd # [nextStoVectorRawPtr, li_stovd]
 
         return 1

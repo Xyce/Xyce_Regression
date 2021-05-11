@@ -120,7 +120,7 @@ class Device(KokkosDevice):
         dFdX[controlNodeNeg][controlNodeNeg] = 0.0
         return 1
     
-    def initialize(self, b_params, d_params, i_params, s_params):
+    def initialize(self, deviceOptions, solverState, b_params, d_params, i_params, s_params):
         # control node voltages sent in
         # index 0->2
         # index 1->3

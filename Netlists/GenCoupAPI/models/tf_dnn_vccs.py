@@ -121,7 +121,7 @@ class Device(BaseDevice):
         dFdX[controlNodeNeg][controlNodeNeg] = 0.0
         return 1
     
-    def initialize(self, b_params, d_params, i_params, s_params):
+    def initialize(self, deviceOptions, solverState, b_params, d_params, i_params, s_params):
         # setup Tensorflow DNN
         self.tf_model = TFModel(s_params["TFModelFileName"])
     

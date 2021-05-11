@@ -480,7 +480,7 @@ class Device(KokkosDevice):
         # load the voltage limiter vector.
         Cd = 0
         Gd = dFdX[0][0]
-        if(b_params["voltageLimiterFlag"]):
+        if deviceOptions.voltageLimiterFlag:
             np_dFdXdVp  = np.array( dFdXdVp, dtype=np.float64, copy=False)
             np_dQdXdVp  = np.array( dQdXdVp, dtype=np.float64, copy=False)
             dFdXdVpcontribs = np.zeros(shape=(numVars,),dtype=np.float64)
@@ -502,12 +502,12 @@ class Device(KokkosDevice):
                 np_dFdXdVp[i] = dFdXdVpcontribs[i]
                 np_dQdXdVp[i] = dQdXdVpcontribs[i]
 
-        if b_params["voltageLimiterFlag"]:
+        if deviceOptions.voltageLimiterFlag:
             np_stoV[0][0] = Vd # [nextStoVectorRawPtr, li_stovd]
 
         return 1
 
-    def initialize(self, b_params, d_params, i_params, s_params):
+    def initialize(self, deviceOptions, solverState, b_params, d_params, i_params, s_params):
         # control node voltages sent in
         # index 0->2
         # index 1->3
