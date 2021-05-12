@@ -1,7 +1,6 @@
 import numpy as np
 from BaseDevice import BaseDevice
 import DeviceSupport
-from XyceObjects import DeviceOptions, SolverState
 
 DEBUG=True
 

@@ -1,6 +1,5 @@
 import numpy as np
 from BaseDevice import BaseDevice
-from XyceObjects import DeviceOptions, SolverState
 
 class Device(BaseDevice):
 

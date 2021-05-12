@@ -1,7 +1,6 @@
 import numpy as np
 from KokkosDevice import KokkosDevice
 from GMLS import GMLS
-from XyceObjects import DeviceOptions, SolverState
 
 class Device(KokkosDevice):
 

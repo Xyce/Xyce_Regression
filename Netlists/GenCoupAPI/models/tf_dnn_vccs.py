@@ -1,7 +1,6 @@
 import numpy as np
 from BaseDevice import BaseDevice
 from TFModel import TFModel
-from XyceObjects import DeviceOptions, SolverState
 import os
 
 

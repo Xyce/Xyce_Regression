@@ -2,7 +2,6 @@ import numpy as np
 from KokkosDevice import KokkosDevice
 from GMLS import GMLS
 import DeviceSupport
-from XyceObjects import DeviceOptions, SolverState
 
 DEBUG=False
 
