@@ -19,15 +19,10 @@ class Device(BaseDevice):
         # p_params are inserted into b_params, d_params, i_params, and s_params,
         # if they key is not already defined (if it is defined, it is from the Netlist)
     
-    def get_F_Q_B_dfDx_dQdx_sizes(self, b_params, d_params, i_params, s_params):
-        num_vars = i_params["numVars"]
-        size_dict = {}
-        size_dict['F']=[num_vars,]
-        size_dict['Q']=[num_vars,]
-        size_dict['B']=[0,]
-        size_dict['dFdX']=[num_vars,num_vars]
-        size_dict['dQdX']=[num_vars,num_vars]
-        return size_dict
+    def getArraySizes(self, b_params, d_params, i_params, s_params):
+        sizes_dict = super().getArraySizes(b_params, d_params, i_params, s_params)
+        sizes_dict['B']=[0,]
+        return sizes_dict
     
     def getJacStampSize(self, b_params, d_params, i_params, s_params):
         # minimum implementation is to return a size 0 numpy array of ints
