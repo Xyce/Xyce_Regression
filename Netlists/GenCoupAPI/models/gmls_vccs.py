@@ -1,8 +1,14 @@
 import numpy as np
-from BaseDevice import BaseDevice
+from KokkosDevice import KokkosDevice
 from GMLS import GMLS
 
-class Device(BaseDevice):
+class Device(KokkosDevice):
+
+    def __del__(self):
+        # destroys all Kokkos objects
+        del self.gmls
+        # potentially finalizes Kokkos
+        super().__del__()
     
     def processPythonParams(self, b_params, d_params, i_params, s_params):
         p_params = {}
