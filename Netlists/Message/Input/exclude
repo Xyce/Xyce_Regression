@@ -4,6 +4,8 @@ Bad_DCOP_Line.cir
 Bad_Netlist_Name.cir
 AC_doInit1.cir
 AC_doInit2.cir
+AC_doInit3.cir
+AC_doInit4.cir
 AC_extractACData1.cir
 AC_extractACData2.cir
 AC_setAnalysisParams1.cir

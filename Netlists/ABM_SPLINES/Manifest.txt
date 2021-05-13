@@ -9,6 +9,8 @@ fasttable2.cir
 sinewave.dat
 table.cir
 table2.cir
+table3.cir
+table4.cir
 tags
 wodicka.cir
 wodicka2.cir

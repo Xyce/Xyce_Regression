@@ -1,11 +1,17 @@
 import numpy as np
-from BaseDevice import BaseDevice
+from KokkosDevice import KokkosDevice
 from GMLS import GMLS
 import DeviceSupport
 
 DEBUG=False
 
-class Device(BaseDevice):
+class Device(KokkosDevice):
+
+    def __del__(self):
+        # destroys all Kokkos objects
+        del self.gmls
+        # potentially finalizes Kokkos
+        super().__del__()
 
     def updateTemperature(self, b_params, d_params, i_params, s_params):
         # model updates 
@@ -376,7 +382,7 @@ class Device(BaseDevice):
         numVars=2 # would be np_solV.shape[0], but Vd uniquely determines both Vpp and Vn
         indepVars2D = np.zeros(shape=(1,numVars,),dtype=np.float64)
         Fcontribs = np.zeros(shape=(numVars,),dtype=np.float64)
-        indepVars2D[0,0]=np_solV[0];
+        indepVars2D[0,0] = np_solV[0] - np_solV[1]
 
         Vd = indepVars2D[0,0]
 
@@ -454,9 +460,9 @@ class Device(BaseDevice):
         #dFdXcontribs[1][0] = self.gmls.gradient(np.reshape(np.array([indepVars[0], indepVars[1]], dtype=np.float64), newshape=(1,2)), self.data_F[:,1], 0)
         #dFdXcontribs[1][1] = self.gmls.gradient(np.reshape(np.array([indepVars[0], indepVars[1]], dtype=np.float64), newshape=(1,2)), self.data_F[:,1], 1)
         dFdXcontribs[0][0] = self.gmls.gradient(np.reshape(np.array([indepVars2D[0,0],], dtype=np.float64), newshape=(1,1)), self.data_F[:,0], 0)
-        #dFdXcontribs[0][1] = self.gmls.gradient(np.reshape(np.array([indepVars2D[0,0],], dtype=np.float64), newshape=(1,1)), self.data_F[:,0], 1)
+        dFdXcontribs[0][1] = self.gmls.gradient(np.reshape(np.array([indepVars2D[0,0],], dtype=np.float64), newshape=(1,1)), self.data_F[:,0], 1)
         dFdXcontribs[1][0] = self.gmls.gradient(np.reshape(np.array([indepVars2D[0,0],], dtype=np.float64), newshape=(1,1)), self.data_F[:,1], 0)
-        #dFdXcontribs[1][1] = self.gmls.gradient(np.reshape(np.array([indepVars2D[0,0],], dtype=np.float64), newshape=(1,1)), self.data_F[:,1], 1)
+        dFdXcontribs[1][1] = self.gmls.gradient(np.reshape(np.array([indepVars2D[0,0],], dtype=np.float64), newshape=(1,1)), self.data_F[:,1], 1)
 
 
 
