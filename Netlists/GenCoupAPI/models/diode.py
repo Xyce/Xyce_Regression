@@ -349,9 +349,12 @@ class Device(BaseDevice):
         #            jacStamp,    jacMap, jacMap2, 2, 0, 3);
         return 1
     
-    def computeXyceVectors(self, solV, fSV, stoV, t, deviceOptions, solverState,
+    def computeXyceVectors(self, fSV, solV, stoV, staV, deviceOptions, solverState,
             origFlag, F, Q, B, dFdX, dQdX, dFdXdVp, dQdXdVp, 
             b_params, d_params, i_params, s_params):
+
+        # get nextSolutionVariables which is index 0 of solV
+        solV = solV[0]
         # solV, F, Q, and B are memory views
         # cast them to numpy arrays without copying data
         np_solV = np.array(solV, dtype=np.float64, copy=False)
@@ -590,5 +593,3 @@ class Device(BaseDevice):
 
         if deviceOptions.voltageLimiterFlag:
             stoV[0][0] = Vd # [nextStoVectorRawPtr, li_stovd]
-
-        return 1
