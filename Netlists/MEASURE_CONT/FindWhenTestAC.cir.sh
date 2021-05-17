@@ -36,7 +36,7 @@ $XYCE_ACVERIFY = $XYCE_VERIFY;
 $XYCE_ACVERIFY =~ s/xyce_verify/ACComparator/;
 
 # remove files from previous runs
-system("rm -f $CIRFILE.ma0 $CIRFILE.out $CIRFILE.err*");
+system("rm -f $CIRFILE.ma0 $CIRFILE.FD.prn $CIRFILE.out $CIRFILE.err*");
 
 #
 # Steps common to all of the measure tests are in the Perl module

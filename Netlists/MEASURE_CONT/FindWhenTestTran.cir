@@ -3,6 +3,11 @@
 *
 * See SON Bug 1274 for more details.
 ********************************************************
+
+* For testing convenience send the output for the TRAN_CONT
+* measures to the <netlistName>.mt0 file.
+.OPTIONS MEASURE USE_CONT_FILES=0
+
 *
 VPWL1 1  0  pwl(0 0.1 2.5m 0.5 5m 0 7.5m 0.4 10m 0)
 VPWL2 2  0  pwl(0 0.5 10m 0)
@@ -18,7 +23,7 @@ R2  2  0  100
 * Non-continuous version should return first crossing.
 * Continuous version should return all crossings.
 .measure tran whenCrossTest1 when v(1)=0.2
-.measure TRAN_CONT whenCrossContTest1 when v(1)=0.2
+.measure TRAN_CONT whenCrossContTest1 WHEN v(1)=0.2
 
 * Non-continuous version should return first crossing.
 * Continuous version should return all crossings, starting
@@ -39,7 +44,7 @@ R2  2  0  100
 * FIND-AT measures
 * These should give the same answer
 .measure tran atTest find v(1) at=2e-3
-.measure tran_cont atContTest find v(1) at=2e-3
+.measure tran_cont atContTest find v(1) At=2e-3
 
 ******************************************************
 * Repeat WHEN tests as FIND-WHEN measures

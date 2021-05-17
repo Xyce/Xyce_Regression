@@ -4,13 +4,17 @@
 * See SON Bugs 1274, 1304 and 1313 for more details
 *****************************************************
 
+* For testing convenience send the output for the AC_CONT
+* measures to the <netlistName>.ma0 file.
+.OPTIONS MEASURE USE_CONT_FILES=0
+
 * Used to adjust reference frequency from 1Hz to 10Hz
 .PARAM scaleFactor=10
 
 V1 a 0 DC 0V AC 1
 
 * 7th order Chebychev LPF with 2dB of passband ripple.
-* This is not a realistic passbad ripple level, but is
+* This is not a realistic passband ripple level, but is
 * useful for this test.
 RS a b 1
 C1 b 0 {2.865/scaleFactor}

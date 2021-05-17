@@ -39,7 +39,7 @@ $GOLDPRN=$ARGV[4];
 
 #
 # Steps common to all of the measure tests are in the Perl module
-# MeasureCommon.pm.  This file assumes the analysis type was .ac
+# MeasureCommon.pm.  This file assumes the analysis type was .noise
 #
 MeasureCommon::checkNoiseFilesExist($XYCE,$CIRFILE);
 
