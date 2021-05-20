@@ -146,6 +146,11 @@ invalid_nodes.cir
 invalid_nodes.cir.sh
 invalid_nodes.cir.tags
 invalid_nodes.cir.options
+issue_221.cir
+issue_221.cir.sh
+issue_221_measfail_zero.cir
+issue_221_measfail_one.cir
+issue_221_comp_file.prn
 MeasdgtOption.cir
 MeasdgtOption.cir.sh
 MeasfailOption.cir
