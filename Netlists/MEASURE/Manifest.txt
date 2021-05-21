@@ -40,6 +40,8 @@ WhenInterpolationTest.csv
 WhenInterpolationTest.cir.sh
 WhenInterpolationTestGSfile
 FourierTest.cir
+FourierTest_measfail_one.cir
+FourierTest_measfail_zero.cir
 FourierTest.cir.tags
 FreqTest.cir
 FreqTest.cir.sh

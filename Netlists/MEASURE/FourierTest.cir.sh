@@ -282,7 +282,43 @@ else
     $retval=$? >> 8;
 }
 
-print "Exit code = $retval\n"; 
-exit $retval;
+if ($retval != 0)
+{
+  print "Failed remeasure\n";
+  print "Exit code = $retval\n";
+  exit $retval;
+}
+
+# now check .OPTIONS MEASURE MEASFAIL=<0|1> for a successful FOUR measure
+$CIR[0]="FourierTest_measfail_zero.cir";
+$CIR[1]="FourierTest_measfail_one.cir";
+
+foreach $i (0 .. 1)
+{
+  system("rm -f $CIR[$i].mt0 $CIR[$i].out $CIR[$i].err");
+}
+
+MeasureCommon::checkTranFilesExist($XYCE,$CIR[0]);
+MeasureCommon::checkTranFilesExist($XYCE,$CIR[1]);
+
+$exitcode=0;
+
+# each netlist should get the same answers in their .mt0 files
+foreach $i (0 .. 1)
+{
+  $CMD="diff $CIRFILE.mt0 $CIR[$i].mt0 > $CIR[$i].mt0.out 2> $CIR[$i].mt0.err";
+  $retval = system($CMD);
+  $retval = $retval >> 8;
+
+  # check the return value
+  if ( $retval != 0 )
+  {
+    print "Diff Failed for file $CIR[$i].mt0. See $CIR[$i].mt0.out and $CIR[$i].mt0.err\n";
+    $exitcode = 2;
+  }
+}
+
+print "Exit code = $exitcode\n";
+exit $exitcode;
 
 
