@@ -73,4 +73,19 @@ Netlist warning: TRIGTARGATFAIL failed. AT value outside sim window
 TRIGTARGATFAIL = FAILED with trig time= 0.000000e+00 and targ time= 0.000000e+00
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
+DERIVVALWHENFAILCONT = FAILED
+Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
+
+Netlist warning: DERIVVALATFAILCONT failed. AT value outside sim window
+DERIVVALATFAILCONT = FAILED for AT = 5.000000e+00
+
+WHENVALFAILCONT = FAILED
+Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
+
+FINDWHENVALCONT = FAILED
+Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
+
+Netlist warning: FINDATVALFAILCONT failed. AT value outside sim window
+FINDATVALFAILCONT = FAILED for AT = 2.000000e-03
+
 
