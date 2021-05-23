@@ -68,5 +68,16 @@ R2  2  0  100
 .measure tran trigTargFail trig v(1) frac_max=0.1 targ v(1) frac_max=2 DEFAULT_VAL=2
 .measure tran trigTargAtFail TRIG AT=2e-3 TARG V(2)=0.5 DEFAULT_VAL=2
 
+* for testing convenience do not make separate .mt0 files
+* for each TRAN_CONT measure
+.OPTIONS MEASURE USE_CONT_FILES=0
+
+.measure tran_cont derivValWhenFailCont deriv V(1) WHEN V(1)=5 DEFAULT_VAL=2
+.measure tran_cont derivValAtFailCont deriv V(1) AT=5 DEFAULT_VAL=2
+
+.measure tran_cont whenValFailCont WHEN V(1)=5 DEFAULT_VAL=2
+.measure tran_cont findWhenValCont FIND V(2) WHEN V(1)=5 DEFAULT_VAL=2
+.measure tran_cont FindAtValFailCont Find V(1)=5 AT=2e-3 DEFAULT_VAL=2
+
 .END
 
