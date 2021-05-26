@@ -39,24 +39,6 @@ Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 ERR2EXP = 5.912530e-01
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-ERR3 = 5.281494e-01
-Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
-
-ERR3MV60 = 2.440644e-01
-Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
-
-ERR3YMIN60 = 3.438769e-02
-Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
-
-ERR3IGNORE60 = 3.438769e-02
-Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
-
-ERR3YMAX80 = 7.643980e-01
-Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
-
-ERR3MINUSP1 = 5.281494e-01
-Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
-
 ERR1VR = 1.539946e+00
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 

@@ -1,6 +1,6 @@
-* Test AC mode support for ERR, ERR1, ERR2 and ERR3 measures.
+* Test AC mode support for ERR, ERR1 and ERR2 measures.
 *
-* See SON Bugs 1278 and 1279 for more details
+* See SON Bug 1278 for more details
 *****************************************************
 
 .GLOBAL_PARAM P1=75
@@ -30,14 +30,6 @@ V1 a 0 DC 0V AC 1
 .MEASURE AC ERR2IGNORE0.3 ERR2 VM(b) VM(a) IGNORE=0.3
 .MEASURE AC ERR2YMAX0.7 ERR2 VM(b) VM(a) YMAX=0.7
 .MEASURE AC ERR2EXP ERR2 {VM(b)+1} {VM(a)+1}
-
-* ERR3 measures
-.MEASURE AC ERR3 ERR3 VP(b) {P1}
-.MEASURE AC ERR3MV60 ERR3 VP(b) {P1} MINVAL=60
-.MEASURE AC ERR3YMIN60 ERR3 VP(b) {P1} YMIN=60
-.MEASURE AC ERR3IGNORE60 ERR3 VP(b) {P1} IGNORE=60
-.MEASURE AC ERR3YMAX80 ERR3 VP(b) {P1} YMAX=80
-.MEASURE AC ERR3MINUSP1 ERR3 VP(b) {-P1}
 
 * Test various voltage ops for ERR1 measure only
 .MEASURE AC ERR1VR  ERR1 VR(b) VM(a) YMIN=0.1
