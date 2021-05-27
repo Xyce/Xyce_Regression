@@ -24,7 +24,7 @@ $Tools = XyceRegression::Tools->new();
 
 # these search strings are supposed to occur one right after the other in the
 # error output.
-@searchstrings = ("Invalid operator in expression B =# N");
+@searchstrings = ("Invalid operator in expression \\{B =# N\\}");
 
 $XYCE=$ARGV[0];
 #$XYCE_VERIFY=$ARGV[1];

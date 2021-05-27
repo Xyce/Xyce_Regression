@@ -29,7 +29,7 @@ $GOLDPRN=$ARGV[4];
                    "Netlist error: Invalid value for RISE, FALL or CROSS for measure RISEBOGO",
                    "Netlist error: Invalid value for RISE, FALL or CROSS for measure FALLBOGO",
                    "Netlist error: Invalid value for RISE, FALL or CROSS for measure CROSSBOGO",
-                   "Netlist error: Attempt to evaluate expression STARTTIME, which contains",
+                   "Netlist error: Attempt to evaluate expression \\{STARTTIME\\}, which contains",
                    "unknowns");
 
 $retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);

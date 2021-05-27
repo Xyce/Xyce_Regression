@@ -24,7 +24,7 @@ $Tools = XyceRegression::Tools->new();
 
 # these search strings are supposed to occur one right after the other in the
 # error output.
-@searchstrings = ( "Syntax error in number of nodes in expression: POLY I[(]V6[)] 300u 1" );
+@searchstrings = ( "Syntax error in number of nodes in expression: \\{POLY I[(]V6[)] 300u 1\\}" );
 
 $XYCE=$ARGV[0];
 #$XYCE_VERIFY=$ARGV[1];

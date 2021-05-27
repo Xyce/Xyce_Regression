@@ -34,7 +34,7 @@ $GOLDPRN=$ARGV[4];
      "use age with semiconductor capacitor options."],
     ["Netlist error in file ErrorMessageTest.cir at or near line 41",
      "Device instance C6: Illegal use of lead current specification in expression",
-     "'1e-6\\*I\\(R9\\)' in parameter C"],
+     "'\\{1e-6\\*I\\(R9\\)\\}' in parameter C"],
     ["Netlist error in file ErrorMessageTest.cir at or near line 47",
      "Device instance C7: Solution-variable-dependent expression contains time",
      "derivatives"],
