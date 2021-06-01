@@ -62,9 +62,6 @@ $GOLDPRN=$ARGV[4];
    "supported for FFT measure mode",
    "Netlist error in file unsupported_fft_measure_types.cir at or near line 35",
    "Only ENOB, EQN/PARAM, FIND, SDFR, SNDR, SNR and THD measure types are",
-   "supported for FFT measure mode",
-   "Netlist error in file unsupported_fft_measure_types.cir at or near line 36",
-   "Only ENOB, EQN/PARAM, FIND, SDFR, SNDR, SNR and THD measure types are",
    "supported for FFT measure mode"
  );
 

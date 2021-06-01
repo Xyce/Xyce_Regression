@@ -26,7 +26,8 @@ $Tools = XyceRegression::Tools->new();
 # these search strings are supposed to occur one right after the other in the
 # error output.
 @searchstrings = ( " Device instance B2: Illegal use of lead current specification in expression", 
-                   "'(3[+]I[(]R1[)]|I[(]R1[)][+]3)' in parameter V");
+                   "'(\\{3[+]I[(]R1[)]\\}|\\{I[(]R1[)][+]3\\})' in parameter V");
+                   # "'(3[+]I[(]R1[)]|I[(]R1[)][+]3)' in parameter V");
 
 
 $XYCE=$ARGV[0];

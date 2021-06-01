@@ -13,6 +13,9 @@ R2 2 0 1
 * This will be changed to FFT_ACCURATE=1
 .OPTIONS FFT FFT_ACCURATE=2
 
+* This will be changed to FFT_MODE=0
+.OPTIONS FFT FFT_MODE=-1
+
 * Explicitly set this option to 0
 .OPTIONS FFT FFTOUT=0
 

@@ -3,10 +3,13 @@
 * The comments before each line indicate which
 * combination of qualifier and metric is "most tested"
 * by that line.
-*******************************************************
+*
+* Also test that setting FFT_MODE=0 (HSPICE compatibility)
+* works.
+***********************************************************
 
 .TRAN 0 1
-.OPTIONS FFT FFT_ACCURATE=1 FFTOUT=1
+.OPTIONS FFT FFT_ACCURATE=1 FFTOUT=1 FFT_MODE=0
 
 * V(1) is a low-pass signal with its peak mag at F=1
 V1 1 0 1

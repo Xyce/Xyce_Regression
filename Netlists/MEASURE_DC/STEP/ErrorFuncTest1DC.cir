@@ -1,4 +1,4 @@
-* Test DC mode support for ERR, ERR1, ERR2 and ERR3 Measures
+* Test DC mode support for ERR, ERR1 and ERR2 Measures
 *
 * This bug covers:
 *   1) The case of one variable (vsrc1) on the .DC line,
@@ -9,7 +9,7 @@
 *
 *   3) Use of a global parameter.
 *
-* See SON Bugs 1278 and 1279 for more details.
+* See SON Bug 1278 for more details.
 **********************************************************
 
 .GLOBAL_PARAM P1=2.5
@@ -58,19 +58,6 @@ rload2a 2a 1b 0.2
 .MEASURE DC ERR2To ERR2 PAR('V(1b)*V(1b)') V(1b) TO=3
 .MEASURE DC ERR2FT ERR2 {V(1b)*V(1b)} V(1b) FROM=0 TO=4
 .MEASURE DC ERR2TF ERR2 {V(1b)*V(1b)} V(1b) FROM=4 TO=0
-
-* ERR3 measures
-.MEASURE DC ERR3 ERR3 V(1b) {P1}
-.MEASURE DC ERR3WT ERR3 V(1b) V(3) WEIGHT=2
-*.MEASURE DC ERR3RO ERR3 {P1} V(1b)
-.MEASURE DC ERR3MV1.5 ERR3 V(1b) {P1} MINVAL=1.5
-.MEASURE DC ERR3YMIN2.5 ERR3 V(1b) {P1} YMIN=2.5
-.MEASURE DC ERR3IGNORE2.5 ERR3 V(1b) {P1} IGNORE=2.5
-.MEASURE DC ERR3YMAX3.5 ERR3 V(1b) {P1} YMAX=3.5
-.MEASURE DC ERR3From ERR3 V(1b) V(3) FROM=3
-.MEASURE DC ERR3To ERR3 V(3) V(1b) TO=3
-.MEASURE DC ERR3FT ERR3 {V(1b)*V(1b)} V(1b) FROM=0 TO=3
-.MEASURE DC ERR3TF ERR3 {V(1b)*V(1b)} V(1b) FROM=3 TO=0
 
 * Tests should return -1 or -100, since the FROM-T0 window
 * does not overlap with the stepped values for VSRC1:DCV0

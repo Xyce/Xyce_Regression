@@ -38,6 +38,7 @@ system("rm -f $CIRFILE.fft*");
 $retval=$Tools->wrapXyce($XYCE,$CIRFILE);
 if ($retval != 0) {print "Exit code = $retval\n"; exit $retval;}
 
+$retcode=0;
 if ( !(-f "$CIRFILE.fft0")) {
     print STDERR "Missing output file $CIRFILE.fft0\n";
     print "Exit code = 2\n";
@@ -53,29 +54,8 @@ $retval = system("$CMD");
 $retval = $retval >> 8;
 if ($retval != 0){
   print STDERR "Comparator exited with exit code $retval on file $CIRFILE.fft0\n";
-  print "Exit code = 2\n";
-  exit 2;
+  $retcode = 2;
 }
 
-# also check warning messages in stdout
-@searchstrings = ("Netlist warning: FFT_ACCURATE values of 0 or 1 are supported.  Setting to",
-  "default of 1",
-  "Netlist warning: FFT_MODE values of 0 or 1 are supported.  Setting to default",
-  "of 0",
-  "Netlist warning: NP value on .FFT line reset to minimum value of 4",
-  "Netlist warning: NP value on .FFT line not equal to power of 2.  Setting to 8",
-  "Netlist warning: NP value on .FFT line not equal to power of 2.  Setting to 16",
-  "Netlist warning: Invalid start time on .FFT line, reset to transient start",
-  "time of 0",
-  "Netlist warning: Invalid start time on .FFT line, reset to transient start",
-  "time of 0",
-  "Netlist warning: Invalid stop time on .FFT line, reset to transient stop time",
-  "of 1",
-  "Netlist warning: Invalid stop time on .FFT line, reset to transient stop time",
-  "of 1",
-  "Netlist warning: Invalid stop time on .FFT line, reset to transient stop time",
-  "of 1"
- );
-
-$retval = $Tools->checkError("$CIRFILE.out",@searchstrings);
-print "Exit code = $retval\n"; exit $retval;
+print "Exit code = $retcode\n";
+exit $retcode;

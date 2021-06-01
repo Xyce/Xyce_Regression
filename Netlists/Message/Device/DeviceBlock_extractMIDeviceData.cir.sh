@@ -34,7 +34,7 @@ $exitcode=0;
 # these search strings are supposed to occur in the error output
 # for the netlist ParameterBlock_extractMIDeviceData1.cir.
 @searchstrings = (["Netlist error: Illegal value found for device YMIN!K1"],
-      ["Netlist error: Could not resolve parameter COUPLEDINDUCTANCE value of B for",
+      ["Netlist error: Could not resolve parameter COUPLEDINDUCTANCE value of \\{B\\} for",
        "device YMIN!K1"],
       ["Netlist error: Parameter COUPLEDINDUCTANCE for device YMIN!K1 contains",
        "unrecognized symbol: B"]

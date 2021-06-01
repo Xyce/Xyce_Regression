@@ -2,6 +2,8 @@ FreqFminFmaxTest.cir
 FreqFminFmaxTest.cir.sh
 MiscParsing.cir
 MiscParsing.cir.sh
+PeriodicWindowTest.cir
+PeriodicWindowTest.cir.sh
 RemeasureFFTonly.cir
 RemeasureFFTonly.cir.sh
 RemeasureFFTonly.csv
