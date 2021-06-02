@@ -12,15 +12,12 @@ class Device(BaseDevice):
         p_params['controlNodeNeg']  = 3
         self.pythonParamsMerge(b_params, d_params, i_params, s_params, p_params)
     
-    def get_F_Q_B_dfDx_dQdx_sizes(self, b_params, d_params, i_params, s_params):
-        num_vars = i_params["numVars"]
-        size_dict = {}
-        size_dict['F']=[num_vars,]
-        size_dict['Q']=[0,]
-        size_dict['B']=[0,]
-        size_dict['dFdX']=[num_vars,num_vars]
-        size_dict['dQdX']=[0,0]
-        return size_dict
+    def getArraySizes(self, b_params, d_params, i_params, s_params):
+        sizes_dict = super().getArraySizes(b_params, d_params, i_params, s_params)
+        sizes_dict['B']=[0,]
+        sizes_dict['Q']=[0,]
+        sizes_dict['dQdX']=[0,0]
+        return sizes_dict
     
     def getJacStampSize(self, b_params, d_params, i_params, s_params):
         # minimum implementation is to return a size 0 numpy array of ints
@@ -50,46 +47,23 @@ class Device(BaseDevice):
     
         return 1
     
-    def computeXyceVectors(self, solV, fSV, stoV, t, voltageLimiterFlag, newtonIter, initJctFlag, inputOPflag,
-            dcopFlag, locaEnabledFlag, origFlag, F, Q, B, dFdX, dQdX, dFdXdVp, dQdXdVp, 
+    def computeXyceVectors(self, fSV, solV, stoV, staV, deviceOptions, solverState,
+            origFlag, F, Q, B, dFdX, dQdX, dFdXdVp, dQdXdVp, 
             b_params, d_params, i_params, s_params):
     
+        # get nextSolutionVariables which is index 0 of solV
+        solV = solV[0]
         nodePos   = i_params['nodePos']
         nodeNeg   = i_params['nodeNeg']
         controlNodePos = i_params['controlNodePos']
         controlNodeNeg = i_params['controlNodeNeg']
     
-        # solV, F, Q, and B are memory views
-        # cast them to numpy arrays without copying data
-        np_solV = np.array(solV, dtype=np.float64, copy=False)
-        np_F  = np.array( F, dtype=np.float64, copy=False)
-        np_Q  = np.array( Q, dtype=np.float64, copy=False)
-        np_B  = np.array( B, dtype=np.float64, copy=False)
-    
-        np_dFdX = [np.array(item, dtype=np.float64, copy=False) for item in dFdX]
-        np_dQdX = [np.array(item, dtype=np.float64, copy=False) for item in dQdX]
-    
-        #print(np_solV.shape)
-        #print(np_F.shape)
-        #print(np_Q.shape)
-        #print(np_B.shape)
-        #print(dFdX)
-        #print(dQdX)
-    
+        Vd = solV[controlNodePos]-solV[controlNodeNeg]
         transConductance_ = d_params['TRANSCONDUCTANCE']
-    
-        numVars=np_solV.shape[0]
-        indepVars = np.zeros(shape=(numVars,),dtype=np.float64)
-        Fcontribs = np.zeros(shape=(numVars,),dtype=np.float64)
-        for i in range(numVars):
-            indepVars[i]=np_solV[i];
-    
-        current = transConductance_*(indepVars[controlNodePos]-indepVars[controlNodeNeg])
-        Fcontribs[nodePos] = current
-        Fcontribs[nodeNeg] = -current
-    
-        for i in range(numVars):
-            F[i] = Fcontribs[i]
+        current = transConductance_ * Vd
+
+        F[nodePos] = current
+        F[nodeNeg] = -current
     
         dFdX[nodePos][nodePos] = 0
         dFdX[nodePos][nodeNeg] = 0
@@ -107,4 +81,3 @@ class Device(BaseDevice):
         dFdX[controlNodeNeg][nodeNeg] = 0.0
         dFdX[controlNodeNeg][controlNodePos] = 0.0
         dFdX[controlNodeNeg][controlNodeNeg] = 0.0
-        return 1

@@ -326,16 +326,10 @@ class Device(KokkosDevice):
     #def processNumBranchDataVarsIfAllocated(self, b_params, d_params, i_params, s_params):
     #    # we just return number of external variables
     
-    def get_F_Q_B_dfDx_dQdx_sizes(self, b_params, d_params, i_params, s_params):
-        num_vars = i_params["numVars"]
-        DEBUG and print("numVars:", num_vars)
-        size_dict = {}
-        size_dict['F']=[num_vars,]
-        size_dict['Q']=[num_vars,]
-        size_dict['B']=[0,]
-        size_dict['dFdX']=[num_vars,num_vars]
-        size_dict['dQdX']=[num_vars,num_vars]
-        return size_dict
+    def getArraySizes(self, b_params, d_params, i_params, s_params):
+        sizes_dict = super().getArraySizes(b_params, d_params, i_params, s_params)
+        sizes_dict['B']=[0,]
+        return sizes_dict
     
     def getJacStampSize(self, b_params, d_params, i_params, s_params):
         # minimum implementation is to return a size 0 numpy array of ints
@@ -363,9 +357,12 @@ class Device(KokkosDevice):
         #            jacStamp,    jacMap, jacMap2, 2, 0, 3);
         return 1
     
-    def computeXyceVectors(self, solV, fSV, stoV, t, voltageLimiterFlag, newtonIter, initJctFlag, inputOPFlag,
-            dcopFlag, locaEnabledFlag, origFlag, F, Q, B, dFdX, dQdX, dFdXdVp, dQdXdVp, 
+    def computeXyceVectors(self, fSV, solV, stoV, staV, deviceOptions, solverState,
+            origFlag, F, Q, B, dFdX, dQdX, dFdXdVp, dQdXdVp, 
             b_params, d_params, i_params, s_params):
+
+        # get nextSolutionVariables which is index 0 of solV
+        solV = solV[0]
         # solV, F, Q, and B are memory views
         # cast them to numpy arrays without copying data
         np_solV = np.array(solV, dtype=np.float64, copy=False)
@@ -399,8 +396,8 @@ class Device(KokkosDevice):
         tVcrit = d_params["tVcrit"]
         # Setup initial junction conditions if UIC enabled
         #------------------------------------------------
-        if newtonIter == 0:
-            if initJctFlag and voltageLimiterFlag:
+        if solverState.newtonIter == 0:
+            if solverState.initJctFlag_ and deviceOptions.voltageLimiterFlag:
                 if b_params["InitCondGiven"]:
                     Vd = d_params["InitCond"]
                     origFlag = False
@@ -408,7 +405,7 @@ class Device(KokkosDevice):
                     Vd = 0.0
                     origFlag[0] = False
                 else:
-                    if inputOPFlag:
+                    if solverState.inputOPFlag:
                         if (fSV[0]==0 or fSV[1]==0):
                             Vd=tVcrit
                             origFlag[0] = False
@@ -417,14 +414,14 @@ class Device(KokkosDevice):
                         origFlag[0] = False
             # assume there is no history -- then check if the
             # state vector can overwrite this
-            DEBUG and voltageLimiterFlag and print("Vd in limiting: ", Vd)
+            DEBUG and deviceOptions.voltageLimiterFlag and print("Vd in limiting: ", Vd)
             Vd_old = Vd
 
-            if (not dcopFlag or (locaEnabledFlag and dcopFlag)):
+            if (not solverState.dcopFlag or (solverState.locaEnabledFlag and solverState.dcopFlag)):
                 Vd_old = np_stoV[1][0] # [currStoVectorRawPtr,li_storevd]
         else:  # just do this whenever it isn't the first iteration
             Vd_old = np_stoV[0][0] # [nextStoVectorRawPtr,li_storevd]
-        DEBUG and voltageLimiterFlag and print("Vd_old in limiting: ", Vd_old)
+        DEBUG and deviceOptions.voltageLimiterFlag and print("Vd_old in limiting: ", Vd_old)
 
         ## 
         ## LIMITING
@@ -436,8 +433,8 @@ class Device(KokkosDevice):
         N = d_params["N"]
         Vt = CONSTKoverQ * Temp
         Vte = N * Vt
-        if voltageLimiterFlag:
-            if (newtonIter >= 0):
+        if deviceOptions.voltageLimiterFlag:
+            if (solverState.newtonIter >= 0):
                 # removed breakdown check
                 (Vd, ichk) = DeviceSupport.pnjlim(Vd, Vd_old, Vte, tVcrit)
                 if ichk==1: origFlag[0] = False
@@ -479,7 +476,7 @@ class Device(KokkosDevice):
         # load the voltage limiter vector.
         Cd = 0
         Gd = dFdX[0][0]
-        if(b_params["voltageLimiterFlag"]):
+        if deviceOptions.voltageLimiterFlag:
             np_dFdXdVp  = np.array( dFdXdVp, dtype=np.float64, copy=False)
             np_dQdXdVp  = np.array( dQdXdVp, dtype=np.float64, copy=False)
             dFdXdVpcontribs = np.zeros(shape=(numVars,),dtype=np.float64)
@@ -501,12 +498,12 @@ class Device(KokkosDevice):
                 np_dFdXdVp[i] = dFdXdVpcontribs[i]
                 np_dQdXdVp[i] = dQdXdVpcontribs[i]
 
-        if b_params["voltageLimiterFlag"]:
+        if deviceOptions.voltageLimiterFlag:
             np_stoV[0][0] = Vd # [nextStoVectorRawPtr, li_stovd]
 
         return 1
 
-    def initialize(self, b_params, d_params, i_params, s_params):
+    def initialize(self, deviceOptions, solverState, b_params, d_params, i_params, s_params):
         # control node voltages sent in
         # index 0->2
         # index 1->3
