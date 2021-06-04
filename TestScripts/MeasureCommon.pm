@@ -266,14 +266,23 @@ sub getNumMeasuresInCirFile
           print "Exit code = 2\n"; exit 2; 
         }
       }
-      elsif ( (uc($words[3]) eq "FIND") && ($#words < 6) ) 
+      elsif (uc($words[3]) eq "FIND")
       {
-        # all .measure statements of the form FIND-WHEN have at least seven tokens
-	print "Measure statement $numMeasures in file $CIRFILE lacked enough tokens\n";
-        print "Exit code = 2\n"; exit 2; 
+        if ( (uc($words[5]) eq "WHEN") && ($#words < 6) )
+	{
+          # all .measure statements of the form FIND-WHEN have at least seven tokens
+	  print "Measure statement $numMeasures in file $CIRFILE lacked enough tokens\n";
+          print "Exit code = 2\n"; exit 2;
+        }
+        elsif ( (uc($words[5]) eq "AT") && ($#words < 5) )
+        {
+          # all .measure statements of the form FIND-AT have at least six tokens
+	  print "Measure statement $numMeasures in file $CIRFILE lacked enough tokens\n";
+          print "Exit code = 2\n"; exit 2;
+        }
       }
 
-      if ( uc($words[3]) eq "FIND" ) 
+      if ( (uc($words[3]) eq "FIND") && (uc($words[5]) eq "WHEN") )
       {
         $mqIdx=6;
       }
@@ -1313,9 +1322,8 @@ sub checkNumberFormat
       if ($digitCount != 1) 
       {	  
         $retval =2; 
-        print "Failed number format test.\n";
+        print "Failed number format test for $val\n";
         print "Should only be one leading digit in scientific notation\n";
-        print "Return code = $retval\n";
         return $retval;
       }
       else
@@ -1346,9 +1354,8 @@ sub checkNumberFormat
       if ( (!(substr($val,$idx+2,1) =~ /[0-9]/ )) || (!(substr($val,$idx+3,1) =~ /[0-9]/)) )
       {
         $retval =2; 
-        print "Failed number format test.\n";
+        print "Failed number format test for $val\n";
         print "Inproperly formatted exponent. Last two characters are not digits.\n";
-        print "Return code = $retval\n";
         return $retval;
       }
 
@@ -1360,26 +1367,57 @@ sub checkNumberFormat
       else
       {
         $retval =2; 
-        print "Failed number format test.\n";
+        print "Failed number format test for $val\n";
         print "Exponent lacked + or - sign.\n";
-        print "Return code = $retval\n";
         return $retval;
       }
     }  
   }
-
+    
   # also check the precision, if it's known
   if ( ($precKnown > 0) && ($digitCount != $precVal) )
   {
     $retval =2; 
-    print "Failed precision test.\n";
+    print "Failed precision test for $val\n";
     print "Specified and measured precision = ($precVal,$digitCount)\n";
-    print "Exit code = $retval\n";
     return $retval;
   }
 
   # test succeeded if we get here
   return $retval;
+}
+
+# gets the number of digits after the decimal point
+sub getPrecision
+{
+  my ($value) = @_;
+
+  my $foundDot=0;
+  my $digitCount=0;
+  my $token;
+
+  foreach my $idx (0 .. length($value))
+  {
+    $token = substr($value,$idx,1);
+    #print "token for index $idx = $token\n";
+    if ( ($token =~/[.]/) )
+    {
+      $foundDot=1;
+      #print("\tFound dot character\n");
+    }
+    elsif  ( ($token =~ /[0-9]/) && ($foundDot > 0) )
+    {
+      #print "\tIncrementing digit count for character $token\n";
+      $digitCount++;
+    }
+    elsif ( ($token =~ /e/) && ($foundDot > 0) )
+    {
+      #print "\tFound an exponential character (e).  Ending loop ...\n";
+      last;
+    }
+  }
+
+  return $digitCount;
 }
 
 #
