@@ -32,11 +32,17 @@ $CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
 
 $DASHOFILE="tranStepNumColOutput";
+$TRANCONT="_findv2";
+
+$GOLDPRN =~ s/\.prn$//; # remove the .prn at the end
+
+# hard code the number of steps
+$stepNum=2;
 
 # Remove the previous output files, including some that are only made if the
 # previous run failed.
 system("rm -f $CIRFILE.prn $CIRFILE.csv $CIRFILE.err $CIRFILE.out $CIRFILE.SENS.*");
-system("rm -f $DASHOFILE $DASHOFILE.* tranStepNumColFoo");
+system("rm -f $DASHOFILE* tranStepNumColFoo");
 
 # run Xyce
 $CMD="$XYCE -o $DASHOFILE -delim COMMA $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
@@ -80,6 +86,34 @@ if ( !(-f "$DASHOFILE") ){
   $xyceexit=14;
 }
 
+if ( !(-f "$DASHOFILE.res") ){
+  print STDERR "Missing results file, $DASHOFILE.res\n";
+  $xyceexit=2;
+}
+
+foreach $i (0 ... $stepNum-1)
+{
+  if ( !(-f "$DASHOFILE.mt$i") ){
+    print STDERR "Missing -o output file for .MEASURE TRAN, $DASHOFILE.mt$i\n";
+   $xyceexit=2;
+  }
+
+  if ( !(-f "$DASHOFILE$TRANCONT.mt$i") ){
+    print STDERR "Missing -o output file for .MEASURE TRAN_CONT, $DASHOFILE$TRANCONT.mt$i\n";
+    $xyceexit=2;
+  }
+
+  if ( !(-f "$DASHOFILE.fft$i") ){
+    print STDERR "Missing -o output file, $DASHOFILE.fft$i\n";
+    $xyceexit=2;
+  }
+
+  if ( !(-f "$DASHOFILE.four$i") ){
+    print STDERR "Missing -o output file, $DASHOFILE.four$i\n";
+    $xyceexit=2;
+  }
+}
+
 if ($xyceexit!=0) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
 
 # Now verify the output file, which is tranStepNumColOutput.  Use file_compare.pl
@@ -87,16 +121,48 @@ if ($xyceexit!=0) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
 # footer is present.
 $retcode=0;
 
+$XPLAT_DIFF = $XYCE_VERIFY;
+$XPLAT_DIFF =~ s/xyce_verify/xplat_diff/;
+
 $fc=$XYCE_VERIFY;
 $fc =~ s/xyce_verify/file_compare/;
 $abstol=1e-4;
 $reltol=1e-3;
 $zerotol=1e-6;
 
-$CMD="$fc $DASHOFILE $GOLDPRN $abstol $reltol $zerotol > $DASHOFILE.out 2> $DASHOFILE.err";
+$CMD="$fc $DASHOFILE $GOLDPRN.prn $abstol $reltol $zerotol > $DASHOFILE.out 2> $DASHOFILE.err";
 if (system($CMD) != 0) {
     print STDERR "Verification failed on file $DASHOFILE, see $DASHOFILE.err\n";
     $retcode = 2;
+}
+
+$CMD="$XPLAT_DIFF $DASHOFILE.res $GOLDPRN.res > $DASHOFILE.res.out 2> $DASHOFILE.res.err";
+if (system($CMD) != 0) {
+    print STDERR "Verification failed on file $DASHOFILE.res, see $DASHOFILE.res.out\n";
+    $retcode = 2;
+}
+
+# also check the .MEASURE, .FFT and .FOUR output for each step iteration
+$namecont = "$DASHOFILE$TRANCONT";
+foreach $i (0 ... $stepNum-1)
+{
+  $CMD="$fc $DASHOFILE.mt$i $GOLDPRN.mt$i $abstol $reltol $zerotol > $DASHOFILE.mt$i.out 2> $DASHOFILE.mt$i.err";
+  if (system($CMD) != 0) {
+      print STDERR "Verification failed on file $DASHOFILE.mt$i, see $DASHOFILE.mt$i.err\n";
+      $retcode = 2;
+  }
+
+  $CMD="$fc $namecont.mt$i $GOLDPRN$TRANCONT.mt$i $abstol $reltol $zerotol > namecont.mt$i.out 2> $namecont.mt$i.err";
+  if (system($CMD) != 0) {
+      print STDERR "Verification failed on file $namecont.mt$i, see $namecont.mt$i.err\n";
+      $retcode = 2;
+  }
+
+  $CMD="$fc $DASHOFILE.fft$i $GOLDPRN.fft$i $abstol $reltol $zerotol > $DASHOFILE.fft$i.out 2> $DASHOFILE.fft$i.err";
+  if (system($CMD) != 0) {
+      print STDERR "Verification failed on file $DASHOFILE.fft$i, see $DASHOFILE.fft$i.err\n";
+      $retcode = 2;
+  }
 }
 
 print "Exit code = $retcode\n"; exit $retcode;
