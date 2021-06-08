@@ -31,6 +31,9 @@ RemeasureCsvData.cir
 RemeasureCsvData.cir.sh
 RemeasureStepCsvData.cir
 RemeasureStepCsvData.cir.sh
+RemeasureStepGnuplotData.cir
+RemeasureStepGnuplotData.cir.sh
+RemeasureStepGnuplotData.cir.tags
 RemeasurePrnData.cir
 RemeasurePrnData.cir.sh
 RemeasureStepNumCol.cir
