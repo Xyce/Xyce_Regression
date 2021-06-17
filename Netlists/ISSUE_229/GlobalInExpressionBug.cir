@@ -16,7 +16,7 @@ R_One        Node1 0 100
 E_Two        Node2 0 VALUE={IF( TIME == 0, 0.4, IF(((V( TestNode ) < 0.8) & (V($G_CLK) < 0.8)),  3.5, 0.4))}
 R_Two        Node2 0 100
 
-.print tran v(Node1) v(Node2) v(TestNode)
+.print tran v(Node1) v(Node2) v(TestNode) {I( R_one )} {P( R_one )}
 .tran 0 1e-5
 
 
