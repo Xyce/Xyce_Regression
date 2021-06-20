@@ -43,7 +43,7 @@ my $relTol = 0.01;
 my $zeroTol = 1.0e-8;
 my $expectedDoubleCount=51;
 my $defaultPrecision=6;
-my $numSteps=3;
+my $numSteps=2;
 
 # change ending on gold standard file from ".prn" as passed in to ".mt0" 
 # which is the file storing the measure results.
@@ -107,15 +107,16 @@ if ( $numMeasOut != $numSteps )
    print "Number of Steps and Number of Measure Output = $numSteps, $numMeasOut\n";
    $retval = 2;
 }
+
 $numMeasMT0 = `grep -ic $measureNames[ $i ] $CIRFILE.mt0`;
 $numMeasMT1 = `grep -ic $measureNames[ $i ] $CIRFILE.mt1`;
 if ( ($numMeasMT0 != 1) || ($numMeasMT1 != 1) || ($numMeasMT0 != 1) )
 {
   print "Xyce printed out $measureNames[ $i ] measure to file multiple times.\n";
   $retval = 2;
-  print "Exit code = $retval\n"; 
-  exit $retval;
 }
+
+if ($retval !=0){print "Exit code = $retval\n";  exit $retval;}
 
 # now compare the gold standards and the measure file contents
 $retval = MeasureCommon::compareFourierMeasureFiles("$CIRFILES0.mt0", "$CIRFILE.mt0", $phaseAbsTol, $relTol, $zeroTol, $defaultPrecision,$expectedDoubleCount);

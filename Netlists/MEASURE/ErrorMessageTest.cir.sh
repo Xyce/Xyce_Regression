@@ -26,6 +26,7 @@ $Tools = XyceRegression::Tools->new();
 
 use File::Basename;
 use File::Copy;
+use Scalar::Util qw(looks_like_number);
 
 $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
@@ -97,14 +98,9 @@ my ($measureNamesRef,$measureValsRef)
 my @measureNames = @$measureNamesRef;
 my @measureVals = @$measureValsRef;
 
-# parse the precision keywords in the .measure statements in the .cir file, 
-my ($precValsPtr,$precGivenPtr) = MeasureCommon::parseKeyWord($CIRFILE,"PRECISION",$endTime);
-my @precVals = @$precValsPtr;
-my @precGiven = @$precGivenPtr;
-my $defaultPrecision=6;
-
 # check that the values in the .mt0 file are formatted in 
-# scientific notation with the correct precision.
+# scientific notation with the correct default precision (6).
+my $defaultPrecision=6;
 foreach $j (0 .. $numMeasures-1)
 {
   if ($measureNames[$j] eq "FOURFAIL" || $measureNames[$j] eq "FOUR1PTFAILT")
@@ -112,18 +108,11 @@ foreach $j (0 .. $numMeasures-1)
     #print "Skipping checking number format for measure $measureNames[$j] in mt0 file\n";
   } 
   else
-  {      
+  {
     # print "Checking number format for measure $measureNames[$j] in mt0 file\n";
     # precision is known.  So, second parameter is 1 in the function calls to
     # checkNumberFormat
-    if ($precGiven[$j] > 0)
-    {
-      $retval = MeasureCommon::checkNumberFormat($measureVals[$j],1,$precVals[$j]);
-    }
-    else
-    {
-      $retval = MeasureCommon::checkNumberFormat($measureVals[$j],1,$defaultPrecision);
-    }
+    $retval = MeasureCommon::checkNumberFormat($measureVals[$j],1,$defaultPrecision);
   }
   if ( $retval != 0 )
   {
@@ -187,33 +176,37 @@ if ( $retval != 0 )
 }
 
 # check that the numbers in the .out file are formatted correctly in 
-# scientific notation
+# scientific notation, with the default precision.
 if (-s "$CIRFILE.errmsg" )
 {
-  open(TESTFILE,"$testFileName");
+  open(TESTFILE,"$CIRFILE.errmsg");
   $lineCount=0;
 
   while( $lineTestFile=<TESTFILE> )
   {
     $lineCount++;
     # process a line into text and values.
-
     chop $lineTestFile;
+
     # Remove leading spaces on line, otherwise the spaces become 
     # element 0 of "testFileData" instead of the first column of data.
     $lineTestFile =~ s/^\s*//;
     @testFileData = (split(/[\s,]+/, $lineTestFile));
-    for( $i=0; $i<=$#testFileData; $i++ )
+
+    # Skip the netlist warning lines.
+    if ($testFileData[0] ne "Netlist")
     {
-      if ( looks_like_number($testFileData[$i]) )
+      for( $i=0; $i<=$#testFileData; $i++ )
       {
-        # precision is unknown. So, it won't be checked
-        $retval = MeasureCommon::checkNumberFormat($testFileData[$i],0,$defaultPrecision);
-        if ( $retval != 0 )
+        if ( looks_like_number($testFileData[$i]) )
         {
-          print "test Failed!\n";
-          print "Exit code = $retval\n";
-          exit $retval;
+          $retval = MeasureCommon::checkNumberFormat($testFileData[$i],1,$defaultPrecision);
+          if ( $retval != 0 )
+          {
+            print "test Failed!\n";
+            print "Exit code = $retval\n";
+            exit $retval;
+          }
         }
       }
     }

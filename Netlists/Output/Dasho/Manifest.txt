@@ -24,6 +24,9 @@ tran-stepnum-col.cir
 tran-stepnum-col.cir.sh
 nooverwrite.cir
 nooverwrite.cir.sh
+nooverwrite_measure.cir
+nooverwrite_measure.mt0
+nooverwrite_measure.cir.sh
 dashrPrecedence.cir
 dashrPrecedence.cir.sh
 tags

@@ -19,21 +19,33 @@
 *      to verify that command line option is ignored when
 *      -o is also specified.
 *
+*   5) the output from the .MEASURE, .FFT and .FOUR goes to the
+*      appropriate file also.
+*
+*  For Issue 222, the key feature is that the netlist includes
+* .MEASURE TRAN, .MEASURE TRAN_CONT, .FOUR and .FFT statements.
 ****************************************************************
 
-V1 1 0 PWL 0 0 1 1
+V1 1 0 PWL 0 0 0.45 1 1 0
 R1 1 2 1
 R2 2 0 1
 
 .TRAN 0 1
-.PRINT TRAN FORMAT=CSV V(1) 
+.PRINT TRAN FORMAT=CSV V(1)
 .PRINT TRAN FORMAT=CSV FILE=tranFoo V(2)
-.OPTIONS OUTPUT INITIAL_INTERVAL=0.2
+.OPTIONS OUTPUT INITIAL_INTERVAL=0.05
 
 .sens objfunc={V(2)} param=R2:R 
 .print SENS FORMAT=CSV V(1) R1:R R2:R
-.options SENSITIVITY direct=1 adjoint=0  
+.options SENSITIVITY direct=1 adjoint=0
+
+* send TRAN and TRAN_CONT measure output to separate file
+.MEASURE TRAN MAXV2 MAX V(2)
+.MEASURE TRAN_CONT FINDV2 WHEN V(2)=0.4
+
+.OPTIONS FFT FFT_ACCURATE=0
+.FFT V(2) NP=8 WINDOW=HANN FORMAT=UNORM
+
+.FOUR 1 V(2)
 
 .END
-
-

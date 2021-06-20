@@ -3,15 +3,12 @@ from BaseDevice import BaseDevice
 
 class Device(BaseDevice):
     
-    def get_F_Q_B_dfDx_dQdx_sizes(self, b_params, d_params, i_params, s_params):
-        num_vars = i_params["numVars"]
-        size_dict = {}
-        size_dict['F']=[num_vars,]
-        size_dict['Q']=[0,]
-        size_dict['B']=[0,]
-        size_dict['dFdX']=[num_vars,num_vars]
-        size_dict['dQdX']=[0,0]
-        return size_dict
+    def getArraySizes(self, b_params, d_params, i_params, s_params):
+        sizes_dict = super().getArraySizes(b_params, d_params, i_params, s_params)
+        sizes_dict['B']=[0,]
+        sizes_dict['Q']=[0,]
+        sizes_dict['dQdX']=[0,0]
+        return sizes_dict
     
     def getJacStampSize(self, b_params, d_params, i_params, s_params):
         # minimum implementation is to return a size 0 numpy array of ints
@@ -20,9 +17,12 @@ class Device(BaseDevice):
     def setJacStamp(self, jacStamp, b_params, d_params, i_params, s_params):
         return
     
-    def computeXyceVectors(self, solV, fSV, stoV, t, voltageLimiterFlag, newtonIter, initJctFlag, inputOPflag,
-            dcopFlag, locaEnabledFlag, origFlag, F, Q, B, dFdX, dQdX, dFdXdVp, dQdXdVp, 
+    def computeXyceVectors(self, fSV, solV, stoV, staV, deviceOptions, solverState,
+            origFlag, F, Q, B, dFdX, dQdX, dFdXdVp, dQdXdVp, 
             b_params, d_params, i_params, s_params):
+
+        # get nextSolutionVariables which is index 0 of solV
+        solV = solV[0]
         # solV, F, Q, and B are memory views
         # cast them to numpy arrays without copying data
         np_solV = np.array(solV, dtype=np.float64, copy=False)

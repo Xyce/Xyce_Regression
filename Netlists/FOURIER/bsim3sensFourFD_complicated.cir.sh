@@ -32,7 +32,7 @@ $CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
 
 # Comparison tolerances. 
-# phase is output in degrees and for fourier components with very small magnitude, 
+# phase is output in degrees and for Fourier components with very small magnitude, 
 # it can be have several degrees of scatter.  Thus it gets its own abstol
 my $absTol = 2.0e-6;
 my $phaseAbsTol = 1.0;
@@ -40,11 +40,9 @@ my $relTol = 0.02;
 my $zeroTol = 1.0e-8;
 
 # change ending on gold standard file from ".prn" as passed in to ".gs" 
-# which is the file storing the measure results.
+# which is the file storing the Fourier results.
 
 $GOLDPRN =~ s/prn$/gs/;
-#$CIRFILE =~ s/\.cir$//; # remove the .cir at the end.
-#$FOURFILE = $CIRFILE . "_four.cir";
 $FOURFILE = $CIRFILE;
 
 $retval = -1;
@@ -73,12 +71,12 @@ if ($XYCE_VERIFY =~ m/valgrind_check/)
 #
 # Did we make a Fourier file
 #
-if (not -s "$FOURFILE.four" ) { print "Exit code = 17\n"; exit 17; }
+if (not -s "$FOURFILE.four0" ) { print "Exit code = 17\n"; exit 17; }
 
-# Now look for the measure output file and compare it to a 
+# Now look for the Fourier output file and compare it to a 
 # gold standard line by line.
 #
-open(RESULTS2, "$FOURFILE.four");
+open(RESULTS2, "$FOURFILE.four0");
 open(GOLD_STD, $GOLDPRN);
 
 # Advance each of these files to where the results are, bypass the header information.
@@ -166,7 +164,7 @@ while( ($line2=<RESULTS2>) && ($line_gs=<GOLD_STD>) )
         }
         else
         {
-          print "$FOURFILE.four and $GOLDPRN found a numeric difference\n";
+          print "$FOURFILE.four0 and $GOLDPRN found a numeric difference\n";
           print "Fourier data \"$line2OfDataFromXyce[$i]\" to GS data \"$gsLineOfDataFromXyce[$i]\" as ";
           print "Failed numeric compare\n";
           $retval=2;

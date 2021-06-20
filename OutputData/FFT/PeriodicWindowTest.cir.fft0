@@ -51,6 +51,32 @@ DC component    Mag= 3.094782e-01   Phase= 0.000000e+00
            8    8.000000e+00    2.211308e-03    1.800000e+02
 
 FFT analysis for V(1):
+  Window: COSINE2, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
+DC component    Mag= 3.498822e-01   Phase= 0.000000e+00
+       Index       Frequency             Mag           Phase
+           1    1.000000e+00    4.489677e-01   -1.749707e+02
+           2    2.000000e+00    1.098372e-01    1.904140e+01
+           3    3.000000e+00    2.401099e-02   -1.226118e+02
+           4    4.000000e+00    1.439515e-02    6.595888e+01
+           5    5.000000e+00    8.766491e-03   -8.205566e+01
+           6    6.000000e+00    6.048159e-03    1.177608e+02
+           7    7.000000e+00    5.111731e-03   -3.009565e+01
+           8    8.000000e+00    2.211308e-03    1.800000e+02
+
+FFT analysis for V(1):
+  Window: COSINE4, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
+DC component    Mag= 2.867509e-01   Phase= 0.000000e+00
+       Index       Frequency             Mag           Phase
+           1    1.000000e+00    4.254823e-01   -1.761407e+02
+           2    2.000000e+00    1.701525e-01    1.111896e+01
+           3    3.000000e+00    4.060330e-02   -1.465888e+02
+           4    4.000000e+00    1.499455e-02    6.697661e+01
+           5    5.000000e+00    8.967144e-03   -9.099697e+01
+           6    6.000000e+00    6.168293e-03    1.171750e+02
+           7    7.000000e+00    4.799255e-03   -3.308215e+01
+           8    8.000000e+00    2.211308e-03    1.800000e+02
+
+FFT analysis for V(1):
   Window: HAMM, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
 DC component    Mag= 3.617906e-01   Phase= 0.000000e+00
        Index       Frequency             Mag           Phase

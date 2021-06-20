@@ -24,6 +24,8 @@ RemeasureFourierCsdData.cir
 RemeasureFourierCsdData.cir.sh
 RemeasureStepCsdData.cir
 RemeasureStepCsdData.cir.sh
+RemeasureDasho.cir
+RemeasureDasho.cir.sh
 RemeasureFourierStepCsdData.cir
 RemeasureFourierStepCsdData.cir.sh
 bad_remeasure_line1.cir.sh
@@ -31,6 +33,9 @@ RemeasureCsvData.cir
 RemeasureCsvData.cir.sh
 RemeasureStepCsvData.cir
 RemeasureStepCsvData.cir.sh
+RemeasureStepGnuplotData.cir
+RemeasureStepGnuplotData.cir.sh
+RemeasureStepGnuplotData.cir.tags
 RemeasurePrnData.cir
 RemeasurePrnData.cir.sh
 RemeasureStepNumCol.cir

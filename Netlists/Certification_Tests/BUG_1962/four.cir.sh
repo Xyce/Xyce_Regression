@@ -4,10 +4,10 @@ use XyceRegression::Tools;
 
 $Tools = XyceRegression::Tools->new();
 
-# The input arguments to this script are: 
+# The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
 # $ARGV[1] = location of xyce_verify.pl script
-# $ARGV[2] = location of compare script 
+# $ARGV[2] = location of compare script
 # $ARGV[3] = location of circuit file to test
 # $ARGV[4] = location of gold standard prn file
 
@@ -21,7 +21,7 @@ $Tools = XyceRegression::Tools->new();
 # from the comparison program.  The outside script, run_xyce_regression,
 # expects the STDERR output from Xyce to go into $CIRFILE.err, the STDOUT
 # output from comparison to go into $CIRFILE.prn.out and the STDERR output from
-# comparison to go into $CIRFILE.prn.err.  
+# comparison to go into $CIRFILE.prn.err.
 
 $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
@@ -37,16 +37,16 @@ $retval = -1;
 $retval=$Tools->wrapXyce($XYCE,$CIRFILE);
 if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
 
-# was the .four file made?
-if (not -s "$CIRFILE.four" ) 
-{ 
+# was the .four0 file made?
+if (not -s "$CIRFILE.four0" )
+{
   print ".four file not found\n";
-  print "Exit code = 2\n"; exit 2; 
+  print "Exit code = 2\n"; exit 2;
 }
 
-# now compare the gold and test .four files
+# now compare the gold and test .four0 files
 $GOLDFOUR=$GOLDPRN;
-$GOLDFOUR =~ s/prn/four/;
+$GOLDFOUR =~ s/prn/four0/;
 
 $fc = $XYCE_VERIFY;
 $fc =~ s/xyce_verify/file_compare/;
@@ -55,13 +55,10 @@ $reltol=1e-3;
 $zerotol=1e-6;
 
 $retval = 0;
-$CMD="$fc $CIRFILE.four $GOLDFOUR $abstol $reltol $zerotol > $CIRFILE.four.out 2> $CIRFILE.four.err";
+$CMD="$fc $CIRFILE.four0 $GOLDFOUR $abstol $reltol $zerotol > $CIRFILE.four0.out 2> $CIRFILE.four0.err";
 if (system($CMD) != 0) {
-    print STDERR "Verification failed on file $CIRFILE.four, see $CIRFILE.four.err\n";
+    print STDERR "Verification failed on file $CIRFILE.four0, see $CIRFILE.four0.err\n";
     $retval = 2;
 }
 
 print "Exit code = $retval\n"; exit $retval;
-
-
-

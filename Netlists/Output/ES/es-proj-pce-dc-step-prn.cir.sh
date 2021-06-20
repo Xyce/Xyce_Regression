@@ -27,7 +27,7 @@ $GOLDPRN=$ARGV[4];
 $GOLDPRN =~ s/\.prn$//; # remove the .prn at the end.
 
 # remove previous output files
-system("rm -f $CIRFILE.ES.* $CIRFILE.out $CIRFILE.err $CIRFILE.prn");
+system("rm -f $CIRFILE.ES.* $CIRFILE.out $CIRFILE.err $CIRFILE.prn*");
 
 # run Xyce
 $CMD="$XYCE $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
@@ -91,6 +91,13 @@ if ($retval != 0){
   $retcode = 2;
 }
 
+# also check the .PRINT DC output
+$CMD="$fc $CIRFILE.prn $GOLDPRN.prn $absTol $relTol $zeroTol > $CIRFILE.prn.out 2> $CIRFILE.prn.err";
+$retval = system("$CMD");
+$retval = $retval >> 8;
+if ($retval != 0){
+  print STDERR "Comparator exited with exit code $retval on file $CIRFILE.prn\n";
+  $retcode = 2;
+}
+
 print "Exit code = $retcode\n"; exit $retcode;
-
-

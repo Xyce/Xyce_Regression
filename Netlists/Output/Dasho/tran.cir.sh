@@ -32,11 +32,14 @@ $CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
 
 $DASHOFILE="tranOutput";
+$TRANCONT="_findv2";
+
+$GOLDPRN =~ s/\.prn$//; # remove the .prn at the end
 
 # Remove the previous output files, including some that are only made if the
 # previous run failed. 
 system("rm -f $CIRFILE.prn $CIRFILE.csv $CIRFILE.err $CIRFILE.out $CIRFILE.SENS.*");
-system("rm -f $DASHOFILE $DASHOFILE.* tranGrepOutput tranFoo");
+system("rm -f $DASHOFILE* tranGrepOutput tranFoo");
 
 # run Xyce
 $CMD="$XYCE -o $DASHOFILE -delim COMMA $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
@@ -80,6 +83,26 @@ if ( !(-f "$DASHOFILE") ){
   $xyceexit=14;
 }
 
+if ( !(-f "$DASHOFILE.mt0") ){
+  print STDERR "Missing -o output file for .MEASURE TRAN, $DASHOFILE.mt0\n";
+  $xyceexit=2;
+}
+
+if ( !(-f "$DASHOFILE$TRANCONT.mt0") ){
+  print STDERR "Missing -o output file for .MEASURE TRAN_CONT, $DASHOFILE$TRANCONT.mt0\n";
+  $xyceexit=2;
+}
+
+if ( !(-f "$DASHOFILE.fft0") ){
+  print STDERR "Missing -o output file, $DASHOFILE.fft0\n";
+  $xyceexit=2;
+}
+
+if ( !(-f "$DASHOFILE.four0") ){
+  print STDERR "Missing -o output file, $DASHOFILE.four0\n";
+  $xyceexit=2;
+}
+
 if ($xyceexit!=0) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
 
 # Now verify the output file, which is tranOutput.  Use file_compare.pl
@@ -93,13 +116,14 @@ $abstol=1e-4;
 $reltol=1e-3;
 $zerotol=1e-6;
 
-$CMD="$fc $DASHOFILE $GOLDPRN $abstol $reltol $zerotol > $DASHOFILE.out 2> $DASHOFILE.err";
+$CMD="$fc $DASHOFILE $GOLDPRN.prn $abstol $reltol $zerotol > $DASHOFILE.out 2> $DASHOFILE.err";
 if (system($CMD) != 0) {
     print STDERR "Verification failed on file $DASHOFILE, see $DASHOFILE.err\n";
     $retcode = 2;
+
 }
 
-# output file should not have any commas in it
+# output file, for .PRINT lines should not have any commas in it
 if ( system("grep ',' tranOutput > tranGrepOutput") == 0)
 {
   print STDERR "Verification failed on file $DASHOFILE.  It should not have any commas in it\n";
@@ -117,6 +141,27 @@ if ($retval != 0)
   print "Check on warning message failed\n";
   $retcode = $retval; 
 } 
+
+# also check the .MEASURE, .FFT and .FOUR output
+print "Now testing .MEASURE, .FFT and .FOUR output\n";
+$CMD="$fc $DASHOFILE.mt0 $GOLDPRN.mt0 $abstol $reltol $zerotol > $DASHOFILE.mt0.out 2> $DASHOFILE.mt0.err";
+if (system($CMD) != 0) {
+    print STDERR "Verification failed on file $DASHOFILE.mt0, see $DASHOFILE.mt0.err\n";
+    $retcode = 2;
+}
+
+$namecont = "$DASHOFILE$TRANCONT";
+$CMD="$fc $namecont.mt0 $GOLDPRN$TRANCONT.mt0 $abstol $reltol $zerotol > namecont.mt0.out 2> $namecont.mt0.err";
+if (system($CMD) != 0) {
+    print STDERR "Verification failed on file $namecont.mt0, see $namecont.mt0.err\n";
+    $retcode = 2;
+}
+
+$CMD="$fc $DASHOFILE.fft0 $GOLDPRN.fft0 $abstol $reltol $zerotol > $DASHOFILE.fft0.out 2> $DASHOFILE.fft0.err";
+if (system($CMD) != 0) {
+    print STDERR "Verification failed on file $DASHOFILE.fft0, see $DASHOFILE.fft0.err\n";
+    $retcode = 2;
+}
 
 print "Exit code = $retcode\n"; exit $retcode;
 

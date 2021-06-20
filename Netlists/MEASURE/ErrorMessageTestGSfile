@@ -356,4 +356,8 @@ Netlist warning: TRIGTARGATFAIL failed. AT value outside sim window
 TRIGTARGATFAIL = FAILED with trig time= 0.000000e+00 and targ time= 0.000000e+00
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
+DERIV_AT_CONT_WP = 1.944597e+03 for AT = 2.000000e-04
+
+FIND_AT_CONT_WP = 9.506841e-01 for AT = 2.000000e-04
+
 
