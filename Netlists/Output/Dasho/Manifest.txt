@@ -7,9 +7,13 @@ dc.cir.sh
 es.cir
 es.cir.sh
 es.cir.tags
-printLine_for_es.cir
 hb.cir
 hb.cir.sh
+printLine_for_hb_td.cir
+printLine_for_hb_ic.cir
+printLine_for_hb_startup.cir
+hb-fallbacks.cir
+hb-fallbacks.cir.sh
 noise.cir
 noise.cir.sh
 pce.cir

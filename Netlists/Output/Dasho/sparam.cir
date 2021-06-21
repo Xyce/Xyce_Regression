@@ -1,16 +1,18 @@
-****************************************************
-* For testing -o (SON Bug 911), the key points are
-* that:
+***************************************************************
+* For testing -o (after the changes for Issue 222), the key
+* points are that:
 *
-*   1) The output defaults to Touchstone 2 format
+*   1) the .LIN output defaults to Touchstone 2 format
 *
-*   2) No output occurs from the .PRINT AC line.
+*   2) the .PRINT AC line should also produce output.
+*      It should be a FORMAT=STD file with space as the
+*      delimiter, with the default extension (dashoFile.FD.prn).
 *
-*   3) The FILE= qualifier on the .LIN line should
+*   3) the FILE= qualifier on the .LIN line should
 *      be ignored
 *
 * See also SON Bug 1105 for more details
-***************************************************
+****************************************************************
 
 * RC ladder circuit
 * Note that all ports (P devices) must use a common
@@ -43,4 +45,3 @@ X10 11 12 0 RCBlock
 .LIN FORMAT=TOUCHSTONE FILE=sparamFoo
 
 .END
-

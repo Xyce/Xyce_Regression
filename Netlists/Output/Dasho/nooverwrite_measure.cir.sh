@@ -62,8 +62,8 @@ if ($retval != 0)
 
 # check for output files
 $xyceexit=0;
-if ( !(-f "$DASHOFILE") ){
-  print STDERR "Missing -o output file, $DASHOFILE\n";
+if ( !(-f "$DASHOFILE.prn") ){
+  print STDERR "Missing -o output file for .PRINT, $DASHOFILE.prn\n";
   $xyceexit=14;
 }
 
@@ -83,7 +83,7 @@ $abstol=1e-4;
 $reltol=1e-3;
 $zerotol=1e-6;
 
-$CMD="$fc $DASHOFILE $GOLDPRN.prn $abstol $reltol $zerotol > $DASHOFILE.prn.out 2> $DASHOFILE.prn.err";
+$CMD="$fc $DASHOFILE.prn $GOLDPRN.prn $abstol $reltol $zerotol > $DASHOFILE.prn.out 2> $DASHOFILE.prn.err";
 if (system($CMD) != 0) {
     print STDERR "Verification failed on file $DASHOFILE, see $DASHOFILE.prn.err\n";
     $retcode = 2;
@@ -91,7 +91,7 @@ if (system($CMD) != 0) {
 }
 
 # also check the .MEASURE output
-print "Now testing .MEASURE, .FFT and .FOUR output\n";
+print "Now testing .MEASURE output\n";
 $CMD="$fc $DASHOFILE.mt0.mt0 $GOLDPRN.mt0 $abstol $reltol $zerotol > $DASHOFILE.mt0.mt0.out 2> $DASHOFILE.mt0.mt0.err";
 if (system($CMD) != 0) {
     print STDERR "Verification failed on file $DASHOFILE.mt0.mt0, see $DASHOFILE.mt0.mt0.err\n";

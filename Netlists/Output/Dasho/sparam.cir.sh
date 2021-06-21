@@ -28,8 +28,8 @@ $DASHOFILE="sparamOutput";
 
 # Remove the previous output files, including some that are only made if the
 # previous run failed.
-system("rm -f $CIRFILE.s1p $CIRFILE.err $CIRFILE.out");
-system("rm -f $DASHOFILE $DASHOFILE.*");
+system("rm -f $CIRFILE.s1p $CIRFILE.FD.prn sparamFoo $CIRFILE.err $CIRFILE.out");
+system("rm -f $DASHOFILE*");
 
 # run Xyce
 $CMD="$XYCE -o $DASHOFILE $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
@@ -63,14 +63,19 @@ if ( -f "sparamFoo") {
   $xyceexit=2;
 }
 
-if ( !(-f "$DASHOFILE") ){
-  print STDERR "Missing -o output file, $DASHOFILE\n";
+if ( !(-f "$DASHOFILE.s1p") ){
+  print STDERR "Missing -o output file for .LIN, $DASHOFILE.s1p\n";
+  $xyceexit=14;
+}
+
+if ( !(-f "$DASHOFILE.FD.prn") ){
+  print STDERR "Missing -o output file for .PRINT AC, $DASHOFILE.FD.prn\n";
   $xyceexit=14;
 }
 
 if ($xyceexit!=0) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
 
-# Now verify the output file, which is sparamOutput
+# Now verify the output files
 $retcode=0;
 
 $abstol=1e-5;
@@ -78,22 +83,18 @@ $reltol=1e-3;
 $zerotol=1e-10;
 $fc=$XYCE_VERIFY;
 $fc =~ s/xyce_verify/file_compare/;
-$fc=~ s/xyce_verify/file_compare/;
-$GOLDS1P=$GOLDPRN;
-$GOLDS1P=~s/prn/s1p/;
+$GOLDPRN =~ s/\.prn$//; # remove the .prn at the end;
 
-$CMD="$fc $DASHOFILE $GOLDS1P $abstol $reltol $zerotol > $DASHOFILE.out 2> $DASHOFILE.err";
+$CMD="$fc $DASHOFILE.s1p $GOLDPRN.s1p $abstol $reltol $zerotol > $DASHOFILE.out 2> $DASHOFILE.s1p.err";
 if (system($CMD) != 0) {
-    print STDERR "Verification failed on file $DASHOFILE, see $DASHOFILE.err\n";
+    print STDERR "Verification failed on file $DASHOFILE.s1p, see $DASHOFILE.s1p.err\n";
     $retcode = 2;
 }
 
-# This warning message should NOT be found for this case
-$retval = system("grep \"Netlist warning: -o only produces output for\" $CIRFILE.out");
-if ($retval == 0)
-{
-  print "Warning message found, when it should not be\n";
-  $retcode = 2;
+$CMD="$fc $DASHOFILE.FD.prn $GOLDPRN.FD.prn $abstol $reltol $zerotol > $DASHOFILE.FD.prn.out 2> $DASHOFILE.FD.prn.err";
+if (system($CMD) != 0) {
+    print STDERR "Verification failed on file $DASHOFILE.FD.prn, see $DASHOFILE.FD.prn.err\n";
+    $retcode = 2;
 }
 
 print "Exit code = $retcode\n"; exit $retcode;

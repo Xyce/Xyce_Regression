@@ -32,11 +32,12 @@ $CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
 
 $DASHOFILE="dcOutput";
+$GOLDPRN =~ s/\.prn$//; # remove the .prn at the end
 
 # Remove the previous output files, including some that are only made if the
 # previous run failed.
 system("rm -f $CIRFILE.prn $CIRFILE.csv $CIRFILE.err $CIRFILE.out");
-system("rm -f $DASHOFILE $DASHOFILE* dcGrepOutput dcFoo");
+system("rm -f $DASHOFILE* dcGrepOutput dcFoo*");
 
 # run Xyce
 $CMD="$XYCE -o $DASHOFILE -delim COMMA $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
@@ -58,7 +59,7 @@ if ($retval != 0)
   }
 }
 
-# check for output files    
+# check for output files
 $xyceexit=0;
 
 if ( (-f "$CIRFILE.prn") || (-f "$CIRFILE.csv") ) {
@@ -71,19 +72,24 @@ if ( -f "$CIRFILE.HOMOTOPY.prn") {
   $xyceexit=2;
 }
 
-if ( -f "dcFoo") {
-  print STDERR "Extra output file dcFoo\n";
+if ( (-f "dcFoo") || (-f "dcFoo1") ) {
+  print STDERR "Extra output file dcFoo or dcFoo1\n";
   $xyceexit=2;
 }
 
-if ( !(-f "$DASHOFILE") ){
-  print STDERR "Missing -o output file, $DASHOFILE\n";
+if ( !(-f "$DASHOFILE.prn") ){
+  print STDERR "Missing -o output file for .PRINT DC, $DASHOFILE.prn\n";
+  $xyceexit=14;
+}
+
+if ( !(-f "$DASHOFILE.HOMOTOPY.prn") ){
+  print STDERR "Missing -o output file for .PRINT HOMOTOPY, $DASHOFILE.HOMOTOPY.prn\n";
   $xyceexit=14;
 }
 
 if ($xyceexit!=0) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
 
-# Now verify the output file, which is dcOutput.  Use file_compare.pl
+# Now verify the output .PRINT files.  Use file_compare.pl
 # since I'm also testing print line concatenation
 $retcode=0;
 
@@ -93,31 +99,29 @@ $abstol=1e-4;
 $reltol=1e-3;
 $zerotol=1e-6;
 
-$CMD="$fc $DASHOFILE $GOLDPRN $abstol $reltol $zerotol > $DASHOFILE.out 2> $DASHOFILE.err";
+$CMD="$fc $DASHOFILE.prn $GOLDPRN.prn $abstol $reltol $zerotol > $DASHOFILE.prn.out 2> $DASHOFILE.prn.err";
 if (system($CMD) != 0) {
-    print STDERR "Verification failed on file $DASHOFILE, see $DASHOFILE.err\n";
+    print STDERR "Verification failed on file $DASHOFILE.prn, see $DASHOFILE.prn.err\n";
     $retcode = 2;
 }
 
-# output file should not have any commas in it
-if ( system("grep ',' dcOutput > dcGrepOutput") == 0)
+$CMD="$fc $DASHOFILE.HOMOTOPY.prn $GOLDPRN.HOMOTOPY.prn $abstol $reltol $zerotol > $DASHOFILE.HOMOTOPY.prn.out 2> $DASHOFILE.HOMOTOPY.prn.err";
+if (system($CMD) != 0) {
+    print STDERR "Verification failed on file $DASHOFILE.HOMOTOPY.prn, see $DASHOFILE.HOMOTOPY.prn.err\n";
+    $retcode = 2;
+}
+
+# output files should not have any commas in them
+if ( system("grep ',' $DASHOFILE.prn > dcGrepOutput") == 0)
 {
-  print STDERR "Verification failed on file $DASHOFILE.  It should not have any commas in it\n";
+  print STDERR "Verification failed on file $DASHOFILE.prn.  It should not have any commas in it\n";
   $retcode = 2;
 }
 
-# check for warning message
-@searchstrings = ("Netlist warning: -o only produces output for .PRINT AC, .PRINT DC, .PRINT ES",
-                  ".PRINT NOISE, .PRINT PCE, .PRINT TRAN, .PRINT HB, .PRINT HB_FD and .LIN lines"
-);
-
-$retval = $Tools->checkError("$CIRFILE.out",@searchstrings);
-if ($retval != 0)
+if ( system("grep ',' $DASHOFILE.HOMOTOPY.prn > tranGrepOutput") == 0)
 {
-  print "Check on warning message failed\n";
-  $retcode = $retval; 
-} 
+  print STDERR "Verification failed on file $DASHOFILE.HOMOTOPY.prn.  It should not have any commas in it\n";
+  $retcode = 2;
+}
 
 print "Exit code = $retcode\n"; exit $retcode;
-
-

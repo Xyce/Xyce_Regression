@@ -41,7 +41,7 @@ $stepNum=2;
 
 # Remove the previous output files, including some that are only made if the
 # previous run failed.
-system("rm -f $CIRFILE.prn $CIRFILE.csv $CIRFILE.err $CIRFILE.out $CIRFILE.SENS.*");
+system("rm -f $CIRFILE.prn $CIRFILE.csv $CIRFILE.err $CIRFILE.out $CIRFILE.SENS*");
 system("rm -f $DASHOFILE* tranStepNumColFoo");
 
 # run Xyce
@@ -81,8 +81,13 @@ if ( -f "tranStepNumColFoo") {
   $xyceexit=2;
 }
 
-if ( !(-f "$DASHOFILE") ){
-  print STDERR "Missing -o output file, $DASHOFILE\n";
+if ( !(-f "$DASHOFILE.prn") ){
+  print STDERR "Missing -o output file for .PRINT TRAN, $DASHOFILE.prn\n";
+  $xyceexit=14;
+}
+
+if ( !(-f "$DASHOFILE.SENS.prn") ){
+  print STDERR "Missing -o output file for .PRINT SENS, $DASHOFILE.SENS.prn\n";
   $xyceexit=14;
 }
 
@@ -116,9 +121,8 @@ foreach $i (0 ... $stepNum-1)
 
 if ($xyceexit!=0) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
 
-# Now verify the output file, which is tranStepNumColOutput.  Use file_compare.pl
-# since I'm also testing print line concatenation and that the simulation
-# footer is present.
+# Now verify the .PRINT output files.  Use file_compare.pl since I'm also
+# testing print line concatenation and that the simulation footer is present.
 $retcode=0;
 
 $XPLAT_DIFF = $XYCE_VERIFY;
@@ -130,9 +134,15 @@ $abstol=1e-4;
 $reltol=1e-3;
 $zerotol=1e-6;
 
-$CMD="$fc $DASHOFILE $GOLDPRN.prn $abstol $reltol $zerotol > $DASHOFILE.out 2> $DASHOFILE.err";
+$CMD="$fc $DASHOFILE.prn $GOLDPRN.prn $abstol $reltol $zerotol > $DASHOFILE.prn.out 2> $DASHOFILE.prn.err";
 if (system($CMD) != 0) {
-    print STDERR "Verification failed on file $DASHOFILE, see $DASHOFILE.err\n";
+    print STDERR "Verification failed on file $DASHOFILE.prn, see $DASHOFILE.prn.err\n";
+    $retcode = 2;
+}
+
+$CMD="$fc $DASHOFILE.SENS.prn $GOLDPRN.SENS.prn $abstol $reltol $zerotol > $DASHOFILE.SENS.prn.out 2> $DASHOFILE.SENS.prn.err";
+if (system($CMD) != 0) {
+    print STDERR "Verification failed on file $DASHOFILE.SENS.prn, see $DASHOFILE.SENS.prn.err\n";
     $retcode = 2;
 }
 
@@ -166,5 +176,3 @@ foreach $i (0 ... $stepNum-1)
 }
 
 print "Exit code = $retcode\n"; exit $retcode;
-
-

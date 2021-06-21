@@ -31,17 +31,13 @@ $XYCE_COMPARE=$ARGV[2];
 $CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
 
-$DASHOFILE="hbOutput";
+$DASHOFILE="hbFallbackOutput";
 $GOLDPRN =~ s/\.prn$//; # remove the .prn at the end.
-
-$TMPCIRFILE_TD="printLine_for_hb_td.cir";
-$TMPCIRFILE_IC="printLine_for_hb_ic.cir";
-$TMPCIRFILE_SU="printLine_for_hb_startup.cir";
 
 # Remove the previous output files, including some that are only made if the
 # previous run failed.
-system("rm -f $CIRFILE.HB* $CIRFILE.hb* $CIRFILE.startup* $CIRFILE.err $CIRFILE.out");
-system("rm -f $DASHOFILE* hbGrepOutput hbFoo");
+system("rm -f $CIRFILE.HB.* $CIRFILE.hb* $CIRFILE.startup* $CIRFILE.err $CIRFILE.out");
+system("rm -f $DASHOFILE* hbFallbackGrepOutput hbFallbackFoo");
 
 # run Xyce
 $CMD="$XYCE -o $DASHOFILE -delim COMMA $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
@@ -70,8 +66,8 @@ if ( (-f "$CIRFILE.HB.FD.prn" ) || (-f "$CIRFILE.HB.FD.csv") ) {
   $xyceexit=2;
 }
 
-if ( (-f "$CIRFILE.HB.TD.prn" ) || (-f "$CIRFILE.HB.TD.dat") ) {
-  print STDERR "Extra output file $CIRFILE.HB.TD.prn or $CIRFILE.HB.TD.dat\n";
+if ( (-f "$CIRFILE.HB.TD.prn" ) || (-f "$CIRFILE.HB.TD.csv") ) {
+  print STDERR "Extra output file $CIRFILE.HB.TD.prn or $CIRFILE.HB.TD.csv\n";
   $xyceexit=2;
 }
 
@@ -85,8 +81,8 @@ if ( (-f "$CIRFILE.startup.prn") || (-f "$CIRFILE.startup.csv") ) {
   $xyceexit=2;
 }
 
-if ( -f "hbFoo") {
-  print STDERR "Extra output file hbFoo\n";
+if ( -f "hbFallbackFoo") {
+  print STDERR "Extra output file hbFallbackFoo\n";
   $xyceexit=2;
 }
 
@@ -128,44 +124,44 @@ if (system($CMD) != 0) {
     $retcode = 2;
 }
 
-$CMD="$XYCE_VERIFY $TMPCIRFILE_TD $DASHOFILE.HB.TD.prn $GOLDPRN.HB.TD.prn > $DASHOFILE.HB.TD.prn.out 2> $DASHOFILE.HB.TD.prn.err";
+$CMD="$XYCE_VERIFY $CIRFILE $DASHOFILE.HB.TD.prn $GOLDPRN.HB.TD.prn > $DASHOFILE.HB.TD.prn.out 2> $DASHOFILE.HB.TD.prn.err";
 if (system($CMD) != 0) {
     print STDERR "Verification failed on file $DASHOFILE.HB.TD.prn, see $DASHOFILE.HB.TD.prn.err\n";
     $retcode = 2;
 }
 
-$CMD="$XYCE_VERIFY $TMPCIRFILE_IC $DASHOFILE.hb_ic.prn $GOLDPRN.hb_ic.prn > $DASHOFILE.hb_ic.prn.out 2> $DASHOFILE.hb_ic.prn.err";
+$CMD="$XYCE_VERIFY $CIRFILE $DASHOFILE.hb_ic.prn $GOLDPRN.hb_ic.prn > $DASHOFILE.hb_ic.prn.out 2> $DASHOFILE.hb_ic.prn.err";
 if (system($CMD) != 0) {
     print STDERR "Verification failed on file $DASHOFILE.hb_ic.prn, see $DASHOFILE.hb_ic.prn.err\n";
     $retcode = 2;
 }
 
-$CMD="$XYCE_VERIFY $TMPCIRFILE_SU $DASHOFILE.startup.prn $GOLDPRN.startup.prn > $DASHOFILE.startup.prn.out 2> $DASHOFILE.startup.prn.err";
+$CMD="$XYCE_VERIFY $CIRFILE $DASHOFILE.startup.prn $GOLDPRN.startup.prn > $DASHOFILE.startup.prn.out 2> $DASHOFILE.startup.prn.err";
 if (system($CMD) != 0) {
     print STDERR "Verification failed on file $DASHOFILE.startup.prn, see $DASHOFILE.startup.prn.err\n";
     $retcode = 2;
 }
 
 # output files should not have any commas in them
-if ( system("grep ',' $DASHOFILE.HB.FD.prn > hbGrepOutput") == 0)
+if ( system("grep ',' $DASHOFILE.HB.FD.prn > hbFallbackGrepOutput") == 0)
 {
   print STDERR "Verification failed on file $DASHOFILE.HB.FD.prn.  It should not have any commas in it\n";
   $retcode = 2;
 }
 
-if ( system("grep ',' $DASHOFILE.HB.TD.prn > hbGrepOutput") == 0)
+if ( system("grep ',' $DASHOFILE.HB.TD.prn > hbFallbackGrepOutput") == 0)
 {
   print STDERR "Verification failed on file $DASHOFILE.HB.TD.prn.  It should not have any commas in it\n";
   $retcode = 2;
 }
 
-if ( system("grep ',' hbOutput.hb_ic.prn > hbGrepOutput") == 0)
+if ( system("grep ',' $DASHOFILE.hb_ic.prn > hbFallbackGrepOutput") == 0)
 {
   print STDERR "Verification failed on file $DASHOFILE.hb_ic.prn.  It should not have any commas in it\n";
   $retcode = 2;
 }
 
-if ( system("grep ',' hbOutput.startup.prn > hbGrepOutput") == 0)
+if ( system("grep ',' $DASHOFILE.startup.prn > hbFallbackGrepOutput") == 0)
 {
   print STDERR "Verification failed on file $DASHOFILE.startup.prn.  It should not have any commas in it\n";
   $retcode = 2;
