@@ -1,14 +1,17 @@
 Inverter example circuit, binning version
 * This test also tests the use of "options parser scale".  
+* It also ensures that "scale" works even when agauss is used. (see issue #239)   
+* Before fixing issue #239, the presence of agauss would cause the model to be 
+* set up more than once, and would incorrectly cause scale to applied more than once.
 *
 * Adapted from the ngspice test suite.
 * Eric Keiter, 10/5/2018
 *
 * model binning
-.model nch.1 nmos ( version=4.7 level=54 lmin=0.1u lmax=20u wmin=0.1u wmax=10u  )
-.model nch.2 nmos ( version=4.7 level=54 lmin=0.1u lmax=20u wmin=10u  wmax=100u )
-.model pch.1 pmos ( version=4.7 level=54 lmin=0.1u lmax=20u wmin=0.1u wmax=10u  )
-.model pch.2 pmos ( version=4.7 level=54 lmin=0.1u lmax=20u wmin=10u  wmax=100u )
+.model nch.1 nmos ( version=4.7 level=54 lmin=0.1u lmax=20u wmin=0.1u wmax=10u  vth0='agauss(0.7,0.07,1)' )
+.model nch.2 nmos ( version=4.7 level=54 lmin=0.1u lmax=20u wmin=10u  wmax=100u vth0='agauss(0.7,0.07,1)' )
+.model pch.1 pmos ( version=4.7 level=54 lmin=0.1u lmax=20u wmin=0.1u wmax=10u  vth0='agauss(-0.7,0.07,1)' )
+.model pch.2 pmos ( version=4.7 level=54 lmin=0.1u lmax=20u wmin=10u  wmax=100u vth0='agauss(-0.7,0.07,1)' )
 *
 * parameters
 .param vp     = 1.0v

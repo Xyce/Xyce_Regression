@@ -5,6 +5,9 @@ THIS CIRCUIT TEST A MOS LEVEL 1 MODEL CMOS INVERTER
 * A small load (R1, C1) is applied to the output node , VOUT. The input signal
 * is at 5V for 1.5us and then at 0V for 1.5us. The voltage at VOUT is low when VIN1
 * is high and vice versa.
+*
+* This test also tests the use of "options parser scale".  
+*
 ** Analysis setup **
 *
 .tran 20ns 6us

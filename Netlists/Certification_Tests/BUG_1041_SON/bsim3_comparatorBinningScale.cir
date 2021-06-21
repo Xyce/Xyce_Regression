@@ -1,4 +1,5 @@
 COMPARATOR - BSIM3 Transient Analysis, Binning version
+* This test also tests the use of "options parser scale"
 
 M1 Anot A E1 E1  PMOS w=3.6 l=1.2
 M2 Anot A 0 0 NMOS w=1.8 l=1.2

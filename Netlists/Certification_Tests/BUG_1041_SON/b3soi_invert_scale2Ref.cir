@@ -6,18 +6,13 @@ THIS CIRCUIT TESTS THE MOS LEVEL=10 MODEL AS A CHAIN OF INVERTERS IN SERIES
 *
 * This version uses the bsim soi version 3.2 model cards from the berkeley
 * web site:  http://www-device.eecs.berkeley.edu/~bsimsoi/circuits2.html
-*
-* This test specifically tests the use of "options parser scale"
-*
 
 .subckt INVERTER IN OUT VDD GND
-MN1 OUT IN GND GND GND CMOSN w=4  l=0.15  AS=6 AD=6 PS=7 PD=7     
-MN1a OUT IN GND GND GND CMOSN w=4  l=0.15  AS=6 AD=6 PS=7 PD=7     
-MP1 OUT IN VDD GND VDD CMOSP w=10 l=0.15  AS=15 AD=15 PS=13 PD=13
-MP1a OUT IN VDD GND VDD CMOSP w=10 l=0.15  AS=15 AD=15 PS=13 PD=13
+MN1 OUT IN GND GND GND CMOSN w=4u  l=0.15u  AS=6p AD=6p PS=7u PD=7u     
+MN1a OUT IN GND GND GND CMOSN w=4u  l=0.15u  AS=6p AD=6p PS=7u PD=7u     
+MP1 OUT IN VDD GND VDD CMOSP w=10u l=0.15u  AS=15p AD=15p PS=13u PD=13u
+MP1a OUT IN VDD GND VDD CMOSP w=10u l=0.15u  AS=15p AD=15p PS=13u PD=13u
 .ends
-
-.options parser scale=1.0e-6
 
 * A small load (R1, C1) is applied to the output node, VOUT. The input signal
 * is at 2V for 1.5us and then at 0V for 1.5us. The voltage at VOUT is high 

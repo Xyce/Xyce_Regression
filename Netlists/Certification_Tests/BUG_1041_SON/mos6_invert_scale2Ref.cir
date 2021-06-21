@@ -5,9 +5,6 @@ THIS CIRCUIT TEST A MOS LEVEL 6 MODEL CMOS INVERTER
 * A small load (R1, C1) is applied to the output node , VOUT. The input signal
 * is at 5V for 1.5us and then at 0V for 1.5us. The voltage at VOUT is low when VIN1
 * is high and vice versa.
-*
-* This test also tests the use of "options parser scale".  
-*
 ** Analysis setup **
 *
 .tran 20ns 6us
@@ -17,11 +14,8 @@ RIN	IN	1	1K
 VIN1  1	0  5V PULSE (5V 0V 1.5us 5ns 5ns 1.5us 3us)
 R1    VOUT  0  10K  
 C2    VOUT  0  0.1p 
-MN1   VOUT  IN 0 0 CD4012_NMOS L=5 W=175 
-MP1   VOUT IN VDD VDD CD4012_PMOS L=5 W=270 
-
-.options parser scale=1.0e-6
-
+MN1   VOUT  IN 0 0 CD4012_NMOS L=5u W=175u 
+MP1   VOUT IN VDD VDD CD4012_PMOS L=5u W=270u 
 **************************************************************************
 .MODEL cd4012_pmos PMOS (
 + LEVEL = 6  UO = 310  VTO = -1.6  TOX = 6E-08  NSUB = 5.701E+15 

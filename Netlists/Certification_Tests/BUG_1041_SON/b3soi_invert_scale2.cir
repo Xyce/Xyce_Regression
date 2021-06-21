@@ -7,7 +7,10 @@ THIS CIRCUIT TESTS THE MOS LEVEL=10 MODEL AS A CHAIN OF INVERTERS IN SERIES
 * This version uses the bsim soi version 3.2 model cards from the berkeley
 * web site:  http://www-device.eecs.berkeley.edu/~bsimsoi/circuits2.html
 *
-* This test specifically tests the use of "options parser scale"
+* This test specifically tests the use of "options parser scale", but with 
+* at least one model parameter using agauss.  (see issue #239).   Before 
+* fixing issue #239, this would incorrectly cause scale to be applied 
+* more than once.
 *
 
 .subckt INVERTER IN OUT VDD GND
@@ -47,7 +50,7 @@ XINV1 IN VOUT VDD 0 INVERTER
 + k1b = 0  k2b = 0  dk2b = 0  vbsa = 0.10 
 + aigc = 1 bigc = 1 cigc = 1 aigsd = 1 
 + bigsd = 1 cigsd = 1 nigc = 1 poxedge = 1  pigcd = 1 
-+ vth0 = 0.5  k1 = 0.1  k1w1 = 0 
++ vth0 = 'agauss(0.5,0.05,1)'  k1 = 0.1  k1w1 = 0 
 + k1w2 = 0  k2 = 0  k3 = -2  k3b = 0 
 + kb1 = 1  w0 = 0 nlx = 0 
 + nch = 8e+017  nsub = 5e+015 
@@ -106,7 +109,7 @@ XINV1 IN VOUT VDD 0 INVERTER
 + k1b = 0  k2b = 0  dk2b = 0  vbsa = 0.10 
 + aigc = 1 bigc = 1 cigc = 1 aigsd = 1 
 + bigsd = 1 cigsd = 1 nigc = 1 poxedge = 1  pigcd = 1 
-+ vth0 = -0.5  k1 = 0.1  k1w1 = 0 
++ vth0 = 'agauss(-0.5,0.05,1)'  k1 = 0.1  k1w1 = 0 
 + k1w2 = 0  k2 = 0  k3 = -2  k3b = 0 
 + kb1 = 1  w0 = 0 nlx = 0 
 + nch = 8e+017  nsub = 5e+015 

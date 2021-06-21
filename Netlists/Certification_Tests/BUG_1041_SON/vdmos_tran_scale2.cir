@@ -1,6 +1,9 @@
 IRF130 Test Circuit
 *
 * This test also tests the use of "options parser scale".  
+* It also ensures that "scale" works even when agauss is used. (see issue #239)   
+* Before fixing issue #239, the presence of agauss would cause the model to be 
+* set up more than once, and would incorrectly cause scale to applied more than once.
 *
 *comp I(VID) reltol=0.015
 VD 3 1 0.5
@@ -15,7 +18,7 @@ M1 3 4 2 0 IRF130 W=0.386e6 L=2.5
 .MODEL IRF130 NMOS LEVEL=18
 + CV=1
 + CVE=1
-+ VTO=3.5
++ VTO='agauss(3.5,0.35,1)'
 + RD= 0
 + RS= 0.005
 + LAMBDA=0

@@ -1,19 +1,18 @@
-Inverter example circuit, binning version
-* This test also tests the use of "options parser scale".  
+Inverter example circuit
 *
 * Adapted from the ngspice test suite.
 * Eric Keiter, 10/5/2018
 *
 * model binning
-.model nch.1 nmos ( version=4.7 level=54 lmin=0.1u lmax=20u wmin=0.1u wmax=10u  )
-.model nch.2 nmos ( version=4.7 level=54 lmin=0.1u lmax=20u wmin=10u  wmax=100u )
-.model pch.1 pmos ( version=4.7 level=54 lmin=0.1u lmax=20u wmin=0.1u wmax=10u  )
-.model pch.2 pmos ( version=4.7 level=54 lmin=0.1u lmax=20u wmin=10u  wmax=100u )
+.model nch.1 nmos ( version=4.7 level=54 lmin=0.1u lmax=20u wmin=0.1u wmax=10u  vth0=0.7 )
+.model nch.2 nmos ( version=4.7 level=54 lmin=0.1u lmax=20u wmin=10u  wmax=100u vth0=0.7 )
+.model pch.1 pmos ( version=4.7 level=54 lmin=0.1u lmax=20u wmin=0.1u wmax=10u  vth0=-0.7 )
+.model pch.2 pmos ( version=4.7 level=54 lmin=0.1u lmax=20u wmin=10u  wmax=100u vth0=-0.7 )
 *
 * parameters
 .param vp     = 1.0v
-.param lmin   = 0.10
-.param wmin   = 0.12
+.param lmin   = 0.10u
+.param wmin   = 0.12u
 .param plmin  = 'lmin'
 .param nlmin  = 'lmin'
 .param wpmin  = 'wmin'
@@ -47,7 +46,7 @@ v1 in 0 pwl
 + 'period+dfall-0.8*tfall'  'vp'
 + r='dfall-0.8*tfall'
 
-x1 in out vdd 0 inv pw=60 nw=20
+x1 in out vdd 0 inv pw=60u nw=20u
 c1 out 0 220fF
 
 .op
@@ -57,6 +56,7 @@ c1 out 0 220fF
 *COMP V(out) offset=.2
 .print tran v(vdd) v(in) v(out)
 
-.options parser scale=1.0e-6
+.options parser model_binning=true 
+*scale=1.0
 
 .end
