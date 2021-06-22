@@ -149,7 +149,7 @@ sub verifyXDMtranslation
   my $retval = 0;
   if ($OUTFILETYPE eq "prn")
   {
-    $retval=system("$XYCE -o $CIRFILE.prn $CIRFILE > $CIRFILE.out 2> $CIRFILE.err");
+    $retval=system("$XYCE -o $CIRFILE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err");
   }
   else
   {
@@ -224,7 +224,7 @@ sub verifyXDMtranslation
   chdir "./$TRANSLATEDDIR";
   if ($OUTFILETYPE eq "prn")
   {
-    $retval=system("$XYCE -o $CIRFILE.prn $CIRFILE > $CIRFILE.out 2> $CIRFILE.err");
+    $retval=system("$XYCE -o $CIRFILE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err");
   }
   elsif ($OUTFILETYPE eq "csd")
   {
@@ -471,11 +471,11 @@ sub translateAndCheckXyceMessages
   chdir "./$TRANSLATEDDIR";
   if ($FROMSPICE eq "hspice")
   {
-    $retval=system("$XYCE $CIRFILE -o $CIRFILE.prn > $CIRFILE.out 2> $CIRFILE.err");
+    $retval=system("$XYCE $CIRFILE -o $CIRFILE > $CIRFILE.out 2> $CIRFILE.err");
   }
   elsif ($FROMSPICE eq "tspice")
   {
-    $retval=system("$XYCE $CIRFILE -o $CIRFILE.prn > $CIRFILE.out 2> $CIRFILE.err");
+    $retval=system("$XYCE $CIRFILE -o $CIRFILE > $CIRFILE.out 2> $CIRFILE.err");
   }
   else
   {
