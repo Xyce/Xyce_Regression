@@ -44,7 +44,7 @@ $GOLDMT0 =~ s/prn/mt0/;
 $XYCE_BASE = $XYCE;
 
 # remove files from previous runs
-system("rm -f $CIRFILE.out $CIRFILE.prn $OUTFILE $OUTFILE.mt0");
+system("rm -f $CIRFILE.out $CIRFILE.prn $OUTFILE.prn $OUTFILE.mt0");
 
 $XYCE_LIB_DIR="";
 
@@ -78,15 +78,15 @@ if ($retval != 0)
 else
 {
   # check output files
-  if (not -s "$OUTFILE" ) { print "Exit code = 14\n"; exit 14; }
+  if (not -s "$OUTFILE.prn" ) { print "Exit code = 14\n"; exit 14; }
   if (not -s "$OUTFILE.mt0" ) { print "Exit code = 17\n"; exit 17; }
 }
 
 # check .prn file, but not the .mt0 file
-$CMD="$XYCE_VERIFY $CIRFILE $GOLDPRN $OUTFILE";
+$CMD="$XYCE_VERIFY $CIRFILE $GOLDPRN $OUTFILE.prn";
 if (system($CMD) != 0) 
 {
-  print STDERR "Verification failed on file $CIRFILE.prn";
+  print STDERR "Verification failed on file $OUTFILE.prn";
   $retval = 2;
 }
 

@@ -35,8 +35,8 @@ $DASHOFILE="acSensOutput";
 
 $GOLDPRN =~ s/\.prn$//; # remove the .prn at the end.
 
-system("rm -f $CIRFILE.FD.* $CIRFILE.out $CIRFILE.err");
-system("rm -f $DASHOFILE $DASHOFILE.* acSensGrepOutput acSensFoo");
+system("rm -f $CIRFILE.FD* $CIRFILE.TD* $CIRFILE.out $CIRFILE.err");
+system("rm -f $DASHOFILE* acSensGrepOutput acSensFoo*");
 
 $CMD="$XYCE -o $DASHOFILE -delim COMMA $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
 $retval = system("$CMD");
@@ -59,71 +59,85 @@ if ($retval != 0)
 $xyce_exit = 0;
 if ( -f "$CIRFILE.FD.prn")
 {
-  print "Extra output file $CIRFILE.FD.prn\n";
-  print "Exit code =14\n";
+  print STDERR "Extra output file $CIRFILE.FD.prn\n";
   $xyce_exit = 14;
 }
 
-if ( -f "acSensFoo") {
-  print STDERR "Extra output file acSensFoo\n";
+if ( (-f "acSensFoo") || (-f "acSensFoo1")) {
+  print STDERR "Extra output file acSensFoo or acSensFoo1\n";
   $xyceexit=2;
 }
 
 if ( -f "$CIRFILE.FD.SENS.prn")
 {
-  print "Extra output file $CIRFILE.FD.SENS.prn\n";
-  print "Exit code =14\n";
+  print STDERR "Extra output file $CIRFILE.FD.SENS.prn\n";
   $xyce_exit = 14;
 }
 
-if ( not -s "$DASHOFILE")
+if ( not -s "$DASHOFILE.FD.prn")
 {
-  print "Missing -o output file $DASHOFILE\n";
-  print "Exit code =14\n";
+  print STDERR "Missing -o output file for .PRINT AC, $DASHOFILE.FD.prn\n";
   $xyce_exit = 14;
 }
 
-if ($xyce_exit != 0) { exit $xyce_exit;}
+if ( not -s "$DASHOFILE.TD.prn")
+{
+  print STDERR "Missing -o output file for fallback .PRINT AC_IC, $DASHOFILE.TD.prn\n";
+  $xyce_exit = 14;
+}
 
-# now compare the test and gold file .prn files
+if ( not -s "$DASHOFILE.FD.SENS.prn")
+{
+  print STDERR "Missing -o output file for .PRINT SENS, $DASHOFILE.FD.SENS.prn\n";
+  $xyce_exit = 14;
+}
+
+if ($xyce_exit != 0) {print "Exit code = $xyce_exit\n"; exit $xyce_exit;}
+
+# now compare the test and gold files
 $retcode=0;
 
-$absTol=1e-5;
+$fc=$XYCE_VERIFY;
+$fc =~ s/xyce_verify/file_compare/;
+$absTol=1e-4;
 $relTol=1e-3;
-$zeroTol=1e-10;
-$freqreltol=1e-6;
-$XYCE_ACVERIFY = $XYCE_VERIFY;
-$XYCE_ACVERIFY =~ s/xyce_verify/ACComparator/;
+$zeroTol=1e-6;
 
-$CMD="$XYCE_ACVERIFY $DASHOFILE $GOLDPRN.FD.prn $absTol $relTol $zeroTol $freqreltol > $DASHOFILE.out 2> $DASHOFILE.err";
-$retval = system("$CMD");
-$retval = $retval >> 8;
-if ($retval != 0)
+$CMD="$fc $DASHOFILE.FD.prn $GOLDPRN.FD.prn $absTol $relTol $zeroTol > $DASHOFILE.FD.prn.out 2> $DASHOFILE.FD.prn.err";
+if (system($CMD) != 0) {
+    print STDERR "Verification failed on file $DASHOFILE.FD.prn, see $DASHOFILE.FD.prn.err\n";
+    $retcode = 2;
+}
+
+$CMD="$fc $DASHOFILE.TD.prn $GOLDPRN.TD.prn $absTol $relTol $zeroTol > $DASHOFILE.TD.prn.out 2> $DASHOFILE.TD.prn.err";
+if (system($CMD) != 0) {
+    print STDERR "Verification failed on file $DASHOFILE.TD.prn, see $DASHOFILE.TD.prn.err\n";
+    $retcode = 2;
+}
+
+$CMD="$fc $DASHOFILE.FD.SENS.prn $GOLDPRN.FD.SENS.prn $absTol $relTol $zeroTol > $DASHOFILE.FD.SENS.prn.out 2> $DASHOFILE.FD.SENS.prn.err";
+if (system($CMD) != 0) {
+    print STDERR "Verification failed on file $DASHOFILE.FD.SENS.prn, see $DASHOFILE.FD.SENS.prn.err\n";
+    $retcode = 2;
+}
+
+# output files should not have any commas in them
+if ( system("grep ',' $DASHOFILE.FD.prn > acSensGrepOutput") == 0)
 {
-  print STDERR "Comparator exited with exit code $retval on file $DASHOFILE\n";
+  print STDERR "Verification failed on file $DASHOFILE.FD.prn.  It should not have any commas in it\n";
   $retcode = 2;
 }
 
-# output file should not have any commas in it
-if ( system("grep ',' acSensOutput > acSensGrepOutput") == 0)
+if ( system("grep ',' $DASHOFILE.TD.prn > acSensGrepOutput") == 0)
 {
-  print STDERR "Verification failed on file $DASHOFILE.  It should not have any commas in it\n";
+  print STDERR "Verification failed on file $DASHOFILE.TD.prn.  It should not have any commas in it\n";
   $retcode = 2;
 }
 
-# check for warning message
-@searchstrings = ("Netlist warning: -o only produces output for .PRINT AC, .PRINT DC, .PRINT ES",
-                  ".PRINT NOISE, .PRINT PCE, .PRINT TRAN, .PRINT HB, .PRINT HB_FD and .LIN lines"
-);
-
-$retval = $Tools->checkError("$CIRFILE.out",@searchstrings);
-if ($retval != 0)
+if ( system("grep ',' $DASHOFILE.FD.SENS.prn > acSensGrepOutput") == 0)
 {
-  print "Check on warning message failed\n";
-  $retcode = $retval;
+  print STDERR "Verification failed on file $DASHOFILE.FD.SENS.prn.  It should not have any commas in it\n";
+  $retcode = 2;
 }
 
 print "Exit code = $retcode\n"; exit $retcode;
-
-
-

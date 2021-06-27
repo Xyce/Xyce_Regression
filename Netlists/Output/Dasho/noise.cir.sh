@@ -29,8 +29,8 @@ $GOLDPRN =~ s/\.prn$//; # remove the .prn at the end.
 
 # Remove the previous output files, including some that are only made if the
 # previous run failed.
-system("rm -f $CIRFILE.NOISE.* $CIRFILE.err $CIRFILE.out");
-system("rm -f $DASHOFILE $DASHOFILE.* noiseGrepOutput noiseFoo");
+system("rm -f $CIRFILE.NOISE* $CIRFILE.err $CIRFILE.out");
+system("rm -f $DASHOFILE* noiseGrepOutput noiseFoo");
 
 # run Xyce
 $CMD="$XYCE -o $DASHOFILE $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
@@ -51,8 +51,8 @@ if ($retval != 0)
     exit 10;
   }
 }
-  
-# check for output files  
+
+# check for output files
 $xyceexit=0;
 if ( (-f "$CIRFILE.NOISE.prn") || (-f "$CIRFILE.NOISE.csv") ) {
   print STDERR "Extra output file $CIRFILE.NOISE.prn or $CIRFILE.NOISE.csv\n";
@@ -64,16 +64,33 @@ if ( -f "noiseFoo") {
   $xyceexit=2;
 }
 
-if ( !(-f "$DASHOFILE") ){
-  print STDERR "Missing -o output file, $DASHOFILE\n";
+if ( !(-f "$DASHOFILE.NOISE.prn") ){
+  print STDERR "Missing -o output file for .PRINT NOISE, $DASHOFILE.noise.prn\n";
   $xyceexit=14;
 }
 
 if ($xyceexit!=0) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
 
-# Now verify the output file, which is noiseOutput.  Use file_compare.pl
-# since I'm also testing print line concatenation and that the simulation
-# footer is present.
+# do a valgrind run, if that's been requested
+if ($XYCE_VERIFY =~ m/valgrind_check/)
+{
+  print STDERR "DOING VALGRIND RUN INSTEAD OF REAL RUN!";
+  if (system("$XYCE_VERIFY $CIRFILE junk $CIRFILE.prn > $CIRFILE.prn.out 2>&1 $CIRFILE.prn.err"))
+  {
+    #valgrind_check.sh has reported a memory error, test is a failure
+    print "Exit code = 2 \n";
+    exit 2;
+  }
+  else
+  {
+    #valgrind_check.sh has reported no memory errors, pass
+    print "Exit code = 0 \n";
+    exit 0;
+  }
+}
+
+# Now verify the output file.  Use file_compare.pl since I'm also testing print
+# line concatenation and that the simulation footer is present.
 $retcode=0;
 
 $fc=$XYCE_VERIFY;
@@ -82,19 +99,17 @@ $abstol=1e-4;
 $reltol=1e-3;
 $zerotol=1e-6;
 
-$CMD="$fc $DASHOFILE $GOLDPRN.NOISE.prn $abstol $reltol $zerotol > $DASHOFILE.out 2> $DASHOFILE.err";
+$CMD="$fc $DASHOFILE.NOISE.prn $GOLDPRN.NOISE.prn $abstol $reltol $zerotol > $DASHOFILE.NOISE.prn.out 2> $DASHOFILE.NOISE.prn.err";
 if (system($CMD) != 0) {
-    print STDERR "Verification failed on file $DASHOFILE, see $DASHOFILE.err\n";
+    print STDERR "Verification failed on file $DASHOFILE.NOISE.prn, see $DASHOFILE.NOISE.prn.err\n";
     $retcode = 2;
 }
 
 # output file should not have any commas in it
-if ( system("grep ',' noiseOutput > noiseGrepOutput") == 0)
+if ( system("grep ',' $DASHOFILE.NOISE.prn > noiseGrepOutput") == 0)
 {
-  print STDERR "Verification failed on file $DASHOFILE.  It should not have any commas in it\n";
+  print STDERR "Verification failed on file $DASHOFILE.NOISE.prn.  It should not have any commas in it\n";
   $retcode = 2;
 }
 
 print "Exit code = $retcode\n"; exit $retcode;
-
-

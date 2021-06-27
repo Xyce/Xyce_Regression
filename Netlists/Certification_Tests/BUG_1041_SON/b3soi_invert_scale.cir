@@ -6,6 +6,9 @@ THIS CIRCUIT TESTS THE MOS LEVEL=10 MODEL AS A CHAIN OF INVERTERS IN SERIES
 *
 * This version uses the bsim soi version 3.2 model cards from the berkeley
 * web site:  http://www-device.eecs.berkeley.edu/~bsimsoi/circuits2.html
+*
+* This test specifically tests the use of "options parser scale"
+*
 
 .subckt INVERTER IN OUT VDD GND
 MN1 OUT IN GND GND GND CMOSN w=4  l=0.15  AS=6 AD=6 PS=7 PD=7     

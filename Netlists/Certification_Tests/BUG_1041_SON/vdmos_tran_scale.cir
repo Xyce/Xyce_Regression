@@ -1,4 +1,7 @@
 IRF130 Test Circuit
+*
+* This test also tests the use of "options parser scale".  
+*
 *comp I(VID) reltol=0.015
 VD 3 1 0.5
 VS 2 0 0

@@ -36,8 +36,8 @@ $GOLDPRN =~ s/\.prn$//; # remove the .prn at the end.
 
 # Remove the previous output files, including some that are only made if the
 # previous run failed.
-system("rm -f $CIRFILE.prn $CIRFILE.err $CIRFILE.out $CIRFILE.PCE.*");
-system("rm -f $DASHOFILE $DASHOFILE.* pceGrepOutput pceFoo");
+system("rm -f $CIRFILE.prn* $CIRFILE.err $CIRFILE.out $CIRFILE.PCE.*");
+system("rm -f $DASHOFILE* pceGrepOutput pceFoo");
 
 # run Xyce
 $CMD="$XYCE -o $DASHOFILE -delim COMMA $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
@@ -71,8 +71,13 @@ if ( -f "pceFoo") {
   $xyceexit=2;
 }
 
-if ( !(-f "$DASHOFILE") ){
-  print STDERR "Missing -o output file, $DASHOFILE\n";
+if ( !(-f "$DASHOFILE.PCE.prn") ){
+  print STDERR "Missing -o output file for .PRINT PCE, $DASHOFILE.PCE.prn\n";
+  $xyceexit=14;
+}
+
+if ( !(-f "$DASHOFILE.prn") ){
+  print STDERR "Missing -o output file for .PRINT DC, $DASHOFILE.prn\n";
   $xyceexit=14;
 }
 
@@ -86,21 +91,34 @@ $zeroTol=1e-6;
 $fc = $XYCE_VERIFY;
 $fc=~ s/xyce_verify/file_compare/;
 
-$CMD="$fc $DASHOFILE $GOLDPRN.PCE.prn $absTol $relTol $zeroTol > $DASHOFILE.out 2> $DASHOFILE.err";
+$CMD="$fc $DASHOFILE.PCE.prn $GOLDPRN.PCE.prn $absTol $relTol $zeroTol > $DASHOFILE.PCE.prn.out 2> $DASHOFILE.PCE.prn.err";
 $retval = system($CMD);
 $retval = $retval >> 8;
 if ($retval != 0){
-  print STDERR "Comparator exited with exit code $retval on file $DASHOFILE\n";
+  print STDERR "Comparator exited with exit code $retval on file $DASHOFILE.PCE.prn\n";
   $retcode = 2;
 }
 
-# output file should not have any commas in it
-if ( system("grep ',' pceOutput > pceGrepOutput") == 0)
+$CMD="$fc $DASHOFILE.prn $GOLDPRN.prn $absTol $relTol $zeroTol > $DASHOFILE.prn.out 2> $DASHOFILE.prn.err";
+$retval = system($CMD);
+$retval = $retval >> 8;
+if ($retval != 0){
+  print STDERR "Comparator exited with exit code $retval on file $DASHOFILE.prn\n";
+  $retcode = 2;
+}
+
+# output files should not have any commas in them
+if ( system("grep ',' $DASHOFILE.PCE.prn > pceGrepOutput") == 0)
 {
-  print STDERR "Verification failed on file $DASHOFILE.  It should not have any commas in it\n";
+  print STDERR "Verification failed on file $DASHOFILE.PCE.prn.  It should not have any commas in it\n";
+  $retcode = 2;
+}
+
+# output files should not have any commas in them
+if ( system("grep ',' $DASHOFILE.prn > pceGrepOutput") == 0)
+{
+  print STDERR "Verification failed on file $DASHOFILE.prn.  It should not have any commas in it\n";
   $retcode = 2;
 }
 
 print "Exit code = $retcode\n"; exit $retcode;
-
-

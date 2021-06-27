@@ -7,6 +7,8 @@ $Tools = XyceRegression::Tools->new();
 
 if (defined($verbose)) { $Tools->setVerbose(1); }
 
+use File::Copy;
+
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
 # $ARGV[1] = location of xyce_verify.pl script
@@ -31,57 +33,47 @@ $XYCE_COMPARE=$ARGV[2];
 $CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
 
-@DASHOFILE;
-$DASHOFILE[0]=$CIRFILE;
-$DASHOFILE[1]="noover.cir";
+$DASHOFILE="$CIRFILE";
+$DASHOFILE =~s/\.cir$//; # remove the .cir at the end
+$GOLDPRN =~ s/\.prn$//; # remove the .prn at the end
 
-@OUTFILE;
-$OUTFILE[0]="$CIRFILE.prn";
-$OUTFILE[1]="noover.cir.prn";
+# the netlist run will actually be nooverwrite.prn
+copy("$CIRFILE","$DASHOFILE.prn");
 
-# Remove the previous output files, including some that are only made if the
-# previous run failed.
-system("rm -f $CIRFILE.prn $CIRFILE.err $CIRFILE.out nooverwriteFoo noover.cir.* $CIRFILE.prn.*");
+# Remove the previous output files
+system("rm -f $CIRFILE.out $CIRFILE.err $DASHOFILE.prn.prn*");
 
 # run Xyce
-foreach $idx (0 .. 1)
+$CMD="$XYCE -o $DASHOFILE $DASHOFILE.prn > $CIRFILE.out 2>$CIRFILE.err";
+print "$CMD\n";
+$retval=system($CMD);
+
+if ($retval != 0)
 {
-  $CMD="$XYCE -o $DASHOFILE[$idx] $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
-  $retval=system($CMD);
-
-  if ($retval != 0)
+  if ($retval & 127)
   {
-    if ($retval & 127)
-    {
-      print "Exit code = 13\n"; 
-      printf STDERR "Xyce crashed with signal %d on file %s\n with -o of $DASHOFILE[$idx]",($retval&127),$CIRFILE; 
-      exit 13;
-    }
-    else
-    {
-      print "Exit code = 10\n"; 
-      printf STDERR "Xyce exited with exit code %d on %s\n with -o of $DASHOFILE[$idx]",$retval>>8,$CIRFILE; 
-      exit 10;
-    }
+    print "Exit code = 13\n";
+    printf STDERR "Xyce crashed with signal %d on file %s\n",($retval&127),$CIRFILE;
+    exit 13;
   }
-
-  # check for output files
-  $xyceexit=0;
-  if ( -f "nooverwriteFoo") {
-    print STDERR "Extra output file tranFoo\n";
-    $xyceexit=2;
+  else
+  {
+    print "Exit code = 10\n";
+    printf STDERR "Xyce exited with exit code %d on %s\n",$retval>>8,$CIRFILE;
+    exit 10;
   }
-
-  if ( !(-f "$OUTFILE[$idx]") ){
-    print STDERR "Missing -o output file, $OUTFILE[$idx]\n";
-    $xyceexit=14;
-  }
-
-  if ($xyceexit!=0) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
 }
 
-# Now verify the output file, which is nooverwrite.cir.prn in this case. 
-# Use file_compare.pl since I'm also testing print line concatenation 
+# check for output files
+$xyceexit=0;
+if ( !(-f "$DASHOFILE.prn.prn") ){
+  print STDERR "Missing -o output file for .PRINT, $DASHOFILE.prn.prn\n";
+  $xyceexit=14;
+}
+
+if ($xyceexit!=0) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
+
+# Now verify the output file,
 $retcode=0;
 
 $fc=$XYCE_VERIFY;
@@ -90,15 +82,11 @@ $abstol=1e-4;
 $reltol=1e-3;
 $zerotol=1e-6;
 
-foreach $idx (0 .. 1)
-{
-  $CMD="$fc $OUTFILE[$idx] $GOLDPRN $abstol $reltol $zerotol > $OUTFILE[$idx].out 2> $OUTFILE[$idx].err";
-  if (system($CMD) != 0) {
-      print STDERR "Verification failed on file $OUTFILE[$idx], see $OUTFILE[$idx].prn.err\n";
-      $retcode = 2;
-  }
+$CMD="$fc $DASHOFILE.prn.prn $GOLDPRN.prn $abstol $reltol $zerotol > $DASHOFILE.prn.prn.out 2> $DASHOFILE.prn.prn.err";
+if (system($CMD) != 0) {
+    print STDERR "Verification failed on file $DASHOFILE.prn.prn, see $DASHOFILE.prn.prn.err\n";
+    $retcode = 2;
+
 }
 
 print "Exit code = $retcode\n"; exit $retcode;
-
-

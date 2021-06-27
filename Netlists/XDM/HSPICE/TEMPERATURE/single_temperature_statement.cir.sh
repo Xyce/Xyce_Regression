@@ -35,7 +35,7 @@ system("rm -f $CIR.prn*");
 system("rm -f $CIR.out $CIR.err");
 
 # run known good Xyce .cir file, and check that it worked
-$CMD="$XYCE -o $CIR.prn $CIR > $CIR.out 2> $CIR.err";
+$CMD="$XYCE -o $CIR $CIR > $CIR.out 2> $CIR.err";
 $retval = system("$CMD");
 if ($retval != 0)
  {
@@ -110,7 +110,7 @@ if (system($CMD) != 0)
 # need to change directories to ./translated so that the translated .lib and .NET files
 # are used.
 chdir "./$TRANSLATEDDIR";
-$retval=system("$XYCE -o $CIR.prn $CIR > $CIR.out 2> $CIR.err");
+$retval=system("$XYCE -o $CIR $CIR > $CIR.out 2> $CIR.err");
 if ($retval != 0)
 {
   print STDERR "Xyce crashed trying to run translated files\n";

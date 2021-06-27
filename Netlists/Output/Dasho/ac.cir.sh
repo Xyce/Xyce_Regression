@@ -36,8 +36,8 @@ $GOLDPRN =~ s/\.prn$//; # remove the .prn at the end.
 
 # Remove the previous output files, including some that are only made if the
 # previous run failed.
-system("rm -f $CIRFILE.FD.* $CIRFILE.TD.* $CIRFILE.err $CIRFILE.out");
-system("rm -f $DASHOFILE $DASHOFILE.* acGrepOutput acFoo");
+system("rm -f $CIRFILE.FD* $CIRFILE.TD* $CIRFILE.err $CIRFILE.out");
+system("rm -f $DASHOFILE* acGrepOutput acFoo*");
 
 # run Xyce
 $CMD="$XYCE -o $DASHOFILE -delim COMMA $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
@@ -71,21 +71,25 @@ if ( (-f "$CIRFILE.TD.prn") || (-f "$CIRFILE.TD.csv") ) {
   $xyceexit=2;
 }
 
-if ( -f "acFoo") {
-  print STDERR "Extra output file acFoo\n";
+if ( (-f "acFoo") || (-f "acFoo1") ) {
+  print STDERR "Extra output file acFoo or acFoo1\n";
   $xyceexit=2;
 }
 
-if ( !(-f "$DASHOFILE") ){
-  print STDERR "Missing -o output file $DASHOFILE\n";
+if ( !(-f "$DASHOFILE.FD.prn") ){
+  print STDERR "Missing -o output file for .PRINT AC, $DASHOFILE.FD.prn\n";
+  $xyceexit=14;
+}
+
+if ( !(-f "$DASHOFILE.TD.prn") ){
+  print STDERR "Missing -o output file for .PRINT AC_IC, $DASHOFILE.TD.prn\n";
   $xyceexit=14;
 }
 
 if ($xyceexit!=0) {print "Exit code = $xyceexit\n"; exit $xyceexit;}
 
-# Now verify the output file, which is acOutput.  Use file_compare.pl
-# since I'm also testing print line concatenation and that the simulation
-# footer is present.
+# Now verify the output files.  Use file_compare.pl since I'm also testing print
+# line concatenation and that the simulation footer is present.
 $retcode=0;
 
 $fc=$XYCE_VERIFY;
@@ -94,31 +98,29 @@ $abstol=1e-4;
 $reltol=1e-3;
 $zerotol=1e-6;
 
-$CMD="$fc $DASHOFILE $GOLDPRN.FD.prn $abstol $reltol $zerotol > $DASHOFILE.out 2> $DASHOFILE.err";
+$CMD="$fc $DASHOFILE.FD.prn $GOLDPRN.FD.prn $abstol $reltol $zerotol > $DASHOFILE.FD.prn.out 2> $DASHOFILE.FD.prn.err";
 if (system($CMD) != 0) {
-    print STDERR "Verification failed on file $DASHOFILE, see $DASHOFILE.err\n";
+    print STDERR "Verification failed on file $DASHOFILE.FD.prn, see $DASHOFILE.FD.prn.err\n";
     $retcode = 2;
 }
 
-# output file should not have any commas in it
-if ( system("grep ',' acOutput > acGrepOutput") == 0)
+$CMD="$fc $DASHOFILE.TD.prn $GOLDPRN.TD.prn $abstol $reltol $zerotol > $DASHOFILE.TD.prn.out 2> $DASHOFILE.TD.prn.err";
+if (system($CMD) != 0) {
+    print STDERR "Verification failed on file $DASHOFILE.TD.prn, see $DASHOFILE.TD.prn.err\n";
+    $retcode = 2;
+}
+
+# output files should not have any commas in them
+if ( system("grep ',' $DASHOFILE.FD.prn > acGrepOutput") == 0)
 {
-  print STDERR "Verification failed on file $DASHOFILE.  It should not have any commas in it\n";
+  print STDERR "Verification failed on file $DASHOFILE.FD.prn.  It should not have any commas in it\n";
   $retcode = 2;
 }
 
-# check for warning message
-@searchstrings = ("Netlist warning: -o only produces output for .PRINT AC, .PRINT DC, .PRINT ES",
-                  ".PRINT NOISE, .PRINT PCE, .PRINT TRAN, .PRINT HB, .PRINT HB_FD and .LIN lines"
-);
-
-$retval = $Tools->checkError("$CIRFILE.out",@searchstrings);
-if ($retval != 0)
+if ( system("grep ',' $DASHOFILE.TD.prn > acGrepOutput") == 0)
 {
-  print "Check on warning message failed\n";
-  $retcode = $retval; 
-} 
+  print STDERR "Verification failed on file $DASHOFILE.TD.prn.  It should not have any commas in it\n";
+  $retcode = 2;
+}
 
 print "Exit code = $retcode\n"; exit $retcode;
-
-

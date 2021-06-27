@@ -31,7 +31,7 @@ $CIRFILE=$ARGV[3];
 # clean up past droppings
 system("rm -f $CIRFILE.out $CIRFILE.err $CIRFILE.out");
 
-# execute Xyce to make an output file, where the requested file is in
+# execute Xyce  where the requested -o output file basename is in
 # a subdirectory that does not exist.
 
 $CMD="$XYCE -o bogo_dir/outfile.txt $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
@@ -44,10 +44,10 @@ if ($retval == 0)
 }
 
 # check various error cases
-# this string should be in the output of this failed Xyce run  
-@searchstrings = ("Failure opening bogo_dir/outfile.txt");
+# this string should be in the output of this failed Xyce run
+@searchstrings = ("Netlist error: Invalid basename bogo_dir/outfile.txt specified with -o");
 
 $OUTPUTFILE="$CIRFILE.out";
 $retval = $Tools->checkError($OUTPUTFILE,@searchstrings);
 
-print "Exit code = $retval\n"; exit $retval; 
+print "Exit code = $retval\n"; exit $retval;

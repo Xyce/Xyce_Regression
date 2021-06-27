@@ -30,8 +30,8 @@ system("rm -f $CIRFILE.out $CIRFILE.err");
 
 # run Xyce with -hspice-ext all to get "a as Atto"
 # remove old files if they exist
-system("rm -f $CIR0.all.out $CIR0.all.err $CIR0.all.prn");
-$CMD="$XYCE -o $CIR0.all.prn -hspice-ext all $CIR0 > $CIR0.all.out 2> $CIR0.all.err";
+system("rm -f $CIR0.all*");
+$CMD="$XYCE -o $CIR0.all -hspice-ext all $CIR0 > $CIR0.all.out 2> $CIR0.all.err";
 $retval = system("$CMD");
 if ($retval != 0)
 {
@@ -51,8 +51,8 @@ if ($retval != 0)
 
 # run Xyce with -hspice-ext units to get "a as Atto"
 # remove old files if they exist
-system("rm -f $CIR0.units.out $CIR0.units.err $CIR0.units.prn");
-$CMD="$XYCE -o $CIR0.units.prn -hspice-ext units $CIR0 > $CIR0.units.out 2> $CIR0.units.err";
+system("rm -f $CIR0.units*");
+$CMD="$XYCE -o $CIR0.units -hspice-ext units $CIR0 > $CIR0.units.out 2> $CIR0.units.err";
 $retval = system("$CMD");
 if ($retval != 0)
 {

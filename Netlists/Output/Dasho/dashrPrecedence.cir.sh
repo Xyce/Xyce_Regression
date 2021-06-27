@@ -32,13 +32,13 @@ $CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
 
 $DASHRFILE="dashrOutput";
-$DASHOFILE="dashoOutput";
+$DASHOFILE="dashrDashoOutput";
 $GOLDPRN =~ s/\.prn$//; # remove the .prn at the end.
 
 # Remove the previous output files, including some that are only made if the
 # previous run failed.
-system("rm -f $CIRFILE.prn $CIRFILE.err $CIRFILE.out $CIRFILE.raw $CIRFILE.raw.*");
-system("rm -f $DASHOFILE $DASHRFILE $DASHRFILE.*" );
+system("rm -f $CIRFILE.prn $CIRFILE.err $CIRFILE.out $CIRFILE.raw*");
+system("rm -f $CIRFILE.mt0 $CIRFILE.SENS.csv $DASHOFILE* $DASHRFILE*" );
 
 # run Xyce with both the -r and -o command line options.  -r takes precedence.
 $CMD="$XYCE -r $DASHRFILE -o $DASHOFILE -a $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
@@ -60,20 +60,35 @@ if ($retval != 0)
   }
 }
 
-# check for output files  
+# check for output files
 $xyceexit=0;
 if ( -f "$CIRFILE.prn" ) {
   print STDERR "Extra output file $CIRFILE.prn\n";
   $xyceexit=2;
 }
 
-if ( -f "$DASHOFILE") {
-  print STDERR "Extra output file $DASHOFILE\n";
+if ( -f "$CIRFILE.SENS.csv" ) {
+  print STDERR "Extra output file $CIRFILE.SENS.csv\n";
+  $xyceexit=2;
+}
+
+if ( -f "$CIRFILE.mt0" ) {
+  print STDERR "Extra output file $CIRFILE.mt0\n";
+  $xyceexit=2;
+}
+
+if ( !(-f "$DASHOFILE.mt0")) {
+  print STDERR "Missing output file for .MEASURE, $DASHOFILE.mt0\n";
+  $xyceexit=2;
+}
+
+if ( !(-f "$DASHOFILE.SENS.prn")) {
+  print STDERR "Missing output file for .PRINT SENS, $DASHOFILE.SENS.prn\n";
   $xyceexit=2;
 }
 
 if ( !(-f "$DASHRFILE") ){
-  print STDERR "Missing -o output file $DASHRFILE\n";
+  print STDERR "Missing -r output file $DASHRFILE\n";
   $xyceexit=14;
 }
 
@@ -100,6 +115,23 @@ if (system($CMD) != 0) {
     $retcode = 2;
 }
 
+# verify the other output files
+$fc=$XYCE_VERIFY;
+$fc =~ s/xyce_verify/file_compare/;
+$abstol=1e-4;
+$reltol=1e-3;
+$zerotol=1e-6;
+
+$CMD="$fc $DASHOFILE.SENS.prn $GOLDPRN.SENS.prn $abstol $reltol $zerotol > $DASHOFILE.SENS.prn.out 2> $DASHOFILE.SENS.prn.err";
+if (system($CMD) != 0) {
+    print STDERR "Verification failed on file $DASHOFILE.SENS.prn, see $DASHOFILE.SENS.prn.err\n";
+    $retcode = 2;
+}
+
+$CMD="$fc $DASHOFILE.mt0 $GOLDPRN.mt0 $abstol $reltol $zerotol > $DASHOFILE.mt0.out 2> $DASHOFILE.mt0.err";
+if (system($CMD) != 0) {
+    print STDERR "Verification failed on file $DASHOFILE.mt0, see $DASHOFILE.mt0.err\n";
+    $retcode = 2;
+}
+
 print "Exit code = $retcode\n"; exit $retcode;
-
-
