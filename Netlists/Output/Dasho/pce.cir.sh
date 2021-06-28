@@ -40,7 +40,7 @@ system("rm -f $CIRFILE.prn* $CIRFILE.err $CIRFILE.out $CIRFILE.PCE.*");
 system("rm -f $DASHOFILE* pceGrepOutput pceFoo");
 
 # run Xyce
-$CMD="$XYCE -o $DASHOFILE -delim COMMA $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
+$CMD="$XYCE -o $DASHOFILE.PCE.prn -delim COMMA $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
 $retval=system($CMD);
 
 if ($retval != 0)

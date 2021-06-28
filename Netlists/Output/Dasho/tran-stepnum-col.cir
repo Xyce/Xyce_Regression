@@ -22,6 +22,10 @@
 *      to verify that command line option is ignored when
 *      -o is also specified.
 *
+*   5) the .sh file will use -o tranStepNumColOutput.prn to test
+*      that the default print extension is removed from the
+*      dashoFilename.
+*
 *  For Issue 222, one key feature is that the netlist includes
 * .MEASURE TRAN, .MEASURE TRAN_CONT, .FOUR and .FFT statements.
 ****************************************************************

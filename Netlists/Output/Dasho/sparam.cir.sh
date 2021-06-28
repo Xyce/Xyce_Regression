@@ -32,7 +32,7 @@ system("rm -f $CIRFILE.s1p $CIRFILE.FD.prn sparamFoo $CIRFILE.err $CIRFILE.out")
 system("rm -f $DASHOFILE*");
 
 # run Xyce
-$CMD="$XYCE -o $DASHOFILE $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
+$CMD="$XYCE -o $DASHOFILE.s1p $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
 $retval=system($CMD);
 
 if ($retval != 0)

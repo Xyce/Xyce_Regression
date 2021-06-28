@@ -33,7 +33,7 @@ system("rm -f $CIRFILE.NOISE* $CIRFILE.err $CIRFILE.out");
 system("rm -f $DASHOFILE* noiseGrepOutput noiseFoo");
 
 # run Xyce
-$CMD="$XYCE -o $DASHOFILE $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
+$CMD="$XYCE -o $DASHOFILE.NOISE.prn $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
 $retval=system($CMD);
 
 if ($retval != 0)
