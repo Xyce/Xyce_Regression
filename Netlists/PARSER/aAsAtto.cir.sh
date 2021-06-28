@@ -52,7 +52,7 @@ if ($retval != 0)
 # run Xyce with -hspice-ext units to get "a as Atto"
 # remove old files if they exist
 system("rm -f $CIR0.units*");
-$CMD="$XYCE -o $CIR0.units -hspice-ext units $CIR0 > $CIR0.units.out 2> $CIR0.units.err";
+$CMD="$XYCE -o $CIR0.units -hspice-ext units,separator $CIR0 > $CIR0.units.out 2> $CIR0.units.err";
 $retval = system("$CMD");
 if ($retval != 0)
 {
