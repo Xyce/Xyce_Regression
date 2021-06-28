@@ -20,7 +20,7 @@ $CIRFILE="multipleAgauss.cir";
 $REFCIRFILE="referenceMultipleAgauss.cir";
 
 # Now run that netlist
-$CMD="$XYCE -hspice-ext all $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
+$CMD="$XYCE $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
 if (system($CMD) != 0)
 {
     `echo "Xyce EXITED WITH ERROR! on $CIRFILE" >> $CIRFILE.err`;
@@ -47,7 +47,7 @@ $seed =~ s/Seeding random number generator with ([0-9]*)/\1/;
 print "Seed is $seed\n";
 
 #Now re-run Xyce with reported seed:
-$CMD="$XYCE -hspice-ext all -randseed $seed $REFCIRFILE > $REFCIRFILE.out 2>$REFCIRFILE.err";
+$CMD="$XYCE -randseed $seed $REFCIRFILE > $REFCIRFILE.out 2>$REFCIRFILE.err";
 if (system($CMD) != 0)
 {
     `echo "Xyce EXITED WITH ERROR! on $REFCIRFILE" >> $REFCIRFILE.err`;
