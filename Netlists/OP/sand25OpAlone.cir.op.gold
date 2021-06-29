@@ -1,9 +1,9 @@
 Number of Bipolar Junction Transistor models: 5
-           name    LM111T::QIN    LM111T::QMI    LM111T::QMO    LM111T::QOC        QN2222A
+           name    LM111T:QIN    LM111T:QMI    LM111T:QMO    LM111T:QOC        QN2222A
 Number of Bipolar Junction Transistor instances: 11
            name          X4:Q1          X4:Q2          X5:Q1          X5:Q2          X4:Q4          X5:Q4          X4:Q3
 Number of Diode models: 2
-           name     LM111T::DX         ZN4733
+           name     LM111T:DX         ZN4733
 Number of Diode instances: 3
            name          X4:DP          X5:DP             D1
 Number of Expression Based Voltage or Current Source models: 1
