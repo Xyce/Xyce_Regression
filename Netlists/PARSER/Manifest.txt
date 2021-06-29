@@ -47,4 +47,12 @@ separator4.cir
 separator4.cir.sh
 separator4.cir.tags
 separator4Ref.cir
+separator5.cir
+separator5.cir.sh
+separator5.cir.tags
+separator5Ref.cir
+separator6.cir
+separator6.cir.sh
+separator6.cir.tags
+separator6Ref.cir
 tags
