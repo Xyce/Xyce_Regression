@@ -1,0 +1,16 @@
+*************************************************************
+* Test that the analysis vs. .PRINT line checking works
+* correctly if the primary analysis statement (.TRAN) comes
+* after the .OP statement.
+*
+* See SON Bug 1029 for more details.
+*************************************************************
+
+.OP
+.TRAN 0 1
+.PRINT DC V(1)
+
+V1 1 0 SIN(0 1 1)
+R1 1 0 1
+
+.END
