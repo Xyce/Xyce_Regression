@@ -11,6 +11,10 @@
 *   3) the FILE= qualifier on the .LIN line should
 *      be ignored
 *
+*   4) the .sh file will use -o sparamOutput.s1p to test
+*      that the default print extension is removed from the
+*      dashoFilename.
+*
 * See also SON Bug 1105 for more details
 ****************************************************************
 

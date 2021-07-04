@@ -12,7 +12,7 @@ R2 2 0 1A
 
 * Normalize the answers, so that they match the values
 * for the "A is Amp" run
-.PRINT DC {I(V1)/1e18} {1e18*R1:R} {1e18*R2:R}
+.PRINT DC {I(V1)/1e18} {1e18*R1.R} {1e18*R2.R}
 .DC V1 1 5 1
 
 .END

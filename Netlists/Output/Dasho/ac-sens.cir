@@ -24,6 +24,10 @@
 *      to verify that command line option is ignored when
 *      -o is also specified.
 *
+*   6) the .sh file will use -o acSensOutput.FD.prn to test
+*      that the default print extension is removed from the
+*      dashoFilename.
+*
 *
 * See SON Bug 1170 for more details.
 ***************************************************************

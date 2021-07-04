@@ -17,6 +17,10 @@
 *      to verify that command line option is ignored when
 *      -o is also specified.
 *
+*  5) the .sh file will use -o esOutput.ES.prn to test
+*      that the default print extension is removed from the
+*      dashoFilename.
+*
 * See SON Bug 1201 for more details.
 ***************************************************************
 *Regression test for simple normal distribution sampling

@@ -13,6 +13,10 @@
 *      file with space as the delimiter, with the default
 *      extensions (e.g., dashoFile.PCE.prn or dashoFile.prn).
 *
+*  4) the .sh file will use -o pceOutput.PCE.prn to test
+*      that the default print extension is removed from the
+*      dashoFilename.
+*
 * See SON Bug 1231 for more details.
 ***************************************************************
 

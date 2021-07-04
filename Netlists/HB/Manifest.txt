@@ -1,5 +1,8 @@
 circuit3.cir
 circuit3.cir.sh
+gilbert_cell_hbt1.cir
+gilbert_cell_hbt1.cir.sh
+gilbert_cell_hbt1.cir.tags
 gilbert_cell_hb.cir
 gilbert_cell_hb.cir.sh
 gilbert_cell_hb1.cir

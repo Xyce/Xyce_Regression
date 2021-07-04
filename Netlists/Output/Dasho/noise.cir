@@ -12,6 +12,10 @@
 *      file with space as the delimiter, with the default
 *      extension (dashoFile.NOISE.prn).
 *
+*   3) the .sh file will use -o noiseOutput.NOISE.prn to test
+*      that the default print extension is removed from the
+*      dashoFilename.
+*
 ****************************************************************
 
 * NOISE ANALYSIS: RESISTOR DIVIDER, AMP, AND LP FILTER

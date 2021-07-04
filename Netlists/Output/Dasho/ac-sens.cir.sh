@@ -38,7 +38,7 @@ $GOLDPRN =~ s/\.prn$//; # remove the .prn at the end.
 system("rm -f $CIRFILE.FD* $CIRFILE.TD* $CIRFILE.out $CIRFILE.err");
 system("rm -f $DASHOFILE* acSensGrepOutput acSensFoo*");
 
-$CMD="$XYCE -o $DASHOFILE -delim COMMA $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
+$CMD="$XYCE -o $DASHOFILE.FD.prn -delim COMMA $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
 $retval = system("$CMD");
 if ($retval != 0)
 {

@@ -75,14 +75,47 @@ if ( !(-f "$CIRFILE.ES.noindex.prn"))
     print "Exit code = 14\n"; exit 14;
 }
 
-# test the output files
+# test the output file
+$num_tries=1;
 $retcode = 0;
 $CMD="$XYCE_VERIFY $TMPCIRFILE $CIRFILE.ES.prn $GOLDPRN.ES.prn > $CIRFILE.ES.prn.out 2> $CIRFILE.ES.prn.err";
 $retval = system($CMD);
 $retval = $retval >> 8;
 if ($retval != 0){
-  print STDERR "Comparator exited with exit code $retval on file $CIRFILE.ES.prn\n";
+  print STDERR "Comparator exited with exit code $retval on file $CIRFILE.ES.prn on try $num_tries\n";
   $retcode = 2;
+}
+
+while (($num_tries < 2) && ($retcode !=0))
+{
+  $num_tries++;
+
+  $CMD="$XYCE $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
+  $retval=system($CMD);
+
+  if ($retval != 0)
+  {
+    if ($retval & 127)
+    {
+      print "Exit code = 13\n";
+      printf STDERR "Xyce crashed with signal %d on file %s\n",($retval&127),$CIRFILE;
+      exit 13;
+    }
+    else
+    {
+      print "Exit code = 10\n";
+      printf STDERR "Xyce exited with exit code %d on %s\n",$retval>>8,$CIRFILE;
+      exit 10;
+    }
+  }
+
+  $CMD="$XYCE_VERIFY $TMPCIRFILE $CIRFILE.ES.prn $GOLDPRN.ES.prn >> $CIRFILE.ES.prn.out 2>> $CIRFILE.ES.prn.err";
+  $retval = system($CMD);
+  $retval = $retval >> 8;
+  if ($retval != 0){
+    print STDERR "Comparator exited with exit code $retval on file $CIRFILE.ES.prn on try $num_tries\n";
+    $retcode = 2;
+  }
 }
 
 print "Exit code = $retcode\n"; exit $retcode;
