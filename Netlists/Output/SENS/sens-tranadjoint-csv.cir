@@ -1,6 +1,7 @@
 ********************************************************
-* Test FORMAT=CSV for .PRINT TRANADJOINT 
-* without .STEP
+* Test FORMAT=CSV for .PRINT TRANADJOINT  without .STEP.
+* The .PRINT TRANADJOINT statement comes before the
+* .PRINT TRAN statement.
 *
 ********************************************************
 
@@ -8,7 +9,6 @@ V1 1 0 PWL 0 0 1 1
 R1 1 2 1
 R2 2 0 1
 
-.PRINT TRAN R1:R R2:R V(1) V(2)
 .TRAN 0 1
 .OPTIONS OUTPUT initial_interval=0.1
 
@@ -16,6 +16,8 @@ R2 2 0 1
 .print TRANADJOINT FORMAT=CSV V(1) R1:R R2:R
 .options SENSITIVITY STDOUTPUT=1 adjoint=1 direct=0  
 + adjointTimePoints=0.25,0.5,0.75
+
+.PRINT TRAN R1:R R2:R V(1) V(2)
 
 .end
 
