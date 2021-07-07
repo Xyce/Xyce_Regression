@@ -116,6 +116,10 @@ while (($num_tries < 2) && ($retcode !=0))
     print STDERR "Comparator exited with exit code $retval on file $CIRFILE.ES.prn on try $num_tries\n";
     $retcode = 2;
   }
+  else
+  {
+    $retcode = 0;
+  }
 }
 
 print "Exit code = $retcode\n"; exit $retcode;
