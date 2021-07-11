@@ -1,7 +1,7 @@
 Test errors for measure types that are not supported for NOISE
 ******************************************************************************
 * At present, only the AVG, DERIV, FIND-WHEN, EQN/PARAM, ERR, ERR1, ERR2,
-* INTEG, MAX, MIN, PP, RMS and WHEN measure types are supported for
+* ERROR, INTEG, MAX, MIN, PP, RMS and WHEN measure types are supported for
 * NOISE mode for .MEASURE.  This tests the error messages from the other
 * valid types, that aren't supported for NOISE.
 *

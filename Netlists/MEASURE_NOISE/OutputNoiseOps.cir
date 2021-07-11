@@ -9,7 +9,7 @@
 *  3) An individual noise source contribution (IB) from
 *     a device that has multiple noise sources.
 *
-* See SON Bug 1301 for more details.
+* See SON Bugs 824 and 1301 for more details.
 *****************************************************
 
 *==============  Begin SPICE netlist of main design ============
@@ -32,6 +32,11 @@ R2 0 Vb 6.8k
 R1 Vb Vcc 39k
 C1 1 Vb 10u
 
+* used to make the comparison file for the ERROR measures
+*.noise V(OUT) V1 dec 10 .01 0.1
+*R4 0 Ve 250
+*.print noise FILE=OutputNoiseOpsRawData.NOISE.prn onoise DNO(r4) DNO(q1) DNO(Q1,IB)
+
 * AVG
 .MEASURE NOISE onoiseavg avg onoise
 .MEASURE NOISE dnor4avg avg {DNO(r4)}
@@ -49,6 +54,12 @@ C1 1 Vb 10u
 .MEASURE NOISE dnor4eqn  eqn  {DNO(r4)}
 .MEASURE NOISE dnoq1eqn  eqn  {DNO(q1)}
 .MEASURE NOISE dnoq1ibeqn eqn DNO(q1,ib)
+
+* ERROR
+.measure NOISE FitErrorONOISE ERROR onoise FILE=OutputNoiseOpsRawData.NOISE.prn COMP_FUNCTION=L1NORM INDEPVARCOL=1 DEPVARCOL=2
+.measure NOISE FitErrorDNOR4 ERROR DNO(R4) FILE=OutputNoiseOpsRawData.NOISE.prn COMP_FUNCTION=L1NORM INDEPVARCOL=1 DEPVARCOL=3
+.measure NOISE FitErrorDNOQ1 ERROR DNO(Q1) FILE=OutputNoiseOpsRawData.NOISE.prn COMP_FUNCTION=L1NORM INDEPVARCOL=1 DEPVARCOL=4
+.measure NOISE FitErrorDNOQ1IB ERROR DNO(Q1,IB) FILE=OutputNoiseOpsRawData.NOISE.prn COMP_FUNCTION=L1NORM INDEPVARCOL=1 DEPVARCOL=5
 
 * INTEG
 .MEASURE NOISE onoiseinteg integ onoise

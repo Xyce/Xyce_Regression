@@ -9,7 +9,7 @@
 *  3) An individual noise source contribution (IB) from
 *     a device that has multiple noise sources.
 *
-* See SON Bug 1301 for more details.
+* See SON Bugs 824 and 1301 for more details.
 *****************************************************
 
 *==============  Begin SPICE netlist of main design ============
@@ -32,6 +32,12 @@ R2 0 Vb 6.8k
 R1 Vb Vcc 39k
 C1 1 Vb 10u
 
+* used to make the comparison file for ERROR measures
+*.noise V(OUT) V1 dec 10 .01 0.1
+*R4 0 Ve 250
+*.print noise FILE=InputNoiseOpsRawData.NOISE.prn inoise DNI(r4) DNI(q1) DNI(Q1,IB)
+
+
 * AVG
 .MEASURE NOISE inoiseavg avg inoise
 .MEASURE NOISE dnir4avg avg {DNI(r4)}
@@ -49,6 +55,12 @@ C1 1 Vb 10u
 .MEASURE NOISE dnir4eqn eqn {DNI(r4)}
 .MEASURE NOISE dniq1eqn eqn DNI(q1)
 .MEASURE NOISE dniq1ibeqn eqn {DNI(q1, IB)}
+
+* ERROR
+.measure NOISE FitErrorINOISE ERROR inoise FILE=InputNoiseOpsRawData.NOISE.prn COMP_FUNCTION=L1NORM INDEPVARCOL=1 DEPVARCOL=2
+.measure NOISE FitErrorDNIR4 ERROR DNI(R4) FILE=InputNoiseOpsRawData.NOISE.prn COMP_FUNCTION=L1NORM INDEPVARCOL=1 DEPVARCOL=3
+.measure NOISE FitErrorDNIQ1 ERROR DNI(Q1) FILE=InputNoiseOpsRawData.NOISE.prn COMP_FUNCTION=L1NORM INDEPVARCOL=1 DEPVARCOL=4
+.measure NOISE FitErrorDNIQ1IB ERROR DNI(Q1,IB) FILE=InputNoiseOpsRawData.NOISE.prn COMP_FUNCTION=L1NORM INDEPVARCOL=1 DEPVARCOL=5
 
 * INTEG
 .MEASURE NOISE inoiseinteg integ inoise

@@ -10,6 +10,10 @@ EquationEvalTestNoiseGSfile
 ErrorFuncTestNoise.cir
 ErrorFuncTestNoise.cir.sh
 ErrorFuncTestNoiseGSfile
+ErrorTestNoise.cir
+ErrorTestNoise.cir.sh
+ErrorTestNoiseGSfile
+ErrorTestNoiseRawData.NOISE.prn
 FindWhenTestNoise.cir
 FindWhenTestNoise.cir.sh
 FindWhenTestNoiseGSfile

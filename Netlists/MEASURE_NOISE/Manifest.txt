@@ -10,6 +10,10 @@ EquationEvalTestNoiseGSfile
 ErrorFuncTestNoise.cir
 ErrorFuncTestNoise.cir.sh
 ErrorFuncTestNoiseGSfile
+ErrorTestNoise.cir
+ErrorTestNoise.cir.sh
+ErrorTestNoiseGSfile
+ErrorTestNoiseRawData.NOISE.prn
 FindWhenTestNoise.cir
 FindWhenTestNoise.cir.sh
 FindWhenTestNoiseGSfile
@@ -22,9 +26,11 @@ MaxMinPPTestNoiseGSfile
 InputNoiseOps.cir
 InputNoiseOps.cir.sh
 InputNoiseOpsGSfile
+InputNoiseOpsRawData.NOISE.prn
 OutputNoiseOps.cir
 OutputNoiseOps.cir.sh
 OutputNoiseOpsGSfile
+OutputNoiseOpsRawData.NOISE.prn
 RMSTestNoise.cir
 RMSTestNoise.cir.sh
 RMSTestNoiseGSfile
