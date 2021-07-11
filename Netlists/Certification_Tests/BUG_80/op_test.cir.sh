@@ -24,7 +24,8 @@ $Tools = XyceRegression::Tools->new();
 
 # these search strings are supposed to occur one right after the other in the
 # error output.
-@searchstrings = ( "Analysis type TRAN and print type DC are inconsistent" );
+@searchstrings = ( "Analysis type TRAN and print type DC are inconsistent",
+                   "Analysis type TRAN and print type AC are inconsistent" );
 
 $XYCE="$ARGV[0]";
 #$XYCE_VERIFY=$ARGV[1];

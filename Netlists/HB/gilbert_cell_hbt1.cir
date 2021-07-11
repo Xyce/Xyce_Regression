@@ -79,7 +79,7 @@ V2 1 0 DC 6V
 .hb 1e4 2e2
 .options hbint numfreq=5,3 tahb=1  method=AFM   numtpts=79
 *.options hbint numfreq=5,3 tahb=1 intmodmax=5 method=apft  numtpts=79
-*.options hbint numfreq=5,3 method=hybrid  numtpts=77   tahb=2
+*.options hbint numfreq=5,3 method=AFM
 *.options nonlin in_forcing=0
 *.options timeint reltol=1e-4
 *maxord=1
