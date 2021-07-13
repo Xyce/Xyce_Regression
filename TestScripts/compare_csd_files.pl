@@ -8,13 +8,15 @@
 # Usage:
 # compare_csd_files file1 file2 absTol relTol zeroTol
 
+use strict;
+
 use Scalar::Util qw(looks_like_number);
 
 # Argument processing.  Don't assume any defaults for absTol, relTol and zeroTol.
 # User must explicitly pass them into the script.
 while ( $ARGV[0] ne "-" && $ARGV[0] =~ /^-/ )
 {
-    $diffopts .= " $ARGV[0]";
+    my $diffopts .= " $ARGV[0]";
     shift @ARGV;
 }
 
@@ -25,24 +27,25 @@ if ($#ARGV != 4)
     exit 1;
 }
 
-$testFileName=$ARGV[0];
-$goldFileName=$ARGV[1];
-$absTol=$ARGV[2];
-$relTol=$ARGV[3];
-$zeroTol=$ARGV[4];
+my $testFileName=$ARGV[0];
+my $goldFileName=$ARGV[1];
+my $absTol=$ARGV[2];
+my $relTol=$ARGV[3];
+my $zeroTol=$ARGV[4];
 
 open(TESTFILE,"$testFileName");
 open(GSFILE,"$goldFileName");
 
 # first test if the files have the same number of lines
+my ($testFileCount, $gsCount);
 for ($testFileCount=0; <TESTFILE>; $testFileCount++) { }
 for ($gsCount=0; <GSFILE>; $gsCount++) { }
 
 close(GSFILE);
 close(TESTFILE);
 
-$exitCode=0;
-$foundDataStart=0;
+my $exitCode=0;
+my $foundDataStart=0;
 
 if ($testFileCount != $gsCount) 
 {
@@ -57,7 +60,8 @@ else
   # Re-open the files and compare them line by line.
   open(TESTFILE,"$testFileName");
   open(GSFILE,"$goldFileName");
-  $lineCount=0;
+  my $lineCount=0;
+  my ($lineGS, $lineTestFile, @gsData, @testFileData);
   while( ($lineGS=<GSFILE>) && ($lineTestFile=<TESTFILE>) )
   {
     $lineCount++;
@@ -82,8 +86,8 @@ else
            
     if ($#gsData != $#testFileData)
     {
-      $testLineLen=$#testFileData+1;
-      $gsLineLen=$#gsData+1;
+      my $testLineLen=$#testFileData+1;
+      my $gsLineLen=$#gsData+1;
       print STDERR "File $testFileName and Gold Standard have a different # of elements on line $lineCount:\n";
       print STDERR "File $testFileName had $testLineLen elements\n";
       print STDERR "Gold Standard had $gsLineLen elements\n";
@@ -98,8 +102,9 @@ else
     else
     {
       # the two files have the same number of items on a line.  
-      # compare individual values as scalars or strings  
-      for( $i=0; $i<=$#testFileData; $i++ )
+      # compare individual values as scalars or strings
+      my (@testData, @goldData, $absDiff, $relDiff);   
+      for( my $i=0; $i<=$#testFileData; $i++ )
       {
         if ( ($testFileData[$i] =~ /XBEGIN/) || ($testFileData[$i] =~ /XEND/) )
         {
@@ -160,7 +165,7 @@ else
             # found after the #C line
             @testData = split(/:/,$testFileData[$i]);
             @goldData = split(/:/,$gsData[$i]); 
-            foreach $idx (0 .. 1)
+            foreach my $idx (0 .. 1)
             {
               if ( ( abs($testData[$idx]) <= $zeroTol ) && ( abs($goldData[$idx]) <= $zeroTol ) )
 	      {
@@ -168,7 +173,7 @@ else
 	      }
               else
               {
-	        $absDiff = abs($testData[$idx] - $goldData[$idx]);
+		$absDiff = abs($testData[$idx] - $goldData[$idx]);
                 if (abs($goldData[$idx]) > 0) 
 		{
                   $relDiff = $absDiff / abs($goldData[$idx]);

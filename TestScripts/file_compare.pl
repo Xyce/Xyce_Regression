@@ -8,8 +8,13 @@
 # Usage:
 # file_compare.pl testfile goodfile absTol relTol zeroTol
 
+use strict; 
+
 use Scalar::Util qw(looks_like_number);
 use Getopt::Long;
+
+my ($debug, $help);
+my ($absTol, $relTol, $zeroTol, $freqRelTol);
 
 # used to print additional debugging information, mainly about
 # successful comparisons
@@ -40,11 +45,11 @@ if ($#ARGV != 4)
     exit 1;
 }
 
-$testFileName=$ARGV[0];
-$goldFileName=$ARGV[1];
-$absTol=$ARGV[2];
-$relTol=$ARGV[3];
-$zeroTol=$ARGV[4];
+my $testFileName=$ARGV[0];
+my $goldFileName=$ARGV[1];
+my $absTol=$ARGV[2];
+my $relTol=$ARGV[3];
+my $zeroTol=$ARGV[4];
 
 # verify input, during debug mode
 debugPrint "testFile = $testFileName\n";
@@ -67,13 +72,14 @@ open(TESTFILE,"$testFileName");
 open(GSFILE,"$goldFileName");
 
 # first test if the files have the same number of lines
+my ($testFileCount, $gsCount);
 for ($testFileCount=0; <TESTFILE>; $testFileCount++) { }
 for ($gsCount=0; <GSFILE>; $gsCount++) { }
 
 close(GSFILE);
 close(TESTFILE);
 
-$exitCode=0;
+my $exitCode=0;
 if ($testFileCount != $gsCount) 
 {
   print STDERR "file $testFileName doesn't match the Gold Standard\n";
@@ -87,7 +93,8 @@ else
   debugPrint "Line counts match, beginning detailed comparison\n";
   open(TESTFILE,"$testFileName");
   open(GSFILE,"$goldFileName");
-  $lineCount=0;
+  my $lineCount=0;
+  my ($lineGS, $lineTestFile, @gsData, @testFileData);
   while( ($lineGS=<GSFILE>) && ($lineTestFile=<TESTFILE>) )
   {
     $lineCount++;
@@ -108,8 +115,8 @@ else
            
     if ($#gsData != $#testFileData)
     {
-      $testLineLen=$#testFileData+1;
-      $gsLineLen=$#gsData+1;
+      my $testLineLen=$#testFileData+1;
+      my $gsLineLen=$#gsData+1;
       print STDERR "File $testFileName and Gold Standard have a different # of elements on line $lineCount:\n";
       print STDERR "File $testFileName had $testLineLen elements\n";
       print STDERR "Gold Standard had $gsLineLen elements\n";
@@ -119,7 +126,7 @@ else
     {
       # the two files have the same number of items on a line.  
       # compare individual values as scalars  
-      for( $i=0; $i<=$#testFileData; $i++ )
+      for( my $i=0; $i<=$#testFileData; $i++ )
       {
         if ( looks_like_number($testFileData[$i]) && looks_like_number($gsData[$i]) )
         { 
@@ -139,8 +146,8 @@ else
 	  }
           else
           {
-	    $absDiff = abs($testFileData[$i] - $gsData[$i]);
-            $relDiff = $absDiff / abs($gsData[$i]);   
+	    my $absDiff = abs($testFileData[$i] - $gsData[$i]);
+            my $relDiff = $absDiff / abs($gsData[$i]);   
             if ( ( $absDiff < $absTol ) && ( $relDiff < $relTol ) )
             {
               # two numeric fields match to within specified absolute tolerance and relative tolerance
