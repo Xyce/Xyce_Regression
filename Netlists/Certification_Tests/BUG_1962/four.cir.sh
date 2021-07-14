@@ -49,13 +49,14 @@ $GOLDFOUR=$GOLDPRN;
 $GOLDFOUR =~ s/prn/four0/;
 
 $fc = $XYCE_VERIFY;
-$fc =~ s/xyce_verify/file_compare/;
+$fc =~ s/xyce_verify/compare_fourier_files/;
 $abstol=1e-5;
+$phaseabstol=1e-5;
 $reltol=1e-3;
 $zerotol=1e-6;
 
 $retval = 0;
-$CMD="$fc $CIRFILE.four0 $GOLDFOUR $abstol $reltol $zerotol > $CIRFILE.four0.out 2> $CIRFILE.four0.err";
+$CMD="$fc $CIRFILE.four0 $GOLDFOUR $abstol $phaseabstol $reltol $zerotol > $CIRFILE.four0.out 2> $CIRFILE.four0.err";
 if (system($CMD) != 0) {
     print STDERR "Verification failed on file $CIRFILE.four0, see $CIRFILE.four0.err\n";
     $retval = 2;
