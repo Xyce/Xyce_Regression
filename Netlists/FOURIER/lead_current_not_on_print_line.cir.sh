@@ -50,11 +50,10 @@ if (not -s "$CIRFILE.four0" )
 
 #If this is a VALGRIND run, we don't do our normal verification, we
 # merely run "valgrind_check.sh" as if it were xyce_verify.pl
-
 if ($XYCE_VERIFY =~ m/valgrind_check/)
 {
     print STDERR "DOING VALGRIND RUN INSTEAD OF REAL RUN!";
-    if (system("$XYCE_VERIFY $FOURFILE junk $FOURFILE.prn > $FOURFILE.prn.out 2>&1 $FOURFILE.prn.err"))
+    if (system("$XYCE_VERIFY $CIRFILE junk $CIRFILE.prn > $CIRFILE.prn.out 2>&1 $CIRFILE.prn.err"))
     {
         print "Exit code = 2 \n";
         exit 2;
