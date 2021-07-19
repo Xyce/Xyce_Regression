@@ -134,6 +134,10 @@ $abstol=1e-4;
 $reltol=1e-3;
 $zerotol=1e-6;
 
+$cff=$XYCE_VERIFY;
+$cff =~ s/xyce_verify/compare_fourier_files/;
+$phaseabstol = $abstol;
+
 $CMD="$fc $DASHOFILE.prn $GOLDPRN.prn $abstol $reltol $zerotol > $DASHOFILE.prn.out 2> $DASHOFILE.prn.err";
 if (system($CMD) != 0) {
     print STDERR "Verification failed on file $DASHOFILE.prn, see $DASHOFILE.prn.err\n";
@@ -171,6 +175,12 @@ foreach $i (0 ... $stepNum-1)
   $CMD="$fc $DASHOFILE.fft$i $GOLDPRN.fft$i $abstol $reltol $zerotol > $DASHOFILE.fft$i.out 2> $DASHOFILE.fft$i.err";
   if (system($CMD) != 0) {
       print STDERR "Verification failed on file $DASHOFILE.fft$i, see $DASHOFILE.fft$i.err\n";
+      $retcode = 2;
+  }
+
+  $CMD="$cff $DASHOFILE.four$i $GOLDPRN.four$i $abstol $phaseabstol $reltol $zerotol > $DASHOFILE.four$i.out 2> $DASHOFILE.four$i.err";
+  if (system($CMD) != 0) {
+      print STDERR "Verification failed on file $DASHOFILE.four$i, see $DASHOFILE.four$i.err\n";
       $retcode = 2;
   }
 }

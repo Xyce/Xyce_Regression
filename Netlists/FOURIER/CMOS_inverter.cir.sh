@@ -23,237 +23,78 @@ $Tools = XyceRegression::Tools->new();
 # output from comparison to go into $CIRFILE.prn.out and the STDERR output from
 # comparison to go into $CIRFILE.prn.err.  
 
-use Scalar::Util qw(looks_like_number);
-
 $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
 #$XYCE_COMPARE=$ARGV[2];
 $CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
 
-# Comparison tolerances. 
-# phase is output in degrees and for Fourier components with very small magnitude, 
-# it can be have several degrees of scatter.  Thus it gets its own abstol
-my $absTol = 2.0e-6;
-my $phaseAbsTol = 1.0;
-my $relTol = 0.02;
-my $zeroTol = 1.0e-8;
-
-
-# change ending on gold standard file from ".prn" as passed in to ".gs" 
-# which is the file storing the Fourier results.
-
-$GOLDPRN =~ s/prn$/gs/;
-$CIRFILE =~ s/\.cir$//; # remove the .cir at the end.
-$MEASUREFILE = $CIRFILE . "_measure.cir";
-$FOURFILE = $CIRFILE . "_four.cir";
+# remove the .prn at the end
+$GOLDPRN =~ s/\.prn$//;
 
 $retval = -1;
-$retval=$Tools->wrapXyce($XYCE,$MEASUREFILE);
+$retval=$Tools->wrapXyce($XYCE,$CIRFILE);
 if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
-if (not -s "$MEASUREFILE.prn" ) { print "Exit code = 14\n"; exit 14; }
-
-#If this is a VALGRIND run, we don't do our normal verification, we
-# merely run "valgrind_check.sh" as if it were xyce_verify.pl
-
-if ($XYCE_VERIFY =~ m/valgrind_check/)
-{
-    print STDERR "DOING VALGRIND RUN INSTEAD OF REAL RUN!";
-    if (system("$XYCE_VERIFY $MEASUREFILE junk $MEASUREFILE.prn > $MEASUREFILE.prn.out 2>&1 $MEASUREFILE.prn.err"))
-    {
-        print "Exit code = 2 \n";
-        exit 2;
-    }
-    else
-    {
-        print "Exit code = 0 \n";
-        exit 0;
-    }
-}
-
-$retval = -1;
-$retval=$Tools->wrapXyce($XYCE,$FOURFILE);
-if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
-if (not -s "$FOURFILE.prn" ) { print "Exit code = 14\n"; exit 14; }
-
-#If this is a VALGRIND run, we don't do our normal verification, we
-# merely run "valgrind_check.sh" as if it were xyce_verify.pl
-
-if ($XYCE_VERIFY =~ m/valgrind_check/)
-{
-    print STDERR "DOING VALGRIND RUN INSTEAD OF REAL RUN!";
-    if (system("$XYCE_VERIFY $FOURFILE junk $FOURFILE.prn > $FOURFILE.prn.out 2>&1 $FOURFILE.prn.err"))
-    {
-        print "Exit code = 2 \n";
-        exit 2;
-    }
-    else
-    {
-        print "Exit code = 0 \n";
-        exit 0;
-    }
-}
 
 #
 # Did we make a measure file
 #
-if (not -s "$MEASUREFILE.mt0" ) { print "Exit code = 17\n"; exit 17; }
-
+if (not -s "$CIRFILE.mt0" )
+{ 
+  print "Missing output file $CIRFILE.mt0\n";
+  print "Exit code = 17\n"; exit 17;
+}
 #
 # Did we make a Fourier file
 #
-if (not -s "$FOURFILE.four0" ) { print "Exit code = 17\n"; exit 17; }
-
-# Now look for the measure output file and compare it to a 
-# gold standard line by line.
-#
-open(RESULTS, "$MEASUREFILE.mt0");
-open(RESULTS2, "$FOURFILE.four0");
-open(GOLD_STD, $GOLDPRN);
-
-# Advance each of these files to where the results are, bypass the header information.
-$retval = 2;
-while( $line=<RESULTS> )
+if (not -s "$CIRFILE.four0" )
 {
-  # process a line into text and values.
-  chop $line;
-  # Remove leading spaces on line, otherwise the spaces become 
-  # element 0 of "@lineOfDataFromXyce" instead of the first column of data.
-  $line =~ s/^\s*//;
-  @lineOfDataFromXyce = (split(/[\s,]+/, $line));
-  if ( $lineOfDataFromXyce[0] eq 'Harmonic' )
-  {
-    $retval = 0;
-    last;
-  }
+  print "Missing output file $CIRFILE.four0\n"; 
+  print "Exit code = 2\n"; exit 2;
 }
-if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
 
-$retval = 2;
-while( $line2=<RESULTS2> )
-{
-  # process a line into text and values.
-  chop $line2;
-  # Remove leading spaces on line, otherwise the spaces become 
-  # element 0 of "@lineOfDataFromXyce" instead of the first column of data.
-  $line2 =~ s/^\s*//;
-  @lineOfDataFromXyce = (split(/[\s,]+/, $line2));
-  if ( $lineOfDataFromXyce[0] eq 'Harmonic' )
-  {
-    $retval = 0;
-    last;
-  }
-}
-if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
+#If this is a VALGRIND run, we don't do our normal verification, we
+# merely run "valgrind_check.sh" as if it were xyce_verify.pl
 
-$retval = 2;
-while( $line_gs=<GOLD_STD> )
+if ($XYCE_VERIFY =~ m/valgrind_check/)
 {
-  # process a line into text and values.
-  chop $line_gs;
-  # Remove leading spaces on line, otherwise the spaces become 
-  # element 0 of "@lineOfDataFromXyce" instead of the first column of data.
-  $line_gs =~ s/^\s*//;
-  @lineOfDataFromXyce = (split(/[\s,]+/, $line_gs));
-  if ( $lineOfDataFromXyce[0] eq 'Harmonic' )
-  {
-    $retval = 0;
-    last;
-  }
-}
-if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
-
-# Now compare data from this point on.
-while( ($line=<RESULTS>) && ($line2=<RESULTS2>) && ($line_gs=<GOLD_STD>) )
-{
-  # process a line into text and values.
-  chop $line;
-  # Remove leading spaces on line, otherwise the spaces become 
-  # element 0 of "@lineOfDataFromXyce" instead of the first column of data.
-  $line =~ s/^\s*//;
-  @lineOfDataFromXyce = (split(/[\s,]+/, $line));
-  
-  # process a line into text and values.
-  chop $line2;
-  # Remove leading spaces on line, otherwise the spaces become 
-  # element 0 of "@lineOfDataFromXyce" instead of the first column of data.
-  $line2 =~ s/^\s*//;
-  @line2OfDataFromXyce = (split(/[\s,]+/, $line2));
-  
-  # process a line_gs into text and values.
-  chop $line_gs;
-  $line_gs =~ s/^\s*//;
-  @gsLineOfDataFromXyce = (split(/[\s,]+/, $line_gs));
-  
-  if( ($#lineOfDataFromXyce != $#gsLineOfDataFromXyce) || ($#line2OfDataFromXyce != $#gsLineOfDataFromXyce) )
-  {
-    print "Xyce's measure or Fourier file doesn't match the gold standard\n";
-    print "Xyce's measure output: $line\n";
-    print "Xyce's Fourier output: $line2\n";
-    print "Gold Standard: $line_gs\n";
-    $retval=2;
-  }
-  else
-  {
-    # the two files have the same number of items on a line.  
-    # compare individual values as scalars  This will have the 
-    # effect of 
-    for( $i=0; $i<=$#lineOfDataFromXyce; $i++ )
+    print STDERR "DOING VALGRIND RUN INSTEAD OF REAL RUN!";
+    if (system("$XYCE_VERIFY $CIRFILE junk $CIRFILE.prn > $CIRFILE.prn.out 2>&1 $CIRFILE.prn.err"))
     {
-      if (looks_like_number($lineOfDataFromXyce[$i]) && looks_like_number($line2OfDataFromXyce[$i]) && looks_like_number($gsLineOfDataFromXyce[$i] ) )
-      {
-        if( (abs( $lineOfDataFromXyce[$i] ) < $zeroTol) && (abs( $line2OfDataFromXyce[$i] ) < $zeroTol) &&  (abs( $gsLineOfDataFromXyce[$i] ) < $zeroTol ))
-        {
-           #print "number compare below zeroTol $lineOfDataFromXyce[$i] , $gsLineOfDataFromXyce[$i] ok\n";
-        }
-        elsif( (($i==3) || ($i==5)) && (abs( $lineOfDataFromXyce[$i] - $gsLineOfDataFromXyce[$i] ) < $phaseAbsTol ) && (abs( $line2OfDataFromXyce[$i] - $gsLineOfDataFromXyce[$i] ) < $phaseAbsTol )) 
-        {
-           # phase needs different handling
-           #print "Phase comparison passed $lineOfDataFromXyce[$i] , $gsLineOfDataFromXyce[$i]\n";
-        }
-        elsif( (abs( $lineOfDataFromXyce[$i] - $gsLineOfDataFromXyce[$i] ) < $absTol ) && (abs( $line2OfDataFromXyce[$i] - $gsLineOfDataFromXyce[$i] ) < $absTol )) 
-        {
-           # regular compare
-        }
-        else
-        {
-          print "$MEASUREFILE.mt0, $FOURFILE.four0 and $GOLDPRN found a numeric difference\n";
-          print "Comparing Xyce's measure data \"$lineOfDataFromXyce[$i]\" and Fourier data \"$line2OfDataFromXyce[$i]\" to GS data \"$gsLineOfDataFromXyce[$i]\" as ";
-          print "Failed numeric compare\n";
-          $retval=2;
-          last;
-        }
-      }
-      elsif( ($lineOfDataFromXyce[$i] eq $gsLineOfDataFromXyce[$i]) && ($line2OfDataFromXyce[$i] eq $gsLineOfDataFromXyce[$i]) )
-      {
-        # same in string context so ok.
-        print "string compare of $lineOfDataFromXyce[$i] and $gsLineOfDataFromXyce[$i]ok\n";
-      }
-      else
-      {
-        print "Elements failed compare:\n";
-        print "Xyce measure produced: \"$lineOfDataFromXyce[$i]\"\n";
-        print "Xyce Fourier produced: \"$line2OfDataFromXyce[$i]\"\n";
-        print "Gold standard: \"$gsLineOfDataFromXyce[$i]\"\n";
-        $retval=2;
-        last;
-      }
-    
+        print "Exit code = 2 \n";
+        exit 2;
     }
-  
-  }
-}
-close(RESULTS);
-close(RESULTS2);
-close(GOLD_STD);
-
-if ( $retval != 0 )
-{
-  print "Exit code = $retval\n"; 
-  exit $retval;
+    else
+    {
+        print "Exit code = 0 \n";
+        exit 0;
+    }
 }
 
-print "Exit code = $retval\n"; 
-exit $retval;
+# verify .FOUR and .MEASURE output
+$retcode=0;
 
+$fc=$XYCE_VERIFY;
+$fc =~ s/xyce_verify/compare_fourier_files/;
 
+# Phase is output in degrees and for Fourier components with very small magnitude, 
+# it can be have several degrees of scatter.  Thus it gets its own phaseabstol
+$abstol = 2.0e-6;
+$phaseabstol = 1.0;
+$reltol = 0.02;
+$zerotol = 1.0e-8;
+
+$CMD="$fc $CIRFILE.four0 $GOLDPRN.four0 $abstol $phaseabstol $reltol $zerotol > $CIRFILE.four.out 2> $CIRFILE.four.err";
+if (system($CMD) != 0) {
+    print STDERR "Verification failed on file $CIRFILE.four0, see $CIRFILE.four0.err\n";
+    $retcode = 2;
+}
+
+$CMD="$fc $CIRFILE.mt0 $GOLDPRN.mt0 $abstol $phaseabstol $reltol $zerotol > $CIRFILE.mt0.out 2> $CIRFILE.mt0.err";
+if (system($CMD) != 0) {
+    print STDERR "Verification failed on file $CIRFILE.mt0, see $CIRFILE.mt0.err\n";
+    $retcode = 2;
+}
+
+print "Exit code = $retcode\n"; 
+exit $retcode;

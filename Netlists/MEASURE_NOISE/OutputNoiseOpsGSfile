@@ -32,6 +32,22 @@ Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e-01
 DNOQ1IBEQN = 5.475262e-15
 Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e-01
 
+FITERRORONOISE = 1.219785e-14
+COMP_FUNCTION was L1NORM
+Measure Start Freq= 1.000000e-02        Measure End Freq= 1.000000e-01
+
+FITERRORDNOR4 = 4.886730e-17
+COMP_FUNCTION was L1NORM
+Measure Start Freq= 1.000000e-02        Measure End Freq= 1.000000e-01
+
+FITERRORDNOQ1 = 9.633106e-15
+COMP_FUNCTION was L1NORM
+Measure Start Freq= 1.000000e-02        Measure End Freq= 1.000000e-01
+
+FITERRORDNOQ1IB = 9.565773e-15
+COMP_FUNCTION was L1NORM
+Measure Start Freq= 1.000000e-02        Measure End Freq= 1.000000e-01
+
 ONOISEINTEG = 8.382908e-16
 Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e-01
 

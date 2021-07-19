@@ -134,6 +134,8 @@ SweepParams_parseSweepParams.cir
 SweepParams_parseSweepParams.cir.sh
 SweepParams_parseSweepParams1.cir
 SweepParams_parseSweepParams2.cir
+TRAN_setAnalysisParams.cir
+TRAN_setAnalysisParams.cir.sh
 exclude
 tags
 DeviceBlock_extractSourceFields_2.cir.sh
