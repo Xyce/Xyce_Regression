@@ -15,7 +15,7 @@ use Scalar::Util qw(looks_like_number);
 use Getopt::Long;
 
 my ($debug, $help);
-my ($absTol, $phaseAbsTol, $relTol, $zeroTol);
+my ($absTol, $phaseAbsTol, $relTol, $phaseRelTol, $zeroTol);
 
 # used to print additional debugging information, mainly about
 # successful comparisons
@@ -30,33 +30,34 @@ sub debugPrint
 
 if ( defined $help )
 {
-  print "Usage: $0 [options] testfile goodfile absTol phaseAbsTol relTol zeroTol\n";
+  print "Usage: $0 [options] testfile goodfile absTol relTol phaseAbsTol phaseRelTol zeroTol\n";
   print "options:\n";
   print "--debug\n";
   print "--help\n";
   exit 0;
 }
 
-# Argument processing.  Don't assume any defaults for absTol, relTol and zeroTol.
+# Argument processing.  Don't assume any defaults for absTol, relTol, phaseAbsTol, phaseRelTol and zeroTol.
 # User must explicitly pass them into the script.
-if ($#ARGV != 5)
+if ($#ARGV != 6)
 {
     print STDERR "Invalid number of arguments on command line.\n";
-    print STDERR "Usage: $0 [options] testfile goodfile absTol phaseAbsTol relTol zeroTol\n";
+    print STDERR "Usage: $0 [options] testfile goodfile absTol relTol phaseAbsTol phaseRelTol zeroTol\n";
     exit 1;
 }
 
 my $testFileName=$ARGV[0];
 my $goldFileName=$ARGV[1];
 my $absTol=$ARGV[2];
-my $phaseAbsTol=$ARGV[3];
-my $relTol=$ARGV[4];
-my $zeroTol=$ARGV[5];
+my $relTol=$ARGV[3];
+my $phaseAbsTol=$ARGV[4];
+my $phaseRelTol=$ARGV[5];
+my $zeroTol=$ARGV[6];
 
 # verify input, during debug mode
 debugPrint "testFile = $testFileName\n";
 debugPrint "goldFile = $goldFileName\n";
-debugPrint "(absTol phaseAbsTol relTol zeroTol) = ($absTol $phaseAbsTol $relTol $zeroTol)\n\n";
+debugPrint "(absTol relTol phaseAbsTol phaseRelTol zeroTol) = ($absTol $relTol $phaseAbsTol $phaseRelTol $zeroTol)\n\n";
 
 # open files and check that the files have the same number of lines
 if (not -s "$goldFileName" )
@@ -163,11 +164,23 @@ else
           {
             my $absDiff = abs($testFileData[$i] - $gsData[$i]);
             my $relDiff = $absDiff / abs($gsData[$i]);
-            if ( ($headerline==0) && (($i==3) || ($i==5)) && ($absDiff < $phaseAbsTol) && ($relDiff < $relTol) )
+            if ( ($headerline==0) && (($i==3) || ($i==5)) )
             {
-               # Phase needs different handling, but all lines with phase values only have numbers
-               # on that line.  So they are not a "header line".
-               debugPrint "Phase comparison passed $testFileData[$i] , $gsData[$i]\n";
+              # Phase needs different handling, but all lines with phase values only have numbers
+              # on that line.  So they are not a "header line".
+              if ( ($absDiff < $phaseAbsTol) && ($relDiff < $phaseRelTol) )
+              {
+                debugPrint "Phase comparison passed $testFileData[$i] , $gsData[$i]\n";
+                debugPrint "Calculated absDiff and relDiff = ($absDiff,$relDiff)\n";
+              }
+              else
+              {
+                print STDERR "Phase fields on line failed compare on line $lineCount:\n";
+                print STDERR "File $testFileName had \"$testFileData[$i]\" while Gold Standard had \"$gsData[$i]\" \n";
+                print STDERR "Calculated absDiff and relDiff = ($absDiff,$relDiff)\n";
+                $exitCode=2;
+                last;              
+              }
             }
             elsif ( ($headerline==1) && (($prevWord eq "Harmonics:") || ($prevWord eq "Gridsize:")) )
             {

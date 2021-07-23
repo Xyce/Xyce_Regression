@@ -69,14 +69,15 @@ $retcode=0;
 $fc=$XYCE_VERIFY;
 $fc =~ s/xyce_verify/compare_fourier_files/;
 
-# Phase is output in degrees and for Fourier components with very small magnitude, 
-# it can be have several degrees of scatter.  Thus it gets its own phaseabstol
+# Phase is output in degrees and for Fourier components with very small magnitude. It 
+# can have several degrees of scatter.  Thus it gets its own phaseabstol and phasereltol.
 $abstol = 2.0e-6;
-$phaseabstol = 1.0;
 $reltol = 0.02;
+$phaseabstol = 1.0;
+$phasereltol=0.02;
 $zerotol = 1.0e-8;
 
-$CMD="$fc $CIRFILE.four0 $GOLDPRN.four0 $abstol $phaseabstol $reltol $zerotol > $CIRFILE.four.out 2> $CIRFILE.four.err";
+$CMD="$fc $CIRFILE.four0 $GOLDPRN.four0 $abstol $reltol $phaseabstol $phasereltol $zerotol > $CIRFILE.four.out 2> $CIRFILE.four.err";
 if (system($CMD) != 0) {
     print STDERR "Verification failed on file $CIRFILE.four0, see $CIRFILE.four0.err\n";
     $retcode = 2;

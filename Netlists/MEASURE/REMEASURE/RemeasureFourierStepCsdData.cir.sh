@@ -33,11 +33,11 @@ $CIRFILE=$ARGV[3];
 
 # phase is output in degrees and for fourier components with very small magnitude, 
 # it can be have several degrees of scatter.  Thus it gets its own abstol
-my $phaseAbsTol = 1.0;
-my $relTol = 0.01;
-my $zeroTol = 1.0e-8;
-my $expectedDoubleCount=51;
-my $defaultPrecision=6;
+$absTol = 0.5;
+$relTol = 0.01;
+$phaseAbsTol = 1.0;
+$phaseRelTol = 0.01;
+$zeroTol = 1.0e-8;
 
 # remove previous output files
 system("rm -f $CIRFILE.csd $CIRFILE.out $CIRFILE.err $CIRFILE.mt* $CIRFILE.remeasure.*");
@@ -99,7 +99,6 @@ if ($retval !=0)
   }
 }
 
-
 # Did we make the measure files
 if ( (not -s "$CIRFILE.mt0") ||  (not -s "$CIRFILE.mt1") || (not -s "$CIRFILE.mt2") )
 { 
@@ -114,33 +113,24 @@ move("$CIRFILE.temp.mt1","$CIRFILE.mt1");
 move("$CIRFILE.mt2","$CIRFILE.remeasure.mt2");
 move("$CIRFILE.temp.mt2","$CIRFILE.mt2");
 
-# now compare the re-measured and original file contents
-$retval = MeasureCommon::compareFourierMeasureFiles("$CIRFILE.remeasure.mt0", "$CIRFILE.mt0", $phaseAbsTol, $relTol, $zeroTol, $defaultPrecision,$expectedDoubleCount);
-if ( $retval != 0 )
-{
-  print "test Failed for re-measure of Step 0!\n";
-  print "Exit code = $retval\n"; 
-  exit $retval;
-}
+# Phase is output in degrees and for fourier components with very small magnitude.  So, it 
+# can have several degrees of scatter.  Thus it gets its own phaseAbsTol and phaseRelTol.
+$fc=$XYCE_VERIFY;
+$fc =~ s/xyce_verify/compare_fourier_files/;
 
-$retval =  MeasureCommon::compareFourierMeasureFiles("$CIRFILE.remeasure.mt1","$CIRFILE.mt1", $phaseAbsTol, $relTol, $zeroTol, $defaultPrecision,$expectedDoubleCount);
-if ( $retval != 0 )
+# now compare the re-measured and original file contents
+foreach $i (0 .. 2)
 {
-  print "test Failed for re-measure of Step 1!\n";
-  print "Exit code = $retval\n"; 
-  exit $retval;
+  $CMD = "$fc $CIRFILE.remeasure.mt$i $CIRFILE.mt$i $absTol $relTol $phaseAbsTol $phaseRelTol $zeroTol > $CIRFILE.remeasure.mt$i.out 2> $CIRFILE.remeasure.mt$i.err";
+  $retval=system($CMD);
+  $retval= $retval >> 8;
+  if ( $retval != 0 )
+  {
+    print "test Failed for re-measure of step $i\n";
+    print "Exit code = $retval\n"; 
+    exit $retval;
+  }
 }
   
-$retval =  MeasureCommon::compareFourierMeasureFiles("$CIRFILE.remeasure.mt2", "$CIRFILE.mt2", $phaseAbsTol, $relTol, $zeroTol, $defaultPrecision,$expectedDoubleCount);
-if ( $retval != 0 )
-{
-  print "test Failed for re-measure of Step 2!\n";
-  print "Exit code = $retval\n"; 
-  exit $retval;
-}
-  
-print "test Passed!\n";
 print "Exit code = $retval\n"; 
 exit $retval;
-
-

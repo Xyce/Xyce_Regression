@@ -1,3 +1,6 @@
+* Test FOUR measure with .STEP.  Also test PRECISION qualifier for
+* FOUR measure.
+
 * Jfet Transient Sine wave 6 volt input signal to output 
 
 Vdd   Vdd     0       DC 20
@@ -16,8 +19,8 @@ Xamp1 Vin Vdd 0 Vout  amp2n3819
 
 .PRINT TRAN V(Vin) V(Vout)
 
-.MEASURE TRAN fourVP FOUR V(Vout) AT=1e6 
-
+.MEASURE TRAN fourVP FOUR V(Vout) AT=1e6 PRECISION=7
+.MEASURE TRAN LASTMEASURE MAX V(Vout) PRECISION=7
 
 * Amplifier subcircuit
 

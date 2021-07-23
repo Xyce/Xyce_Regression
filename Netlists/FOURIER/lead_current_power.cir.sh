@@ -32,11 +32,12 @@ $CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
 
 # Comparison tolerances.
-# Phase is output in degrees and for Fourier components with very small magnitude,
-# It can be have several degrees of scatter.  Thus it gets its own abstol.
+# Phase is output in degrees and for Fourier components with very small magnitude.  It
+# can have several degrees of scatter.  Thus it gets its own phaseabstol and phasereltol.
 $absTol = 2.0e-6;
-$phaseAbsTol = 1.0;
 $relTol = 0.02;
+$phaseAbsTol = 1.0;
+$phaseRelTol = 0.02;
 $zeroTol = 1.0e-8;
 
 # remove the .prn at the end
@@ -73,7 +74,7 @@ if (not -s "$CIRFILE.four0" ) { print "Exit code = 17\n"; exit 17; }
 $retval=0;
 $fc = $XYCE_VERIFY;
 $fc=~ s/xyce_verify/compare_fourier_files/;
-$CMD="$fc $CIRFILE.four0 $GOLDPRN.four0 $absTol $phaseAbsTol $relTol $zeroTol > $CIRFILE.four0.out 2> $CIRFILE.four0.err";
+$CMD="$fc $CIRFILE.four0 $GOLDPRN.four0 $absTol $relTol $phaseAbsTol $phaseRelTol $zeroTol > $CIRFILE.four0.out 2> $CIRFILE.four0.err";
 $retval = system("$CMD");
 $retval = $retval >> 8;
 if ($retval != 0){

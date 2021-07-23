@@ -1138,7 +1138,7 @@ sub checkRemeasure
   my $numContMeasures=0;
 
   # file extension allows checkRemeasure() to work with both prn and csd files.
-  # If not file extension is specified then the default is prn.  mSuffix allows
+  # If file extension is not specified then the default is prn.  mSuffix allows
   # this function to work with TRAN (mt), AC (ma) or DC (ms).  The default is mt.
   if (not defined $fileExt) { $fileExt = "prn"; }
   if (not defined $stepNum) {$stepNum = 1;}
@@ -1191,7 +1191,8 @@ sub checkRemeasure
     }
   }
 
-  # use file_compare 
+  # use file_compare
+  $retval = 0; 
   my $dirname = `dirname $XYCE_VERIFY`;
   chomp $dirname;
   my $fc = "$dirname/file_compare.pl";
@@ -1201,12 +1202,13 @@ sub checkRemeasure
   {
     move("$CIRFILE.$mSuffix$i","$CIRFILE.remeasure.$mSuffix$i");
     move("$CIRFILE.temp.$mSuffix$i","$CIRFILE.$mSuffix$i");
-    `$fc $CIRFILE.remeasure.$mSuffix$i $CIRFILE.$mSuffix$i $absTol $relTol $zeroTol > $CIRFILE.remeasure.$mSuffix$i.out 2> $CIRFILE.remeasure.$mSuffix$i.err`;
+    $CMD="$fc $CIRFILE.remeasure.$mSuffix$i $CIRFILE.$mSuffix$i $absTol $relTol $zeroTol > $CIRFILE.remeasure.$mSuffix$i.out 2> $CIRFILE.remeasure.$mSuffix$i.err";
+    $retval = system($CMD);
     $retval=$? >> 8;
     if ($retval != 0)
     {
       print("Re-measure failed for step $i on file $CIRFILE.$mSuffix$i\n");
-      return $retval;
+      return 2;
     }
 
     for (my $j=0; $j<$numContMeasures; $j=$j+1)
@@ -1214,12 +1216,13 @@ sub checkRemeasure
       move("$CIRFILE\_$contMeasureNames[$j].$mSuffix$i","$CIRFILE\_$contMeasureNames[$j].remeasure.$mSuffix$i");
       move("$CIRFILE\_$contMeasureNames[$j].temp.$mSuffix$i", "$CIRFILE\_$contMeasureNames[$j].$mSuffix$i");
 
-      `$fc $CIRFILE\_$contMeasureNames[$j].remeasure.$mSuffix$i $CIRFILE\_$contMeasureNames[$j].$mSuffix$i $absTol $relTol $zeroTol > $CIRFILE.remeasure.$mSuffix$i.out 2> $CIRFILE.remeasure.$mSuffix$i.err`;
+      $CMD = "$fc $CIRFILE\_$contMeasureNames[$j].remeasure.$mSuffix$i $CIRFILE\_$contMeasureNames[$j].$mSuffix$i $absTol $relTol $zeroTol > $CIRFILE.remeasure.$mSuffix$i.out 2> $CIRFILE.remeasure.$mSuffix$i.err";
+      $retval = system($CMD);
       $retval=$? >> 8;
       if ($retval != 0)
       {
         print("Re-measure failed for step $i on file $CIRFILE\_$contMeasureNames[$j].$mSuffix$i\n");
-        return $retval;
+        return 2;
       }
     }
   }
@@ -1227,24 +1230,23 @@ sub checkRemeasure
   return $retval;
 }
 
-# This version is used when there are both .MEASURE and .FFT lines in the netlist
+# This version is used when there are both .MEASURE and .FFT lines in the netlist.
+# It assumes a .TRAN analysis, since .FFT is only defined for .TRAN.
 sub checkRemeasureWithFFTFiles
 {
-  my( $XYCE, $XYCE_VERIFY, $CIRFILE, $absTol, $relTol, $zeroTol, $fileExt, $stepNum, $mSuffix ) = @_;
+  my( $XYCE, $XYCE_VERIFY, $CIRFILE, $absTol, $relTol, $zeroTol, $fileExt, $stepNum) = @_;
 
-  # file extension allows checkRemeasure() to work with both prn and csd files.
-  # If not file extension is specified then the default is prn.  mSuffix allows
-  # this function to work with TRAN (mt), AC (ma) or DC (ms).  The default is mt.
+  # File extension allows checkRemeasureWithFFTFiles() to work with both prn and csd files.
+  # If file extension is not specified then the default is prn.
   if (not defined $fileExt) { $fileExt = "prn"; }
   if (not defined $stepNum) {$stepNum = 1;}
-  if (not defined $mSuffix) {$mSuffix = "mt";}
 
   print "Testing Re-measure with added FFT output\n";
 
   use File::Copy;
   foreach my $i (0 .. $stepNum-1)
   {
-    move("$CIRFILE.$mSuffix$i","$CIRFILE.temp.$mSuffix$i");
+    move("$CIRFILE.mt$i","$CIRFILE.temp.mt$i");
     move("$CIRFILE.fft$i","$CIRFILE.temp.fft$i");
   }
 
@@ -1261,11 +1263,12 @@ sub checkRemeasureWithFFTFiles
   # Did we make the measure and fft files
   foreach my $i (0 .. $stepNum-1)
   {
-    if (not -s "$CIRFILE.$mSuffix$i" ) { print "Exit code = 17\n"; exit 17; }
+    if (not -s "$CIRFILE.mt$i" ) { print "Exit code = 17\n"; exit 17; }
     if (not -s "$CIRFILE.fft$i" ) { print "Exit code = 2\n"; exit 2; }
   }
 
   # use file_compare
+  $retval = 0; 
   my $dirname = `dirname $XYCE_VERIFY`;
   chomp $dirname;
   my $fc = "$dirname/file_compare.pl";
@@ -1273,14 +1276,15 @@ sub checkRemeasureWithFFTFiles
   # rename the mtx and fftX files and compare them
   foreach my $i (0 .. $stepNum-1)
   {
-    move("$CIRFILE.$mSuffix$i","$CIRFILE.remeasure.$mSuffix$i");
-    move("$CIRFILE.temp.$mSuffix$i","$CIRFILE.$mSuffix$i");
-    `$fc $CIRFILE.remeasure.$mSuffix$i $CIRFILE.$mSuffix$i $absTol $relTol $zeroTol > $CIRFILE.remeasure.$mSuffix$i.out 2> $CIRFILE.remeasure.$mSuffix$i.err`;
+    move("$CIRFILE.mt$i","$CIRFILE.remeasure.mt$i");
+    move("$CIRFILE.temp.mt$i","$CIRFILE.mt$i");
+    $CMD="$fc $CIRFILE.remeasure.mt$i $CIRFILE.mt$i $absTol $relTol $zeroTol > $CIRFILE.remeasure.mt$i.out 2> $CIRFILE.remeasure.mt$i.err";
+    $retval = system($CMD);
     $retval=$? >> 8;
     if ($retval != 0)
     {
-      print("Re-measure of mtX file failed for step $i\n");
-      return $retval;
+      print ("Re-measure of mtX file failed for step $i\n");
+      return 2;
     }
   }
 
@@ -1288,12 +1292,71 @@ sub checkRemeasureWithFFTFiles
   {
     move("$CIRFILE.fft$i","$CIRFILE.remeasure.fft$i");
     move("$CIRFILE.temp.fft$i","$CIRFILE.fft$i");
-    `$fc $CIRFILE.remeasure.fft$i $CIRFILE.fft$i $absTol $relTol $zeroTol > $CIRFILE.remeasure.fft$i.out 2> $CIRFILE.remeasure.fft$i.err`;
+    $CMD="$fc $CIRFILE.remeasure.fft$i $CIRFILE.fft$i $absTol $relTol $zeroTol > $CIRFILE.remeasure.fft$i.out 2> $CIRFILE.remeasure.fft$i.err";
+    $retval = system($CMD);
     $retval=$? >> 8;
     if ($retval != 0)
     {
       print("Re-measure of fftX file failed for step $i\n");
-      return $retval;
+      return 2;
+    }
+  }
+
+  return $retval;
+}
+
+# This version is used for FOUR measures with .TRAN analyses
+sub checkRemeasureFour
+{
+  my( $XYCE, $XYCE_VERIFY, $CIRFILE, $absTol, $relTol, $phaseAbsTol, $phaseRelTol, $zeroTol, $fileExt, $stepNum) = @_;
+
+  # File extension allows checkRemeasureFour() to work with both prn and csd files.
+  # If not file extension is specified then the default is prn.
+  if (not defined $fileExt) { $fileExt = "prn"; }
+  if (not defined $stepNum) {$stepNum = 1;}
+
+  print "Testing Re-measure for FOUR measure\n";
+
+  use File::Copy;
+  foreach my $i (0 .. $stepNum-1)
+  {
+    move("$CIRFILE.mt$i","$CIRFILE.temp.mt$i");
+  }
+
+  # remove files from previous runs
+  system("rm -f $CIRFILE.remeasure.mt*");
+
+  # here is the command to run xyce with remeasure
+  my $CMD="$XYCE -remeasure $CIRFILE.$fileExt $CIRFILE > $CIRFILE.remeasure.out";
+  my $retval=system($CMD)>>8;
+
+  if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
+  if (not -s "$CIRFILE.$fileExt" ) { print "Exit code = 14\n"; exit 14; }
+
+  # Did we make the measure files
+  foreach my $i (0 .. $stepNum-1)
+  {
+    if (not -s "$CIRFILE.mt$i" ) { print "Exit code = 17\n"; exit 17; }
+  }
+
+  # use compare_fourier_files
+  $retval = 0;
+  my $dirname = `dirname $XYCE_VERIFY`;
+  chomp $dirname;
+  my $fc = "$dirname/compare_fourier_files.pl";
+
+  # rename the mtx files and compare them
+  foreach my $i (0 .. $stepNum-1)
+  {
+    move("$CIRFILE.mt$i","$CIRFILE.remeasure.mt$i");
+    move("$CIRFILE.temp.mt$i","$CIRFILE.mt$i");
+    $CMD="$fc $CIRFILE.remeasure.mt$i $CIRFILE.mt$i $absTol $relTol $phaseAbsTol $phaseRelTol $zeroTol > $CIRFILE.remeasure.mt$i.out 2> $CIRFILE.remeasure.mt$i.err";
+    $retval=system($CMD);
+    $retval=$? >> 8;
+    if ($retval != 0)
+    {
+      print("Re-measure of mtX file failed for step $i\n");
+      return 2;
     }
   }
 
@@ -1420,119 +1483,72 @@ sub getPrecision
   return $digitCount;
 }
 
-#
-# this subroutine is used to compare gold standard circuit.cir.mt? files 
-# to what the simulator creates
-sub compareFourierMeasureFiles
+# check number format and precision in FOUR measure output
+sub checkNumberFormatinFourOutput
 {
-  my ($goldFile, $simFile, $phaseAbsTol, $relTol, $zeroTol, $defaultPrecision,$expectedDoubleCount) = @_;
+  my ($testFile, $precision) = @_;
 
   use Scalar::Util qw(looks_like_number);
-  #
-  # Now look for the measure output file and compare it to a 
-  # gold standard line by line.
-  #
-  open(RESULTS, $simFile);
-  open(GOLD_STD, $goldFile);
-  my $lineNumber=1;
+  
+  open(RESULTS, $testFile);
+  my $lineCount=0;
   my $retval = 0;
-  my $doubleCount=0;
-  my $line;
-  my $line_gs;
-  while( ($line=<RESULTS>) && ($line_gs=<GOLD_STD>) )
+  my ($lineTestFile, @testFileData);
+  while($lineTestFile=<RESULTS>)
   {
+    $lineCount++;
+    my $headerline=0;
+
     # process a line into text and values.
-    chop $line;
+    chop $lineTestFile;
     # Remove leading spaces on line, otherwise the spaces become 
     # element 0 of "@lineOfDataFromXyce" instead of the first column of data.
-    $line =~ s/^\s*//;
-    my @lineOfDataFromXyce = (split(/[\s,]+/, $line));
-    #print "line of data from Xyce = @lineOfDataFromXyce\n";
-    #print "end count = $#lineOfDataFromXyce\n";
-    
-    # process a line_gs into text and values.
-    chop $line_gs;
-    $line_gs =~ s/^\s*//;
-    my @gsLineOfDataFromXyce = (split(/[\s,]+/, $line_gs));
-    
-    if( $#lineOfDataFromXyce != $#gsLineOfDataFromXyce )
+    $lineTestFile =~ s/^\s*//;
+    @testFileData = (split(/[\s,]+/, $lineTestFile));
+    #print "line of data from Xyce = @testFileData\n";
+    #print "end count = $#testFileData\n";
+
+    if ($#testFileData > 0)
     {
-      print "Xyce's output to measure file doesn't match the gold standard at line $lineNumber\n";
-      print "Xyce's output: $line\n";
-      print "Gold Standard: $line_gs\n";
-      $retval=2;
-    }
-    else
-    {
-      # the two files have the same number of items on a line.  
-      # compare individual values as scalars  This will have the 
-      # effect fo 
-      for( my $i=0; $i<=$#lineOfDataFromXyce; $i++ )
+      # integer fields on first two lines will get special handling.
+      if ( !looks_like_number($testFileData[0]) )
       {
-        #print "data item = $lineOfDataFromXyce[$i]\n";
-        if (looks_like_number($lineOfDataFromXyce[$i]) && looks_like_number($gsLineOfDataFromXyce[$i] ) )
-        {
-          if( ( abs( $lineOfDataFromXyce[$i] ) < $zeroTol) &&  (abs( $gsLineOfDataFromXyce[$i] ) < $zeroTol ))
+        $headerline = 1;
+        #print "Header line found at line $lineCount\n";
+      }
+    
+      my $prevWord="";
+      for( my $i=0; $i<=$#testFileData; $i++ )
+      {
+        if (looks_like_number($testFileData[$i]))
+	{
+          if ( (($headerline ==1) && (($prevWord eq "Harmonics:") || ($prevWord eq "Gridsize:"))) || (($headerline == 0) && ($i==0)) )
           {
-             #print "number compare below zeroTol $lineOfDataFromXyce[$i] , $gsLineOfDataFromXyce[$i] ok\n";
-          }
-          elsif( (($i==3) || ($i==5)) && (abs( $lineOfDataFromXyce[$i] - $gsLineOfDataFromXyce[$i] ) < $phaseAbsTol )) 
-          {
-             # phase needs different handling
-             #print "Phase comparison passed $lineOfDataFromXyce[$i] , $gsLineOfDataFromXyce[$i]\n";
-          }
-          elsif( ( (abs( $lineOfDataFromXyce[$i] - $gsLineOfDataFromXyce[$i] ))/abs($gsLineOfDataFromXyce[$i]) < $relTol )) 
-          {
-             # regular compare
+            # these fields should be integer
+            #print "Integer field on line $lineCount = $testFileData[$i]\n";
+            if ( $testFileData[$i] =~ /\./ )
+            {
+              print "$testFileData[$i] on line $lineCount should be an integer\n";
+              $retval = 2;
+            }
           }
           else
           {
-            print "On line $lineNumber of test and gold file found a numeric difference\n";
-            print "Comparing Xyce's \"$lineOfDataFromXyce[$i]\" to GS \"$gsLineOfDataFromXyce[$i]\" as ";
-            print "Failed numeric compare\n";
-            $retval=2;
-            last;
-          }
-          if( $lineOfDataFromXyce[$i] =~ /e/)
-          {
-	    $doubleCount++;
-            #print "double count and data item = $doubleCount and $lineOfDataFromXyce[$i]\n";
-            $retval = MeasureCommon::checkNumberFormat($lineOfDataFromXyce[$i],1,$defaultPrecision);
-            if ( $retval != 0 )
+            # these fields should be double
+            my $retcode = MeasureCommon::checkNumberFormat($testFileData[$i],1,$precision);
+            if ($retcode != 0)
             {
-            print "test Failed because of number format!\n";
-            $retval=2;
-            last;
+	      $retval=2;
+	      print "failed number format test for FOUR measure at line $lineCount\n";
+            }
           }
         }
-        }
-        elsif( $lineOfDataFromXyce[$i] eq $gsLineOfDataFromXyce[$i] )
-        {
-          # same in string context so ok.
-          # print "string compare ok\n";
-        }
-        else
-        {
-          print "Elements failed compare on line $lineNumber: \n";
-          print "Xyce produced: \"$lineOfDataFromXyce[$i]\"\n";
-          print "Gold standard: \"$gsLineOfDataFromXyce[$i]\"\n";
-          $retval=2;
-          last;
-        }
-      
+	$prevWord = $testFileData[$i];
       }
     }
-    $lineNumber++;
-  }
-  close(RESULTS);
-  close(GOLD_STD);
+  } 
 
-  if ( $doubleCount != $expectedDoubleCount )
-  {
-    print "Found $doubleCount doubles.  Expected $expectedDoubleCount doubles.\n";
-    $retval=2; 
-  }
-  return $retval;
+  return $retval
 }
 
 #

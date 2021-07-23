@@ -169,8 +169,9 @@ if (system($CMD) != 0) {
 $cff=$XYCE_VERIFY;
 $cff =~ s/xyce_verify/compare_fourier_files/;
 $phaseabstol = $abstol;
+$phasereltol = $reltol;
 
-$CMD="$cff $DASHOFILE.four0 $GOLDPRN.four0 $abstol $phaseabstol $reltol $zerotol > $DASHOFILE.four0.out 2> $DASHOFILE.four0.err";
+$CMD="$cff $DASHOFILE.four0 $GOLDPRN.four0 $abstol $reltol $phaseabstol $phasereltol $zerotol > $DASHOFILE.four0.out 2> $DASHOFILE.four0.err";
 if (system($CMD) != 0) {
     print STDERR "Verification failed on file $DASHOFILE.four0, see $DASHOFILE.four0.err\n";
     $retcode = 2;

@@ -42,6 +42,7 @@ WhenInterpolationTestGSfile
 FourierTest.cir
 FourierTest_measfail_one.cir
 FourierTest_measfail_zero.cir
+FourierTestGSfile
 FourierTest.cir.tags
 FreqTest.cir
 FreqTest.cir.sh
@@ -136,6 +137,7 @@ RFCEqualityTrigTarg.cir.sh
 RFCEqualityTrigTargGSfile
 FourierTestFromToTD.cir
 FourierTestFromToTD.cir.sh
+FourierTestFromToTDGSfile
 QualifierExp.cir
 QualifierExp.cir.sh
 QualifierExpGSfile
