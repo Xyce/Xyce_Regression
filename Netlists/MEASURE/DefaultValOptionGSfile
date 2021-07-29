@@ -32,6 +32,7 @@ Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 FINDWHENVAL = FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
+Netlist warning: FOURFAIL failed. FROM or TD value > sim end time
 FOURFAIL: FAILED
 
 Netlist warning: FREQFAILTO failed. TO value < FROM value

@@ -110,9 +110,15 @@ FWATFAILFROM = FAILED for AT = 5.000000e-04
 Netlist warning: FWATFAILTO failed. AT value outside measurement window
 FWATFAILTO = FAILED for AT = 5.000000e-04
 
+Netlist warning: FOURFAIL failed. FROM or TD value > sim end time
 FOURFAIL: FAILED
 
+Netlist warning: FOUR1PTFAILT failed. Only one point found in measurement
+ window.
 FOUR1PTFAILT: FAILED
+
+Netlist warning: FOURATFAIL failed. Period (1/AT) > measurement window length.
+FOURATFAIL: FAILED
 
 FREQVAL = 1.000000e+03
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03

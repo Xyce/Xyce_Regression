@@ -50,8 +50,9 @@ R2  2  0  100
 .measure tran FindWhenLast75 find v(2) when v(1)=0.75 RISE=LAST
 
 *FOUR
-.measure tran fourfail FOUR V(1) AT=1e6 TD=2e-3
-.measure tran four1ptfailt FOUR V(1) AT=1e-6 TD=1e-3
+.measure tran fourfail FOUR V(1) AT=1e3 TD=2e-3
+.measure tran four1ptfailt FOUR V(1) AT=1e-3 TD=1e-3
+.measure tran fouratfail FOUR V(1) AT=1e2
 
 *FREQ
 .measure tran freqVal FREQ v(1) ON=0.75 OFF=0.25
