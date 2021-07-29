@@ -19,6 +19,10 @@ netlist_good.txt
 netlist_bad.txt
 TestGH19.cir
 TestGH19.cir.sh
+TestGH29.cir
+TestGH29.cir.sh
+VRC.sp
+VRC_withprint.sp
 python_rlc_series_vccs.cir
 pymiBasicRLC.cir.sh
 pymiGMLSRLC.cir.sh
