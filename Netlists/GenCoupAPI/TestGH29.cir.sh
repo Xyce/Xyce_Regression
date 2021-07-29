@@ -104,6 +104,7 @@ if ($retval==0)
     # Now run the netlist with BOTH a print line and external output
     print "NOTICE:   running netlist with print line ---------------\n";
     $CMD="$XYCE_LIBTEST $CIRFILE2 > $CIRFILE2.out 2> $CIRFILE2.err";
+    print "$CMD\n";
     $result = system("$CMD");
     if ($result == 0){ $retval=0;} else {$retval=10;}
 }
@@ -116,6 +117,7 @@ if ($retval==0 && $result == 0)
     $result = system($CMD);
     if ($result == 0)
     {
+        print "NOTICE: the two external outputs match ----------------\n";
         $retval=0;
     }
     else
@@ -127,6 +129,7 @@ if ($retval==0 && $result == 0)
 
     if ($retval==0)
     {
+        print "NOTICE:  Comparing the .print output with first external output --\n";
         # xyce_verify doesn't grok wildcards.  Create a fake netlist
         # using the first line of the actual output resulting from
         # wildcards, and replace the print line with what the wildcard
@@ -177,6 +180,7 @@ if ($retval==0 && $result == 0)
             }
             else
             {
+                print "NOTICE:  .print output and first external output match --\n";
                 $retval=0;
             }
         }
