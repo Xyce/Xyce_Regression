@@ -12,7 +12,7 @@ Xamp1 Vin Vdd 0 Vout  amp2n3819
 *     ---- ---
 .TRAN 1e-8 1e-6 
 
-.PRINT TRAN V(Vin) V(Vout)
+.PRINT TRAN V(Vin) V(Vout) fourVP
 
 .MEASURE TRAN fourVP FOUR V(Vout) AT=1e6 
 
