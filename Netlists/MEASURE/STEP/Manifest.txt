@@ -52,6 +52,7 @@ FourierTest.cir
 FourierTest.s0.cir
 FourierTest.s1.cir
 FourierTest.cir.sh
+FourierTestGSfile
 FreqTest.cir
 FreqTest.s0.cir
 FreqTest.s1.cir

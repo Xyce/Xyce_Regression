@@ -18,6 +18,8 @@ tags
 bad_dot_four_line3.cir
 bad_dot_four_line3.cir.sh
 bad_dot_four_line3.cir.tags
+bad_dot_four_line4.cir
+bad_dot_four_line4.cir.sh
 exclude
 lead_current_not_on_print_line.cir
 lead_current_not_on_print_line.cir.sh

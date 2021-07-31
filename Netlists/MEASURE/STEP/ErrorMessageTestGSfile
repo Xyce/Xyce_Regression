@@ -89,9 +89,15 @@ Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 FINDWHENLAST75 = -7.500000e-01 at time = 1.350317e-04
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
+Netlist warning: FOURFAIL failed. FROM or TD value > sim end time
 FOURFAIL: FAILED
 
+Netlist warning: FOUR1PTFAILT failed. Only one point found in measurement
+ window.
 FOUR1PTFAILT: FAILED
+
+Netlist warning: FOURATFAIL failed. Period (1/AT) > measurement window length.
+FOURATFAIL: FAILED
 
 FREQVAL = 1.000000e+03
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
@@ -394,9 +400,15 @@ Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 FINDWHENLAST75 = -3.750000e-01 at time = 6.119454e-05
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03
 
+Netlist warning: FOURFAIL failed. FROM or TD value > sim end time
 FOURFAIL: FAILED
 
+Netlist warning: FOUR1PTFAILT failed. Only one point found in measurement
+ window.
 FOUR1PTFAILT: FAILED
+
+Netlist warning: FOURATFAIL failed. Period (1/AT) > measurement window length.
+FOURATFAIL: FAILED
 
 FREQVAL = 1.000000e+03
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-03

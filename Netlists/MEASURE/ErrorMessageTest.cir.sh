@@ -98,12 +98,10 @@ my ($measureNamesRef,$measureValsRef)
 my @measureNames = @$measureNamesRef;
 my @measureVals = @$measureValsRef;
 
-# check that the values in the .mt0 file are formatted in 
-# scientific notation with the correct default precision (6).
 my $defaultPrecision=6;
 foreach $j (0 .. $numMeasures-1)
 {
-  if ($measureNames[$j] eq "FOURFAIL" || $measureNames[$j] eq "FOUR1PTFAILT")
+  if ($measureNames[$j] eq "FOURFAIL" || $measureNames[$j] eq "FOUR1PTFAILT" || ($measureNames[$j] eq "FOURATFAIL") )
   {
     #print "Skipping checking number format for measure $measureNames[$j] in mt0 file\n";
   } 

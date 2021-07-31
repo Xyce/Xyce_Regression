@@ -28,7 +28,7 @@ $CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
 
 $fc=$XYCE_VERIFY;
-$fc=~ s/xyce_verify/file_compare/;
+$fc=~ s/xyce_verify/compare_fourier_files/;
 
 # remove previous output files
 system("rm -f $CIRFILE.csd $CIRFILE.out $CIRFILE.err $CIRFILE.mt* $CIRFILE.remeasure.*");
@@ -62,9 +62,11 @@ if (not -s "$CIRFILE.mt0" ) { print "Exit code = 17\n"; exit 17; }
 # these are the tolerances used in comparing the measured and re-measured data.  
 # zeroTol is needed because some measured values should be zero (and relTol 
 # won't make sense in that case).
-my $phaseAbsTol = 1.0;
-my $relTol = 0.025;
-my $zeroTol = 1.0e-8;
+$absTol = 5e-3;
+$relTol = 0.025;
+$phaseAbsTol = 1.0;
+$phaseRelTol = 0.02;
+$zeroTol = 1.0e-8;
 
 # Re-measure test uses the same approach as the FOUR measure
 #check re-measure.  This is slightly different for FOUR
@@ -99,7 +101,7 @@ move("$CIRFILE.mt0","$CIRFILE.remeasure.mt0");
 move("$CIRFILE.temp.mt0","$CIRFILE.mt0");
 
 # use file_compare since the .mt0 file for FOUR has a different format than the other measures
-$CMD="$fc $CIRFILE.remeasure.mt0 $CIRFILE.mt0 $phaseAbsTol $relTol $zeroTol > $CIRFILE.remeasure.mt0.out 2> $CIRFILE.remeasure.mt0.err";
+$CMD="$fc $CIRFILE.remeasure.mt0 $CIRFILE.mt0 $absTol $relTol $phaseAbsTol $phaseRelTol $zeroTol > $CIRFILE.remeasure.mt0.out 2> $CIRFILE.remeasure.mt0.err";
 $retval = system($CMD);
 $retval = $retval >> 8;
 if ($retval == 0) 

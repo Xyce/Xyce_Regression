@@ -1,29 +1,19 @@
-* Test FOUR measure with .STEP.  Also test PRECISION qualifier for
-* FOUR measure.
-
+* Test an invalid FREQ value (1e5) on the .FOUR line.
+*
+* See issue 257 for more details.
+*********************************************************
+*
 * Jfet Transient Sine wave 6 volt input signal to output 
-
 Vdd   Vdd     0       DC 20
-*                          SIN(Voffset Vamplitude Frequency)
-*                          ---------------------------------
 V1    Vin     0       DC 0 SIN(0       6        1e6)
 Rload Vout    0       1Meg
 Xamp1 Vin Vdd 0 Vout  amp2n3819
-*
-*     STEP STOP
-*     TIME TIME
-*     ---- ---
+
 .TRAN 1e-8 1e-6 
-
-.STEP V1:freq 1e6 2e6 1e6 
-
 .PRINT TRAN V(Vin) V(Vout)
-
-.MEASURE TRAN fourVP FOUR V(Vout) AT=1e6 PRECISION=7
-.MEASURE TRAN LASTMEASURE MAX V(Vout) PRECISION=7
+.FOUR 1e5 V(Vout)
 
 * Amplifier subcircuit
-
 .subckt amp2n3819 Vin Vdd Vss Vout
 Rd  Vdd     Vout           1462
 J1  Vout    Vin    Nsource J2N3819
@@ -36,5 +26,3 @@ Rg  Vin     Vss            1Meg
 .ENDS
 
 .END
-
- 

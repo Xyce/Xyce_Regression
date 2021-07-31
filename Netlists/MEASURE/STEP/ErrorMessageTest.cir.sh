@@ -44,10 +44,8 @@ MeasureCommon::checkTranFilesExist($XYCE,$CIRFILE);
 my ($numMeasures,$measuredQuantsRef) =  MeasureCommon::getNumMeasuresInCirFile($CIRFILE);
 my @measureQuants = @$measuredQuantsRef;
 
-# parse the precision keywords in the .measure statements in the .cir file, 
-my ($precValsPtr,$precGivenPtr) = MeasureCommon::parseKeyWord($CIRFILE,"PRECISION",$endTime);
-my @precVals = @$precValsPtr;
-my @precGiven = @$precGivenPtr;
+# check that the values in the .mt0 file are formatted in 
+# scientific notation with the correct default precision (6).
 my $defaultPrecision=6;
 
 ###################################################
@@ -72,11 +70,9 @@ foreach $stepNum (1 .. $numSteps)
   my @measureNames = @$measureNamesRef;
   my @measureVals = @$measureValsRef;
   
-  # check that the values in the .mtx file ise formatted in 
-  # scientific notation with the correct precision.
   foreach $j (0 .. $numMeasures-1)
   {
-    if ($measureNames[$j] eq "FOURFAIL" || $measureNames[$j] eq "FOUR1PTFAILT")
+    if ($measureNames[$j] eq "FOURFAIL" || $measureNames[$j] eq "FOUR1PTFAILT" || $measureNames[$j] eq "FOURATFAIL")
     {
       #print "Skipping checking number format for measure $measureNames[$j] in mt0 file\n";
     } 
