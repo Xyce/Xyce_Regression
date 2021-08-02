@@ -120,18 +120,18 @@ else
 }
 
 # Exit if the various output files were not made
-if (not -s "$CIR.prn" )
+if (not -s "$CIR.FD.prn" )
 {
-  print "Translated $CIR.prn file is missing\n";
+  print "Translated $CIR.FD.prn file is missing\n";
   print "Exit code = 14\n";
   exit 14;
 }
 
 chdir "..";
 
-if (not -s "$CIR.prn" )
+if (not -s "$CIR.FD.prn" )
 {
-  print "Gold $CIR.prn file is missing\n";
+  print "Gold $CIR.FD.prn file is missing\n";
   print "Exit code = 14\n";
   exit 14;
 }
@@ -169,7 +169,7 @@ $fc=~ s/xyce_verify/file_compare/;
 
 $retcode = 0;
 
-$CMD="$fc $CIR.prn $TRANSLATEDDIR/$CIR.prn $absTol $relTol $zeroTol > $CIR.prn.out 2> $CIR.prn.err";
+$CMD="$fc $CIR.FD.prn $TRANSLATEDDIR/$CIR.FD.prn $absTol $relTol $zeroTol > $CIR.prn.out 2> $CIR.prn.err";
 $retval = system("$CMD");
 $retval = $retval >> 8;
 if ($retval == 0)
@@ -178,7 +178,7 @@ if ($retval == 0)
 }
 else
 {
-  print STDERR "Comparator exited with exit code $retval on file $CIR.prn\n";
+  print STDERR "Comparator exited with exit code $retval on file $CIR.FD.prn\n";
   $retcode = 2;
 }
 
