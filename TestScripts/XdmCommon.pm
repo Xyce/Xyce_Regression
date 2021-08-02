@@ -224,7 +224,14 @@ sub verifyXDMtranslation
   chdir "./$TRANSLATEDDIR";
   if ($OUTFILETYPE eq "prn")
   {
-    $retval=system("$XYCE -o $CIRFILE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err");
+    if ($FROMSPICE eq "hspice")
+    {
+      $retval=system("$XYCE -o $CIRFILE -hspice-ext all $CIRFILE > $CIRFILE.out 2> $CIRFILE.err");
+    }
+    else
+    {
+      $retval=system("$XYCE -o $CIRFILE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err");
+    }
   }
   elsif ($OUTFILETYPE eq "csd")
   {
