@@ -1,6 +1,10 @@
 #!/usr/bin/env perl
 
+use XyceRegression::Tools;
 use XdmCommon;
+
+#$Tools = XyceRegression::Tools->new();
+#$Tools->setDebug(1);
 
 # The input arguments to this script are set up in 
 # Xyce_Test/TestScripts/tsc_run_test_suite and are as follows:
@@ -10,6 +14,8 @@ use XdmCommon;
 # $ARGV[3] = location of circuit file to test
 # $ARGV[4] = location of gold standard prn file
 
+use Getopt::Long;
+&GetOptions( "verbose!" => \$verbose );
 $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
 $CIRFILE=$ARGV[3]; 
@@ -22,7 +28,7 @@ $zeroTol = 1.0e-10;
 
 $searchStringsPtr = undef;
 
-@searchStrings = (".OPTIONS DEVICE TNOM\=50",
+@searchStrings = (".OPTIONS DEVICE TEMP\=25 TNOM\=50",
 );
 $xyceSearchStrings = \@searchStrings;
 

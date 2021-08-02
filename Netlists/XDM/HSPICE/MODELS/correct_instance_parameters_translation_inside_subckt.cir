@@ -7,7 +7,7 @@
 * verified against HSPICE's output (see  issue #138 on 
 * on XDM gitlab).
 
-.OPTIONS DEVICE TNOM=25
+.OPTIONS DEVICE TNOM=25 TEMP=25
 VD 1 0 DC 0.05
 VG 2 0 DC 0
 X1 1 2 0 0 nfet 

@@ -1,6 +1,6 @@
 Diode clipper circuit with transient analysis statement
 *
-.OPTIONS DEVICE TNOM=25
+.OPTIONS DEVICE TEMP=25 TNOM=25
 * Voltage Sources
 V1 N04104 0 5V
 V2 N04173 0 SIN(0V 10V 1kHz)
