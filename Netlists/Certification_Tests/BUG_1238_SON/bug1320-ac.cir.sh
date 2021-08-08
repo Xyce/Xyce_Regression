@@ -31,8 +31,10 @@ $freqreltol=1e-6;
 # Use of unordered maps in Xyce means they might not come out in the
 # same order on different platforms.
 @expectedOutputs=("Index", "FREQ",
-    "Re\\(V\\(A1\\)\\)", "Im\\(V\\(A1\\)\\)", "Re\\(V\\(A2\\)\\)", "Im\\(V\\(A2\\)\\)",
-    "Re\\(I\\(V1\\)\\)", "Im\\(I\\(V1\\)\\)", "Re\\(I\\(V2\\)\\)", "Im\\(I\\(V2\\)\\)");
+    "VR\\(B1\\)", "VR\\(B2\\)", "VI\\(B1\\)", "VI\\(B2\\)", "VM\\(B1\\)", "VM\\(B2\\)",
+    "VP\\(B1\\)", "VP\\(B2\\)", "VDB\\(B1\\)", "VDB\\(B2\\)",
+    "IR\\(V1\\)", "IR\\(V2\\)", "II\\(V1\\)", "II\\(V2\\)", "IM\\(V1\\)", "IM\\(V2\\)",
+    "IP\\(V1\\)", "IP\\(V2\\)", "IDB\\(V1\\)", "IDB\\(V2\\)");
 
 # Now run the main netlist, which has the * characters on its print line.
 $CMD="$XYCE $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
@@ -58,6 +60,23 @@ if ( !(-f "$CIRFILE.FD.prn"))
 {
     print STDERR "Missing output file $CIRFILE.FD.prn\n";
     print "Exit code = 14\n"; exit 14;
+}
+
+# If this is a VALGRIND run, we don't do our normal verification, we
+# merely run "valgrind_check.sh", instead of the rest of this .sh file, and then exit
+if ($XYCE_VERIFY =~ m/valgrind_check/)
+{
+  print STDERR "DOING VALGRIND RUN INSTEAD OF REAL RUN!";
+  if (system("$XYCE_VERIFY $CIRFILE junk $CIRFILE.prn > $CIRFILE.prn.out 2>&1 $CIRFILE.prn.err"))
+  {
+    print "Exit code = 2 \n";
+    exit 2;
+  }
+  else
+  {
+    print "Exit code = 0 \n";
+    exit 0;
+  }
 }
 
 # pull the header line out of the file and check it for the presence of all
@@ -114,23 +133,7 @@ if ($retval==0)
             print CIRFILE2 ".print ac";
             foreach $field (@headerfields)
             {
-                if ( (substr($field,0,4) eq "Re(V" && substr($field,-1,1) eq ")") ||
-                     (substr($field,0,4) eq "Re(I" && substr($field,-1,1) eq ")") )
-                {
-                  # these fields should generate a V() or I() operator on the .PRINT line
-                  $outField = substr($field,3,length($field)-4);
-                  print CIRFILE2 " $outField";
-                }
-                elsif ( (substr($field,0,4) eq "Im(V" && substr($field,-1,1) eq ")") ||
-                        (substr($field,0,4) eq "Im(I" && substr($field,-1,1) eq ")") )
-                {
-                  # no op, to account for the expansion of V() or I() in their real
-                  # and imaginary parts.
-                }
-                else
-                {
-                  print CIRFILE2 " $field";
-                }
+                print CIRFILE2 " $field";
             }
             print CIRFILE2 "\n";
         }

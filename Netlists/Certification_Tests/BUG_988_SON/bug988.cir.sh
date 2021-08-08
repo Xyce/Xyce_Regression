@@ -31,9 +31,25 @@ $retval=$Tools->wrapXyce($XYCE,$CIRFILE);
 if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
 if (not -s "$PRNOUT" ) { print "Exit code = 14\n"; exit 14; }
 
+# If this is a VALGRIND run, we don't do our normal verification, we
+# merely run "valgrind_check.sh", instead of the rest of this .sh file, and then exit
+if ($XYCE_VERIFY =~ m/valgrind_check/)
+{
+  print STDERR "DOING VALGRIND RUN INSTEAD OF REAL RUN!";
+  if (system("$XYCE_VERIFY $CIRFILE junk $CIRFILE.prn > $CIRFILE.prn.out 2>&1 $CIRFILE.prn.err"))
+  {
+    print "Exit code = 2 \n";
+    exit 2;
+  }
+  else
+  {
+    print "Exit code = 0 \n";
+    exit 0;
+  }
+}
+
 # pull the header line out of the file and check it for the presence of all
 # required data:
-
 open(PRNFILE,"<$PRNOUT");
 $headerline=<PRNFILE>;
 close(PRNFILE);

@@ -23,7 +23,8 @@ system("rm -f $CIRFILE\_faked*");
 @expectedOutputs=("Index", " TIME",
     "I\\(VIN\\)", "I\\(RIN1\\)", "I\\(RIN2\\)", "I\\(RL1\\)", "I\\(RL2\\)",
     "P\\(VIN\\)", "P\\(RIN1\\)", "P\\(RIN2\\)", "P\\(RL1\\)", "P\\(RL2\\)",
-    "P\\(TLINE1\\)", "P\\(TLINE2\\)" );
+    "P\\(TLINE1\\)", "P\\(TLINE2\\)", 
+    "I1\\(TLINE2\\)", "I1\\(TLINE1\\)", "I2\\(TLINE2\\)", "I2\\(TLINE1\\)");
 
 # Now run the main netlist, which has the IB(*) IC(*) IE(*) IS(*) print line in it.
 $retval = -1;
@@ -108,12 +109,6 @@ if ($retval==0)
     $retcode=system($CMD);
     $retval=2 if $retcode != 0;
 }
-
-# also check for warning strings
-@searchstrings = ("Netlist warning: .PRINT wildcards not supported for I1\\(\\*\\)",
-                  "Netlist warning: .PRINT wildcards not supported for I2\\(\\*\\)");
-$retcode = $Tools->checkError("$CIRFILE.out",@searchstrings);
-$retval=2 if $retcode != 0;
 
 print "Exit code = $retval\n";
 exit $retval;

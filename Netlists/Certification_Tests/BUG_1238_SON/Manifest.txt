@@ -10,4 +10,6 @@ bug1238-hb.cir.tags
 bug1238-noise.cir
 bug1238-noise.cir.sh
 bug1238-noise.cir.tags
+bug1320-ac.cir
+bug1320-ac.cir.sh
 tags

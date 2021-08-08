@@ -1,8 +1,8 @@
 ***************************************************************
 * The I(*) wildcards should ignore the T devices in this
 * netlist.  The T devices should be included in the P(*)
-* output though.  The I1(*) and I2(*) wildcards should be
-* omitted, with a warning message issued to stdout instead.
+* output though.  The I1(*) and I2(*) wildcards should also
+* work for the T devices.
 *
 * See SON Bug 1317 for more details.
 ***************************************************************
