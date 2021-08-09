@@ -84,8 +84,10 @@ Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e+00
 PARAM1 = -4.804221e-01
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e+00
 
+Netlist warning: FAILV1ATMINUS1 failed. AT value outside FFT frequency bounds
 FAILV1ATMINUS1 = FAILED at -1.000000e+00 Hz (rounded from -1.000000e+00 Hz)
 
+Netlist warning: FAILV1AT5 failed. AT value outside FFT frequency bounds
 FAILV1AT5 = FAILED at 5.000000e+00 Hz (rounded from 5.000000e+00 Hz)
 
 
