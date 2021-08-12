@@ -1,4 +1,4 @@
-* Test IB() IC() IE() IS() wildcards for BJT, for more complex wilcards.
+* Test IB() IC() IE() IS() wildcards for BJT, for more complex wildcards.
 * The output should not have the branch current for the V devices
 * or any of the lead currents for the R devices.
 

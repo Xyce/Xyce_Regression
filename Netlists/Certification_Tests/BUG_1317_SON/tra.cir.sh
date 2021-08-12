@@ -21,10 +21,13 @@ system("rm -f $CIRFILE\_faked*");
 # Use of unordered maps in Xyce means they might not come out in the
 # same order on different platforms.
 @expectedOutputs=("Index", " TIME",
-    "I\\(VIN\\)", "I\\(RIN1\\)", "I\\(RIN2\\)", "I\\(RL1\\)", "I\\(RL2\\)",
-    "P\\(VIN\\)", "P\\(RIN1\\)", "P\\(RIN2\\)", "P\\(RL1\\)", "P\\(RL2\\)",
-    "P\\(TLINE1\\)", "P\\(TLINE2\\)", 
-    "I1\\(TLINE2\\)", "I1\\(TLINE1\\)", "I2\\(TLINE2\\)", "I2\\(TLINE1\\)");
+    "I\\(VIN\\)", "I\\(RIN1\\)", "I\\(RIN2\\)", "I\\(RIN2A\\)",
+    "I\\(RL1\\)", "I\\(RL2\\)", "I\\(RL2A\\)",
+    "P\\(VIN\\)", "P\\(RIN1\\)", "P\\(RIN2\\)", "P\\(RIN2A\\)",
+    "P\\(RL1\\)", "P\\(RL2\\)", "P\\(RL2A\\)",
+    "P\\(TLINE1\\)", "P\\(TLINE2\\)", "P\\(TLINE2A\\)", 
+    "I1\\(TLINE2\\)", "I1\\(TLINE2A\\)", "I1\\(TLINE1\\)",
+    "I2\\(TLINE2\\)", "I2\\(TLINE2A\\)");
 
 # Now run the main netlist, which has the IB(*) IC(*) IE(*) IS(*) print line in it.
 $retval = -1;
