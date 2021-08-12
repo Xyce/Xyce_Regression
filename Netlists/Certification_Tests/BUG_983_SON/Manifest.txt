@@ -1,5 +1,7 @@
 bjt.cir
 bjt.cir.sh
+bjt1.cir
+bjt1.cir.sh
 jfet.cir
 jfet.cir.sh
 ltra.cir
