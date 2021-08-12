@@ -1,7 +1,7 @@
 ***************************************************************
 * The I(*) wildcards should ignore the T devices in this
 * netlist.  The T devices should be included in the P(*)
-* output though.  The I1(*) and I2(2*) wildcards should also
+* output though.  The I1(*) and I2(TLINE2*) wildcards should also
 * work for the T devices.
 *
 * See SON Bug 1317 for more details.
