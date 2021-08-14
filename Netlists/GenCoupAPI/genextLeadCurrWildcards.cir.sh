@@ -1,18 +1,21 @@
 #!/usr/bin/env perl
+
+use Cwd;
+
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
 # $ARGV[1] = location of xyce_verify.pl script
-# $ARGV[2] = location of compare script
+# $ARGV[2] = location of compare script 
 # $ARGV[3] = location of circuit file to test
 # $ARGV[4] = location of gold standard prn file
 
-use XyceRegression::Tools;
-
-$Tools = XyceRegression::Tools->new();
-
 $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
+$XYCE_COMPARE=$ARGV[2];
 $CIRFILE=$ARGV[3];
+$GOLDPRN=$ARGV[4];
+
+$CIRFILE="genextLeadCurrWildcards.cir";
 $PRNOUT=$CIRFILE.".prn";
 
 # remove old output files
@@ -21,32 +24,74 @@ system("rm -f $CIRFILE\_faked*");
 # This is the list of fields that must be in the output.
 # Use of unordered maps in Xyce means they might not come out in the
 # same order on different platforms.
-@expectedOutputs=("Index", "TIME", "V\\(VOUT\\)", "V\\(IN\\)", "V\\(VDD\\)", "V\\(1\\)",
-    "P\\(MP1\\)", "P\\(VIN1\\)", "P\\(MN1\\)", "P\\(VDDDEV\\)", "P\\(RIN\\)", "P\\(C2\\)", "P\\(R1\\)",
-    "W\\(MP1\\)", "W\\(VIN1\\)", "W\\(MN1\\)", "W\\(VDDDEV\\)", "W\\(RIN\\)", "W\\(C2\\)", "W\\(R1\\)");
+@expectedOutputs=("Index", "TIME",
+       "I1\\(YGENEXT!RLC1\\)", "I1\\(YGENEXT!THREETERM1\\)", "I1\\(YGENEXT!R1\\)",
+       "I2\\(YGENEXT!R1\\)", "I2\\(YGENEXT!RLC1\\)", "I3\\(YGENEXT!THREETERM1\\)",
+       "P\\(VPROBE3\\)", "P\\(V1\\)", "P\\(VPROBE1\\)", "P\\(VPROBE2\\)");
 
-# Now run the main netlist, which has the V(*) I(*) P(*) print line in it.
-$retval = -1;
-$retval=$Tools->wrapXyce($XYCE,$CIRFILE);
-if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
-if (not -s "$PRNOUT" ) { print "Exit code = 14\n"; exit 14; }
+$TESTROOT = cwd;
 
-# If this is a VALGRIND run, we don't do our normal verification, we
-# merely run "valgrind_check.sh", instead of the rest of this .sh file, and then exit
-if ($XYCE_VERIFY =~ m/valgrind_check/)
+# DEBUG: paths are hardcoded!
+$PREFIX="";
+$XYCEROOT="missing ";
+
+print "XYCE = $XYCE\n";
+
+# Try to decode Xyce root directory by stripping off bin/Xyce or src/Xyce
+$XYCE =~ m/([^\/]*)(.*)\/bin\/Xyce.*/;
+if (-d "$2") { $PREFIX=$1; $XYCEROOT=$2; }
+
+$XYCE =~ m/([^\/]*)(.*)\/src\/Xyce.*/;
+if (-d "$2") { $PREFIX=$1; $XYCEROOT=$2; }
+
+print "XYCEROOT = $XYCEROOT\n";
+
+#Check if we need a ".exe" extension (simply check for cygwin in uname)
+$EXT="";
+$result=system("uname | grep -i -q cygwin");
+if ($result == 0)
 {
-  print STDERR "DOING VALGRIND RUN INSTEAD OF REAL RUN!";
-  if (system("$XYCE_VERIFY $CIRFILE junk $CIRFILE.prn > $CIRFILE.prn.out 2>&1 $CIRFILE.prn.err"))
-  {
-    print "Exit code = 2 \n";
-    exit 2;
-  }
-  else
-  {
-    print "Exit code = 0 \n";
-    exit 0;
-  }
+  $EXT=".exe";
 }
+
+# set build dir and bin name
+$MAKEROOT = "$XYCEROOT/src/test/GenExtTestHarnesses/";
+#UGH
+if (-d "$MAKEROOT/CMakeFiles")
+{
+  $EXT="";
+}
+$TestProgram="testGenCoup$EXT";
+$XYCE_LIBTEST = "$MAKEROOT/$TestProgram";
+
+if (-d "$MAKEROOT") {
+  chdir($MAKEROOT);
+  print "NOTICE:   make -------------------------\n";
+  $result += system("make $TestProgram");
+  if($result) {
+    print "WARNING:  make failures! ---------------\n";
+    $retval = $result;
+  }
+  chdir($TESTROOT);
+} else {
+    print "ERROR:    cannot chdir to $MAKEROOT\n";
+  $retval = 1;
+}
+
+# Run the GenExt version:
+if (-x $XYCE_LIBTEST) {
+  print "NOTICE:   running ----------------------\n";
+  $CMD="$XYCE_LIBTEST $CIRFILE > $CIRFILE.out 2> $CIRFILE.err";
+  print "$CMD\n";
+  $result = system("$CMD");
+  if ($result == 0){ $retval=0;} else {$retval=10;}
+
+} else {
+  print "ERROR:    cannot find $XYCE_LIBTEST\n";
+  $retval = 1;
+}
+
+if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
 
 # pull the header line out of the file and check it for the presence of all
 # required data:
@@ -57,7 +102,6 @@ close(PRNFILE);
 chomp($headerline);
 @headerfields=split(' ',$headerline);
 
-$retval=0;
 $numMatch=0;
 foreach $field (@expectedOutputs)
 {
@@ -113,18 +157,20 @@ if ($retval==0)
     close(CIRFILE);
     close(CIRFILE2);
 
-    # we have now created a new circuit file that should have a .print line that matches what the
-    # V(*) P(*) W(*) version did
-    $retval=$Tools->wrapXyce($XYCE,$CIRFILE2);
-    if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
+    # we have now created a new circuit file that should have a .print line
+    # that matches what the wildcard version did
+    print "NOTICE:   running ----------------------\n";
+    $CMD="$XYCE_LIBTEST $CIRFILE2 > $CIRFILE2.out 2> $CIRFILE2.err";
+    print "$CMD\n";
+    $result = system("$CMD");
+    if ($result != 0) { print "Exit code = 10\n"; exit $10; }
     if (not -s "$CIRFILE2.prn" ) { print "Exit code = 14\n"; exit 14; }
 
     # Have to use the faked cirfile here so that xyce_verify gets the right header expectations
     $CMD="$XYCE_VERIFY $CIRFILE2 $PRNOUT $CIRFILE2.prn > $CIRFILE.prn.out 2> $CIRFILE.prn.err";
     $retcode=system($CMD);
-    $retval=2 if $retcode != 0;
+    if ($retcode != 0) {$retval=2;} 
 }
-
 
 print "Exit code = $retval\n";
 exit $retval;

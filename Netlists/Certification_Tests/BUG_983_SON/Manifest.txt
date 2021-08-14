@@ -1,7 +1,15 @@
 bjt.cir
 bjt.cir.sh
+bjt1.cir
+bjt1.cir.sh
 jfet.cir
 jfet.cir.sh
+ltra.cir
+ltra.cir.sh
+memristorPEM.cir
+memristorPEM.cir.sh
+fxp_table.csv
+fxm_table.csv
 mesfet.cir
 mesfet.cir.sh
 mosfet.cir

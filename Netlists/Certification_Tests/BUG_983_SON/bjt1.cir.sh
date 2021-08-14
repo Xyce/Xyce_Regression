@@ -12,6 +12,15 @@ $Tools = XyceRegression::Tools->new();
 
 $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
+
+$fc = $XYCE_VERIFY;
+$fc =~ s/xyce_verify/file_compare/;
+
+# comparison tolerances for file_compare.pl
+$abstol=1e-6;
+$reltol=1e-3;  #0.1%
+$zerotol=1e-8;
+
 $CIRFILE=$ARGV[3];
 $PRNOUT=$CIRFILE.".prn";
 
@@ -21,31 +30,16 @@ system("rm -f $CIRFILE\_faked*");
 # This is the list of fields that must be in the output.
 # Use of unordered maps in Xyce means they might not come out in the
 # same order on different platforms.
-@expectedOutputs=("Index", "V\\(1\\)", "V\\(X1:X3:E\\)", "V\\(X2:X3:E\\)",
-                  "V\\(X1:4A\\)", "V\\(X1:3A\\)", "V\\(2\\)");
+@expectedOutputs=("Index", "V\\(1\\)", 
+                  "IB\\(Q2A\\)", "IB\\(Q1A\\) ", "IC\\(Q2A\\)", "IC\\(Q2\\)",
+                  "IE\\(Q1\\)",  "IE\\(Q1A\\)", "IS\\(Q2A\\)" );
 
-# Now run the main netlist, which has the V() wildcard print line in it.
+# Now run the main netlist, which has the IB() IC() IE() IS() wildcards
+# on the .PRINT line.
 $retval = -1;
 $retval=$Tools->wrapXyce($XYCE,$CIRFILE);
 if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
 if (not -s "$PRNOUT" ) { print "Exit code = 14\n"; exit 14; }
-
-# If this is a VALGRIND run, we don't do our normal verification, we
-# merely run "valgrind_check.sh", instead of the rest of this .sh file, and then exit
-if ($XYCE_VERIFY =~ m/valgrind_check/)
-{
-  print STDERR "DOING VALGRIND RUN INSTEAD OF REAL RUN!";
-  if (system("$XYCE_VERIFY $CIRFILE junk $CIRFILE.prn > $CIRFILE.prn.out 2>&1 $CIRFILE.prn.err"))
-  {
-    print "Exit code = 2 \n";
-    exit 2;
-  }
-  else
-  {
-    print "Exit code = 0 \n";
-    exit 0;
-  }
-}
 
 # pull the header line out of the file and check it for the presence of all
 # required data:
@@ -111,17 +105,23 @@ if ($retval==0)
     close(CIRFILE);
     close(CIRFILE2);
 
-    # we have now created a new circuit file that should have a .print line that matches
-    # what the V() wildcard version did
+    # we have now created a new circuit file that should have a .print line that
+    # matches what the wildcard version did
     $retval=$Tools->wrapXyce($XYCE,$CIRFILE2);
     if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
     if (not -s "$CIRFILE2.prn" ) { print "Exit code = 14\n"; exit 14; }
 
-    # Have to use the faked cirfile here so that xyce_verify gets the right header expectations
-    $CMD="$XYCE_VERIFY $CIRFILE2 $PRNOUT $CIRFILE2.prn > $CIRFILE.prn.out 2> $CIRFILE.prn.err";
-    $retcode=system($CMD);
+    # use file_compare because of the two-variable dc sweep
+    $CMD="$fc $CIRFILE2.prn $CIRFILE.prn $abstol $reltol $zerotol > $CIRFILE.prn.out 2> $CIRFILE.prn.err";
+    $retcode = system($CMD);
+    $retcode = $retcode >> 8;
+    if ($retcode!= 0){
+      print STDERR "Comparator exited on file $CIRFILE.prn with exit code $retcode\n";
+      $retcode = 2;
+    }
     $retval=2 if $retcode != 0;
 }
+
 
 print "Exit code = $retval\n";
 exit $retval;
