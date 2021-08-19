@@ -5,4 +5,9 @@ cpldLMIs_ic.cir
 NonLinInductor.cir
 NonLinInductor_ic.cir
 InductorICBug.cir
+NLParamStep1.cir 
+NLParamStep2.cir 
+NLParamStep3.cir 
+NLParamStepAll.cir 
+NLParamStepAll.cir.sh
 tags
