@@ -21,3 +21,19 @@ ErrorMessageTest.cir.sh
 ErrorMessageTest.cir.tags
 
 ErrorMessageTest.cir.options
+
+DiodeClipper.cir
+DiodeClipper.cir.sh
+DiodeClipper_2par.net
+DiodeClipper_m2.net
+
+DiodeClipper_noise.cir
+DiodeClipper_noise.cir.sh
+DiodeClipper_2par_noise.net
+DiodeClipper_m2_noise.net
+
+diodeTranSens.cir
+diodeTranSens.cir.sh
+diodeTranSens_2par.net
+diodeTranSens_m2.net
+dummyDiodeTranSens.net
