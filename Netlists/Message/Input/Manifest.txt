@@ -26,6 +26,8 @@ CircuitBlock_extractSubcircuitData_1.cir
 CircuitBlock_extractSubcircuitData_1.cir.sh
 CircuitBlock_extractSubcircuitData_2.cir
 CircuitBlock_extractSubcircuitData_2.cir.sh
+CircuitBlock_handleAnalysis.cir
+CircuitBlock_handleAnalysis.cir.sh
 CircuitBlock_handleLinePass1_1.cir
 CircuitBlock_handleLinePass1_1.cir.sh
 CircuitBlock_parseIncludeFile_1.cir
@@ -93,6 +95,8 @@ OptionBlock_extractOptionsData_2.cir
 OptionBlock_extractOptionsData_2.cir.sh
 OptionBlock_extractDotDataStatement.cir
 OptionBlock_extractDotDataStatement.cir.sh
+OutputMgr_parsePRINTBlock.cir
+OutputMgr_parsePRINTBlock.cir.sh
 ParsingHelpers_handleEndlLine1.cir
 ParsingHelpers_handleEndlLine1.cir.sh
 bogoLib1
