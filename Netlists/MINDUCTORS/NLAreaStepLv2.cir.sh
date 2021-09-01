@@ -29,7 +29,7 @@ $XYCE_VERIFY=$ARGV[1];
 #$CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
 
-$CIR1="NLAreaStep.cir";
+$CIR1="NLAreaStepLv2.cir";
 
 print "Running $CIR1...\n";
 $retval=$Tools->wrapXyce($XYCE,$CIR1);

@@ -22,5 +22,7 @@ K1 L1 L2 1 nlcore
 
 *COMP V(2) reltol=0.02
 *COMP V(3) reltol=0.02
+*COMP I(L2) offset=1.0e-3
+
 .END
 
