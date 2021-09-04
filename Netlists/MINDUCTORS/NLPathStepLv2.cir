@@ -7,9 +7,9 @@ L1 2 0 200
 L2 3 0 100
 K1 L1 L2 1 nlcore
 
-.model nlcore core gap=0.1 path=1.0 area=0.01
+.model nlcore core level=2 gap=0.1 path=0.01
 
-.step nlcore:area 0.05 0.15 0.05
+.step nlcore:path 2.5 7.5 2.5
 .TRAN 100US 25MS
 
 * Xyce option needed when default is changed to 1 (Backward Euler).
