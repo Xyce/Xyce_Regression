@@ -1,6 +1,7 @@
 FFT analysis for V(1):
-  Window: RECT, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
-DC component    Mag= 5.000000e-01   Phase= 0.000000e+00
+  Window: RECT, Start Time: 0.000000e+00, Stop Time: 1.000000e+00
+  First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
+  DC component    Mag= 5.000000e-01   Phase= 0.000000e+00
        Index       Frequency             Mag           Phase
            1    1.000000e+00    4.105335e-01    1.800000e+02
            2    2.000000e+00    0.000000e+00    0.000000e+00
@@ -18,8 +19,9 @@ DC component    Mag= 5.000000e-01   Phase= 0.000000e+00
      SFDR = 1.818013e+01 dB at frequency 3.000000e+00
 
 FFT analysis for V(2):
-  Window: RECT, First Harmonic: 2.000000e+00, Start Freq: 2.000000e+00, Stop Freq: 1.600000e+01
-DC component    Mag= 5.000000e-01   Phase= 0.000000e+00
+  Window: RECT, Start Time: 0.000000e+00, Stop Time: 5.000000e-01
+  First Harmonic: 2.000000e+00, Start Freq: 2.000000e+00, Stop Freq: 1.600000e+01
+  DC component    Mag= 5.000000e-01   Phase= 0.000000e+00
        Index       Frequency             Mag           Phase
            1    2.000000e+00    4.105335e-01    1.800000e+02
            2    4.000000e+00    0.000000e+00    0.000000e+00
@@ -37,8 +39,9 @@ DC component    Mag= 5.000000e-01   Phase= 0.000000e+00
      SFDR = 1.818013e+01 dB at frequency 6.000000e+00
 
 FFT analysis for V(2):
-  Window: RECT, First Harmonic: 2.000000e+00, Start Freq: 2.000000e+00, Stop Freq: 1.600000e+01
-DC component    Mag= 5.000000e-01   Phase= 0.000000e+00
+  Window: RECT, Start Time: 0.000000e+00, Stop Time: 5.000000e-01
+  First Harmonic: 2.000000e+00, Start Freq: 2.000000e+00, Stop Freq: 1.600000e+01
+  DC component    Mag= 5.000000e-01   Phase= 0.000000e+00
        Index       Frequency             Mag           Phase
            1    2.000000e+00    4.105335e-01    1.800000e+02
            2    4.000000e+00    0.000000e+00    0.000000e+00
@@ -56,8 +59,9 @@ DC component    Mag= 5.000000e-01   Phase= 0.000000e+00
      SFDR = 1.818013e+01 dB at frequency 6.000000e+00
 
 FFT analysis for V(3):
-  Window: RECT, First Harmonic: 2.000000e+00, Start Freq: 2.000000e+00, Stop Freq: 1.600000e+01
-DC component    Mag= 5.000000e-01   Phase= 0.000000e+00
+  Window: RECT, Start Time: 5.000000e-01, Stop Time: 1.000000e+00
+  First Harmonic: 2.000000e+00, Start Freq: 2.000000e+00, Stop Freq: 1.600000e+01
+  DC component    Mag= 5.000000e-01   Phase= 0.000000e+00
        Index       Frequency             Mag           Phase
            1    2.000000e+00    4.105335e-01    1.800000e+02
            2    4.000000e+00    0.000000e+00    0.000000e+00
@@ -75,8 +79,9 @@ DC component    Mag= 5.000000e-01   Phase= 0.000000e+00
      SFDR = 1.818013e+01 dB at frequency 6.000000e+00
 
 FFT analysis for V(3):
-  Window: RECT, First Harmonic: 2.000000e+00, Start Freq: 2.000000e+00, Stop Freq: 1.600000e+01
-DC component    Mag= 5.000000e-01   Phase= 0.000000e+00
+  Window: RECT, Start Time: 5.000000e-01, Stop Time: 1.000000e+00
+  First Harmonic: 2.000000e+00, Start Freq: 2.000000e+00, Stop Freq: 1.600000e+01
+  DC component    Mag= 5.000000e-01   Phase= 0.000000e+00
        Index       Frequency             Mag           Phase
            1    2.000000e+00    4.105335e-01    1.800000e+02
            2    4.000000e+00    0.000000e+00    0.000000e+00
@@ -94,8 +99,9 @@ DC component    Mag= 5.000000e-01   Phase= 0.000000e+00
      SFDR = 1.818013e+01 dB at frequency 6.000000e+00
 
 FFT analysis for V(2):
-  Window: RECT, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
-DC component    Mag= 2.500000e-01   Phase= 0.000000e+00
+  Window: RECT, Start Time: 0.000000e+00, Stop Time: 1.000000e+00
+  First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
+  DC component    Mag= 2.500000e-01   Phase= 0.000000e+00
        Index       Frequency             Mag           Phase
            1    1.000000e+00    4.105335e-01   -9.000000e+01
            2    2.000000e+00    2.133883e-01    1.800000e+02
@@ -113,8 +119,9 @@ DC component    Mag= 2.500000e-01   Phase= 0.000000e+00
      SFDR = 5.683557e+00 dB at frequency 2.000000e+00
 
 FFT analysis for V(3):
-  Window: RECT, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
-DC component    Mag= 2.500000e-01   Phase= 0.000000e+00
+  Window: RECT, Start Time: 0.000000e+00, Stop Time: 1.000000e+00
+  First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
+  DC component    Mag= 2.500000e-01   Phase= 0.000000e+00
        Index       Frequency             Mag           Phase
            1    1.000000e+00    4.105335e-01    9.000000e+01
            2    2.000000e+00    2.133883e-01    1.800000e+02

@@ -57,6 +57,59 @@ if ($retval !=0)
   $retcode = 2;
 }
 
+# check that .out file exists, and open it if it does
+if (not -s "$CIRFILE.out" )
+{
+  print "Exit code = 17\n";
+  exit 17;
+}
+else
+{
+  open(NETLIST, "$CIRFILE.out");
+  open(ERRMSG,">$CIRFILE.errmsg") or die $!;
+}
+
+# parse the .out file to find the text related to remeasure
+my $foundStart=0;
+my $foundEnd=0;
+my @outLine;
+my $lineCount=0;
+while( $line=<NETLIST> )
+{
+  if ($line =~ /FFT Analyses/) { $foundStart = 1; }
+
+  if ($foundStart > 0 && $line =~ /Total Simulation/) { $foundEnd = 1; }
+
+  if ($foundStart > 0 && $foundEnd < 1)
+  {
+    print ERRMSG $line;
+  }
+}
+close(NETLIST);
+close(ERRMSG);
+
+# test that the values and strings in the .out file match to the required
+# tolerances
+my $GSFILE="DefaultValTestGSfile";
+my $absTol=1e-3;
+my $relTol=1e-3;
+my $zeroTol=1e-10;
+
+$CMD="$fc $CIRFILE.errmsg $GSFILE $absTol $relTol $zeroTol > $CIRFILE.errmsg.out 2> $CIRFILE.errmsg.err";
+$retval=system($CMD);
+$retval= $retval >> 8;
+
+if ( $retval != 0 )
+{
+  print STDERR "test failed comparison of stdout vs. GSfile with exit code $retval\n";
+  print "Exit code = 2\n";
+  exit 2;
+}
+else
+{
+  print "Passed comparison of stdout info\n";
+}
+
 # The next two blocks of code are used to compare the measured .mt0 file
 # with the "Gold" .mt0 file, which is in OutputData/MEASURE_FFT/
 # Check that the Gold .mt0 file exists

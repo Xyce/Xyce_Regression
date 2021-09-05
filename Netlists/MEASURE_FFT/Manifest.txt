@@ -1,5 +1,6 @@
 DefaultValTest.cir
 DefaultValTest.cir.sh
+DefaultValTestGSfile
 ENOBTest.cir
 ENOBTest.cir.sh
 ENOBTest.cir.tags
