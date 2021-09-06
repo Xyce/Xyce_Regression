@@ -88,8 +88,7 @@ my $absTol=1e-5;
 my $relTol=1e-3;
 my $zeroTol=1e-10;
 
-$CMD="$fc $CIRFILE.errmsg $GSFILE $absTol $relTol $zeroTol > $CIRFILE.errmsg.out 2> $CIRFILE.stderr";
-#$CMD="$fc $CIRFILE.errmsg $GSFILE $absTol $relTol $zeroTol > $CIRFILE.errmsg.out 2> $CIRFILE.errmsg.err";
+$CMD="$fc $CIRFILE.errmsg $GSFILE $absTol $relTol $zeroTol > $CIRFILE.errmsg.out 2> $CIRFILE.errmsg.err";
 $retval=system($CMD);
 $retval= $retval >> 8;
 
