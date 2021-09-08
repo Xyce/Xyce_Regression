@@ -1,3 +1,6 @@
+BinSizeTest.cir
+BinSizeTest.cir.sh
+BinSizeTestGSfile
 DefaultValTest.cir
 DefaultValTest.cir.sh
 DefaultValTestGSfile
