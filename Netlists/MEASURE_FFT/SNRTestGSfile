@@ -11,6 +11,12 @@ SNRIR3 = 2.000000e+02
 MAXV3 = 1.000000e+00 at time = 2.500000e-01
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e+00
 
+EQN1 = 2.000000e+02
+Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e+00
+
+EQN2 = 2.000000e+02
+Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e+00
+
 PARAM1 = 2.000000e+02
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e+00
 
