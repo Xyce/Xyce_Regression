@@ -25,11 +25,11 @@ $Tools = XyceRegression::Tools->new();
 # these search strings are supposed to occur one right after the other in the
 # error output.  Note that parens are escaped with \\
 @searchstrings = ( "Netlist error in file PRINT_Line_Missing_Paren.cir at or near line 18",
-                   "Unrecognized parenthetical specification in .print near .PRINT TRAN V \\( 1",
+                   "Unrecognized voltage specification in .print near .PRINT TRAN V \\( 1",
                    "Netlist error in file PRINT_Line_Missing_Paren.cir at or near line 19",
-                   "Unrecognized parenthetical specification in .print near .PRINT TRAN V \\( \\)",
+                   "Unrecognized voltage specification in .print near .PRINT TRAN V \\( \\)",
                    "Netlist error in file PRINT_Line_Missing_Paren.cir at or near line 20",
-                   "Unrecognized parenthetical specification in .print near .PRINT TRAN V \\(",
+                   "Unrecognized voltage specification in .print near .PRINT TRAN V \\(",
                    "Netlist error in file PRINT_Line_Missing_Paren.cir at or near line 21",
                    " Unrecognized current specification in .print near .PRINT TRAN I \\( V1",
                    "Netlist error in file PRINT_Line_Missing_Paren.cir at or near line 22",
@@ -43,17 +43,17 @@ $Tools = XyceRegression::Tools->new();
                    "Netlist error in file PRINT_Line_Missing_Paren.cir at or near line 26",
                    "Unrecognized parenthetical specification in .print near .PRINT TRAN N \\(",
                    "Netlist error in file PRINT_Line_Missing_Paren.cir at or near line 27",
-                   "Unrecognized parenthetical specification in .print near .PRINT TRAN P \\( R1",
+                   "Unrecognized power specification in .print near .PRINT TRAN P \\( R1",
                    "Netlist error in file PRINT_Line_Missing_Paren.cir at or near line 28",
-                   "Unrecognized parenthetical specification in .print near .PRINT TRAN P \\( \\)",
+                   "Unrecognized power specification in .print near .PRINT TRAN P \\( \\)",
                    "Netlist error in file PRINT_Line_Missing_Paren.cir at or near line 29",
-                   "Unrecognized parenthetical specification in .print near .PRINT TRAN P \\(",
+                   "Unrecognized power specification in .print near .PRINT TRAN P \\(",
                    "Netlist error in file PRINT_Line_Missing_Paren.cir at or near line 30",
-                   "Unrecognized parenthetical specification in .print near .PRINT TRAN W \\( R1",
+                   "Unrecognized power specification in .print near .PRINT TRAN W \\( R1",
                    "Netlist error in file PRINT_Line_Missing_Paren.cir at or near line 31",
-                   "Unrecognized parenthetical specification in .print near .PRINT TRAN W \\( \\)",
+                   "Unrecognized power specification in .print near .PRINT TRAN W \\( \\)",
                    "Netlist error in file PRINT_Line_Missing_Paren.cir at or near line 32",
-                   "Unrecognized parenthetical specification in .print near .PRINT TRAN W \\(" );
+                   "Unrecognized power specification in .print near .PRINT TRAN W \\(" );
 
 $XYCE=$ARGV[0];
 #$XYCE_VERIFY=$ARGV[1];

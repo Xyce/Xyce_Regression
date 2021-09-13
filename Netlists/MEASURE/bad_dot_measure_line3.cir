@@ -1,9 +1,9 @@
 Testing ill-formed .MEASURE lines
 *********************************************************************
-* Missing node specifier in I(), P() and W().    
+* Missing node specifier in V(), I(), P() and W().   Also some
+* invalid syntaxes from SON Bug 1134. 
 * 
-* See SON Bug 673
-*
+* See SON Bugs 673 and 1134
 *
 *
 *
@@ -14,11 +14,14 @@ R1  1  0  100
 .TRAN 0 1ms
 .PRINT TRAN FORMAT=NOINDEX V(1) I(R1)
 
-* bogo measure line that will cause a fatal error within
-* the *makeOp() function in N_UTL_Op.C
+.MEASURE TRAN NONODE MAX V()
 .MEASURE TRAN MAX1 MAX I()
 .MEASURE TRAN MAX2 MAX P()
 .MEASURE TRAN MAX3 MAX W()
+
+* test cases from SON Bug1134
+.MEASURE TRAN M1 MAX V(1)+V(2)
+.MEASURE TRAN M2 MAX V(1) +V(2)
 
 .END
 

@@ -24,6 +24,10 @@ R2 2 0 1
 .MEASURE TRAN PP PP V(1) V(2)
 .MEASURE TRAN RMS RMS V(1) V(2)
 
+* bad .MEASURE lines mentioned in SON Bug 1134
+.MEASURE TRAN M1 MAX V(1)+ V(2)
+.MEASURE TRAN M2 MAX V(1) + V(2)
+
 * add one good measure also
 .MEASURE TRAN MAXGOOD MAX V(1)
 

@@ -18,7 +18,7 @@ $GOLDPRN=$ARGV[4];
 # Check various error cases.
 # These strings should be in the output of this failed Xyce run.
 # Note that parens are escaped with \\
-@searchstrings = ("Netlist error: Function or variable V\\(\\)\\) is not defined",
+@searchstrings = (
      "Netlist error: Function or variable V\\(BOGONODE\\) is not defined",
      "Netlist error: Function or variable N\\(MISSINGNODE\\) is not defined",
      "Netlist error: Function or variable V\\(GND\\) is not defined"

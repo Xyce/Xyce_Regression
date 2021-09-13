@@ -30,7 +30,9 @@ $GOLDPRN=$ARGV[4];
       "Netlist error: Too many dependent variables for OFF_TIME measure, \"OFF_TIME\"",
       "Netlist error: Too many dependent variables for ON_TIME measure, \"ON_TIME\"",
       "Netlist error: Too many dependent variables for PP measure, \"PP\"",
-      "Netlist error: Too many dependent variables for RMS measure, \"RMS\""
+      "Netlist error: Too many dependent variables for RMS measure, \"RMS\"",
+      "Netlist error: Too many dependent variables for MAX measure, \"M1\"",
+      "Netlist error: Too many dependent variables for MAX measure, \"M2\""
 );
 
 $retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);

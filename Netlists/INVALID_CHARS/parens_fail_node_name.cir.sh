@@ -18,9 +18,9 @@ $GOLDPRN=$ARGV[4];
 # check various error cases
 # this string should be in the output of this failed Xyce run  
 @searchstrings = ("Netlist error in file parens_fail_node_name.cir at or near line 36",
-   "Unrecognized parenthetical specification in .print near .PRINT DC V \\( 3 \\(",
+   "Unrecognized voltage specification in .print near .PRINT DC V \\( 3 \\(",
    "Netlist error in file parens_fail_node_name.cir at or near line 36",
-   "Unrecognized parenthetical specification in .print near .PRINT DC V \\( 3 \\(",
+   "Unrecognized voltage specification in .print near .PRINT DC V \\( 3 \\(",
    "Unrecognized parenthesis in .print near 3 \\( \\)",
    "Netlist error in file parens_fail_node_name.cir at or near line 37",
    "Unrecognized parenthesis in .print near 7 \\) \\)");
