@@ -1,8 +1,7 @@
 #!/usr/bin/env perl
 
 use MeasureCommon;
-use XyceRegression::Tools;
-$Tools = XyceRegression::Tools->new();
+use File::Copy;
 
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
@@ -33,7 +32,8 @@ $fc=$XYCE_VERIFY;
 $fc =~ s/xyce_verify/file_compare/;
 
 # remove files from previous runs
-system("rm -f $CIRFILE.mt0 $CIRFILE.fft* $CIRFILE.out $CIRFILE.err* $CIRFILE.prn*");
+system("rm -f $CIRFILE.mt0 $CIRFILE.fft0 $CIRFILE.out $CIRFILE.err*");
+system("rm -f $CIRFILE.remeasure* $CIRFILE.measure*");
 
 #
 # Steps common to all of the measure tests are in the Perl module
@@ -41,21 +41,8 @@ system("rm -f $CIRFILE.mt0 $CIRFILE.fft* $CIRFILE.out $CIRFILE.err* $CIRFILE.prn
 #
 MeasureCommon::checkFFTFilesExist($XYCE,$CIRFILE);
 
-# test tolerances
-$absTol=1e-3;
-$relTol=1e-3;
-$zeroTol=1e-10;
-$retcode = 0;
-
-# The test will fail if this warning is not produced
-@searchstrings=("Netlist warning: FFT_ACCURATE reset to 0, because .OPTIONS OUTPUT",
-   "INITIAL_INTERVAL used");
-$retval = $Tools->checkError("$CIRFILE.out", @searchstrings);
-if ($retval !=0)
-{
-  print "Warning message about FFT_ACCURATE reset not found\n";
-  $retcode = 2;
-}
+# The next three blocks of code are used to compare the .MEASURE FFT output
+# to stdout to the "gold" stdout in the $GSFILE (ENOBTestGSfile).
 
 # check that .out file exists, and open it if it does
 if (not -s "$CIRFILE.out" )
@@ -69,15 +56,14 @@ else
   open(ERRMSG,">$CIRFILE.errmsg") or die $!;
 }
 
-# parse the .out file to find the text related to remeasure
+# parse the .out file to find the text related to .MEASURE
 my $foundStart=0;
 my $foundEnd=0;
 my @outLine;
 my $lineCount=0;
 while( $line=<NETLIST> )
 {
-  if ($line =~ /FFT Analyses/) { $foundStart = 1; }
-
+  if ($line =~ /Measure Functions/) { $foundStart = 1; }
   if ($foundStart > 0 && $line =~ /Total Simulation/) { $foundEnd = 1; }
 
   if ($foundStart > 0 && $foundEnd < 1)
@@ -85,19 +71,20 @@ while( $line=<NETLIST> )
     print ERRMSG $line;
   }
 }
+
 close(NETLIST);
 close(ERRMSG);
 
 # test that the values and strings in the .out file match to the required
 # tolerances
-my $GSFILE="DefaultValTestGSfile";
-my $absTol=1e-3;
+my $GSFILE="BinSizeTestGSfile";
+my $absTol=1e-5;
 my $relTol=1e-3;
 my $zeroTol=1e-10;
 
 $CMD="$fc $CIRFILE.errmsg $GSFILE $absTol $relTol $zeroTol > $CIRFILE.errmsg.out 2> $CIRFILE.errmsg.err";
 $retval=system($CMD);
-$retval= $retval >> 8;
+$retval = $retval >> 8;
 
 if ( $retval != 0 )
 {
@@ -128,39 +115,20 @@ $MEASUREMT0 = "$CIRFILE.mt0";
 $CMD="$fc $MEASUREMT0 $GOLDMT0 $absTol $relTol $zeroTol > $CIRFILE.errmsg.out 2> $CIRFILE.errmsg.err";
 $retval=system($CMD);
 $retval = $retval >> 8;
-if ($retval != 0){
-  print STDERR "Comparator exited with exit code $retval on file $CIRFILE.fft0\n";
-  $retcode = 2;
-}
 
-# compare .fft0 output also
-$GOLDFFT = $GOLDPRN;
-$GOLDFFT =~ s/\.prn$//;
-
-if ( !(-f "$CIRFILE.fft0"))
+if ( $retval != 0 )
 {
-  print STDERR "Missing output file $CIRFILE.fft0\n";
+  print STDERR "test failed comparison of Gold and measured .mt0 files with exit code $retval\n";
   print "Exit code = 2\n";
   exit 2;
 }
-
-$CMD="$fc $CIRFILE.fft0 $GOLDFFT.fft0 $absTol $relTol $zeroTol > $CIRFILE.fft0.out 2> $CIRFILE.fft0.err";
-$retval = system("$CMD");
-$retval = $retval >> 8;
-if ($retval != 0){
-  print STDERR "Comparator exited with exit code $retval on file $CIRFILE.fft0\n";
-  $retcode = 2;
+else
+{
+  print "Passed comparison of .mt0 files\n";
 }
 
-# compare .prn output, to verify that the measured values are the "default value" until the
-# last time step.
-$CMD="$fc $CIRFILE.prn $GOLDPRN $absTol $relTol $zeroTol > $CIRFILE.prn.out 2> $CIRFILE.prn.err";
-$retval = system("$CMD");
-$retval = $retval >> 8;
-if ($retval != 0){
-  print STDERR "Comparator exited with exit code $retval on file $CIRFILE.prn\n";
-  $retcode = 2;
-}
+# Re-measure test uses the same approach as the FOUR measure.
+$retval = MeasureCommon::checkRemeasureWithFFTFiles($XYCE,$XYCE_VERIFY,$CIRFILE,$absTol,$relTol,$zeroTol);
 
-print "Exit code = $retcode\n";
-exit $retcode;
+print "Exit code = $retval\n";
+exit $retval;

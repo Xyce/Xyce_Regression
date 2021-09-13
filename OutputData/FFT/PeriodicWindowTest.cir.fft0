@@ -1,6 +1,7 @@
 FFT analysis for V(1):
-  Window: BART, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
-DC component    Mag= 3.330177e-01   Phase= 0.000000e+00
+  Window: BART, Start Time: 0.000000e+00, Stop Time: 1.000000e+00
+  First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
+  DC component    Mag= 3.330177e-01   Phase= 0.000000e+00
        Index       Frequency             Mag           Phase
            1    1.000000e+00    4.037914e-01   -1.746831e+02
            2    2.000000e+00    9.990933e-02    1.776428e+01
@@ -12,8 +13,9 @@ DC component    Mag= 3.330177e-01   Phase= 0.000000e+00
            8    8.000000e+00    1.578283e-03    0.000000e+00
 
 FFT analysis for V(1):
-  Window: BARTLETT, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
-DC component    Mag= 3.330177e-01   Phase= 0.000000e+00
+  Window: BARTLETT, Start Time: 0.000000e+00, Stop Time: 1.000000e+00
+  First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
+  DC component    Mag= 3.330177e-01   Phase= 0.000000e+00
        Index       Frequency             Mag           Phase
            1    1.000000e+00    4.037914e-01   -1.746831e+02
            2    2.000000e+00    9.990933e-02    1.776428e+01
@@ -25,8 +27,9 @@ DC component    Mag= 3.330177e-01   Phase= 0.000000e+00
            8    8.000000e+00    1.578283e-03    0.000000e+00
 
 FFT analysis for V(1):
-  Window: BARTLETTHANN, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
-DC component    Mag= 3.458347e-01   Phase= 0.000000e+00
+  Window: BARTLETTHANN, Start Time: 0.000000e+00, Stop Time: 1.000000e+00
+  First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
+  DC component    Mag= 3.458347e-01   Phase= 0.000000e+00
        Index       Frequency             Mag           Phase
            1    1.000000e+00    4.381244e-01   -1.749071e+02
            2    2.000000e+00    1.074499e-01    1.875642e+01
@@ -38,8 +41,9 @@ DC component    Mag= 3.458347e-01   Phase= 0.000000e+00
            8    8.000000e+00    1.301806e-03    1.800000e+02
 
 FFT analysis for V(1):
-  Window: BLACKMAN, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
-DC component    Mag= 3.094782e-01   Phase= 0.000000e+00
+  Window: BLACKMAN, Start Time: 0.000000e+00, Stop Time: 1.000000e+00
+  First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
+  DC component    Mag= 3.094782e-01   Phase= 0.000000e+00
        Index       Frequency             Mag           Phase
            1    1.000000e+00    4.339159e-01   -1.757049e+02
            2    2.000000e+00    1.481618e-01    1.322704e+01
@@ -51,8 +55,9 @@ DC component    Mag= 3.094782e-01   Phase= 0.000000e+00
            8    8.000000e+00    2.211308e-03    1.800000e+02
 
 FFT analysis for V(1):
-  Window: COSINE2, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
-DC component    Mag= 3.498822e-01   Phase= 0.000000e+00
+  Window: COSINE2, Start Time: 0.000000e+00, Stop Time: 1.000000e+00
+  First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
+  DC component    Mag= 3.498822e-01   Phase= 0.000000e+00
        Index       Frequency             Mag           Phase
            1    1.000000e+00    4.489677e-01   -1.749707e+02
            2    2.000000e+00    1.098372e-01    1.904140e+01
@@ -64,8 +69,9 @@ DC component    Mag= 3.498822e-01   Phase= 0.000000e+00
            8    8.000000e+00    2.211308e-03    1.800000e+02
 
 FFT analysis for V(1):
-  Window: COSINE4, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
-DC component    Mag= 2.867509e-01   Phase= 0.000000e+00
+  Window: COSINE4, Start Time: 0.000000e+00, Stop Time: 1.000000e+00
+  First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
+  DC component    Mag= 2.867509e-01   Phase= 0.000000e+00
        Index       Frequency             Mag           Phase
            1    1.000000e+00    4.254823e-01   -1.761407e+02
            2    2.000000e+00    1.701525e-01    1.111896e+01
@@ -77,8 +83,9 @@ DC component    Mag= 2.867509e-01   Phase= 0.000000e+00
            8    8.000000e+00    2.211308e-03    1.800000e+02
 
 FFT analysis for V(1):
-  Window: HAMM, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
-DC component    Mag= 3.617906e-01   Phase= 0.000000e+00
+  Window: HAMM, Start Time: 0.000000e+00, Stop Time: 1.000000e+00
+  First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
+  DC component    Mag= 3.617906e-01   Phase= 0.000000e+00
        Index       Frequency             Mag           Phase
            1    1.000000e+00    4.455415e-01   -1.746828e+02
            2    2.000000e+00    1.009254e-01    2.053730e+01
@@ -90,8 +97,9 @@ DC component    Mag= 3.617906e-01   Phase= 0.000000e+00
            8    8.000000e+00    2.539454e-03    1.800000e+02
 
 FFT analysis for V(1):
-  Window: HAMMING, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
-DC component    Mag= 3.617906e-01   Phase= 0.000000e+00
+  Window: HAMMING, Start Time: 0.000000e+00, Stop Time: 1.000000e+00
+  First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
+  DC component    Mag= 3.617906e-01   Phase= 0.000000e+00
        Index       Frequency             Mag           Phase
            1    1.000000e+00    4.455415e-01   -1.746828e+02
            2    2.000000e+00    1.009254e-01    2.053730e+01
@@ -103,8 +111,9 @@ DC component    Mag= 3.617906e-01   Phase= 0.000000e+00
            8    8.000000e+00    2.539454e-03    1.800000e+02
 
 FFT analysis for V(1):
-  Window: HANN, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
-DC component    Mag= 3.498822e-01   Phase= 0.000000e+00
+  Window: HANN, Start Time: 0.000000e+00, Stop Time: 1.000000e+00
+  First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
+  DC component    Mag= 3.498822e-01   Phase= 0.000000e+00
        Index       Frequency             Mag           Phase
            1    1.000000e+00    4.489677e-01   -1.749707e+02
            2    2.000000e+00    1.098372e-01    1.904140e+01
@@ -116,8 +125,9 @@ DC component    Mag= 3.498822e-01   Phase= 0.000000e+00
            8    8.000000e+00    2.211308e-03    1.800000e+02
 
 FFT analysis for V(1):
-  Window: HANNING, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
-DC component    Mag= 3.498822e-01   Phase= 0.000000e+00
+  Window: HANNING, Start Time: 0.000000e+00, Stop Time: 1.000000e+00
+  First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
+  DC component    Mag= 3.498822e-01   Phase= 0.000000e+00
        Index       Frequency             Mag           Phase
            1    1.000000e+00    4.489677e-01   -1.749707e+02
            2    2.000000e+00    1.098372e-01    1.904140e+01
@@ -129,8 +139,9 @@ DC component    Mag= 3.498822e-01   Phase= 0.000000e+00
            8    8.000000e+00    2.211308e-03    1.800000e+02
 
 FFT analysis for V(1):
-  Window: HARRIS, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
-DC component    Mag= 2.764145e-01   Phase= 0.000000e+00
+  Window: HARRIS, Start Time: 0.000000e+00, Stop Time: 1.000000e+00
+  First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
+  DC component    Mag= 2.764145e-01   Phase= 0.000000e+00
        Index       Frequency             Mag           Phase
            1    1.000000e+00    4.165300e-01   -1.762888e+02
            2    2.000000e+00    1.778415e-01    1.024060e+01
@@ -142,8 +153,9 @@ DC component    Mag= 2.764145e-01   Phase= 0.000000e+00
            8    8.000000e+00    2.174050e-03    1.800000e+02
 
 FFT analysis for V(1):
-  Window: BLACKMANHARRIS, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
-DC component    Mag= 2.764145e-01   Phase= 0.000000e+00
+  Window: BLACKMANHARRIS, Start Time: 0.000000e+00, Stop Time: 1.000000e+00
+  First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
+  DC component    Mag= 2.764145e-01   Phase= 0.000000e+00
        Index       Frequency             Mag           Phase
            1    1.000000e+00    4.165300e-01   -1.762888e+02
            2    2.000000e+00    1.778415e-01    1.024060e+01
@@ -155,8 +167,9 @@ DC component    Mag= 2.764145e-01   Phase= 0.000000e+00
            8    8.000000e+00    2.174050e-03    1.800000e+02
 
 FFT analysis for V(1):
-  Window: NUTTALL, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
-DC component    Mag= 2.790123e-01   Phase= 0.000000e+00
+  Window: NUTTALL, Start Time: 0.000000e+00, Stop Time: 1.000000e+00
+  First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
+  DC component    Mag= 2.790123e-01   Phase= 0.000000e+00
        Index       Frequency             Mag           Phase
            1    1.000000e+00    4.179171e-01   -1.762415e+02
            2    2.000000e+00    1.755286e-01    1.043772e+01
@@ -168,8 +181,9 @@ DC component    Mag= 2.790123e-01   Phase= 0.000000e+00
            8    8.000000e+00    2.178628e-03    1.800000e+02
 
 FFT analysis for V(1):
-  Window: HALFCYCLESINE, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
-DC component    Mag= 4.043832e-01   Phase= 0.000000e+00
+  Window: HALFCYCLESINE, Start Time: 0.000000e+00, Stop Time: 1.000000e+00
+  First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
+  DC component    Mag= 4.043832e-01   Phase= 0.000000e+00
        Index       Frequency             Mag           Phase
            1    1.000000e+00    4.475332e-01   -1.737756e+02
            2    2.000000e+00    6.294168e-02    3.436639e+01
@@ -181,8 +195,9 @@ DC component    Mag= 4.043832e-01   Phase= 0.000000e+00
            8    8.000000e+00    2.329149e-03    1.800000e+02
 
 FFT analysis for V(1):
-  Window: HALFCYCLESINE3, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
-DC component    Mag= 3.134153e-01   Phase= 0.000000e+00
+  Window: HALFCYCLESINE3, Start Time: 0.000000e+00, Stop Time: 1.000000e+00
+  First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
+  DC component    Mag= 3.134153e-01   Phase= 0.000000e+00
        Index       Frequency             Mag           Phase
            1    1.000000e+00    4.388810e-01   -1.756690e+02
            2    2.000000e+00    1.451132e-01    1.378300e+01
@@ -194,8 +209,9 @@ DC component    Mag= 3.134153e-01   Phase= 0.000000e+00
            8    8.000000e+00    2.247947e-03    1.800000e+02
 
 FFT analysis for V(1):
-  Window: HALFCYCLESINE6, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
-DC component    Mag= 2.495048e-01   Phase= 0.000000e+00
+  Window: HALFCYCLESINE6, Start Time: 0.000000e+00, Stop Time: 1.000000e+00
+  First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
+  DC component    Mag= 2.495048e-01   Phase= 0.000000e+00
        Index       Frequency             Mag           Phase
            1    1.000000e+00    3.980116e-01   -1.767561e+02
            2    2.000000e+00    2.002161e-01    8.373242e+00
@@ -207,8 +223,9 @@ DC component    Mag= 2.495048e-01   Phase= 0.000000e+00
            8    8.000000e+00    2.110964e-03    1.800000e+02
 
 FFT analysis for V(1):
-  Window: RECT, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
-DC component    Mag= 4.987374e-01   Phase= 0.000000e+00
+  Window: RECT, Start Time: 0.000000e+00, Stop Time: 1.000000e+00
+  First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
+  DC component    Mag= 4.987374e-01   Phase= 0.000000e+00
        Index       Frequency             Mag           Phase
            1    1.000000e+00    4.070340e-01   -1.710282e+02
            2    2.000000e+00    3.299401e-02    1.125000e+02
@@ -220,8 +237,9 @@ DC component    Mag= 4.987374e-01   Phase= 0.000000e+00
            8    8.000000e+00    6.313131e-03    1.800000e+02
 
 FFT analysis for V(1):
-  Window: RECTANGULAR, First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
-DC component    Norm. Mag= 1.000000e+00   Phase= 0.000000e+00
+  Window: RECTANGULAR, Start Time: 0.000000e+00, Stop Time: 1.000000e+00
+  First Harmonic: 1.000000e+00, Start Freq: 1.000000e+00, Stop Freq: 8.000000e+00
+  DC component    Norm. Mag= 1.000000e+00   Phase= 0.000000e+00
        Index       Frequency       Norm. Mag           Phase
            1    1.000000e+00    8.161290e-01   -1.710282e+02
            2    2.000000e+00    6.615509e-02    1.125000e+02

@@ -10,11 +10,13 @@ RemeasureFFTonly.csv
 RemeasureFFTonlyGSfile
 StartStopTest.cir
 StartStopTest.cir.sh
+StartStopTestGSfile
 WindowTest.cir
 WindowTest.cir.sh
 WindowTest.cir.tags
 fft_accurateOptionZero.cir
 fft_accurateOptionZero.cir.sh
+fft_accurateOptionZeroGSfile
 fft_accurateOptionZero.cir.tags
 fftoutOptionZero.cir
 fftoutOptionZero.cir.sh

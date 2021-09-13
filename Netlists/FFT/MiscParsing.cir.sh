@@ -44,6 +44,22 @@ if ( !(-f "$CIRFILE.fft0")) {
     exit 2;
 }
 
+# Verify that no verbose output is in the stdout.
+# Check that .out file exists, and open it if it does.
+if (not -s "$CIRFILE.out" )
+{
+  print "Exit code = 17\n";
+  exit 17;
+}
+
+$stdouterr = `grep "FFT Analyses" $CIRFILE.out`;
+if ( $stdouterr != 0 )
+{
+  print ".OPTIONS FFTOUT text found in stdout, when it should not be\n"; 
+  print "Exit code = 2\n"; exit 2;
+}
+
+# check the .fft0 output
 $absTol=1e-5;
 $relTol=1e-3;
 $zeroTol=1e-10;
