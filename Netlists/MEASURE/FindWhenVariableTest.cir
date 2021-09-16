@@ -46,6 +46,7 @@ R4  4  0  100
 .measure tran findexp2 find v(2) when {v(1)-0.1}=v(3)
 
 * test FIND-AT
+.measure tran findv3at0 find v(3) at=0
 .measure tran findv1at0.25 find v(1) at=0.25
 .measure tran findv1at0.6 find v(1) at=0.6
 .measure tran findv1expat0.6 find {v(1)+1} at=0.6

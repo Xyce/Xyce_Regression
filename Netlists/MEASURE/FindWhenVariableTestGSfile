@@ -36,6 +36,8 @@ Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e+00
 FINDEXP2 = 7.000000e-01 at time = 1.500000e-01
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e+00
 
+FINDV3AT0 = 5.000000e-01 for AT = 0.000000e+00
+
 FINDV1AT0.25 = 1.000000e+00 for AT = 2.500000e-01
 
 FINDV1AT0.6 = 4.000000e-01 for AT = 6.000000e-01

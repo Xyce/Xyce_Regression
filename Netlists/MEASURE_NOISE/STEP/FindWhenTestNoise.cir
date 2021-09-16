@@ -30,6 +30,7 @@ RLP1b  5 0 50
 .MEASURE NOISE whenvi3 FIND VM(5) WHEN vi(4)=0.15
 
 * FIND-AT
+.MEASURE NOISE at1 FIND vi(4) at=1 ; first step
 .MEASURE NOISE at30 FIND vi(4) at 3e1
 .MEASURE NOISE at50 FIND {vi(4)+1} at 5e1
 

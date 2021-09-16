@@ -6,6 +6,8 @@ Measure Start VSRC1 Value= 1.000000e+00	Measure End VSRC1 Value= 5.000000e+00
 FINDV1CWHENV1B2 = 1.000000e+00 at VSRC1 value = 2.500000e+00
 Measure Start VSRC1 Value= 1.000000e+00	Measure End VSRC1 Value= 5.000000e+00
 
+V1BAT1 = 8.000000e-01 for AT = 1.000000e+00
+
 V1BAT2 = 1.600000e+00 for AT = 2.000000e+00
 
 V1BAT2.5 = 2.000000e+00 for AT = 2.500000e+00
