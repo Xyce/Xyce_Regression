@@ -1,4 +1,5 @@
 serial, nightly,  parallel
 valgrind
 iswitch
+switch
 
