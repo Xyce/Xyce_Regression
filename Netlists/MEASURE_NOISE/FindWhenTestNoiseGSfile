@@ -12,6 +12,8 @@ Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+02
 WHENVI3 = 7.919046e-02 at freq = 2.661898e+00
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+02
 
+AT1 = 7.772938e-03  for AT = 1.000000e+00
+
 AT10 = 3.061367e-01 for AT = 1.000000e+01
 
 AT30 = 1.247232e-01 for AT = 3.000000e+01

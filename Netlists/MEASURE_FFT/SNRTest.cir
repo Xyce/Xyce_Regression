@@ -43,6 +43,8 @@ R4 4 0 1
 .MEASURE TRAN MAXV3 MAX V(3)
 
 * Test with FFT-mode measure values in EQN measures
+.MEASURE FFT EQN1 EQN SNRV1
+.MEASURE FFT EQN2 EQN SNRV1
 .MEASURE FFT PARAM1 PARAM {SNREXP}
 
 * Test that .MEASURE FFT line uses the FREQ value

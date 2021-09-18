@@ -155,6 +155,8 @@ issue_221.cir.sh
 issue_221_measfail_zero.cir
 issue_221_measfail_one.cir
 issue_221_comp_file.prn
+issue_277.cir
+issue_277.cir.sh
 MeasdgtOption.cir
 MeasdgtOption.cir.sh
 MeasdgtOption_comp_file.prn

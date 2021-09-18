@@ -29,6 +29,7 @@ R2 2 0 1
 .MEASURE DC findv1cwhenv1b2 find v(1c) when v(1b)=2
 
 * FIND-AT
+.MEASURE DC v1bat1 find v(1b) at=1 ; first sweep value
 .MEASURE DC v1bat2 find v(1b) at=2
 .MEASURE DC v1bat2.5 find v(1b) at=2.5
 .MEASURE DC v1bexpat2.5 find {v(1b)+1} at=2.5

@@ -32,6 +32,7 @@ V1 a 0 DC 0V AC 1
 .MEASURE AC findvpcwhenvpb50 find vp(c) when vp(b)= 50.0
 
 * FIND-AT
+.MEASURE AC vibat1e2 FIND vi(b) at=1e2 ; first sweep value
 .MEASURE AC vibat1e4 FIND vi(b) at 1e4
 .MEASURE AC vibat3e4 FIND vi(b) at 3e4
 .MEASURE AC vibexpat5e4 FIND {vi(b)+1} at 5e4

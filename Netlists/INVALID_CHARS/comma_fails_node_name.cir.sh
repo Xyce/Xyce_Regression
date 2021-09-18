@@ -18,7 +18,7 @@ $GOLDPRN=$ARGV[4];
 # check various error cases
 # this string should be in the output of this failed Xyce run  
 @searchstrings = ("Netlist error in file comma_fails_node_name.cir at or near line 28",
-   "Unrecognized parenthetical specification in .print near .PRINT DC v \\( 3 ,");
+   "Unrecognized voltage specification in .print near .PRINT DC v \\( 3 ,");
 
 $retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);
 print "Exit code = $retval\n"; exit $retval; 

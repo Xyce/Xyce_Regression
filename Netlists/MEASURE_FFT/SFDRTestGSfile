@@ -11,6 +11,12 @@ SFDRIR3 = 1.228622e+00
 MAXV3 = 1.000000e+00 at time = 2.500000e-01
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e+00
 
+EQN1 = 1.977330e+01
+Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e+00
+
+EQN2 = 1.977330e+01
+Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e+00
+
 PARAM1 = 3.986011e+00
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e+00
 
