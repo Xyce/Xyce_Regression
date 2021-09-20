@@ -1,3 +1,5 @@
+exp_temp_dep.cir
+exp_temp_dep.cir.sh
 multSolDepRes.cir
 solDepRes.cir
 solDepRes2.cir
