@@ -67,6 +67,9 @@ RMSTest1DC.cir
 RMSTest1DC.cir.sh
 RMSTest1DCGSfile
 RMSTest1DC.cir.tags
+oneSweepValue.cir
+oneSweepValue.cir.sh
+oneSweepValueGSfile
 measure_dc_analysis_mismatch.cir
 measure_dc_analysis_mismatch.cir.sh
 measure_dc_analysis_mismatch.cir.tags
