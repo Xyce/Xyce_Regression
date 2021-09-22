@@ -8,6 +8,22 @@ DERIVVIOUTBAT5 = 1.986427e-01 for AT = 5.000000e+00
 
 DERIVVROUTAT0.01 = 1.083053e+00 for AT = 1.000000e-02
 
+ATFT = 1.083053e+00 for AT = 1.000000e-02
+
+WHEN = FAILED
+Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e+03
+
+WHENFT = FAILED
+Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e-02
+
+CONSTANT-AT = 0.000000e+00 for AT = 5.000000e+00
+
+CONSTANT-WHEN1 = 0.000000e+00 at freq = 5.846612e-01
+Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e+03
+
+CONSTANT-WHEN2 = FAILED
+Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e+03
+
 DERIVWHENVROUT1 = -6.026308e-01 at freq = 5.846612e-01
 Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e+03
 

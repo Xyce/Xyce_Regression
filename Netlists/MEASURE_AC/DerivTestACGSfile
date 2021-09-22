@@ -14,6 +14,22 @@ DERIVVDBBAT50 = 1.224711e-01 for AT = 5.000000e+01
 
 DERIVVMBAT1 = 1.256132e-02 for AT = 1.000000e+00
 
+ATFT = 1.256132e-02 for AT = 1.000000e+00
+
+WHEN = FAILED
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
+
+WHENFT = FAILED
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+00
+
+CONSTANT-AT = 0.000000e+00 for AT = 5.000000e+00
+
+CONSTANT-WHEN1 = 0.000000e+00 at freq = 4.685318e+01
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
+
+CONSTANT-WHEN2 = FAILED
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
+
 DERIVWHENVMB0.5 = 7.467382e-03 at freq = 4.685318e+01
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
