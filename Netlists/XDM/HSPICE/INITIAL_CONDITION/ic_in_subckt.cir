@@ -29,7 +29,7 @@ R_R8         N17112 0 10
 R1          in  mid 10
 C1          mid out 1u
 .ENDS
-.IC         V(X_X1:mid )=0.5
+.IC         V(X_X1.mid )=0.5
 
 * RC Decay with IC as an expression
 .param test_ic=0.5
@@ -58,7 +58,7 @@ V_V11        11a 0  PULSE(0 1 0 1e-3 1e-3 5e-3 1s)
 R_R11a       11a 11b  1k 
 X_X3         11b 11c  Subckt_noIC
 R_11b         0 11c  10  
-.IC V(X_X3:mid)=0.5
+.IC V(X_X3.mid)=0.5
 
 .SUBCKT Subckt_noIC in out
 R1          in  mid 10
