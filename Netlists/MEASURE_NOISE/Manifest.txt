@@ -38,6 +38,9 @@ DotOpNoNoise.cir
 DotOpNoNoise.cir.sh
 DotOpNoNoise.cir.tags
 DotOpNoNoise.cir.options
+oneSweepValue.cir
+oneSweepValue.cir.sh
+oneSweepValueGSfile
 measure_noise_analysis_mismatch.cir
 measure_noise_analysis_mismatch.cir.sh
 measure_noise_analysis_mismatch.cir.tags

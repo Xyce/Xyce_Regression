@@ -1,6 +1,9 @@
 AverageTestInc.cir
 AverageTestInc.cir.sh
 DerivativeVariableTest.cir
+DerivativeMiscTest.cir
+DerivativeMiscTest.cir.sh
+DerivativeMiscTestGSfile
 DuplicateMeasureNames.cir
 DuplicateMeasureNames.cir.sh
 DuplicateMeasureNamesGSfile
