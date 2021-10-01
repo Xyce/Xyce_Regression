@@ -1,10 +1,15 @@
-MINDUCTORS.cir
-MINDUCTORS_IC.cir
 cpldLMIs.cir
 cpldLMIs_ic.cir
-NonLinInductor.cir
-NonLinInductor_ic.cir
 InductorICBug.cir
+MINDUCTORS.cir
+MINDUCTORS_IC.cir
+mutIndPrint1.cir
+mutIndPrint1.cir.tags
+mutIndPrint2.cir
+mutIndPrint2.cir.tags
+mutIndStep.cir 
+mutIndStep.cir.res.gs
+mutIndStep.cir.tags
 NLGapStep1.cir 
 NLGapStep2.cir 
 NLGapStep3.cir 
@@ -35,4 +40,6 @@ NLAreaStepLv2_2.cir
 NLAreaStepLv2_3.cir
 NLAreaStepLv2.cir
 NLAreaStepLv2.cir.sh
+NonLinInductor.cir
+NonLinInductor_ic.cir
 tags
