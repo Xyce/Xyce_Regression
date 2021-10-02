@@ -1,5 +1,6 @@
-serial, nightly, normal
+serial, nightly, normal, parallel
 valgrind
-capacitor
+resistor
+inductor
 sampling
 issue297
