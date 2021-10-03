@@ -19,6 +19,9 @@ globalParamUniformLHS.cir.tags
 globalParamUniformMC.cir
 globalParamUniformMC.cir.sh
 globalParamUniformMC.cir.tags
+mutIndNormal.cir
+mutIndNormal.cir.sh
+mutIndNormal.cir.tags
 normalParamNormalLHS.cir
 normalParamNormalLHS.cir.sh
 normalParamNormalLHS.cir.tags
