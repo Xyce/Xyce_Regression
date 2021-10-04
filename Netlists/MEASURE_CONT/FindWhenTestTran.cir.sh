@@ -87,7 +87,7 @@ if ($XYCE_VERIFY =~ m/valgrind_check/)
 }
 
 # The next three blocks of code are used to compare the .MEASURE output
-# to stdout to the "gold" stdout in the $GSFILE (ExpressionSyntaxesGSfile).
+# to stdout to the "gold" stdout in the $GSFILE (FindWhenTestTranGSfile).
 
 # check that .out file exists, and open it if it does
 if (not -s "$CIRFILE.out" )
