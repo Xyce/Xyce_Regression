@@ -58,6 +58,10 @@ power_min_gear.cir
 power_min_gear.cir.sh
 power_min_trap.cir
 power_min_trap.cir.sh
+power_min2_gear.cir
+power_min2_gear.cir.sh
+power_min2_trap.cir
+power_min2_trap.cir.sh
 power_njfet_gear.cir
 power_njfet_gear.cir.sh
 power_njfet_trap.cir
