@@ -43,6 +43,10 @@ lead_min_trap.cir.sh
 lead_min_ac.cir
 lead_min_ac.cir.sh
 lead_min_ac.cir.tags
+lead_min2_gear.cir
+lead_min2_gear.cir.sh
+lead_min2_trap.cir
+lead_min2_trap.cir.sh
 lead_njfet_gear.cir
 lead_njfet_gear.cir.sh
 lead_njfet_trap.cir

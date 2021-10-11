@@ -1,6 +1,7 @@
-serial, nightly, normal
+serial, nightly, normal, parallel
 valgrind
-capacitor
+inductor
+mutualinductor
 pce
 intrusive_pce
 quadrature_pce

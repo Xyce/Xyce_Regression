@@ -1,5 +1,7 @@
-serial, nightly, normal
+serial, nightly, normal, parallel
 valgrind
-capacitor
+resistor
+inductor
+mutualinductor
 embeddedsampling
 issue297
