@@ -1,0 +1,39 @@
+ ***** Measure Functions ***** 
+
+TRIGTARGAT = 4.700000e+02 with targ = 5.000000e+02 and trig = 3.000000e+01
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
+
+TRIGTARG1 = 3.904233e+01 with targ = 5.461130e+01 and trig = 1.556897e+01
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
+
+TRIGTARG2 = -3.904233e+01 with targ = 1.556897e+01 and trig = 5.461130e+01
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
+
+TRIGTARG3 = 1.179157e+02 with targ = 1.334847e+02 and trig = 1.556897e+01
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
+
+TRIGTARG4 = -1.179157e+02 with targ = 1.556897e+01 and trig = 1.334847e+02
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
+
+TRIGTARG5 = 2.592691e+00 with targ = 1.221023e+02 and trig = 1.195096e+02
+Measure Start Freq= 1.000000e+00        Measure End Freq= 1.000000e+03
+
+TRIGTARG6 = -5.575691e+01 with targ = 6.375267e+01 and trig = 1.195096e+02
+Measure Start Freq= 1.000000e+00        Measure End Freq= 1.000000e+03
+
+TRIGTARG7 = 6.852831e+01 with targ = 8.314522e+01 and trig = 1.461691e+01
+Measure Start Freq= 1.000000e+00        Measure End Freq= 1.000000e+03
+
+RISEFALL1 = 2.834981e+01 with targ = 8.296111e+01 and trig = 5.461130e+01
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
+
+RISEFALL2 = -9.940473e+01 with targ = 1.556897e+01 and trig = 1.149737e+02
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
+
+RISEFALL3 = 1.079713e+02 with targ = 1.235402e+02 and trig = 1.556897e+01
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
+
+RISEFALL4 = -1.524912e+02 with targ = 1.556897e+01 and trig = 1.680602e+02
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
+
+

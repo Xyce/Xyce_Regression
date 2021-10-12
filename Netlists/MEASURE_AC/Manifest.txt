@@ -40,6 +40,10 @@ RMSTestAC.cir
 RMSTestAC.cir.sh
 RMSTestACGSfile
 RMSTestAC.cir.tags
+TrigTargTestAC.cir
+TrigTargTestAC.cir.sh
+TrigTargTestACGSfile
+TrigTargTestAC.cir.tags
 oneSweepValue.cir
 oneSweepValue.cir.sh
 oneSweepValueGSfile

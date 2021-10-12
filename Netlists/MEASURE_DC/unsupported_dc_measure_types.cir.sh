@@ -20,22 +20,19 @@ $GOLDPRN=$ARGV[4];
 @searchstrings = (
 "Netlist error in file unsupported_dc_measure_types.cir at or near line 25",
   "Only AVG, DERIV, EQN/PARAM, ERR, ERR1, ERR2, ERROR, FIND, INTEG, MIN, MAX,",
-  "PP, RMS and WHEN measure types are supported for DC measure mode",
+  "PP, RMS, TRIG, TARG and WHEN measure types are supported for DC measure mode",
 "Netlist error in file unsupported_dc_measure_types.cir at or near line 26",
   "Only AVG, DERIV, EQN/PARAM, ERR, ERR1, ERR2, ERROR, FIND, INTEG, MIN, MAX,",
-  "PP, RMS and WHEN measure types are supported for DC measure mode",
+  "PP, RMS, TRIG, TARG and WHEN measure types are supported for DC measure mode",
 "Netlist error in file unsupported_dc_measure_types.cir at or near line 27",
   "Only AVG, DERIV, EQN/PARAM, ERR, ERR1, ERR2, ERROR, FIND, INTEG, MIN, MAX,",
-  "PP, RMS and WHEN measure types are supported for DC measure mode",
+  "PP, RMS, TRIG, TARG and WHEN measure types are supported for DC measure mode",
 "Netlist error in file unsupported_dc_measure_types.cir at or near line 28",
   "Only AVG, DERIV, EQN/PARAM, ERR, ERR1, ERR2, ERROR, FIND, INTEG, MIN, MAX,",
-  "PP, RMS and WHEN measure types are supported for DC measure mode",
+  "PP, RMS, TRIG, TARG and WHEN measure types are supported for DC measure mode",
 "Netlist error in file unsupported_dc_measure_types.cir at or near line 29",
   "Only AVG, DERIV, EQN/PARAM, ERR, ERR1, ERR2, ERROR, FIND, INTEG, MIN, MAX,",
-  "PP, RMS and WHEN measure types are supported for DC measure mode",
-"Netlist error in file unsupported_dc_measure_types.cir at or near line 30",
-  "Only AVG, DERIV, EQN/PARAM, ERR, ERR1, ERR2, ERROR, FIND, INTEG, MIN, MAX,",
-  "PP, RMS and WHEN measure types are supported for DC measure mode"
+  "PP, RMS, TRIG, TARG and WHEN measure types are supported for DC measure mode",
 );
 
 $retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);
