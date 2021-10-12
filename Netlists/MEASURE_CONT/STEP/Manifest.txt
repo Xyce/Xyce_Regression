@@ -24,3 +24,13 @@ FindWhenTestTran.cir
 FindWhenTestTran.s0.cir
 FindWhenTestTran.s1.cir
 FindWhenTestTran.cir.sh
+TrigTargTestAC.cir
+TrigTargTestAC.cir.sh
+TrigTargTestACGSfile
+TrigTargTestNoise.cir
+TrigTargTestNoise.cir.sh
+TrigTargTestNoiseGSfile
+TrigTargTestTran.cir
+TrigTargTestTran.s0.cir
+TrigTargTestTran.s1.cir
+TrigTargTestTran.cir.sh
