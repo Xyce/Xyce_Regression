@@ -129,7 +129,7 @@ foreach $stepNum (1 .. $numSteps)
   print "Processing data for step $stepNum\n";
 
   # The next two blocks of code are used to compare the measured .maX file
-  # with the "Gold" .maX file, which is in OutputData/MEASURE/STEP/AvgTest.cir.maX
+  # with the "Gold" .maX file, which is in OutputData/MEASURE_AC/STEP/AvgTest.cir.maX
   # Check that the Gold .maX file exists
   $maSuffix=$stepNum-1;
   $avgString= "ma$maSuffix";
