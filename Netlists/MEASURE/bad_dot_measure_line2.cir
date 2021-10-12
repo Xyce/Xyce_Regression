@@ -4,15 +4,17 @@ Testing ill-formed .MEASURE lines
 *
 * See SON Bug 673
 *
-*
-*
-*
+* This test uses the legacy TRIG-TARG mode, to test that the
+* AT qualifier was not allowed in TARG clauses in the
+* RiseFallDelay class.
 *
 * *****************************************************************
 VS1  1  0  SIN(0 1.0 1KHZ 0 0)
 VS2  2  0  SIN(0 2.0 1KHZ 0 0)
 R1   1  0  100
 R2   2  0  100
+
+.OPTIONS MEASURE USE_LTTM=1
 .TRAN 0 1ms
 .PRINT TRAN FORMAT=NOINDEX V(1) V(2)
 

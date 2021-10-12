@@ -15,6 +15,9 @@ R3  3  0  100
 
 .TRAN 0 3ms 0 0.01ms
 
+* use legacy trig-targ mode
+.OPTIONS MEASURE USE_LTTM=1
+
 .PRINT TRAN FORMAT=NOINDEX V(1) V(2) V(3)
 
 .measure tran m1 TRIG V(1)=0.5  TARG V(2)=0.5

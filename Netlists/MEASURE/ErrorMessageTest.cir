@@ -9,11 +9,17 @@ A test of the .MEASURE Error Messages
 ** qualifier is not used on any of the .MEASURE lines).  This format check
 ** also covers FIND-AT and DERIV-AT measures for TRAN_CONT measure mode.
 **
+** This test uses the legacy TRIG-TARG mode, so it tests the
+** RiseFallDelay class.  See gitlab-ex issue 303 for more details.
+*******************************************************************
 
 VS1  1  0  SIN(0 1.0 1KHZ 0 0.9)
 VS2  2  0  SIN(0 -1.0 1KHz 0 0.9)
 R1  1  0  100
 R2  2  0  100
+
+* use legacy trig-targ mode
+.OPTIONS MEASURE USE_LTTM=1
 
 .TRAN 0  1ms
 .OPTIONS OUTPUT INITIAL_INTERVAL=0.00001

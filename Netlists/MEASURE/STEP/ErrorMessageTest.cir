@@ -3,10 +3,17 @@ A test of the .MEASURE Error Messages
 ** This verifies the correct and erroneous .MEASURE statements print out
 ** the correct information to std output.  The unit tests for each 
 ** measure verify the correctness of the .mt0 files for failed measures
+**
+** This test uses the legacy TRIG-TARG mode,  so it tests the
+** RiseFallDelay class.  See gitlab-ex issue 303 for more details.
+
 VS1   1  0  SIN(0 1.0 1KHZ 0 0.9)
 VS2  2  0  SIN(0 -1.0 1KHz 0 0.9)
 R1  1  0  100
 R2  2  0  100
+
+* use legacy trig-targ mode
+.OPTIONS MEASURE USE_LTTM=1
 
 .TRAN 0  1ms
 .step VS1:VA 1 2 1
