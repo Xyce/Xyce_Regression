@@ -10,10 +10,10 @@ diodeTranTrap.cir
 dummyDiodeTran.cir
 dummyDiodeTran2.cir
 dummyDiodeTran3.cir
-ampSensFD.cir 
-ampSensFDa.cir 
-ampSensFDb.cir 
-ampSensFDc.cir 
+ampSensFD.cir
+ampSensFDa.cir
+ampSensFDb.cir
+ampSensFDc.cir
 ampSens_hicumFD.cir
 ampSens_hicumL0FD.cir
 ampSens_vbicFD.cir
@@ -22,7 +22,7 @@ ampSens_mextramFD.cir
 ampSens_mextramPNPFD.cir
 ampSens_fbhFD.cir
 ampSens_fbhPNPFD.cir
-twoObjFD.cir 
+twoObjFD.cir
 psp_asym_nmos_idvg0_FD_SENS.cir
 psp_asym_pmos_idvg0_FD_SENS.cir
 gummel_nmos_xyceFD.cir
@@ -52,7 +52,7 @@ sensCapGear_forceDeviceFD.cir
 sensCapGear_baseline.cir
 sensCapGear_global2.cir
 sensCapGear_oldFD.cir
-bug1092sonA.cir 
+bug1092sonA.cir
 bug1092sonB.cir
 ampSens_10v.cir
 bsim3Inv_newFD.cir
@@ -60,3 +60,5 @@ bsim3Inv_oldFD.cir
 bsim6invAdjointForceAnalytic.cir
 150nm_nmos_deviceFD.cir
 150nm_nmos_oldFD.cir
+nlMutIndSens1_FD.cir
+nlMutIndSens2_FD.cir
