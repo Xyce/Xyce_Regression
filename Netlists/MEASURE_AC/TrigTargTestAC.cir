@@ -30,7 +30,7 @@ C7 e 0 {2.8650/scaleFactor}
 RL e 0 1.0
 
 .ac dec 20 1 1000
-.print AC vm(a) vm(b) vm(c) vm(d) vm(e)
+.print AC vm(a) vm(b) vm(c) vm(d) vm(e) vr(e) ii(L6)
 
 * Test both with AT
 .MEASURE AC TrigTargAT TRIG AT=30 TARG AT=500
@@ -55,5 +55,9 @@ RL e 0 1.0
 
 .MEASURE AC RiseFall3 TRIG vm(e)=0.45 CROSS=1 TARG vm(d)=0.45 RISE=LAST
 .MEASURE AC RiseFall4 TRIG vm(d)=0.45 FALL=LAST TARG vm(e)=0.45 CROSS=1
+
+* Verify that both the real and imaginary part of solution vector are accessible,
+* and that branch currents work.
+.MEASURE AC TrigTarg8 TRIG vr(e)=0.45 CROSS=1 TARG II(L6)=-0.45 CROSS=2
 
 .END

@@ -130,6 +130,9 @@ PPTest.cir
 PPTest.cir.sh
 RMSTest.cir
 RMSTest.cir.sh
+TrigTargTest.cir
+TrigTargTest.cir.sh
+TrigTargTestGSfile
 EquationEvalTest.cir.sh
 ErrorMessageTest.cir.sh
 RFCEquality.cir

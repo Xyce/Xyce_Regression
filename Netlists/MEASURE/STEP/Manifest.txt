@@ -123,5 +123,9 @@ RMSTest.s1.cir
 RMSTest.s2.cir
 RMSTest.s3.cir
 RMSTest.cir.sh
+TrigTargTest.cir
+TrigTargTest.s0.cir
+TrigTargTest.s1.cir
+TrigTargTest.cir.sh
 tags
 exclude
