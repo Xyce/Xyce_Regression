@@ -18,4 +18,10 @@ Measure Start V1 Value= 1.000000e+00	Measure End V1 Value= 1.000000e+01
 TRIGTARG3 = -1.541905e+00 with targ = 1.766429e+00 and trig = 3.308333e+00
 Measure Start V1 Value= 1.000000e+00	Measure End V1 Value= 1.000000e+01
 
+TRIGTARGVAR = 1.379781e+00 with targ = 3.375000e+00 and trig = 1.995219e+00
+Measure Start V1 Value= 1.000000e+00	Measure End V1 Value= 1.000000e+01
+
+TRIGTARGVAREXP = 1.379781e+00 with targ = 3.375000e+00 and trig = 1.995219e+00
+Measure Start V1 Value= 1.000000e+00	Measure End V1 Value= 1.000000e+01
+
 

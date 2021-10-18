@@ -6,13 +6,15 @@
 *************************************************
 
 VPWL1 1  0  pwl(0 0.1 2.5m 0.5 5m 0 7.5m 0.4 10m 0)
-VPWL2 2  0  pwl(0 0.5 10m 0)
+V3    3  0  SIN(0 1 200)
+V4    4  0  SIN(0 1 200 0 0 90)
 
 R1  1  0  1
-R2  2  0  1
+R3  3  0  1
+R4  4  0  1
 
 .TRAN 0.2ms 10ms 0
-.PRINT TRAN V(1) V(2)
+.PRINT TRAN V(1) V(3) V(4)
 
 * AT test
 .MEASURE TRAN TrigTargAT TRIG AT=2ms TARG AT=8ms
@@ -35,5 +37,16 @@ R2  2  0  1
 .MEASURE TRAN TrigTarg6 TRIG V(1)=0.2 TD=2ms CROSS=1 TARG V(1)=0.3 CROSS=1
 .MEASURE TRAN TrigTarg7 TRIG V(1)=0.2 TD=6ms CROSS=1 TARG V(1)=0.3 CROSS=1 TD=2ms
 .MEASURE TRAN TrigTarg8 TRIG V(1)=0.2 CROSS=1 TARG V(1)=0.3 CROSS=1 TD=8ms
+
+* Repeat core tests with RISE and FALL.  Also test TRIG and TARG using different signals.
+.MEASURE TRAN RiseFall1 TRIG v(1)=0.3 RISE=1 TARG v(3)=0.45 FALL=2
+.MEASURE TRAN RiseFall2 TRIG v(3)=0.45 RISE=2 TARG v(1)=0.3 FALL=1
+
+.MEASURE TRAN RiseFall3 TRIG v(1)=0.4 CROSS=1 TARG v(3)=0.45 RISE=LAST
+.MEASURE TRAN RiseFall4 TRIG v(1)=0.4 FALL=LAST TARG v(3)=0.45 CROSS=1
+
+* Variables for TRIG and TARG, with and without expressions.
+.MEASURE TRAN TrigTargVar TRIG V(3)={V(4)} CROSS=2  TARG V(3)=V(4) CROSS=3 
+.MEASURE TRAN TrigTargVarEXP TRIG {V(3)}={V(4)} CROSS=2  TARG {V(3)}={V(4)} CROSS=3
 
 .END

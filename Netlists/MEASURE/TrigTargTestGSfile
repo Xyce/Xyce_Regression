@@ -33,4 +33,22 @@ Measure Start Time= 2.000000e-03	Measure End Time= 1.000000e-02
 TRIGTARG8 = 7.500000e-03 with targ = 8.125000e-03 and trig = 6.250000e-04
 Measure Start Time= 8.000000e-03	Measure End Time= 1.000000e-02
 
+RISEFALL1 = 5.878487e-03 with targ = 7.128487e-03 and trig = 1.250000e-03
+Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
+
+RISEFALL2 = -1.871519e-03 with targ = 3.500000e-03 and trig = 5.371519e-03
+Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
+
+RISEFALL3 = 3.496519e-03 with targ = 5.371519e-03 and trig = 1.875000e-03
+Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
+
+RISEFALL4 = -2.628439e-03 with targ = 3.715606e-04 and trig = 3.000000e-03
+Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
+
+TRIGTARGVAR = 2.500001e-03 with targ = 5.625001e-03 and trig = 3.125000e-03
+Measure Start Time= 0.000000e+00        Measure End Time= 1.000000e-02
+
+TRIGTARGVAREXP = 2.500001e-03 with targ = 5.625001e-03 and trig = 3.125000e-03
+Measure Start Time= 0.000000e+00        Measure End Time= 1.000000e-02
+
 
