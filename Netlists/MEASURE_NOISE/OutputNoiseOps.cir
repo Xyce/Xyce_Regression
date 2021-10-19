@@ -61,6 +61,10 @@ C1 1 Vb 10u
 .measure NOISE FitErrorDNOQ1 ERROR DNO(Q1) FILE=OutputNoiseOpsRawData.NOISE.prn COMP_FUNCTION=L1NORM INDEPVARCOL=1 DEPVARCOL=4
 .measure NOISE FitErrorDNOQ1IB ERROR DNO(Q1,IB) FILE=OutputNoiseOpsRawData.NOISE.prn COMP_FUNCTION=L1NORM INDEPVARCOL=1 DEPVARCOL=5
 
+* FIND-AT
+.MEASURE noise onoisefind find onoise AT=0.05
+.MEASURE NOISE dnoq1find  find  DNO(q1,ib) AT=0.05
+
 * INTEG
 .MEASURE NOISE onoiseinteg integ onoise
 .MEASURE NOISE dnor4integ  integ  dno(r4)
@@ -90,5 +94,11 @@ C1 1 Vb 10u
 .MEASURE NOISE dnor4rms   rms  {DNO(r4)}
 .MEASURE NOISE dnoq1rms   rms  DNO(q1)
 .MEASURE NOISE dnoq1ibrms rms  {DNO(q1,IB)}
+
+* TRIG-TARG.  Note that MINVAL is needed on each .MEASURE line here,
+* since some of the measured values are smaller than the default MINVAL of 1e-12
+.MEASURE NOISE onoisett trig ONOISE=1e-14 CROSS=1 TARG ONOISE=9e-15 CROSS=1 MINVAL=1e-16
+.MEASURE NOISE dnoq1tt  trig  {DNO(q1)}=4e-15 RISE=1 targ {DNO(q1)}=5e-15 RISE=1 MINVAL=1e-16
+
 
 .end

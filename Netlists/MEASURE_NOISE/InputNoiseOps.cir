@@ -62,6 +62,10 @@ C1 1 Vb 10u
 .measure NOISE FitErrorDNIQ1 ERROR DNI(Q1) FILE=InputNoiseOpsRawData.NOISE.prn COMP_FUNCTION=L1NORM INDEPVARCOL=1 DEPVARCOL=4
 .measure NOISE FitErrorDNIQ1IB ERROR DNI(Q1,IB) FILE=InputNoiseOpsRawData.NOISE.prn COMP_FUNCTION=L1NORM INDEPVARCOL=1 DEPVARCOL=5
 
+* FIND-AT
+.MEASURE noise inoisefind find inoise AT=0.05
+.MEASURE NOISE dniq1find  find  DNI(q1,ib) AT=0.05
+
 * INTEG
 .MEASURE NOISE inoiseinteg integ inoise
 .MEASURE NOISE dnir4integ  integ  dni(r4)
@@ -91,5 +95,10 @@ C1 1 Vb 10u
 .MEASURE NOISE dnir4rms  rms  DNI(r4)
 .MEASURE NOISE dniq1rms  rms  {DNI(q1)}
 .MEASURE NOISE dniq1ibrms rms  DNI(q1,ib)
+
+* TRIG-TARG.  Note that MINVAL is needed on each .MEASURE line here,
+* since some of the measured values are smaller than the default MINVAL of 1e-12
+.MEASURE NOISE inoisett trig INOISE=1e-11 CROSS=1 TARG INOISE=1e-12 CROSS=1 MINVAL=1e-15
+.MEASURE NOISE dniq1tt  trig  {DNI(q1)}=5e-12 FALL=1 targ {DNI(q1)}=1e-12 CROSS=1 MINVAL=1e-15
 
 .end

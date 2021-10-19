@@ -48,6 +48,10 @@ FITERRORDNIQ1IB = 3.678372e-12
 COMP_FUNCTION was L1NORM
 Measure Start Freq= 1.000000e-02        Measure End Freq= 1.000000e-01
 
+INOISEFIND = 1.273607e-12 for AT = 5.000000e-02
+
+DNIQ1FIND = 7.401799e-13 for AT = 5.000000e-02
+
 INOISEINTEG = 1.077313e-12
 Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e-01
 
@@ -106,6 +110,12 @@ DNIQ1RMS = 4.743535e-12
 Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e-01
 
 DNIQ1IBRMS = 4.705570e-12
+Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e-01
+
+INOISETT = 3.135923e-02 with targ = 5.627601e-02 and trig = 2.491679e-02
+Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e-01
+
+DNIQ1TT = 2.419239e-02 with targ = 4.395182e-02 and trig = 1.975944e-02
 Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e-01
 
 
