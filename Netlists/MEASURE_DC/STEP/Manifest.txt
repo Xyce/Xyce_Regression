@@ -33,3 +33,6 @@ MaxMinPPTest1DCGSfile
 RMSTest1DC.cir
 RMSTest1DC.cir.sh
 RMSTest1DCGSfile
+TrigTargTest1DC.cir
+TrigTargTest1DC.cir.sh
+TrigTargTest1DCGSfile
