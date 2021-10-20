@@ -55,4 +55,8 @@ RL e 0 1.0
 .MEASURE NOISE RiseFall3 TRIG vm(e)=0.45 CROSS=1 TARG vm(d)=0.45 RISE=LAST
 .MEASURE NOISE RiseFall4 TRIG vm(d)=0.45 FALL=LAST TARG vm(e)=0.45 CROSS=1
 
+* Verify that both the real and imaginary part of solution vector are accessible,
+* and that branch currents work.
+.MEASURE NOISE TrigTarg8 TRIG vr(e)=0.45 CROSS=1 TARG II(L6)=-0.45 CROSS=2
+
 .END

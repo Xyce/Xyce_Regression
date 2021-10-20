@@ -51,4 +51,7 @@ Measure Start Time= 0.000000e+00        Measure End Time= 1.000000e-02
 TRIGTARGVAREXP = 2.500001e-03 with targ = 5.625001e-03 and trig = 3.125000e-03
 Measure Start Time= 0.000000e+00        Measure End Time= 1.000000e-02
 
+TRIGTARGCURR = 1.250000e-03 with targ = 1.875000e-03 and trig = 6.250000e-04
+Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
+
 

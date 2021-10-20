@@ -36,4 +36,7 @@ Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 RISEFALL4 = -1.524912e+02 with targ = 1.556897e+01 and trig = 1.680602e+02
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
+TRIGTARG8 = 7.471005e+01 with targ = 8.233587e+01 and trig = 7.625818e+00
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
+
 
