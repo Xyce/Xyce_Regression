@@ -1,0 +1,26 @@
+Testing ill-formed TRIG-TARG .MEASURE lines
+*******************************************************************
+* This test uses new TrigTarg classes 
+*
+*
+* See gitlab-ex issues 289 and 319
+* *****************************************************************
+
+VS1  1  0  SIN(0 1 1)
+R1   1  0  100
+
+.TRAN 0 1
+.PRINT TRAN V(1)
+
+.measure tran onea trig v(1)
+.measure tran oneb trig v(1)=0.9
+.measure tran onec trig v(1)=0.9 targ
+.measure tran oned trig v(1)=0.9 targ=
+
+.measure tran twoa trig v(1) targ v(1)=0.9 
+.measure tran twob trig= targ v(1)=0.9 
+
+.measure tran three trig targ at=0.5
+.measure tran four trig at=0.5 targ 
+
+.end
