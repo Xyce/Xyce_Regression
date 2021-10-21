@@ -18,7 +18,6 @@ $GOLDPRN=$ARGV[4];
 # check various error cases
 # these strings should be in the output of this failed Xyce run
 @searchstrings = ("Netlist error: Too many dependent variables for AVG measure, \"AVG\"",
-      "Netlist error: Too many dependent variables for DERIV measure, \"DERIV\"",
       "Netlist error: Too many dependent variables for DUTY measure, \"DUTY\"",
       "Netlist error: Too many dependent variables for EQN measure, \"EQN\"",
       "Netlist error: Too many dependent variables for ERROR measure, \"ERROR\"",

@@ -27,6 +27,7 @@ R2   2  0  100
 .measure tran twod trig v(1)=0.9 targ=
 .measure tran threea find v(1) when
 .measure tran threeb when
+.measure tran threec when v(1)=0.9 AT=5e-4
 
 * this line will cause a fatal error within measureBase, because
 * the AT qualifier isn't allowed within a TARG clause
@@ -45,6 +46,14 @@ R2   2  0  100
 * statement
 .MEASURE TRAN STARTTIME WHEN V(2)=1
 .MEASURE TRAN five MAX V(1) FROM={STARTTIME}
+
+* too many variables for a DERIV-AT or FIND-AT measure
+.MEASURE TRAN sixa DERIV V(1) V(2) AT=0.5
+.MEASURE TRAN sixb FIND V(1) V(2) AT=0.5
+
+* neither AT nor WHEN is specified
+.measure tran sevena deriv v(1)
+.measure tran sevenb find v(1)
 
 .END
 

@@ -22,15 +22,20 @@ $GOLDPRN=$ARGV[4];
                    "Netlist error: TWOB has incomplete MEASURE line",
                    "Netlist error: TWOC has incomplete MEASURE line",
                    "Netlist error: TWOD has incomplete MEASURE line",
-                   "Netlist error: THREEA has incomplete MEASURE line",
-                   "Netlist error: THREEB has incomplete MEASURE line",
+                   "Netlist error: THREEA has invalid MEASURE line",
+                   "Netlist error: THREEB has invalid MEASURE line",
+                   "Netlist error: THREEC has invalid MEASURE line",
                    "AT keyword not allowed in TARG block for measure FOURA",
                    "Netlist error: FIVEA has incomplete MEASURE line",
                    "Netlist error: Invalid value for RISE, FALL or CROSS for measure RISEBOGO",
                    "Netlist error: Invalid value for RISE, FALL or CROSS for measure FALLBOGO",
                    "Netlist error: Invalid value for RISE, FALL or CROSS for measure CROSSBOGO",
                    "Netlist error: Attempt to evaluate expression \\{STARTTIME\\}, which contains",
-                   "unknowns");
+                   "unknowns",
+                   "Netlist error: SIXA has invalid MEASURE line",
+                   "Netlist error: SIXB has invalid MEASURE line",
+                   "Netlist error: SEVENA has invalid MEASURE line",
+                   "Netlist error: SEVENB has invalid MEASURE line");
 
 $retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);
 print "Exit code = $retval\n"; exit $retval; 
