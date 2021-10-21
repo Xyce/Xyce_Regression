@@ -27,6 +27,9 @@ FindWhenTestTran.cir.sh
 TrigTargTestAC.cir
 TrigTargTestAC.cir.sh
 TrigTargTestACGSfile
+TrigTargTest1DC.cir
+TrigTargTest1DC.cir.sh
+TrigTargTest1DCGSfile
 TrigTargTestNoise.cir
 TrigTargTestNoise.cir.sh
 TrigTargTestNoiseGSfile
