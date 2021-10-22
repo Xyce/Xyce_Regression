@@ -85,8 +85,7 @@ if (system($CMD) != 0)
 @searchstrings = ("simulationUntil status = 1",
                   "Netlist warning: Failed to update the time-voltage pairs for the DAC BOGODAC",
                   "return value from updateTimeVoltagePairs is 0",
-                  "calling close",
-                  "xyce_close after delete xycePtr"
+                  "calling close"
 );
 if ( $Tools->checkError("$CIRFILE.out",@searchstrings) != 0) 
 {

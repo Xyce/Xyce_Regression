@@ -73,8 +73,7 @@ if ($retval != 0)
     "Names and widths arrays passed to setADCWidths are not of the same length",
     "return value from setADCWidths with mismatched name and width arrays is -1",
     "Time and Voltage arrays passed to updateTimeVoltagePairs are not of the same length.",
-    "return value from updateTimeVoltagePairs with mismatched time and voltage arrays is -1",
-    "xyce_close after delete xycePtr"
+    "return value from updateTimeVoltagePairs with mismatched time and voltage arrays is -1"
 );
 if ( $Tools->checkError("$CIRFILE.out",@searchstrings) != 0) 
 {
