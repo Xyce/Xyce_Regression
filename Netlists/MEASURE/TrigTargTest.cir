@@ -53,4 +53,9 @@ R4  4  0  1
 * Test lead current
 .MEASURE TRAN TrigTargCurr TRIG I(R1)=0.1 CROSS=1 TARG I(R1)=0.2 CROSS=1
 
+* Both TDs get ignored if both ATs at specified.  However, TRIG TD is used for
+* the TARG clause in the second case
+.MEASURE TRAN AtTD1 TRIG AT=2ms TD=5ms TARG AT=8ms TD=9ms
+.MEASURE TRAN AtTD2 TRIG AT=1ms TD=2ms TARG V(1)=0.3 CROSS=1
+
 .END

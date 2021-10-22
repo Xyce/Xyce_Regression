@@ -25,4 +25,10 @@ TRIGTARG3 = -2.750000e-03 with targ = 3.500000e-03 and trig = 6.250000e-03
 TRIGTARG3 = -1.875000e-03 with targ = 6.875000e-03 and trig = 8.750000e-03
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
+ATTD1 = 6.000000e-03 with targ = 8.000000e-03 and trig = 2.000000e-03
+Measure Start Time= 9.000000e-03	Measure End Time= 1.000000e-02
+
+ATTD2 = 2.500000e-03 with targ = 3.500000e-03 and trig = 1.000000e-03
+Measure Start Time= 2.000000e-03	Measure End Time= 1.000000e-02
+
 

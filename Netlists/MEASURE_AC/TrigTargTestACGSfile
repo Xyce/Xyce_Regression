@@ -39,4 +39,10 @@ Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 TRIGTARG8 = 7.471005e+01 with targ = 8.233587e+01 and trig = 7.625818e+00
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
+ATTD1 = 4.700000e+02 with targ = 5.000000e+02 and trig = 3.000000e+01
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
+
+ATTD2 = 5.314522e+01 with targ = 8.314522e+01 and trig = 3.000000e+01
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
+
 

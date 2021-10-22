@@ -57,4 +57,9 @@ RL e 0 1.0
 .MEASURE NOISE_CONT RiseFall1 TRIG vm(b)=0.40 RISE=1 TARG vm(c)=0.45 FALL=2
 .MEASURE NOISE_CONT RiseFall2 TRIG vm(c)=0.40 FALL=2 TARG vm(b)=0.45 RISE=1
 
+* Both TDs get ignored if both ATs at specified.  However, TRIG TD is used for
+* the TARG clause in the second case
+.MEASURE NOISE_CONT AtTD1 TRIG AT=30 TD=50 TARG AT=500 TD=600
+.MEASURE NOISE_CONT AtTD2 TRIG AT=30 TD=70 TARG vm(b)=0.45 CROSS=1
+
 .END

@@ -59,4 +59,9 @@ RL e 0 1.0
 * and that branch currents work.
 .MEASURE NOISE TrigTarg8 TRIG vr(e)=0.45 CROSS=1 TARG II(L6)=-0.45 CROSS=2
 
+* Both TDs get ignored if both ATs at specified.  However, TRIG TD is used for
+* the TARG clause in the second case
+.MEASURE NOISE AtTD1 TRIG AT=30 TD=50 TARG AT=500 TD=600
+.MEASURE NOISE AtTD2 TRIG AT=30 TD=70 TARG vm(b)=0.45 CROSS=1
+
 .END

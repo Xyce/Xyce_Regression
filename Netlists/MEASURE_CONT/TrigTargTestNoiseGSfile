@@ -50,4 +50,10 @@ RISEFALL2 = -6.661133e+01 with targ = 6.375267e+01 and trig = 1.303640e+02
 RISEFALL2 = -5.122039e+01 with targ = 1.221023e+02 and trig = 1.733227e+02
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
+ATTD1 = 4.700000e+02 with targ = 5.000000e+02 and trig = 3.000000e+01
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
+
+ATTD2 = 5.314522e+01 with targ = 8.314522e+01 and trig = 3.000000e+01
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
+
 
