@@ -33,7 +33,7 @@ $xdmOutputSearchStringsPtr=\@xdmOutputSearchStrings;
 @translatedXyceNetlistSearchStrings = (".IC V\\(mid\\)=0.5",
     ".IC V\\(9c\\)='test\\_ic'",
     ".IC V\\(mid\\)='test\\_ic'",
-    ".IC V\\(X\\_X3:mid\\)=0.5");
+    ".IC V\\(X\\_X3.mid\\)=0.5");
 $translatedXyceNetlistSearchStringsPtr=\@translatedXyceNetlistSearchStrings;
 
 XdmCommon::verifyXDMtranslation($XYCE,$XYCE_VERIFY,$CIRFILE,"hspice",$absTol,$relTol,$zeroTol,

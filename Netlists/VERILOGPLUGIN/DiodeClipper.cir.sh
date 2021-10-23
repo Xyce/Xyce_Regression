@@ -2,10 +2,6 @@
 
 use Cwd;
 
-use XyceRegression::Tools;
-
-$Tools = XyceRegression::Tools->new();
-
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
 # $ARGV[1] = location of xyce_verify.pl script
@@ -24,38 +20,79 @@ $GOLDPRN=$CIRFILE.".prn.gs";
 # At this point we need to make sure we've actually been given a Xyce binary
 # that is properly installed (via "make install"), and that the buildxyceplugin
 # script exists along side it.
-$XyceDir=`dirname $XYCE`;
-chomp($XyceDir);
-$XyceRoot=`dirname $XyceDir`;
-chomp($XyceRoot);
-$BinOrSrc=`basename $XyceDir`;
-chomp($BinOrSrc);
+
+# First let us isolate the directory name of the Xyce binary given
+# Before we can do that, we have to tease out the binary from the command line,
+# which could include mpirun commands:
+if ($XYCE =~ m/^(.*) (.*Xyce)$/)
+{
+  $MPIRUN=$1;
+  $XYCE=$2;
+}
+
+print "XYCE: $XYCE\n";
+print "MPIRUN: $MPIRUN\n";
+
 $TESTROOT = cwd;
 
-
-if ($BinOrSrc != "bin")
+# Now, if $XYCE is identically "Xyce" we're running an installed binary
+# that is in fact already in our PATH, and not being given a complete
+# path name.  We do different things in that case.
+if ($XYCE eq "Xyce")
 {
-    print "The binary is in $XyceDir, and ";
-    print "it is not in a bin directory --- this test cannot work.\n";
-    print "Exit code = 1\n";
-    exit 1;
+    print "Running Xyce right out of path!\n";
+    # is buildxyceplugin actually in our path, too?
+
+    `which buildxyceplugin > /dev/null`;
+    if ( $? != 0 )
+    {
+	print "buildxyceplugin is not in your path, so cannot build plugins!\n";
+	print "Exit code = 1\n";
+	exit 1;
+    }
+    else
+    {
+	print "Running buildxyceplugin right out of path!\n";
+	$BUILDXYCEPLUGIN="buildxyceplugin";
+    }
+
+    # If buildxyceplugin is in the path, assume all else is fine (i.e. that
+    # that libraries and headers are installed, too)
 }
+else
+{
+    # Otherwise it's an actual path, decode it and sanity check
+    $XyceDir=`dirname $XYCE`;
+    chomp($XyceDir);
+    $XyceRoot=`dirname $XyceDir`;
+    chomp($XyceRoot);
+    $BinOrSrc=`basename $XyceDir`;
+    chomp($BinOrSrc);
+
+    if ($BinOrSrc != "bin")
+    {
+	print "The binary is in $XyceDir, and ";
+	print "it is not in a bin directory --- this test cannot work.\n";
+	print "Exit code = 1\n";
+	exit 1;
+    }
 
 # Now, does buildxyceplugin exist?
-if (! (-x "$XyceDir/buildxyceplugin"))
-{
-    print "the buildxyceplugin script was not found in $XyceDir\n";
-    print "Exit code = 1\n";
-    exit 1;
-}
-$BUILDXYCEPLUGIN="$XyceDir/buildxyceplugin";
+    if (! (-x "$XyceDir/buildxyceplugin"))
+    {
+	print "the buildxyceplugin script was not found in $XyceDir\n";
+	print "Exit code = 1\n";
+	exit 1;
+    }
+    $BUILDXYCEPLUGIN="$XyceDir/buildxyceplugin";
 
 # Are the libraries there?
-if (! (-d "$XyceRoot/lib" && (-e "$XyceRoot/lib/libxyce.so" || -e "$XyceRoot/lib/libxyce.dylib")))
-{
-    print "the libraries were not found in $XyceRoot/lib\n";
-    print "Exit code = 1\n";
-    exit 1;
+    if (! (-d "$XyceRoot/lib" && (-e "$XyceRoot/lib/libxyce.so" || -e "$XyceRoot/lib/libxyce.dylib")))
+    {
+	print "the libraries were not found in $XyceRoot/lib\n";
+	print "Exit code = 1\n";
+	exit 1;
+    }
 }
 
 # is admsXml actually in our path?
@@ -67,6 +104,11 @@ if ( $? != 0 )
     exit 1;
 }
 
+# Now reassemble the Xyce command we were given
+if ($MPIRUN ne "")
+{
+    $XYCE="$MPIRUN $XYCE";
+}
 #Hooray, we can run this test.
 $VERILOG_SOURCES="toys/capacitor.va toys/diode2.va toys/resistor.va toys/vsrc.va";
 

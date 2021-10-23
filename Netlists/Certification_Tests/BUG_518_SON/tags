@@ -1,2 +1,2 @@
-serial, nightly, inductor
+serial, nightly, inductor, mutualinductor
 valgrind
