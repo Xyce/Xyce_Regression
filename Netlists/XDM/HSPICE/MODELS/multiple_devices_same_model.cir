@@ -1,6 +1,6 @@
 * Xyce netlist, with two identical Resistor-Diode-Resistor circuits
 
-.OPTIONS DEVICE TNOM=25
+.OPTIONS DEVICE TNOM=25 TEMP=25
 
 *Analysis directives and print statement
 .TRAN  0.1ms 1ms

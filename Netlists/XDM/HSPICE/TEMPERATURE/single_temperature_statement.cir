@@ -5,11 +5,10 @@
 * should be translated into a .STEP command 
 * (see issue #94 on XDM gitlab)
 
-.OPTIONS DEVICE TNOM=25 
+.OPTIONS DEVICE TNOM=25 TEMP=85
 VA 1 0 DC 0
 R1 1 2 R=10
 R2 2 0 TC=0.001 R=10
 
 .DC LIN VA 0 10 1
-.STEP LIN TEMP 85 85 1 
 .PRINT DC FORMAT=PROBE V(1) V(2)
