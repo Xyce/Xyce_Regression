@@ -32,8 +32,18 @@ R2  2  0  100
 .MEASURE TRAN_CONT TrigTarg3 TRIG V(1)=0.2 CROSS=2 TARG V(1)=0.3 CROSS=1
 
 * Both TDs get ignored if both ATs at specified.  However, TRIG TD is used for
-* the TARG clause in the second case
+* the TARG clause in the second case.  
 .MEASURE TRAN_CONT AtTD1 TRIG AT=2ms TD=5ms TARG AT=8ms TD=9ms
 .MEASURE TRAN_CONT AtTD2 TRIG AT=1ms TD=2ms TARG V(1)=0.3 CROSS=1
+
+* An "early" TD is essentially ignored.
+.MEASURE TRAN_CONT TDearly TRIG V(1)=0.2 CROSS=3 TD=-10ms TARG V(1)=0.3 CROSS=3 TD=-12ms
+
+* Failed measures
+.MEASURE TRAN_CONT ATearly TRIG AT=-10ms TARG AT=-10ms
+.MEASURE TRAN_CONT ATlate  TRIG AT=20ms TARG AT=20ms
+.MEASURE TRAN_CONT TrigTDLate TRIG V(1)=0.2 CROSS=1 TD=15ms TARG V(1)=0.3 CROSS=1 TD=2ms
+.MEASURE TRAN_CONT TargTDLate TRIG V(1)=0.2 CROSS=1 TARG V(1)=0.3 CROSS=1 TD=12ms
+.MEASURE TRAN_CONT ValNotFound TRIG V(1)=2 CROSS=1 TARG V(1)=2 CROSS=2
 
 .END
