@@ -70,6 +70,9 @@ RMSTest1DC.cir.tags
 TrigTargTest1DC.cir
 TrigTargTest1DC.cir.sh
 TrigTargTest1DCGSfile
+TrigTargTest2DC.cir
+TrigTargTest2DC.cir.sh
+TrigTargTest2DCGSfile
 oneSweepValue.cir
 oneSweepValue.cir.sh
 oneSweepValueGSfile
