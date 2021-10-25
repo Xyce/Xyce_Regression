@@ -34,6 +34,9 @@ OutputNoiseOpsRawData.NOISE.prn
 RMSTestNoise.cir
 RMSTestNoise.cir.sh
 RMSTestNoiseGSfile
+TrigTargTestNoise.cir
+TrigTargTestNoise.cir.sh
+TrigTargTestNoiseGSfile
 DotOpNoNoise.cir
 DotOpNoNoise.cir.sh
 DotOpNoNoise.cir.tags

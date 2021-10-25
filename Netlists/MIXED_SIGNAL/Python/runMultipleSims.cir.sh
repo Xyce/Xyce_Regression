@@ -149,9 +149,7 @@ if (system($CMD) != 0)
                   "Calling runSimulation for xyceObj2",
                   "return value from runSimulation for xyceObj2 is 1",
                   "calling close for xyceObj1",
-                  "xyce_close after delete xycePtr",
-                  "calling close for xyceObj2",
-                  "xyce_close after delete xycePtr"
+                  "calling close for xyceObj2"
 );
 if ( $Tools->checkError("$CIRFILE.out",@searchstrings) != 0) 
 {

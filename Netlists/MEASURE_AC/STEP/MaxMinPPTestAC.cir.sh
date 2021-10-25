@@ -129,7 +129,7 @@ foreach $stepNum (1 .. $numSteps)
   print "Processing data for step $stepNum\n";
   
   # The next two blocks of code are used to compare the measured .maX file
-  # with the "Gold" .maX file, which is in OutputData/MEASURE/ErrorTest.cir.maX
+  # with the "Gold" .maX file, which is in OutputData/MEASURE_AC/MaxMinPPTest.cir.maX
   # Check that the Gold .maX file exists
   $maSuffix=$stepNum-1;
   $maxString= "ma$maSuffix";

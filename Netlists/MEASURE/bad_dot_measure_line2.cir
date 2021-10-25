@@ -4,15 +4,17 @@ Testing ill-formed .MEASURE lines
 *
 * See SON Bug 673
 *
-*
-*
-*
+* This test uses the legacy TRIG-TARG mode, to test that the
+* AT qualifier was not allowed in TARG clauses in the
+* RiseFallDelay class.
 *
 * *****************************************************************
 VS1  1  0  SIN(0 1.0 1KHZ 0 0)
 VS2  2  0  SIN(0 2.0 1KHZ 0 0)
 R1   1  0  100
 R2   2  0  100
+
+.OPTIONS MEASURE USE_LTTM=1
 .TRAN 0 1ms
 .PRINT TRAN FORMAT=NOINDEX V(1) V(2)
 
@@ -25,6 +27,7 @@ R2   2  0  100
 .measure tran twod trig v(1)=0.9 targ=
 .measure tran threea find v(1) when
 .measure tran threeb when
+.measure tran threec when v(1)=0.9 AT=5e-4
 
 * this line will cause a fatal error within measureBase, because
 * the AT qualifier isn't allowed within a TARG clause
@@ -43,6 +46,14 @@ R2   2  0  100
 * statement
 .MEASURE TRAN STARTTIME WHEN V(2)=1
 .MEASURE TRAN five MAX V(1) FROM={STARTTIME}
+
+* too many variables for a DERIV-AT or FIND-AT measure
+.MEASURE TRAN sixa DERIV V(1) V(2) AT=0.5
+.MEASURE TRAN sixb FIND V(1) V(2) AT=0.5
+
+* neither AT nor WHEN is specified
+.measure tran sevena deriv v(1)
+.measure tran sevenb find v(1)
 
 .END
 

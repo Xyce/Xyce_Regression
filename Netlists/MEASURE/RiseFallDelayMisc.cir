@@ -1,4 +1,7 @@
-A test of the measure TRIG and TARG functionality.
+* A test of the measure TRIG and TARG functionality, using the legacy
+* TRIG-TARG mode.  So, it tests the RiseFallDelay class.
+* See gitlab-ex issue 303 for more details.
+*
 * These tests cover the following "special" syntaxes, per SON Bug 679.
 * These syntaxes are difficult to auto-parse with the tools in MeasureCommon.pm
 *
@@ -15,6 +18,9 @@ VDC 3  0  0.7
 R1  1  0  100
 R2  2  0  100
 R3  3  0  100
+
+* use legacy trig-targ mode
+.OPTIONS MEASURE USE_LTTM=1
 
 .TRAN 0 3ms 0 0.01ms
 

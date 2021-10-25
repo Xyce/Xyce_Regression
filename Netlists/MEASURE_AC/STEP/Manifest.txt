@@ -29,3 +29,6 @@ MaxMinPPTestACGSfile
 RMSTestAC.cir
 RMSTestAC.cir.sh
 RMSTestACGSfile
+TrigTargTestAC.cir
+TrigTargTestAC.cir.sh
+TrigTargTestACGSfile

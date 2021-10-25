@@ -24,4 +24,6 @@ R2  2  0   100
 .measure TRAN findCrossTest1 find V(2) when v(1a)=0.2
 .measure TRAN_CONT findCrossContTest1 find V(2) when v(1a)=0.2
 
+.MEASURE TRAN_CONT TrigTarg1 TRIG V(1a) VAL=0.2 CROSS=1 TARG V(1a) VAL=0.3 CROSS=1
+
 .END

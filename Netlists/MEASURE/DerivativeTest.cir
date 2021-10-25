@@ -41,9 +41,6 @@ R4  4  0  100
 * this should return -1, since the WHEN clause can never be met
 .measure tran deriv_when_fail deriv v(1) WHEN v(1)=2
 
-* this should return -1, since neither AT nor WHEN is specified
-.measure tran deriv_fail_noclause deriv v(1)
-
 * add tests for rise/fall/cross.  VS2 and VS3 have a DC offset
 * and are damped sinusoids
 .measure tran deriv2fall2 deriv v(2) when v(2)=0.25 fall=2

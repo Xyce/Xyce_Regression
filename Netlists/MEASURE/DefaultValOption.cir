@@ -1,11 +1,17 @@
 A test of .OPTIONS MEASURE DEFAULT_VAL=<val>.  
 * That option value takes precedence over the DEFAULT_VAL qualifier
 * on the .MEASURE lines.
+*
+* This test uses the legacy TRIG-TARG mode, so it tests the
+* RiseFallDelay class.  See gitlab-ex issue 303 for more details.
 *******************************************************************
 VS1  1  0  SIN(0 1.0 1KHZ 0 0.9)
 VS2  2  0  SIN(0 -1.0 1KHz 0 0.9)
 R1  1  0  100
 R2  2  0  100
+
+* use legacy trig-targ mode
+.OPTIONS MEASURE USE_LTTM=1
 
 .TRAN 0  1ms
 .OPTIONS OUTPUT INITIAL_INTERVAL=0.00001

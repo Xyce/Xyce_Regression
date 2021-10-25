@@ -97,8 +97,7 @@ else
                   "\\[0, 2\\]",
                   "simulateUntil status = 1 and actual_time = 0.00001",
                   "return value from getTimeVoltagePairsADC is 1",
-                  "number of ADC names returned by getTimeVoltagePairsADC is 2",
-                  "xyce_close after delete xycePtr"
+                  "number of ADC names returned by getTimeVoltagePairsADC is 2"
 );
 if ( $Tools->checkError("$CIRFILE.out",@searchstrings) != 0) 
 {

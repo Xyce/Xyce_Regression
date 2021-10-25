@@ -73,15 +73,6 @@ else
   if (not -s "$CIRFILE.prn" ) { print "Exit code = 14\n"; exit 14; }
 }
 
-# check for XyceCInterface return codes and other info in stdout
-@searchstrings = ("xyce_close after delete xycePtr");
-
-if ( $Tools->checkError("$CIRFILE.out",@searchstrings) != 0)
-{
- print "Failed to find all of the correct XyceCInterface information in stdout\n";
- $retval = 2;
-}
-
 # now check the correctness of the information in stdout
 $fc = $XYCE_VERIFY;
 $fc=~ s/xyce_verify/file_compare/;

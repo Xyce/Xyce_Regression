@@ -1,7 +1,7 @@
 Test errors for measure types that are not supported for AC
 ******************************************************************************
-* At present, only the AVG, DERIV, FIND-WHEN, EQN/PARAM, ERR, ERR1, ERR2,
-* ERROR, INTEG, MAX, MIN, PP, RMS and WHEN measure types are supported for
+* Only the AVG, DERIV, FIND-WHEN, EQN/PARAM, ERR, ERR1, ERR2, ERROR, INTEG
+* MAX, MIN, PP, RMS, TRIG, TARG and WHEN measure types are supported for
 * for AC mode for .MEASURE.  This tests the error messages from the other
 * valid types, that aren't supported for AC.
 *
@@ -28,7 +28,6 @@ rload 1 0 1000
 .measure ac freqVal FREQ VM(1) ON=0.75 OFF=0.25
 .measure ac offVal off_time VM(1) OFF=0
 .measure ac onVal on_time VM(1) ON=0
-.measure ac trigTargVal TRIG vm(1)=0.1 TARG vm(1)=0.99
 
 .END
 

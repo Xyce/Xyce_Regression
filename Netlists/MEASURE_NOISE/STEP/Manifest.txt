@@ -26,3 +26,6 @@ MaxMinPPTestNoiseGSfile
 RMSTestNoise.cir
 RMSTestNoise.cir.sh
 RMSTestNoiseGSfile
+TrigTargTestNoise.cir
+TrigTargTestNoise.cir.sh
+TrigTargTestNoiseGSfile

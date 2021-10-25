@@ -95,8 +95,7 @@ if ($retval != 0)
                   "number of points returned by getTimeVoltagePairsADC is 0",
                   "return value from getTimeStatePairsADC is 0",
                   "number of ADC names returned by getTimeStatePairsADC is 0",
-                  "number of points returned by getTimeStatePairsADC is 0",
-                  "xyce_close after delete xycePtr"
+                  "number of points returned by getTimeStatePairsADC is 0"
 );
 if ( $Tools->checkError("$CIRFILE.out",@searchstrings) != 0) 
 {

@@ -105,6 +105,8 @@ bad_dot_measure_line7.cir.tags
 bad_dot_measure_line8.cir
 bad_dot_measure_line8.cir.sh
 bad_dot_measure_line8.cir.tags
+bad_dot_measure_line9.cir
+bad_dot_measure_line9.cir.sh
 LeadCurrentNotOnPrintLineTest.cir
 LeadCurrentNotOnPrintLineTest.cir.sh
 LeadCurrentNotOnPrintLineTestMt0GSFile
@@ -130,6 +132,9 @@ PPTest.cir
 PPTest.cir.sh
 RMSTest.cir
 RMSTest.cir.sh
+TrigTargTest.cir
+TrigTargTest.cir.sh
+TrigTargTestGSfile
 EquationEvalTest.cir.sh
 ErrorMessageTest.cir.sh
 RFCEquality.cir

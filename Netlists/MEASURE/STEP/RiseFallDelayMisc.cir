@@ -1,9 +1,12 @@
-A test of the measure TRIG and TARG functionality with the.
+* A test of the measure TRIG and TARG functionality with the.
 * following "special" syntaxes, per SON Bug 679.
 *
 *   TRIG AT=<time>
 *   TRIG v(a)=v(b)
 *   TARG v(c)=v(d)
+*
+* This uses the legacy TRIG-TARG mode. So, it tests the RiseFallDelay class.
+* See gitlab-ex issue 303 for more details.
 *******************************************************************************
 *
 * a few sources of different types
@@ -17,6 +20,9 @@ R3  3  0  100
 
 .TRAN 0 3ms 0 0.01ms
 .STEP VDC 0.4 0.9 0.5
+
+* use legacy trig-targ mode
+.OPTIONS MEASURE USE_LTTM=1
 
 .PRINT TRAN FORMAT=NOINDEX V(1) V(2) V(3)
 

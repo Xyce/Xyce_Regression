@@ -1,12 +1,12 @@
 test errors for measure types that are not supported for DC_CONT
 **********************************************************************
-* At present, only the FIND and FIND-WHEN measure types are supported
-* for DC_CONT mode for .MEASURE.  This tests the error messages from the
+* Only the DERIV-AT, DERIV-WHEN, FIND-AT, FIND-WHEN, WHEN,
+* TRIG and TARG  measure types are supported for DC_CONT
+* mode for .MEASURE.  This tests the error messages from the
 * other valid types, that aren't supported for DC_CONT.
 *
 * The netlist and .DC print/analysis statements in this netlist
 * don't really matter.
-*
 *
 *******************************************************************
 vsrc1   1a 0 1
@@ -36,6 +36,5 @@ rload1b 1b 0 1
 .measure dc_cont minVal min V(1)
 .measure dc_cont ppVal pp V(1)
 .measure dc_cont rmsVal rms V(1)
-.measure dc_cont trigTargVal TRIG v(1)=0.1 TARG v(1)=0.99
 
 .END

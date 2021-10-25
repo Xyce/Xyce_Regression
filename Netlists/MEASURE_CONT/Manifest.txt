@@ -22,6 +22,15 @@ FindWhenTestNoiseGSfile
 FindWhenTestTran.cir
 FindWhenTestTran.cir.sh
 FindWhenTestTranGSfile
+TrigTargTestAC.cir
+TrigTargTestAC.cir.sh
+TrigTargTestACGSfile
+TrigTargTestNoise.cir
+TrigTargTestNoise.cir.sh
+TrigTargTestNoiseGSfile
+TrigTargTestTran.cir
+TrigTargTestTran.cir.sh
+TrigTargTestTranGSfile
 unsupported_cont_measure_types.cir
 unsupported_cont_measure_types.cir.sh
 unsupported_cont_measure_types.cir.tags

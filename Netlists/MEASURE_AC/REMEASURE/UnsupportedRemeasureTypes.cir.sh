@@ -19,7 +19,7 @@ $GOLDPRN=$ARGV[4];
 # this string should be in the output of this failed Xyce run  
 @searchstrings = ( "Netlist error in file UnsupportedRemeasureTypes.cir at or near line 18",
                    "Only AVG, DERIV, EQN/PARAM, ERR, ERR1, ERR2, ERROR, FIND, INTEG, MIN, MAX,",
-                   "PP, RMS and WHEN measure types are supported for AC measure mode");
+                   "PP, RMS, TRIG, TARG and WHEN measure types are supported for AC measure mode");
 
 # turn this into a re-measure line
 $XYCE = "$XYCE -remeasure UnsupportedRemeasureTypes.cir.FD.prn";

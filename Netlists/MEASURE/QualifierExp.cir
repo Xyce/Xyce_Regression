@@ -3,6 +3,8 @@
 * TO, FROM, TD, RISE, FALL, CROSS, AT, OFF, ON and
 * DEFAULT_VAL qualifiers.  See SON Bug 800 for more details.
 *
+* This test uses the legacy TRIG-TARG mode, so it tests the
+* RiseFallDelay class.  See gitlab-ex issue 303 for more details.
 *************************************************************
 V1 1 0 PWL(0 0 1 1)
 V2 2 0 SIN(0 1 2 0 1)
@@ -16,6 +18,9 @@ R2 2 0 1
 .PARAM i1=1
 .PARAM i2=2
 .PARAM l1=0.3
+
+* use legacy trig-targ mode
+.OPTIONS MEASURE USE_LTTM=1
 
 .TRAN 0 1
 .PRINT TRAN V(1) V(2)
