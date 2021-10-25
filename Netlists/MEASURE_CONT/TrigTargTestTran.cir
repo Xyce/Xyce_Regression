@@ -31,6 +31,9 @@ R2  2  0  100
 .MEASURE TRAN_CONT TrigTarg2 TRIG V(1)=0.2 CROSS=1 TARG V(1)=0.3 CROSS=2
 .MEASURE TRAN_CONT TrigTarg3 TRIG V(1)=0.2 CROSS=2 TARG V(1)=0.3 CROSS=1
 
+* Simple RISE/FALL test
+.MEASURE TRAN_CONT TrigTarg4 TRIG V(1)=0.2 RISE=1 TARG V(1)=0.3 FALL=1
+
 * Both TDs get ignored if both ATs at specified.  However, TRIG TD is used for
 * the TARG clause in the second case.  
 .MEASURE TRAN_CONT AtTD1 TRIG AT=2ms TD=5ms TARG AT=8ms TD=9ms
