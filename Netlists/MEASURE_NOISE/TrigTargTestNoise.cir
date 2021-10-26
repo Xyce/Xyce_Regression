@@ -33,6 +33,8 @@ RL e 0 1.0
 
 * Test both with AT
 .MEASURE NOISE TrigTargAT TRIG AT=30 TARG AT=500
+.MEASURE NOISE TrigTargAT1 TRIG vm(e)=0.45 CROSS=1 TARG AT=500
+.MEASURE NOISE TrigTargAT2 TRIG AT=30 TARG vm(e)=0.45 CROSS=1
 
 * Test that negative measure values are allowed
 .MEASURE NOISE TrigTarg1 TRIG vm(e)=0.45 CROSS=1 TARG vm(e)=0.45 CROSS=2
