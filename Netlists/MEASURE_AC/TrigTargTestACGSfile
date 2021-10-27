@@ -3,10 +3,8 @@
 TRIGTARGAT = 4.700000e+02 with targ = 5.000000e+02 and trig = 3.000000e+01
 
 TRIGTARGAT1 = 4.844310e+02 with targ = 5.000000e+02 and trig = 1.556897e+01
-Measure Start Freq= 1.000000e+00        Measure End Freq= 1.000000e+03
 
 TRIGTARGAT2 = -1.443103e+01 with targ = 1.556897e+01 and trig = 3.000000e+01
-Measure Start Freq= 1.000000e+00        Measure End Freq= 1.000000e+03
 
 TRIGTARG1 = 3.904233e+01 with targ = 5.461130e+01 and trig = 1.556897e+01
 
