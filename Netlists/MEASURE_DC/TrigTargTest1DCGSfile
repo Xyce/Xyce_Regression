@@ -34,6 +34,12 @@ TRIGTARG9 = 4.012671e+00 with targ = 5.961957e+00 and trig = 1.949286e+00
 
 TDEARLY = -1.828571e-01 with targ = 1.766429e+00 and trig = 1.949286e+00
 
+ATTD1 = 5.000000e+00 with targ = 7.500000e+00 and trig = 2.500000e+00
+
+ATTD2 = 3.461957e+00 with targ = 5.961957e+00 and trig = 2.500000e+00
+
+TRIGTARG10 = 4.000000e+00 with targ = 8.000000e+00 and trig = 4.000000e+00
+
 ATEARLY = FAILED with targ = not found and trig = not found
 
 ATLATE = FAILED with targ = not found and trig = not found

@@ -9,10 +9,10 @@
 *****************************************************
 
 .DC V1 1 10 1
-.PRINT DC V(1) V(2) V(3)
+.PRINT DC V(1) V(2) V(3) I(R1)
 
 V1 1 0 1
-R1 1 0 1
+R1 1 0 2
 
 B2 2 0 V={(V(1)-2.5)*(V(1)-2.5)*(V(1)-7.5)*(V(1)-7.5)/4}
 R2 2 3 1
@@ -48,6 +48,14 @@ R3 3 0 1
 .MEASURE DC TRIGTARG8 TRIG V(2)=3 CROSS=1 TD=2 TARG V(2)=7 CROSS=1 TD=5
 .MEASURE DC TRIGTARG9 TRIG V(2)=3 CROSS=1 TARG V(2)=7 CROSS=1 TD=5
 .MEASURE DC TDearly TRIG V(2)=3 CROSS=1 TD=0.5 TARG V(2)=7 CROSS=1
+
+* Both TDs get ignored if both ATs at specified.  However, TRIG TD is used for
+* the TARG clause in the second case
+.MEASURE DC AtTD1 TRIG AT=2.5 TD=5 TARG AT=7.5 TD=9
+.MEASURE DC AtTD2 TRIG AT=2.5 TD=5 TARG v(2)=7 CROSS=1
+
+* lead current test
+.MEASURE DC TRIGTARG10 TRIG I(R1)=2 CROSS=1 TARG I(R1)=4 CROSS=1 
 
 * failed measures
 .MEASURE DC ATEarly TRIG AT=0 TARG AT=-1
