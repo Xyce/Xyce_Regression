@@ -25,10 +25,8 @@ $Tools = XyceRegression::Tools->new();
 # these search strings are supposed to occur one right after the other in the
 # error output.
 @searchstrings = ( 
-"Netlist error in file OptionBlock_extractOptionsData_1.cir at or near line 14",
-"Unrecognized .OPTIONS package POST",
 "Netlist warning in file OptionBlock_extractOptionsData_1.cir at or near line 14",
-"Unrecognized dot line will be ignored",
+"Unrecognized .OPTIONS package or parameter POST will be ignored",
 "Netlist error in file OptionBlock_extractOptionsData_1.cir at or near line 15",
 "Misformatted or incorrect <name>=<val> syntax in .OPTIONS TIMEINT",
 "Netlist warning in file OptionBlock_extractOptionsData_1.cir at or near line 15",
@@ -67,8 +65,8 @@ $Tools = XyceRegression::Tools->new();
 ".OPTIONS line is missing one or more required parameters, and was ignored.",
 "Netlist warning in file OptionBlock_extractOptionsData_1.cir at or near line 41",
 ".OPTIONS line is missing one or more required parameters, and was ignored.",
-"Netlist error in file OptionBlock_extractOptionsData_1.cir at or near line 44",
-"Option name missing, or PSPICE-style options not supported in Xyce",
+"Netlist warning in file OptionBlock_extractOptionsData_1.cir at or near line 44",
+"Option name missing, or SPICE-style option not supported in Xyce",
 "Netlist warning in file OptionBlock_extractOptionsData_1.cir at or near line 44",
 "Unrecognized dot line will be ignored"
 );
