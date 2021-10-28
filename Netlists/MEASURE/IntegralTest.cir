@@ -12,6 +12,10 @@ R2  2  0  100
 R3  3  0  100
 R4  4  0  100
 
+* use MEASFAIL for compatibility with the verification approach
+* used in .sh file.
+.OPTIONS MEASURE MEASFAIL=0
+
 .TRAN 0  10ms
 .PRINT TRAN FORMAT=NOINDEX V(1) V(2) V(3) V(4) V(1,0)
 
@@ -26,8 +30,8 @@ R4  4  0  100
 .measure tran sineTDbetween integ V(1) FROM=0 TO=0.005 TD=0.001
 .measure tran sineTDbefore integ V(1) FROM=0.002 TO=0.005 TD=0.001
 
-* these tests should return -1 and -100
-.measure tran returnNegOne integ V(1) FROM=0.2e-3 TO=0.25e-3 TD=0.5e-3
+* these tests should fail and return 0 and -100
+.measure tran returnZero integ V(1) FROM=0.2e-3 TO=0.25e-3 TD=0.5e-3
 .measure tran returnNeg100 integ V(1) FROM=0.2e-3 TO=0.25e-3 TD=0.5e-3 default_val=-100
 
 .END

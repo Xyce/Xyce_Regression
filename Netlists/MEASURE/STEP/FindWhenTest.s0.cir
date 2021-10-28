@@ -18,6 +18,9 @@ R3  3  0  100
 R4  4  0  100
 R5  5  0  100
 
+* Use MEASFAIL to test the reset of the default calculation value
+.OPTIONS MEASURE MEASFAIL=0
+
 .TRAN 0  5ms 0 1.0e-5
 .PRINT TRAN FORMAT=NOINDEX V(1) V(2) V(3) V(4) V(5)
 
@@ -76,12 +79,12 @@ R5  5  0  100
 .measure tran findv1ExpAT find {v(1)+1} at=1.2e-3
 
 *test Failed measures for rise/fall/cross
-.measure tran v4fallfail when v(4)=0 fall=250
-.measure tran v5risefail when v(5)=0 rise=250
-.measure tran v4crossfail when v(4)=0 cross=250
+.measure tran v4fallfail when v(4)=0 fall=250 default_val=-1
+.measure tran v5risefail when v(5)=0 rise=250 default_val=-1
+.measure tran v4crossfail when v(4)=0 cross=250 default_val=-1
 
 * test failed FIND-AT measure
-.measure tran atFail find v(1) AT=10e-3
+.measure tran atFail find v(1) AT=10e-3 default_val=-1
 
 .END
 

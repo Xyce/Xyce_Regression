@@ -30,10 +30,10 @@ rload1b 1b 0 1
 
 .measure dc dif EQN {vv1-vv2} 
 
-* Tests should return -1 or -100, since the FROM-T0 window 
-* does not overlap with the stepped values for VSRC1:DCV0
-.measure dc eqnReturnNegOne EQN {v(1b)+1.0} FROM=-4 TO=-2
-.measure dc eqnReturnNeg100 EQN {v(1b)+1.0} FROM=8 TO=6 DEFAULT_VAL=-100
+* Tests should fail since the FROM-T0 windows 
+* do not overlap with the stepped values for VSRC1:DCV0
+.measure dc eqnFail1 EQN {v(1b)+1.0} FROM=-4 TO=-2
+.measure dc eqnFail2 EQN {v(1b)+1.0} FROM=8 TO=6 DEFAULT_VAL=-100
 
 .END
 

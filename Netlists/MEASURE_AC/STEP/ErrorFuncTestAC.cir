@@ -47,10 +47,10 @@ V1 a 0 DC 0V AC 1
 * Branch current Op
 .MEASURE AC ERR1IM  ERR1 VM(b) IM(V1)
 
-* Tests should return -1 or -100, since the FROM-T0 window
-* has various problems.
-.measure ac err1ReturnNegOne err1 v(b) vm(a) FROM=1e7 TO=1e8
-.measure ac err2ReturnNeg100 err2 vr(b) vm(a) FROM=1e6 TO=1e2 DEFAULT_VAL=-100
+* Tests should fail since the FROM-T0 windows
+* have various problems.
+.measure ac err1Fail err1 v(b) vm(a) FROM=1e7 TO=1e8
+.measure ac err2Fail err2 vr(b) vm(a) FROM=1e6 TO=1e2
 
 * Signifies end of test. .sh file looks for a measure named lastMeasure.
 * This is needed for compatibility for testing with a verbose build, which

@@ -78,10 +78,10 @@ V1 a 0 DC 0V AC 1
 .measure ac FAIL2 FIND vm(c) WHEN vm(b)=2
 .measure ac FAIL3 FIND vm(c) AT=1e7
 
-* Tests should return -1 or -100, since the FROM-T0 window
-* has various problems.
-.measure ac whenReturnNegOne WHEN vm(b)=0.5 FROM=1e7 TO=1e8
-.measure ac findWhenReturnNeg100 FIND vm(c) WHEN vm(b)=0.5 FROM=1e6 TO=1e2 DEFAULT_VAL=-100
+* Tests should return since the FROM-T0 windows
+* have various problems.
+.measure ac whenFail WHEN vm(b)=0.5 FROM=1e7 TO=1e8
+.measure ac findWhenFail FIND vm(c) WHEN vm(b)=0.5 FROM=1e6 TO=1e2
 
 * FROM and TO qualifiers take precedence over AT.
 * So, these are failed measures.

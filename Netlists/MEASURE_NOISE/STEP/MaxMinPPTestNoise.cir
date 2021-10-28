@@ -48,14 +48,12 @@ CLP1  4 0 1.59NF
 .MEASURE NOISE minimeamp min IM(EAMP)  FROM=1e5
 .MEASURE NOISE ppimeamp  pp  IM(EAMP)  FROM=1e5
 
-* Tests should return -1 or -100, since the FROM-T0 window
-* has various problems.
-.measure noise maxReturnNegOne max v(4) FROM=1e7 TO=1e8
-.measure noise maxReturnNeg100 max vr(4) FROM=1e6 TO=1e2 DEFAULT_VAL=-100
-.measure noise minReturnNegOne min vi(4) TO=-1e6
-.measure noise minReturnNeg100 min vm(4) FROM=1e7 TO=1e8 DEFAULT_VAL=-100
-.measure noise ppReturnNegOne pp vp(4) FROM=1e7 TO=1e8
-.measure noise ppReturnNeg100 pp vdb(4) FROM=1e7 TO=1e8 DEFAULT_VAL=-100
+* Tests should fail since the FROM-T0 windows have various problems.
+.measure noise maxFromToFail1 max v(4) FROM=1e7 TO=1e8
+.measure noise maxFromToFail2 max vr(4) FROM=1e6 TO=1e2
+.measure noise minFromToFail1 min vi(4) TO=-1e6
+.measure noise minFromToFail2 min vm(4) FROM=1e7 TO=1e8
+.measure noise ppFromToFail1 pp vp(4) FROM=1e7 TO=1e8
 
 * Signifies end of test. .sh file looks for a measure named lastMeasure.
 * This is needed for compatibility for testing with a verbose build, which

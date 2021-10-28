@@ -48,12 +48,12 @@ Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 EQNHERTZ = 1.000000e+06
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-Netlist warning: EQNRETURNNEGONE failed. FROM value > highest frequency value
-EQNRETURNNEGONE = FAILED
+Netlist warning: EQNFAIL1 failed. FROM value > highest frequency value
+EQNFAIL1 = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-Netlist warning: MAXRETURNNEG100 failed. TO value < FROM value
-MAXRETURNNEG100 = FAILED
+Netlist warning: EQNFAIL2 failed. TO value < FROM value
+EQNFAIL2 = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 

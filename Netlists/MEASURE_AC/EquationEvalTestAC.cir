@@ -41,9 +41,9 @@ V1 a 0 DC 0V AC 1
 .MEASURE AC EQNFREQ EQN {FREQ}
 .MEASURE AC EQNHERTZ EQN {HERTZ}
 
-* Tests should return -1 or -100, since the FROM-T0 window
-* has various problems
-.measure ac eqnReturnNegOne eqn v(b) FROM=1e7 TO=1e8
-.measure ac maxReturnNeg100 max vr(b) FROM=1e6 TO=1e2 DEFAULT_VAL=-100
+* Test should fail since the FROM-T0 windows has various problems
+.measure ac eqnFail1 eqn v(b) FROM=1e7 TO=1e8
+.measure ac eqnFail2 eqn v(b) FROM=1e6 TO=1e2
+
 .end
 

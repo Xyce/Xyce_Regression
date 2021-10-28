@@ -42,28 +42,24 @@ Measure Start Freq= 1.000000e+05	Measure End Freq= 1.000000e+06
 PPIMEAMP = 3.036773e-03 with max at freq= 1.000000e+06 and min at freq= 1.000000e+05
 Measure Start Freq= 1.000000e+05	Measure End Freq= 1.000000e+06
 
-Netlist warning: MAXRETURNNEGONE failed. FROM value > highest frequency value
-MAXRETURNNEGONE = FAILED
+Netlist warning: MAXFROMTOFAIL1 failed. FROM value > highest frequency value
+MAXFROMTOFAIL1 = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-Netlist warning: MAXRETURNNEG100 failed. TO value < FROM value
-MAXRETURNNEG100 = FAILED
+Netlist warning: MAXFROMTOFAIL2 failed. TO value < FROM value
+MAXFROMTOFAIL2 = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-Netlist warning: MINRETURNNEGONE failed. TO value <= 0
-MINRETURNNEGONE = FAILED
+Netlist warning: MINFROMTOFAIL1 failed. TO value <= 0
+MINFROMTOFAIL1 = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-Netlist warning: MINRETURNNEG100 failed. FROM value > highest frequency value
-MINRETURNNEG100 = FAILED
+Netlist warning: MINFROMTOFAIL2 failed. FROM value > highest frequency value
+MINFROMTOFAIL2 = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-Netlist warning: PPRETURNNEGONE failed. FROM value > highest frequency value
-PPRETURNNEGONE = FAILED
-Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
-
-Netlist warning: PPRETURNNEG100 failed. FROM value > highest frequency value
-PPRETURNNEG100 = FAILED
+Netlist warning: PPFROMTOFAIL1 failed. FROM value > highest frequency value
+PPFROMTOFAIL1 = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 LASTMEASURE = 5.000000e-01 at freq = 1.000000e+02
@@ -111,28 +107,24 @@ Measure Start Freq= 1.000000e+05	Measure End Freq= 1.000000e+06
 PPIMEAMP = 1.745801e-03 with max at freq= 1.000000e+06 and min at freq= 1.000000e+05
 Measure Start Freq= 1.000000e+05	Measure End Freq= 1.000000e+06
 
-Netlist warning: MAXRETURNNEGONE failed. FROM value > highest frequency value
-MAXRETURNNEGONE = FAILED
+Netlist warning: MAXFROMTOFAIL1 failed. FROM value > highest frequency value
+MAXFROMTOFAIL1 = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-Netlist warning: MAXRETURNNEG100 failed. TO value < FROM value
-MAXRETURNNEG100 = FAILED
+Netlist warning: MAXFROMTOFAIL2 failed. TO value < FROM value
+MAXFROMTOFAIL2 = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-Netlist warning: MINRETURNNEGONE failed. TO value <= 0
-MINRETURNNEGONE = FAILED
+Netlist warning: MINFROMTOFAIL1 failed. TO value <= 0
+MINFROMTOFAIL1 = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-Netlist warning: MINRETURNNEG100 failed. FROM value > highest frequency value
-MINRETURNNEG100 = FAILED
+Netlist warning: MINFROMTOFAIL2 failed. FROM value > highest frequency value
+MINFROMTOFAIL2 = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-Netlist warning: PPRETURNNEGONE failed. FROM value > highest frequency value
-PPRETURNNEGONE = FAILED
-Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
-
-Netlist warning: PPRETURNNEG100 failed. FROM value > highest frequency value
-PPRETURNNEG100 = FAILED
+Netlist warning: PPFROMTOFAIL1 failed. FROM value > highest frequency value
+PPFROMTOFAIL1 = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 LASTMEASURE = 5.000000e-01 at freq = 1.000000e+02

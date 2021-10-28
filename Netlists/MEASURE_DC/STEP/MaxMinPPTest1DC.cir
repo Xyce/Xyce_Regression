@@ -54,14 +54,14 @@ rload2a 2a 1b 0.2
 .measure dc ppv1bFT pp v(1b) FROM=2 TO=4
 .measure dc ppv1bTF pp v(1b) FROM=4 TO=2
 
-* Tests should return -1 or -100, since the FROM-T0 window 
-* does not overlap with the stepped values for VSRC1:DCV0
-.measure dc maxReturnNegOne max v(1b) FROM=-4 TO=-2
-.measure dc maxReturnNeg100 max v(1b) FROM=-2 TO=-4 DEFAULT_VAL=-100
-.measure dc minReturnNegOne min v(1b) FROM=6 TO=8
-.measure dc minReturnNeg100 min v(1b) FROM=8 TO=6 DEFAULT_VAL=-100
-.measure dc ppReturnNegOne pp v(1b) FROM=-4 TO=-2
-.measure dc ppReturnNeg100 pp v(1b) FROM=-4 TO=-2 DEFAULT_VAL=-100
+* Tests should fail since the FROM-T0 windows do not overlap
+* with the stepped values for VSRC1:DCV0
+.measure dc maxFail1 max v(1b) FROM=-4 TO=-2
+.measure dc maxFail2 max v(1b) FROM=-2 TO=-4
+.measure dc minFail1 min v(1b) FROM=6 TO=8
+.measure dc minFail2 min v(1b) FROM=8 TO=6
+.measure dc ppFail1 pp v(1b) FROM=-4 TO=-2
+.measure dc ppFail2 pp v(1b) FROM=-4 TO=-2
 
 * Signifies end of test. .sh file looks for a measure named lastMeasure.  
 * This is needed for compatibility for testing with a verbose build, which 

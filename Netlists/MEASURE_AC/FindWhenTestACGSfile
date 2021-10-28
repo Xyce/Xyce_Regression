@@ -101,12 +101,12 @@ Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 Netlist warning: FAIL3 failed. AT value outside frequency sweep window
 FAIL3 = FAILED for AT = 1.000000e+07
 
-Netlist warning: WHENRETURNNEGONE failed. FROM value > highest frequency value
-WHENRETURNNEGONE = FAILED
+Netlist warning: WHENFAIL failed. FROM value > highest frequency value
+WHENFAIL = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-Netlist warning: FINDWHENRETURNNEG100 failed. TO value < FROM value
-FINDWHENRETURNNEG100 = FAILED
+Netlist warning: FINDWHENFAIL failed. TO value < FROM value
+FINDWHENFAIL = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 Netlist warning: ATFAILFROM failed. AT value outside measurement window

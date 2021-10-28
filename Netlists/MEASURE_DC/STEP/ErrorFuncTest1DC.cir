@@ -59,10 +59,10 @@ rload2a 2a 1b 0.2
 .MEASURE DC ERR2FT ERR2 {V(1b)*V(1b)} V(1b) FROM=0 TO=4
 .MEASURE DC ERR2TF ERR2 {V(1b)*V(1b)} V(1b) FROM=4 TO=0
 
-* Tests should return -1 or -100, since the FROM-T0 window
-* does not overlap with the stepped values for VSRC1:DCV0
-.measure dc maxReturnNegOne ERR1 v(1a) v(1b) FROM=-8 TO=-6
-.measure dc maxReturnNeg100 ERR2 v(1a) v(1b) FROM=8 TO=6 DEFAULT_VAL=-100
+* Tests should fail since the FROM-T0 windows do not overlap
+* with the stepped values for VSRC1:DCV0
+.measure dc err1Fail ERR1 v(1a) v(1b) FROM=-8 TO=-6
+.measure dc err2Fail ERR2 v(1a) v(1b) FROM=8 TO=6
 
 * Signifies end of test. .sh file looks for a measure named lastMeasure.
 * This is needed for compatibility for testing with a verbose build, which

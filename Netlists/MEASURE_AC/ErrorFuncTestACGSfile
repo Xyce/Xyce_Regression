@@ -60,12 +60,12 @@ Measure Start Freq= 1.000000e+03	Measure End Freq= 1.000000e+05
 ERR1IM = 5.000000e-01
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-Netlist warning: ERR1RETURNNEGONE failed. FROM value > highest frequency value
-ERR1RETURNNEGONE = FAILED
+Netlist warning: ERR1FAIL failed. FROM value > highest frequency value
+ERR1FAIL = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-Netlist warning: ERR2RETURNNEG100 failed. TO value < FROM value
-ERR2RETURNNEG100 = FAILED
+Netlist warning: ERR2FAIL failed. TO value < FROM value
+ERR2FAIL = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 

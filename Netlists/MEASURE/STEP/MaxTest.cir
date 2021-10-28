@@ -12,6 +12,9 @@ R2  2  0  100
 R3  3  0  100
 R4  4  0  100
 
+* Use MEASFAIL to test the reset of the default calculation value
+.OPTIONS MEASURE MEASFAIL=0
+
 .TRAN 0  3ms
 .step VS1:VA 1 2 1.0
 *.STEP VP:V2 50 100 50
@@ -51,9 +54,9 @@ R4  4  0  100
 .measure tran maxv1Cross1RFClevel50 max V(1) RFC_LEVEL=0.5 CROSS=1 
 
 *test Failed measures for rise/fall/cross
-.measure tran maxv3fallfail max v(3) fall=10
-.measure tran maxv4risefail max v(4) rise=10
-.measure tran maxv3crossfail max v(3) cross=10
+.measure tran maxv3fallfail max v(3) fall=10 default_val=-1
+.measure tran maxv4risefail max v(4) rise=10 default_val=-1
+.measure tran maxv3crossfail max v(3) cross=10 default_val=-1
 
 .END
 
