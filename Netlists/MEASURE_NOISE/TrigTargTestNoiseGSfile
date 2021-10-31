@@ -2,6 +2,10 @@
 
 TRIGTARGAT = 4.700000e+02 with targ = 5.000000e+02 and trig = 3.000000e+01
 
+TRIGTARGAT1 = 4.844310e+02 with targ = 5.000000e+02 and trig = 1.556897e+01
+
+TRIGTARGAT2 = -1.443103e+01 with targ = 1.556897e+01 and trig = 3.000000e+01
+
 TRIGTARG1 = 3.904233e+01 with targ = 5.461130e+01 and trig = 1.556897e+01
 
 TRIGTARG2 = -3.904233e+01 with targ = 1.556897e+01 and trig = 5.461130e+01
@@ -16,6 +20,8 @@ TRIGTARG6 = -5.575691e+01 with targ = 6.375267e+01 and trig = 1.195096e+02
 
 TRIGTARG7 = 6.852831e+01 with targ = 8.314522e+01 and trig = 1.461691e+01
 
+TDEARLY = 3.904233e+01 with targ = 5.461130e+01 and trig = 1.556897e+01
+
 RISEFALL1 = 2.834981e+01 with targ = 8.296111e+01 and trig = 5.461130e+01
 
 RISEFALL2 = -9.940473e+01 with targ = 1.556897e+01 and trig = 1.149737e+02
@@ -29,5 +35,15 @@ TRIGTARG8 = 7.471005e+01 with targ = 8.233587e+01 and trig = 7.625818e+00
 ATTD1 = 4.700000e+02 with targ = 5.000000e+02 and trig = 3.000000e+01
 
 ATTD2 = 5.314522e+01 with targ = 8.314522e+01 and trig = 3.000000e+01
+
+ATEARLY = FAILED with targ = not found and trig = not found
+
+ATLATE = FAILED with targ = not found and trig = not found
+
+TRIGTDLATE = FAILED with targ = 6.375267e+01 and trig = not found
+
+TARGTDLATE = FAILED with targ = not found and trig = 1.556897e+01
+
+VALNOTFOUND = FAILED with targ = not found and trig = not found
 
 

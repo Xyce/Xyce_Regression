@@ -34,10 +34,12 @@ R4  4  0  1
 .MEASURE TRAN TrigTarg5 TRIG v(1)=0.2 CROSS=-1 TARG v(1)=0.2 CROSS=1
 
 * Add TD for both TRIG and TARG.  Note that the TRIG TD value will also be used
-* for the TARG TD value, if only the TRIG TD value is given.
+* for the TARG TD value, if only the TRIG TD value is given.  An "early" TD is
+* essentially ignored.
 .MEASURE TRAN TrigTarg6 TRIG V(1)=0.2 TD=2ms CROSS=1 TARG V(1)=0.3 CROSS=1
 .MEASURE TRAN TrigTarg7 TRIG V(1)=0.2 TD=6ms CROSS=1 TARG V(1)=0.3 CROSS=1 TD=2ms
 .MEASURE TRAN TrigTarg8 TRIG V(1)=0.2 CROSS=1 TARG V(1)=0.3 CROSS=1 TD=8ms
+.MEASURE TRAN TDearly TRIG V(1)=0.2 TD=-0.1 CROSS=1 TARG V(1)=0.3 CROSS=1 TD=-0.2
 
 * Repeat core tests with RISE and FALL.  Also test TRIG and TARG using different signals.
 .MEASURE TRAN RiseFall1 TRIG v(1)=0.3 RISE=1 TARG v(3)=0.45 FALL=2
@@ -54,8 +56,15 @@ R4  4  0  1
 .MEASURE TRAN TrigTargCurr TRIG I(R1)=0.1 CROSS=1 TARG I(R1)=0.2 CROSS=1
 
 * Both TDs get ignored if both ATs at specified.  However, TRIG TD is used for
-* the TARG clause in the second case
+* the TARG clause in the second case.
 .MEASURE TRAN AtTD1 TRIG AT=2ms TD=5ms TARG AT=8ms TD=9ms
 .MEASURE TRAN AtTD2 TRIG AT=1ms TD=2ms TARG V(1)=0.3 CROSS=1
+
+* Failed measures
+.MEASURE TRAN ATearly TRIG AT=-10ms TARG AT=-10ms
+.MEASURE TRAN ATlate  TRIG AT=20ms TARG AT=20ms
+.MEASURE TRAN TrigTDLate TRIG V(1)=0.2 CROSS=1 TD=15ms TARG V(1)=0.3 CROSS=1 TD=2ms
+.MEASURE TRAN TargTDLate TRIG V(1)=0.2 CROSS=1 TARG V(1)=0.3 CROSS=1 TD=12ms
+.MEASURE TRAN ValNotFound TRIG V(1)=2 CROSS=1 TARG V(1)=2 CROSS=2
 
 .END

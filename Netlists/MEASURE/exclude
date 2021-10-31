@@ -7,6 +7,8 @@ MeasprintOptionNONE.cir
 MeasfailOptionZero.cir
 MeasfailOptionOne.cir
 MeasfailOptionBogo.cir
+MeasfailOptionZeroTrigTarg.cir
+MeasfailOptionOneTrigTarg.cir
 MeasoutOptionZero.cir
 MeasoutOptionOne.cir
 MeasoutOptionBogo.cir

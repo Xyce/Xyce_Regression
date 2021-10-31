@@ -24,7 +24,32 @@ $GOLDPRN=$ARGV[4];
                    "Netlist error: TWOA has invalid MEASURE line",
                    "Netlist error: TWOB has invalid MEASURE line",
                    "Netlist error: THREE has invalid MEASURE line",
-                   "Netlist error: FOUR has invalid MEASURE line");
+                   "Netlist error: FOUR has invalid MEASURE line",
+  "Netlist error:  RISE, FALL or CROSS values < -1 not supported for measure",
+  "CROSSMINUS2 for AC, DC, NOISE or TRAN measures",
+  "Netlist error:  RISE, FALL or CROSS values < -1 not supported for measure",
+  "RISEMINUS2 for AC, DC, NOISE or TRAN measures",
+  "Netlist error:  RISE, FALL or CROSS values < -1 not supported for measure",
+  "FALLMINUS2 for AC, DC, NOISE or TRAN measures",
+  "Netlist error:  RISE, FALL or CROSS values < -1 not supported for measure",
+  "CROSSMINUS2A for AC, DC, NOISE or TRAN measures",
+  "Netlist error:  RISE, FALL or CROSS values < -1 not supported for measure",
+  "RISEMINUS2A for AC, DC, NOISE or TRAN measures",
+  "Netlist error:  RISE, FALL or CROSS values < -1 not supported for measure",
+  "FALLMINUS2A for AC, DC, NOISE or TRAN measures",
+  "Netlist error:  RISE, FALL or CROSS values < 0 not supported for measure",
+  "CROSSMINUS1 for AC_CONT, DC_CONT, NOISE_CONT or TRAN_CONT measures",
+  "Netlist error:  RISE, FALL or CROSS values < 0 not supported for measure",
+  "RISEMINUS1 for AC_CONT, DC_CONT, NOISE_CONT or TRAN_CONT measures",
+  "Netlist error:  RISE, FALL or CROSS values < 0 not supported for measure",
+  "FALLMINUS1 for AC_CONT, DC_CONT, NOISE_CONT or TRAN_CONT measures",
+  "Netlist error:  RISE, FALL or CROSS values < 0 not supported for measure",
+  "CROSSMINUS1A for AC_CONT, DC_CONT, NOISE_CONT or TRAN_CONT measures",
+  "Netlist error:  RISE, FALL or CROSS values < 0 not supported for measure",
+  "RISEMINUS1A for AC_CONT, DC_CONT, NOISE_CONT or TRAN_CONT measures",
+  "Netlist error:  RISE, FALL or CROSS values < 0 not supported for measure",
+  "FALLMINUS1A for AC_CONT, DC_CONT, NOISE_CONT or TRAN_CONT measures",
+);
 
 $retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);
 print "Exit code = $retval\n"; exit $retval; 

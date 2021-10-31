@@ -91,6 +91,7 @@ NOISE_setupSweepParam.cir
 NOISE_setupSweepParam.cir.sh
 OptionBlock_extractOptionsData_1.cir
 OptionBlock_extractOptionsData_1.cir.sh
+OptionBlock_extractOptionsData_1.cir.tags
 OptionBlock_extractOptionsData_2.cir
 OptionBlock_extractOptionsData_2.cir.sh
 OptionBlock_extractDotDataStatement.cir
