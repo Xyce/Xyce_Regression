@@ -2,3 +2,4 @@ serial, nightly, parallel, hb, normal, expression
 valgrind
 capacitor
 sampling
+required:fft
