@@ -1,3 +1,5 @@
+ADC_DACRunTest.cir
+ADC_DACRunTest.cir.sh
 ADC_DACtest.cir
 ADC_DACtest.cir.sh
 ADC_DACtest.cir.tags
