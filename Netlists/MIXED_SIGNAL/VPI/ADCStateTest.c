@@ -57,52 +57,77 @@ static int ADCStateTest_calltf(char*user_data)
       double* actual_time_ptr = &actual_time;
       double** timeArray;
       int** stateArray;
+      int maxNumberOfTimeStateVals = 25;
+
       timeArray = (double **) malloc(numADCnames * sizeof(double*));
       stateArray = (int **) malloc(numADCnames * sizeof(int*));
-      for (i=0; i<2; i++)
+      for (i=0; i<numADCnames; i++)
       {
-        timeArray[i] = (double *) malloc(2*sizeof(double));
-        stateArray[i] = (int *) malloc(2*sizeof(int));
+        timeArray[i] = (double *) malloc(maxNumberOfTimeStateVals*sizeof(double));
+        stateArray[i] = (int *) malloc(maxNumberOfTimeStateVals*sizeof(int));
       }
 
       FILE *fptr;
       fptr = fopen("ADCStateTest.cir.TSarrayData","w" );
-
+      
       for (i=0; i<10; i++)
       {
+        
         requested_time = 0.0 + (i+1) * stepSize;
         printf( "Calling simulateUntil for requested time %f\n", requested_time );
         status = xyce_simulateUntil(p, requested_time, actual_time_ptr );
         printf( "Return status from simulateUntil = %d and actual_time = %f\n",status, actual_time);
-
+        
         status = xyce_getTimeStatePairsADC(p, numADCnamesPtr, ADCnames, numPointsPtr, timeArray, stateArray);
-
-        // output to stdout (for human readability)
+        
         printf( "number of points returned by getTimeVoltagePairsADC is %d\n", numPoints );
-        printf( "ADC 1: Time and state array 0 values are %.3e %d\n", timeArray[0][0], stateArray[0][0] );
-        printf( "ADC 1: Time and state array 1 values are %.3e %d\n", timeArray[0][1], stateArray[0][1] );
-        printf( "ADC 2: Time and state array 0 values are %.3e %d\n", timeArray[1][0], stateArray[1][0] );
-        printf( "ADC 2: Time and state array 1 values are %.3e %d\n", timeArray[1][1], stateArray[1][1] );
+        // output to stdout (for human readability)
+          
+        int adcNum;
+        for ( adcNum=0; adcNum<numADCnames; adcNum++ )
+        {
+          int prev=0;
+          int curr=0;
+          for( j=0; j<numPoints; j++ )
+          {
+            if( abs( timeArray[adcNum][j] - actual_time ) < 1.0e-11 )
+            {
+              // found end time of this ADC's time array
+              curr = j;
+              prev = j-1;
+              if( prev < 0 )
+              {
+                prev = 0;
+              }
+              break; 
+            }
+          } 
+          // output to std out for inspection 
+          printf( "ADC %d: Time and state array %d values are %.3e %d\n", (adcNum+1), prev, timeArray[adcNum][prev], stateArray[adcNum][prev] );
+          printf( "ADC %d: Time and state array %d values are %.3e %d\n", (adcNum+1), curr, timeArray[adcNum][curr], stateArray[adcNum][curr] );
 
-        // output to file (for comparison against a gold standard)
-        fprintf( fptr, "ADC 1: Time and state array 0 values are %.3e %d\n", timeArray[0][0], stateArray[0][0] );
-        fprintf( fptr, "ADC 1: Time and state array 1 values are %.3e %d\n", timeArray[0][1], stateArray[0][1] );
-        fprintf( fptr, "ADC 2: Time and state array 0 values are %.3e %d\n", timeArray[1][0], stateArray[1][0] );
-        fprintf( fptr, "ADC 2: Time and state array 1 values are %.3e %d\n", timeArray[1][1], stateArray[1][1] );
-
+          // output to file (for comparison against a gold standard)
+          fprintf( fptr, "ADC %d: Time and state array %d values are %.3e %d\n", (adcNum+1), prev, timeArray[adcNum][prev], stateArray[adcNum][prev] );
+          fprintf( fptr, "ADC %d: Time and state array %d values are %.3e %d\n", (adcNum+1), curr, timeArray[adcNum][curr], stateArray[adcNum][curr] );
+        }
+         
         // zero out the arrays, before getting their values for the next iteration.
-        for (j=0; j<=1; j++)
-          for (k=0; k<=1; k++)
+        for (j=0; j<numADCnames; j++)
+        {
+          for (k=0; k<maxNumberOfTimeStateVals; k++)
 	  {
             timeArray[j][k]=0.0;
             stateArray[j][k]=0;
 	  }
+        }
+        
       }
 
       xyce_close(p);
 
       // pointer clean-up
       free(p);
+ 
       fclose(fptr);
 
       for (i = 0; i < numADCnames; i++)
