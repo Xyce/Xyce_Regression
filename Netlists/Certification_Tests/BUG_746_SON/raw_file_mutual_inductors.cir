@@ -49,6 +49,7 @@ dbridge4 node4  sOut2 dmod1
 .ends
 
 * simulation control
+.options nonlin-tran maxstep=21
 .OPTIONS OUTPUT INITIAL_INTERVAL=1ms
 .TRAN 100US 25MS
 
