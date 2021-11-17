@@ -90,7 +90,7 @@ static int ADCStateTest_calltf(char*user_data)
           int curr=0;
           for( j=0; j<numPoints; j++ )
           {
-            if( abs( timeArray[adcNum][j] - actual_time ) < 1.0e-11 )
+            if( fabs( timeArray[adcNum][j] - actual_time ) < 1.0e-11 )
             {
               // found end time of this ADC's time array
               curr = j;
