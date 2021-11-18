@@ -33,8 +33,8 @@ foreach $cirname (@cirlist)
     # Append the output to the file that actually gets uploaded
     # to CDash on failure, so we might have some hope of knowing what
     # failed and why
-    `cat $cirname.out >> $CIRFILE.out`
-    `cat $cirname.err >> $CIRFILE.err`
+    `cat $cirname.out >> $CIRFILE.out`;
+    `cat $cirname.err >> $CIRFILE.err`;
     $xyceexit = 1;
   }
   else
