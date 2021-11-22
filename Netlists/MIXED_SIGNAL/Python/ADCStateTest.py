@@ -63,10 +63,13 @@ for i in steps:
         prevPoint=j-1
         break
     
-    print( "ADC %d: Time and state array %d values are %.3e %d" %((adcnum+1), prevPoint, timeArray[adcnum][prevPoint] , stateArray[adcnum][prevPoint]) )
-    print( "ADC %d: Time and state array %d values are %.3e %d" %((adcnum+1), currPoint, timeArray[adcnum][currPoint] , stateArray[adcnum][currPoint]) )
+    # don't output index to -1 as it is NOT a valid timepoint.
     # output to file (for comparison against a gold standard)
-    f.write( "ADC %d: Time and state array %d values are %.3e %d\n" %((adcnum+1), prevPoint, timeArray[adcnum][prevPoint] , stateArray[adcnum][prevPoint]) )
+    if( prevPoint != -1):
+      print( "ADC %d: Time and state array %d values are %.3e %d" %((adcnum+1), prevPoint, timeArray[adcnum][prevPoint] , stateArray[adcnum][prevPoint]) )
+      f.write( "ADC %d: Time and state array %d values are %.3e %d\n" %((adcnum+1), prevPoint, timeArray[adcnum][prevPoint] , stateArray[adcnum][prevPoint]) )
+    
+    print( "ADC %d: Time and state array %d values are %.3e %d" %((adcnum+1), currPoint, timeArray[adcnum][currPoint] , stateArray[adcnum][currPoint]) )
     f.write( "ADC %d: Time and state array %d values are %.3e %d\n" %((adcnum+1), currPoint, timeArray[adcnum][currPoint] , stateArray[adcnum][currPoint]) )
 
 print( "calling close")

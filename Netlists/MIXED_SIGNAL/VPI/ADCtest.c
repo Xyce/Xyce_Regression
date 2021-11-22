@@ -1,4 +1,5 @@
 #include <vpi_user.h>
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <N_CIR_XyceCInterface.h>
@@ -91,12 +92,13 @@ static int ADCtest_calltf(char*user_data)
       double* actual_time_ptr = &actual_time;
       double** timeArray;
       double** voltageArray;
+      int maxNumberOfTimeVals = 25;
       timeArray = (double **) malloc(numADCnames * sizeof(double*));
       voltageArray = (double **) malloc(numADCnames * sizeof(double*));
       for (i=0; i<2; i++)
       {
-        timeArray[i] = (double *) malloc(2*sizeof(double));
-        voltageArray[i] = (double *) malloc(2*sizeof(double));
+        timeArray[i] = (double *) malloc( maxNumberOfTimeVals*sizeof(double));
+        voltageArray[i] = (double *) malloc( maxNumberOfTimeVals*sizeof(double));
       }
 
       FILE *fptr;
@@ -110,27 +112,40 @@ static int ADCtest_calltf(char*user_data)
         printf( "Return status from simulateUntil = %d and actual_time = %f\n",status, actual_time);
 
         status = xyce_getTimeVoltagePairsADC(p, numADCnamesPtr, ADCnames, numPointsPtr, timeArray, voltageArray);
-
-        // output to stdout (for human readability)
-        printf( "number of points returned by getTimeVoltagePairsADC is %d\n", numPoints );
-        printf( "ADC 1: Time and voltage array 0 values are %.3e %.3e\n", timeArray[0][0], voltageArray[0][0] );
-        printf( "ADC 1: Time and voltage array 1 values are %.3e %.3e\n", timeArray[0][1], voltageArray[0][1] );
-        printf( "ADC 2: Time and voltage array 0 values are %.3e %.3e\n", timeArray[1][0], voltageArray[1][0] );
-        printf( "ADC 2: Time and voltage array 1 values are %.3e %.3e\n", timeArray[1][1], voltageArray[1][1] );
-
-        // output to file (for comparison against a gold standard)
-        fprintf( fptr, "ADC 1: Time and voltage array 0 values are %.3e %.3e\n", timeArray[0][0], voltageArray[0][0] );
-        fprintf( fptr, "ADC 1: Time and voltage array 1 values are %.3e %.3e\n", timeArray[0][1], voltageArray[0][1] );
-        fprintf( fptr, "ADC 2: Time and voltage array 0 values are %.3e %.3e\n", timeArray[1][0], voltageArray[1][0] );
-        fprintf( fptr, "ADC 2: Time and voltage array 1 values are %.3e %.3e\n", timeArray[1][1], voltageArray[1][1] );
+        int adcNum;
+        for ( adcNum=0; adcNum<numADCnames; adcNum++ )
+        {
+          int prev=-1;
+          int curr=0;
+          for( j=0; j<numPoints; j++ )
+          {
+            if( fabs( timeArray[adcNum][j] - actual_time ) < 1.0e-11 )
+            {
+              // found end time of this ADC's time array
+              curr = j;
+              prev = j-1;
+              break; 
+            }
+          } 
+          // output for inspection 
+          if( prev >= 0 )
+          {
+            printf( "ADC %d: Time and voltage array %d values are %.3e %d\n", (adcNum+1), prev, timeArray[adcNum][prev], voltageArray[adcNum][prev] );
+            fprintf( fptr, "ADC %d: Time and voltage array %d values are %.3e %d\n", (adcNum+1), prev, timeArray[adcNum][prev], voltageArray[adcNum][prev] );
+          }
+          printf( "ADC %d: Time and voltage array %d values are %.3e %d\n", (adcNum+1), curr, timeArray[adcNum][curr], voltageArray[adcNum][curr] );
+          fprintf( fptr, "ADC %d: Time and voltage array %d values are %.3e %d\n", (adcNum+1), curr, timeArray[adcNum][curr], voltageArray[adcNum][curr] );
+        }
 
         // zero out the arrays, before getting their values for the next iteration.
-        for (j=0; j<=1; j++)
-          for (k=0; k<=1; k++)
+        for (j=0; j<numADCnames; j++)
+        {
+          for (k=0; k<maxNumberOfTimeVals; k++)
 	  {
             timeArray[j][k]=0.0;
             voltageArray[j][k]=0;
 	  }
+        }
       }
 
       xyce_close(p);

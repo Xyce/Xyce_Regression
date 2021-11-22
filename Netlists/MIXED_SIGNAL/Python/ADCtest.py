@@ -93,22 +93,35 @@ for i in steps:
   actual_time = 0.0
   (result, actual_time) = xyceObj.simulateUntil( requested_time )
   print( "simulateUntil status = %d and actual_time = %.5f" % (result, actual_time) )
+  (result, numPoints1) = xyceObj.getTimeVoltagePairsADCsz()
+  print( "number of points returned by getTimeVoltagePairsADCsz is %d" % numPoints1 )
+  
   (result, ADCnames, numADCnames, numPoints, timeArray, voltageArray) = xyceObj.getTimeVoltagePairsADC()
   print( "return value from getTimeVoltagePairsADC is %d" % result )
   print( "number of ADC names returned by getTimeVoltagePairsADC is %d" % numADCnames )
   print( ADCnames )
   # output to stdout (for human readability)
   print( "number of points returned by getTimeVoltagePairsADC is %d" % numPoints )
-  print( "ADC 1: Time and voltage array 0 values are %.3e %.3e" %(timeArray[0][0] , voltageArray[0][0]) )
-  print( "ADC 1: Time and voltage array 1 values are %.3e %.3e" %(timeArray[0][1] , voltageArray[0][1]) )
-  print( "ADC 2: Time and voltage array 0 values are %.3e %.3e" %(timeArray[1][0] , voltageArray[1][0]) )
-  print( "ADC 2: Time and voltage array 1 values are %.3e %.3e" %(timeArray[1][1] , voltageArray[1][1]) )
-  # output to file (for comparison against a gold standard)
-  f.write( "ADC 1: Time and voltage array 0 values are %.3e %.3e\n" %(timeArray[0][0] , voltageArray[0][0]) )
-  f.write( "ADC 1: Time and voltage array 1 values are %.3e %.3e\n" %(timeArray[0][1] , voltageArray[0][1]) )
-  f.write( "ADC 2: Time and voltage array 0 values are %.3e %.3e\n" %(timeArray[1][0] , voltageArray[1][0]) )
-  f.write( "ADC 2: Time and voltage array 1 values are %.3e %.3e\n" %(timeArray[1][1] , voltageArray[1][1]) )
+  # numPoints is the maximum number of time points for an ADC.  Others may have fewer points
+  # so for each time array returned for a given ADC search for the current time (within some error)
+  for adcnum in range(0, numADCnames ):
+    prevPoint = -1;
+    currPoint = 0;
+    for j in range(0, numPoints):
+      if (abs(timeArray[adcnum][j] - requested_time) < 1.0e-11):
+        currPoint=j
+        prevPoint=j-1
+        break
 
+    # output to file (for comparison against a gold standard)    
+    # don't output index to -1 as it is NOT a valid timepoint.
+    if( prevPoint != -1):
+      print( "ADC %d: Time and voltage array %d values are %.3e %.3e" %((adcnum+1), prevPoint, timeArray[adcnum][prevPoint] , voltageArray[adcnum][prevPoint]) )
+      f.write( "ADC %d: Time and voltage array %d values are %.3e %.3e\n" %((adcnum+1), prevPoint, timeArray[adcnum][prevPoint] , voltageArray[adcnum][prevPoint]) )
+    
+    print( "ADC %d: Time and voltage array %d values are %.3e %.3e" %((adcnum+1), currPoint, timeArray[adcnum][currPoint] , voltageArray[adcnum][currPoint]) )
+    f.write( "ADC %d: Time and voltage array %d values are %.3e %.3e\n" %((adcnum+1), currPoint, timeArray[adcnum][currPoint] , voltageArray[adcnum][currPoint]) )
+  
 print( "calling close")
 xyceObj.close()
 
