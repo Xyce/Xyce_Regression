@@ -52,15 +52,22 @@ for i in steps:
   print( ADCnames )
   # output to stdout (for human readability)
   print( "number of points returned by getTimeStatePairsADC is %d" % numPoints )
-  print( "ADC 1: Time and state array 0 values are %.3e %d" %(timeArray[0][0] , stateArray[0][0]) )
-  print( "ADC 1: Time and state array 0 values are %.3e %d" %(timeArray[0][1] , stateArray[0][1]) )
-  print( "ADC 2: Time and state array 0 values are %.3e %d" %(timeArray[1][0] , stateArray[1][0]) )
-  print( "ADC 2: Time and state array 1 values are %.3e %d" %(timeArray[1][1] , stateArray[1][1]) )
-  # output to file (for comparison against a gold standard)
-  f.write( "ADC 1: Time and state array 0 values are %.3e %d\n" %(timeArray[0][0] , stateArray[0][0]) )
-  f.write( "ADC 1: Time and state array 1 values are %.3e %d\n" %(timeArray[0][1] , stateArray[0][1]) )
-  f.write( "ADC 2: Time and state array 0 values are %.3e %d\n" %(timeArray[1][0] , stateArray[1][0]) )
-  f.write( "ADC 2: Time and state array 1 values are %.3e %d\n" %(timeArray[1][1] , stateArray[1][1]) )
+  # numPoints is the maximum number of time points for an ADC.  Others may have fewer points
+  # so for each time array returned for a given ADC search for the current time (within some error)
+  for adcnum in range(0, numADCnames ):
+    prevPoint = -1;
+    currPoint = 0;
+    for j in range(0, numPoints):
+      if (abs(timeArray[adcnum][j] - requested_time) < 1.0e-11):
+        currPoint=j
+        prevPoint=j-1
+        break
+    
+    print( "ADC %d: Time and state array %d values are %.3e %d" %((adcnum+1), prevPoint, timeArray[adcnum][prevPoint] , stateArray[adcnum][prevPoint]) )
+    print( "ADC %d: Time and state array %d values are %.3e %d" %((adcnum+1), currPoint, timeArray[adcnum][currPoint] , stateArray[adcnum][currPoint]) )
+    # output to file (for comparison against a gold standard)
+    f.write( "ADC %d: Time and state array %d values are %.3e %d\n" %((adcnum+1), prevPoint, timeArray[adcnum][prevPoint] , stateArray[adcnum][prevPoint]) )
+    f.write( "ADC %d: Time and state array %d values are %.3e %d\n" %((adcnum+1), currPoint, timeArray[adcnum][currPoint] , stateArray[adcnum][currPoint]) )
 
 print( "calling close")
 xyceObj.close()

@@ -73,7 +73,6 @@ YPDE Z1DIODE 3 4 PDEDIODE
 + smallupdatetol=1.0e-6
 + rhstol=1.0E-6
 
-.options timeint nlnearconv=1
 .options device debuglevel=-10
 
 .END

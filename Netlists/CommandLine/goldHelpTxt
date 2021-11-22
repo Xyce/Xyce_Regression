@@ -15,6 +15,7 @@ Arguments:
   -noise_names_file <path>    output noise source names file to <path> and exit
   -quiet                      suppress some of the simulation-progress messages sent to stdout
   -jacobian_test              jacobian matrix diagnostic
+  -redefined_params <option>  set option for redefined .params as ignore (use last), usefirst, warn or error.
   -delim <TAB|COMMA|string>   set the output file field delimiter
   -o <basename>               <basename> for the output file(s)
   -l <path>                   place the log output into <path>, "cout" to log to stdout
