@@ -130,11 +130,11 @@ static int ADCtest_calltf(char*user_data)
           // output for inspection 
           if( prev >= 0 )
           {
-            printf( "ADC %d: Time and voltage array %d values are %.3e %d\n", (adcNum+1), prev, timeArray[adcNum][prev], voltageArray[adcNum][prev] );
-            fprintf( fptr, "ADC %d: Time and voltage array %d values are %.3e %d\n", (adcNum+1), prev, timeArray[adcNum][prev], voltageArray[adcNum][prev] );
+            printf( "ADC %d: Time and voltage array %d values are %.3e %.3e\n", (adcNum+1), prev, timeArray[adcNum][prev], voltageArray[adcNum][prev] );
+            fprintf( fptr, "ADC %d: Time and voltage array %d values are %.3e %.3e\n", (adcNum+1), prev, timeArray[adcNum][prev], voltageArray[adcNum][prev] );
           }
-          printf( "ADC %d: Time and voltage array %d values are %.3e %d\n", (adcNum+1), curr, timeArray[adcNum][curr], voltageArray[adcNum][curr] );
-          fprintf( fptr, "ADC %d: Time and voltage array %d values are %.3e %d\n", (adcNum+1), curr, timeArray[adcNum][curr], voltageArray[adcNum][curr] );
+          printf( "ADC %d: Time and voltage array %d values are %.3e %.3e\n", (adcNum+1), curr, timeArray[adcNum][curr], voltageArray[adcNum][curr] );
+          fprintf( fptr, "ADC %d: Time and voltage array %d values are %.3e %.3e\n", (adcNum+1), curr, timeArray[adcNum][curr], voltageArray[adcNum][curr] );
         }
 
         // zero out the arrays, before getting their values for the next iteration.
