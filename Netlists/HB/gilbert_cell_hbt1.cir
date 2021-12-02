@@ -74,15 +74,11 @@ V2 1 0 DC 6V
 +         FC = 0.5
 + )
 *.TRAN  1e-6 5e-3
-*.mpde 0 1.0e-4
-*.options mpdeint ic=2 auton2=true saveicdata=1 diff=0 oscsrc=V5
+
 .hb 1e4 2e2
-.options hbint numfreq=5,3 tahb=1  method=AFM   numtpts=79
+.options hbint numfreq=5,3 tahb=1  method=AFM
 *.options hbint numfreq=5,3 tahb=1 intmodmax=5 method=apft  numtpts=79
 *.options hbint numfreq=5,3 method=AFM
-*.options nonlin in_forcing=0
-*.options timeint reltol=1e-4
-*maxord=1
 *.options linsol-hb type=direct direct_solver=lapack   output_ls=0
 *.options device voltlim=1 debuglevel=-1
 * v(6,2) should be the LO voltage, v(15,10) is the input
