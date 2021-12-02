@@ -61,7 +61,9 @@ print "setting ld library path to $LD_LIBRARY_PATH\n";
 
 $retval=0;
 # run the netlist via the Python version of XyceCInterface
-$retval = system("python $PYFILE $XYCE_LIB_DIR > $CIRFILE.out");
+# -u makes python's stdout and stderr unbuffered which is needed
+# keep Xyce and python output in a consistent order
+$retval = system("python -u $PYFILE $XYCE_LIB_DIR > $CIRFILE.out");
 if ($retval != 0)
 {
   print "Netlist failed to run via Python-based XyceCInterface\n";
@@ -124,7 +126,7 @@ else
 
       if ($lineCount == 1)
       {
-	if ( ($lineData[0] ne "\[-1") || ($#lineData !=1) )
+        if ( ($lineData[0] ne "\[-1") || ($#lineData !=1) )
         {
           print "Invalid GIDs for line 1 in $CIRFILE.gidArrays\n";
           $retval = 2;
@@ -134,7 +136,7 @@ else
       {
         $tmpStr = $lineData[0];
         $tmpStr =~ s/^.//s;
- 	$currGID = $tmpStr;
+        $currGID = $tmpStr;
         #print "currGID and prevGID =  $currGID $prevGID\n";
         if ( ($currGID ne $prevGID) || ($#lineData !=1) )
         {

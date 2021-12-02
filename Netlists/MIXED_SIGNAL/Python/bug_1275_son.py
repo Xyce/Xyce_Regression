@@ -32,26 +32,26 @@ current_time += clock_period
 # loop through the range of values
 while current_time <= stop_time:
 
-	print('-'*100)
+  print('-'*100)
 
-	# read the ADC values from the circuit
-	(adc_result, adc_names, adc_num_names, adc_num_points, adc_time_array, adc_voltage_array) = xyce_obj.getTimeVoltagePairsADC()
+  # read the ADC values from the circuit
+  (adc_result, adc_names, adc_num_names, adc_num_points, adc_time_array, adc_voltage_array) = xyce_obj.getTimeVoltagePairsADC()
 
-	# output to stdout (for human readability)
-	print('Time = %.3f ms' % (current_time*1000))
-	print("ADC-VDD = %f, ADC-VOUT = %f" % (adc_voltage_array[0][0], adc_voltage_array[1][0]))
-	print("ADC-VDD = %f, ADC-VOUT = %f" % (adc_voltage_array[0][1], adc_voltage_array[1][1]))
+  # output to stdout (for human readability)
+  print('Time = %.3f ms' % (current_time*1000))
+  print("ADC-VDD = %f, ADC-VOUT = %f" % (adc_voltage_array[0][0], adc_voltage_array[1][0]))
+  print("ADC-VDD = %f, ADC-VOUT = %f" % (adc_voltage_array[0][1], adc_voltage_array[1][1]))
 
-        # output to file for verification
-        f.write('Time = %.3f ms\n' % (current_time*1000))
-	f.write("ADC-VDD = %f, ADC-VOUT = %f\n" % (adc_voltage_array[0][0], adc_voltage_array[1][0]))
-	f.write("ADC-VDD = %f, ADC-VOUT = %f\n" % (adc_voltage_array[0][1], adc_voltage_array[1][1]))
-
-	# progress another clock cycle
-	current_time += clock_period
-	(result, actual_time) = xyce_obj.simulateUntil( current_time )
-	print("Updated to time = %.3f ms with with result = %d" % (actual_time*1000, result))
-        f.write("Updated to time = %.3f ms with with result = %d\n" % (actual_time*1000, result))
+  # output to file for verification
+  f.write('Time = %.3f ms\n' % (current_time*1000))
+  f.write("ADC-VDD = %f, ADC-VOUT = %f\n" % (adc_voltage_array[0][0], adc_voltage_array[1][0]))
+  f.write("ADC-VDD = %f, ADC-VOUT = %f\n" % (adc_voltage_array[0][1], adc_voltage_array[1][1]))
+  
+  # progress another clock cycle
+  current_time += clock_period
+  (result, actual_time) = xyce_obj.simulateUntil( current_time )
+  print("Updated to time = %.3f ms with with result = %d" % (actual_time*1000, result))
+  f.write("Updated to time = %.3f ms with with result = %d\n" % (actual_time*1000, result))
 
 # close the Xyce object
 xyce_obj.close()

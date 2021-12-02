@@ -63,7 +63,9 @@ print "setting ld library path to $LD_LIBRARY_PATH\n";
 
 $pythonRetcode=0;
 # run the netlist via the Python version of XyceCInterface
-$pythonRetcode = system("python $PYFILE $XYCE_LIB_DIR > $CIRFILE.out");
+# -u makes python's stdout and stderr unbuffered which is needed
+# keep Xyce and python output in a consistent order
+$pythonRetcode = system("python -u $PYFILE $XYCE_LIB_DIR > $CIRFILE.out");
 $pythonRetcode = $pythonRetcode>>8;
 print ("Python return code was: $pythonRetcode\n");
 

@@ -49,7 +49,7 @@ system("rm -f $LOGFILE[0] $LOGFILE[1]");
 
 @searchstrings1 = ("Calling simulateUntil for requested_time = 0.100",
                    "DC Operating Point Failed.  Exiting transient loop",
-		   "simulateUntil status = 0 and actual_time = 0.000",
+                   "simulateUntil status = 0 and actual_time = 0.000",
                    "calling close",
                    "MAXV1 = FAILED");
 
@@ -85,7 +85,9 @@ foreach $idx (0 .. 1)
   system("rm -f $CIRFILE.prn $CIRFILE.mt0");
 
   # run the netlist via the Python version of XyceCInterface
-  $retval = system("python $PYFILE[$idx] $XYCE_LIB_DIR > $LOGFILE[$idx]");
+  # -u makes python's stdout and stderr unbuffered which is needed
+  # keep Xyce and python output in a consistent order
+  $retval = system("python -u $PYFILE[$idx] $XYCE_LIB_DIR > $LOGFILE[$idx]");
   if ($retval != 0)
   {
     print "Netlist failed to run via Python-based XyceCInterface for logfile $LOGFILE\n";
