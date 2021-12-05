@@ -39,6 +39,10 @@ ADCtest.cir
 ADCtest.cir.sh
 ADCtest.py
 ADCtest.cir.TVarrayGoldData
+ADCLimitDataTest.cir
+ADCLimitDataTest.cir.sh
+ADCLimitDataTest.py
+ADCLimitDataTest.cir.TVarrayGoldData
 ADCStateTest.cir
 ADCStateTest.cir.sh
 ADCStateTest.py

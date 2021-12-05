@@ -10,7 +10,7 @@
 
 # file will be used to compare timeArray and voltageArray against
 # a gold standard
-f= open("ADCtest.cir.TVarrayData","w+")
+f= open("ADCLimitDataTest.cir.TVarrayData","w+")
 
 import sys
 from xyce_interface import xyce_interface
@@ -22,7 +22,7 @@ libDirectory = sys.argv[1]
 xyceObj = xyce_interface(libdir=libDirectory)
 print( xyceObj )
 
-argv= ['ADCtest.cir']
+argv= ['ADCLimitDataTest.cir']
 print( "calling initialize with netlist %s" % argv[0] )
 
 result = xyceObj.initialize(argv)
@@ -96,18 +96,18 @@ for i in steps:
   (result, numPoints1) = xyceObj.getTimeVoltagePairsADCsz()
   print( "number of points returned by getTimeVoltagePairsADCsz is %d" % numPoints1 )
   
-  (result, ADCnames, numADCnames, numPoints, timeArray, voltageArray) = xyceObj.getTimeVoltagePairsADC()
-  print( "return value from getTimeVoltagePairsADC is %d" % result )
+  (result, ADCnames, numADCnames, numPointsArray, timeArray, voltageArray) = xyceObj.getTimeVoltagePairsADCLimitData()
+  print( "return value from getTimeVoltagePairsADCLimitData is %d" % result )
   print( "number of ADC names returned by getTimeVoltagePairsADC is %d" % numADCnames )
   print( ADCnames )
   # output to stdout (for human readability)
-  print( "number of points returned by getTimeVoltagePairsADC is %d" % numPoints )
-  # numPoints is the maximum number of time points for an ADC.  Others may have fewer points
-  # so for each time array returned for a given ADC search for the current time (within some error)
+  
+  # numPointsArray is the  number of time points for each ADC.  
   for adcnum in range(0, numADCnames ):
     prevPoint = -1;
     currPoint = 0;
-    for j in range(0, numPoints):
+    print( "number of points for ADC %d by getTimeVoltagePairsADCLimitData is %d" % (adcnum, numPointsArray[adcnum]) )
+    for j in range(0, numPointsArray[adcnum]):
       if (abs(timeArray[adcnum][j] - requested_time) < 1.0e-11):
         currPoint=j
         prevPoint=j-1

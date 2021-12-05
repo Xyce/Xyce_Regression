@@ -86,7 +86,7 @@ static int ADCStateTest_calltf(char*user_data)
         int adcNum;
         for ( adcNum=0; adcNum<numADCnames; adcNum++ )
         {
-          int prev=0;
+          int prev=-1;
           int curr=0;
           for( j=0; j<numPoints; j++ )
           {
@@ -95,19 +95,16 @@ static int ADCStateTest_calltf(char*user_data)
               // found end time of this ADC's time array
               curr = j;
               prev = j-1;
-              if( prev < 0 )
-              {
-                prev = 0;
-              }
               break; 
             }
           } 
-          // output to std out for inspection 
-          printf( "ADC %d: Time and state array %d values are %.3e %d\n", (adcNum+1), prev, timeArray[adcNum][prev], stateArray[adcNum][prev] );
+          // output for inspection 
+          if( prev >= 0 )
+          {
+            printf( "ADC %d: Time and state array %d values are %.3e %d\n", (adcNum+1), prev, timeArray[adcNum][prev], stateArray[adcNum][prev] );
+            fprintf( fptr, "ADC %d: Time and state array %d values are %.3e %d\n", (adcNum+1), prev, timeArray[adcNum][prev], stateArray[adcNum][prev] );
+          }
           printf( "ADC %d: Time and state array %d values are %.3e %d\n", (adcNum+1), curr, timeArray[adcNum][curr], stateArray[adcNum][curr] );
-
-          // output to file (for comparison against a gold standard)
-          fprintf( fptr, "ADC %d: Time and state array %d values are %.3e %d\n", (adcNum+1), prev, timeArray[adcNum][prev], stateArray[adcNum][prev] );
           fprintf( fptr, "ADC %d: Time and state array %d values are %.3e %d\n", (adcNum+1), curr, timeArray[adcNum][curr], stateArray[adcNum][curr] );
         }
          

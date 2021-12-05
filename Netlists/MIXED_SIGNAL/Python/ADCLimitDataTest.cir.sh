@@ -63,7 +63,7 @@ $retval=0;
 # run the netlist via the Python version of XyceCInterface
 # -u makes python's stdout and stderr unbuffered which is needed
 # keep Xyce and python output in a consistent order
-$retval = system("python -u $PYFILE $XYCE_LIB_DIR > $CIRFILE.out");;
+$retval = system("python -u $PYFILE $XYCE_LIB_DIR > $CIRFILE.out");
 if ($retval != 0)
 {
   print "Netlist failed to run via Python-based XyceCInterface\n";
@@ -75,24 +75,51 @@ else
   if (not -s "$CIRFILE.prn" ) { print "Exit code = 14\n"; exit 14; }
 }
 
-# check .prn file
-$CMD="$XYCE_VERIFY $CIRFILE $GOLDPRN $CIRFILE.prn";
-if (system($CMD) != 0) 
-{
-  print STDERR "Verification failed on file $CIRFILE.prn";
-  $retval = 2;
-}
-
-# check for XyceCInterface return codes in stdout
-@searchstrings = ("simulationUntil status = 1",
-                  "Netlist warning: Failed to update the time-voltage pairs for the DAC BOGODAC",
-                  "return value from updateTimeVoltagePairs is 0",
-                  "calling close"
+# check for XyceCInterface return codes and other info in stdout
+@searchstrings = ("return value from getNumDevices is 1",
+                  "Num devices and max device name length are 2 9",
+                  "\\[4, 1\\]",
+                  "return value from getADCMap is 1",
+                  "\\['YADC!ADC1', 'YADC!ADC2'\\]",
+                  "\\[1, 4\\]",
+                  "\\['1.00e\\+12', '1.00e\\+12'\\]",
+                  "\\[2.0, 2.0\\]",
+                  "\\[0.0, 0.0\\]",
+                  "\\['5.00e-08', '5.00e-08'\\]",
+                  "return value from setADCWidths is 1",
+                  "return value from getADCMap is 1",
+                  "\\['YADC!ADC1', 'YADC!ADC2'\\]",
+                  "\\[2, 3\\]",
+                  "Netlist warning: Failed to update the width for ADC BOGOADC1",
+                  "return value from setADCWidths for ADC BOGOADC1 is 0",
+                  "return value from getADCWidths is 1",
+                  "\\[3, 2\\]",
+                  "Netlist warning: Failed to get the width for ADC BOGOADC2",
+                  "return value from getADCWidths is 0",
+                  "\\[0, 2\\]",
+                  "simulateUntil status = 1 and actual_time = 0.00001",
+                  "return value from getTimeVoltagePairsADCLimitData is 1",
+                  "number of ADC names returned by getTimeVoltagePairsADC is 2"
 );
 if ( $Tools->checkError("$CIRFILE.out",@searchstrings) != 0) 
 {
- print "Failed to find all of the correct XyceCInterface return codes in stdout\n"; 
+ print "Failed to find all of the correct XyceCInterface information in stdout\n"; 
  $retval = 2; 
+}
+
+# now check the correctness of the timeArray and voltageArray values
+$fc = $XYCE_VERIFY;
+$fc=~ s/xyce_verify/file_compare/;
+$absTol=5e-3;
+$relTol=1e-2;
+$zeroTol=1e-8;
+
+print ("Testing timeArray and voltageArray values\n");
+$CMD="$fc $CIRFILE.TVarrayData $CIRFILE.TVarrayGoldData $absTol $relTol $zeroTol";
+if (system($CMD) != 0) 
+{
+  print STDERR "Verification failed on file $CIRFILE.TVarrayData";
+  $retval = 2;
 }
 
 print "Exit code = $retval\n"; exit $retval;
