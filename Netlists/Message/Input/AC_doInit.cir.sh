@@ -66,8 +66,7 @@ else
 }
 
 print "Testing $CIR[2]\n";
-@searchstrings = ("Netlist error: AC sensitivities cannot use both ACOBJFUNC and OBJVARS",
-   "specification");
+@searchstrings = ("terminate called after throwing an instance of 'int'"); # JDS: this needs to be updated to a more robust test for missing parameters on .sens line. Also consider adding another test for .sens with only params defined (may already be covered in case 4; review logic)?
 
 $retval = $Tools->runAndCheckError($CIR[2],$XYCE,@searchstrings);
 if ($retval !=0)

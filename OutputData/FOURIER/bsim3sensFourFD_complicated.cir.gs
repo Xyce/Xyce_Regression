@@ -68,7 +68,7 @@ Fourier analysis for {V(2)}:
            8    1.600000e+08    9.168855e-02   -1.196262e+02    7.560892e-02   -2.959551e+02
            9    1.800000e+08    1.135824e-01   -3.403626e+01    9.366320e-02   -2.103651e+02
 
-Fourier analysis for d{V(2)}/d(M1:L)_Dir:
+Fourier analysis for d_{V(2)}/d_M1:L_dir:
   No. Harmonics: 10, THD: 5.073548e+02, Gridsize: 200, Interpolation Type: Cubic Spline
     Harmonic       Frequency       Magnitude           Phase       Norm. Mag     Norm. Phase
            0    0.000000e+00    3.141156e+05    0.000000e+00    0.000000e+00    0.000000e+00
@@ -82,7 +82,7 @@ Fourier analysis for d{V(2)}/d(M1:L)_Dir:
            8    1.600000e+08    4.306478e+05   -1.331607e+02    1.798772e+00   -2.704883e+02
            9    1.800000e+08    2.558047e+05    1.760147e+02    1.068470e+00    3.868708e+01
 
-Fourier analysis for d{V(2)}/d(M2:L)_Dir:
+Fourier analysis for d_{V(2)}/d_M2:L_dir:
   No. Harmonics: 10, THD: 4.021231e+02, Gridsize: 200, Interpolation Type: Cubic Spline
     Harmonic       Frequency       Magnitude           Phase       Norm. Mag     Norm. Phase
            0    0.000000e+00   -1.486155e+05    0.000000e+00    0.000000e+00    0.000000e+00
@@ -194,7 +194,7 @@ Fourier analysis for {V(2)}:
            8    3.200000e+08    1.100781e-01    2.593518e+01    1.527092e-01    1.234550e+02
            9    3.600000e+08    6.792861e-02    1.768013e+01    9.423600e-02    1.152000e+02
 
-Fourier analysis for d{V(2)}/d(M1:L)_Dir:
+Fourier analysis for d_{V(2)}/d_M1:L_dir:
   No. Harmonics: 10, THD: 1.851215e+02, Gridsize: 200, Interpolation Type: Cubic Spline
     Harmonic       Frequency       Magnitude           Phase       Norm. Mag     Norm. Phase
            0    0.000000e+00    6.048157e+05    0.000000e+00    0.000000e+00    0.000000e+00
@@ -208,7 +208,7 @@ Fourier analysis for d{V(2)}/d(M1:L)_Dir:
            8    3.200000e+08    2.422180e+05   -3.561653e+01    2.427406e-01   -1.275884e+02
            9    3.600000e+08    5.458969e+05    5.859883e-01    5.470748e-01   -9.138591e+01
 
-Fourier analysis for d{V(2)}/d(M2:L)_Dir:
+Fourier analysis for d_{V(2)}/d_M2:L_dir:
   No. Harmonics: 10, THD: 1.929533e+02, Gridsize: 200, Interpolation Type: Cubic Spline
     Harmonic       Frequency       Magnitude           Phase       Norm. Mag     Norm. Phase
            0    0.000000e+00   -2.888173e+05    0.000000e+00    0.000000e+00    0.000000e+00

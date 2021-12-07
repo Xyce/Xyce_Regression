@@ -12,7 +12,7 @@ c3 4 0 47n
 .print ac vm(1) vp(1) vm(2) vp(2)
 
 * this line should produce a parsing error
-.sens acobjfunc={v(2)} param=r1:r objvars=4 param=r1:r,c1:c,r2:r,c2:c,r3:r,c3:c
+.sens acobjfunc={v(2)}
 
 .options sensitivity direct=1 adjoint=1 stdoutput=1
 .print sens

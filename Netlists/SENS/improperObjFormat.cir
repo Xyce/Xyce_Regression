@@ -22,9 +22,9 @@ Q1 3 1 2 Q2N2222
 
 * several of the sensitivities need offsets, as their computed values are
 * near zero for the lower biases.
-*comp  d{v(3)*v(3)}/d(q2n2222:bf)_adj offset=2.0e-6
-*comp  d{V(3)*V(3)}/d(Q2N2222:vaf)_Adj offset=1.0e-6
-*comp  d{v(3)*v(3)}/d(re:r)_adj offset=-2.0e-9
+*comp  d_{v(3)*v(3)}/d_q2n2222:bf_adj offset=2.0e-6
+*comp  d_{V(3)*V(3)}/d_Q2N2222:vaf_adj offset=1.0e-6
+*comp  d_{v(3)*v(3)}/d_re:r_adj offset=-2.0e-9
 
 .print dc v(4)
 .print sens v(4)

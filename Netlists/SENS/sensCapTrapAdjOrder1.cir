@@ -11,8 +11,8 @@ C1 2 0 {cap}
 .tran 1.0e-6 0.5e-2
 
 *comp   {V(2)}  offset=0.7
-*comp d{V(2)}/d(R1:R)_Adj offset=0.0004
-*comp d{V(2)}/d(C1:C)_Adj offset=400000
+*comp d_{V(2)}/d_R1:R_adj offset=0.0004
+*comp d_{V(2)}/d_C1:C_adj offset=400000
 
 .print tran V(1) V(2) 
 .print TRANADJOINT 

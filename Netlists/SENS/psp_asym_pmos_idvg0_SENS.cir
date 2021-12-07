@@ -15,8 +15,8 @@ Vbprobe 0 Ba 0
 .dc Vg 1 -1.2 -0.01  Vd LIST -0.05 -1.0
 .step TEMP LIST 27 -50 150
 .print DC V(g,ga) V(d,da) TEMP I(Vdprobe) I(Vgprobe) I(Vsprobe) I(Vbprobe)
-*COMP d{i(vsprobe)}/d(pspqap:vfbo)_dir reltol=0.02 abstol=1e-6
-*COMP d{I(Vsprobe)}/d(M1:W)_Dir offset=1.0e-3
+*COMP d_{i(vsprobe)}/d_pspqap:vfbo_dir reltol=0.02 abstol=1e-6
+*COMP d_{I(Vsprobe)}/d_M1:W_dir offset=1.0e-3
 .print SENS V(g,ga) V(d,da) TEMP 
 
 .sens param=pspqap:vfbo,pspqap:vpo,M1:W
