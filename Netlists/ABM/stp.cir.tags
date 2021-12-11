@@ -3,3 +3,4 @@ valgrind
 bsrc
 abm
 stp
+expression_breakpoints

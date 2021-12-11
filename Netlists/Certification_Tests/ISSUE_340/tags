@@ -1,9 +1,7 @@
-serial, nightly
-valgrind
-vpwl
-conditionalexpr
+serial,  nightly, issue340
 expression
-bsrc
+conditionalexpr
 resistor
 transient
+abm
 expression_breakpoints
