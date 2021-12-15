@@ -2,4 +2,3 @@ serial, weekly
 required:pymi
 required:pycompadre
 genext
-library
