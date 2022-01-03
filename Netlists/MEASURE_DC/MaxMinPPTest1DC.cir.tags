@@ -2,3 +2,4 @@ nightly
 serial, parallel
 measure, dc
 valgrind
+preprocess
