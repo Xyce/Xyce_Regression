@@ -1,3 +1,5 @@
+exprGnd.cir
+exprGnd.cir.tags
 README
 gnd_and_redund.cir
 gnd_and_redund.cir.gs.pl
