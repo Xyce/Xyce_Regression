@@ -1,4 +1,4 @@
-serial, nightly, parallel
+serial, nightly, parallel, preprocess
 bjtlev1
 diode
 capacitor

@@ -2,7 +2,7 @@
 
 *Analysis directives: 
 .DC V1 LIST 1 3 5
-.PRINT DC FORMAT=PROBE V(1) V(2a) V(2b) I(R1) W(R1) I(R3) W(R3) V(*) V(*)
+.PRINT DC FORMAT=PROBE V(1) V(2a) V(2b) I(R1) W(R1) I(R3) W(R3) V(*)
 
 *simple resistor divider
 V1 1 0 1

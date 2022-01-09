@@ -1,2 +1,2 @@
-serial, parallel, valgrind, nightly
+serial, parallel, valgrind, nightly, preprocess
 capacitor

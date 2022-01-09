@@ -40,7 +40,7 @@ $xdmOutputSearchStringsPtr=\@xdmOutputSearchStrings;
 
 #Strings to test for in the translated Xyce netlist
 @translatedXyceNetlistSearchStrings = (
-  ".PRINT DC FORMAT=PROBE V\\(1\\) V\\(2a\\) V\\(2b\\) I\\(R1\\) W\\(R1\\) I\\(R3\\) W\\(R3\\) V\\(\\*\\) V\\(\\*\\)"
+  ".PRINT DC FORMAT=PROBE V\\(1\\) V\\(2a\\) V\\(2b\\) I\\(R1\\) W\\(R1\\) I\\(R3\\) W\\(R3\\) V\\(\\*\\)"
 );
 $translatedXyceNetlistSearchStringsPtr=\@translatedXyceNetlistSearchStrings;
 
