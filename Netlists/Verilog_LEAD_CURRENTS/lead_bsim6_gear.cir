@@ -17,11 +17,11 @@ M1 drain gate source bulk nmos W=10u L=10u
 
 * The sources are all set up so that their branch currents have the opposite sign of the
 * lead currents.
-.print tran {-I(vdrain)-ID(M1)} {-I(vgate)-IG(M1)} {-I(ESOURCE)-IS(M1)} {-I(VBULK)-I4(M1)}
+.print tran {-I(vdrain)-ID(M1)} {-I(vgate)-IG(M1)} {-I(ESOURCE)-IS(M1)} {-I(VBULK)-IB(M1)}
 *comp {-I(vdrain)-ID(M1)} abstol=1.0e-6 zerotol=1.0e-7
 *comp {-I(vgate)-IG(M1)} abstol=1.0e-6 zerotol=1.0e-7
 *comp {-I(ESOURCE)-IS(M1)} abstol=1.0e-6 zerotol=1.0e-7
-*comp {-I(VBULK)-I4(M1)} abstol=1.0e-6 zerotol=1.0e-7
+*comp {-I(VBULK)-IB(M1)} abstol=1.0e-6 zerotol=1.0e-7
 
 *modelcard for BSIM6_BD
 .model nmos nmos level=77 ; bsim6
