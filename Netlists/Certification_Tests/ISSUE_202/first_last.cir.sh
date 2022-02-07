@@ -118,8 +118,10 @@ if (system("$CMD") != 0) {
 # WARNING ----------------------------------------------------------------------
 # -------------------------------------------------------------------------------
 system("rm -f $CIR0.warning*");
-$CMD="$XYCE -o $CIR0.warning -redefined_params warning $CIR0 > $CIR0.warning.out 2> $CIR0.warning.err";
-$retval = system("$CMD");
+@searchstrings1 = ("Netlist warning: Parameter FOOBAR defined more than once. Using first one.");
+$XYCE_WITH_ARGS1="$XYCE -redefined_params warning ";
+$retval = $Tools->runAndCheckWarning($CIR0,$XYCE_WITH_ARGS1,@searchstrings1);
+
 if ($retval != 0)
 {
   if ($retval & 127)
@@ -134,6 +136,17 @@ if ($retval != 0)
     printf STDERR "Xyce exited with exit code %d on %s\n",$retval>>8,$CIRFILE;
     exit 10;
   }
+}
+
+if (not -s "$CIR0.prn" )
+{
+  print "$CIR0.prn file is missing\n";
+  print "Exit code = 14\n";
+  exit 14;
+}
+else
+{
+  system("mv $CIR0.prn $CIR0.warning.prn ");
 }
 
 if (not -s "$CIR0.warning.prn" )
@@ -154,8 +167,9 @@ if (system("$CMD") != 0) {
 # WARN -------------------------------------------------------------------------
 # -------------------------------------------------------------------------------
 system("rm -f $CIR0.warn*");
-$CMD="$XYCE -o $CIR0.warn -redefined_params warn $CIR0 > $CIR0.warn.out 2> $CIR0.warn.err";
-$retval = system("$CMD");
+@searchstrings2 = ("Netlist warning: Parameter FOOBAR defined more than once. Using first one.");
+$XYCE_WITH_ARGS2="$XYCE -redefined_params warn ";
+$retval = $Tools->runAndCheckWarning($CIR0,$XYCE_WITH_ARGS2,@searchstrings2);
 if ($retval != 0)
 {
   if ($retval & 127)
@@ -170,6 +184,17 @@ if ($retval != 0)
     printf STDERR "Xyce exited with exit code %d on %s\n",$retval>>8,$CIRFILE;
     exit 10;
   }
+}
+
+if (not -s "$CIR0.prn" )
+{
+  print "$CIR0.prn file is missing\n";
+  print "Exit code = 14\n";
+  exit 14;
+}
+else
+{
+  system("mv $CIR0.prn $CIR0.warn.prn ");
 }
 
 if (not -s "$CIR0.warn.prn" )
@@ -225,8 +250,9 @@ if (system("$CMD") != 0) {
 # USEFIRSTWARN ------------------------------------------------------------------
 # -------------------------------------------------------------------------------
 system("rm -f $CIR0.usefirstwarn*");
-$CMD="$XYCE -o $CIR0.usefirstwarn -redefined_params usefirstwarn $CIR0 > $CIR0.usefirstwarn.out 2> $CIR0.usefirstwarn.err";
-$retval = system("$CMD");
+@searchstrings3 = ("Netlist warning: Parameter FOOBAR defined more than once. Using first one.");
+$XYCE_WITH_ARGS3="$XYCE -redefined_params usefirstwarn ";
+$retval = $Tools->runAndCheckWarning($CIR0,$XYCE_WITH_ARGS3,@searchstrings3);
 if ($retval != 0)
 {
   if ($retval & 127)
@@ -241,6 +267,17 @@ if ($retval != 0)
     printf STDERR "Xyce exited with exit code %d on %s\n",$retval>>8,$CIRFILE;
     exit 10;
   }
+}
+
+if (not -s "$CIR0.prn" )
+{
+  print "$CIR0.prn file is missing\n";
+  print "Exit code = 14\n";
+  exit 14;
+}
+else
+{
+  system("mv $CIR0.prn $CIR0.usefirstwarn.prn ");
 }
 
 if (not -s "$CIR0.usefirstwarn.prn" )
@@ -297,8 +334,9 @@ if (system("$CMD") != 0) {
 # USELASTWARN -------------------------------------------------------------------
 # -------------------------------------------------------------------------------
 system("rm -f $CIR0.uselastwarn*");
-$CMD="$XYCE -o $CIR0.uselastwarn -redefined_params uselastwarn $CIR0 > $CIR0.uselastwarn.out 2> $CIR0.uselastwarn.err";
-$retval = system("$CMD");
+@searchstrings4 = ("Netlist warning: Parameter FOOBAR defined more than once. Using last one.");
+$XYCE_WITH_ARGS4="$XYCE -redefined_params uselastwarn ";
+$retval = $Tools->runAndCheckWarning($CIR0,$XYCE_WITH_ARGS4,@searchstrings4);
 if ($retval != 0)
 {
   if ($retval & 127)
@@ -313,6 +351,17 @@ if ($retval != 0)
     printf STDERR "Xyce exited with exit code %d on %s\n",$retval>>8,$CIRFILE;
     exit 10;
   }
+}
+
+if (not -s "$CIR0.prn" )
+{
+  print "$CIR0.prn file is missing\n";
+  print "Exit code = 14\n";
+  exit 14;
+}
+else
+{
+  system("mv $CIR0.prn $CIR0.uselastwarn.prn ");
 }
 
 if (not -s "$CIR0.uselastwarn.prn" )
