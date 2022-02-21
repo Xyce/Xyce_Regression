@@ -650,8 +650,8 @@ sub parsePrintLine
         debugPrint "parsePrintLine with sensVariable=$sensVariable\n";
         foreach $sensType (@senstypes)
         {
-          push @$$returnarrayrefref,"d$ofunc/d($sensVariable)_$sensType";
-          debugPrint "Pushing d$ofunc/d($sensVariable)_$sensType into expect\n";
+          push @$$returnarrayrefref,"d_$ofunc/d_${sensVariable}_$sensType";
+          debugPrint "Pushing d_$ofunc/d_${sensVariable}_$sensType into expect\n";
         }
       }
     }

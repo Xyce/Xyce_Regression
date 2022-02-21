@@ -72,15 +72,8 @@ def getXyceData(file,verbose=False):
     if s[0] == 'End':
       finished = 1
 
-    # remove spaces and braces from expressions
+    # remove excess spaces
     line0 = input[0]
-    match = findBlock(line0,delim="\{")
-    while match[0]:
-      beg = match[0]
-      end = match[1]
-      group = line0[beg+1:end-1] # remove braces
-      line0 = line0[:beg] + re.sub(r"[ ]",r"",group) + line0[end+1:]
-      match = findBlock(line0,end,delim="\{")
 
     tags = line0.split()
     for i in range(len(tags)):
@@ -183,8 +176,8 @@ def getXyceRawData(file,verbose=False):
       # split on tab to preserve expressions
       fields = line.split('\t')           
 
-      # remove surrounding whitespace and curly braces from expressions
-      tags.append( fields[2].strip('{} ') )
+      # remove surrounding whitespace from expressions
+      tags.append( fields[2].strip() )
 
     # determine rawfile format
     line = input[8+numVars]
@@ -304,21 +297,11 @@ def getXyceTecplotData(file,verbose=False):
         end = match[1]
         tag = line[beg+1:end-1]
 
-        # remove spaces and braces from expressions, if any
-        subtag = tag
-        submatch = findBlock(subtag,delim="\{")
-        while submatch[0]:
-          subbeg = submatch[0]
-          subend = submatch[1]
-          group = subtag[subbeg+1:subend-1] # remove braces
-          subtag = subtag[:subbeg]+re.sub(r"[ ]",r"",group)+subtag[subend+1:]
-          submatch = findBlock(subtag,subend,delim="\{")
-
+        # remove leading and trailing spaces from expressions, if any
         if fields[0] == "TITLE":
           title=tag
         else:
-          tag=re.sub(r"[ ]",r"",subtag)
-          tags.append(tag)
+          tags.append(tag.strip())
 
       i=i+1
       line=input[i]

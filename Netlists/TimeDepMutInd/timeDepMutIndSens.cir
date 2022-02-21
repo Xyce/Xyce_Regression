@@ -50,7 +50,7 @@ K1 L1 L2 {0.75*(sin(2*PI*TIME/10m)+1)/2}
 
 
 *COMP {I(Vprobe2)}     offset=2e-6
-*COMP d{I(Vprobe2)}/d(L1:L)_Dir  offset=0.002
+*COMP d_{I(Vprobe2)}/d_L1:L_dir  offset=0.002
 
 .sens objfunc={i(vprobe2)} param=l1:l
 .options sensitivity direct=1 adjoint=0   

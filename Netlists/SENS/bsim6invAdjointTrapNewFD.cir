@@ -65,7 +65,7 @@ Xinv5  4 vo supply 0 inverter
 * the very first of three data points, and so it fails on a handful of
 * platforms.  Tweaking abstol in this way makes it less sensitive to that
 * one point.
-*COMP d{v(vo)}/d(xinv1:mp1:w)_adj abstol=1e-7
+*COMP d_{v(vo)}/d_xinv1:mp1:w_adj abstol=1e-7
 
 .print TRANADJOINT 
 *format=tecplot 

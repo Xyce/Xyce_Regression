@@ -24,8 +24,8 @@ R 2 1 {res}
 V 1 0  sin(0.0 {Vm} {frequency} {td} )
 
 *comp   {V(2)}  offset=1e-4
-*comp d{v(2)}/d(V:VA)_Dir offset=1.0e-4
-*comp d{v(2)}/d(V:FREQ)_Dir offset=4e-10
+*comp d_{v(2)}/d_V:VA_dir offset=1.0e-4
+*comp d_{v(2)}/d_V:FREQ_dir offset=4e-10
 
 .tran 2ns 0.5us
 .print tran v(1) v(2) 
