@@ -11,4 +11,8 @@ lowpass_forceDeviceFD2.cir.sh
 lowpass_baseline3.cir
 lowpass_forceDeviceFD3.cir
 lowpass_forceDeviceFD3.cir.sh
+lowpass_param.cir
+lowpass_param.cir.sh
+lowpass_param.cir.FD.SENS.prn.gs.pl
+lowpass_param.cir.tags
 tags
