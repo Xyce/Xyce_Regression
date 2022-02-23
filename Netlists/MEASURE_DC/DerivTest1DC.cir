@@ -78,9 +78,9 @@ R4 4 0 1
 .measure dc FAIL3 DERIV v(2) WHEN v(2)=2 FROM=6 TO=10
 .measure dc FAIL4 DERIV v(2) WHEN v(2)=2 FROM=-5 TO=0
 
-* Tests should return -1 or -100
-.measure dc derivRetNeg1 deriv v(1) AT=10
-.measure dc derivReturnNeg100 deriv v(1) when v(1)=10 DEFAULT_VAL=-100
+* Tests should fail
+.measure dc derivFail1 deriv v(1) AT=10
+.measure dc derivFail2 deriv v(1) when v(1)=10
 
 * FROM and TO qualifiers take precedence over AT.
 * So, these are failed measures.

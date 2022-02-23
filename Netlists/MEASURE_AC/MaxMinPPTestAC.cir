@@ -70,14 +70,12 @@ V1 a 0 DC 0V AC 1
 .MEASURE AC minimv1 min IM(V1)
 .MEASURE AC ppimv1 pp IM(V1)
 
-* Tests should return -1 or -100, since the FROM-T0 window 
-* has various problems.
-.measure ac maxReturnNegOne max v(b) FROM=1e7 TO=1e8
-.measure ac maxReturnNeg100 max vr(b) FROM=1e6 TO=1e2 DEFAULT_VAL=-100
-.measure ac minReturnNegOne min vi(b) TO=-1e6
-.measure ac minReturnNeg100 min vm(b) FROM=1e7 TO=1e8 DEFAULT_VAL=-100
-.measure ac ppReturnNegOne pp vp(b) FROM=1e7 TO=1e8
-.measure ac ppReturnNeg100 pp vdb(b) FROM=1e7 TO=1e8 DEFAULT_VAL=-100
+* Tests should fail since the FROM-T0 windows have various problems.
+.measure ac maxFromToFail1 max v(b) FROM=1e7 TO=1e8
+.measure ac maxFromToFail2 max vr(b) FROM=1e6 TO=1e2
+.measure ac minFromToFail1 min vi(b) TO=-1e6
+.measure ac minFromToFail2 min vm(b) FROM=1e7 TO=1e8
+.measure ac ppFromToFail1 pp vp(b) FROM=1e7 TO=1e8
 
 .end
 

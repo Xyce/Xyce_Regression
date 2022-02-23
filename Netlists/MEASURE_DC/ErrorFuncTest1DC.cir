@@ -57,9 +57,9 @@ R2 2 0 3
 * Current OP
 .MEASURE DC ERR1I ERR1 I(R1) I(R3)
 
-* Tests should return -1 or -100, since the FROM-T0 window
-* does not overlap with the stepped values for VSRC1:DCV0
-.measure dc maxReturnNegOne ERR1 v(1) v(2) FROM=-8 TO=-6
-.measure dc maxReturnNeg100 ERR2 v(1) v(2) FROM=8 TO=6 DEFAULT_VAL=-100
+* Tests should fail since the FROM-T0 windows
+* donot overlap with the stepped values for VSRC1:DCV0
+.measure dc Err1Fail ERR1 v(1) v(2) FROM=-8 TO=-6
+.measure dc Err2Fail ERR2 v(1) v(2) FROM=8 TO=6
 
 .END

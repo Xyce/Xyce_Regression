@@ -38,10 +38,10 @@ rload2a 2a 1b 0.2
 * for AVG measure.
 .measure dc avgv1bFT1PT avg v(1b) FROM=4 TO=4
 
-* Tests should return -1 or -100, since the FROM-T0 window
-* does not overlap with the stepped values for VSRC1:DCV0
-.measure dc avgReturnNegOne avg v(1b) FROM=-4 TO=-2
-.measure dc avgReturnNeg100 avg v(1b) FROM=-2 TO=-4 DEFAULT_VAL=-100
+* Tests should fail since the FROM-T0 windows do not overlap
+* with the stepped values for VSRC1:DCV0
+.measure dc avgFail1 avg v(1b) FROM=-4 TO=-2
+.measure dc avgFail2 avg v(1b) FROM=-2 TO=-4
 
 * Signifies end of test. .sh file looks for a measure named lastMeasure.
 * This is needed for compatibility for testing with a verbose build, which

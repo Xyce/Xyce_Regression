@@ -13,6 +13,9 @@ R2  2  0  100
 R3  3  0  100
 R4  4  0  100
 
+* Use MEASFAIL to test the reset of the default calculation value
+.OPTIONS MEASURE MEASFAIL=0
+
 .TRAN 0  10ms
 .step VS1:VA 1 2 1.0 
 .step VS3:V0 -0.25 -0.5 -0.25
@@ -43,10 +46,10 @@ R4  4  0  100
 .measure tran deriv3crosslast deriv v(3) when v(3)=0.25 cross=last
 
 *test Failed measures for rise/fall/cross
-.measure tran deriv3fallfail deriv v(3) when v(3)=0.25 fall=250
-.measure tran deriv4risefail deriv v(4) when v(4)=0.25 rise=250
-.measure tran deriv3crossfail deriv v(3) when v(3)=0.25 cross=250
-.measure tran deriv3riselastfail deriv v(3) when v(3)=0.75 RISE=LAST
+.measure tran deriv3fallfail deriv v(3) when v(3)=0.25 fall=250 default_val=-1
+.measure tran deriv4risefail deriv v(4) when v(4)=0.25 rise=250 default_val=-1
+.measure tran deriv3crossfail deriv v(3) when v(3)=0.25 cross=250 default_val=-1
+.measure tran deriv3riselastfail deriv v(3) when v(3)=0.75 RISE=LAST default_val=-1
 
 .END
 

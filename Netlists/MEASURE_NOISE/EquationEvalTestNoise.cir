@@ -38,9 +38,8 @@ CLP1  4 0 1.59NF
 * use of FREQ special variable
 .MEASURE NOISE EQNFREQ EQN {FREQ}
 
-* Tests should return -1 or -100, since the FROM-T0 window
-* has various problems.
-.measure noise eqnReturnNegOne eqn v(4) FROM=1e7 TO=1e8
-.measure noise eqnReturnNeg100 eqn vr(4) FROM=1e6 TO=1e2 DEFAULT_VAL=-100
+* Tests should return fail since the FROM-T0 windows have various problems.
+.measure noise eqnFail1 eqn v(4) FROM=1e7 TO=1e8
+.measure noise eqnFail2 eqn vr(4) FROM=1e6 TO=1e2
 
 .END

@@ -1,7 +1,7 @@
-A test of .OPTIONS MEASURE MEASFAIL=0  
-* That option value takes precedence over the DEFAULT_VAL qualifier
-* on the .MEASURE lines.  It also takes precedence over 
-* .OPTIONS MEASURE DEFAULT_VAL=<val>.
+* A test of .OPTIONS MEASURE MEASFAIL=0  when The DEFAULT_VAL qualifier
+* on the .MEASURE lines is used. The failed measures should
+* output 2 to the <netlistName>.mt0 file.
+
 *
 * This test uses the legacy TRIG-TARG mode, so it tests the
 * RiseFallDelay class.  See gitlab-ex issue 303 for more details.
@@ -17,7 +17,6 @@ R2  2  0  100
 .TRAN 0  1ms
 .OPTIONS OUTPUT INITIAL_INTERVAL=0.00001
 .PRINT TRAN FORMAT=NOINDEX V(1) V(2)
-.OPTIONS MEASURE DEFAULT_VAL=-100
 .OPTIONS MEASURE MEASFAIL=0
 
 * test at least one failed measure for each measure type

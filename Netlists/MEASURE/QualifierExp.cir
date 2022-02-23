@@ -19,6 +19,9 @@ R2 2 0 1
 .PARAM i2=2
 .PARAM l1=0.3
 
+* use MEASFAIL and DEFAULT_VAL options
+.OPTIONS MEASURE MEASFAIL=0 DEFAULT_VAL-5
+
 * use legacy trig-targ mode
 .OPTIONS MEASURE USE_LTTM=1
 
@@ -79,7 +82,7 @@ R2 2 0 1
 .measure tran M14VARPAR TRIG PAR('v(1)-0.1') VAL=PAR('T1') TARG PAR('v(1)-0.5') VAL=PAR('l1')
 .measure tran M14VARPAREN TRIG ('v(1)-0.1') VAL=('T1') TARG ('v(1)-0.5') VAL=('l1')
 
-*failed measure
+*failed measure, with a default value of -5
 .MEASURE TRAN M15 MAX V(1) FROM=1.1 DEFAULT_VAL={d1}
 
 .END

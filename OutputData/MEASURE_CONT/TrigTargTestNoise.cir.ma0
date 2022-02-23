@@ -30,8 +30,8 @@ RISEFALL2 = -6.661133e+01                    targ = 6.375267e+01                
 RISEFALL2 = -5.122039e+01                    targ = 1.221023e+02                    trig = 1.733227e+02
 ATTD1 = 4.700000e+02                     targ = 5.000000e+02                    trig = 3.000000e+01
 ATTD2 = 5.314522e+01                    targ = 8.314522e+01                    trig = 3.000000e+01
-ATEARLY = -1.000000e+00                    targ = not found                    trig = not found
-ATLATE = -1.000000e+00                    targ = not found                    trig = not found
-TRIGTDLATE = -1.000000e+00                    targ = 6.375267e+01                    trig = not found
-TARGTDLATE = -1.000000e+00                    targ = not found                    trig = 1.556897e+01
-VALNOTFOUND = -1.000000e+00                    targ = not found                    trig = not found
+ATEARLY = FAILED                    targ = not found                    trig = not found
+ATLATE = FAILED                    targ = not found                    trig = not found
+TRIGTDLATE = FAILED                    targ = 6.375267e+01                    trig = not found
+TARGTDLATE = FAILED                    targ = not found                    trig = 1.556897e+01
+VALNOTFOUND = FAILED                    targ = not found                    trig = not found

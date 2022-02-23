@@ -70,9 +70,9 @@ C1 1 Vb 10u
 * branch current
 .measure noise derivimv1 DERIV {1e4*IM(v1)} at=0.05
 
-* Tests should return -1 or -100
-.measure noise derivRetNeg1 deriv v(out) AT=1e4
-.measure noise derivReturnNeg100 deriv vm(out) when vm(out)=10 DEFAULT_VAL=-100
+* Tests should fail
+.measure noise derivFail1 deriv v(out) AT=1e4
+.measure noise derivFail2 deriv vm(out) when vm(out)=10
 
 * FROM and TO qualifiers take precedence over AT.
 * So, these are failed measures.

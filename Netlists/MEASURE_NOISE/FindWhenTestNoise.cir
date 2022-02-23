@@ -75,10 +75,9 @@ RLP1b  5 0 50
 .measure noise FAIL2 FIND vm(5) WHEN vm(4)=2
 .measure noise FAIL3 FIND vm(5) AT=1e7
 
-* Tests should return -1 or -100, since the FROM-T0 window
-* has various problems.
-.measure noise whenReturnNegOne WHEN vm(4)=0.5 FROM=1e3 TO=1e4
-.measure noise findWhenReturnNeg100 FIND vm(5) WHEN vm(4)=0.5 FROM=100 TO=1 DEFAULT_VAL=-100
+* Tests should fail  since the FROM-T0 windows have various problems.
+.measure noise whenFail WHEN vm(4)=0.5 FROM=1e3 TO=1e4
+.measure noise findWhenFail FIND vm(5) WHEN vm(4)=0.5 FROM=100 TO=1
 
 * FROM and TO qualifiers take precedence over AT.
 * So, these are failed measures.

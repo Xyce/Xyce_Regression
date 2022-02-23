@@ -21,12 +21,12 @@ Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 AVGVRBEXP = 1.590139e+00
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-Netlist warning: AVGRETURNNEGONE failed. FROM value > highest frequency value
-AVGRETURNNEGONE = FAILED
+Netlist warning: AVGFAIL1 failed. FROM value > highest frequency value
+AVGFAIL1 = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-Netlist warning: AVGRETURNNEG100 failed. TO value < FROM value
-AVGRETURNNEG100 = FAILED
+Netlist warning: AVGFAIL2 failed. TO value < FROM value
+AVGFAIL2 = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 LASTMEASURE = 7.248821e-01
@@ -53,12 +53,12 @@ Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 AVGVRBEXP = 1.877620e+00
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-Netlist warning: AVGRETURNNEGONE failed. FROM value > highest frequency value
-AVGRETURNNEGONE = FAILED
+Netlist warning: AVGFAIL1 failed. FROM value > highest frequency value
+AVGFAIL1 = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-Netlist warning: AVGRETURNNEG100 failed. TO value < FROM value
-AVGRETURNNEG100 = FAILED
+Netlist warning: AVGFAIL2 failed. TO value < FROM value
+AVGFAIL2 = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 LASTMEASURE = 9.211731e-01

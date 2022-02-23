@@ -18,13 +18,12 @@ Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 INTEGVPBEXP = 3.979937e+02
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
-Netlist warning: INTEGRETURNNEGONE failed. FROM value > highest frequency
- value
-INTEGRETURNNEGONE = FAILED
+Netlist warning: INTEGFAIL1 failed. FROM value > highest frequency value
+INTEGFAIL1 = FAILED
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
-Netlist warning: INTEGRETURNNEG100 failed. TO value < FROM value
-INTEGRETURNNEG100 = FAILED
+Netlist warning: INTEGFAIL2 failed. TO value < FROM value
+INTEGFAIL2 = FAILED
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
 LASTMEASURE = 9.528905e-01 at freq = 1.000000e+03
@@ -48,13 +47,12 @@ Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 INTEGVPBEXP = 1.634482e+02
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
-Netlist warning: INTEGRETURNNEGONE failed. FROM value > highest frequency
- value
-INTEGRETURNNEGONE = FAILED
+Netlist warning: INTEGFAIL1 failed. FROM value > highest frequency value
+INTEGFAIL1 = FAILED
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
-Netlist warning: INTEGRETURNNEG100 failed. TO value < FROM value
-INTEGRETURNNEG100 = FAILED
+Netlist warning: INTEGFAIL2 failed. TO value < FROM value
+INTEGFAIL2 = FAILED
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
 LASTMEASURE = 9.968487e-01 at freq = 1.000000e+03

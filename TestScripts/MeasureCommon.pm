@@ -561,7 +561,7 @@ sub parseKeyWord
         }
         elsif (uc($keyWordName) eq "DEFAULT_VAL")
         {
-          $keyWordVals[$numMeasures-1] = -1;
+          $keyWordVals[$numMeasures-1] = 0;
         }
         elsif (uc($keyWordName) eq "RISE" || uc($keyWordName) eq "FALL" ||
                uc($keyWordName) eq "CROSS")
@@ -1009,7 +1009,12 @@ sub printResults
     {
       print "For $measureNames[$i], calculated value is blank.  Please check test\n";
       $retval = 2; return $retval;
-    } 
+    }
+    elsif (!looks_like_number($measureVals[$i]))
+    {
+      print "For $measureNames[$i], calculated value is not a number.  Please check test\n";
+      $retval = 2; return $retval;
+    }
     elsif ( $calcVals[$i] == 0.0 && $measureVals[$i] !=0 )
     {
       print "For $measureNames[$i], calculated value is equal to 0.0 but measured value is not.";

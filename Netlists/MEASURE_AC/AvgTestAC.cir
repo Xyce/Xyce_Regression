@@ -42,9 +42,9 @@ V1 a 0 DC 0V AC 1
 * for AVG measure.
 .MEASURE AC avgvmbFromTo1Pt avg vm(b) FROM=1e3 TO=1e3
 
-* Tests should return -1 or -100, since the FROM-T0 window
-* has various problems.
-.measure ac avgReturnNegOne avg v(b) FROM=1e7 TO=1e8
-.measure ac avgReturnNeg100 avg vr(b) FROM=1e6 TO=1e2 DEFAULT_VAL=-100
+* Tests should fail since the FROM-T0 windows
+* have various problems.
+.measure ac avgFail1 avg v(b) FROM=1e7 TO=1e8
+.measure ac avgFail2 avg vr(b) FROM=1e6 TO=1e2
 
 .end
