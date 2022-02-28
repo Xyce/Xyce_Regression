@@ -1,3 +1,5 @@
 lowpass_baseline.cir
 lowpass_baseline2.cir
 lowpass_baseline3.cir
+ac-sens-mult-obj-def_baseline.cir
+ac-sens-mult-obj-def_modified.cir
