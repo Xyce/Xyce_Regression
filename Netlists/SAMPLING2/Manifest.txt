@@ -1,4 +1,7 @@
 README
+simpleLimit.cir
+simpleLimit.cir.sh
+simpleLimit.cir.tags
 simpleNormal.cir
 simpleNormal.cir.sh
 simpleNormal.cir.tags
