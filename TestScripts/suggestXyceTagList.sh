@@ -41,6 +41,7 @@ XYCE_ROOT=`dirname $XYCE_DIR`
 XYCE_BIN_OR_SRC=`basename $XYCE_DIR`
 
 HAVE_PLUGIN=0
+HAVE_ADMS=0
 IS_INSTALLED=0
 IS_SHARED=0
 if [ "x$XYCE_BIN_OR_SRC" = "xbin" ]
@@ -49,6 +50,11 @@ then
     if [ -x ${XYCE_DIR}/buildxyceplugin ]
     then
         HAVE_PLUGIN=1
+        `which admsXml > /dev/null`
+        if [ $? = 0 ]
+        then
+            HAVE_ADMS=1
+        fi
     fi
     if [ -d ${XYCE_ROOT}/lib -a -d ${XYCE_ROOT}/include ]
     then
@@ -128,7 +134,7 @@ then
 fi
 
 # If we have buildxyceplugin, run tests that need it:
-if [ $HAVE_PLUGIN -eq 1 ]
+if [ $HAVE_PLUGIN -eq 1  -a $HAVE_ADMS -eq 1 ]
 then
     TAGLIST="${TAGLIST}?buildplugin"
 fi
