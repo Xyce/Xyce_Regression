@@ -8,6 +8,9 @@ simpleNormal.cir.tags
 simpleUniform.cir
 simpleUniform.cir.sh
 simpleUniform.cir.tags
+globalParamLimitLHS.cir
+globalParamLimitLHS.cir.sh
+globalParamLimitLHS.cir.tags
 globalParamNormalMC.cir 
 globalParamNormalMC.cir.sh
 globalParamNormalMC.cir.tags
