@@ -5,24 +5,19 @@ level=1 diode circuit
 V2 2 0 0.21
 D2 2 0 DA lambertw=0
 
-.MODEL DA D  (IS=1.0e-12  RS=0.25  N=1.0)
+* Setting model not at initial params or optimal params
+.MODEL DA D  (IS=1.0e-11  RS=0.375  N=1.0) 
 
 *.STEP DA:IS 1.0e-12 1.0e-12 1.0e-12
 *.STEP DA:RS 0.25 0.25 1.0e-1
-.SENS objfunc={-I(V2)} param=DA:IS,DA:RS
-*.options DEVICE DEBUGLEVEL=2 
-*.options SENSITIVITY DAKOTAFILE=1  direct=1 adjoint=0  STDOUTPUT=0
+*.SENS objfunc={-I(V2)} param=DA:IS,DA:RS
 *.DC V2 0.0 1.0 0.01 
 .rol rol_filename=input.xml param_filename=diode_forTimurROL.param
 .rol_dc V2 0.0 1.0 0.01  
 .rol_obj DC obj_tag=0 sens_tag=0 obj_type=0
 
 .options device voltlim=0
-*.OPTIONS TIMEINT RELTOL=1e-8 ABSTOL=1e-12
-*.OPTIONS TIMEINT ERROPTION=1 DELMAX=1.0e-4
-*.TRAN 1us 100ms NOOP 
 .print DC v(2) {-I(V2)}
-*.print tran v(2) {-I(V2)}
 *.print SENS format=std 
 
 .END
