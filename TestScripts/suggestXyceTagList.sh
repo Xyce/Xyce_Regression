@@ -115,6 +115,13 @@ if [ $? = 0 ]
 then
     TAGLIST="${TAGLIST}?stokhos"
 fi
+grep 'ROL enabled' $TMP_CAPABILITIES_FILE>/dev/null 2>&1
+
+if [ $? = 0 ]
+then
+    TAGLIST="${TAGLIST}?rol"
+fi
+
 grep 'Amesos2.*Basker.*enabled' $TMP_CAPABILITIES_FILE>/dev/null 2>&1
 if [ $? = 0 ]
 then
