@@ -120,16 +120,14 @@ if ( $retval != 0 )
 
 
 # in this test case Xyce shouldn't find the allowed window to calculate a 
-# result.  Thus the measure's should have values of -1 and -100 which 
+# result.  Thus the measure's should have values of 0 and -100 which 
 # are the default values and user specified default values respectively.
-
-
 
 $retval = 0;
 
-if( $measureVals[0] != -1 )
+if( $measureVals[0] != 0 )
 {
-  print "Measure value 0 was not -1.\n";
+  print "Measure value 0 was not 0.\n";
   $retval=2;
 }
 

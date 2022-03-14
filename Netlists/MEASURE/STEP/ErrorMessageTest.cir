@@ -12,6 +12,9 @@ VS2  2  0  SIN(0 -1.0 1KHz 0 0.9)
 R1  1  0  100
 R2  2  0  100
 
+* use MEASFAIL option for compatibility with precision test of .mt0 file
+.OPTIONS MEASURE MEASFAIL=0
+
 * use legacy trig-targ mode
 .OPTIONS MEASURE USE_LTTM=1
 

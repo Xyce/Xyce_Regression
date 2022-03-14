@@ -36,9 +36,9 @@ V1 a 0 DC 0V AC 1
 * for INTEG measure.
 .MEASURE AC integvmbFromTo1Pt integ vm(b) FROM=1e2 TO=1e2
 
-* Tests should return -1 or -100, since the FROM-T0 window
-* has various problems.
-.measure ac integReturnNegOne integ v(b) FROM=1e4 TO=1e5
-.measure ac integReturnNeg100 integ vr(b) FROM=1e3 TO=1e0 DEFAULT_VAL=-100
+* Tests should fail since the FROM-T0 windows
+* have various problems.
+.measure ac integFail1 integ v(b) FROM=1e4 TO=1e5
+.measure ac integFail2 integ vr(b) FROM=1e3 TO=1e0
 
 .end

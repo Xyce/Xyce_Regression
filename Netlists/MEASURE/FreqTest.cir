@@ -8,6 +8,10 @@ VP  2  0  PULSE( 0 100 0ms 0.2ms 0.2ms 1ms 2ms )
 R1  1  0  100
 R2  2  0  100
 
+* use MEASFAIL for compatibility with the verification approach
+* used in .sh file.
+.OPTIONS MEASURE MEASFAIL=0
+
 .TRAN 0  10ms
 .PRINT TRAN FORMAT=NOINDEX V(1) V(2) V(1,0)
 
@@ -22,7 +26,7 @@ R2  2  0  100
 * with a time delay window
 .measure tran freqAllWinTD FREQ v(1) ON=0.75 OFF=0.25 TD=6e-3
 
-* failed measure
+* failed measure should fail and return a value of 0
 .measure tran freqAllWinFail FREQ v(1) ON=0.75 OFF=0.25 FROM=75e-3 TO=50e-3
 
 .END

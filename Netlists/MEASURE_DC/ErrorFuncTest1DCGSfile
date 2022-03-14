@@ -72,10 +72,10 @@ Measure Start V1 Value= 0.000000e+00	Measure End V1 Value= 4.000000e+00
 ERR1I = 5.502020e+00
 Measure Start V1 Value= -5.000000e+00	Measure End V1 Value= 5.000000e+00
 
-MAXRETURNNEGONE = FAILED
+ERR1FAIL = FAILED
 Measure Start V1 Value= -5.000000e+00	Measure End V1 Value= 5.000000e+00
 
-MAXRETURNNEG100 = FAILED
+ERR2FAIL = FAILED
 Measure Start V1 Value= -5.000000e+00	Measure End V1 Value= 5.000000e+00
 
 

@@ -3,6 +3,9 @@ amplifier.cir
 dc-rol.cir
 diode_direct.cir
 diode_forTimurROL.cir
+diode_forTimurROL.cir.sh
+diode_forTimurROL.param
+diode_forTimurROL.cir.tags
 input.xml
 measurementsDC.txt
 parameters.txt

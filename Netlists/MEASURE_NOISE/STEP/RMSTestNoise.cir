@@ -37,10 +37,9 @@ CLP1  4 0 1.59NF
 * FROM=TO value is a failed measure, by definition for RMS measure.
 .MEASURE NOISE rmsvm4FromTo1Pt rms vm(4) FROM=1e3 TO=1e3
 
-* Tests should return -1 or -100, since the FROM-T0 window
-* has various problems.
-.measure noise rmsReturnNegOne rms v(4) FROM=1e7 TO=1e8
-.measure noise rmsReturnNeg100 rms vr(4) FROM=1e6 TO=1e2 DEFAULT_VAL=-100
+* Tests should fail since the FROM-T0 windows have various problems.
+.measure noise rmsFail1 rms v(4) FROM=1e7 TO=1e8
+.measure noise rmsFail2 rms vr(4) FROM=1e6 TO=1e2
 
 * Signifies end of test. .sh file looks for a measure named lastMeasure.
 * This is needed for compatibility for testing with a verbose build, which

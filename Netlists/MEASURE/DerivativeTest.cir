@@ -12,8 +12,11 @@ R2  2  0  100
 R3  3  0  100
 R4  4  0  100
 
-.TRAN 0 0.05
+* use MEASFAIL for compatibility with the verification approach
+* used in .sh file.
+.OPTIONS MEASURE MEASFAIL=0
 
+.TRAN 0 0.05
 .PRINT TRAN FORMAT=NOINDEX V(1) V(2) V(3) V(4) V(1,0)
 
 * test the AT syntax
@@ -34,11 +37,11 @@ R4  4  0  100
 .measure tran deriv_when_075_tda deriv V(1) WHEN v(1)=0.75 FROM=20e-3 TO=40e-3 TD=30e-3
 .measure tran deriv_when_075_tdb deriv V(1) WHEN v(1)=0.75 FROM=30e-3 TO=40e-3 TD=20e-3
 
-* these should return -1, since AT is outside of the simulation window
+* these should fail and return 0, since AT is outside of the simulation window
 .measure tran deriv_at_fail1 deriv v(1) AT=-1
 .measure tran deriv_at_fail2 deriv v(1) AT=1
 
-* this should return -1, since the WHEN clause can never be met
+* this should fail and return 0, since the WHEN clause can never be met
 .measure tran deriv_when_fail deriv v(1) WHEN v(1)=2
 
 * add tests for rise/fall/cross.  VS2 and VS3 have a DC offset
@@ -57,7 +60,7 @@ R4  4  0  100
 .measure tran deriv3riseNegOne deriv v(3) when v(3)=0.25 rise=-1
 .measure tran deriv2crossNegOne deriv v(2) when v(2)=0.25 cross=-1
 
-*test Failed measures for rise/fall/cross
+*test failed measures for rise/fall/cross
 .measure tran deriv2fallfail deriv v(2) when v(2)=0.25 fall=250
 .measure tran deriv3risefail deriv v(3) when v(3)=0.25 rise=250
 .measure tran deriv2crossfail deriv v(2) when v(2)=0.25 cross=250

@@ -62,10 +62,10 @@ Measure Start Freq= 1.000000e-02	Measure End Freq= 1.200000e+01
 
 DERIVIMV1 = 6.281163e-01 for AT = 5.000000e-02
 
-Netlist warning: DERIVRETNEG1 failed. AT value outside frequency sweep window
-DERIVRETNEG1 = FAILED for AT = 1.000000e+04
+Netlist warning: DERIVFAIL1 failed. AT value outside frequency sweep window
+DERIVFAIL1 = FAILED for AT = 1.000000e+04
 
-DERIVRETURNNEG100 = FAILED
+DERIVFAIL2 = FAILED
 Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e+03
 
 Netlist warning: ATFAILFROM failed. AT value outside measurement window

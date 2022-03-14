@@ -39,10 +39,10 @@ rload2a 2a 1b 0.2
 * FROM=TO value yields an integral value of 0, by definition
 .measure dc integ1bFT1PT integ v(1b) FROM=4 TO=4
 
-* Tests should return -1 or -100, since the FROM-T0 window
-* does not overlap with the stepped values for VSRC1:DCV0
-.measure dc integReturnNegOne integ v(1b) FROM=-4 TO=-2
-.measure dc integReturnNeg100 integ v(1b) FROM=-2 TO=-4 DEFAULT_VAL=-100
+* Tests should fail since the FROM-T0 windows do not overlap
+* with the stepped values for VSRC1:DCV0
+.measure dc integFail1 integ v(1b) FROM=-4 TO=-2
+.measure dc integFail2 integ v(1b) FROM=-2 TO=-4
 
 * Signifies end of test. .sh file looks for a measure named lastMeasure.
 * This is needed for compatibility for testing with a verbose build, which

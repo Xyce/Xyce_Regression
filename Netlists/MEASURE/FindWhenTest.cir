@@ -14,8 +14,11 @@ R3  3  0  100
 R4  4  0  100
 R5  5  0  100
 
-.TRAN 0  5ms 0 1.0e-5
+* use MEASFAIL for compatibility with the verification approach
+* used in .sh file.
+.OPTIONS MEASURE MEASFAIL=0 
 
+.TRAN 0  5ms 0 1.0e-5
 .PRINT TRAN FORMAT=NOINDEX V(1) V(2) V(3) V(4) V(5) V(1,0) V(3,0)
 
 * Measure find/when has a few basic formats

@@ -57,5 +57,6 @@ x2 5 7 3 4 2 6 eclg2
 + sparse_grid=true
 
 .options device debuglevel=-100
+.options linsol-es type=klu
 
 .end

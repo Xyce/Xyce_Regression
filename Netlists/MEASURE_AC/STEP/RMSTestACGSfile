@@ -24,12 +24,12 @@ Measure Start Freq= 1.000000e+03	Measure End Freq= 1.000000e+05
 RMSVMBFROMTO1PT = FAILED
 Measure Start Freq= 1.000000e+03	Measure End Freq= 1.000000e+03
 
-Netlist warning: RMSRETURNNEGONE failed. FROM value > highest frequency value
-RMSRETURNNEGONE = FAILED
+Netlist warning: RMSFAIL1 failed. FROM value > highest frequency value
+RMSFAIL1 = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-Netlist warning: RMSRETURNNEG100 failed. TO value < FROM value
-RMSRETURNNEG100 = FAILED
+Netlist warning: RMSFAIL2 failed. TO value < FROM value
+RMSFAIL2 = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 LASTMEASURE = 9.528905e-01 at freq = 1.000000e+06
@@ -59,12 +59,12 @@ Measure Start Freq= 1.000000e+03	Measure End Freq= 1.000000e+05
 RMSVMBFROMTO1PT = FAILED
 Measure Start Freq= 1.000000e+03	Measure End Freq= 1.000000e+03
 
-Netlist warning: RMSRETURNNEGONE failed. FROM value > highest frequency value
-RMSRETURNNEGONE = FAILED
+Netlist warning: RMSFAIL1 failed. FROM value > highest frequency value
+RMSFAIL1 = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-Netlist warning: RMSRETURNNEG100 failed. TO value < FROM value
-RMSRETURNNEG100 = FAILED
+Netlist warning: RMSFAIL2 failed. TO value < FROM value
+RMSFAIL2 = FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 LASTMEASURE = 9.968487e-01 at freq = 1.000000e+06

@@ -46,9 +46,10 @@ V1 a 0 DC 0V AC 1
 * branch current
 .MEASURE AC derivimv1at50 deriv im(v1) AT=50
 
-* Tests should return -1 or -100
-.measure ac derivRetNeg1 deriv v(b) AT=1e4
-.measure ac derivReturnNeg100 deriv vm(b) when vm(b)=2 DEFAULT_VAL=-100
+* Tests should fail because AT is outside the measurement window
+* and vm(b) is never equal to 2.
+.measure ac derivATfail deriv v(b) AT=1e4
+.measure ac derivWhenFail deriv vm(b) when vm(b)=2
 
 * Signifies end of test. .sh file looks for a measure named lastMeasure.
 * This is needed for compatibility for testing with a verbose build, which

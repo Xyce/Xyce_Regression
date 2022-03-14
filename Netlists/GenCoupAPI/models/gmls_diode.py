@@ -366,7 +366,6 @@ class Device(KokkosDevice):
         # solV, F, Q, and B are memory views
         # cast them to numpy arrays without copying data
         np_solV = np.array(solV, dtype=np.float64, copy=False)
-        np_stoV = np.array(stoV, dtype=np.float64, copy=False)
         np_F  = np.array( F, dtype=np.float64, copy=False)
         np_Q  = np.array( Q, dtype=np.float64, copy=False)
         np_B  = np.array( B, dtype=np.float64, copy=False)

@@ -12,6 +12,9 @@ R2  2  0  100
 R3  3  0  100
 R4  4  0  100
 
+* Use MEASFAIL to test the reset of the default calculation value
+.OPTIONS MEASURE MEASFAIL=0
+
 .TRAN 0  0.5
 .step VS1:VA 1 2 1.0 
 .step VS3:V0 -0.25 -0.5 -0.25
@@ -28,7 +31,7 @@ R4  4  0  100
 .measure tran sineTDbefore avg V(1) FROM=0.15 TO=0.25 TD=0.1
 
 * this test should return -1
-.measure tran returnNegOne avg V(1) FROM=0.2e-3 TO=0.25e-3 TD=0.5e-3
+.measure tran returnNegOne avg V(1) FROM=0.2e-3 TO=0.25e-3 TD=0.5e-3 default_val=-1
 
 .END
 

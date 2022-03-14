@@ -13,4 +13,8 @@ op-amp_unique_fd.cir
 op-amp_expr.cir
 op-amp_expr.cir.sh
 op-amp_expr_fd.cir
+op-amp_param.cir
+op-amp_param.cir.sh
+op-amp_param_fd.cir
+op-amp_param.cir.tags
 tags

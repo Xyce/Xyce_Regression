@@ -8,6 +8,10 @@ VP   2  0  PULSE( 0 100 0ms 1ms 1ms 10ms 20ms )
 R1  1  0  100
 R2  2  0  100
 
+* use MEASFAIL for compatibility with the verification approach
+* used in .sh file.
+.OPTIONS MEASURE MEASFAIL=0 
+
 .TRAN 0  0.1
 .PRINT TRAN FORMAT=NOINDEX V(1) V(2) V(1,0)
 
@@ -22,11 +26,11 @@ R2  2  0  100
 .measure tran sineTDbetween duty V(1) ON=0.75 OFF=0.25 FROM=0 TO=0.025 TD=0.02
 .measure tran sineTDbefore duty V(1) ON=0.75 OFF=0.25 FROM=0.02 TO=0.025 TD=0.01
 
-* these tests should return -1 and -100
-.measure tran returnNegOne duty V(1) ON=0.75 OFF=0.25 FROM=0.2e-3 TO=0.25e-3 TD=0.5e-3
+* these tests should fail and return 0 and -100
+.measure tran returnZero duty V(1) ON=0.75 OFF=0.25 FROM=0.2e-3 TO=0.25e-3 TD=0.5e-3
 .measure tran returnNeg100 duty V(1) ON=0.75 OFF=0.25 FROM=0.2e-3 TO=0.25e-3 TD=0.5e-3 default_val=-100
 
-*this test should return 0
+*this test should fail and return 0
 .measure tran dutyZero DUTY V(1) ON=2.0 OFF=1.5
 
 .END

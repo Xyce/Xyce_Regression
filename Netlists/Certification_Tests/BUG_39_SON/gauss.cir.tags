@@ -1,1 +1,1 @@
-analytic, serial, valgrind, nightly, random
+analytic, serial, valgrind, nightly, random, bug39son

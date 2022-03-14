@@ -11,6 +11,9 @@ VP   2  0  PULSE( 0 100 2ms 2ms 2ms 10ms 20ms )
 R1  1  0  100
 R2  2  0  100
 
+* Use MEASFAIL to test the reset of the default calculation value
+.OPTIONS MEASURE MEASFAIL=0
+
 .TRAN 0 0.5
 .PRINT TRAN FORMAT=NOINDEX V(1) V(2)
 
@@ -25,8 +28,7 @@ R2  2  0  100
 .measure tran sineTDbefore duty V(1) ON=0.75 OFF=0.25 FROM=0.15 TO=0.25 TD=0.1
 
 * these tests should return -1 and -100
-.measure tran returnNegOne duty V(1) ON=0.75 OFF=0.25 FROM=0.2e-3 TO=0.25e-3 TD=0.5e-3
-
+.measure tran returnNegOne duty V(1) ON=0.75 OFF=0.25 FROM=0.2e-3 TO=0.25e-3 TD=0.5e-3 default_Val=-1
 .measure tran returnNeg100 duty V(1) ON=0.75 OFF=0.25 FROM=0.2e-3 TO=0.25e-3 TD=0.5e-3 default_val=-100
 
 *this test should return 0
