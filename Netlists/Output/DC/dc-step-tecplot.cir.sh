@@ -26,7 +26,9 @@ $GOLDDAT=$ARGV[4];
 
 #$GOLDDAT =~ s/\.prn$//; # remove the .prn at the end.
 
-$TRANSLATE="python convertXyceFormat.py -s -o";
+$TRANSLATESCRIPT=$XYCE_VERIFY;
+$TRANSLATESCRIPT =~ s/xyce_verify.pl/convertToPrn.py/;
+$TRANSLATE="python $TRANSLATESCRIPT ";
 
 system("rm -f $CIRFILE.dat $CIRFILE.err");
 

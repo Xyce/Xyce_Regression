@@ -1,4 +1,4 @@
-Index       TIME        V(2)quad_pce_mean V(2)quad_pce_meanPlus V(2)quad_pce_meanMinus V(2)quad_pce_stddev V(2)quad_pce_variance
+Index    TIME    {V(2)}_quad_pce_mean    {V(2)}_quad_pce_meanPlus    {V(2)}_quad_pce_meanMinus    {V(2)}_quad_pce_stddev    {V(2)}_quad_pce_variance    
 0          0.000000e+00      0.000000e+00      0.000000e+00      0.000000e+00      0.000000e+00      0.000000e+00
 1          1.000000e-10      7.885042e-14      9.132168e-14      6.637915e-14      1.247126e-14      1.555324e-28
 2          3.000000e-10      5.519529e-13      6.392525e-13      4.646533e-13      8.729961e-14      7.621222e-27

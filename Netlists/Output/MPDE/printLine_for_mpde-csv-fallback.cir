@@ -7,4 +7,4 @@
 *
 
 .mpde 0 1.0e-8
-.print mpde FORMAT=CSV v(1)+2
+.print mpde FORMAT=CSV {v(1)+2}

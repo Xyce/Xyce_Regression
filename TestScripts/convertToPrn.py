@@ -72,15 +72,8 @@ def getXyceData(file,verbose=False):
     if s[0] == 'End':
       finished = 1
 
-    # remove spaces and braces from expressions
+    # remove spaces from expressions
     line0 = input[0]
-    match = findBlock(line0,delim="\{")
-    while match[0]:
-      beg = match[0]
-      end = match[1]
-      group = line0[beg+1:end-1] # remove braces
-      line0 = line0[:beg] + re.sub(r"[ ]",r"",group) + line0[end+1:]
-      match = findBlock(line0,end,delim="\{")
 
     tags = line0.split()
     for i in range(len(tags)):
@@ -207,8 +200,8 @@ def getXyceRawData(file,verbose=False):
       # split on tab to preserve expressions
       fields = line.split('\t')           
 
-      # remove surrounding whitespace and curly braces from expressions
-      tags.append( fields[2].strip('{} ') )
+      # remove surrounding whitespace from expressions
+      tags.append( fields[2].strip(' ') )
     
     # process data points ------------------
 
@@ -329,15 +322,8 @@ def getXyceTecplotData(file,verbose=False):
         end = match[1]
         tag = line[beg+1:end-1]
 
-        # remove spaces and braces from expressions, if any
+        # remove spaces from expressions, if any
         subtag = tag
-        submatch = findBlock(subtag,delim="\{")
-        while submatch[0]:
-          subbeg = submatch[0]
-          subend = submatch[1]
-          group = subtag[subbeg+1:subend-1] # remove braces
-          subtag = subtag[:subbeg]+re.sub(r"[ ]",r"",group)+subtag[subend+1:]
-          submatch = findBlock(subtag,subend,delim="\{")
 
         if fields[0] == "TITLE":
           title=tag
@@ -669,16 +655,21 @@ def outputStdDataFile(file,tags,data,stepRanges):
 
   output.write(tagstring)
 
-  sizeTmp = len(stepRanges)
+  sizeStepRanges = len(stepRanges)
   ## DEBUG:  extra element unnecessary? size = stepRanges[sizeTmp-1]+1
-  size = stepRanges[sizeTmp-1]
+  size = stepRanges[sizeStepRanges-1]
 
-  for i in range(size):
-    numberstring = str(i) + "   "
-    for j in range(numvars):
-      numberstring += "%12.8e   "%data[i,j] 
-    numberstring += "\n"
-    output.write(numberstring)
+  for istepRange in range( 0, sizeStepRanges-1):
+    indexCount=0
+    i = stepRanges[istepRange]
+    while i != stepRanges[istepRange+1]:
+      numberstring = str(indexCount) + "   "
+      indexCount=indexCount+1
+      for j in range(0, numvars):
+        numberstring += "%12.8e   "%data[i,j] 
+      numberstring += "\n"
+      output.write(numberstring)
+      i=i+1
 
   finalstring = "End of Xyce(TM) Simulation\n"
   output.write(finalstring)

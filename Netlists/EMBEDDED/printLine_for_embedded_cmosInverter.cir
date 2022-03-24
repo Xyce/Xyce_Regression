@@ -5,15 +5,15 @@ embedded sampling version of a CMOS inverter
 * It isn't supposed to be run, and will exit with error.
 *
 
-*COMP v(drain)mean OFFSET=1.0
-*COMP v(drain)meanPlus OFFSET=1.0
-*COMP v(drain)meanMinus OFFSET=1.0
-*COMP v(drain)meanPlusTwoSigma OFFSET=1.0
-*COMP v(drain)meanMinusTwoSigma OFFSET=1.0
-*COMP v(drain)stddev OFFSET=1.0
-*COMP v(drain)variance OFFSET=1.0
+*COMP {v(drain)}_mean OFFSET=1.0
+*COMP {v(drain)}_meanPlus OFFSET=1.0
+*COMP {v(drain)}_meanMinus OFFSET=1.0
+*COMP {v(drain)}_meanPlusTwoSigma OFFSET=1.0
+*COMP {v(drain)}_meanMinusTwoSigma OFFSET=1.0
+*COMP {v(drain)}_stddev OFFSET=1.0
+*COMP {v(drain)}_variance OFFSET=1.0
 
-.print tran v(drain)mean v(drain)meanplus v(drain)meanminus v(drain)meanplustwosigma v(drain)meanminustwosigma v(drain)stddev v(drain)variance 
+.print tran {v(drain)}_mean {v(drain)}_meanplus {v(drain)}_meanminus {v(drain)}_meanplustwosigma {v(drain)}_meanminustwosigma {v(drain)}_stddev {v(drain)}_variance 
 
 .tran 1ns 1.5e-6
 

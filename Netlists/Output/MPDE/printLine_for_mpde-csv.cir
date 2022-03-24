@@ -7,6 +7,6 @@
 *
 
 .mpde 0 1.0e-8
-.print mpde FORMAT=CSV v(1)+2
-.print mpde_ic FORMAT=CSV v(1)+3
-.print mpde_startup FORMAT=CSV v(1)+4
+.print mpde FORMAT=CSV {v(1)+2}
+.print mpde_ic FORMAT=CSV {v(1)+3}
+.print mpde_startup FORMAT=CSV {v(1)+4}

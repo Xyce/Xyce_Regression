@@ -1,4 +1,4 @@
-Index    TIME    V(DRAIN)quad_pce_mean    V(DRAIN)quad_pce_meanPlus    V(DRAIN)quad_pce_meanMinus    V(DRAIN)quad_pce_stddev    V(DRAIN)quad_pce_variance    
+Index    TIME    {V(DRAIN)}_quad_pce_mean    {V(DRAIN)}_quad_pce_meanPlus    {V(DRAIN)}_quad_pce_meanMinus    {V(DRAIN)}_quad_pce_stddev    {V(DRAIN)}_quad_pce_variance    
 0   0.00000000e+00   1.00000000e+00   1.00000000e+00   1.00000000e+00   3.54306700e-09   1.25533200e-17   
 1   1.00000000e-09   1.00000000e+00   1.00000000e+00   1.00000000e+00   3.54306700e-09   1.25533200e-17   
 2   3.00000000e-09   1.00000000e+00   1.00000000e+00   1.00000000e+00   3.54306700e-09   1.25533200e-17   
