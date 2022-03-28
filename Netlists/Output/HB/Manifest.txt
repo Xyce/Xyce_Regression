@@ -1,6 +1,4 @@
-convertXyceFormat.py
 exclude
-findBlock.py
 hb-csv.cir
 hb-csv.cir.sh
 hb-files.cir

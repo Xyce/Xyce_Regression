@@ -13,8 +13,6 @@ ac-sens-raw-override-ascii.cir.sh
 ac-sens-raw-override-ascii.cir.tags
 ac-sens-tecplot.cir
 ac-sens-tecplot.cir.sh
-convertXyceFormat.py
-findBlock.py
 ac-sens-step-csv.cir
 ac-sens-step-csv.cir.sh
 ac-sens-step-csv.cir.tags

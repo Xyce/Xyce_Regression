@@ -1,10 +1,8 @@
-convertXyceFormat.py
 diode.cir
 diode.cir.sh
 diode_adjoint_prn.cir
 diode_adjoint_tecplot.cir
 exclude
-findBlock.py
 psp_asym_nmos_idvg0.model
 sens-prn.cir
 sens-prn.cir.sh
