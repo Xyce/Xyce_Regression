@@ -6,6 +6,10 @@ rlc_series.cir.sh
 rlc_series.cir.prn.gs
 Issue396.cir
 Issue396.cir.sh
+Issue398.cir
+Issue398.cir.sh
+Issue398_AF.cir
+Issue398_AF.cir.sh
 tags
 toys/capacitor.va
 toys/diode2.va
@@ -13,3 +17,5 @@ toys/resistor.va
 toys/rlc2.va
 toys/vsrc.va
 toys/Issue396.va
+toys/Issue398.va
+toys/Issue398_AF.va
