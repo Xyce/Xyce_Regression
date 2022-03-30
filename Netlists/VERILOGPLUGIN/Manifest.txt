@@ -4,9 +4,12 @@ DiodeClipper.cir.prn.gs
 rlc_series.cir
 rlc_series.cir.sh
 rlc_series.cir.prn.gs
+Issue396.cir
+Issue396.cir.sh
 tags
 toys/capacitor.va
 toys/diode2.va
 toys/resistor.va
 toys/rlc2.va
 toys/vsrc.va
+toys/Issue396.va
