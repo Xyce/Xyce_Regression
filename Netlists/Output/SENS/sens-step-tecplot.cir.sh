@@ -30,8 +30,12 @@ $GOLDDIR = dirname($GOLDDAT);
 $GOLDDAT =~ s/\.prn$//; # remove the .prn at the end.
 $GOLDDAT =~ s/tecplot/prn/; # replace tecplot with prn
 
-$TRANSLATE="python convertXyceFormat.py -s -o";
-$XYCE_VERIFY=~ s/xyce_verify/ACComparator/;
+$TRANSLATESCRIPT=$XYCE_VERIFY;
+$TRANSLATESCRIPT =~ s/xyce_verify.pl/convertToPrn.py/;
+$TRANSLATE="python $TRANSLATESCRIPT ";
+
+$XYCE_ACVERIFY = $XYCE_VERIFY;
+$XYCE_ACVERIFY=~ s/xyce_verify/ACComparator/;
 
 #comparison tolerances for ACComparator.pl
 $abstol=1e-6;
@@ -225,7 +229,7 @@ if ( $result != 0 )
 }
 else
 {
-  $CMD="$XYCE_VERIFY --skipfooter $GOLDDAT.prn test_$CIRFILE.dat $abstol $reltol $zerotol $freqreltol > $CIRFILE.dat.out 2> $CIRFILE.dat.err";
+  $CMD="$XYCE_ACVERIFY --skipfooter $GOLDDAT.prn test_$CIRFILE.dat $abstol $reltol $zerotol $freqreltol > $CIRFILE.dat.out 2> $CIRFILE.dat.err";
   if (system($CMD) != 0) {
     print STDERR "Verification failed on file $CIRFILE.dat, see $CIRFILE.dat.err\n";
     $retcode = 2;
@@ -241,7 +245,7 @@ if ( $result != 0 )
 }
 else
 {
- $CMD="$XYCE_VERIFY --skipfooter $GOLDDAT.SENS.prn test_$CIRFILE.SENS.dat $abstol $reltol $zerotol $freqreltol > $CIRFILE.SENS.dat.out 2> $CIRFILE.SENS.dat.err";
+ $CMD="$XYCE_ACVERIFY --skipfooter $GOLDDAT.SENS.prn test_$CIRFILE.SENS.dat $abstol $reltol $zerotol $freqreltol > $CIRFILE.SENS.dat.out 2> $CIRFILE.SENS.dat.err";
  if (system($CMD) != 0) {
      print STDERR "Verification failed on file $CIRFILE.SENS.dat, see $CIRFILE.SENS.dat.err\n";
      $retcode = 2;

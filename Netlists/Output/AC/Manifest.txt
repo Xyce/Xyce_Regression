@@ -42,8 +42,6 @@ ac-stepnum-col.cir.sh
 ac-stepnum-col.cir.tags
 ac-touchstone-defaults-to-prn.cir
 ac-touchstone-defaults-to-prn.cir.sh
-convertXyceFormat.py
-findBlock.py
 op-csv.cir
 op-csv.cir.sh
 op-prn.cir

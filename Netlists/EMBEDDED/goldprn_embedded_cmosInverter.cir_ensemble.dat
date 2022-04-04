@@ -1,4 +1,4 @@
-Index    TIME    V(DRAIN)mean    V(DRAIN)meanPlus    V(DRAIN)meanMinus    V(DRAIN)meanPlusTwoSigma    V(DRAIN)meanMinusTwoSigma    V(DRAIN)stddev    V(DRAIN)variance    
+Index    TIME    {V(DRAIN)}_mean    {V(DRAIN)}_meanPlus    {V(DRAIN)}_meanMinus    {V(DRAIN)}_meanPlusTwoSigma    {V(DRAIN)}_meanMinusTwoSigma    {V(DRAIN)}_stddev    {V(DRAIN)}_variance    
 0   0.00000000e+00   1.00000000e+00   1.00000000e+00   1.00000000e+00   1.00000000e+00   1.00000000e+00   3.33286900e-09   1.11080100e-17   
 1   1.00000000e-09   1.00000000e+00   1.00000000e+00   1.00000000e+00   1.00000000e+00   1.00000000e+00   3.49353000e-09   1.22047500e-17   
 2   3.00000000e-09   1.00000000e+00   1.00000000e+00   1.00000000e+00   1.00000000e+00   1.00000000e+00   3.49577900e-09   1.22204700e-17   

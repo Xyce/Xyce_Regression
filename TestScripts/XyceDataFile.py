@@ -142,15 +142,7 @@ class XyceStdDataFile:
         """
         self.myFile.seek(0)     # Rewind, just in case
         line0=self.myFile.readline().rstrip()
-        # remove braces and whitespace from expressions
-        match=findBlock(line0,delim="\{")
-        while match[0]:
-            beg=match[0]
-            end=match[1]
-            group=line0[beg+1:end-1]
-            line0=line0[:beg] + re.sub(r'[ ]',r'',group) + line0[end+1:]
-            match=findBlock(line0,end,delim="\{")
-
+        # remove whitespace from expressions
         tags=line0.split()
         self.Columns=[re.sub(r'[ ]',r'',tag) for tag in tags]
 
@@ -469,15 +461,8 @@ class XyceTecplotDataFile:
                 end=match[1]
                 tag=line[beg+1:end-1]
 
-                # remove spaces and braces from expressions
+                # remove spaces from expressions
                 subtag=tag
-                submatch=findBlock(subtag,delim="\{")
-                while submatch[0]:
-                    subbeg=submatch[0]
-                    subend=submatch[1]
-                    group=subtag[subbeg+1:subend-1]
-                    subtag=subtag[:subbeg]+re.sub(r'[ ]',r'',group)+subtag[subend+1:]
-                    submatch=findBlock(subtag,subend,delim="\{")
 
                 if fields[0] == "TITLE":
                     self.title=tag
@@ -665,14 +650,7 @@ class XyceCsvDataFile:
         """
         self.myFile.seek(0)     # Rewind, just in case
         line0=self.myFile.readline().rstrip()
-        # remove braces and whitespace from expressions
-        match=findBlock(line0,delim="\{")
-        while match[0]:
-            beg=match[0]
-            end=match[1]
-            group=line0[beg+1:end-1]
-            line0=line0[:beg] + re.sub(r'[ ]',r'',group) + line0[end+1:]
-            match=findBlock(line0,end,delim="\{")
+
         #Temporarily turn all commas inside parenthesized expressions to
         # semicolons (to make them distinct from commas separating fields)
         match=findBlock(line0,delim="\(")

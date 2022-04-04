@@ -1,5 +1,3 @@
-convertXyceFormat.py
-findBlock.py
 op-prn.cir
 op-prn.cir.sh
 op-raw-override-ascii.cir

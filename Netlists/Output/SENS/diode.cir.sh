@@ -27,9 +27,12 @@ $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
 # need to use the AC comparator, because the normal one doesn't understand what
 # variables to expect in a *.SENS.prn file.
-$XYCE_VERIFY=~ s/xyce_verify/ACComparator/;
+$XYCE_ACVERIFY = $XYCE_VERIFY;
+$XYCE_ACVERIFY =~ s/xyce_verify/ACComparator/;
 
-$TRANSLATE="python convertXyceFormat.py -s -o";
+$TRANSLATESCRIPT=$XYCE_VERIFY;
+$TRANSLATESCRIPT =~ s/xyce_verify.pl/convertToPrn.py/;
+$TRANSLATE="python $TRANSLATESCRIPT ";
 
 $CIR1="diode_adjoint_prn.cir";
 $CIR2="diode_adjoint_tecplot.cir";
@@ -188,7 +191,7 @@ if ( $result != 0 )
 }
 else
 {
- $CMD="$XYCE_VERIFY --skipfooter $CIR1.SENS.prn test_$CIR2.SENS.dat $abstol $reltol $zerotol $freqreltol > $CIR2.SENS.dat.out 2> $CIR2.SENS.dat.err";
+ $CMD="$XYCE_ACVERIFY --skipfooter $CIR1.SENS.prn test_$CIR2.SENS.dat $abstol $reltol $zerotol $freqreltol > $CIR2.SENS.dat.out 2> $CIR2.SENS.dat.err";
  if (system($CMD) != 0) {
      print STDERR "Verification failed on file $CIR2.SENS.dat, see $CIR2.SENS.dat.err\n";
      $retcode = 2;

@@ -29,7 +29,9 @@ $GOLDDAT =~ s/\.prn$//; # remove the .prn at the end.
 $XYCE_ACVERIFY = $XYCE_VERIFY;
 $XYCE_ACVERIFY =~ s/xyce_verify/ACComparator/;
 
-$TRANSLATE="python convertXyceFormat.py -s -o ";
+$TRANSLATESCRIPT=$XYCE_VERIFY;
+$TRANSLATESCRIPT =~ s/xyce_verify.pl/convertToPrn.py/;
+$TRANSLATE="python $TRANSLATESCRIPT ";
 
 # comparison tolerances for ACComparator.pl
 $abstol=1e-6;
