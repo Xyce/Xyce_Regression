@@ -52,3 +52,8 @@ lead_bjt.cir
 lead_bjt.cir.sh
 lead_bjt_baseline.net
 lead_bjt_m6.net
+
+bjt_ampSens.cir
+bjt_ampSens.cir.sh
+bjt_ampSens_baseline.net
+bjt_ampSens_m6.net
