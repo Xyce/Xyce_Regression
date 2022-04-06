@@ -37,3 +37,13 @@ diodeTranSens.cir.sh
 diodeTranSens_2par.net
 diodeTranSens_m2.net
 dummyDiodeTranSens.net
+
+bjt_diffpair_spiceMan.cir
+bjt_diffpair_spiceMan.cir.sh
+bjt_diffpair_spiceMan_m6.net
+bjt_diffpair_spiceMan_baseline.net
+
+lead_bjt.cir
+lead_bjt.cir.sh
+lead_bjt_baseline.net
+lead_bjt_m6.net
