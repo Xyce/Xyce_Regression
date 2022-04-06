@@ -43,6 +43,11 @@ bjt_diffpair_spiceMan.cir.sh
 bjt_diffpair_spiceMan_m6.net
 bjt_diffpair_spiceMan_baseline.net
 
+bjt_diffpair_noise.cir
+bjt_diffpair_noise.cir.sh
+bjt_diffpair_noise_m6.net
+bjt_diffpair_noise_baseline.net
+
 lead_bjt.cir
 lead_bjt.cir.sh
 lead_bjt_baseline.net
