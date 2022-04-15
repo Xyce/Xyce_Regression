@@ -1,4 +1,9 @@
-* both acobjfunc and objvars can not be specified on a .SENS line
+********************************************************
+* Test error messsage when .SENS has an objective function
+* but no parameters are defined.
+*
+* See GitLab issue 371 for more details.
+********************************************************
 
 v1 1 0 ac 10
 r1 1 2 4.7K
