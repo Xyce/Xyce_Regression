@@ -167,6 +167,13 @@ then
     TAGLIST="${TAGLIST}?xdm"
 fi
 
+# If matlab is in the environment add the Simulink tests
+`which matlab > /dev/null`
+if [ $? = 0 ]
+then
+    TAGLIST="${TAGLIST}?simulink"
+fi
+
 # Tags that depend on what sort of build we are (full, norad, opensource)
 # should be set last, because they work by creating a second tags list
  # based on what we've done so far.  If we do these earlier, some tests
