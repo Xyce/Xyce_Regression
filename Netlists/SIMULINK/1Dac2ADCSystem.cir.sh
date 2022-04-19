@@ -43,10 +43,13 @@ $XYCE_VERIFY=$ARGV[1];
 $CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
 
-# when matlab starts from a command line it needs absolute paths to 
 
 # Simulink file
 $SimulinkFile="Driver1_1DAC_2ADC.slx";
+
+# matlab command to run the simulink file 
+# Note don't include the ".m" extension as this will be run from within matlab.
+$matlabCommand="Run1Dac2ADCSystem";
 
 # make name of gold .mt0 file
 $GOLDMT0 = $GOLDPRN;
@@ -80,7 +83,7 @@ if($XYCE_BASE =~ s/\/bin\/Xyce$// )
 $retval=0;
 
 # run the netlist via the Python version of XyceCInterface
-$CMD= "matlab -nodisplay -nosplash -nodesktop -b \"run(\'$SimulinkFile\');\" > $CIRFILE.out 2> $CIRFILE.err";
+$CMD="matlab -nodisplay -nosplash -nodesktop -r $matlabCommand > $CIRFILE.out 2> $CIRFILE.err";
 $retval = system($CMD);
 if ($retval != 0)
 {
@@ -90,7 +93,7 @@ if ($retval != 0)
 else
 {
   # check output files
-  #if (not -s "$CIRFILE.prn" ) { print "Exit code = 14\n"; exit 14; }
+  if (not -s "$CIRFILE.prn" ) { print "Exit code = 14\n"; exit 14; }
   #if (not -s "$CIRFILE.mt0" ) { print "Exit code = 17\n"; exit 17; }
 }
 
@@ -103,12 +106,12 @@ $retval=0;
 #$zeroTol=1e-10;
 
 # check .prn file
-#$CMD="$XYCE_VERIFY $CIRFILE $GOLDPRN $CIRFILE.prn";
-#if (system($CMD) != 0) 
-#{
-#  print STDERR "Verification failed on file $CIRFILE.prn";
-#  $retval = 2;
-#}
+$CMD="$XYCE_VERIFY $CIRFILE $GOLDPRN $CIRFILE.prn";
+if (system($CMD) != 0) 
+{
+  print STDERR "Verification failed on file $CIRFILE.prn";
+  $retval = 2;
+}
 
 #check .mt0 file
 #$CMD="$fc $CIRFILE.mt0 $GOLDMT0 $absTol $relTol $zeroTol";
@@ -118,15 +121,6 @@ $retval=0;
 #  $retval = 2;
 #}
 
-# check for XyceCInterface return codes in stdout
-#@searchstrings = ("return value from initialize is 1",
-#                  "return value from runSimulation is 1"
-#);
-#if ( $Tools->checkError("$CIRFILE.out",@searchstrings) != 0) 
-#{
-# print "Failed to find all of the correct XyceCInterface return codes in stdout\n"; 
-# $retval = 2; 
-#}
 
 print "Exit code = $retval\n"; exit $retval;
 
