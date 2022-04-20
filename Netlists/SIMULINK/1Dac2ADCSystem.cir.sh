@@ -83,7 +83,7 @@ if($XYCE_BASE =~ s/\/bin\/Xyce$// )
 $retval=0;
 
 # run the netlist via the Python version of XyceCInterface
-$CMD="matlab -nodisplay -nosplash -nodesktop -r $matlabCommand > $CIRFILE.out 2> $CIRFILE.err";
+$CMD="matlab -nodisplay -nosplash -nodesktop -batch $matlabCommand > $CIRFILE.out 2> $CIRFILE.err";
 $retval = system($CMD);
 if ($retval != 0)
 {
