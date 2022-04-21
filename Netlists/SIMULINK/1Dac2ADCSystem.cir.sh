@@ -79,6 +79,19 @@ if($XYCE_BASE =~ s/\/bin\/Xyce$// )
   $XYCE_SIMULINK_DIR = "$XYCE_BASE/share/simulink";
 }
 
+# write the needed matlab command to a file 
+open(MF, '>', "$matlabCommand.m") or die $!;
+$matlabString=qq{
+try
+  addpath('$XYCE_LIB_DIR','$XYCE_SIMULINK_DIR');
+  sim('$SimulinkFile');
+catch
+  exit;
+end
+exit;
+};
+print MF $matlabString;
+close(MF);
 
 $retval=0;
 
