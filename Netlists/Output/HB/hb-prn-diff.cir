@@ -23,6 +23,4 @@ d1 b 0 dmod
 .print hb V(A) V(B) V(A,B) VR(A,B) VI(A,B) VM(A,B) VDB(A,B) VP(A,B)
 
 .options hbint numfreq=50   loadtimesources=0
-*loadtimesources = 0
-*.options hbint numfreq=11,7  saveicdata=1 STARTUPPERIODS=2 tahb=1 intmodmax=3  loadtimesources=0
 .end
