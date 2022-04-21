@@ -1,0 +1,8 @@
+exclude
+tags
+test_a.cir.sh
+test_a.cir
+test_a1.cir
+test_a2.cir
+test_a3.cir
+test_a4.cir
