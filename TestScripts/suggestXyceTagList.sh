@@ -167,9 +167,23 @@ then
     TAGLIST="${TAGLIST}?xdm"
 fi
 
-# If matlab is in the environment add the Simulink tests
+# If Xyce has Simulink enabled and matlab is in the environment 
+# then add the Simulink test tag.
+HAVE_SIMULINK_ENABLED=0
+HAVE_MATLAB=0
+grep 'Simulink enabled' $TMP_CAPABILITIES_FILE>/dev/null 2>&1
+if [ $? = 0 ]
+then
+    HAVE_SIMULINK_ENABLED=1
+fi
+
 `which matlab > /dev/null`
 if [ $? = 0 ]
+then
+    HAVE_MATLAB=1
+fi
+
+if [ $HAVE_SIMULINK_ENABLED -eq 1  -a $HAVE_MATLAB -eq 1 ]
 then
     TAGLIST="${TAGLIST}?simulink"
 fi
