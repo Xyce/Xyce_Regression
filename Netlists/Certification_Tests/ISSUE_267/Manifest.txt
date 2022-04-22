@@ -12,3 +12,10 @@ test_b1.cir
 test_b2.cir
 test_b3.cir
 test_b4.cir
+test_c.cir.sh
+test_c.cir
+test_c1.cir
+test_c2.cir
+test_c3.cir
+test_c4.cir
+test_c5.cir
