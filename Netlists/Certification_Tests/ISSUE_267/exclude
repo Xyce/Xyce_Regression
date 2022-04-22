@@ -13,3 +13,8 @@ test_c4.cir
 test_c5.cir
 test_bjt_ampSens1.cir
 test_bjt_ampSens2.cir
+test_b3soi_inv1.cir
+test_b3soi_inv2.cir
+test_b3soi_inv3.cir
+test_b3soi_inv4.cir
+test_b3soi_inv5.cir

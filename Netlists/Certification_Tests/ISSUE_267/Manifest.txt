@@ -24,3 +24,11 @@ test_bjt_ampSens.cir.sh
 test_bjt_ampSens.cir.tags
 test_bjt_ampSens1.cir
 test_bjt_ampSens2.cir
+test_b3soi_inv.cir
+test_b3soi_inv.cir.sh
+test_b3soi_inv.cir.tags
+test_b3soi_inv1.cir
+test_b3soi_inv2.cir
+test_b3soi_inv3.cir
+test_b3soi_inv4.cir
+test_b3soi_inv5.cir
