@@ -14,5 +14,5 @@ D1 1 2 DFOR
 .ends
 
 .tran 10ns 6us
-.PRINT DC V(1) V(2) I(Vin)  
+.PRINT tran V(1) V(2) I(V1)  
 

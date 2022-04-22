@@ -7,11 +7,11 @@ Xtest1 2 3 testA
 Xtest2 3 0 testA
 
 .subckt testA A B 
-Xtest A B testB  M=2
+Xtest A B testB 
 .ends
 
-.subckt testB A B PARAMS: M=30
-R1 A B 0.5 M=30
+.subckt testB A B 
+R1 A B 0.5 M=60
 .ends
 
 .DC Vin 1 1 1

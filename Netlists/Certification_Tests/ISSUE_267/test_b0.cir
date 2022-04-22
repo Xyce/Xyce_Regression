@@ -1,11 +1,11 @@
 test multiplier
 
 V1 1 0 PULSE (0v 5V 1us 10ns 10ns 1us 2us)
-Xtest2 1 2 test  PARAMS: M=5
+Xtest2 1 2 test 
 Rin 2 0 10k
 
-.subckt test 1 2  PARAMS: M=2
-D1 1 2 DFOR 
+.subckt test 1 2 
+D1 1 2 DFOR M=5
 
 .MODEL DFOR D
 + IS = 2.355E-14 N = 1.112 BV = 1000 IBV = 0.001

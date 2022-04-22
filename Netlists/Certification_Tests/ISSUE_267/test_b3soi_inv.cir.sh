@@ -16,10 +16,11 @@ $XYCE_COMPARE=$ARGV[2];
 $CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
 
-$LET=$CIRFILE;
-$LET =~ s/test_b3soi_inv([a-z])\.cir/$1/;
+#$LET=$CIRFILE;
+#$LET =~ s/test_b3soi_inv([a-z])\.cir/$1/;
+$LET = "b3soi_inv";
 
-$cirfiles = `ls subckt_${LET}[0-9].cir subckt_${LET}[0-9]_hs.cir subckt_${LET}[0-9]_dup.cir 2> /dev/null`;
+$cirfiles = `ls test_${LET}[0-9].cir 2> /dev/null`;
 @cirlist = sort split(" ",$cirfiles);
 
 foreach $cirname (@cirlist)
@@ -42,13 +43,13 @@ if (defined($xyceexit)) { print "Exit code = 10\n"; exit 10; }
 #remove the "0" circuit from the cirlist
 shift @cirlist;
 
-#so this loop is over everything *but* the 0 element
+#so this loop is over everything *t* the 0 element
 foreach $cirname (@cirlist)
 {
-  $CMD = "diff subckt_${LET}0.cir.prn $cirname.prn > $cirname.prn.out 2> $cirname.prn.err";
+  $CMD = "diff test_${LET}0.cir.prn $cirname.prn > $cirname.prn.out 2> $cirname.prn.err";
   if ( system("$CMD") != 0 ) 
   { 
-    $CMD = "$XYCE_VERIFY subckt_${LET}0.cir subckt_${LET}0.cir.prn $cirname.prn >> $cirname.prn.out 2>> $cirname.prn.err";
+    $CMD = "$XYCE_VERIFY test_${LET}0.cir test_${LET}0.cir.prn $cirname.prn >> $cirname.prn.out 2>> $cirname.prn.err";
     `echo "diff failed, now trying xyce_verify" >> $cirname.prn.err`;
     `echo "$CMD" >> $cirname.prn.err`;
     if ( system("$CMD") != 0 )
@@ -65,12 +66,12 @@ foreach $cirname (@cirlist)
 }
 if (defined($testfailed)) 
 { 
-  `echo "Test Failed!" >> subckt_$LET.cir.prn.out`;
+  `echo "Test Failed!" >> test_$LET.cir.prn.out`;
   print "Exit code = 2\n"; exit 2; 
 }
 
-if ( -z "subckt_$LET.cir.prn.err" ) { `rm -f subckt_$LET.cir.prn.err`; }
-`echo "Test Passed!" >> subckt_$LET.cir.prn.out`;
+if ( -z "test_$LET.cir.prn.err" ) { `rm -f test_$LET.cir.prn.err`; }
+`echo "Test Passed!" >> test_b3soi_inv$LET.cir.prn.out`;
 print "Exit code = 0\n"; exit 0;
 
 
