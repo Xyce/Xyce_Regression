@@ -3,3 +3,8 @@ test1.cir
 test2.cir
 test2.cir.res.gs
 test3.cir
+precedence_a.cir
+precedence_a.cir.sh
+precedence_a0.cir
+precedence_a1.cir
+precedence_a2.cir
