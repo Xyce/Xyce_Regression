@@ -8,11 +8,19 @@ Test circuit for AC output through expressions
 * Here, the period is 1e-4, and the PW parameter is half of that minus the
 * rise and fall times
 *             TL TH TD TR TF PW          PER
-v1 a 0 PULSE( 1V 5V 0  5n 5n {.5e-4-10n} 1e-4) AC 1
-R1 a b 1
-R2 b 0 2
-C1 a b 1u
+v1 a 0   sin  1  1 1e5
+*v1 a 0 PULSE( 1V 5V 0  5n 5n {.5e-4-10n} 1e-4) AC 1
+R1 a b 1k
 
-.hb 1e4
+d1 b 0 dmod
+
+.model  dmod d
+*R2 b 0 2
+*C1 b 0  1u
+*C1 a b 1u
+
+.hb 1e5
 .print hb V(A) V(B) V(A,B) VR(A,B) VI(A,B) VM(A,B) VDB(A,B) VP(A,B)
+
+.options hbint numfreq=50   loadtimesources=0
 .end

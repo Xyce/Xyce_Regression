@@ -141,6 +141,8 @@ missingParams.cir
 missingParams.cir.tags
 missingParams.cir.options
 missingParams.cir.sh
+missingSensFunction.cir
+missingSensFunction.cir.sh
 psp_asym_nmos_idvg0_FD_SENS.cir
 psp_asym_nmos_idvg0_SENS.cir
 psp_asym_nmos_idvg0_SENS.cir.res.gs
