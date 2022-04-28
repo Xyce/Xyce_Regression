@@ -14,6 +14,7 @@ test_c2.cir
 test_c3.cir
 test_c4.cir
 test_c5.cir
+test_c6.cir
 test_bjt_ampSens1.cir
 test_bjt_ampSens2.cir
 test_b3soi_inv0.cir

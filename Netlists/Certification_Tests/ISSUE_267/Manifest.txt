@@ -22,6 +22,7 @@ test_c2.cir
 test_c3.cir
 test_c4.cir
 test_c5.cir
+test_c6.cir
 test_bjt_ampSens.cir
 test_bjt_ampSens.cir.sh
 test_bjt_ampSens.cir.tags

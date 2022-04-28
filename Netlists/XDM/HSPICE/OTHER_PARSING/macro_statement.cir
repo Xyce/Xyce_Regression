@@ -42,4 +42,8 @@ C4 4 0 C=10u
 
 .TRAN 10u 10ms 0 UIC
 
-.PRINT TRAN FORMAT=PROBE V(X2.A1) V(X2.B) V(4) 
+* The .PRINT line needs the actual output variable that will be
+* printed out (rather an output variable with wildcards) for 
+* xyce_verify to succeed. Still, this accomplishes the check for
+* correct translation and output of wildcards from HSPICE.
+.PRINT TRAN FORMAT=PROBE V(X1.A1) V(X2.A1) V(X2.B) V(4) 
