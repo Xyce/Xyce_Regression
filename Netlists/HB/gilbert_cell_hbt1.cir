@@ -76,12 +76,9 @@ V2 1 0 DC 6V
 *.TRAN  1e-6 5e-3
 
 .hb 1e4 2e2
-*.options hbint numfreq=5,3 tahb=1  method=AFM  tahb=2
 .options hbint numfreq=50,3 tahb=2  method=AFM
-*.options hbint numfreq=5,3 tahb=1 intmodmax=5 method=apft  numtpts=79
 *.options hbint numfreq=5,3 method=AFM
 *.options linsol-hb type=direct direct_solver=lapack   output_ls=0
-*.options device voltlim=1 debuglevel=-1
 * v(6,2) should be the LO voltage, v(15,10) is the input
 * output is viewed as difference between collector voltages of Q4/Q6 and Q3/Q5.
 * Basically the output should be the product of LO and input voltage, but
