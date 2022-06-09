@@ -18,6 +18,9 @@ gilbert_cell_mpde.cir
 gilbert_cell_hbtbox.cir
 gilbert_cell_hbtbox.cir.sh
 gilbert_cell_hbtbox.cir.tags
+gilbert_cell_hbtdia.cir
+gilbert_cell_hbtdia.cir.sh
+gilbert_cell_hbtdia.cir.tags
 invert_hb.cir
 invert_hb.cir.sh
 invert_hb.cir.tags
