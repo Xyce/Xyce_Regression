@@ -56,4 +56,7 @@ NLAreaStepLv2.cir
 NLAreaStepLv2.cir.sh
 NonLinInductor.cir
 NonLinInductor_ic.cir
+PathToGroundWarning.cir
+PathToGroundWarning.cir.sh
+PathToGroundWarning.cir.tags 
 tags
