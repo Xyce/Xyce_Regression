@@ -11,6 +11,7 @@
 .tran 0 4 
 
 *.options timeint method=gear
+*comp v(1) offset=0.1
 
 .print tran  v(1) n(ymin!ktrans1_h) n(ymin!ktrans1_b)
 

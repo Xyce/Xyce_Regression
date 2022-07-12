@@ -20,11 +20,11 @@
 * n(ymin!ktrans1_h) +/- 4
 * n(ymin!ktrans1_b) +/- 5000
 *
-*comp v(1)   offset=.02
+*comp v(1)   offset=0.4
 *comp i(Lp1) offset=2.0
 *comp n(ymin!ktrans1_m) offset=400
 *comp n(ymin!ktrans1_h) offset=4
-*comp n(ymin!ktrans1_b) offset=5000
+*comp n(ymin!ktrans1_b) offset=6000
 
 
 .print tran v(1)  i(Lp1) n(ymin!ktrans1_m) n(ymin!ktrans1_h) n(ymin!ktrans1_b)
