@@ -15,6 +15,9 @@
 .tran 0 4 
 
 *.options timeint method=gear
+*comp v(1) offset=5e-2
+*comp v(2) offset=6e-2
+*comp v(3) offset=8e-2
 
 .subckt txf_sbk node1 node2 
 
