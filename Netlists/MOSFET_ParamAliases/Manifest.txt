@@ -7,3 +7,6 @@ invert2.cir.sh
 invert3.cir
 invert3_alt.cir
 invert3.cir.sh
+invert6.cir
+invert6_alt.cir
+invert6.cir.sh
