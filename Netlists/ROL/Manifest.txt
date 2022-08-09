@@ -7,7 +7,7 @@ diode_forTimurROL.cir.sh
 diode_forTimurROL.param
 diode_forTimurROL.cir.tags
 input.xml
-measurementsDC.txt
+measurementsDC.dat
 parameters.txt
 tags
 uncertain_parameters.txt
