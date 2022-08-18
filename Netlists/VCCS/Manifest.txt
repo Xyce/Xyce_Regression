@@ -1,3 +1,10 @@
 tags
 vccs.cir
 vccs_tran.cir
+vccs_m.cir.sh
+vccs_m.cir
+vccs_m_baseline.cir
+vccs_tran_m.cir.sh
+vccs_tran_m.cir
+vccs_tran_m_baseline.cir
+exclude
