@@ -1,7 +1,5 @@
 #!/usr/bin/env perl
 
-use lib "/Net/Proj/Xyce/people/tvrusso/GitRepos/Xyce_Regression/TestScripts";
-
 use XyceRegression::Tools;
 
 $Tools = XyceRegression::Tools->new();
