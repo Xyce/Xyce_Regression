@@ -53,7 +53,7 @@ my ($indent, $passFileName, $failFileName, $resultFileName, $notest, $fulldiff, 
 
 #default values
 $indent="";
-$textwidth=50;
+$textwidth=65;
 
 &GetOptions( "xyce_path=s" => \$XYCE_PATH,
              "xyce_test_home=s" => \$XYCE_TEST_HOME,

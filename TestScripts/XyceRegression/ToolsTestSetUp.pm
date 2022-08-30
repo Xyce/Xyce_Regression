@@ -1980,7 +1980,6 @@ sub figureCirName {
   my $supershortdir = $dir;
   $supershortdir =~ s/Certification_Tests/C_T/;
   $supershortdir =~ s/SandiaTests/ST/;
-  $supershortdir =~ s/BUG_//;
   my $supershortdirlen = length($supershortdir);
   my $shortdir = $dir;
   $shortdir =~ s/Certification_Tests/C_T/;
