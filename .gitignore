@@ -8,4 +8,5 @@ OutputData/SandiaTests
 Xyce_SandiaRegression
 Xyce_FastrackRegression
 perl.core
+emacs*.core
 Results_*
