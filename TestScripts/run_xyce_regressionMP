@@ -71,7 +71,7 @@ my $listAllTags; # Flag to print global list of tags
 
 $indent="";
 $wrapshellscripts = 1;
-$textwidth=50; # total term width = 100 works well with this at 50.
+$textwidth=65; # total term width = 100 works well with this at 50.
 
 &GetOptions( "testlist=s" => \@testlist, 
              "taglist=s" => \$globaltaglist,
