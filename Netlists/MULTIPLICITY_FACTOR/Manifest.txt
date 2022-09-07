@@ -62,3 +62,8 @@ gain-stage1.cir
 gain-stage1.cir.sh
 gain-stage1_baseline.net
 gain-stage1_m6.net
+
+gain-stage2.cir
+gain-stage2.cir.sh
+gain-stage2_baseline.net
+gain-stage2_m6.net
