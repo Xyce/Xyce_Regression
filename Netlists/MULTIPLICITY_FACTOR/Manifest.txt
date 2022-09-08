@@ -72,3 +72,8 @@ gain-stage3.cir
 gain-stage3.cir.sh
 gain-stage3_baseline.net
 gain-stage3_m6.net
+
+gain-stage_b3.cir
+gain-stage_b3.cir.sh
+gain-stage_b3_baseline.net
+gain-stage_b3_m6.net
