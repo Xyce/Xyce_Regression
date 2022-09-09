@@ -6,6 +6,10 @@ subckt_missing_ends.cir
 subckt_missing_ends.cir.sh
 subckt_missing_ends2.cir
 subckt_missing_ends2.cir.sh
+subckt_missing_ends3.cir
+subckt_missing_ends3.cir.sh
+subckt_missing_ends4.cir
+subckt_missing_ends4.cir.sh
 missing.ends
 tags
 options
