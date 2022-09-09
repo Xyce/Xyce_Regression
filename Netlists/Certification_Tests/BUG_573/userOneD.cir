@@ -41,6 +41,7 @@ R1 2 3 1k
 YPDE Z1DIODE 3 4 PDEDIODE  
 + tecplotlevel=2 
 + l={2*CERTPARAM} nx=11 
++ auger=false
 * ELECTRODES:
 *+ node = {name           =     anode, cathode
 *+         bc             = dirichlet, dirichlet
@@ -62,7 +63,6 @@ YPDE Z1DIODE 3 4 PDEDIODE
 *COMP v(3) RELTOL=0.02
 .options nonlin maxstep=100 maxsearchstep=3 
 + searchmethod=2  nox=1 debuglevel=-10
-+ auger=false
 
 * Set transient nonlinear solver options to be 
 * the same as the DCOP options:
