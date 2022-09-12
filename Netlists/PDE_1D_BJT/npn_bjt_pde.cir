@@ -23,6 +23,7 @@ ypde npnop 2 1 0 pdebjt
 + gnuplotlevel=0
 + mobmodel=philips
 + fielddep=true
++ auger=false
 * relatively course mesh, so the test runs quickly
 + l=9.0e-4 nx=50
 * DOPING REGIONS:
