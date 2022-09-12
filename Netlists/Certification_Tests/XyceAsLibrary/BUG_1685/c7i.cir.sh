@@ -70,7 +70,7 @@ if (-d "$MAKEROOT/CMakeFiles")
 $XYCE_LIBTEST = "$XYCEROOT/src/test/XyceAsLibrary/testHarness1685$EXT";
 
 if (-d "$MAKEROOT") {
-  if (-e "$MAKEROOT/Makefile") {
+  if ( (-e "$MAKEROOT/Makefile") and not (-d "$MAKEROOT/CMakeFiles") ) {
     chdir($MAKEROOT);
     print "NOTICE:   make clean -------------------\n";
     $result = system("make clean");
@@ -81,13 +81,7 @@ if (-d "$MAKEROOT") {
       $retval = $result;
     }
   } elsif (-d "$MAKEROOT/CMakeFiles") {
-    chdir($XYCEROOT);
-    print "Building testHarness1685 in $MAKEROOT\n";
-    $result += system("cmake --build . --target testHarness1685");
-    if($result) {
-      print "WARNING:  build failures! ---------------\n";
-      $retval = $result;
-    }
+    print "Using CMake, so assuming pre-built testHarness1685 binary\n";
   } else {
     print "ERROR:    No build files!\n";
     $retval = 1;
