@@ -41,7 +41,7 @@ if($retval!=0)
 #  Failed Steps                          <some number>
 # Prior to fixing Xyce/backlog/bugs/-/issues/1
 # the failes steps were over 6000.
-# now just verify it's under 100.
+# now just verify it's under 200.
 
 open my( $outputfile), '<', $OUTPUTFILE or die "Cannot opne file: $!\n";
 while (<$outputfile>)
@@ -50,7 +50,7 @@ while (<$outputfile>)
   if( $_ =~ /^ +Failed Steps/)
   {
     my ($numSteps) = $_ =~ /(\d+)/;
-    if( $numSteps > 100)
+    if( $numSteps > 200)
     {
       print("Xyce had too many failed stesps $numSteps\n");
       $retval=2;
