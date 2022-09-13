@@ -1,3 +1,4 @@
-nightly, serial
+serial, nightly
+genext
 library
 requirestestbinary
