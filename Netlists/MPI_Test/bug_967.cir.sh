@@ -61,7 +61,7 @@ $TestProgram="testMPI$EXT";
 $MPI_TEST = "$MAKEROOT/$TestProgram";
 
 if (-d "$MAKEROOT") {
-  if (-e "$MAKEROOT/Makefile") {
+  if ( (-e "$MAKEROOT/Makefile") and not (-d "$MAKEROOT/CMakeFiles") ) {
     chdir($MAKEROOT);
     print "NOTICE:   make clean -------------------\n";
     $result = system("make clean");
@@ -72,13 +72,7 @@ if (-d "$MAKEROOT") {
       $retval = $result;
     }
   } elsif (-d "$MAKEROOT/CMakeFiles") {
-    chdir($XYCEROOT);
-    print "Building $TestProgram in $MAKEROOT\n";
-    $result += system("cmake --build . --target $TestProgram");
-    if($result) {
-      print "WARNING:  build failures! ---------------\n";
-      $retval = $result;
-    }
+    print "Using CMake, so assuming pre-built testMPI binary\n";
   } else {
     print "ERROR:    No build files!\n";
     $retval = 1;
