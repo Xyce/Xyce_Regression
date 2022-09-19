@@ -50,7 +50,7 @@ then
     if [ -x ${XYCE_DIR}/buildxyceplugin ]
     then
         HAVE_PLUGIN=1
-        `which admsXml > /dev/null`
+        `which admsXml > /dev/null 2>&1`
         if [ $? = 0 ]
         then
             HAVE_ADMS=1
@@ -177,7 +177,7 @@ then
     HAVE_SIMULINK_ENABLED=1
 fi
 
-`which matlab > /dev/null`
+`which matlab > /dev/null 2>&1`
 if [ $? = 0 ]
 then
     HAVE_MATLAB=1
