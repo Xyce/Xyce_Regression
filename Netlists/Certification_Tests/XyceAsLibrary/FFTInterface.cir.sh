@@ -95,7 +95,7 @@ if (-d "$MAKEROOT") {
 
 if (-x $XYCE_LIBTEST) 
 {
-  $CMD="$PREFIX$XYCE_LIBTEST > $XYCE_LIBTEST.out 2> $XYCE_LIBTEST.err";
+  $CMD="$PREFIX$XYCE_LIBTEST > testFFTInterface.out 2> testFFTInterface.err";
   print "NOTICE:   running ----------------------\n";
   $retval = system("$CMD");
 

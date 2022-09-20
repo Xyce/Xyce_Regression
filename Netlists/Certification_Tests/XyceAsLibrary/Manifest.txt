@@ -8,5 +8,6 @@ FFTInterface.cir.sh
 FFTInterface.cir.tags
 LinAlgInterface.cir
 LinAlgInterface.cir.sh
-README
+hb_matrix1.mm
+hb_rhs1.mm
 tags

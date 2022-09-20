@@ -95,9 +95,8 @@ if (-d "$MAKEROOT") {
 
 if (-x $XYCE_LIBTEST) 
 {
-  $retval = system("cp $MAKEROOT/*.mm $TESTROOT/.");
-  $CMD="$PREFIX$XYCE_LIBTEST > $XYCE_LIBTEST.out 2> $XYCE_LIBTEST.err";
-  print "NOTICE:   running ----------------------\n";
+  $CMD="$PREFIX$XYCE_LIBTEST > testBlockLinearSystems.out 2> testBlockLinearSystems.err";
+  print "NOTICE:   running $CMD----------------------\n";
   $retval = system("$CMD");
 
   if($retval != 0) 
