@@ -41,6 +41,7 @@ R1 2 3 1k
 YPDE Z1DIODE 3 4 PDEDIODE  
 + tecplotlevel=2 
 + l={2*CERTPARAM} nx=11 
++ auger=false
 * ELECTRODES:
 *+ node = {name           =     anode, cathode
 *+         bc             = dirichlet, dirichlet

@@ -2,3 +2,4 @@ serial, nightly
 genext
 library
 nompi
+requirestestbinary

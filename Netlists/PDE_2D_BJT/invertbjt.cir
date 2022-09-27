@@ -24,6 +24,7 @@ YPDE BJT1 VOUT IN 0         PDEBJT
 + sgplotlevel=0
 + voltlim=0
 + outputnlpoisson=1
++ auger=false
 
 * PNP PDE BJT:
 YPDE BJT2 VOUT IN VDDNODE   PDEBJT
@@ -35,6 +36,7 @@ YPDE BJT2 VOUT IN VDDNODE   PDEBJT
 + sgplotlevel=0
 + voltlim=0
 + outputnlpoisson=1
++ auger=false
 
 .MODEL PDEBJT   ZOD  level=2 
 

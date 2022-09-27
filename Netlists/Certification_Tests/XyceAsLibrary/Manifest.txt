@@ -6,5 +6,8 @@ ADC_DACtest.cir.tags
 FFTInterface.cir
 FFTInterface.cir.sh
 FFTInterface.cir.tags
-README
+LinAlgInterface.cir
+LinAlgInterface.cir.sh
+hb_matrix1.mm
+hb_rhs1.mm
 tags

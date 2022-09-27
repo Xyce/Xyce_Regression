@@ -20,7 +20,7 @@ $CIRFILE=$ARGV[3];
 # check various error cases
 # this string should be in the warning messages of this Xyce run  
 @searchstrings = ( ["Netlist warning in file bsim4_test1.cir at or near line 10",
-                    "Device model PCH.2: Model card specifies BSIM4 version 4.8 which is newer"],
+                    "Device model PCH.2: Model card specifies BSIM4 version 4.9 which is newer"],
                    ["Netlist warning in file bsim4_test1.cir at or near line 8",
                     " Device model NCH.2: Model card specifies BSIM4 version 4.65 not supported by"],
                    ["Netlist warning in file bsim4_test1.cir at or near line 8",

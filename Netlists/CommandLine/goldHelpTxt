@@ -27,6 +27,7 @@ Arguments:
   -nox <on|off>               NOX nonlinear solver usage
   -linsolv <solver>           force usage of specific linear solver
   -maxord <1..5>              maximum time integration order
+  -max-warnings <#>           maximum number of warning messages
   -prf <param file name>      specify a file with simulation parameters
   -rsf <response file name>   specify a file to save simulation responses functions.
   -r <file>                   generate a rawfile named <file> in binary format

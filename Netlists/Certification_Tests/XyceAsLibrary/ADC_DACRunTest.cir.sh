@@ -69,7 +69,7 @@ if (-d "$MAKEROOT/CMakeFiles")
 $XYCE_LIBTEST = "$XYCEROOT/src/test/DeviceInterface/ADC_DACRunTest$EXT";
 
 if (-d "$MAKEROOT") {
-  if (-e "$MAKEROOT/Makefile") {
+  if ((-e "$MAKEROOT/Makefile") and not (-d "$MAKEROOT/CMakeFiles") ) {
     chdir($MAKEROOT);
     print "Building ADC_DACRunTest in $MAKEROOT\n";
     print "NOTICE:   make clean -------------------\n";
@@ -81,13 +81,7 @@ if (-d "$MAKEROOT") {
       $retval = $result;
     }
   } elsif (-d "$MAKEROOT/CMakeFiles") {
-    chdir($XYCEROOT);
-    print "Building ADC_DACRunTest in $MAKEROOT\n";
-    $result = system("cmake --build . --target ADC_DACRunTest");
-    if($result) {
-      print "WARNING:  build failures! ---------------\n";
-      $retval = $result;
-    }
+    print "Using CMake, so assuming pre-built ADC_DACRunTest binary\n";
   } else {
     print "ERROR:    No build files!\n";
     $retval = 1;
