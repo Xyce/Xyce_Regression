@@ -3,12 +3,11 @@
 
 `define attr(txt) (*txt*)
 
-`attr(xyceModelGroup="Capacitor", xyceSpiceDeviceName="C", xyceLevelNumber="6") 
-module capacitor (p,n);
+module capacitor (p,n) `attr(xyceModelGroup="Capacitor" xyceSpiceDeviceName="C" xyceLevelNumber="6") ;
   electrical p,n;
   inout p,n;
 
-  `attr(desc="Capacitance", type="instance") parameter real C=1p from (0:inf);
+  parameter real C=1p from (0:inf) `attr(info="Capacitance" type="instance");
   real Q;
 
   analog
