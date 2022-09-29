@@ -3,7 +3,7 @@ level=1 diode circuit
 * ERK.  1/22/2014.
 *
 V2 2 0 0.21
-D2 2 0 DA lambertw=0
+D2 2 0 DA
 
 .inc measurementsDC.dat
 .param iv2=0
