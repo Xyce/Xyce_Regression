@@ -13,7 +13,9 @@ $Tools = XyceRegression::Tools->new();
 $XYCE=$ARGV[0];
 $XYCE_VERIFY=$ARGV[1];
 $CIRFILE=$ARGV[3]; 
-$GOLDPRN=$ARGV[4];
+
+
+$REMEASPRN="$CIRFILE.remeas.prn";
 
 # remove files from previous runs
 system("rm -f $CIRFILE.out $CIRFILE.err");
@@ -24,7 +26,7 @@ system("rm -f $CIRFILE.out $CIRFILE.err");
 );
 
 # re-measure should not work, but should produce a clean exit
-$CMD = "$XYCE -remeasure $GOLDPRN $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
+$CMD = "$XYCE -remeasure $REMEASPRN $CIRFILE > $CIRFILE.out 2>$CIRFILE.err";
 $retval = system($CMD);
 if ($retval = 0)
 {
