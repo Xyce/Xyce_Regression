@@ -18,7 +18,7 @@ $GOLDPRN=$ARGV[4];
 
 $dirname = getcwd;
 # the next substition accounts for testing Xyce on Windows under cygwin
-$dirname =~ s/^\/cygdrive\/c/C:/;
+$dirname =~ s/^\/cygdrive\/([a-z])/\1:/;
 
 # hard code the name of the include file
 $includeFileName = "sub1/sub2/include2_abs_path";
