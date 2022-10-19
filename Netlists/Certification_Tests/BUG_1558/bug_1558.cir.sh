@@ -42,7 +42,7 @@ shift @cirlist;
 #so this loop is over everything *but* the 0 element
 foreach $cirname (@cirlist)
 {
-  $CMD = "diff subckt_${LET}0.cir.prn $cirname.prn > $cirname.prn.out 2> $cirname.prn.err";
+  $CMD = "diff bug_1558_0.cir.prn $cirname.prn > $cirname.prn.out 2> $cirname.prn.err";
   if ( system("$CMD") != 0 ) 
   { 
     $CMD = "$XYCE_VERIFY bug_1558_0.cir bug_1558_0.cir.prn $cirname.prn >> $cirname.prn.out 2>> $cirname.prn.err";
@@ -66,8 +66,7 @@ if (defined($testfailed))
   print "Exit code = 2\n"; exit 2; 
 }
 
-if ( -z "subckt_$LET.cir.prn.err" ) { `rm -f subckt_$LET.cir.prn.err`; }
-`echo "Test Passed!" >> subckt_$LET.cir.prn.out`;
+`echo "Test Passed!" >> bug_1558.cir.prn.out`;
 print "Exit code = 0\n"; exit 0;
 
 

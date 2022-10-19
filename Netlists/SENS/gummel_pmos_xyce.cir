@@ -23,6 +23,7 @@ M1 drain gate source bulk pmos W=10e-6 L=10e-6
 *.print dc par'ids' par'gx' par'gx2' par'gx3' par 'gx4'
 .print dc v(drain) v(gate) {-i(vdrain)}
 *comp  d_{i(vdrain)}/d_pmos:vfb_dir reltol=0.02 abstol=1e-6
+*comp  d_{i(vdrain)}/d_M1:L_dir offset=2.1 
 .print sens v(drain) v(gate)
 
 .sens param=pmos:vfb,m1:l,m1:w objfunc={I(vdrain)}
