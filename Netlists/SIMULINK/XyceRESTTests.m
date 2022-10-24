@@ -34,7 +34,7 @@ classdef XyceRESTTests < matlab.unittest.TestCase
     % 
     function testServerStatus(testCase)
       status = webread("http://localhost:5000/status" );
-      testCase.verifyEqual(status, []);
+      testCase.verifyEqual(status.numInstance, 0);
     end
 
     %
@@ -42,9 +42,7 @@ classdef XyceRESTTests < matlab.unittest.TestCase
     %
     function testServerXyceOpenClose(testCase)
       wo=weboptions('MediaType', 'application/json');
-      XyceCInterfaceLibraryDir = '/Users/rlschie/src/XyceDevelopment/BUILD/NormalShare/utils/XyceCInterface';
-      s.libdir = XyceCInterfaceLibraryDir;
-      jsarg=jsonencode(s);
+      jsarg=jsonencode(' ');
       xyceID = webwrite("http://localhost:5000/xyce_open", jsarg, wo);
       testCase.verifyNotEqual(xyceID, '');
       s3.uuid=xyceID;
@@ -60,9 +58,7 @@ classdef XyceRESTTests < matlab.unittest.TestCase
     %
     function testServerXyceInitialize(testCase)
       wo=weboptions('MediaType', 'application/json');
-      XyceCInterfaceLibraryDir = '/Users/rlschie/src/XyceDevelopment/BUILD/NormalShare/utils/XyceCInterface';
-      s.libdir = XyceCInterfaceLibraryDir;
-      jsarg=jsonencode(s);
+      jsarg=jsonencode(' ');
       xyceID = webwrite("http://localhost:5000/xyce_open", jsarg, wo);
       testCase.verifyNotEqual(xyceID, '');
       
@@ -85,9 +81,7 @@ classdef XyceRESTTests < matlab.unittest.TestCase
     %
     function testServerXyceRun(testCase)
       wo=weboptions('MediaType', 'application/json');
-      XyceCInterfaceLibraryDir = '/Users/rlschie/src/XyceDevelopment/BUILD/NormalShare/utils/XyceCInterface';
-      s.libdir = XyceCInterfaceLibraryDir;
-      jsarg=jsonencode(s);
+      jsarg=jsonencode(' ');
       xyceID = webwrite("http://localhost:5000/xyce_open", jsarg, wo);
       testCase.verifyNotEqual(xyceID, '');
       
@@ -115,9 +109,7 @@ classdef XyceRESTTests < matlab.unittest.TestCase
     %
     function testServerXyceGetSimTime(testCase)
       wo=weboptions('MediaType', 'application/json');
-      XyceCInterfaceLibraryDir = '/Users/rlschie/src/XyceDevelopment/BUILD/NormalShare/utils/XyceCInterface';
-      s.libdir = XyceCInterfaceLibraryDir;
-      jsarg=jsonencode(s);
+      jsarg=jsonencode(' ');
       xyceID = webwrite("http://localhost:5000/xyce_open", jsarg, wo);
       testCase.verifyNotEqual(xyceID, '');
       
@@ -151,9 +143,7 @@ classdef XyceRESTTests < matlab.unittest.TestCase
     %
     function testServerXyceFinalSimTime(testCase)
       wo=weboptions('MediaType', 'application/json');
-      XyceCInterfaceLibraryDir = '/Users/rlschie/src/XyceDevelopment/BUILD/NormalShare/utils/XyceCInterface';
-      s.libdir = XyceCInterfaceLibraryDir;
-      jsarg=jsonencode(s);
+      jsarg=jsonencode(' ');
       xyceID = webwrite("http://localhost:5000/xyce_open", jsarg, wo);
       testCase.verifyNotEqual(xyceID, '');
       
@@ -182,9 +172,7 @@ classdef XyceRESTTests < matlab.unittest.TestCase
     %
     function testServerXyceSimulateUntil(testCase)
       wo=weboptions('MediaType', 'application/json');
-      XyceCInterfaceLibraryDir = '/Users/rlschie/src/XyceDevelopment/BUILD/NormalShare/utils/XyceCInterface';
-      s.libdir = XyceCInterfaceLibraryDir;
-      jsarg=jsonencode(s);
+      jsarg=jsonencode(' ');
       xyceID = webwrite("http://localhost:5000/xyce_open", jsarg, wo);
       testCase.verifyNotEqual(xyceID, '');
       
@@ -225,8 +213,7 @@ classdef XyceRESTTests < matlab.unittest.TestCase
     %
     function testServerXyceGetDACNames(testCase)
       wo=weboptions('MediaType', 'application/json');
-      XyceCInterfaceLibraryDir = '/Users/rlschie/src/XyceDevelopment/BUILD/NormalShare/utils/XyceCInterface';
-      s.libdir = XyceCInterfaceLibraryDir;
+      s.stats=0;
       jsarg=jsonencode(s);
       xyceID = webwrite("http://localhost:5000/xyce_open", jsarg, wo);
       %testCase.verifyNotEqual(xyceID, '');
@@ -257,8 +244,7 @@ classdef XyceRESTTests < matlab.unittest.TestCase
     %
     function testServerXyceGetADCMap(testCase)
       wo=weboptions('MediaType', 'application/json');
-      XyceCInterfaceLibraryDir = '/Users/rlschie/src/XyceDevelopment/BUILD/NormalShare/utils/XyceCInterface';
-      s.libdir = XyceCInterfaceLibraryDir;
+      s.stats=0;
       jsarg=jsonencode(s);
       xyceID = webwrite("http://localhost:5000/xyce_open", jsarg, wo);
       testCase.verifyNotEqual(xyceID, '');
@@ -289,9 +275,7 @@ classdef XyceRESTTests < matlab.unittest.TestCase
     %
     function testServerXyceCheckCircuitParameterExists(testCase)
       wo=weboptions('MediaType', 'application/json');
-      XyceCInterfaceLibraryDir = '/Users/rlschie/src/XyceDevelopment/BUILD/NormalShare/utils/XyceCInterface';
-      s.libdir = XyceCInterfaceLibraryDir;
-      jsarg=jsonencode(s);
+      jsarg=jsonencode(' ');
       xyceID = webwrite("http://localhost:5000/xyce_open", jsarg, wo);
       testCase.verifyNotEqual(xyceID, '');
       
@@ -328,9 +312,7 @@ classdef XyceRESTTests < matlab.unittest.TestCase
     %
     function testServerXyceGetCirciutValue(testCase)
       wo=weboptions('MediaType', 'application/json');
-      XyceCInterfaceLibraryDir = '/Users/rlschie/src/XyceDevelopment/BUILD/NormalShare/utils/XyceCInterface';
-      s.libdir = XyceCInterfaceLibraryDir;
-      jsarg=jsonencode(s);
+      jsarg=jsonencode(' ');
       xyceID = webwrite("http://localhost:5000/xyce_open", jsarg, wo);
       testCase.verifyNotEqual(xyceID, '');
       
@@ -369,9 +351,7 @@ classdef XyceRESTTests < matlab.unittest.TestCase
     %
     function testServerXyceGetAndSetCirciutValue(testCase)
       wo=weboptions('MediaType', 'application/json');
-      XyceCInterfaceLibraryDir = '/Users/rlschie/src/XyceDevelopment/BUILD/NormalShare/utils/XyceCInterface';
-      s.libdir = XyceCInterfaceLibraryDir;
-      jsarg=jsonencode(s);
+      jsarg=jsonencode(' ');
       xyceID = webwrite("http://localhost:5000/xyce_open", jsarg, wo);
       %testCase.verifyNotEqual(xyceID, '');
       
@@ -451,9 +431,7 @@ classdef XyceRESTTests < matlab.unittest.TestCase
     %
     function testServerXyceGetTimeVoltagePairs(testCase)
       wo=weboptions('MediaType', 'application/json');
-      XyceCInterfaceLibraryDir = '/Users/rlschie/src/XyceDevelopment/BUILD/NormalShare/utils/XyceCInterface';
-      s.libdir = XyceCInterfaceLibraryDir;
-      jsarg=jsonencode(s);
+      jsarg=jsonencode(' ');
       xyceID = webwrite("http://localhost:5000/xyce_open", jsarg, wo);
       %testCase.verifyNotEqual(xyceID, '');
       
@@ -501,9 +479,7 @@ classdef XyceRESTTests < matlab.unittest.TestCase
     %
     function testServerXyceUpdateTimeVoltagePairs(testCase)
       wo=weboptions('MediaType', 'application/json');
-      XyceCInterfaceLibraryDir = '/Users/rlschie/src/XyceDevelopment/BUILD/NormalShare/utils/XyceCInterface';
-      s.libdir = XyceCInterfaceLibraryDir;
-      jsarg=jsonencode(s);
+      jsarg=jsonencode(' ');
       xyceID = webwrite("http://localhost:5000/xyce_open", jsarg, wo);
       %testCase.verifyNotEqual(xyceID, '');
       
