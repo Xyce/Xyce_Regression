@@ -1,4 +1,5 @@
 #include <vpi_user.h>
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <N_CIR_XyceCInterface.h>
