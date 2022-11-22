@@ -28,13 +28,39 @@ $XYCE_VERIFY=$ARGV[1];
 #$XYCE_COMPARE=$ARGV[2];
 $CIRFILE=$ARGV[3];
 $GOLDPRN=$ARGV[4];
+$DIAGFILE=$CIRFILE;
+$DIAGFILE=~s/\..*$/.dia/;
 
 $retval = -1;
 $retval=$Tools->wrapXyce($XYCE,$CIRFILE);
 if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
 if (not -s "$CIRFILE.prn" ) { print "Exit code = 14\n"; exit 14; }
-if (not -s "ExtremaCheck1.dia" ) { print "Exit code = 14\n"; exit 14; }
+if (not -s "$DIAGFILE" ) 
+{ 
+  print "Diagnostic File not generated\n Exit code = 14\n"; 
+  exit 14; 
+}
 
+# open the diagnostic file and verify that the reported nodes 
+# have values over 6.0 which was the limit used in the simulation file
+open( DIAGF, '<', $DIAGFILE) or die $!;
+
+while( <DIAGF> )
+{
+  $aLine = $_;
+  chomp($aLine);
+  my @word = split(/\s+/, $aLine);
+  my @vals = split(/=/, $word[$#word] );
+  
+  if( $vals[$#vals] < 6.0 )
+  {
+    $retval = 2;
+    print( "Found a value under the limit used in the circuit: $word[$#word]\n");
+    print(  "Exit code = $retval\n" );
+    exit 2;
+  }
+  
+}
 
 if ($retval != 0) 
 { 
