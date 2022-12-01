@@ -37,8 +37,8 @@ if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
 if (not -s "$CIRFILE.prn" ) { print "Exit code = 14\n"; exit 14; }
 if (not -s "$DIAGFILE" ) 
 { 
-  print "Diagnostic File not generated\n Exit code = 14\n"; 
-  exit 14; 
+  print "Diagnostic File not generated\n Exit code = 19\n"; 
+  exit 19; 
 }
 
 # open the diagnostic file and verify that the reported nodes 

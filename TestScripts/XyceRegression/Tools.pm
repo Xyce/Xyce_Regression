@@ -22,7 +22,8 @@ my %status2MessageHash = (
    15 => "TIME LIMIT",
    16 => "CONTROL-C",
    17 => "NO MEASURE FILE",
-   18 => "DAKOTA NOT FOUND"
+   18 => "DAKOTA NOT FOUND",
+   19 => "No DIAGNOSTIC FILE"
    );
 
 #Constructor
