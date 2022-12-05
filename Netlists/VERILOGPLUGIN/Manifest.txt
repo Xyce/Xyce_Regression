@@ -12,6 +12,8 @@ Issue398_AF.cir
 Issue398_AF.cir.sh
 Issue399.cir
 Issue399.cir.sh
+Bugfix35_AF.cir
+Bugfix35_AF.cir.sh
 tags
 toys/capacitor.va
 toys/diode2.va
@@ -22,3 +24,4 @@ toys/Issue396.va
 toys/Issue398.va
 toys/Issue398_AF.va
 toys/Issue399.va
+toys/Bugfix35_AF.va
