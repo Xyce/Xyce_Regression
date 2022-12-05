@@ -125,7 +125,7 @@ $result=system("$BUILDXYCEPLUGIN -o toys_Bugfix35_AF $VERILOG_SOURCES .");
 if ($result != 0)
 {
     print "Plugin creation failed, see ${CIRFILE}_buildxyceplugin.log\n";
-    system("mv buildxyceplugin.log ${CIRCFILE}_buildxyceplugin.log");
+    system("mv buildxyceplugin.log ${CIRFILE}_buildxyceplugin.log");
     print "Exit code = 1";
     exit 1;
 }
