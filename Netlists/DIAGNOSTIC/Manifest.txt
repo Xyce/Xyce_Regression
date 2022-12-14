@@ -1,3 +1,8 @@
 ExtremaCheck1.cir
 ExtremaCheck1.cir.sh
+VoltageCheck1.cir
+VoltageCheck1.cir.sh
+CurrentCheck1.cir
+CurrentCheck1.cir.sh
+
 tags
