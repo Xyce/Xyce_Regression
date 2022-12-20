@@ -22,7 +22,7 @@
 *
 *comp v(1)   offset=.02
 *comp i(Lp1) offset=2.0
-*comp n(ymin!ktrans1_m) offset=400
+*comp n(ymin!ktrans1_m) offset=4e5
 *comp n(ymin!ktrans1_h) offset=4
 *comp n(ymin!ktrans1_b) offset=5000
 

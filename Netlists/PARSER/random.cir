@@ -11,6 +11,9 @@
 .PARAM PD={UNIF(1,1)}
 .PARAM PE={AUNIF(1,1)}
 
+.PARAM PA2={AGAUSS(1,1)}
+.PARAM PB2={GAUSS(1,1)}
+
 .DC V1 1 1 1
 
 V1 1 0 1
@@ -28,16 +31,26 @@ R4 4 0 {2*PD}
 V5 5 0 1
 R5 5 0 {2*PE}
 
+V1B 1B 0 1
+R1B 1B 0 {2*PA2}
+
+V2B 2B 0 1
+R2B 2B 0 {2*PB2}
+
 .PRINT DC V(1) 
 + I(R1) 
 + I(R2) 
 + I(R3) 
 + I(R4) 
 + I(R5) 
++ I(R1B) 
++ I(R2B) 
 + {PA} 
 + {PB}
 + {PC}
 + {PD}
 + {PE}
++ {PA2}
++ {PB2}
 
 .END
