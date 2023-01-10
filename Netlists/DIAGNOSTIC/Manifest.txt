@@ -10,4 +10,6 @@ ExVICheck1.cir
 ExVICheck1.cir.sh
 VICheck1.cir
 VICheck1.cir.sh
+RCLadderVICheck.cir
+RCLadderVICheck.cir.sh
 tags
