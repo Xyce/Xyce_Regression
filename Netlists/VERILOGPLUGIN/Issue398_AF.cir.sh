@@ -124,8 +124,8 @@ print "Building the plugin...\n";
 $result=system("$BUILDXYCEPLUGIN -o toys_Issue398_AF $VERILOG_SOURCES .");
 if ($result != 0)
 {
-    print "Plugin creation failed, see ${CIRFILE}_buildxyceplugin.log\n";
-    system("mv buildxyceplugin.log ${CIRFILE}_buildxyceplugin.log");
+    print "Plugin creation failed, see Issue398_AF_buildxyceplugin.log\n";
+    system("mv buildxyceplugin.log Issue398_AF_buildxyceplugin.log");
     print "Exit code = 1";
     exit 1;
 }

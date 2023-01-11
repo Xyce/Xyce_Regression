@@ -122,8 +122,8 @@ print "Building the plugin...\n";
 $result=system("$BUILDXYCEPLUGIN -o toys_Backlog106 $VERILOG_SOURCES .");
 if ($result != 0)
 {
-    print "Plugin creation failed, see ${CIRFILE}_buildxyceplugin.log\n";
-    system("mv buildxyceplugin.log ${CIRFILE}_buildxyceplugin.log");
+    print "Plugin creation failed, see Backlog106_buildxyceplugin.log\n";
+    system("mv buildxyceplugin.log Backlog106_buildxyceplugin.log");
     print "Exit code = 1";
     exit 1;
 }
