@@ -77,7 +77,7 @@ while( <DIAGF> )
   
   if( ($blockType eq 'E') && ($#word < 3))
   {
-    i$retval = 2;
+    $retval = 2;
     print( "Found a extrema output block when there shouldn't be one: $word[0]\n");
     print(  "Exit code = $retval\n" );
     exit 2;
