@@ -20,6 +20,9 @@ Bugfix36_AF.cir
 Bugfix36_AF.cir.sh
 testBacklog527.cir
 testBacklog527.cir.sh
+testBacklog527_2.cir
+testBacklog527_2.cir.prn.gs
+testBacklog527_2.cir.sh
 tags
 toys/capacitor.va
 toys/diode2.va
@@ -35,3 +38,4 @@ toys/Bugfix36_AF.va
 toys/integer_var.va
 toys/integer_var2.va
 toys/testBacklog527.va
+toys/testBacklog527_2.va
