@@ -23,6 +23,9 @@ testBacklog527.cir.sh
 testBacklog527_2.cir
 testBacklog527_2.cir.prn.gs
 testBacklog527_2.cir.sh
+testBacklog527_3.cir
+testBacklog527_3.cir.prn.gs
+testBacklog527_3.cir.sh
 tags
 toys/capacitor.va
 toys/diode2.va
@@ -39,3 +42,4 @@ toys/integer_var.va
 toys/integer_var2.va
 toys/testBacklog527.va
 toys/testBacklog527_2.va
+toys/testBacklog527_3.va
