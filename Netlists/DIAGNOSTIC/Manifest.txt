@@ -12,4 +12,8 @@ VICheck1.cir
 VICheck1.cir.sh
 RCLadderVICheck.cir
 RCLadderVICheck.cir.sh
+DisconCheck1.cir
+DisconCheck1.cir.sh
+DisconCheck2.cir
+DisconCheck2.cir.sh
 tags

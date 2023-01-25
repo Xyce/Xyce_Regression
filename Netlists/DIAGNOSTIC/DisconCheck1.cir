@@ -10,7 +10,7 @@ rload2 3 0 100
 
 
 .options diagnostic DISCLIMIT=1e-3 diagfilename=DisconCheck1.dia
-.print tran format=csv v(1) v(2) v(3)
+.print tran v(1) v(2) v(3)
 
 .tran 0 1e-2
 
