@@ -7,10 +7,15 @@ cubic2.cir
 fasttable.cir
 fasttable2.cir
 sinewave.dat
+sinewave2-1.dat
 table.cir
 table2.cir
 table3.cir
 table4.cir
+table5.cir
+table6.cir
+table7.cir
+table8.cir
 tags
 wodicka.cir
 wodicka2.cir

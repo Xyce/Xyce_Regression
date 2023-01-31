@@ -31,6 +31,9 @@ $GOLDPRN=$ARGV[4];
 $DIAGFILE=$CIRFILE;
 $DIAGFILE=~s/\..*$/.dia/;
 
+# discontinuity limite used in the circuit
+my $dlimit=1.0e-2;
+
 $retval = -1;
 $retval=$Tools->wrapXyce($XYCE,$CIRFILE);
 if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
@@ -74,30 +77,42 @@ while( <DIAGF> )
     $blockType = 'I';
     next;
   }
-  
+  elsif( $word[0] eq "Discontinuity")
+  {
+    $blockType = 'D';
+    next;
+  }
+ 
   if( ($blockType eq 'E') && ($#word < 3))
   {
-    if( abs($vals[$#vals]) < 6.0 )
-    {
-      $retval = 2;
-      print( "Found a value under the limit used in the circuit: $word[$#word]\n");
-      print(  "Exit code = $retval\n" );
-      exit 2;
-    }
+    $retval = 2;
+    print( "Found an extrema output block when there shouldn't be one: $word[0] $word[$#word]\n");
+    print(  "Exit code = $retval\n" );
+    exit 2;
   }
   if( $blockType eq 'V')
   {
     $retval = 2;
-    print( "Found a voltage output block when there shouldn't be one: $blocktype $word[0]\n");
+    print( "Found a voltage output block when there shouldn't be one: $word[0] $word[$#word]\n");
     print(  "Exit code = $retval\n" );
     exit 2;
   }
   if( $blockType eq 'I')
   {
     $retval = 2;
-    print( "Found a current output block when there shouldn't be one: $word[0]\n");
+    print( "Found a current output block when there shouldn't be one: $word[0] $word[$#word]\n");
     print(  "Exit code = $retval\n" );
     exit 2;
+  }
+  if( $blockType eq 'D')
+  {
+    if( abs($vals[$#vals]) < $dlimit )
+    {
+      $retval = 2;
+      print( "Found a value under the limit used in the circuit: $word[$#word]\n");
+      print(  "Exit code = $retval\n" );
+      exit 2;
+    }
   }
   $i = $i + 1;
 }

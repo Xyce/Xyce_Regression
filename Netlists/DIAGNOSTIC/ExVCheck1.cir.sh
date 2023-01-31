@@ -77,7 +77,7 @@ while( <DIAGF> )
   
   if( ($blockType eq 'E') && ($#word < 3))
   {
-    if( abs($vals[$#vals]) < 6.0 )
+    if( abs($vals[$#vals]) < 7.0 )
     {
       $retval = 2;
       print( "Found a value under the limit used in the circuit: $word[$#word]\n");
@@ -87,15 +87,18 @@ while( <DIAGF> )
   }
   if( $blockType eq 'V')
   {
-    $retval = 2;
-    print( "Found a voltage output block when there shouldn't be one: $blocktype $word[0]\n");
-    print(  "Exit code = $retval\n" );
-    exit 2;
+    if( abs($vals[$#vals]) < 5.0 )
+    {
+      $retval = 2;
+      print( "Found a value under the limit used in the circuit: $word[$#word]\n");
+      print(  "Exit code = $retval\n" );
+      exit 2;
+    }
   }
   if( $blockType eq 'I')
   {
     $retval = 2;
-    print( "Found a current output block when there shouldn't be one: $word[0]\n");
+    print( "Found a current output block when there shouldn't be one: $word[0] $word[$#word]\n");
     print(  "Exit code = $retval\n" );
     exit 2;
   }

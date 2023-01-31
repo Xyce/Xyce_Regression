@@ -11,13 +11,12 @@ use Cwd;
 
 $XYCE=$ARGV[0];
 
-# This test exists SOLELY to verify that Xyce/ADMS now correctly
-# handles case statements with a single-line, probe-dependent
-# assignment in each case, which was the subject of issue 398 on
-# gitlab-ex.
+# This test exists SOLELY to verify that Xyce/ADMS now correctly handles
+# use of analog function calls inside noise contributions, which was the
+# subject of issue 396 on gitlab-ex.
 
 # We only test that buildxyceplugin works without crashing.  Prior to the fix
-# of issue 398, it would bomb in the C++ compilation of the module.
+# of issue 396, it would bomb in the C++ compilation of the module.
 
 # We do not attempt to run the plugin or compare it to anything, as that
 # was not the focus of the issue report.
@@ -116,19 +115,19 @@ if ($MPIRUN ne "")
 }
 
 #Hooray, we can run this test.
-$VERILOG_SOURCES="toys/Issue398.va";
+$VERILOG_SOURCES="toys/integer_var.va toys/integer_var2.va";
 
 print "Building the plugin...\n";
 
-$result=system("$BUILDXYCEPLUGIN -o toys_Issue398 $VERILOG_SOURCES .");
+$result=system("$BUILDXYCEPLUGIN -o toys_Backlog106 $VERILOG_SOURCES .");
 if ($result != 0)
 {
-    print "Plugin creation failed, see Issue398_buildxyceplugin.log\n";
-    system("mv buildxyceplugin.log Issue398_buildxyceplugin.log");
+    print "Plugin creation failed, see Backlog106_buildxyceplugin.log\n";
+    system("mv buildxyceplugin.log Backlog106_buildxyceplugin.log");
     print "Exit code = 1";
     exit 1;
 }
-$PLUGINPATH="$TESTROOT/toys_rlc.so";
+$PLUGINPATH="$TESTROOT/toys_Backlog106.so";
 print "The plugin path is $PLUGINPATH\n";
 
 print "Exit code = 0\n"; exit 0;

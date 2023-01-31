@@ -5,22 +5,17 @@ use Cwd;
 # The input arguments to this script are:
 # $ARGV[0] = location of Xyce binary
 # $ARGV[1] = location of xyce_verify.pl script
-# $ARGV[2] = location of compare script
+# $ARGV[2] = location of compare script 
 # $ARGV[3] = location of circuit file to test
 # $ARGV[4] = location of gold standard prn file
 
 $XYCE=$ARGV[0];
+$XYCE_VERIFY=$ARGV[1];
+$XYCE_COMPARE=$ARGV[2];
+$CIRFILE=$ARGV[3];
+#$GOLDPRN=$ARGV[4];
 
-# This test exists SOLELY to verify that Xyce/ADMS now correctly
-# handles case statements with a single-line, probe-dependent
-# assignment in each case, which was the subject of issue 398 on
-# gitlab-ex.
-
-# We only test that buildxyceplugin works without crashing.  Prior to the fix
-# of issue 398, it would bomb in the C++ compilation of the module.
-
-# We do not attempt to run the plugin or compare it to anything, as that
-# was not the focus of the issue report.
+$GOLDPRN=$CIRFILE.".prn.gs";
 
 # At this point we need to make sure we've actually been given a Xyce binary
 # that is properly installed (via "make install"), and that the buildxyceplugin
@@ -114,22 +109,54 @@ if ($MPIRUN ne "")
 {
     $XYCE="$MPIRUN $XYCE";
 }
-
 #Hooray, we can run this test.
-$VERILOG_SOURCES="toys/Issue398.va";
+$VERILOG_SOURCES="toys/testBacklog527_2.va";
 
 print "Building the plugin...\n";
 
-$result=system("$BUILDXYCEPLUGIN -o toys_Issue398 $VERILOG_SOURCES .");
+$result=system("$BUILDXYCEPLUGIN -o testBacklog527_2 $VERILOG_SOURCES .");
 if ($result != 0)
 {
-    print "Plugin creation failed, see Issue398_buildxyceplugin.log\n";
-    system("mv buildxyceplugin.log Issue398_buildxyceplugin.log");
+    print "Plugin creation failed, see ${CIRFILE}_buildxyceplugin.log\n";
+    system("mv buildxyceplugin.log ${CIRFILE}_buildxyceplugin.log");
     print "Exit code = 1";
     exit 1;
 }
-$PLUGINPATH="$TESTROOT/toys_rlc.so";
+$PLUGINPATH="$TESTROOT/testBacklog527_2.so";
 print "The plugin path is $PLUGINPATH\n";
 
-print "Exit code = 0\n"; exit 0;
+
+# Now we can run the CIRFILE
+$result=system("$XYCE -plugin $PLUGINPATH $CIRFILE > $CIRFILE.out 2> $CIRFILE.err");
+if ($result != 0)
+{
+    if ($result & 127)
+    {
+        print "Exit code = 13\n";
+        printf STDERR "Xyce crashed with signal %d on file %s\n",
+            ($result&127),$CIRFILE;
+        exit 13;
+    }
+    else
+    {
+        print "Exit code = 10\n";
+        printf STDERR "Xyce exited with exit code %d on %s\n",
+            $result>>8,$CIRFILE;
+        exit 10;
+    }
+}
+
+# Now compare to our gold standard
+$result=system("$XYCE_VERIFY $CIRFILE $GOLDPRN $CIRFILE.prn > $CIRFILE.prn.out 2>$CIRFILE.prn.err");
+if ($result == 0)
+{
+    $retval=0;
+}
+else
+{
+    print "Failed comparison to gold standard\n";
+    $retval=2;
+}
+
+print "Exit code = $retval\n"; exit $retval;
 

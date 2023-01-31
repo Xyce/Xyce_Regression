@@ -16,7 +16,7 @@ X1 node1 node3 node2 0 CD4049UB
 .tran .05U 500U NOOP
 
 .options timeint method=gear abstol=1.0e-7 reltol=1.0e-6
-.options diagnostic EXTREMALIMIT=6.0 diagfilename=ExtremaCheck1.dia
+.options diagnostic EXTREMALIMIT=7.0 VOLTAGELIMIT=5.0 diagfilename=ExVCheck1.dia
 
 *COMP V(8) reltol=0.02
 .print tran precision=10 width=19 {V(node8)+4} {v(node5)+4} {V(node1)+4} {V(node3)+4}
