@@ -42,5 +42,6 @@ R7 7 0 500
 .enddata
 
 .TRAN 0.01S 30S
-.PRINT TRAN V(*)
+.PRINT TRAN V(7)  V(4)  V(5)  V(6)
+
 .END 
