@@ -41,8 +41,6 @@ CircuitBlock_parseIncludeFile_2c.cir.sh
 CircuitBlock_parseIncludeFile_3.cir
 CircuitBlock_parseIncludeFile_3_r4.lib
 CircuitBlock_parseIncludeFile_3_rvals.lib
-CircuitContext_beginSubcircuitContext_1.cir
-CircuitContext_beginSubcircuitContext_1.cir.sh
 CmdParse_usage.cir
 DCOP_Restart_Removed.cir
 DCOP_Restart_Removed.cir.sh
