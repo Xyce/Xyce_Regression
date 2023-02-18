@@ -1,4 +1,4 @@
-serial, nightly,  parallel
-valgrind
+serial, nightly,  parallel, expression
+valgrind, subckt
 inductor
 bsrc
