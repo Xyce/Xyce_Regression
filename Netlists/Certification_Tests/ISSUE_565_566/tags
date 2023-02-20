@@ -1,4 +1,4 @@
-serial, nightly
+serial, nightly, issue565, issue566
 vpwl, pwl
 bsrc
 abm

@@ -24,12 +24,7 @@ $Tools = XyceRegression::Tools->new();
 
 # these search strings are supposed to occur one right after the other in the
 # error output.
-@searchstrings = ( "Subcircuit name required",
-                   "At least one node required for subcircuit INV2",
-                   "Ground node '0' appears in \.SUBCKT line",
-                   "Parameter name X& contains illegal character[(]s[)]",
-                   "Parameter name TEMP not allowed in subcircuit parameter list for subcircuit"
-);
+@searchstrings = (  "At least one node required for subcircuit testbad" );
 
 $XYCE=$ARGV[0];
 #$XYCE_VERIFY=$ARGV[1];
@@ -37,10 +32,7 @@ $XYCE=$ARGV[0];
 $CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
 
-print "Testing $CIRFILE\n";
-
-$retval = $Tools->runAndCheckError($CIRFILE,$XYCE,@searchstrings);
-print "Exit code = $retval\n";
-exit $retval
+$retval = $Tools->runAndCheckWarning($CIRFILE,$XYCE,@searchstrings);
+print "Exit code = $retval\n"; exit $retval;
 
 
