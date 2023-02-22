@@ -15,9 +15,8 @@ r2 b c 1
 .ends
 
 *
-* NOTE this next line is bad because its a malformed subcircuit
-* However, it is empty and unused, so at the most it can produce
-* a warning.  Not an error. 
+* NOTE this next line is bad because its a malformed subcircuit with no name.
+* It will still emit an error even though the subcircuit is unused (clearly). 
 *
 .subckt 
 r1 a b 1
