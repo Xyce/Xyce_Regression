@@ -1,4 +1,4 @@
-testing of complex expressions on PRINT line
+testing of complex expressions in parameters and on the .PRINT line
 
 V1 1 0 1.0
 R1 1 0 1e3

@@ -1,4 +1,4 @@
-testing of complex expressions on PRINT line
+testing of complex expressions in parameters and on the .PRINT line
 
 Isrc 1 0 AC 1 0 sin(0 1 1e+5 0 0)
 R1 1 0 1e3
