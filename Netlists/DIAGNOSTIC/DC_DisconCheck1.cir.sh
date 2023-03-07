@@ -82,6 +82,11 @@ while( <DIAGF> )
     $blockType = 'D';
     next;
   }
+  elsif( $word[0] eq "Analysis")
+  {
+    $blockType = 'S';
+    next;
+  }
  
   if( ($blockType eq 'E') && ($#word < 3))
   {
