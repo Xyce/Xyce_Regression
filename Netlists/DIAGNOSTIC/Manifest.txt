@@ -24,6 +24,10 @@ DC_VICheck1.cir
 DC_VICheck1.cir.sh
 DC_DisconCheck1.cir
 DC_DisconCheck1.cir.sh
+DC_GStep.cir
+DC_GStep.cir.sh
+DC_Ring51.cir
+DC_Ring51.cir.sh
 DisconCheck1.cir
 DisconCheck1.cir.sh
 DisconCheck2.cir
