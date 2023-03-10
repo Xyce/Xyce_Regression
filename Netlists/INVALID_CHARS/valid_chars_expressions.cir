@@ -44,26 +44,28 @@
 + {I(R3+)} {P(R3+)} {W(R3+)} {I(R-4)}
 + {IC(Q1+)} {IB(Q1+)} {IE(Q1+)}
 *
+* Excluding the current thru I(V*) and I(V1*) because this confuses the regex capability
+*
 + {I(v1`)} {I(v1~)} {I(v1!)} {I(v1@)} {I(v1#)}
-+ {I(v1$)} {I(v1%)} {I(v1^)} {I(v1&)} {I(v1*)}
++ {I(v1$)} {I(v1%)} {I(v1^)} {I(v1&)} 
 + {I(v1-)} {I(v1_)} {I(v1+)} {I(v1[)} {I(v1])}
 + {I(v1|)} {I(v1\)} {I(v1<)} {I(v1>)} {I(v1.)}
 + {I(v1/)}
 *
 + {I(v`)} {I(v~)} {I(v!)} {I(v@)} {I(v#)}
-+ {I(v$)} {I(v%)} {I(v^)} {I(v&)} {I(v*)}
++ {I(v$)} {I(v%)} {I(v^)} {I(v&)} 
 + {I(v-)} {I(v_)} {I(v+)} {I(v[)} {I(v])}
 + {I(v|)} {I(v\)} {I(v<)} {I(v>)} {I(v.)}
 + {I(v/)}
 *
 + I(v1`) I(v1~) I(v1!) I(v1@) I(v1#)
-+ I(v1$) I(v1%) I(v1^) I(v1&) I(v1*)
++ I(v1$) I(v1%) I(v1^) I(v1&) 
 + I(v1-) I(v1_) I(v1+) I(v1[) I(v1])
 + I(v1|) I(v1\) I(v1<) I(v1>) I(v1.)
 + I(v1/)
 *
 + I(v`) I(v~) I(v!) I(v@) I(v#)
-+ I(v$) I(v%) I(v^) I(v&) I(v*)
++ I(v$) I(v%) I(v^) I(v&) 
 + I(v-) I(v_) I(v+) I(v[) I(v])
 + I(v|) I(v\) I(v<) I(v>) I(v.)
 + I(v/)
