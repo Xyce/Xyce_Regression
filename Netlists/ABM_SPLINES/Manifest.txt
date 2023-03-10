@@ -2,8 +2,17 @@ akima.cir
 akima2.cir
 barycentric.cir
 barycentric2.cir
+bigPulse.dat
 cubic.cir
 cubic2.cir
+downsample1.cir
+downsample1.cir.tags
+downsample2.cir
+downsample2.cir.tags
+downsample3.cir
+downsample3.cir.tags
+downsample4.cir
+downsample4.cir.tags
 fasttable.cir
 fasttable2.cir
 sinewave.dat
