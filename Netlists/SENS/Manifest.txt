@@ -95,6 +95,11 @@ diodeTran.cir.sh
 diodeTranAdjoint.cir
 diodeTranAdjoint.cir.sh
 diodeTranAdjoint.cir.tags
+diodeTranAdjointScaled.cir
+diodeTranAdjointScaled.cir.sh
+diodeTranAdjointScaled.cir.tags
+diodeTranScaled.cir
+dummyDiodeTranScaled.cir
 diodeTranTrap.cir
 diodeTranAdjointTrap.cir
 diodeTranAdjointTrap.cir.sh
