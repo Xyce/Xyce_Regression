@@ -6,4 +6,6 @@ testmaxstep.cir
 testmaxstep.cir.sh
 testmaxstep_gear.cir
 testmaxstep_gear.cir.sh
+teststep1.cir
+teststep1.cir.sh
 tags
