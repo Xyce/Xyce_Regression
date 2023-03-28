@@ -5,9 +5,6 @@
 
 .print tran v(4)
 
-*.options loca MAXNLITERS=200 MINSTEPSIZE=1e-12
-.options nonlin searchmethod=1
-
 *Voltage Source to OP Amplifier
 V1 1 0 3.3
 
