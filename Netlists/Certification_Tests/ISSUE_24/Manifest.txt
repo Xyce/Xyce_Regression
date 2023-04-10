@@ -1,0 +1,6 @@
+exclude
+localVariation1.cir
+localVariation1.cir.sh
+localVariation1.cir.tags
+localVariation1Ref.cir
+tags

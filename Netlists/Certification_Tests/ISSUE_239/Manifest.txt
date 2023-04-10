@@ -12,6 +12,10 @@ bsim3_test3.cir
 bsim3_test3.cir.sh
 bsim3_test3.cir.tags
 bsim3_test3Ref.cir
+bsim3_test4.cir
+bsim3_test4.cir.sh
+bsim3_test4.cir.tags
+bsim3_test4Ref.cir
 bsim4_test1.cir
 bsim4_test1.cir.sh
 bsim4_test1Ref.cir

@@ -37,7 +37,7 @@ if [ $? -eq 0 ]
 then
     echo "DOING VALGRIND RUN INSTEAD OF REAL RUN!" >&2
     `$XYCE_VERIFY $CIR1 $CIR1.prn $CIR1.prn > $CIR1.prn.out 2>&1 $CIR1.prn.err`
-    if [ $? -ne 0]
+    if [ $? -ne 0 ]
     then
         echo "Exit code = 2"
         exit 2

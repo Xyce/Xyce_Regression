@@ -9,6 +9,7 @@ valid_chars_ydevice_names.cir
 valid_chars_ydevice_names.cir.sh
 valid_chars_ydevice_names.cir.tags
 valid_chars_expressions.cir
+valid_chars_expressions.cir.sh
 valid_chars_expressions.cir.tags
 valid_chars_ac_expressions.cir
 valid_chars_ac_expressions.cir.sh

@@ -1,2 +1,2 @@
-serial, nightly,  parallel, issue195, random
+serial, nightly,  parallel, issue195, random, issue24
 valgrind

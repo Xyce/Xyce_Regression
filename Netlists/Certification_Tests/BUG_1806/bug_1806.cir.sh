@@ -40,6 +40,24 @@ if [ "$?" -ne "0" ]; then
   exit 10
 fi
 
+# this is a perl fragment, not a shell script fragment.  Commenting out for how.
+# If this is a VALGRIND run, we don't do our normal verification, we
+# merely run "valgrind_check.sh", instead of the rest of this .sh file, and then exit
+#if ($XYCE_VERIFY =~ m/valgrind_check/)
+#{
+  #print STDERR "DOING VALGRIND RUN INSTEAD OF REAL RUN!";
+  #if (system("$XYCE_VERIFY $CIR1 junk $CIR1.prn > $CIR1.prn.out 2>&1 $CIR1.prn.err"))
+  #{
+    #print "Exit code = 2 \n";
+    #exit 2;
+  #}
+  #else
+  #{
+    #print "Exit code = 0 \n";
+    #exit 0;
+  #}
+#}
+
 $XYCE_VERIFY $CIR1 $CIR2.prn $CIR1.prn  > $myname.prn.out 2> $myname.prn.err
 RETVAL=$?
 if [ "$RETVAL" -ne "0" ]; then

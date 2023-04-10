@@ -5,7 +5,8 @@ COMPARATOR - BSIM3 Transient Analysis
 * is applied to a scaled parameter, that it does the right 
 * thing and applies the scaling every time it is updated.
 *
-.param l1='agauss(1.2,0.12,1)'
+.param distribution='agauss(1.2,0.12,1)'
+.param l1='distribution'
 .param l2=3.6
 .param w1=3.6
 .param w2=1.8

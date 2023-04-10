@@ -7,6 +7,8 @@ op-raw-override.cir.sh
 tags
 tran-csv.cir
 tran-csv.cir.sh
+tran-csv-snapshots.cir
+tran-csv-snapshots.cir.sh
 tran-homotopy-prn-file.cir
 tran-homotopy-prn-file.cir.sh
 tran-homotopy-prn.cir

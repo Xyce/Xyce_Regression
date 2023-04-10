@@ -16,6 +16,10 @@
 * This also tests the case of using an operator name (e.g., V)
 * as the variable name in a .FUNC statement.
 *
+* 3/8/2023 - this test is expanded to include currents from voltage 
+* sources that have funny characters in their names.  This was a use 
+* case that wasn't tested before.
+*
 **************************************************************
 .DC V3 1 1 1
 .print DC WIDTH=6 PRECISION=1 v(3) {v(1`)} {v(1~)} {v(1!)} {v(1@)} 
@@ -39,7 +43,33 @@
 + v(X1:<) v(X1:>) v(X1:.) v(X1:/) 
 + {I(R3+)} {P(R3+)} {W(R3+)} {I(R-4)}
 + {IC(Q1+)} {IB(Q1+)} {IE(Q1+)}
-
+*
+* Excluding the current thru I(V*) and I(V1*) because this confuses the regex capability
+*
++ {I(v1`)} {I(v1~)} {I(v1!)} {I(v1@)} {I(v1#)}
++ {I(v1$)} {I(v1%)} {I(v1^)} {I(v1&)} 
++ {I(v1-)} {I(v1_)} {I(v1+)} {I(v1[)} {I(v1])}
++ {I(v1|)} {I(v1\)} {I(v1<)} {I(v1>)} {I(v1.)}
++ {I(v1/)}
+*
++ {I(v`)} {I(v~)} {I(v!)} {I(v@)} {I(v#)}
++ {I(v$)} {I(v%)} {I(v^)} {I(v&)} 
++ {I(v-)} {I(v_)} {I(v+)} {I(v[)} {I(v])}
++ {I(v|)} {I(v\)} {I(v<)} {I(v>)} {I(v.)}
++ {I(v/)}
+*
++ I(v1`) I(v1~) I(v1!) I(v1@) I(v1#)
++ I(v1$) I(v1%) I(v1^) I(v1&) 
++ I(v1-) I(v1_) I(v1+) I(v1[) I(v1])
++ I(v1|) I(v1\) I(v1<) I(v1>) I(v1.)
++ I(v1/)
+*
++ I(v`) I(v~) I(v!) I(v@) I(v#)
++ I(v$) I(v%) I(v^) I(v&) 
++ I(v-) I(v_) I(v+) I(v[) I(v])
++ I(v|) I(v\) I(v<) I(v>) I(v.)
++ I(v/)
+*
 v3  3 0 1
 r3+ 3 0 2
 v4  4 0 1
@@ -48,96 +78,183 @@ X1 2 0 sub1
 
 * test 1 followed by the special character
 v1` 1` 0 1
+r1` 1` 0 1
 v1~ 1~ 0 1
+r1~ 1~ 0 1
 v1! 1! 0 1
+r1! 1! 0 1
 v1@ 1@ 0 1
+r1@ 1@ 0 1
 v1# 1# 0 1
+r1# 1# 0 1
 v1$ 1$ 0 1
+r1$ 1$ 0 1
 v1% 1% 0 1
+r1% 1% 0 1
 v1^ 1^ 0 1
+r1^ 1^ 0 1
 v1& 1& 0 1
+r1& 1& 0 1
 v1* 1* 0 1
+r1* 1* 0 1
 v1- 1- 0 1
+r1- 1- 0 1
 v1_ 1_ 0 1
+r1_ 1_ 0 1
 v1+ 1+ 0 1
+r1+ 1+ 0 1
 v1[ 1[ 0 1
+r1[ 1[ 0 1
 v1] 1] 0 1
+r1] 1] 0 1
 v1| 1| 0 1
+r1| 1| 0 1
 v1\ 1\ 0 1
+r1\ 1\ 0 1
 v1< 1< 0 1
+r1< 1< 0 1
 v1> 1> 0 1
+r1> 1> 0 1
 v1. 1. 0 1
+r1. 1. 0 1
 v1/ 1/ 0 1
+r1/ 1/ 0 1
 
 * device and node names with just the special character
 v` ` 0 1
+r` ` 0 1
 v~ ~ 0 1
+r~ ~ 0 1
 v! ! 0 1
+r! ! 0 1
 v@ @ 0 1
+r@ @ 0 1
 v# # 0 1
+r# # 0 1
 v$ $ 0 1
+r$ $ 0 1
 v% % 0 1
+r% % 0 1
 v^ ^ 0 1
+r^ ^ 0 1
 v& & 0 1
+r& & 0 1
 v* * 0 1
+r* * 0 1
 v- - 0 1
+r- - 0 1
 v_ _ 0 1
+r_ _ 0 1
 v+ + 0 1
+r+ + 0 1
 v[ [ 0 1
+r[ [ 0 1
 v] ] 0 1
+r] ] 0 1
 v| | 0 1
+r| | 0 1
 v\ \ 0 1
+r\ \ 0 1
 v< < 0 1
+r< < 0 1
 v> > 0 1
+r> > 0 1
 v. . 0 1
+r. . 0 1
 v/ / 0 1
+r/ / 0 1
 
 * repeat all tests, but in a subcircuit
 .SUBCKT sub1 a b
 R1 a b 1
+* test 1 followed by the special character
 v1` 1` 0 1
+r1` 1` 0 1
 v1~ 1~ 0 1
+r1~ 1~ 0 1
 v1! 1! 0 1
+r1! 1! 0 1
 v1@ 1@ 0 1
+r1@ 1@ 0 1
 v1# 1# 0 1
+r1# 1# 0 1
 v1$ 1$ 0 1
+r1$ 1$ 0 1
 v1% 1% 0 1
+r1% 1% 0 1
 v1^ 1^ 0 1
+r1^ 1^ 0 1
 v1& 1& 0 1
+r1& 1& 0 1
 v1* 1* 0 1
+r1* 1* 0 1
 v1- 1- 0 1
+r1- 1- 0 1
 v1_ 1_ 0 1
+r1_ 1_ 0 1
 v1+ 1+ 0 1
+r1+ 1+ 0 1
 v1[ 1[ 0 1
+r1[ 1[ 0 1
 v1] 1] 0 1
+r1] 1] 0 1
 v1| 1| 0 1
+r1| 1| 0 1
 v1\ 1\ 0 1
+r1\ 1\ 0 1
 v1< 1< 0 1
+r1< 1< 0 1
 v1> 1> 0 1
+r1> 1> 0 1
 v1. 1. 0 1
+r1. 1. 0 1
 v1/ 1/ 0 1
+r1/ 1/ 0 1
 
+* device and node names with just the special character
 v` ` 0 1
+r` ` 0 1
 v~ ~ 0 1
+r~ ~ 0 1
 v! ! 0 1
+r! ! 0 1
 v@ @ 0 1
+r@ @ 0 1
 v# # 0 1
+r# # 0 1
 v$ $ 0 1
+r$ $ 0 1
 v% % 0 1
+r% % 0 1
 v^ ^ 0 1
+r^ ^ 0 1
 v& & 0 1
+r& & 0 1
 v* * 0 1
+r* * 0 1
 v- - 0 1
+r- - 0 1
 v_ _ 0 1
+r_ _ 0 1
 v+ + 0 1
+r+ + 0 1
 v[ [ 0 1
+r[ [ 0 1
 v] ] 0 1
+r] ] 0 1
 v| | 0 1
+r| | 0 1
 v\ \ 0 1
+r\ \ 0 1
 v< < 0 1
+r< < 0 1
 v> > 0 1
+r> > 0 1
 v. . 0 1
+r. . 0 1
 v/ / 0 1
+r/ / 0 1
+
 .ENDS
 
 * Test multi-letter lead current designators.  
