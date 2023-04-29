@@ -12,8 +12,12 @@ Inverter example circuit
 * parameters
 .param vp     = 1.0v
 *.param lmin   = 0.10
-.param lmin   = 'agauss(0.10,0.01,1)'
-.param wmin   = 0.12
+
+.param scalar = 1.0
+.param lminScale   = 'agauss(0.10,0.01,1)'
+.param wminScale   = 0.12
+.param lmin   = 'lminScale*scalar'
+.param wmin   = 'wminScale*scalar'
 .param plmin  = 'lmin'
 .param nlmin  = 'lmin'
 .param wpmin  = 'wmin'
