@@ -19,6 +19,7 @@ Arguments:
   -hspice-ext  <option>       apply hspice compatibility features during parsing.  option=all applies them all
   -redefined_params <option>  set option for redefined .params as ignore (use last), usefirst, warn or error
   -subckt_multiplier <option> set option to true(default) or false to apply implicit subcircuit multipliers
+  -local_variation <option>   set option to true(default) or false to enable local variation in UQ analysis
   -delim <TAB|COMMA|string>   set the output file field delimiter
   -o <basename>               <basename> for the output file(s)
   -l <path>                   place the log output into <path>, "cout" to log to stdout
