@@ -2,10 +2,16 @@ Local Variation test
 *
 V1 1 0 1.0
 
-.param resval=aunif(1000,400) 
-r1 1 2 resval
-r2 2 3 resval
-r3 3 0 resval
+.param random_value=aunif(1000,400)
+
+.param value1=random_value
+.param value2=random_value
+.param value3=random_value
+
+
+r1 1 2 value1
+r2 2 3 value2
+r3 3 0 value3
 
 .dc V1 1 1 1
 .print dc precision=12 width=21 v(1) v(2) v(3)

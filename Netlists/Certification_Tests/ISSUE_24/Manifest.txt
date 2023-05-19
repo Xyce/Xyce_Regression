@@ -3,4 +3,16 @@ localVariation1.cir
 localVariation1.cir.sh
 localVariation1.cir.tags
 localVariation1Ref.cir
+localVariation2.cir
+localVariation2.cir.sh
+localVariation2.cir.tags
+localVariation2Ref.cir
+localVariation3.cir
+localVariation3.cir.sh
+localVariation3.cir.tags
+localVariation3Ref.cir
+localVariation4.cir
+localVariation4.cir.sh
+localVariation4.cir.tags
+localVariation4Ref.cir
 tags

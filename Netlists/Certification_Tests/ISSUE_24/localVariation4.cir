@@ -2,13 +2,15 @@ Local Variation test
 *
 V1 1 0 1.0
 
-.param resval=aunif(1000,400) 
-r1 1 2 resval
-r2 2 3 resval
-r3 3 0 resval
+.param c=2
+.param myvar=c+rand()
+
+
+r1 1 2 myvar
+r2 2 0 1.0
 
 .dc V1 1 1 1
-.print dc precision=12 width=21 v(1) v(2) v(3)
+.print dc precision=12 width=21 v(1) v(2) 
 
 .sampling useExpr=true
 
@@ -16,6 +18,8 @@ r3 3 0 resval
 + outputs={v(1)+0.2}
 + sample_type=lhs
 + stdoutput=false
+
+.result {r1:R}
 
 .END
 
