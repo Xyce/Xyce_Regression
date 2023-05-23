@@ -15,4 +15,12 @@ localVariation4.cir
 localVariation4.cir.sh
 localVariation4.cir.tags
 localVariation4Ref.cir
+localVariation5.cir
+localVariation5Ref.cir
+localVariation5.cir.sh
+localVariation5.cir.tags
+localVariation6.cir
+localVariation6Ref.cir
+localVariation6.cir.sh
+localVariation6.cir.tags
 tags
