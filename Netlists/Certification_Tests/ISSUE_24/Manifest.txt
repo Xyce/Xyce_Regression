@@ -23,4 +23,12 @@ localVariation6.cir
 localVariation6Ref.cir
 localVariation6.cir.sh
 localVariation6.cir.tags
+localVariation7.cir
+localVariation7Ref.cir
+localVariation7.cir.sh
+localVariation7.cir.tags
+localVariation8.cir
+localVariation8Ref.cir
+localVariation8.cir.sh
+localVariation8.cir.tags
 tags
