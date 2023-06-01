@@ -1,5 +1,6 @@
 gain-stage1-bsim4p7.cir
 gain-stage1-bsim4p7.cir.sh
+gain-stage1-bsim4p7.cir.tags
 modelcard.noise.nmos
 test1.cir
 test2.cir

@@ -4,4 +4,5 @@ DiodeClipper_AC.cir
 DiodeClipper_AC.cir.sh
 DiodeClipper_noise.cir
 DiodeClipper_noise.cir.sh
+DiodeClipper_noise.cir.tags
 tags
