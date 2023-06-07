@@ -32,6 +32,7 @@ lead_ind_trap.cir
 lead_ind_trap.cir.sh
 lead_ind_noise.cir
 lead_ind_noise.cir.sh
+lead_ind_noise.cir.tags
 lead_mil_gear.cir
 lead_mil_gear.cir.sh
 lead_mil_trap.cir

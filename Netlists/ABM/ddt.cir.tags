@@ -1,4 +1,4 @@
-serial, nightly, analytic
+serial, nightly, analytic, expression
 valgrind
 bsrc
 abm

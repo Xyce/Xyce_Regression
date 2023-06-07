@@ -26,6 +26,20 @@ print( names )
 print( "return value from getDACDeviceNames is %d" % result )
 print( DACnames )
 
+if( len(DACnames) == 0):
+  # no names retuned.  This is an error so quit now
+  print("ERROR no DAC names returned.  ")
+  xyceObj.close()
+  exit( -1)
+  
+if( DACnames[0] != 'YDAC!DAC_DRIVER1'):
+  # incorrect name was returned.  This is an error so quit now
+  print("ERROR Incorrect DAC name returned.  ")
+  print( DACnames[0] )
+  xyceObj.close()
+  exit( -1)
+  
+
 #
 # A bug in the DAC device (put there for Habinero support) only takes
 # the last time in the time voltage pairs list if the current sim time is 0.

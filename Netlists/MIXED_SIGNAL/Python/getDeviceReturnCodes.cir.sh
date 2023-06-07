@@ -88,7 +88,6 @@ else
                   "\\['UBUF!BUF12'\\]",
                   "Netlist warning: No devices from model group YDAC found in netlist",
                   "return value from getDeviceNames for YDAC model group is 0",
-                  "Netlist warning: No DAC devices found in netlist",
                   "return value from getDACDeviceNames is 0",
                   "Netlist warning: No devices from model group BOGO found in netlist",
                   "return value from getDeviceNames for BOGO model group is 0",
