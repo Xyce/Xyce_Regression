@@ -68,6 +68,7 @@ IC_No_Args_Warning.cir.sh
 IC_No_Args_Warning.cir.tags
 Invalid_TimeInt.cir
 Invalid_TimeInt.cir.sh
+Invalid_TimeInt.cir.tags
 checkpt0.2
 NODESET_At_Missing_Node_Warning.cir
 NODESET_At_Missing_Node_Warning.cir.sh
