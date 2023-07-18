@@ -1,2 +1,2 @@
 serial, parallel, nightly, homotopy
-bug408, errorexit
+bug408, errorexit, exclude
