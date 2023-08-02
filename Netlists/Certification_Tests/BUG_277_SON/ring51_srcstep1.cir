@@ -2,7 +2,7 @@
 
 vin in out 2 pulse 2 0 0.1n 5n 1 1 1
 *vin in out 2 pulse 2 0 0.1n 5n 1 1 1
-vdd dd 0 2 pwl 0 2.0
+vdd dd 0 pwl 0 2.0
 *vdd dd 0 2.0
 *dc 0 pulse 0 2 0 1n 1 1 1
 vss ss 0 dc 0
