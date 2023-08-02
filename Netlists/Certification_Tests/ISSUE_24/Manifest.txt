@@ -31,4 +31,12 @@ localVariation8.cir
 localVariation8Ref.cir
 localVariation8.cir.sh
 localVariation8.cir.tags
+issue631a.cir
+issue631a.cir.sh
+issue631a.cir.tags
+issue631a_Ref.cir
+issue631b.cir
+issue631b.cir.sh
+issue631b.cir.tags
+issue631b_Ref.cir
 tags
