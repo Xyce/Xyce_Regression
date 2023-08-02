@@ -10,7 +10,7 @@ RIN     IN      0       1K
 
 * input node.
 *                                    v1  v2  td  tr  tf  pw  per
-VIN1  IN      0  PULSE (0.0V 3.0V 1us 50ns 50ns 1us 2us)
+VIN1  IN      0   {vddValue} PULSE (0.0V 3.0V 1us 50ns 50ns 1us 2us)
 R1    VOUT  0  500
 C2    VOUT  0  0.1p
 
