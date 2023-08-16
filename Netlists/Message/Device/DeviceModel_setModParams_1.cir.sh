@@ -24,9 +24,13 @@ $Tools = XyceRegression::Tools->new();
 
 # these search strings are supposed to occur one right after the other in the
 # error output.
-@searchstrings = ( "Duplicate model specification implies parameter",
-                   "interpolation."
-);
+#@searchstrings = ( "Duplicate model specification implies parameter",
+                   #"interpolation.");
+@searchstrings = ( "Netlist error in file DeviceModel_setModParams_1.cir at or near line 8",
+ "Device model DA: The temperature interpolation capability, invoked by",
+ "TEMPMODEL=QUADRATIC in a .MODEL statement, is no longer a supported feature",
+ "in Xyce.  If TEMPMODEL was not specified, this unsupported feature is implied",
+ "by duplicate model statements.");
 
 $XYCE=$ARGV[0];
 #$XYCE_VERIFY=$ARGV[1];
