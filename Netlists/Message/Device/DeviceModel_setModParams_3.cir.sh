@@ -30,8 +30,8 @@ $Tools = XyceRegression::Tools->new();
  "Netlist error in file DeviceModel_setModParams_3.cir at or near line 14",
  "Device model CD4020: The temperature interpolation capability, invoked by",
  "TEMPMODEL=QUADRATIC in a .MODEL statement, is no longer a supported feature",
- "in Xyce.  If TEMPMODEL was not specified, this unsupported feature is implied",
- "by duplicate model statements.");
+ "in Xyce.  If TEMPMODEL was not specified, this unsupported feature is also",
+ "implied by duplicate model statements");
 
 $XYCE=$ARGV[0];
 #$XYCE_VERIFY=$ARGV[1];
