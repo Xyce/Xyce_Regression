@@ -34,12 +34,16 @@ DeviceBlock_extractNodes_2.cir
 DeviceBlock_extractNodes_2.cir.sh
 DeviceModel_setModParams_1.cir
 DeviceModel_setModParams_1.cir.sh
+DeviceModel_setModParams_1.cir.tags
 DeviceModel_setModParams_2.cir
 DeviceModel_setModParams_2.cir.sh
+DeviceModel_setModParams_2.cir.tags
 DeviceModel_setModParams_3.cir
 DeviceModel_setModParams_3.cir.sh
+DeviceModel_setModParams_3.cir.tags
 DeviceModel_setModParams_4.cir
 DeviceModel_setModParams_4.cir.sh
+DeviceModel_setModParams_4.cir.tags
 DeviceBlock_extractSubcircuitInstanceData.cir
 DeviceBlock_extractSubcircuitInstanceData.cir.sh
 DeviceEntity_setDefaultParam.cir

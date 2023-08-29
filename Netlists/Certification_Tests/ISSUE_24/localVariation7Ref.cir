@@ -1,5 +1,5 @@
 THIS CIRCUIT TESTS THE BSIM4 (MOS LEVEL=14) MODEL AS A CHAIN OF INVERTERS IN SERIES
-* This is a chain of 10 1-input CMOS inverters.  
+* This is a chain of 4 CMOS inverters.  
 
 .param randomNumber=agauss(0.18u,0.018u,1)
 

@@ -18,7 +18,7 @@ rload 2 0 10
 
 .model rcline ltra r=0.05 g=0 l=0 c=20pF len=100 steplimit=1 compactrel=1.0e-3 compactabs=1.0e-14
 
-.tran 0.1ns 120ns 0 0.15ns
+.tran 0.1ns 120ns 0 0.15ns noop
 .print tran v(1) v(2)
 
 *****************************************************************************

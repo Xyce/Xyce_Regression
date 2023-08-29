@@ -24,9 +24,11 @@ $Tools = XyceRegression::Tools->new();
 
 # these search strings are supposed to occur one right after the other in the
 # error output.
-@searchstrings = ( "Netlist error: METHOD: Unsupported time integration method: BDF",
-    "Netlist error: METHOD: RESTART requested: Unsupported time integration method:",
-    "BDF" );
+@searchstrings = ( 
+    "Netlist error in file Invalid_TimeInt.cir at or near line 6",
+    "METHOD: Unsupported time integration method: BDF",
+    "Netlist error in file Invalid_TimeInt.cir at or near line 6",
+    "METHOD: RESTART requested: Unsupported time integration method: BDF");
 
 $XYCE=$ARGV[0];
 #$XYCE_VERIFY=$ARGV[1];
