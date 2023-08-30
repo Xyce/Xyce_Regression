@@ -1,4 +1,5 @@
 nightly
 serial, parallel
 measure, noise
+fft
 valgrind
