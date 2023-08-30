@@ -1,6 +1,6 @@
 nightly
 serial, parallel
 measure, dc
-fft
+required:fft
 valgrind
 preprocess

@@ -1,5 +1,5 @@
 nightly
 serial, parallel
 measure, ac
-fft
+required:fft
 valgrind
