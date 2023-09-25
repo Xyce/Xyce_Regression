@@ -1,2 +1,2 @@
-serial, nightly
+serial, nightly, globalnode, issue445
 valgrind
