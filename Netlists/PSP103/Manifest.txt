@@ -1,4 +1,9 @@
 invert_psp.cir
+invert_psp_testDTA.cir
+invert_psp_testDTA.cir.sh
+invert_psp_testDTA0.cir
+invert_psp_testDTA1.cir
+invert_psp_testDTA2.cir
 psp_asym_nmos_idvg0.cir
 psp_asym_nmos_idvg0.cir.res.gs
 psp_asym_nmos_idvg0.model
