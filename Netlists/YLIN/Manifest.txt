@@ -89,6 +89,9 @@ test_ylin1.cir.sh
 test_sp.cir.s2p
 test_ylin2.cir
 test_ylin2.cir.sh
+test_ylin5.cir
+test_ylin5.cir.sh
+test_sp1.cir.s2p
 ylin-2port-yparam-freqMult.cir.y2p
 ylin-2port-yparam-freqMultkHz.cir.y2p
 ylin-2port-yparam-freqMultMHz.cir.y2p
