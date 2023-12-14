@@ -7235,5 +7235,7 @@ VVDD 1 0 5
 .print TRAN v(24) v(8423) v(8071) v(2177) v(2178) v(11) 
 +v(6120) v(6079) v(6078) v(1966) 
 *.options limpts=50000 itl5=50000
+*RLS need this Xyce option to get sim to finish
+.options timeint  nlnearconv=1
 .TRAN 1e-08 5e-06
 .end
