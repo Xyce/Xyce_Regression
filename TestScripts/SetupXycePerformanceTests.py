@@ -252,6 +252,7 @@ def getOptionsInfo( aDir, aTagFile ):
   """
   resultDict = {}
   optionsFileName = 'options'
+  genOpsName = os.path.join(aDir,optionsFileName)
   if aTagFile != "tags":
     optionsFileName = aTagFile.replace('.tags', '.options', 1)
   fullOptionsFileName = os.path.join(aDir,optionsFileName)
@@ -266,6 +267,18 @@ def getOptionsInfo( aDir, aTagFile ):
           keyVal = wordsOnLine.pop(0)
           value = wordsOnLine.pop(0)
           resultDict[keyVal] = value 
+  elif os.path.exists(genOpsName):
+    #print("checking options file %s" % (fullOptionsFileName))
+    # file exists so open and read in values 
+    optionsFile = open(genOpsName)
+    for aLine in optionsFile:
+      if( aLine.startswith('#') == False):
+        wordsOnLine = re.split('[= ,]+', aLine.strip())
+        while len(wordsOnLine) >= 2 :
+          keyVal = wordsOnLine.pop(0)
+          value = wordsOnLine.pop(0)
+          resultDict[keyVal] = value 
+          
   return resultDict
 
 def copyTestFiles(aTestDir, aTagFileName, aTopLevelDestinationDir):
