@@ -226,20 +226,23 @@ def getTagsFromFile( filename ):
   Any tags prefixed with "required:" are returned in a separate list of
   requiredTags
   """
-  tagFile = open(filename)
-  tagsInFile = []
-  requiredTagsInFile = []
-  for aLine in tagFile:
-    if( aLine.startswith('#') == False):
-      wordsOnLine = aLine.strip().split(', ')
-      for aWord in wordsOnLine:
-        requiredTagFound=re.search('required:(\w*)',aWord.strip())
-        if( requiredTagFound != None ):
-          requiredTagsInFile.append(requiredTagFound.group(1))
-        else:
-          tagsInFile.append(aWord.strip())
-  tagFile.close()
-  return tagsInFile, requiredTagsInFile
+  # a git repo may have "tags" as a directory name in .git
+  if( not os.path.isdir( filename ) ):
+    tagFile = open(filename)
+    tagsInFile = []
+    requiredTagsInFile = []
+    for aLine in tagFile:
+      if( aLine.startswith('#') == False):
+        wordsOnLine = aLine.strip().split(', ')
+        for aWord in wordsOnLine:
+          requiredTagFound=re.search('required:(\w*)',aWord.strip())
+          if( requiredTagFound != None ):
+            requiredTagsInFile.append(requiredTagFound.group(1))
+          else:
+            tagsInFile.append(aWord.strip())
+    tagFile.close()
+    return tagsInFile, requiredTagsInFile
+  return [],[]
 
 def getOptionsInfo( aDir, aTagFile ):
   """
