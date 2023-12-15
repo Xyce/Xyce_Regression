@@ -110,6 +110,8 @@ def SetUpPerformanceTest():
 #SBATCH -N %d # number of nodes
 #SBATCH --tasks-per-node=%d
 #SBATCH -p batch
+# limit the intel math library to one thread
+export MKL_NUM_THREADS=1
 """
   sBatchBaseName = 'XyceSBatch'
   sBatchAccount = 'FY200136'

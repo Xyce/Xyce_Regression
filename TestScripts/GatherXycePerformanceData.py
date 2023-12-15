@@ -83,16 +83,17 @@ def GatherPerformanceData():
   
   for adir, afile in testList:
     statsSet = getStatsFromOutput( adir, afile)
-    statsSet['TestFileName'] = afile.removesuffix('.out')
-    statsSet['Machine'] = systemName
-    statsSet['Compiler'] = compilerName 
-    statsSet['Date'] = reportDate
-    numStats = len(statsSet)
-    newDF = pandas.DataFrame( statsSet, index=range(0,1) )
-    dataFrame = pandas.concat( [dataFrame, newDF], ignore_index=True )
-    #print('Stats Found')
-    #print(statsSet)
-    #print(len(statsSet))
+    if len(statsSet) > 0:
+      statsSet['TestFileName'] = afile.removesuffix('.out')
+      statsSet['Machine'] = systemName
+      statsSet['Compiler'] = compilerName 
+      statsSet['Date'] = reportDate
+      numStats = len(statsSet)
+      newDF = pandas.DataFrame( statsSet, index=range(0,1) )
+      dataFrame = pandas.concat( [dataFrame, newDF], ignore_index=True )
+      #print('Stats Found')
+      #print(statsSet)
+      #print(len(statsSet))
     
   #print( dataFrame )
   dataFrame.to_csv( resultsFileName, index=False )
@@ -221,6 +222,12 @@ def getStatsFromOutput( dirname, filename):
   xyceOutputFile = open(fullFileName)
   prefix=''
   for aLine in xyceOutputFile:
+    if re.search('Exiting ', aLine):
+      # Xyce exited due to an error.  Clear the stats found list and report and error
+      statsFound.clear()
+      print( "Xyce simulation exited with error on test %s " % (fullFileName) )
+      xyceOutputFile.close()
+      return statsFound
     aLine = aLine.strip()
     # look for Xyce version data
     if checkForTagInLine('This is version (\w*.*)', aLine, 'XyceVersion', statsFound):
@@ -388,9 +395,6 @@ def checkForTagInLine(regrex, aLine, keyVal, dictContainer):
   # checks for the regrex passed in.  If it's found then set the key/value in the passed in dictionary. 
   foundFlag = re.search( regrex, aLine)
   if( foundFlag ):
-    if keyVal in dictContainer:
-      print("Error key is already in use %s" % (keyVal))
-      exit(-1)
     dictContainer[keyVal] = foundFlag.group(1)
     return True
   return False
@@ -401,9 +405,6 @@ def checkForMulitDataInLineOld(regrex, aLine, keyValList, dictContainer):
   if( foundFlag ):
     i=1
     for aKey in keyValList:
-      if aKey in dictContainer:
-        print("Error key is already in use %s" % (aKey))
-        exit(-1)
       dictContainer[aKey] = foundFlag.group(i)
       i=i+1
     return True
@@ -416,9 +417,6 @@ def checkForMulitDataInLine(regrex, aLine, prefix, keyValList, dictContainer):
     i=1
     for aKey in keyValList:
       newKey = prefix + aKey
-      if newKey in dictContainer:
-        print("Error key is already in use %s" % (newKey))
-        exit(-1)
       dictContainer[newKey] = foundFlag.group(i)
       i=i+1
     return True
