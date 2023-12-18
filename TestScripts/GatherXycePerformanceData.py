@@ -83,7 +83,10 @@ def GatherPerformanceData():
   
   for adir, afile in testList:
     statsSet = getStatsFromOutput( adir, afile)
-    if len(statsSet) > 0:
+    # if Xyce failed to finish due to a system time limit then it will 
+    # probably have only 3 of the needed data items in the output.
+    # treat 3 or fewer as a simulation failure.
+    if len(statsSet) > 4:
       statsSet['TestFileName'] = afile.removesuffix('.out')
       statsSet['Machine'] = systemName
       statsSet['Compiler'] = compilerName 
@@ -94,6 +97,8 @@ def GatherPerformanceData():
       #print('Stats Found')
       #print(statsSet)
       #print(len(statsSet))
+    else:
+      print("*** Error in Xyce output file %s" % (os.path.join(adir,afile)))
     
   #print( dataFrame )
   dataFrame.to_csv( resultsFileName, index=False )
@@ -225,7 +230,7 @@ def getStatsFromOutput( dirname, filename):
     if re.search('Exiting ', aLine):
       # Xyce exited due to an error.  Clear the stats found list and report and error
       statsFound.clear()
-      print( "Xyce simulation exited with error on test %s " % (fullFileName) )
+      print( "*** Xyce simulation exited with error on test %s " % (fullFileName) )
       xyceOutputFile.close()
       return statsFound
     aLine = aLine.strip()
