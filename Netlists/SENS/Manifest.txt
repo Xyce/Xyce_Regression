@@ -295,4 +295,8 @@ nlMutIndSens2.cir
 nlMutIndSens2_FD.cir
 nlMutIndSens2.cir.sh
 nlMutIndSens2.cir.tags
+issue729.cir
+issue729Ref.cir
+issue729.cir.sh
+issue729.cir.tags
 exclude
