@@ -31,17 +31,17 @@ def GatherPerformanceData():
   """
   # load up argument parser with data
   parser = argparse.ArgumentParser()
-  parser.add_argument("--output", help="Directory where test outputs reside.", default="XycePerformanceOutput")
+  parser.add_argument("--input", help="Directory where test outputs reside.", default="XycePerformanceOutput")
   parser.add_argument("--file", help="File name used to save collected data.", default="XycePerformanceOutput.csv")
   parser.add_argument("--sysname", help="System name used to use in place of local hostname.", default="hostname")
   parser.add_argument("--compiler", help="Compiiler name used to use in the build.", default="unknown")
-  parser.add_argument("--date", help="Date to use for data. Overides data in outpu files.", default="today")
+  parser.add_argument("--date", help="Date to use for data. Overides data in output files.", default="today")
   parser.add_argument("-v", "--verbose", help="verbose output", action="store_true")
   # get the command line arguments
   args = parser.parse_args()
     
   # get the output directory
-  XycePerformanceOutput = args.output
+  XycePerformanceOutput = args.input
   if args.verbose:
     print("Searching for output in %s" % (XycePerformanceOutput))
   
@@ -72,15 +72,15 @@ def GatherPerformanceData():
   # this is an array of the column names to be used in the final data table.
   # parallel runs have 208 more data columns.  I could probably ingest this from 
   # the data files but it's good to have the receiving pandas table ready
-  DataColumnLables = ['TestFileName', 'Machine', 'Compiler', 'Date', 'XyceVersion', 'DeviceCount', 'NumberOfUnknowns', 'SetUpTime', 
+  DataColumnLabels = ['TestFileName', 'Machine', 'Compiler', 'Date', 'XyceVersion', 'DeviceCount', 'NumberOfUnknowns', 'SetUpTime', 
     'DCOpTime', 'DCOPNumberSucSteps', 'DCOPNumberFailStepsAtt', 'DCOPNumberJacEval', 'DCOPNumberLinSolv', 'DCOPNumberFailedSolv', 'DCOPNumberResidualEval', 'DCOPNumberConvFail', 
     'TranStepTime', 'TranNumberSucSteps', 'TranNumberFailStepsAtt', 'TranNumberJacEval', 'TranNumberLinSolv', 'TranNumberFailedSolv', 'TranNumberResidualEval', 'TranNumberConvFail', 'TranResidualLoadTime', 'TranJacLoadTime', 'TranLinSolveTime', 
     'SummaryNumberSucSteps', 'SummaryNumberFailStepsAtt', 'SummaryNumberJacEval', 'SummaryNumberLinSolv', 'SummaryNumberFailedSolv', 'SummaryNumberResidualEval', 'SummaryNumberConvFail', 'SummaryResidualLoadTime', 'SummaryJacLoadTime', 'SummaryLinSolveTime', 
     'TotalSimSolvTime', 'TotalElapRunTime', 
     'XyceCount', 'XyceCPUTime', 'XyceCPUTimePct', 'XyceWallTime', 'XyceWallTimePct', 'AnalysisCount', 'AnalysisCPUTime', 'AnalysisCPUTimePct', 'AnalysisWallTime', 'AnalysisWallTimePct', 'TransientCount', 'TransientCPUTime', 'TransientCPUTimePct', 'TransientWallTime', 'TransientWallTimePct', 'NonlinearSolveCount', 'NonlinearSolveCPUTime', 'NonlinearSolveCPUTimePct', 'NonlinearSolveWallTime', 'NonlinearSolveWallTimePct', 'ResidualCount', 'ResidualCPUTime', 'ResidualCPUTimePct', 'ResidualWallTime', 'ResidualWallTimePct', 'JacobianCount', 'JacobianCPUTime', 'JacobianCPUTimePct', 'JacobianWallTime', 'JacobianWallTimePct', 'SuccessfulStepCount', 'SuccessfulStepCPUTime', 'SuccessfulStepCPUTimePct', 'SuccessfulStepWallTime', 'SuccessfulStepWallTimePct', 'FailedStepsCount', 'FailedStepsCPUTime', 'FailedStepsCPUTimePct', 'FailedStepsWallTime', 'FailedStepsWallTimePct', 'NetlistImportCount', 'NetlistImportCPUTime', 'NetlistImportCPUTimePct', 'NetlistImportWallTime', 'NetlistImportWallTimePct', 'ParseContextCount', 'ParseContextCPUTime', 'ParseContextCPUTimePct', 'ParseContextWallTime', 'ParseContextWallTimePct', 'DistributeDevicesCount', 'DistributeDevicesCPUTime', 'DistributeDevicesCPUTimePct', 'DistributeDevicesWallTime', 'DistributeDevicesWallTimePct', 'VerifyDevicesCount', 'VerifyDevicesCPUTime', 'VerifyDevicesCPUTimePct', 'VerifyDevicesWallTime', 'VerifyDevicesWallTimePct', 'InstantiateCount', 'InstantiateCPUTime', 'InstantiateCPUTimePct', 'InstantiateWallTime', 'InstantiateWallTimePct', 'LateInitializationCount', 'LateInitializationCPUTime', 'LateInitializationCPUTimePct', 'LateInitializationWallTime', 'LateInitializationWallTimePct', 'GlobalIndicesCount', 'GlobalIndicesCPUTime', 'GlobalIndicesCPUTimePct', 'GlobalIndicesWallTime', 'GlobalIndicesWallTimePct', 'SetupMatrixStructureCount', 'SetupMatrixStructureCPUTime', 'SetupMatrixStructureCPUTimePct', 'SetupMatrixStructureWallTime', 'SetupMatrixStructureWallTimePct', 
     'NumProc', 'XycePCount', 'XyceSumCPUTime', 'XyceSumCPUTimePct', 'XyceMinCPUTime', 'XyceMinCPUTimePct', 'XyceMaxCPUTime', 'XyceMaxCPUTimePct', 'XyceSumWallTime', 'XyceSumWallTimePct', 'XyceMinWallTime', 'XyceMinWallTimePct', 'XyceMaxWallTime', 'XyceMaxWallTimePct', 'AnalysisPCount', 'AnalysisSumCPUTime', 'AnalysisSumCPUTimePct', 'AnalysisMinCPUTime', 'AnalysisMinCPUTimePct', 'AnalysisMaxCPUTime', 'AnalysisMaxCPUTimePct', 'AnalysisSumWallTime', 'AnalysisSumWallTimePct', 'AnalysisMinWallTime', 'AnalysisMinWallTimePct', 'AnalysisMaxWallTime', 'AnalysisMaxWallTimePct', 'TransientPCount', 'TransientSumCPUTime', 'TransientSumCPUTimePct', 'TransientMinCPUTime', 'TransientMinCPUTimePct', 'TransientMaxCPUTime', 'TransientMaxCPUTimePct', 'TransientSumWallTime', 'TransientSumWallTimePct', 'TransientMinWallTime', 'TransientMinWallTimePct', 'TransientMaxWallTime', 'TransientMaxWallTimePct', 'NonlinearSolvePCount', 'NonlinearSolveSumCPUTime', 'NonlinearSolveSumCPUTimePct', 'NonlinearSolveMinCPUTime', 'NonlinearSolveMinCPUTimePct', 'NonlinearSolveMaxCPUTime', 'NonlinearSolveMaxCPUTimePct', 'NonlinearSolveSumWallTime', 'NonlinearSolveSumWallTimePct', 'NonlinearSolveMinWallTime', 'NonlinearSolveMinWallTimePct', 'NonlinearSolveMaxWallTime', 'NonlinearSolveMaxWallTimePct', 'ResidualPCount', 'ResidualSumCPUTime', 'ResidualSumCPUTimePct', 'ResidualMinCPUTime', 'ResidualMinCPUTimePct', 'ResidualMaxCPUTime', 'ResidualMaxCPUTimePct', 'ResidualSumWallTime', 'ResidualSumWallTimePct', 'ResidualMinWallTime', 'ResidualMinWallTimePct', 'ResidualMaxWallTime', 'ResidualMaxWallTimePct', 'JacobianPCount', 'JacobianSumCPUTime', 'JacobianSumCPUTimePct', 'JacobianMinCPUTime', 'JacobianMinCPUTimePct', 'JacobianMaxCPUTime', 'JacobianMaxCPUTimePct', 'JacobianSumWallTime', 'JacobianSumWallTimePct', 'JacobianMinWallTime', 'JacobianMinWallTimePct', 'JacobianMaxWallTime', 'JacobianMaxWallTimePct', 'SuccessfulStepPCount', 'SuccessfulStepSumCPUTime', 'SuccessfulStepSumCPUTimePct', 'SuccessfulStepMinCPUTime', 'SuccessfulStepMinCPUTimePct', 'SuccessfulStepMaxCPUTime', 'SuccessfulStepMaxCPUTimePct', 'SuccessfulStepSumWallTime', 'SuccessfulStepSumWallTimePct', 'SuccessfulStepMinWallTime', 'SuccessfulStepMinWallTimePct', 'SuccessfulStepMaxWallTime', 'SuccessfulStepMaxWallTimePct', 'FailedStepsPCount', 'FailedStepsSumCPUTime', 'FailedStepsSumCPUTimePct', 'FailedStepsMinCPUTime', 'FailedStepsMinCPUTimePct', 'FailedStepsMaxCPUTime', 'FailedStepsMaxCPUTimePct', 'FailedStepsSumWallTime', 'FailedStepsSumWallTimePct', 'FailedStepsMinWallTime', 'FailedStepsMinWallTimePct', 'FailedStepsMaxWallTime', 'FailedStepsMaxWallTimePct', 'NetlistImportPCount', 'NetlistImportSumCPUTime', 'NetlistImportSumCPUTimePct', 'NetlistImportMinCPUTime', 'NetlistImportMinCPUTimePct', 'NetlistImportMaxCPUTime', 'NetlistImportMaxCPUTimePct', 'NetlistImportSumWallTime', 'NetlistImportSumWallTimePct', 'NetlistImportMinWallTime', 'NetlistImportMinWallTimePct', 'NetlistImportMaxWallTime', 'NetlistImportMaxWallTimePct', 'ParseContextPCount', 'ParseContextSumCPUTime', 'ParseContextSumCPUTimePct', 'ParseContextMinCPUTime', 'ParseContextMinCPUTimePct', 'ParseContextMaxCPUTime', 'ParseContextMaxCPUTimePct', 'ParseContextSumWallTime', 'ParseContextSumWallTimePct', 'ParseContextMinWallTime', 'ParseContextMinWallTimePct', 'ParseContextMaxWallTime', 'ParseContextMaxWallTimePct', 'DistributeDevicesPCount', 'DistributeDevicesSumCPUTime', 'DistributeDevicesSumCPUTimePct', 'DistributeDevicesMinCPUTime', 'DistributeDevicesMinCPUTimePct', 'DistributeDevicesMaxCPUTime', 'DistributeDevicesMaxCPUTimePct', 'DistributeDevicesSumWallTime', 'DistributeDevicesSumWallTimePct', 'DistributeDevicesMinWallTime', 'DistributeDevicesMinWallTimePct', 'DistributeDevicesMaxWallTime', 'DistributeDevicesMaxWallTimePct', 'VerifyDevicesPCount', 'VerifyDevicesSumCPUTime', 'VerifyDevicesSumCPUTimePct', 'VerifyDevicesMinCPUTime', 'VerifyDevicesMinCPUTimePct', 'VerifyDevicesMaxCPUTime', 'VerifyDevicesMaxCPUTimePct', 'VerifyDevicesSumWallTime', 'VerifyDevicesSumWallTimePct', 'VerifyDevicesMinWallTime', 'VerifyDevicesMinWallTimePct', 'VerifyDevicesMaxWallTime', 'VerifyDevicesMaxWallTimePct', 'InstantiatePCount', 'InstantiateSumCPUTime', 'InstantiateSumCPUTimePct', 'InstantiateMinCPUTime', 'InstantiateMinCPUTimePct', 'InstantiateMaxCPUTime', 'InstantiateMaxCPUTimePct', 'InstantiateSumWallTime', 'InstantiateSumWallTimePct', 'InstantiateMinWallTime', 'InstantiateMinWallTimePct', 'InstantiateMaxWallTime', 'InstantiateMaxWallTimePct', 'LateInitializationPCount', 'LateInitializationSumCPUTime', 'LateInitializationSumCPUTimePct', 'LateInitializationMinCPUTime', 'LateInitializationMinCPUTimePct', 'LateInitializationMaxCPUTime', 'LateInitializationMaxCPUTimePct', 'LateInitializationSumWallTime', 'LateInitializationSumWallTimePct', 'LateInitializationMinWallTime', 'LateInitializationMinWallTimePct', 'LateInitializationMaxWallTime', 'LateInitializationMaxWallTimePct', 'GlobalIndicesPCount', 'GlobalIndicesSumCPUTime', 'GlobalIndicesSumCPUTimePct', 'GlobalIndicesMinCPUTime', 'GlobalIndicesMinCPUTimePct', 'GlobalIndicesMaxCPUTime', 'GlobalIndicesMaxCPUTimePct', 'GlobalIndicesSumWallTime', 'GlobalIndicesSumWallTimePct', 'GlobalIndicesMinWallTime', 'GlobalIndicesMinWallTimePct', 'GlobalIndicesMaxWallTime', 'GlobalIndicesMaxWallTimePct', 'SetupMatrixStructurePCount', 'SetupMatrixStructureSumCPUTime', 'SetupMatrixStructureSumCPUTimePct', 'SetupMatrixStructureMinCPUTime', 'SetupMatrixStructureMinCPUTimePct', 'SetupMatrixStructureMaxCPUTime', 'SetupMatrixStructureMaxCPUTimePct', 'SetupMatrixStructureSumWallTime', 'SetupMatrixStructureSumWallTimePct', 'SetupMatrixStructureMinWallTime', 'SetupMatrixStructureMinWallTimePct', 'SetupMatrixStructureMaxWallTime', 'SetupMatrixStructureMaxWallTimePct' ]
-  dataFrame = getPandasTable(resultsFileName, DataColumnLables)
   
+  dataFrame = pandas.DataFrame( columns=DataColumnLabels)
   for adir, afile in testList:
     statsSet = getStatsFromOutput( adir, afile)
     # if Xyce failed to finish due to a system time limit then it will 
@@ -101,6 +101,20 @@ def GatherPerformanceData():
       print("*** Error in Xyce output file %s" % (os.path.join(adir,afile)))
     
   #print( dataFrame )
+  print( "New data")
+  print("row           Test Name         Machine   Unknowns    Run Time")
+  for i in range(0,len(dataFrame)):
+    print("%3d %25s %10s  %7d  %10.1f" % (i, dataFrame.loc[i,'TestFileName'], dataFrame.loc[i,'Machine'], dataFrame.loc[i,'NumberOfUnknowns'], dataFrame.loc[i,'TotalElapRunTime']))
+  
+  # Have the new data.  Now check for existing data and merge that in if possible
+  if( os.path.isdir( resultsFileName)):
+    print( "Error: Performance data file is a directory  %s" % (resultsFileName))
+    return -1
+  if( os.path.exists( resultsFileName)):
+    olddf = pandas.read_csv( resultsFileName )
+    dataFrame = pandas.concat( [olddf, dataFrame], ignore_index=True )
+  
+  # dataFrame = getPandasTable(resultsFileName, DataColumnLabels)
   dataFrame.to_csv( resultsFileName, index=False )
   print("Data saved to %s" %(resultsFileName))
 
@@ -222,7 +236,7 @@ def getStatsFromOutput( dirname, filename):
   timingLineMultiProcCols = ['PCount', 'SumCPUTime', 'SumCPUTimePct', 'MinCPUTime', 'MinCPUTimePct', 'MaxCPUTime', 'MaxCPUTimePct', 'SumWallTime', 'SumWallTimePct', 'MinWallTime', 'MinWallTimePct', 'MaxWallTime', 'MaxWallTimePct']
 
   fullFileName = os.path.join(dirname, filename)
-  print('Working on %s' % (fullFileName) )
+  #print('Working on %s' % (fullFileName) )
   statsFound = {}
   xyceOutputFile = open(fullFileName)
   prefix=''

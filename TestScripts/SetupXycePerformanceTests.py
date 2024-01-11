@@ -8,6 +8,7 @@
 import os.path
 import argparse
 from pathlib import Path
+from pathlib import PurePath
 import glob
 import shutil
 import re
@@ -41,6 +42,9 @@ def SetUpPerformanceTest():
   parser.add_argument("--mpicommand", help="Mpiexec command to be used if jobs will be run in parallel.", default="")
   parser.add_argument("--xyce", help="Xyce executable to be used.", default="Xyce")
   parser.add_argument("--tags", help="Tags to use in test selection. +required, -forbidden, ?optional", default="+performance")
+  parser.add_argument("--sbatchname", help="Root name for generated sbach submission files", default="XyceSBatch")
+  parser.add_argument("--wcid", help="Work control ID for HPC jobs", default="FY200136")
+  parser.add_argument("--tpn", help="The number tasks per node for mpi jobs per HPC node", default="2")
   parser.add_argument("-v", "--verbose", help="verbose output", action="store_true")
   # get the command line arguments
   args = parser.parse_args()
@@ -113,20 +117,29 @@ def SetUpPerformanceTest():
 # limit the intel math library to one thread
 export MKL_NUM_THREADS=1
 """
-  sBatchBaseName = 'XyceSBatch'
-  sBatchAccount = 'FY200136'
+  sBatchBaseName = args.sbatchname
+  sBatchAccount = args.wcid
   sBatchJobName = 'FastP'
   sBatchBaseTimeHr = 2
   sBatchBaseTimeMin = 5
   sBatchBaseNodes = 1
-  sBatchTaskPerNode = 2
+  sBatchTaskPerNode = int(args.tpn)
   fastTestsRunCommandsFile = open(sBatchBaseName+'Fast', 'w')
   # set up header for fast tests to allocate 2 hours of total runtime 
   fastTestsRunCommandsFile.write(submitScriptHeader % (sBatchAccount, sBatchJobName, sBatchBaseTimeHr, sBatchBaseTimeMin, sBatchBaseNodes, sBatchTaskPerNode) )
   for aTestDir, aTagFileName, optionsDict in testList:
     # generate the test directory name 
-    dirAsString = str(aTestDir)
-    DestinationDirectory= Path(dirAsString.replace("Xyce_Regression", XycePerformanceOutput, 1))
+    # aTestDir will have Xyce_Regression in its path.  Use everthing after Xyce_Regression
+    # as part of the name for the destination directory.
+    testDirParts = Path(aTestDir).parts
+    foundXyceRegressionDir=False
+    DestinationDirectory = Path(XycePerformanceOutput).absolute()
+    for adir in testDirParts:
+      if adir == 'Xyce_Regression':
+        foundXyceRegressionDir=True
+      elif foundXyceRegressionDir:
+       DestinationDirectory = os.path.join(DestinationDirectory, adir)
+    DestinationDirectory = Path(DestinationDirectory)   
     
     # figure out the netlist name 
     circuitNames = []
@@ -140,7 +153,7 @@ export MKL_NUM_THREADS=1
         circuitNames.append( afile.name )
    
     for aCircuit in circuitNames:
-      runCommand = "(cd " + str(DestinationDirectory)  + " ;" + args.mpicommand + " " + args.xyce + " " + aCircuit + " > " + aCircuit + ".out)\n" 
+      runCommand = "echo \"Running Test " + aCircuit + "\"; (cd " + str(DestinationDirectory)  + " ;" + args.mpicommand + " " + args.xyce + " " + aCircuit + " > " + aCircuit + ".out)\n" 
       if 'timelimit' in optionsDict:
         # this is a long running test that has a timelimit given 
         # use it to set up a separate run file
