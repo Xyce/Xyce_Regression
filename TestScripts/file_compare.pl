@@ -138,15 +138,15 @@ else
             debugPrint "Exact match\n";
           }
           elsif ( ( abs($testFileData[$i]) <= $zeroTol ) && ( abs($gsData[$i]) <= $zeroTol ) )
-	  {
+          {
             # no op since both test and gold data are less than the zero tolerance
             debugPrint "Numeric comparison for column $i on line $lineCount: \n";
             debugPrint "File $testFileName had \"$testFileData[$i]\" while Gold Standard had \"$gsData[$i]\" \n";
             debugPrint "Both are less than zero tolerance\n";
-	  }
+          }
           else
           {
-	    my $absDiff = abs($testFileData[$i] - $gsData[$i]);
+            my $absDiff = abs($testFileData[$i] - $gsData[$i]);
             my $relDiff = $absDiff / abs($gsData[$i]);   
             if ( ( $absDiff < $absTol ) && ( $relDiff < $relTol ) )
             {
@@ -155,6 +155,16 @@ else
               debugPrint "Numeric comparison for column $i on line $lineCount: \n";
               debugPrint "File $testFileName had \"$testFileData[$i]\" while Gold Standard had \"$gsData[$i]\" \n";
               debugPrint "Calculated absDiff and relDiff = ($absDiff,$relDiff)\n"; 
+            }
+            elsif ( ((abs($gsData[$i]) - 180.0) < $absTol) && ((abs($testFileData[$i]) - 180.0) < $absTol) )
+            {
+              # corner case where Xyce's FFT output prints the phase in degrees.  Xyce uses the arctan2(y,x)
+              # function for this and there is a discontinuity at +/- 180 degrees phase.  Small rounding errors 
+              # in an FFT library can push the result from -180 degrees to +180 degrees which essentially are the
+              # same thing but such a numeric difference would not pass normal checks. 
+              debugPrint "Numeric comparison for column $i on line $lineCount: \n";
+              debugPrint "File $testFileName had \"$testFileData[$i]\" and Gold Standard had \"$gsData[$i]\" \n";
+              debugPrint "Matches given discontinutiy in phase that occurs at +/- 180 degrees.\n";
             }
             else
             {
