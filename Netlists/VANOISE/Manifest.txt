@@ -6,6 +6,9 @@ bsim6_acnoise1d_sw.cir.tags
 bsimcmg_noise.cir
 bsimcmg_noise.cir.sh
 bsimcmg_noise.cir.tags
+bsimcmg_noise_111.cir
+bsimcmg_noise_111.cir.sh
+bsimcmg_noise_11.cir.tags
 commonEmitterBjt_mextram.cir
 commonEmitterBjt_mextram.cir.sh
 commonEmitterBjt_mextram.cir.tags
@@ -22,3 +25,4 @@ gain-stage1_psp.cir
 gain-stage1_psp.cir.sh
 gain-stage1_psp.cir.tags
 modelcard.nmos_xyce
+modelcard.nmos_xyce_111
