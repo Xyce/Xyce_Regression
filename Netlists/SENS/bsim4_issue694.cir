@@ -1,0 +1,37 @@
+* Simple test to illustrate failure of numerical sensitivities when using .option scale.
+* BSIM4 test.   As of this writing, the BSIM4 doesn't have analytical sensitivities 
+* implemented, so it must use numerical derivatives.   The original netlist that 
+* exhibited this error used the device-level finite difference derivatives.   This netlist, 
+* in contrast, is using a global parameter Wparam as the sensitivity parameter.  In that 
+* case, a global finite difference (not device level) is always used, for any device.
+* This use case (the global param) is easier to debug.
+
+.model nfet_model nmos level = 54 
+
+.options device temp=25 
+
+* --- Voltage Sources ---
+vdd   supply  0 dc 1.8
+VIN1 vi 0 PWL(0S 0V  100ps 0V 300ps 1.8V )
+
+* using option scale:
+.option scale=1.0e-6
+.param Wparam=650000u
+.param Lparam=150000u
+
+* Not using option scale:
+*.param Wparam=0.65u
+*.param Lparam=0.15u
+
+m_nfet 0 vi vo 0 nfet_model l = {Lparam} w = {Wparam}
+
+* --- Transient Analysis ---
+.tran 2ps 1ns
+
+.print tran v(*)
+
+.SENS objfunc={v(vo)} param=m_nfet:w
+.options SENSITIVITY adjoint=0 direct=1 forcedevicefd=1
+.print sens
+
+.end

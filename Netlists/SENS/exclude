@@ -67,3 +67,6 @@ bsim6invAdjointForceAnalytic.cir
 nlMutIndSens1_FD.cir
 nlMutIndSens2_FD.cir
 issue729Ref.cir
+bsim4_issue694.cir
+bsim4_issue694_ref.cir
+bsim4_issue694_FD.cir
