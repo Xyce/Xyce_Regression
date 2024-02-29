@@ -295,6 +295,11 @@ bsim3Inv.cir.sh
 bsim3Inv.cir.tags
 bsim3Inv_newFD.cir
 bsim3Inv_oldFD.cir
+bsim4_issue694.cir
+bsim4_issue694.cir.sh
+bsim4_issue694.cir.tags
+bsim4_issue694_FD.cir
+bsim4_issue694_ref.cir
 nlMutIndSens1.cir
 nlMutIndSens1.cir.sh
 nlMutIndSens1.cir.tags

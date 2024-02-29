@@ -7,31 +7,25 @@
 * This use case (the global param) is easier to debug.
 
 .model nfet_model nmos level = 54 
-
+.options timeint reltol=1.0e-6 method=gear
 .options device temp=25 
-
-* --- Voltage Sources ---
-vdd   supply  0 dc 1.8
-VIN1 vi 0 PWL(0S 0V  100ps 0V 300ps 1.8V )
 
 * using option scale:
 .option scale=1.0e-6
 .param Wparam=650000u
 .param Lparam=150000u
 
-* Not using option scale:
-*.param Wparam=0.65u
-*.param Lparam=0.15u
-
+VIN1 vi 0 PWL(0S 0V  100ps 0V 300ps 1.8V )
 m_nfet 0 vi vo 0 nfet_model l = {Lparam} w = {Wparam}
+r1 vo 0 1.0e-4
+c1 vo 0 1.0e-7
 
-* --- Transient Analysis ---
 .tran 2ps 1ns
 
-.print tran v(*)
+*comp d_{V(VO)}/d_M_NFET:W_dir  offset=0.1
 
 .SENS objfunc={v(vo)} param=m_nfet:w
 .options SENSITIVITY adjoint=0 direct=1 forcedevicefd=1
-.print sens
+.print sens 
 
 .end
