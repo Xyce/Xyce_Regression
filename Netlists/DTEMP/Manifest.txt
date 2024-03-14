@@ -6,5 +6,13 @@ res_dtemp.cir
 res_dtemp.cir.sh
 res_dtemp.cir.tags
 res_ref.cir
+cap_dtemp.cir
+cap_dtemp.cir.sh
+cap_dtemp.cir.tags
+cap_ref.cir
+bsim3_comparator_dtemp.cir
+bsim3_comparator_dtemp.cir.sh
+bsim3_comparator_dtemp.cir.tags
+bsim3_comparator_ref.cir
 exclude
 tags
