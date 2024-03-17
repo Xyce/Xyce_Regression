@@ -2,3 +2,5 @@ Level2_Diode_Ref.cir
 res_ref.cir
 cap_ref.cir
 bsim3_comparator_ref.cir
+b3soi_nmos_ref.cir
+b3soi_pmos_ref.cir

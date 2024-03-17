@@ -14,5 +14,15 @@ bsim3_comparator_dtemp.cir
 bsim3_comparator_dtemp.cir.sh
 bsim3_comparator_dtemp.cir.tags
 bsim3_comparator_ref.cir
+b3soi_nmos_dtemp.cir
+b3soi_nmos_dtemp.cir.sh
+b3soi_nmos_dtemp.cir.tags
+b3soi_nmos_ref.cir
+b3soi_pmos_dtemp.cir
+b3soi_pmos_dtemp.cir.sh
+b3soi_pmos_dtemp.cir.tags
+b3soi_pmos_ref.cir
+nmos_b3soi.mod 
+pmos_b3soi.mod
 exclude
 tags
