@@ -13,3 +13,7 @@ pmos3_ref.cir
 nmos6_ref.cir
 pmos6_ref.cir
 vdmos_ref.cir
+njfet_ref.cir
+pjfet_ref.cir
+nmesfet_ref.cir
+pmesfet_ref.cir
