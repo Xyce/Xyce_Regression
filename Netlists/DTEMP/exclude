@@ -4,3 +4,12 @@ cap_ref.cir
 bsim3_comparator_ref.cir
 b3soi_nmos_ref.cir
 b3soi_pmos_ref.cir
+nmos1_ref.cir
+pmos1_ref.cir
+nmos2_ref.cir
+pmos2_ref.cir
+nmos3_ref.cir
+pmos3_ref.cir
+nmos6_ref.cir
+pmos6_ref.cir
+vdmos_ref.cir
