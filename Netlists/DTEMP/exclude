@@ -17,3 +17,9 @@ njfet_ref.cir
 pjfet_ref.cir
 nmesfet_ref.cir
 pmesfet_ref.cir
+bsim4.61_nmos_ref.cir
+bsim4.61_pmos_ref.cir
+bsim4.7_nmos_ref.cir
+bsim4.7_pmos_ref.cir
+bsim4.82_nmos_ref.cir
+bsim4.82_pmos_ref.cir
