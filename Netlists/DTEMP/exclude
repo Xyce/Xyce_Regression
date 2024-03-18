@@ -23,3 +23,5 @@ bsim4.7_nmos_ref.cir
 bsim4.7_pmos_ref.cir
 bsim4.82_nmos_ref.cir
 bsim4.82_pmos_ref.cir
+npn_ref.cir
+pnp_ref.cir

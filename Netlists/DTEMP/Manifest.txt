@@ -106,5 +106,13 @@ bsim4.82_pmos_dtemp.cir.sh
 bsim4.82_pmos_dtemp.cir.tags
 bsim4.82_pmos_ref.cir
 modelcard.4.82.pmos
+npn_dtemp.cir
+npn_dtemp.cir.sh
+npn_dtemp.cir.tags
+npn_ref.cir
+pnp_dtemp.cir
+pnp_dtemp.cir.sh
+pnp_dtemp.cir.tags
+pnp_ref.cir
 exclude
 tags
