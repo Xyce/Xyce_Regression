@@ -55,4 +55,16 @@ separator6.cir
 separator6.cir.sh
 separator6.cir.tags
 separator6Ref.cir
+paramFunc1.cir
+paramFunc1.cir.tags
+paramFunc2.cir
+paramFunc2.cir.tags
+paramFunc3.cir
+paramFunc3.cir.tags
+paramFunc4.cir
+paramFunc4.cir.tags
+paramFunc5.cir
+paramFunc5.cir.tags
+paramFunc6.cir
+paramFunc6.cir.tags
 tags
