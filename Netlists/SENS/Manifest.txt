@@ -118,6 +118,10 @@ gummel_n_110.cir
 gummel_n_110.cir.sh
 gummel_n_110.cir.tags
 gummel_n_110FD.cir
+gummel_n_111.cir
+gummel_n_111.cir.sh
+gummel_n_111.cir.tags
+gummel_n_111FD.cir
 gummel_nmos_xyce.cir
 gummel_nmos_xyce.cir.sh
 gummel_nmos_xyce.cir.tags
@@ -130,6 +134,10 @@ gummel_p_110.cir
 gummel_p_110.cir.sh
 gummel_p_110.cir.tags
 gummel_p_110FD.cir
+gummel_p_111.cir
+gummel_p_111.cir.sh
+gummel_p_111.cir.tags
+gummel_p_111FD.cir
 gummel_pmos_xyce.cir
 gummel_pmos_xyce.cir.sh
 gummel_pmos_xyce.cir.tags
@@ -287,6 +295,11 @@ bsim3Inv.cir.sh
 bsim3Inv.cir.tags
 bsim3Inv_newFD.cir
 bsim3Inv_oldFD.cir
+bsim4_issue694.cir
+bsim4_issue694.cir.sh
+bsim4_issue694.cir.tags
+bsim4_issue694_FD.cir
+bsim4_issue694_ref.cir
 nlMutIndSens1.cir
 nlMutIndSens1.cir.sh
 nlMutIndSens1.cir.tags
@@ -295,4 +308,8 @@ nlMutIndSens2.cir
 nlMutIndSens2_FD.cir
 nlMutIndSens2.cir.sh
 nlMutIndSens2.cir.tags
+issue729.cir
+issue729Ref.cir
+issue729.cir.sh
+issue729.cir.tags
 exclude

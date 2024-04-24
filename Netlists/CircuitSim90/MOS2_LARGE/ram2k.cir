@@ -42020,5 +42020,6 @@ VVdd 1 0 3
 +v(198) v(199) v(139) v(141) v(142) v(143) 
 +v(4740) v(4732) v(4734) v(4730) v(4832) 
 *.options limpts=50000 itl5=50000
+.options timeint abstol=1.0e-5 nlnearconv=1
 .TRAN 1e-09 6e-07
 .end

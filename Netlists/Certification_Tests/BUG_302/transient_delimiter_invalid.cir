@@ -6,7 +6,7 @@ c1 1 0 1uF IC=1
 R1 1 2 1K
 v1 2 0 0V
 * This should test both that TAB works and that proper case handling works
-.print tran DELIMITER=COLON v(1)
+.print tran DELIMITER=wrong v(1)
 .options timeint reltol=1e-3
 .options nonlin-tran reltol=1e-3
 .tran 0 5ms

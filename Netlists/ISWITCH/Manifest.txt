@@ -1,3 +1,4 @@
 iswitch.cir
 iswitch_spice.cir
+iswitchHyst1.cir
 tags

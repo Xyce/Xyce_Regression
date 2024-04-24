@@ -33,6 +33,8 @@ gummel_nFD.cir
 gummel_pFD.cir
 gummel_n_110FD.cir
 gummel_p_110FD.cir
+gummel_n_111FD.cir
+gummel_p_111FD.cir
 150nm_nmosFD.cir
 150nm_pmosFD.cir
 bug797Adjoint.cir
@@ -64,3 +66,6 @@ bsim6invAdjointForceAnalytic.cir
 150nm_nmos_oldFD.cir
 nlMutIndSens1_FD.cir
 nlMutIndSens2_FD.cir
+issue729Ref.cir
+bsim4_issue694_ref.cir
+bsim4_issue694_FD.cir

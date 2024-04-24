@@ -20,4 +20,8 @@ ac-sens-mult-obj-def.cir.sh
 ac-sens-mult-obj-def.cir.tags
 ac-sens-mult-obj-def_baseline.cir
 ac-sens-mult-obj-def_modified.cir
+ac-sens-current-obj.cir
+ac-sens-current-obj.cir.sh
+ac-sens-current-obj.cir.tags
+ac-sens-current-obj_FD.cir
 tags
