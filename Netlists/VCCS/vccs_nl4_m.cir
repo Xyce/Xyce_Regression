@@ -14,12 +14,19 @@ Netlist to Test the Xyce Voltage Controlled Current Source Model, multiplier ver
 * This circuit differs from vccs_nl2_m.cir in that the multiplier on the G-source
 * is implicit.  It is will have the m=10 applied to it via the subcircuit multiplier.
 *
+* This circuit differs from vccs_nl3_m.cir in that it uses nested subcircuits, 
+* where the total multiplier on G still works out to be 10. (2*5).
+*
 * This case is linear, but the use of expressions allows for nonlinear G-sources.
 ****************************************************************************** 
 VIN 1 0 DC 12V
-Xtest 3 0 2 0 gsrcSub m=10
+Xtest 3 0 2 0 gsrcSub1 m=5
 
-.subckt gsrcSub A B C D M=1
+.subckt gsrcSub1 A B C D M=1
+Xtest A B C D gsrcSub2 m=2
+.ends
+
+.subckt gsrcSub2 A B C D M=1
 G A B cur='v(C,D)*0.02'
 .ends
 

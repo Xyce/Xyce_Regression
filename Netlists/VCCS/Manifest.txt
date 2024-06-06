@@ -17,6 +17,10 @@ vccs_nl3_m.cir.sh
 vccs_nl3_m.cir.tags
 vccs_nl3_m.cir
 vccs_nl3_m_baseline.cir
+vccs_nl4_m.cir.sh
+vccs_nl4_m.cir.tags
+vccs_nl4_m.cir
+vccs_nl4_m_baseline.cir
 vccs_tran_m.cir.sh
 vccs_tran_m.cir.tags
 vccs_tran_m.cir
