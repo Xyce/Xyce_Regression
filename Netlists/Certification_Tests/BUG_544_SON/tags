@@ -1,1 +1,1 @@
-serial, parallel, nightly, required:klu, bug544son
+serial, parallel, nightly, required:klu, bug544son, vccs

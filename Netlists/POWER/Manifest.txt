@@ -40,8 +40,10 @@ power_f_trap.cir
 power_f_trap.cir.sh
 power_g_gear.cir
 power_g_gear.cir.sh
+power_g_gear.cir.tags 
 power_g_trap.cir
 power_g_trap.cir.sh
+power_g_trap.cir.tags 
 power_h_gear.cir
 power_h_gear.cir.sh
 power_h_trap.cir
@@ -101,6 +103,7 @@ power_for_invalid_device.cir.sh
 power_for_invalid_device.cir.tags
 power_polarity_b_e_f_g_h_trap.cir
 power_polarity_b_e_f_g_h_trap.cir.sh
+power_polarity_b_e_f_g_h_trap.cir.tags 
 power_polarity_v_i_trap.cir
 power_polarity_v_i_trap.cir.sh
 power_r_c_gear.cir
@@ -117,6 +120,7 @@ power_r_trap.cir
 power_r_trap.cir.sh
 power_subckt_b_e_f_g_h_trap.cir
 power_subckt_b_e_f_g_h_trap.cir.sh
+power_subckt_b_e_f_g_h_trap.cir.tags
 power_subckt_v_i_r_l_c_trap.cir
 power_subckt_v_i_r_l_c_trap.cir.sh
 power_sw_gear.cir
