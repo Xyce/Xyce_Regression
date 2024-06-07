@@ -11,7 +11,7 @@ R2 3 0 100
 * the off and on values and demonstrates the ONH and OFFH effect
 
 SW1 1 2 SW OFF CONTROL={sin((time/2u))+0.1*sin((pi*5*(time/2u)))}
-.MODEL SW SWITCH (ON=1 ONH=0.75 OFF=0 OFFH=0.25 RON=1 ROFF=1E6)
+.MODEL SW SWITCH (ON=1 ONH=0.75 OFF=0 OFFH=0.25 RON=1 ROFF=100)
 .options timeint reltol=1
 
 .TRAN 0.02u 8u

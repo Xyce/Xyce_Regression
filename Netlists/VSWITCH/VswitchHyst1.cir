@@ -1,7 +1,7 @@
 * Test switch with hysteresis 
 
 v1 1 0 5v
-s1 1 2 3 0 SW ON
+s1 1 2 3 0 SW OFF
 R1 2 0 100
 
 * This switching pattern will activate the switch and
@@ -12,7 +12,7 @@ R1 2 0 100
 V2 3 0 PWL 0s 0v 0.1s 0v 0.2s 1.0v 0.3 1.0v 0.4 0.9v 0.5s 0.9v 0.6s 1.0v 0.7 1.0v 0.8s 0v 0.9s 0v 1.0s 0.05v 1.1s 0.05v 1.2s 0.0v 1.3 0.0v
 
 R2 3 0 100
-.model SW VSWITCH( RON=1u ROFF=1MEG VON=1v VHON=0.8 VOFF=0v VHOFF=0.1)
+.model SW VSWITCH( RON=1 ROFF=100 VON=1v VHON=0.8 VOFF=0v VHOFF=0.19)
 
 .tran 0 1.3
 .print tran v(1) v(2) v(3)
