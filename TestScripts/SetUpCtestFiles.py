@@ -246,7 +246,13 @@ def SetUpCtestFiles():
           
       else:
         # this entry is a sub directory so just add it as such
-        fileObj.write('add_subdirectory(%s)\n' % (subDirName))
+        # unless it's SandiaTests or FastrackTests.  Then put it in a conditional
+        if( subDirName == "SandiaTests" or subDirName == "FastrackTests"):
+          fileObj.write('if( EXISTS %s)\n' % (subDirName))
+          fileObj.write('    add_subdirectory(%s)\n' % (subDirName))
+          fileObj.write('endif ()\n')
+        else:
+          fileObj.write('add_subdirectory(%s)\n' % (subDirName))
     
     fileObj.close()
 
