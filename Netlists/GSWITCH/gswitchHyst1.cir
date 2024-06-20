@@ -1,21 +1,17 @@
 Generic Switch with hysteresis
 *
-IS 0 1 PWL(0 0 4u 0.040)
-VMON 1 1A 0V
-R1 1A 0 100
-VMON1 2 3 0
-R2 3 0 100
+v1 1 0 5v
+R2 2 0 100
 
 * using two sin() functions added together with different frequencies and 
 * amplitudes makes the control signal for the switch bounce around near
 * the off and on values and demonstrates the ONH and OFFH effect
 
 SW1 1 2 SW OFF CONTROL={sin((time/2u))+0.1*sin((pi*5*(time/2u)))}
-.MODEL SW SWITCH (ON=1 ONH=0.75 OFF=0 OFFH=0.25 RON=1 ROFF=100)
-.options timeint reltol=1
+.MODEL SW SWITCH (ON=1 ONH=0.55 OFF=0 OFFH=0.25 RON=1 ROFF=100)
 
-.TRAN 0.02u 8u
-.PRINT TRAN I(IS) I(VMON) I(VMON1) {sin((time/2u))+0.1*sin((pi*5*(time/2u)))}
+.TRAN 0 8u 0 0.08u
+.PRINT TRAN {sin((time/2u))+0.1*sin((pi*5*(time/2u)))} i(sw1)
 .END
 
 
