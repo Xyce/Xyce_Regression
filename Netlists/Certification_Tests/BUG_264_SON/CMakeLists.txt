@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_264.cir ${CMAKE_CURRENT_BINARY_DIR}/bug_264.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_264_SON/bug_264.cir COMMAND Xyce bug_264.cir )
-set_property(TEST Certification_Tests/BUG_264_SON/bug_264.cir PROPERTY LABELS "serial;nightly;parallel")
-set_tests_properties(Certification_Tests/BUG_264_SON/bug_264.cir PROPERTIES FIXTURES_SETUP bug_264.cir)
-add_test(NAME Certification_Tests/BUG_264_SON/bug_264.cir.verify COMMAND ${XYCE_VERIFY} bug_264.cir ${OutputDataDir}/Certification_Tests/BUG_264_SON/bug_264.cir.prn bug_264.cir.prn )
-set_tests_properties(Certification_Tests/BUG_264_SON/bug_264.cir.verify PROPERTIES FIXTURES_REQUIRED bug_264.cir)
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_264_SON/bug_264.cir COMMAND Xyce bug_264.cir )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_264_SON/bug_264.cir PROPERTY LABELS "serial;nightly;parallel")
+set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_264_SON/bug_264.cir PROPERTIES FIXTURES_SETUP bug_264.cir)
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_264_SON/bug_264.cir.verify COMMAND ${XYCE_VERIFY} bug_264.cir ${OutputDataDir}/Certification_Tests/BUG_264_SON/bug_264.cir.prn bug_264.cir.prn )
+set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_264_SON/bug_264.cir.verify PROPERTIES FIXTURES_REQUIRED bug_264.cir)

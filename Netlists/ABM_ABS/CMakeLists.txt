@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/abs.cir ${CMAKE_CURRENT_BINARY_DIR}/abs.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME ABM_ABS/abs.cir COMMAND Xyce abs.cir )
-set_property(TEST ABM_ABS/abs.cir PROPERTY LABELS "serial;nightly;parallel;valgrind;bsrc;resistor;dcsweep;expression")
-set_tests_properties(ABM_ABS/abs.cir PROPERTIES FIXTURES_SETUP abs.cir)
-add_test(NAME ABM_ABS/abs.cir.verify COMMAND ${XYCE_VERIFY} abs.cir ${OutputDataDir}/ABM_ABS/abs.cir.prn abs.cir.prn )
-set_tests_properties(ABM_ABS/abs.cir.verify PROPERTIES FIXTURES_REQUIRED abs.cir)
+add_test(NAME ${TestNamePrefix}ABM_ABS/abs.cir COMMAND Xyce abs.cir )
+set_property(TEST ${TestNamePrefix}ABM_ABS/abs.cir PROPERTY LABELS "serial;nightly;parallel;valgrind;bsrc;resistor;dcsweep;expression")
+set_tests_properties(${TestNamePrefix}ABM_ABS/abs.cir PROPERTIES FIXTURES_SETUP abs.cir)
+add_test(NAME ${TestNamePrefix}ABM_ABS/abs.cir.verify COMMAND ${XYCE_VERIFY} abs.cir ${OutputDataDir}/ABM_ABS/abs.cir.prn abs.cir.prn )
+set_tests_properties(${TestNamePrefix}ABM_ABS/abs.cir.verify PROPERTIES FIXTURES_REQUIRED abs.cir)

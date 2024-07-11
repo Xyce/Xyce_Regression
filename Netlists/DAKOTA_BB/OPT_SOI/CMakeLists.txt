@@ -7,5 +7,5 @@ file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/opt_soi.cir.sh PERMISSIONS OWNER_READ OWN
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/opt_soi.dak ${CMAKE_CURRENT_BINARY_DIR}/opt_soi.dak ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/opt_soi.dat ${CMAKE_CURRENT_BINARY_DIR}/opt_soi.dat ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME DAKOTA_BB/OPT_SOI/opt_soi.cir.sh COMMAND perl -I${XyceRegressionTestScripts} opt_soi.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} opt_soi.cir ${OutputDataDir}/DAKOTA_BB/OPT_SOI/opt_soi.cir.prn )
-set_property(TEST DAKOTA_BB/OPT_SOI/opt_soi.cir.sh PROPERTY LABELS "serial;nightly;required:dakota_bb")
+add_test(NAME ${TestNamePrefix}DAKOTA_BB/OPT_SOI/opt_soi.cir.sh COMMAND perl -I${XyceRegressionTestScripts} opt_soi.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} opt_soi.cir ${OutputDataDir}/DAKOTA_BB/OPT_SOI/opt_soi.cir.prn )
+set_property(TEST ${TestNamePrefix}DAKOTA_BB/OPT_SOI/opt_soi.cir.sh PROPERTY LABELS "serial;nightly;required:dakota_bb")

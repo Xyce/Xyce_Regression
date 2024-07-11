@@ -5,5 +5,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bjt_off.cir ${CMAKE_CURRENT_BINARY_DI
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bjt_off.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/bjt_off.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bjt_off.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME BJT_OFF/bjt_off.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bjt_off.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bjt_off.cir ${OutputDataDir}/BJT_OFF/bjt_off.cir.prn )
-set_property(TEST BJT_OFF/bjt_off.cir.sh PROPERTY LABELS "serial;nightly;bjtlev1;resistor;capacitor;dcsweep")
+add_test(NAME ${TestNamePrefix}BJT_OFF/bjt_off.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bjt_off.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bjt_off.cir ${OutputDataDir}/BJT_OFF/bjt_off.cir.prn )
+set_property(TEST ${TestNamePrefix}BJT_OFF/bjt_off.cir.sh PROPERTY LABELS "serial;nightly;bjtlev1;resistor;capacitor;dcsweep")

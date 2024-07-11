@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/par_types.cir ${CMAKE_CURRENT_BINARY_DIR}/par_types.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME PARAM_TYPES/par_types.cir COMMAND Xyce par_types.cir )
-set_property(TEST PARAM_TYPES/par_types.cir PROPERTY LABELS "serial;nightly;parallel;b3soi")
-set_tests_properties(PARAM_TYPES/par_types.cir PROPERTIES FIXTURES_SETUP par_types.cir)
-add_test(NAME PARAM_TYPES/par_types.cir.verify COMMAND ${XYCE_VERIFY} par_types.cir ${OutputDataDir}/PARAM_TYPES/par_types.cir.prn par_types.cir.prn )
-set_tests_properties(PARAM_TYPES/par_types.cir.verify PROPERTIES FIXTURES_REQUIRED par_types.cir)
+add_test(NAME ${TestNamePrefix}PARAM_TYPES/par_types.cir COMMAND Xyce par_types.cir )
+set_property(TEST ${TestNamePrefix}PARAM_TYPES/par_types.cir PROPERTY LABELS "serial;nightly;parallel;b3soi")
+set_tests_properties(${TestNamePrefix}PARAM_TYPES/par_types.cir PROPERTIES FIXTURES_SETUP par_types.cir)
+add_test(NAME ${TestNamePrefix}PARAM_TYPES/par_types.cir.verify COMMAND ${XYCE_VERIFY} par_types.cir ${OutputDataDir}/PARAM_TYPES/par_types.cir.prn par_types.cir.prn )
+set_tests_properties(${TestNamePrefix}PARAM_TYPES/par_types.cir.verify PROPERTIES FIXTURES_REQUIRED par_types.cir)

@@ -7,5 +7,5 @@ file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug22.cir.pl PERMISSIONS OWNER_READ OWNER
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug22.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/bug22.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug22.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_22_SON/bug22.cir.sh COMMAND bash bug22.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug22.cir ${OutputDataDir}/Certification_Tests/BUG_22_SON/bug22.cir.prn )
-set_property(TEST Certification_Tests/BUG_22_SON/bug22.cir.sh PROPERTY LABELS "serial;parallel;nightly;valgrind;mutualinductor")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_22_SON/bug22.cir.sh COMMAND bash bug22.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug22.cir ${OutputDataDir}/Certification_Tests/BUG_22_SON/bug22.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_22_SON/bug22.cir.sh PROPERTY LABELS "serial;parallel;nightly;valgrind;mutualinductor")

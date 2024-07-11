@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/isffm.cir ${CMAKE_CURRENT_BINARY_DIR}/isffm.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME ISFFM/isffm.cir COMMAND Xyce isffm.cir )
-set_property(TEST ISFFM/isffm.cir PROPERTY LABELS "serial;nightly;valgrind")
-set_tests_properties(ISFFM/isffm.cir PROPERTIES FIXTURES_SETUP isffm.cir)
-add_test(NAME ISFFM/isffm.cir.verify COMMAND ${XYCE_VERIFY} isffm.cir ${OutputDataDir}/ISFFM/isffm.cir.prn isffm.cir.prn )
-set_tests_properties(ISFFM/isffm.cir.verify PROPERTIES FIXTURES_REQUIRED isffm.cir)
+add_test(NAME ${TestNamePrefix}ISFFM/isffm.cir COMMAND Xyce isffm.cir )
+set_property(TEST ${TestNamePrefix}ISFFM/isffm.cir PROPERTY LABELS "serial;nightly;valgrind")
+set_tests_properties(${TestNamePrefix}ISFFM/isffm.cir PROPERTIES FIXTURES_SETUP isffm.cir)
+add_test(NAME ${TestNamePrefix}ISFFM/isffm.cir.verify COMMAND ${XYCE_VERIFY} isffm.cir ${OutputDataDir}/ISFFM/isffm.cir.prn isffm.cir.prn )
+set_tests_properties(${TestNamePrefix}ISFFM/isffm.cir.verify PROPERTIES FIXTURES_REQUIRED isffm.cir)

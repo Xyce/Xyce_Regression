@@ -4,5 +4,5 @@
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/wildcardOrdering.cir ${CMAKE_CURRENT_BINARY_DIR}/wildcardOrdering.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/wildcardOrdering.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/wildcardOrdering.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/wildcardOrdering.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-add_test(NAME Certification_Tests/BUG_1322_SON/wildcardOrdering.cir.sh COMMAND perl -I${XyceRegressionTestScripts} wildcardOrdering.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} wildcardOrdering.cir ${OutputDataDir}/Certification_Tests/BUG_1322_SON/wildcardOrdering.cir.prn )
-set_property(TEST Certification_Tests/BUG_1322_SON/wildcardOrdering.cir.sh PROPERTY LABELS "serial;parallel;nightly;vstar;istar")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1322_SON/wildcardOrdering.cir.sh COMMAND perl -I${XyceRegressionTestScripts} wildcardOrdering.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} wildcardOrdering.cir ${OutputDataDir}/Certification_Tests/BUG_1322_SON/wildcardOrdering.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1322_SON/wildcardOrdering.cir.sh PROPERTY LABELS "serial;parallel;nightly;vstar;istar")

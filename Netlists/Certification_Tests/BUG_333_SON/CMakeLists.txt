@@ -10,5 +10,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_333_son_restarted.cir ${CMAKE_CUR
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_333_son_restarted_unpacked.cir ${CMAKE_CURRENT_BINARY_DIR}/bug_333_son_restarted_unpacked.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_333_SON/bug_333_son.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_333_son.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug_333_son.cir ${OutputDataDir}/Certification_Tests/BUG_333_SON/bug_333_son.cir.prn )
-set_property(TEST Certification_Tests/BUG_333_SON/bug_333_son.cir.sh PROPERTY LABELS "serial;nightly;restart;ltra")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_333_SON/bug_333_son.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_333_son.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug_333_son.cir ${OutputDataDir}/Certification_Tests/BUG_333_SON/bug_333_son.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_333_SON/bug_333_son.cir.sh PROPERTY LABELS "serial;nightly;restart;ltra")

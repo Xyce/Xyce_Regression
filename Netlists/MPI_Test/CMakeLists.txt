@@ -6,5 +6,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_967.cir ${CMAKE_CURRENT_BINARY_DI
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_967.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/bug_967.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug_967.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME MPI_Test/bug_967.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_967.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug_967.cir ${OutputDataDir}/MPI_Test/bug_967.cir.prn )
-set_property(TEST MPI_Test/bug_967.cir.sh PROPERTY LABELS "parallel;nightly;library;requirestestbinary")
+add_test(NAME ${TestNamePrefix}MPI_Test/bug_967.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_967.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug_967.cir ${OutputDataDir}/MPI_Test/bug_967.cir.prn )
+set_property(TEST ${TestNamePrefix}MPI_Test/bug_967.cir.sh PROPERTY LABELS "parallel;nightly;library;requirestestbinary")

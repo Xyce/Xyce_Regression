@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/TL1X_mpi.cir ${CMAKE_CURRENT_BINARY_DIR}/TL1X_mpi.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME TL1X/TL1X_mpi.cir COMMAND Xyce TL1X_mpi.cir )
-set_property(TEST TL1X/TL1X_mpi.cir PROPERTY LABELS "serial;nightly;parallel;valgrind")
-set_tests_properties(TL1X/TL1X_mpi.cir PROPERTIES FIXTURES_SETUP TL1X_mpi.cir)
-add_test(NAME TL1X/TL1X_mpi.cir.verify COMMAND ${XYCE_VERIFY} TL1X_mpi.cir ${OutputDataDir}/TL1X/TL1X_mpi.cir.prn TL1X_mpi.cir.prn )
-set_tests_properties(TL1X/TL1X_mpi.cir.verify PROPERTIES FIXTURES_REQUIRED TL1X_mpi.cir)
+add_test(NAME ${TestNamePrefix}TL1X/TL1X_mpi.cir COMMAND Xyce TL1X_mpi.cir )
+set_property(TEST ${TestNamePrefix}TL1X/TL1X_mpi.cir PROPERTY LABELS "serial;nightly;parallel;valgrind")
+set_tests_properties(${TestNamePrefix}TL1X/TL1X_mpi.cir PROPERTIES FIXTURES_SETUP TL1X_mpi.cir)
+add_test(NAME ${TestNamePrefix}TL1X/TL1X_mpi.cir.verify COMMAND ${XYCE_VERIFY} TL1X_mpi.cir ${OutputDataDir}/TL1X/TL1X_mpi.cir.prn TL1X_mpi.cir.prn )
+set_tests_properties(${TestNamePrefix}TL1X/TL1X_mpi.cir.verify PROPERTIES FIXTURES_REQUIRED TL1X_mpi.cir)

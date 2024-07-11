@@ -7,5 +7,5 @@ file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug269.cir.sh PERMISSIONS OWNER_READ OWNE
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug269_printFormatRaw.cir ${CMAKE_CURRENT_BINARY_DIR}/bug269_printFormatRaw.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_269_SON/bug269.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug269.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug269.cir ${OutputDataDir}/Certification_Tests/BUG_269_SON/bug269.cir.prn )
-set_property(TEST Certification_Tests/BUG_269_SON/bug269.cir.sh PROPERTY LABELS "serial;nightly;ac;capacitor;resistor;vsin;bjtlev1;raw;output")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_269_SON/bug269.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug269.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug269.cir ${OutputDataDir}/Certification_Tests/BUG_269_SON/bug269.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_269_SON/bug269.cir.sh PROPERTY LABELS "serial;nightly;ac;capacitor;resistor;vsin;bjtlev1;raw;output")

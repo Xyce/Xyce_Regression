@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/mos3_dc.cir ${CMAKE_CURRENT_BINARY_DIR}/mos3_dc.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME NMOS3_DC/mos3_dc.cir COMMAND Xyce mos3_dc.cir )
-set_property(TEST NMOS3_DC/mos3_dc.cir PROPERTY LABELS "serial;nightly;parallel;mos3")
-set_tests_properties(NMOS3_DC/mos3_dc.cir PROPERTIES FIXTURES_SETUP mos3_dc.cir)
-add_test(NAME NMOS3_DC/mos3_dc.cir.verify COMMAND ${XYCE_VERIFY} mos3_dc.cir ${OutputDataDir}/NMOS3_DC/mos3_dc.cir.prn mos3_dc.cir.prn )
-set_tests_properties(NMOS3_DC/mos3_dc.cir.verify PROPERTIES FIXTURES_REQUIRED mos3_dc.cir)
+add_test(NAME ${TestNamePrefix}NMOS3_DC/mos3_dc.cir COMMAND Xyce mos3_dc.cir )
+set_property(TEST ${TestNamePrefix}NMOS3_DC/mos3_dc.cir PROPERTY LABELS "serial;nightly;parallel;mos3")
+set_tests_properties(${TestNamePrefix}NMOS3_DC/mos3_dc.cir PROPERTIES FIXTURES_SETUP mos3_dc.cir)
+add_test(NAME ${TestNamePrefix}NMOS3_DC/mos3_dc.cir.verify COMMAND ${XYCE_VERIFY} mos3_dc.cir ${OutputDataDir}/NMOS3_DC/mos3_dc.cir.prn mos3_dc.cir.prn )
+set_tests_properties(${TestNamePrefix}NMOS3_DC/mos3_dc.cir.verify PROPERTIES FIXTURES_REQUIRED mos3_dc.cir)

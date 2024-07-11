@@ -7,5 +7,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/vstarTest.cir ${CMAKE_CURRENT_BINARY_DIR}/vstarTest.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/vstarTest.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/vstarTest.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/vstarTest.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-add_test(NAME VSTARTEST/vstarTest.cir.sh COMMAND bash vstarTest.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} vstarTest.cir ${OutputDataDir}/VSTARTEST/vstarTest.cir.prn )
-set_property(TEST VSTARTEST/vstarTest.cir.sh PROPERTY LABELS "serial;nightly;parallel;vstar;valgrind")
+add_test(NAME ${TestNamePrefix}VSTARTEST/vstarTest.cir.sh COMMAND bash vstarTest.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} vstarTest.cir ${OutputDataDir}/VSTARTEST/vstarTest.cir.prn )
+set_property(TEST ${TestNamePrefix}VSTARTEST/vstarTest.cir.sh PROPERTY LABELS "serial;nightly;parallel;vstar;valgrind")

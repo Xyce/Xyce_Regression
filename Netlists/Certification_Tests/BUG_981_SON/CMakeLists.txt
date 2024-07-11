@@ -9,5 +9,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug981A.cir ${CMAKE_CURRENT_BINARY_DI
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug981B.cir ${CMAKE_CURRENT_BINARY_DIR}/bug981B.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/patfile ${CMAKE_CURRENT_BINARY_DIR}/patfile ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_981_SON/bug981.cir.sh COMMAND bash bug981.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug981.cir ${OutputDataDir}/Certification_Tests/BUG_981_SON/bug981.cir.prn )
-set_property(TEST Certification_Tests/BUG_981_SON/bug981.cir.sh PROPERTY LABELS "serial;parallel;nightly;bug981son;valgrind;capacitor")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_981_SON/bug981.cir.sh COMMAND bash bug981.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug981.cir ${OutputDataDir}/Certification_Tests/BUG_981_SON/bug981.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_981_SON/bug981.cir.sh PROPERTY LABELS "serial;parallel;nightly;bug981son;valgrind;capacitor")

@@ -6,5 +6,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/print.cir ${CMAKE_CURRENT_BINARY_DIR}
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/print.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/print.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/print.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_795/print.cir.sh COMMAND bash print.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} print.cir ${OutputDataDir}/Certification_Tests/BUG_795/print.cir.prn )
-set_property(TEST Certification_Tests/BUG_795/print.cir.sh PROPERTY LABELS "serial;nightly")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_795/print.cir.sh COMMAND bash print.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} print.cir ${OutputDataDir}/Certification_Tests/BUG_795/print.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_795/print.cir.sh PROPERTY LABELS "serial;nightly")

@@ -8,5 +8,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_1358_quotes.cir.sh ${CMAKE_CURREN
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug_1358_quotes.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_1358/bug_1358_quotes.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_1358_quotes.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug_1358_quotes.cir ${OutputDataDir}/Certification_Tests/BUG_1358/bug_1358_quotes.cir.prn )
-set_property(TEST Certification_Tests/BUG_1358/bug_1358_quotes.cir.sh PROPERTY LABELS "serial;nightly")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1358/bug_1358_quotes.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_1358_quotes.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug_1358_quotes.cir ${OutputDataDir}/Certification_Tests/BUG_1358/bug_1358_quotes.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1358/bug_1358_quotes.cir.sh PROPERTY LABELS "serial;nightly")

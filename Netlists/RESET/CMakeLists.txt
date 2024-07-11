@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/reset.cir ${CMAKE_CURRENT_BINARY_DIR}/reset.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME RESET/reset.cir COMMAND Xyce reset.cir )
-set_property(TEST RESET/reset.cir PROPERTY LABELS "serial;nightly;parallel;valgrind;resistor;capacitor;bjt;bjtlev1")
-set_tests_properties(RESET/reset.cir PROPERTIES FIXTURES_SETUP reset.cir)
-add_test(NAME RESET/reset.cir.verify COMMAND ${XYCE_VERIFY} reset.cir ${OutputDataDir}/RESET/reset.cir.prn reset.cir.prn )
-set_tests_properties(RESET/reset.cir.verify PROPERTIES FIXTURES_REQUIRED reset.cir)
+add_test(NAME ${TestNamePrefix}RESET/reset.cir COMMAND Xyce reset.cir )
+set_property(TEST ${TestNamePrefix}RESET/reset.cir PROPERTY LABELS "serial;nightly;parallel;valgrind;resistor;capacitor;bjt;bjtlev1")
+set_tests_properties(${TestNamePrefix}RESET/reset.cir PROPERTIES FIXTURES_SETUP reset.cir)
+add_test(NAME ${TestNamePrefix}RESET/reset.cir.verify COMMAND ${XYCE_VERIFY} reset.cir ${OutputDataDir}/RESET/reset.cir.prn reset.cir.prn )
+set_tests_properties(${TestNamePrefix}RESET/reset.cir.verify PROPERTIES FIXTURES_REQUIRED reset.cir)

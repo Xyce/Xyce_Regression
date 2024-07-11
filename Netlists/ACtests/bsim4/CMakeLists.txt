@@ -11,5 +11,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/opamp.cir ${CMAKE_CURRENT_BINARY_DIR}
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/opamp.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/opamp.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/opamp.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME ACtests/bsim4/gstage.cir.sh COMMAND perl -I${XyceRegressionTestScripts} gstage.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} gstage.cir ${OutputDataDir}/ACtests/bsim4/gstage.cir.prn )
-set_property(TEST ACtests/bsim4/gstage.cir.sh PROPERTY LABELS "serial;parallel;nightly;ac;bsim4;mos14;capacitor;esrc;resistor")
+add_test(NAME ${TestNamePrefix}ACtests/bsim4/gstage.cir.sh COMMAND perl -I${XyceRegressionTestScripts} gstage.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} gstage.cir ${OutputDataDir}/ACtests/bsim4/gstage.cir.prn )
+set_property(TEST ${TestNamePrefix}ACtests/bsim4/gstage.cir.sh PROPERTY LABELS "serial;parallel;nightly;ac;bsim4;mos14;capacitor;esrc;resistor")

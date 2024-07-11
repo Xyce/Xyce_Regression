@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/latch.cir ${CMAKE_CURRENT_BINARY_DIR}/latch.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME MCNC_BJT_LATCH/latch.cir COMMAND Xyce latch.cir )
-set_property(TEST MCNC_BJT_LATCH/latch.cir PROPERTY LABELS "serial;nightly;parallel;bjtlev1;valgrind")
-set_tests_properties(MCNC_BJT_LATCH/latch.cir PROPERTIES FIXTURES_SETUP latch.cir)
-add_test(NAME MCNC_BJT_LATCH/latch.cir.verify COMMAND ${XYCE_VERIFY} latch.cir ${OutputDataDir}/MCNC_BJT_LATCH/latch.cir.prn latch.cir.prn )
-set_tests_properties(MCNC_BJT_LATCH/latch.cir.verify PROPERTIES FIXTURES_REQUIRED latch.cir)
+add_test(NAME ${TestNamePrefix}MCNC_BJT_LATCH/latch.cir COMMAND Xyce latch.cir )
+set_property(TEST ${TestNamePrefix}MCNC_BJT_LATCH/latch.cir PROPERTY LABELS "serial;nightly;parallel;bjtlev1;valgrind")
+set_tests_properties(${TestNamePrefix}MCNC_BJT_LATCH/latch.cir PROPERTIES FIXTURES_SETUP latch.cir)
+add_test(NAME ${TestNamePrefix}MCNC_BJT_LATCH/latch.cir.verify COMMAND ${XYCE_VERIFY} latch.cir ${OutputDataDir}/MCNC_BJT_LATCH/latch.cir.prn latch.cir.prn )
+set_tests_properties(${TestNamePrefix}MCNC_BJT_LATCH/latch.cir.verify PROPERTIES FIXTURES_REQUIRED latch.cir)

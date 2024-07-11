@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/polyg.cir ${CMAKE_CURRENT_BINARY_DIR}/polyg.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME POLYG/polyg.cir COMMAND Xyce polyg.cir )
-set_property(TEST POLYG/polyg.cir PROPERTY LABELS "serial;nightly;parallel;valgrind;bsrc")
-set_tests_properties(POLYG/polyg.cir PROPERTIES FIXTURES_SETUP polyg.cir)
-add_test(NAME POLYG/polyg.cir.verify COMMAND ${XYCE_VERIFY} polyg.cir ${OutputDataDir}/POLYG/polyg.cir.prn polyg.cir.prn )
-set_tests_properties(POLYG/polyg.cir.verify PROPERTIES FIXTURES_REQUIRED polyg.cir)
+add_test(NAME ${TestNamePrefix}POLYG/polyg.cir COMMAND Xyce polyg.cir )
+set_property(TEST ${TestNamePrefix}POLYG/polyg.cir PROPERTY LABELS "serial;nightly;parallel;valgrind;bsrc")
+set_tests_properties(${TestNamePrefix}POLYG/polyg.cir PROPERTIES FIXTURES_SETUP polyg.cir)
+add_test(NAME ${TestNamePrefix}POLYG/polyg.cir.verify COMMAND ${XYCE_VERIFY} polyg.cir ${OutputDataDir}/POLYG/polyg.cir.prn polyg.cir.prn )
+set_tests_properties(${TestNamePrefix}POLYG/polyg.cir.verify PROPERTIES FIXTURES_REQUIRED polyg.cir)

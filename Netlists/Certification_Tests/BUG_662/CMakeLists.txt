@@ -7,5 +7,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/headerLineLengthMoreThan256.cir ${CMA
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/headerLineLengthMoreThan256.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/headerLineLengthMoreThan256.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/headerLineLengthMoreThan256.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_662/headerLineLengthMoreThan256.cir.sh COMMAND bash headerLineLengthMoreThan256.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} headerLineLengthMoreThan256.cir ${OutputDataDir}/Certification_Tests/BUG_662/headerLineLengthMoreThan256.cir.prn )
-set_property(TEST Certification_Tests/BUG_662/headerLineLengthMoreThan256.cir.sh PROPERTY LABELS "serial;parallel;nightly;transline")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_662/headerLineLengthMoreThan256.cir.sh COMMAND bash headerLineLengthMoreThan256.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} headerLineLengthMoreThan256.cir ${OutputDataDir}/Certification_Tests/BUG_662/headerLineLengthMoreThan256.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_662/headerLineLengthMoreThan256.cir.sh PROPERTY LABELS "serial;parallel;nightly;transline")

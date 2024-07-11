@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/pjfet_tran.cir ${CMAKE_CURRENT_BINARY_DIR}/pjfet_tran.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME PJFET_SWITCH/pjfet_tran.cir COMMAND Xyce pjfet_tran.cir )
-set_property(TEST PJFET_SWITCH/pjfet_tran.cir PROPERTY LABELS "serial;nightly;parallel;jfet")
-set_tests_properties(PJFET_SWITCH/pjfet_tran.cir PROPERTIES FIXTURES_SETUP pjfet_tran.cir)
-add_test(NAME PJFET_SWITCH/pjfet_tran.cir.verify COMMAND ${XYCE_VERIFY} pjfet_tran.cir ${OutputDataDir}/PJFET_SWITCH/pjfet_tran.cir.prn pjfet_tran.cir.prn )
-set_tests_properties(PJFET_SWITCH/pjfet_tran.cir.verify PROPERTIES FIXTURES_REQUIRED pjfet_tran.cir)
+add_test(NAME ${TestNamePrefix}PJFET_SWITCH/pjfet_tran.cir COMMAND Xyce pjfet_tran.cir )
+set_property(TEST ${TestNamePrefix}PJFET_SWITCH/pjfet_tran.cir PROPERTY LABELS "serial;nightly;parallel;jfet")
+set_tests_properties(${TestNamePrefix}PJFET_SWITCH/pjfet_tran.cir PROPERTIES FIXTURES_SETUP pjfet_tran.cir)
+add_test(NAME ${TestNamePrefix}PJFET_SWITCH/pjfet_tran.cir.verify COMMAND ${XYCE_VERIFY} pjfet_tran.cir ${OutputDataDir}/PJFET_SWITCH/pjfet_tran.cir.prn pjfet_tran.cir.prn )
+set_tests_properties(${TestNamePrefix}PJFET_SWITCH/pjfet_tran.cir.verify PROPERTIES FIXTURES_REQUIRED pjfet_tran.cir)

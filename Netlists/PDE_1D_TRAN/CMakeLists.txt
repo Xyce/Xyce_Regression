@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/userOneD.cir ${CMAKE_CURRENT_BINARY_DIR}/userOneD.cir ONLY_IF_DIFFERENT)
-add_test(NAME PDE_1D_TRAN/userOneD.cir COMMAND Xyce userOneD.cir )
-set_property(TEST PDE_1D_TRAN/userOneD.cir PROPERTY LABELS "serial;parallel;nightly;pde;valgrind")
-set_tests_properties(PDE_1D_TRAN/userOneD.cir PROPERTIES FIXTURES_SETUP userOneD.cir)
-add_test(NAME PDE_1D_TRAN/userOneD.cir.verify COMMAND ${XYCE_VERIFY} userOneD.cir ${OutputDataDir}/PDE_1D_TRAN/userOneD.cir.prn userOneD.cir.prn )
-set_tests_properties(PDE_1D_TRAN/userOneD.cir.verify PROPERTIES FIXTURES_REQUIRED userOneD.cir)
+add_test(NAME ${TestNamePrefix}PDE_1D_TRAN/userOneD.cir COMMAND Xyce userOneD.cir )
+set_property(TEST ${TestNamePrefix}PDE_1D_TRAN/userOneD.cir PROPERTY LABELS "serial;parallel;nightly;pde;valgrind")
+set_tests_properties(${TestNamePrefix}PDE_1D_TRAN/userOneD.cir PROPERTIES FIXTURES_SETUP userOneD.cir)
+add_test(NAME ${TestNamePrefix}PDE_1D_TRAN/userOneD.cir.verify COMMAND ${XYCE_VERIFY} userOneD.cir ${OutputDataDir}/PDE_1D_TRAN/userOneD.cir.prn userOneD.cir.prn )
+set_tests_properties(${TestNamePrefix}PDE_1D_TRAN/userOneD.cir.verify PROPERTIES FIXTURES_REQUIRED userOneD.cir)

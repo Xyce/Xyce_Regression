@@ -10,5 +10,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug1299son_lastcycle.net ${CMAKE_CURR
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug1299son_lastcycle_fixedinterval.net ${CMAKE_CURRENT_BINARY_DIR}/bug1299son_lastcycle_fixedinterval.net ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug1299son_lastcycle_fixedinterval_gear.net ${CMAKE_CURRENT_BINARY_DIR}/bug1299son_lastcycle_fixedinterval_gear.net ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug1299son_lastcycle_gear.net ${CMAKE_CURRENT_BINARY_DIR}/bug1299son_lastcycle_gear.net ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_1299_SON/bug1299son.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug1299son.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug1299son.cir ${OutputDataDir}/Certification_Tests/BUG_1299_SON/bug1299son.cir.prn )
-set_property(TEST Certification_Tests/BUG_1299_SON/bug1299son.cir.sh PROPERTY LABELS "serial;parallel;nightly")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1299_SON/bug1299son.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug1299son.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug1299son.cir ${OutputDataDir}/Certification_Tests/BUG_1299_SON/bug1299son.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1299_SON/bug1299son.cir.sh PROPERTY LABELS "serial;parallel;nightly")

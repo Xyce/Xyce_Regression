@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ipwl.cir ${CMAKE_CURRENT_BINARY_DIR}/ipwl.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME IPWL/ipwl.cir COMMAND Xyce ipwl.cir )
-set_property(TEST IPWL/ipwl.cir PROPERTY LABELS "serial;nightly;ipwl;pwl;valgrind")
-set_tests_properties(IPWL/ipwl.cir PROPERTIES FIXTURES_SETUP ipwl.cir)
-add_test(NAME IPWL/ipwl.cir.verify COMMAND ${XYCE_VERIFY} ipwl.cir ${OutputDataDir}/IPWL/ipwl.cir.prn ipwl.cir.prn )
-set_tests_properties(IPWL/ipwl.cir.verify PROPERTIES FIXTURES_REQUIRED ipwl.cir)
+add_test(NAME ${TestNamePrefix}IPWL/ipwl.cir COMMAND Xyce ipwl.cir )
+set_property(TEST ${TestNamePrefix}IPWL/ipwl.cir PROPERTY LABELS "serial;nightly;ipwl;pwl;valgrind")
+set_tests_properties(${TestNamePrefix}IPWL/ipwl.cir PROPERTIES FIXTURES_SETUP ipwl.cir)
+add_test(NAME ${TestNamePrefix}IPWL/ipwl.cir.verify COMMAND ${XYCE_VERIFY} ipwl.cir ${OutputDataDir}/IPWL/ipwl.cir.prn ipwl.cir.prn )
+set_tests_properties(${TestNamePrefix}IPWL/ipwl.cir.verify PROPERTIES FIXTURES_REQUIRED ipwl.cir)

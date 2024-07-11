@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/sandler24.cir ${CMAKE_CURRENT_BINARY_DIR}/sandler24.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME SANDLER24/sandler24.cir COMMAND Xyce sandler24.cir )
-set_property(TEST SANDLER24/sandler24.cir PROPERTY LABELS "serial;nightly;parallel;bjtlev1;diode;valgrind;bsrc")
-set_tests_properties(SANDLER24/sandler24.cir PROPERTIES FIXTURES_SETUP sandler24.cir)
-add_test(NAME SANDLER24/sandler24.cir.verify COMMAND ${XYCE_VERIFY} sandler24.cir ${OutputDataDir}/SANDLER24/sandler24.cir.prn sandler24.cir.prn )
-set_tests_properties(SANDLER24/sandler24.cir.verify PROPERTIES FIXTURES_REQUIRED sandler24.cir)
+add_test(NAME ${TestNamePrefix}SANDLER24/sandler24.cir COMMAND Xyce sandler24.cir )
+set_property(TEST ${TestNamePrefix}SANDLER24/sandler24.cir PROPERTY LABELS "serial;nightly;parallel;bjtlev1;diode;valgrind;bsrc")
+set_tests_properties(${TestNamePrefix}SANDLER24/sandler24.cir PROPERTIES FIXTURES_SETUP sandler24.cir)
+add_test(NAME ${TestNamePrefix}SANDLER24/sandler24.cir.verify COMMAND ${XYCE_VERIFY} sandler24.cir ${OutputDataDir}/SANDLER24/sandler24.cir.prn sandler24.cir.prn )
+set_tests_properties(${TestNamePrefix}SANDLER24/sandler24.cir.verify PROPERTIES FIXTURES_REQUIRED sandler24.cir)

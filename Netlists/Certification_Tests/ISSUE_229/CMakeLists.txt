@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/GlobalInExpressionBug.cir ${CMAKE_CURRENT_BINARY_DIR}/GlobalInExpressionBug.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/ISSUE_229/GlobalInExpressionBug.cir COMMAND Xyce GlobalInExpressionBug.cir )
-set_property(TEST Certification_Tests/ISSUE_229/GlobalInExpressionBug.cir PROPERTY LABELS "serial;nightly;issue229;valgrind")
-set_tests_properties(Certification_Tests/ISSUE_229/GlobalInExpressionBug.cir PROPERTIES FIXTURES_SETUP GlobalInExpressionBug.cir)
-add_test(NAME Certification_Tests/ISSUE_229/GlobalInExpressionBug.cir.verify COMMAND ${XYCE_VERIFY} GlobalInExpressionBug.cir ${OutputDataDir}/Certification_Tests/ISSUE_229/GlobalInExpressionBug.cir.prn GlobalInExpressionBug.cir.prn )
-set_tests_properties(Certification_Tests/ISSUE_229/GlobalInExpressionBug.cir.verify PROPERTIES FIXTURES_REQUIRED GlobalInExpressionBug.cir)
+add_test(NAME ${TestNamePrefix}Certification_Tests/ISSUE_229/GlobalInExpressionBug.cir COMMAND Xyce GlobalInExpressionBug.cir )
+set_property(TEST ${TestNamePrefix}Certification_Tests/ISSUE_229/GlobalInExpressionBug.cir PROPERTY LABELS "serial;nightly;issue229;valgrind")
+set_tests_properties(${TestNamePrefix}Certification_Tests/ISSUE_229/GlobalInExpressionBug.cir PROPERTIES FIXTURES_SETUP GlobalInExpressionBug.cir)
+add_test(NAME ${TestNamePrefix}Certification_Tests/ISSUE_229/GlobalInExpressionBug.cir.verify COMMAND ${XYCE_VERIFY} GlobalInExpressionBug.cir ${OutputDataDir}/Certification_Tests/ISSUE_229/GlobalInExpressionBug.cir.prn GlobalInExpressionBug.cir.prn )
+set_tests_properties(${TestNamePrefix}Certification_Tests/ISSUE_229/GlobalInExpressionBug.cir.verify PROPERTIES FIXTURES_REQUIRED GlobalInExpressionBug.cir)

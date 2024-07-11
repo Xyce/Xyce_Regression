@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/rca.cir ${CMAKE_CURRENT_BINARY_DIR}/rca.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME MCNC_BJT_RCA/rca.cir COMMAND Xyce rca.cir )
-set_property(TEST MCNC_BJT_RCA/rca.cir PROPERTY LABELS "serial;nightly;parallel;bjtlev1;valgrind")
-set_tests_properties(MCNC_BJT_RCA/rca.cir PROPERTIES FIXTURES_SETUP rca.cir)
-add_test(NAME MCNC_BJT_RCA/rca.cir.verify COMMAND ${XYCE_VERIFY} rca.cir ${OutputDataDir}/MCNC_BJT_RCA/rca.cir.prn rca.cir.prn )
-set_tests_properties(MCNC_BJT_RCA/rca.cir.verify PROPERTIES FIXTURES_REQUIRED rca.cir)
+add_test(NAME ${TestNamePrefix}MCNC_BJT_RCA/rca.cir COMMAND Xyce rca.cir )
+set_property(TEST ${TestNamePrefix}MCNC_BJT_RCA/rca.cir PROPERTY LABELS "serial;nightly;parallel;bjtlev1;valgrind")
+set_tests_properties(${TestNamePrefix}MCNC_BJT_RCA/rca.cir PROPERTIES FIXTURES_SETUP rca.cir)
+add_test(NAME ${TestNamePrefix}MCNC_BJT_RCA/rca.cir.verify COMMAND ${XYCE_VERIFY} rca.cir ${OutputDataDir}/MCNC_BJT_RCA/rca.cir.prn rca.cir.prn )
+set_tests_properties(${TestNamePrefix}MCNC_BJT_RCA/rca.cir.verify PROPERTIES FIXTURES_REQUIRED rca.cir)

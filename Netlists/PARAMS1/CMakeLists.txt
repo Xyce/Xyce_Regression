@@ -8,5 +8,5 @@ file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/params_a.cir.sh PERMISSIONS OWNER_READ OW
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/params_a0.cir ${CMAKE_CURRENT_BINARY_DIR}/params_a0.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/params_a1.cir ${CMAKE_CURRENT_BINARY_DIR}/params_a1.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME PARAMS1/params_a.cir.sh COMMAND perl -I${XyceRegressionTestScripts} params_a.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} params_a.cir ${OutputDataDir}/PARAMS1/params_a.cir.prn )
-set_property(TEST PARAMS1/params_a.cir.sh PROPERTY LABELS "serial;nightly;parallel;valgrind")
+add_test(NAME ${TestNamePrefix}PARAMS1/params_a.cir.sh COMMAND perl -I${XyceRegressionTestScripts} params_a.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} params_a.cir ${OutputDataDir}/PARAMS1/params_a.cir.prn )
+set_property(TEST ${TestNamePrefix}PARAMS1/params_a.cir.sh PROPERTY LABELS "serial;nightly;parallel;valgrind")

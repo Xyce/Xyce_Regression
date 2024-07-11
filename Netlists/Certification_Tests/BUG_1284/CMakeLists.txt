@@ -10,5 +10,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_1284_first.cir ${CMAKE_CURRENT_BI
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_1284_restarted.cir ${CMAKE_CURRENT_BINARY_DIR}/bug_1284_restarted.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_1284/bug_1284.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_1284.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug_1284.cir ${OutputDataDir}/Certification_Tests/BUG_1284/bug_1284.cir.prn )
-set_property(TEST Certification_Tests/BUG_1284/bug_1284.cir.sh PROPERTY LABELS "serial;nightly;transline")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1284/bug_1284.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_1284.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug_1284.cir ${OutputDataDir}/Certification_Tests/BUG_1284/bug_1284.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1284/bug_1284.cir.sh PROPERTY LABELS "serial;nightly;transline")

@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug458.cir ${CMAKE_CURRENT_BINARY_DIR}/bug458.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME BUG_458/bug458.cir COMMAND Xyce bug458.cir )
-set_property(TEST BUG_458/bug458.cir PROPERTY LABELS "serial;nightly;inductor;valgrind")
-set_tests_properties(BUG_458/bug458.cir PROPERTIES FIXTURES_SETUP bug458.cir)
-add_test(NAME BUG_458/bug458.cir.verify COMMAND ${XYCE_VERIFY} bug458.cir ${OutputDataDir}/BUG_458/bug458.cir.prn bug458.cir.prn )
-set_tests_properties(BUG_458/bug458.cir.verify PROPERTIES FIXTURES_REQUIRED bug458.cir)
+add_test(NAME ${TestNamePrefix}BUG_458/bug458.cir COMMAND Xyce bug458.cir )
+set_property(TEST ${TestNamePrefix}BUG_458/bug458.cir PROPERTY LABELS "serial;nightly;inductor;valgrind")
+set_tests_properties(${TestNamePrefix}BUG_458/bug458.cir PROPERTIES FIXTURES_SETUP bug458.cir)
+add_test(NAME ${TestNamePrefix}BUG_458/bug458.cir.verify COMMAND ${XYCE_VERIFY} bug458.cir ${OutputDataDir}/BUG_458/bug458.cir.prn bug458.cir.prn )
+set_tests_properties(${TestNamePrefix}BUG_458/bug458.cir.verify PROPERTIES FIXTURES_REQUIRED bug458.cir)

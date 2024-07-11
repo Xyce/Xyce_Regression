@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lcosc.cir ${CMAKE_CURRENT_BINARY_DIR}/lcosc.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME WAMPDE/OSCILLATOR/lcosc.cir COMMAND Xyce lcosc.cir )
-set_property(TEST WAMPDE/OSCILLATOR/lcosc.cir PROPERTY LABELS "serial;parallel;nightly;mpde;wampde;valgrind")
-set_tests_properties(WAMPDE/OSCILLATOR/lcosc.cir PROPERTIES FIXTURES_SETUP lcosc.cir)
-add_test(NAME WAMPDE/OSCILLATOR/lcosc.cir.verify COMMAND ${XYCE_VERIFY} lcosc.cir ${OutputDataDir}/WAMPDE/OSCILLATOR/lcosc.cir.prn lcosc.cir.prn )
-set_tests_properties(WAMPDE/OSCILLATOR/lcosc.cir.verify PROPERTIES FIXTURES_REQUIRED lcosc.cir)
+add_test(NAME ${TestNamePrefix}WAMPDE/OSCILLATOR/lcosc.cir COMMAND Xyce lcosc.cir )
+set_property(TEST ${TestNamePrefix}WAMPDE/OSCILLATOR/lcosc.cir PROPERTY LABELS "serial;parallel;nightly;mpde;wampde;valgrind")
+set_tests_properties(${TestNamePrefix}WAMPDE/OSCILLATOR/lcosc.cir PROPERTIES FIXTURES_SETUP lcosc.cir)
+add_test(NAME ${TestNamePrefix}WAMPDE/OSCILLATOR/lcosc.cir.verify COMMAND ${XYCE_VERIFY} lcosc.cir ${OutputDataDir}/WAMPDE/OSCILLATOR/lcosc.cir.prn lcosc.cir.prn )
+set_tests_properties(${TestNamePrefix}WAMPDE/OSCILLATOR/lcosc.cir.verify PROPERTIES FIXTURES_REQUIRED lcosc.cir)

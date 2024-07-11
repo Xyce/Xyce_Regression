@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/sandler28.cir ${CMAKE_CURRENT_BINARY_DIR}/sandler28.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME SANDLER28/sandler28.cir COMMAND Xyce sandler28.cir )
-set_property(TEST SANDLER28/sandler28.cir PROPERTY LABELS "serial;nightly;parallel;bjtlev1;diode;valgrind;bsrc")
-set_tests_properties(SANDLER28/sandler28.cir PROPERTIES FIXTURES_SETUP sandler28.cir)
-add_test(NAME SANDLER28/sandler28.cir.verify COMMAND ${XYCE_VERIFY} sandler28.cir ${OutputDataDir}/SANDLER28/sandler28.cir.prn sandler28.cir.prn )
-set_tests_properties(SANDLER28/sandler28.cir.verify PROPERTIES FIXTURES_REQUIRED sandler28.cir)
+add_test(NAME ${TestNamePrefix}SANDLER28/sandler28.cir COMMAND Xyce sandler28.cir )
+set_property(TEST ${TestNamePrefix}SANDLER28/sandler28.cir PROPERTY LABELS "serial;nightly;parallel;bjtlev1;diode;valgrind;bsrc")
+set_tests_properties(${TestNamePrefix}SANDLER28/sandler28.cir PROPERTIES FIXTURES_SETUP sandler28.cir)
+add_test(NAME ${TestNamePrefix}SANDLER28/sandler28.cir.verify COMMAND ${XYCE_VERIFY} sandler28.cir ${OutputDataDir}/SANDLER28/sandler28.cir.prn sandler28.cir.prn )
+set_tests_properties(${TestNamePrefix}SANDLER28/sandler28.cir.verify PROPERTIES FIXTURES_REQUIRED sandler28.cir)

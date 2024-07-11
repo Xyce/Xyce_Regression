@@ -14,5 +14,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/nmos3p2_lev57.mod ${CMAKE_CURRENT_BIN
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/pmos3p2.mod ${CMAKE_CURRENT_BINARY_DIR}/pmos3p2.mod ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/pmos3p2_lev57.mod ${CMAKE_CURRENT_BINARY_DIR}/pmos3p2_lev57.mod ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_1788/inv_tr.cir.sh COMMAND bash inv_tr.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} inv_tr.cir ${OutputDataDir}/Certification_Tests/BUG_1788/inv_tr.cir.prn )
-set_property(TEST Certification_Tests/BUG_1788/inv_tr.cir.sh PROPERTY LABELS "serial;nightly;parallel;bug1788;issue328")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1788/inv_tr.cir.sh COMMAND bash inv_tr.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} inv_tr.cir ${OutputDataDir}/Certification_Tests/BUG_1788/inv_tr.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1788/inv_tr.cir.sh PROPERTY LABELS "serial;nightly;parallel;bug1788;issue328")

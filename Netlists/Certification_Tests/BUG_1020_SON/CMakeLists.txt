@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/subcparam.cir ${CMAKE_CURRENT_BINARY_DIR}/subcparam.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_1020_SON/subcparam.cir COMMAND Xyce subcparam.cir )
-set_property(TEST Certification_Tests/BUG_1020_SON/subcparam.cir PROPERTY LABELS "serial;parallel;nightly;abm;bsrc")
-set_tests_properties(Certification_Tests/BUG_1020_SON/subcparam.cir PROPERTIES FIXTURES_SETUP subcparam.cir)
-add_test(NAME Certification_Tests/BUG_1020_SON/subcparam.cir.verify COMMAND ${XYCE_VERIFY} subcparam.cir ${OutputDataDir}/Certification_Tests/BUG_1020_SON/subcparam.cir.prn subcparam.cir.prn )
-set_tests_properties(Certification_Tests/BUG_1020_SON/subcparam.cir.verify PROPERTIES FIXTURES_REQUIRED subcparam.cir)
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1020_SON/subcparam.cir COMMAND Xyce subcparam.cir )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1020_SON/subcparam.cir PROPERTY LABELS "serial;parallel;nightly;abm;bsrc")
+set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_1020_SON/subcparam.cir PROPERTIES FIXTURES_SETUP subcparam.cir)
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1020_SON/subcparam.cir.verify COMMAND ${XYCE_VERIFY} subcparam.cir ${OutputDataDir}/Certification_Tests/BUG_1020_SON/subcparam.cir.prn subcparam.cir.prn )
+set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_1020_SON/subcparam.cir.verify PROPERTIES FIXTURES_REQUIRED subcparam.cir)

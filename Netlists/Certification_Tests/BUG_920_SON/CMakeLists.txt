@@ -10,5 +10,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/homotopy-tran-order1.cir ${CMAKE_CURR
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/homotopy-tran-order2.cir ${CMAKE_CURRENT_BINARY_DIR}/homotopy-tran-order2.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_920_SON/bug920.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug920.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug920.cir ${OutputDataDir}/Certification_Tests/BUG_920_SON/bug920.cir.prn )
-set_property(TEST Certification_Tests/BUG_920_SON/bug920.cir.sh PROPERTY LABELS "serial;parallel;nightly;bug920;homotopy;output")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_920_SON/bug920.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug920.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug920.cir ${OutputDataDir}/Certification_Tests/BUG_920_SON/bug920.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_920_SON/bug920.cir.sh PROPERTY LABELS "serial;parallel;nightly;bug920;homotopy;output")

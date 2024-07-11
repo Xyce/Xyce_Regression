@@ -8,5 +8,5 @@ file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/agecap_master.cir.sh PERMISSIONS OWNER_RE
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/agecap_ref.cir ${CMAKE_CURRENT_BINARY_DIR}/agecap_ref.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME AGECAP/agecap_master.cir.sh COMMAND perl -I${XyceRegressionTestScripts} agecap_master.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} agecap_master.cir ${OutputDataDir}/AGECAP/agecap_master.cir.prn )
-set_property(TEST AGECAP/agecap_master.cir.sh PROPERTY LABELS "serial;nightly;parallel;valgrind;capacitor;capacitoraging;params;transient;resistor")
+add_test(NAME ${TestNamePrefix}AGECAP/agecap_master.cir.sh COMMAND perl -I${XyceRegressionTestScripts} agecap_master.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} agecap_master.cir ${OutputDataDir}/AGECAP/agecap_master.cir.prn )
+set_property(TEST ${TestNamePrefix}AGECAP/agecap_master.cir.sh PROPERTY LABELS "serial;nightly;parallel;valgrind;capacitor;capacitoraging;params;transient;resistor")

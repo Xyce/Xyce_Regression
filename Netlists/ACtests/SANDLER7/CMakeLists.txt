@@ -5,5 +5,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/sandler7.cir ${CMAKE_CURRENT_BINARY_D
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/sandler7.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/sandler7.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/sandler7.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME ACtests/SANDLER7/sandler7.cir.sh COMMAND perl -I${XyceRegressionTestScripts} sandler7.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} sandler7.cir ${OutputDataDir}/ACtests/SANDLER7/sandler7.cir.prn )
-set_property(TEST ACtests/SANDLER7/sandler7.cir.sh PROPERTY LABELS "serial;parallel;nightly;ac;resistor;capacitor;subckt;diode;esrc;fsrc;gsrc;isrc;hsrc;bjtlev1")
+add_test(NAME ${TestNamePrefix}ACtests/SANDLER7/sandler7.cir.sh COMMAND perl -I${XyceRegressionTestScripts} sandler7.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} sandler7.cir ${OutputDataDir}/ACtests/SANDLER7/sandler7.cir.prn )
+set_property(TEST ${TestNamePrefix}ACtests/SANDLER7/sandler7.cir.sh PROPERTY LABELS "serial;parallel;nightly;ac;resistor;capacitor;subckt;diode;esrc;fsrc;gsrc;isrc;hsrc;bjtlev1")

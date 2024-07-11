@@ -7,5 +7,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/pseudo.cir ${CMAKE_CURRENT_BINARY_DIR
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/pseudo.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/pseudo.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/pseudo.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME PSEUDO/pseudo.cir.sh COMMAND bash pseudo.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} pseudo.cir ${OutputDataDir}/PSEUDO/pseudo.cir.prn )
-set_property(TEST PSEUDO/pseudo.cir.sh PROPERTY LABELS "serial;nightly;parallel;bjtlev1;homotopy")
+add_test(NAME ${TestNamePrefix}PSEUDO/pseudo.cir.sh COMMAND bash pseudo.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} pseudo.cir ${OutputDataDir}/PSEUDO/pseudo.cir.prn )
+set_property(TEST ${TestNamePrefix}PSEUDO/pseudo.cir.sh PROPERTY LABELS "serial;nightly;parallel;bjtlev1;homotopy")

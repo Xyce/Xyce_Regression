@@ -7,5 +7,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/nmos1.cir.sh ${CMAKE_CURRENT_BINARY_D
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/nmos1.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/nmos1_1level.cir ${CMAKE_CURRENT_BINARY_DIR}/nmos1_1level.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME PDE_2D_NMOS/nmos1.cir.sh COMMAND bash nmos1.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} nmos1.cir ${OutputDataDir}/PDE_2D_NMOS/nmos1.cir.prn )
-set_property(TEST PDE_2D_NMOS/nmos1.cir.sh PROPERTY LABELS "weekly;serial;pde;twolevel;2d;required:klu")
+add_test(NAME ${TestNamePrefix}PDE_2D_NMOS/nmos1.cir.sh COMMAND bash nmos1.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} nmos1.cir ${OutputDataDir}/PDE_2D_NMOS/nmos1.cir.prn )
+set_property(TEST ${TestNamePrefix}PDE_2D_NMOS/nmos1.cir.sh PROPERTY LABELS "weekly;serial;pde;twolevel;2d;required:klu")

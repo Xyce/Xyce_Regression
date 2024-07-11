@@ -42,29 +42,46 @@ def SetUpCtestFiles():
   if( not os.path.isdir( XyceRegressionDirectory)):
     print( "Error: Input Xyce_Regression is not a directory  %s" % (XyceRegressionDirectory))
     return -1
-    
+   
+  XyceSandiaRegressionDirectory = XyceRegressionDirectory.replace("_Regression", "_SandiaRegression")
+  if( not os.path.exists( XyceSandiaRegressionDirectory)):
+    print( "Error: Input Xyce_SandiaRegression directory does not exist %s" % (XyceSandiaRegressionDirectory))
+    XyceSandiaRegressionDirectory = None
+  if( not os.path.isdir( XyceSandiaRegressionDirectory)):
+    print( "Error: Input Xyce_SandiaRegression is not a directory  %s" % (XyceSandiaRegressionDirectory))
+    XyceSandiaRegressionDirectory = None
+  
+  XyceFastrackRegressionDirectory = XyceRegressionDirectory.replace("_Regression", "_FastrackRegression")
+  if( not os.path.exists( XyceFastrackRegressionDirectory)):
+    print( "Error: Input Xyce_FastrackRegression directory does not exist %s" % (XyceFastrackRegressionDirectory))
+    XyceFastrackRegressionDirectory = None
+  if( not os.path.isdir( XyceFastrackRegressionDirectory)):
+    print( "Error: Input Xyce_FastrackRegression is not a directory  %s" % (XyceFastrackRegressionDirectory))
+    XyceFastrackRegressionDirectory = None
+  
   # set up symbolic links for directories like Xyce_<Foo>Regression.  
   # specifically
   # cd Xyce_Regression/Netlists
   # ln -s ../Xyce_<Foo>Regression/Netlists <Foo>Tests 
   # cd Xyce_Regression/OutputData 
   # ln -s ../Xyce_<Foo>Regression/OutputData <Foo>Tests
-  setupSimlinks(XyceRegressionDirectory, "Xyce_SandiaRegression", "SandiaTests")
-  setupSimlinks(XyceRegressionDirectory, "Xyce_FastrackRegression", "FastrackTests")
-  
+  #setupSimlinks(XyceRegressionDirectory, "Xyce_SandiaRegression", "SandiaTests")
+  #setupSimlinks(XyceRegressionDirectory, "Xyce_FastrackRegression", "FastrackTests")
   
   # the glob function used in getTestsInDirectory() doesn't follow sym-links
   # so call it 2 extra times for the two symlinked directories.
   XyceNetlistsDirectory = os.path.join(XyceRegressionDirectory, 'Netlists')
   testList = getTestsInDirectory(XyceNetlistsDirectory)
   
-  XyceNetlistsDirectory = os.path.join(XyceRegressionDirectory, 'Netlists/SandiaTests')
-  testList2 = getTestsInDirectory(XyceNetlistsDirectory)
-  testList.extend(testList2)
+  if( XyceSandiaRegressionDirectory != None):
+    XyceNetlistsDirectory = os.path.join(XyceSandiaRegressionDirectory, 'Netlists')
+    testList2 = getTestsInDirectory(XyceNetlistsDirectory)
+    testList.extend(testList2)
   
-  XyceNetlistsDirectory = os.path.join(XyceRegressionDirectory, 'Netlists/FastrackTests')
-  testList2 = getTestsInDirectory(XyceNetlistsDirectory)
-  testList.extend(testList2)
+  if( XyceFastrackRegressionDirectory != None):
+    XyceNetlistsDirectory = os.path.join(XyceFastrackRegressionDirectory, 'Netlists')
+    testList2 = getTestsInDirectory(XyceNetlistsDirectory)
+    testList.extend(testList2)
   
   testList.sort()
   if args.verbose:
@@ -121,10 +138,28 @@ def SetUpCtestFiles():
       #topLevelCmakeFile = open( os.path.join(XyceRegressionDirectory, 'CMakeLists.txt'), 'w')
       fileObj.write('set(XYCE_VERIFY "${CMAKE_CURRENT_SOURCE_DIR}/TestScripts/xyce_verify.pl")\n')
       fileObj.write('set(OutputDataDir "${CMAKE_CURRENT_SOURCE_DIR}/OutputData")\n')
+      fileObj.write('set(TestNamePrefix "")\n')
       fileObj.write('set(XyceRegressionTestScripts ${CMAKE_CURRENT_SOURCE_DIR}/TestScripts)\n')
       fileObj.write('get_target_property(XyceBuildDir Xyce BINARY_DIR)\n')
       fileObj.write('cmake_path(SET XYCE_BINARY $<TARGET_FILE:Xyce>)\n')
-      
+      fileObj.write('if (EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../Xyce_SandiaRegression" AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../Xyce_SandiaRegression/CMakeLists.txt" )\n')
+      #fileObj.write('  file(REAL_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../Xyce_SandiaRegression" SandiaRegressiontDIR)\n')
+      #fileObj.write('  add_subdirectory( ${SandiaRegressiontDIR} Xyce_SandiaRegression)\n')
+      fileObj.write('  add_subdirectory( ${CMAKE_CURRENT_SOURCE_DIR}/../Xyce_SandiaRegression Xyce_SandiaRegression)\n')
+      fileObj.write('endif()\n')
+      fileObj.write('if (EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../Xyce_FastrackRegression" AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../Xyce_FastrackRegression/CMakeLists.txt" )\n')
+      #fileObj.write('  file(REAL_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../Xyce_FastrackRegression" FastrackRegressiontDIR)\n')
+      fileObj.write('  add_subdirectory( ${CMAKE_CURRENT_SOURCE_DIR}/../Xyce_FastrackRegression Xyce_FastrackRegression)\n')
+      fileObj.write('endif()\n')
+    
+    # Independent test repos have their own output data directories.  Try overriding 
+    # the OutputDataDir variable as it should propagate down in scope to test directories 
+    if( keyName == "Xyce_SandiaRegression"):
+      fileObj.write('set(TestNamePrefix "SandiaTests/")\n')
+      fileObj.write('set(OutputDataDir "${CMAKE_CURRENT_SOURCE_DIR}/OutputData")\n')
+    if( keyName == "Xyce_FastrackRegression"):
+      fileObj.write('set(TestNamePrefix "FastrackTests/")\n')
+      fileObj.write('set(OutputDataDir "${CMAKE_CURRENT_SOURCE_DIR}/OutputData")\n')
     for subDirName in depDirectoryDict[keyName]:
       # need a unique name for each test even when the same netlist name is used in multiple tests 
       # otherwise setting properties on tests gets confused because it keys on test name 
@@ -161,34 +196,34 @@ def SetUpCtestFiles():
                     fileObj.write('file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/%s PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)\n' % (aFile))
 
           # first run Xyce on the test circuit 
-          fileObj.write('add_test(NAME %s COMMAND Xyce %s )\n' % (testName, subDirName))
+          fileObj.write('add_test(NAME ${TestNamePrefix}%s COMMAND Xyce %s )\n' % (testName, subDirName))
           # write test tags as label for this test
           if( len(testtags) > 0 ):
-            fileObj.write('set_property(TEST %s PROPERTY LABELS \"%s\")\n' % (testName, testtags))
+            fileObj.write('set_property(TEST ${TestNamePrefix}%s PROPERTY LABELS \"%s\")\n' % (testName, testtags))
           # set timelimit option if given as TIMEOUT for ctest 
           if( len(testOptions) > 0):
             for anOpt in testOptions:
               if anOpt[0] == "timelimit":
-                fileObj.write('set_tests_properties(%s PROPERTIES TIMEOUT %s)\n' % (testName, anOpt[1]))
+                fileObj.write('set_tests_properties(${TestNamePrefix}%s PROPERTIES TIMEOUT %s)\n' % (testName, anOpt[1]))
           
           # use the FIXTURES_SETUP and FIXTURES_REQUIRED properties so that testing steps that
           # require the prior steps to pass don't run if it failed.
-          fileObj.write('set_tests_properties(%s PROPERTIES FIXTURES_SETUP %s)\n' % (testName, subDirName))
+          fileObj.write('set_tests_properties(${TestNamePrefix}%s PROPERTIES FIXTURES_SETUP %s)\n' % (testName, subDirName))
           
           # now if check if this test needs to generate the gold standard 
           if os.path.exists(os.path.join(keyName, subDirName) + ".prn.gs.pl"):
-            fileObj.write('add_test(NAME %s.gen_gs COMMAND perl %s.prn.gs.pl )\n' % (testName, subDirName))
-            fileObj.write('set_tests_properties(%s.gen_gs PROPERTIES FIXTURES_REQUIRED %s)\n' % (testName, subDirName))
+            fileObj.write('add_test(NAME ${TestNamePrefix}%s.gen_gs COMMAND perl %s.prn.gs.pl )\n' % (testName, subDirName))
+            fileObj.write('set_tests_properties(${TestNamePrefix}%s.gen_gs PROPERTIES FIXTURES_REQUIRED %s)\n' % (testName, subDirName))
             # now add check the answer against the newly generated gold standard 
-            fileObj.write('add_test(NAME %s.verify COMMAND ${XYCE_VERIFY} %s %s.prn.gs %s.prn )\n' % (testName, subDirName, subDirName, subDirName))
-            fileObj.write('set_tests_properties(%s.verify PROPERTIES FIXTURES_REQUIRED %s)\n' % (testName, subDirName))
+            fileObj.write('add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${XYCE_VERIFY} %s %s.prn.gs %s.prn )\n' % (testName, subDirName, subDirName, subDirName))
+            fileObj.write('set_tests_properties(${TestNamePrefix}%s.verify PROPERTIES FIXTURES_REQUIRED %s)\n' % (testName, subDirName))
           else:
             # look at the path for the test /dirA/dirB/.../Netlists/TestDir1/TestDir2/test.cir 
             # gold standard output will be in ${OutputDataDir}/TestDir1/TestDir2/test.cir.prn
             testPathIndex = keyName.rfind("Netlists")+9
             GoldOutput=os.path.join(keyName[testPathIndex:], subDirName + ".prn")
-            fileObj.write('add_test(NAME %s.verify COMMAND ${XYCE_VERIFY} %s ${OutputDataDir}/%s %s.prn )\n' % (testName, subDirName, GoldOutput, subDirName))
-            fileObj.write('set_tests_properties(%s.verify PROPERTIES FIXTURES_REQUIRED %s)\n' % (testName, subDirName))
+            fileObj.write('add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${XYCE_VERIFY} %s ${OutputDataDir}/%s %s.prn )\n' % (testName, subDirName, GoldOutput, subDirName))
+            fileObj.write('set_tests_properties(${TestNamePrefix}%s.verify PROPERTIES FIXTURES_REQUIRED %s)\n' % (testName, subDirName))
       elif subDirName.endswith(".cir.sh"):
         # look for a test specific tags file.  Load it or the general tags file if the specific one doesn't exist 
         actualFileName = subDirName.removesuffix('.sh')
@@ -234,15 +269,15 @@ def SetUpCtestFiles():
           # $ARGV[2] = location of compare script  -- no scripts use this but it's still passed in 
           # $ARGV[3] = location of circuit file to test
           # $ARGV[4] = location of gold standard prn file
-          fileObj.write('add_test(NAME %s COMMAND %s %s $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} %s ${OutputDataDir}/%s )\n' % (testName, interpreter, subDirName, actualFileName, GoldOutput))
+          fileObj.write('add_test(NAME ${TestNamePrefix}%s COMMAND %s %s $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} %s ${OutputDataDir}/%s )\n' % (testName, interpreter, subDirName, actualFileName, GoldOutput))
           # write test tags as label for this test
           if( len(testtags) > 0 ):
-            fileObj.write('set_property(TEST %s PROPERTY LABELS \"%s\")\n' % (testName, testtags))
+            fileObj.write('set_property(TEST ${TestNamePrefix}%s PROPERTY LABELS \"%s\")\n' % (testName, testtags))
           # set timelimit option if given as TIMEOUT for ctest 
           if( len(testOptions) > 0):
             for anOpt in testOptions:
               if anOpt[0] == "timelimit":
-                fileObj.write('set_tests_properties(%s PROPERTIES TIMEOUT %s)\n' % (testName, anOpt[1]))
+                fileObj.write('set_tests_properties(${TestNamePrefix}%s PROPERTIES TIMEOUT %s)\n' % (testName, anOpt[1]))
           
       else:
         # this entry is a sub directory so just add it as such

@@ -5,5 +5,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/Manifest.txt ${CMAKE_CURRENT_BINARY_D
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/dbTest.cir ${CMAKE_CURRENT_BINARY_DIR}/dbTest.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/dbTest.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/dbTest.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/dbTest.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-add_test(NAME ABM_DB/dbTest.cir.sh COMMAND perl -I${XyceRegressionTestScripts} dbTest.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} dbTest.cir ${OutputDataDir}/ABM_DB/dbTest.cir.prn )
-set_property(TEST ABM_DB/dbTest.cir.sh PROPERTY LABELS "serial;parallel;nightly;ac;capacitor;resistor;issue139;abm;db")
+add_test(NAME ${TestNamePrefix}ABM_DB/dbTest.cir.sh COMMAND perl -I${XyceRegressionTestScripts} dbTest.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} dbTest.cir ${OutputDataDir}/ABM_DB/dbTest.cir.prn )
+set_property(TEST ${TestNamePrefix}ABM_DB/dbTest.cir.sh PROPERTY LABELS "serial;parallel;nightly;ac;capacitor;resistor;issue139;abm;db")

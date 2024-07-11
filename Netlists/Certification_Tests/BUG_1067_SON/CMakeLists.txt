@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ADCOutputTest.cir ${CMAKE_CURRENT_BINARY_DIR}/ADCOutputTest.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_1067_SON/ADCOutputTest.cir COMMAND Xyce ADCOutputTest.cir )
-set_property(TEST Certification_Tests/BUG_1067_SON/ADCOutputTest.cir PROPERTY LABELS "serial;nightly;parallel")
-set_tests_properties(Certification_Tests/BUG_1067_SON/ADCOutputTest.cir PROPERTIES FIXTURES_SETUP ADCOutputTest.cir)
-add_test(NAME Certification_Tests/BUG_1067_SON/ADCOutputTest.cir.verify COMMAND ${XYCE_VERIFY} ADCOutputTest.cir ${OutputDataDir}/Certification_Tests/BUG_1067_SON/ADCOutputTest.cir.prn ADCOutputTest.cir.prn )
-set_tests_properties(Certification_Tests/BUG_1067_SON/ADCOutputTest.cir.verify PROPERTIES FIXTURES_REQUIRED ADCOutputTest.cir)
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1067_SON/ADCOutputTest.cir COMMAND Xyce ADCOutputTest.cir )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1067_SON/ADCOutputTest.cir PROPERTY LABELS "serial;nightly;parallel")
+set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_1067_SON/ADCOutputTest.cir PROPERTIES FIXTURES_SETUP ADCOutputTest.cir)
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1067_SON/ADCOutputTest.cir.verify COMMAND ${XYCE_VERIFY} ADCOutputTest.cir ${OutputDataDir}/Certification_Tests/BUG_1067_SON/ADCOutputTest.cir.prn ADCOutputTest.cir.prn )
+set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_1067_SON/ADCOutputTest.cir.verify PROPERTIES FIXTURES_REQUIRED ADCOutputTest.cir)

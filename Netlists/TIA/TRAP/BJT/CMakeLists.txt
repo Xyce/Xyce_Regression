@@ -7,5 +7,5 @@ file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/ramp_test1.cir.gs.pl PERMISSIONS OWNER_RE
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ramp_test1.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/ramp_test1.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/ramp_test1.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME TIA/TRAP/BJT/ramp_test1.cir.sh COMMAND bash ramp_test1.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} ramp_test1.cir ${OutputDataDir}/TIA/TRAP/BJT/ramp_test1.cir.prn )
-set_property(TEST TIA/TRAP/BJT/ramp_test1.cir.sh PROPERTY LABELS "analytic;serial")
+add_test(NAME ${TestNamePrefix}TIA/TRAP/BJT/ramp_test1.cir.sh COMMAND bash ramp_test1.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} ramp_test1.cir ${OutputDataDir}/TIA/TRAP/BJT/ramp_test1.cir.prn )
+set_property(TEST ${TestNamePrefix}TIA/TRAP/BJT/ramp_test1.cir.sh PROPERTY LABELS "analytic;serial")

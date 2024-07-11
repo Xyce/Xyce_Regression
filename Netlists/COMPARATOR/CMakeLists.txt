@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/comparator.cir ${CMAKE_CURRENT_BINARY_DIR}/comparator.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME COMPARATOR/comparator.cir COMMAND Xyce comparator.cir )
-set_property(TEST COMPARATOR/comparator.cir PROPERTY LABELS "serial;nightly;parallel;bsim3;capacitor")
-set_tests_properties(COMPARATOR/comparator.cir PROPERTIES FIXTURES_SETUP comparator.cir)
-add_test(NAME COMPARATOR/comparator.cir.verify COMMAND ${XYCE_VERIFY} comparator.cir ${OutputDataDir}/COMPARATOR/comparator.cir.prn comparator.cir.prn )
-set_tests_properties(COMPARATOR/comparator.cir.verify PROPERTIES FIXTURES_REQUIRED comparator.cir)
+add_test(NAME ${TestNamePrefix}COMPARATOR/comparator.cir COMMAND Xyce comparator.cir )
+set_property(TEST ${TestNamePrefix}COMPARATOR/comparator.cir PROPERTY LABELS "serial;nightly;parallel;bsim3;capacitor")
+set_tests_properties(${TestNamePrefix}COMPARATOR/comparator.cir PROPERTIES FIXTURES_SETUP comparator.cir)
+add_test(NAME ${TestNamePrefix}COMPARATOR/comparator.cir.verify COMMAND ${XYCE_VERIFY} comparator.cir ${OutputDataDir}/COMPARATOR/comparator.cir.prn comparator.cir.prn )
+set_tests_properties(${TestNamePrefix}COMPARATOR/comparator.cir.verify PROPERTIES FIXTURES_REQUIRED comparator.cir)

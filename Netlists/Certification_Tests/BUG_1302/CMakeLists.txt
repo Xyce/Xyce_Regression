@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_1302.cir ${CMAKE_CURRENT_BINARY_DIR}/bug_1302.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_1302/bug_1302.cir COMMAND Xyce bug_1302.cir )
-set_property(TEST Certification_Tests/BUG_1302/bug_1302.cir PROPERTY LABELS "serial;nightly")
-set_tests_properties(Certification_Tests/BUG_1302/bug_1302.cir PROPERTIES FIXTURES_SETUP bug_1302.cir)
-add_test(NAME Certification_Tests/BUG_1302/bug_1302.cir.verify COMMAND ${XYCE_VERIFY} bug_1302.cir ${OutputDataDir}/Certification_Tests/BUG_1302/bug_1302.cir.prn bug_1302.cir.prn )
-set_tests_properties(Certification_Tests/BUG_1302/bug_1302.cir.verify PROPERTIES FIXTURES_REQUIRED bug_1302.cir)
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1302/bug_1302.cir COMMAND Xyce bug_1302.cir )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1302/bug_1302.cir PROPERTY LABELS "serial;nightly")
+set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_1302/bug_1302.cir PROPERTIES FIXTURES_SETUP bug_1302.cir)
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1302/bug_1302.cir.verify COMMAND ${XYCE_VERIFY} bug_1302.cir ${OutputDataDir}/Certification_Tests/BUG_1302/bug_1302.cir.prn bug_1302.cir.prn )
+set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_1302/bug_1302.cir.verify PROPERTIES FIXTURES_REQUIRED bug_1302.cir)

@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ibis.cir ${CMAKE_CURRENT_BINARY_DIR}/ibis.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/at16245.ibs ${CMAKE_CURRENT_BINARY_DIR}/at16245.ibs ONLY_IF_DIFFERENT)
-add_test(NAME IBIS/ibis.cir COMMAND Xyce ibis.cir )
-set_property(TEST IBIS/ibis.cir PROPERTY LABELS "ibis;nightly;serial;parallel")
-set_tests_properties(IBIS/ibis.cir PROPERTIES FIXTURES_SETUP ibis.cir)
-add_test(NAME IBIS/ibis.cir.verify COMMAND ${XYCE_VERIFY} ibis.cir ${OutputDataDir}/IBIS/ibis.cir.prn ibis.cir.prn )
-set_tests_properties(IBIS/ibis.cir.verify PROPERTIES FIXTURES_REQUIRED ibis.cir)
+add_test(NAME ${TestNamePrefix}IBIS/ibis.cir COMMAND Xyce ibis.cir )
+set_property(TEST ${TestNamePrefix}IBIS/ibis.cir PROPERTY LABELS "ibis;nightly;serial;parallel")
+set_tests_properties(${TestNamePrefix}IBIS/ibis.cir PROPERTIES FIXTURES_SETUP ibis.cir)
+add_test(NAME ${TestNamePrefix}IBIS/ibis.cir.verify COMMAND ${XYCE_VERIFY} ibis.cir ${OutputDataDir}/IBIS/ibis.cir.prn ibis.cir.prn )
+set_tests_properties(${TestNamePrefix}IBIS/ibis.cir.verify PROPERTIES FIXTURES_REQUIRED ibis.cir)

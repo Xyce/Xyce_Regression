@@ -4,5 +4,5 @@
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/gstep.cir ${CMAKE_CURRENT_BINARY_DIR}/gstep.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/gstep.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/gstep.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/gstep.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-add_test(NAME Certification_Tests/BUG_2007/gstep.cir.sh COMMAND perl -I${XyceRegressionTestScripts} gstep.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} gstep.cir ${OutputDataDir}/Certification_Tests/BUG_2007/gstep.cir.prn )
-set_property(TEST Certification_Tests/BUG_2007/gstep.cir.sh PROPERTY LABELS "serial;parallel;nightly;failsafe;bug2007")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_2007/gstep.cir.sh COMMAND perl -I${XyceRegressionTestScripts} gstep.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} gstep.cir ${OutputDataDir}/Certification_Tests/BUG_2007/gstep.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_2007/gstep.cir.sh PROPERTY LABELS "serial;parallel;nightly;failsafe;bug2007")

@@ -12,5 +12,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_668_raw_printline.cir ${CMAKE_CUR
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_668_tecplot.cir ${CMAKE_CURRENT_BINARY_DIR}/bug_668_tecplot.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_668/bug_668.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_668.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug_668.cir ${OutputDataDir}/Certification_Tests/BUG_668/bug_668.cir.prn )
-set_property(TEST Certification_Tests/BUG_668/bug_668.cir.sh PROPERTY LABELS "serial;parallel;nightly;tecplot;raw;output;numpy;bug668")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_668/bug_668.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_668.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug_668.cir ${OutputDataDir}/Certification_Tests/BUG_668/bug_668.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_668/bug_668.cir.sh PROPERTY LABELS "serial;parallel;nightly;tecplot;raw;output;numpy;bug668")

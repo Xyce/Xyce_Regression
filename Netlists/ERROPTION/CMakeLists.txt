@@ -7,5 +7,5 @@ file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/rc_osc.cir.prn.gs.pl PERMISSIONS OWNER_RE
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/rc_osc.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/rc_osc.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/rc_osc.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME ERROPTION/rc_osc.cir.sh COMMAND bash rc_osc.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} rc_osc.cir ${OutputDataDir}/ERROPTION/rc_osc.cir.prn )
-set_property(TEST ERROPTION/rc_osc.cir.sh PROPERTY LABELS "serial;nightly;parallel;analytic;valgrind;resistor;capacitor")
+add_test(NAME ${TestNamePrefix}ERROPTION/rc_osc.cir.sh COMMAND bash rc_osc.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} rc_osc.cir ${OutputDataDir}/ERROPTION/rc_osc.cir.prn )
+set_property(TEST ${TestNamePrefix}ERROPTION/rc_osc.cir.sh PROPERTY LABELS "serial;nightly;parallel;analytic;valgrind;resistor;capacitor")

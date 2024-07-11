@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/hussamp.cir ${CMAKE_CURRENT_BINARY_DIR}/hussamp.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/ISSUE_634/hussamp.cir COMMAND Xyce hussamp.cir )
-set_property(TEST Certification_Tests/ISSUE_634/hussamp.cir PROPERTY LABELS "serial;parallel;nightly;nodeset;mos2;op")
-set_tests_properties(Certification_Tests/ISSUE_634/hussamp.cir PROPERTIES FIXTURES_SETUP hussamp.cir)
-add_test(NAME Certification_Tests/ISSUE_634/hussamp.cir.verify COMMAND ${XYCE_VERIFY} hussamp.cir ${OutputDataDir}/Certification_Tests/ISSUE_634/hussamp.cir.prn hussamp.cir.prn )
-set_tests_properties(Certification_Tests/ISSUE_634/hussamp.cir.verify PROPERTIES FIXTURES_REQUIRED hussamp.cir)
+add_test(NAME ${TestNamePrefix}Certification_Tests/ISSUE_634/hussamp.cir COMMAND Xyce hussamp.cir )
+set_property(TEST ${TestNamePrefix}Certification_Tests/ISSUE_634/hussamp.cir PROPERTY LABELS "serial;parallel;nightly;nodeset;mos2;op")
+set_tests_properties(${TestNamePrefix}Certification_Tests/ISSUE_634/hussamp.cir PROPERTIES FIXTURES_SETUP hussamp.cir)
+add_test(NAME ${TestNamePrefix}Certification_Tests/ISSUE_634/hussamp.cir.verify COMMAND ${XYCE_VERIFY} hussamp.cir ${OutputDataDir}/Certification_Tests/ISSUE_634/hussamp.cir.prn hussamp.cir.prn )
+set_tests_properties(${TestNamePrefix}Certification_Tests/ISSUE_634/hussamp.cir.verify PROPERTIES FIXTURES_REQUIRED hussamp.cir)

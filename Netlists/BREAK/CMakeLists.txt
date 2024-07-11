@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/break.cir ${CMAKE_CURRENT_BINARY_DIR}/break.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME BREAK/break.cir COMMAND Xyce break.cir )
-set_property(TEST BREAK/break.cir PROPERTY LABELS "serial;nightly;valgrind;vpwl;conditionalexpr;expression;bsrc;resistor;transient;expression_breakpoints")
-set_tests_properties(BREAK/break.cir PROPERTIES FIXTURES_SETUP break.cir)
-add_test(NAME BREAK/break.cir.verify COMMAND ${XYCE_VERIFY} break.cir ${OutputDataDir}/BREAK/break.cir.prn break.cir.prn )
-set_tests_properties(BREAK/break.cir.verify PROPERTIES FIXTURES_REQUIRED break.cir)
+add_test(NAME ${TestNamePrefix}BREAK/break.cir COMMAND Xyce break.cir )
+set_property(TEST ${TestNamePrefix}BREAK/break.cir PROPERTY LABELS "serial;nightly;valgrind;vpwl;conditionalexpr;expression;bsrc;resistor;transient;expression_breakpoints")
+set_tests_properties(${TestNamePrefix}BREAK/break.cir PROPERTIES FIXTURES_SETUP break.cir)
+add_test(NAME ${TestNamePrefix}BREAK/break.cir.verify COMMAND ${XYCE_VERIFY} break.cir ${OutputDataDir}/BREAK/break.cir.prn break.cir.prn )
+set_tests_properties(${TestNamePrefix}BREAK/break.cir.verify PROPERTIES FIXTURES_REQUIRED break.cir)

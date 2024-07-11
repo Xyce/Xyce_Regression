@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_507.cir ${CMAKE_CURRENT_BINARY_DIR}/bug_507.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_507_SON/bug_507.cir COMMAND Xyce bug_507.cir )
-set_property(TEST Certification_Tests/BUG_507_SON/bug_507.cir PROPERTY LABELS "weekly;serial;parallel;bug507")
-set_tests_properties(Certification_Tests/BUG_507_SON/bug_507.cir PROPERTIES FIXTURES_SETUP bug_507.cir)
-add_test(NAME Certification_Tests/BUG_507_SON/bug_507.cir.verify COMMAND ${XYCE_VERIFY} bug_507.cir ${OutputDataDir}/Certification_Tests/BUG_507_SON/bug_507.cir.prn bug_507.cir.prn )
-set_tests_properties(Certification_Tests/BUG_507_SON/bug_507.cir.verify PROPERTIES FIXTURES_REQUIRED bug_507.cir)
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_507_SON/bug_507.cir COMMAND Xyce bug_507.cir )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_507_SON/bug_507.cir PROPERTY LABELS "weekly;serial;parallel;bug507")
+set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_507_SON/bug_507.cir PROPERTIES FIXTURES_SETUP bug_507.cir)
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_507_SON/bug_507.cir.verify COMMAND ${XYCE_VERIFY} bug_507.cir ${OutputDataDir}/Certification_Tests/BUG_507_SON/bug_507.cir.prn bug_507.cir.prn )
+set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_507_SON/bug_507.cir.verify PROPERTIES FIXTURES_REQUIRED bug_507.cir)

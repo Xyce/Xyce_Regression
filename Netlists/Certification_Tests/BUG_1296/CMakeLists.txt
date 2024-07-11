@@ -6,5 +6,5 @@ file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/1296.cir.sh PERMISSIONS OWNER_READ OWNER_
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/README ${CMAKE_CURRENT_BINARY_DIR}/README ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/1296.cir ${CMAKE_CURRENT_BINARY_DIR}/1296.cir ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_1296/1296.cir.sh COMMAND perl -I${XyceRegressionTestScripts} 1296.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} 1296.cir ${OutputDataDir}/Certification_Tests/BUG_1296/1296.cir.prn )
-set_property(TEST Certification_Tests/BUG_1296/1296.cir.sh PROPERTY LABELS "serial;parallel;nightly;mos1;mpde")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1296/1296.cir.sh COMMAND perl -I${XyceRegressionTestScripts} 1296.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} 1296.cir ${OutputDataDir}/Certification_Tests/BUG_1296/1296.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1296/1296.cir.sh PROPERTY LABELS "serial;parallel;nightly;mos1;mpde")

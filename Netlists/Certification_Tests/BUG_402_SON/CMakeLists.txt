@@ -9,5 +9,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug402son.cir.sh ${CMAKE_CURRENT_BINA
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug402son.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_402_SON/bug402son.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug402son.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug402son.cir ${OutputDataDir}/Certification_Tests/BUG_402_SON/bug402son.cir.prn )
-set_property(TEST Certification_Tests/BUG_402_SON/bug402son.cir.sh PROPERTY LABELS "serial;nightly;diode;resistor")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_402_SON/bug402son.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug402son.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug402son.cir ${OutputDataDir}/Certification_Tests/BUG_402_SON/bug402son.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_402_SON/bug402son.cir.sh PROPERTY LABELS "serial;nightly;diode;resistor")

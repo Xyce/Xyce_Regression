@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/global_accessor_interference.cir ${CMAKE_CURRENT_BINARY_DIR}/global_accessor_interference.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_812_SON/global_accessor_interference.cir COMMAND Xyce global_accessor_interference.cir )
-set_property(TEST Certification_Tests/BUG_812_SON/global_accessor_interference.cir PROPERTY LABELS "serial;parallel;nightly;bug812son;globalparam;params")
-set_tests_properties(Certification_Tests/BUG_812_SON/global_accessor_interference.cir PROPERTIES FIXTURES_SETUP global_accessor_interference.cir)
-add_test(NAME Certification_Tests/BUG_812_SON/global_accessor_interference.cir.verify COMMAND ${XYCE_VERIFY} global_accessor_interference.cir ${OutputDataDir}/Certification_Tests/BUG_812_SON/global_accessor_interference.cir.prn global_accessor_interference.cir.prn )
-set_tests_properties(Certification_Tests/BUG_812_SON/global_accessor_interference.cir.verify PROPERTIES FIXTURES_REQUIRED global_accessor_interference.cir)
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_812_SON/global_accessor_interference.cir COMMAND Xyce global_accessor_interference.cir )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_812_SON/global_accessor_interference.cir PROPERTY LABELS "serial;parallel;nightly;bug812son;globalparam;params")
+set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_812_SON/global_accessor_interference.cir PROPERTIES FIXTURES_SETUP global_accessor_interference.cir)
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_812_SON/global_accessor_interference.cir.verify COMMAND ${XYCE_VERIFY} global_accessor_interference.cir ${OutputDataDir}/Certification_Tests/BUG_812_SON/global_accessor_interference.cir.prn global_accessor_interference.cir.prn )
+set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_812_SON/global_accessor_interference.cir.verify PROPERTIES FIXTURES_REQUIRED global_accessor_interference.cir)

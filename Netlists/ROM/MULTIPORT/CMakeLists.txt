@@ -8,5 +8,5 @@ file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/RLC_mesh2_mor.cir.sh PERMISSIONS OWNER_RE
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/RLC_mesh2_top.cir ${CMAKE_CURRENT_BINARY_DIR}/RLC_mesh2_top.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME ROM/MULTIPORT/RLC_mesh2_mor.cir.sh COMMAND bash RLC_mesh2_mor.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} RLC_mesh2_mor.cir ${OutputDataDir}/ROM/MULTIPORT/RLC_mesh2_mor.cir.prn )
-set_property(TEST ROM/MULTIPORT/RLC_mesh2_mor.cir.sh PROPERTY LABELS "serial;parallel;nightly;rom;resistor;capacitor;inductor")
+add_test(NAME ${TestNamePrefix}ROM/MULTIPORT/RLC_mesh2_mor.cir.sh COMMAND bash RLC_mesh2_mor.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} RLC_mesh2_mor.cir ${OutputDataDir}/ROM/MULTIPORT/RLC_mesh2_mor.cir.prn )
+set_property(TEST ${TestNamePrefix}ROM/MULTIPORT/RLC_mesh2_mor.cir.sh PROPERTY LABELS "serial;parallel;nightly;rom;resistor;capacitor;inductor")

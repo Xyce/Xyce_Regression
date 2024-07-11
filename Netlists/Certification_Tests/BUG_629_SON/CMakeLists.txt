@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_629.cir ${CMAKE_CURRENT_BINARY_DIR}/bug_629.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_629_SON/bug_629.cir COMMAND Xyce bug_629.cir )
-set_property(TEST Certification_Tests/BUG_629_SON/bug_629.cir PROPERTY LABELS "serial;nightly;parallel;power")
-set_tests_properties(Certification_Tests/BUG_629_SON/bug_629.cir PROPERTIES FIXTURES_SETUP bug_629.cir)
-add_test(NAME Certification_Tests/BUG_629_SON/bug_629.cir.verify COMMAND ${XYCE_VERIFY} bug_629.cir ${OutputDataDir}/Certification_Tests/BUG_629_SON/bug_629.cir.prn bug_629.cir.prn )
-set_tests_properties(Certification_Tests/BUG_629_SON/bug_629.cir.verify PROPERTIES FIXTURES_REQUIRED bug_629.cir)
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_629_SON/bug_629.cir COMMAND Xyce bug_629.cir )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_629_SON/bug_629.cir PROPERTY LABELS "serial;nightly;parallel;power")
+set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_629_SON/bug_629.cir PROPERTIES FIXTURES_SETUP bug_629.cir)
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_629_SON/bug_629.cir.verify COMMAND ${XYCE_VERIFY} bug_629.cir ${OutputDataDir}/Certification_Tests/BUG_629_SON/bug_629.cir.prn bug_629.cir.prn )
+set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_629_SON/bug_629.cir.verify PROPERTIES FIXTURES_REQUIRED bug_629.cir)

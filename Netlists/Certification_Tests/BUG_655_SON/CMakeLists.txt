@@ -7,5 +7,5 @@ file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/contLine.cir.sh PERMISSIONS OWNER_READ OW
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/contLine_with_spaces.cir ${CMAKE_CURRENT_BINARY_DIR}/contLine_with_spaces.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_655_SON/contLine.cir.sh COMMAND bash contLine.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} contLine.cir ${OutputDataDir}/Certification_Tests/BUG_655_SON/contLine.cir.prn )
-set_property(TEST Certification_Tests/BUG_655_SON/contLine.cir.sh PROPERTY LABELS "serial;nightly")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_655_SON/contLine.cir.sh COMMAND bash contLine.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} contLine.cir ${OutputDataDir}/Certification_Tests/BUG_655_SON/contLine.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_655_SON/contLine.cir.sh PROPERTY LABELS "serial;nightly")

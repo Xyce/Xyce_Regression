@@ -10,5 +10,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/colpitts_osc2.cir ${CMAKE_CURRENT_BIN
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/colpitts_osc3.cir ${CMAKE_CURRENT_BINARY_DIR}/colpitts_osc3.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_805/bug_805.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_805.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug_805.cir ${OutputDataDir}/Certification_Tests/BUG_805/bug_805.cir.prn )
-set_property(TEST Certification_Tests/BUG_805/bug_805.cir.sh PROPERTY LABELS "nightly;serial;805;lev1bjt")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_805/bug_805.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_805.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug_805.cir ${OutputDataDir}/Certification_Tests/BUG_805/bug_805.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_805/bug_805.cir.sh PROPERTY LABELS "nightly;serial;805;lev1bjt")

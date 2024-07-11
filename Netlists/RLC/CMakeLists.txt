@@ -7,5 +7,5 @@ file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/rlc.cir.prn.gs.pl PERMISSIONS OWNER_READ 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/rlc.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/rlc.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/rlc.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME RLC/rlc.cir.sh COMMAND bash rlc.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} rlc.cir ${OutputDataDir}/RLC/rlc.cir.prn )
-set_property(TEST RLC/rlc.cir.sh PROPERTY LABELS "serial;nightly;parallel;resistor;capacitor;inductor")
+add_test(NAME ${TestNamePrefix}RLC/rlc.cir.sh COMMAND bash rlc.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} rlc.cir ${OutputDataDir}/RLC/rlc.cir.prn )
+set_property(TEST ${TestNamePrefix}RLC/rlc.cir.sh PROPERTY LABELS "serial;nightly;parallel;resistor;capacitor;inductor")

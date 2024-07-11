@@ -10,5 +10,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/RLC_ladder100_mor_sparsify.cir ${CMAK
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/RLC_ladder_top30.cir ${CMAKE_CURRENT_BINARY_DIR}/RLC_ladder_top30.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME ROM/SPARSIFY/RLC_ladder100_mor.cir.sh COMMAND bash RLC_ladder100_mor.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} RLC_ladder100_mor.cir ${OutputDataDir}/ROM/SPARSIFY/RLC_ladder100_mor.cir.prn )
-set_property(TEST ROM/SPARSIFY/RLC_ladder100_mor.cir.sh PROPERTY LABELS "serial;parallel;nightly;rom;resistor;capacitor;inductor;ac")
+add_test(NAME ${TestNamePrefix}ROM/SPARSIFY/RLC_ladder100_mor.cir.sh COMMAND bash RLC_ladder100_mor.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} RLC_ladder100_mor.cir ${OutputDataDir}/ROM/SPARSIFY/RLC_ladder100_mor.cir.prn )
+set_property(TEST ${TestNamePrefix}ROM/SPARSIFY/RLC_ladder100_mor.cir.sh PROPERTY LABELS "serial;parallel;nightly;rom;resistor;capacitor;inductor;ac")

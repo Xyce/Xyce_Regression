@@ -9,5 +9,5 @@ file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/linear_simple.cir.sh PERMISSIONS OWNER_RE
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/linear_simple_global.cir ${CMAKE_CURRENT_BINARY_DIR}/linear_simple_global.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/linear_simple_param.cir ${CMAKE_CURRENT_BINARY_DIR}/linear_simple_param.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_1826/linear_simple.cir.sh COMMAND perl -I${XyceRegressionTestScripts} linear_simple.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} linear_simple.cir ${OutputDataDir}/Certification_Tests/BUG_1826/linear_simple.cir.prn )
-set_property(TEST Certification_Tests/BUG_1826/linear_simple.cir.sh PROPERTY LABELS "serial;nightly;thermalresistor")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1826/linear_simple.cir.sh COMMAND perl -I${XyceRegressionTestScripts} linear_simple.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} linear_simple.cir ${OutputDataDir}/Certification_Tests/BUG_1826/linear_simple.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1826/linear_simple.cir.sh PROPERTY LABELS "serial;nightly;thermalresistor")

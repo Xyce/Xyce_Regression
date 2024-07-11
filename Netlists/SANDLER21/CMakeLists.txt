@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/sandler21.cir ${CMAKE_CURRENT_BINARY_DIR}/sandler21.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME SANDLER21/sandler21.cir COMMAND Xyce sandler21.cir )
-set_property(TEST SANDLER21/sandler21.cir PROPERTY LABELS "serial;nightly;parallel;bjtlev1;diode")
-set_tests_properties(SANDLER21/sandler21.cir PROPERTIES FIXTURES_SETUP sandler21.cir)
-add_test(NAME SANDLER21/sandler21.cir.verify COMMAND ${XYCE_VERIFY} sandler21.cir ${OutputDataDir}/SANDLER21/sandler21.cir.prn sandler21.cir.prn )
-set_tests_properties(SANDLER21/sandler21.cir.verify PROPERTIES FIXTURES_REQUIRED sandler21.cir)
+add_test(NAME ${TestNamePrefix}SANDLER21/sandler21.cir COMMAND Xyce sandler21.cir )
+set_property(TEST ${TestNamePrefix}SANDLER21/sandler21.cir PROPERTY LABELS "serial;nightly;parallel;bjtlev1;diode")
+set_tests_properties(${TestNamePrefix}SANDLER21/sandler21.cir PROPERTIES FIXTURES_SETUP sandler21.cir)
+add_test(NAME ${TestNamePrefix}SANDLER21/sandler21.cir.verify COMMAND ${XYCE_VERIFY} sandler21.cir ${OutputDataDir}/SANDLER21/sandler21.cir.prn sandler21.cir.prn )
+set_tests_properties(${TestNamePrefix}SANDLER21/sandler21.cir.verify PROPERTIES FIXTURES_REQUIRED sandler21.cir)

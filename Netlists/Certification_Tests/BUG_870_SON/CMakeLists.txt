@@ -7,5 +7,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/gummel_p.cir.sh ${CMAKE_CURRENT_BINAR
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/gummel_p.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_870_SON/gummel_p.cir.sh COMMAND perl -I${XyceRegressionTestScripts} gummel_p.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} gummel_p.cir ${OutputDataDir}/Certification_Tests/BUG_870_SON/gummel_p.cir.prn )
-set_property(TEST Certification_Tests/BUG_870_SON/gummel_p.cir.sh PROPERTY LABELS "serial;nightly;adms;bsimcmg")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_870_SON/gummel_p.cir.sh COMMAND perl -I${XyceRegressionTestScripts} gummel_p.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} gummel_p.cir ${OutputDataDir}/Certification_Tests/BUG_870_SON/gummel_p.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_870_SON/gummel_p.cir.sh PROPERTY LABELS "serial;nightly;adms;bsimcmg")

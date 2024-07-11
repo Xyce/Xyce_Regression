@@ -8,5 +8,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/rc_simple_lib.cir.sh ${CMAKE_CURRENT_
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/rc_simple_lib.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/rc_simple_xyce.cir ${CMAKE_CURRENT_BINARY_DIR}/rc_simple_xyce.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_706_SON/rc_simple_lib.cir.sh COMMAND bash rc_simple_lib.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} rc_simple_lib.cir ${OutputDataDir}/Certification_Tests/BUG_706_SON/rc_simple_lib.cir.prn )
-set_property(TEST Certification_Tests/BUG_706_SON/rc_simple_lib.cir.sh PROPERTY LABELS "serial;nightly;parallel;resistor;capacitor;inductor")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_706_SON/rc_simple_lib.cir.sh COMMAND bash rc_simple_lib.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} rc_simple_lib.cir ${OutputDataDir}/Certification_Tests/BUG_706_SON/rc_simple_lib.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_706_SON/rc_simple_lib.cir.sh PROPERTY LABELS "serial;nightly;parallel;resistor;capacitor;inductor")

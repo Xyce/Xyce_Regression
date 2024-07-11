@@ -15,5 +15,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/transient_comma.cir ${CMAKE_CURRENT_B
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/transient_defaults.cir ${CMAKE_CURRENT_BINARY_DIR}/transient_defaults.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/transient_delimiter_invalid.cir ${CMAKE_CURRENT_BINARY_DIR}/transient_delimiter_invalid.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/transient_tab.cir ${CMAKE_CURRENT_BINARY_DIR}/transient_tab.cir ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_302/bug_302.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_302.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug_302.cir ${OutputDataDir}/Certification_Tests/BUG_302/bug_302.cir.prn )
-set_property(TEST Certification_Tests/BUG_302/bug_302.cir.sh PROPERTY LABELS "serial;nightly;bug302son;output;delimiter")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_302/bug_302.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_302.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug_302.cir ${OutputDataDir}/Certification_Tests/BUG_302/bug_302.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_302/bug_302.cir.sh PROPERTY LABELS "serial;nightly;bug302son;output;delimiter")

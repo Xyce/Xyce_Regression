@@ -5,5 +5,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/diode.cir ${CMAKE_CURRENT_BINARY_DIR}
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/diode.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/diode.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/diode.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_45_SON/diode.cir.sh COMMAND perl -I${XyceRegressionTestScripts} diode.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} diode.cir ${OutputDataDir}/Certification_Tests/BUG_45_SON/diode.cir.prn )
-set_property(TEST Certification_Tests/BUG_45_SON/diode.cir.sh PROPERTY LABELS "serial;parallel;nightly;valgrind;bug45;errorexit")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_45_SON/diode.cir.sh COMMAND perl -I${XyceRegressionTestScripts} diode.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} diode.cir ${OutputDataDir}/Certification_Tests/BUG_45_SON/diode.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_45_SON/diode.cir.sh PROPERTY LABELS "serial;parallel;nightly;valgrind;bug45;errorexit")

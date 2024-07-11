@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/iexp.cir ${CMAKE_CURRENT_BINARY_DIR}/iexp.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME IEXP/iexp.cir COMMAND Xyce iexp.cir )
-set_property(TEST IEXP/iexp.cir PROPERTY LABELS "serial;nightly;valgrind")
-set_tests_properties(IEXP/iexp.cir PROPERTIES FIXTURES_SETUP iexp.cir)
-add_test(NAME IEXP/iexp.cir.verify COMMAND ${XYCE_VERIFY} iexp.cir ${OutputDataDir}/IEXP/iexp.cir.prn iexp.cir.prn )
-set_tests_properties(IEXP/iexp.cir.verify PROPERTIES FIXTURES_REQUIRED iexp.cir)
+add_test(NAME ${TestNamePrefix}IEXP/iexp.cir COMMAND Xyce iexp.cir )
+set_property(TEST ${TestNamePrefix}IEXP/iexp.cir PROPERTY LABELS "serial;nightly;valgrind")
+set_tests_properties(${TestNamePrefix}IEXP/iexp.cir PROPERTIES FIXTURES_SETUP iexp.cir)
+add_test(NAME ${TestNamePrefix}IEXP/iexp.cir.verify COMMAND ${XYCE_VERIFY} iexp.cir ${OutputDataDir}/IEXP/iexp.cir.prn iexp.cir.prn )
+set_tests_properties(${TestNamePrefix}IEXP/iexp.cir.verify PROPERTIES FIXTURES_REQUIRED iexp.cir)

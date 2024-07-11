@@ -9,5 +9,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_159_1.cir ${CMAKE_CURRENT_BINARY_
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_159_2.cir ${CMAKE_CURRENT_BINARY_DIR}/bug_159_2.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_159/bug_159.cir.sh COMMAND bash bug_159.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug_159.cir ${OutputDataDir}/Certification_Tests/BUG_159/bug_159.cir.prn )
-set_property(TEST Certification_Tests/BUG_159/bug_159.cir.sh PROPERTY LABELS "serial;nightly")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_159/bug_159.cir.sh COMMAND bash bug_159.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug_159.cir ${OutputDataDir}/Certification_Tests/BUG_159/bug_159.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_159/bug_159.cir.sh PROPERTY LABELS "serial;nightly")

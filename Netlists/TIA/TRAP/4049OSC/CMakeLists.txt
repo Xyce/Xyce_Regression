@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/4049osc.cir ${CMAKE_CURRENT_BINARY_DIR}/4049osc.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME TIA/TRAP/4049OSC/4049osc.cir COMMAND Xyce 4049osc.cir )
-set_property(TEST TIA/TRAP/4049OSC/4049osc.cir PROPERTY LABELS "serial;nightly;newdae")
-set_tests_properties(TIA/TRAP/4049OSC/4049osc.cir PROPERTIES FIXTURES_SETUP 4049osc.cir)
-add_test(NAME TIA/TRAP/4049OSC/4049osc.cir.verify COMMAND ${XYCE_VERIFY} 4049osc.cir ${OutputDataDir}/TIA/TRAP/4049OSC/4049osc.cir.prn 4049osc.cir.prn )
-set_tests_properties(TIA/TRAP/4049OSC/4049osc.cir.verify PROPERTIES FIXTURES_REQUIRED 4049osc.cir)
+add_test(NAME ${TestNamePrefix}TIA/TRAP/4049OSC/4049osc.cir COMMAND Xyce 4049osc.cir )
+set_property(TEST ${TestNamePrefix}TIA/TRAP/4049OSC/4049osc.cir PROPERTY LABELS "serial;nightly;newdae")
+set_tests_properties(${TestNamePrefix}TIA/TRAP/4049OSC/4049osc.cir PROPERTIES FIXTURES_SETUP 4049osc.cir)
+add_test(NAME ${TestNamePrefix}TIA/TRAP/4049OSC/4049osc.cir.verify COMMAND ${XYCE_VERIFY} 4049osc.cir ${OutputDataDir}/TIA/TRAP/4049OSC/4049osc.cir.prn 4049osc.cir.prn )
+set_tests_properties(${TestNamePrefix}TIA/TRAP/4049OSC/4049osc.cir.verify PROPERTIES FIXTURES_REQUIRED 4049osc.cir)

@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/test3.cir ${CMAKE_CURRENT_BINARY_DIR}/test3.cir ONLY_IF_DIFFERENT)
-add_test(NAME TEST3/test3.cir COMMAND Xyce test3.cir )
-set_property(TEST TEST3/test3.cir PROPERTY LABELS "serial;nightly;bsim3;valgrind")
-set_tests_properties(TEST3/test3.cir PROPERTIES FIXTURES_SETUP test3.cir)
-add_test(NAME TEST3/test3.cir.verify COMMAND ${XYCE_VERIFY} test3.cir ${OutputDataDir}/TEST3/test3.cir.prn test3.cir.prn )
-set_tests_properties(TEST3/test3.cir.verify PROPERTIES FIXTURES_REQUIRED test3.cir)
+add_test(NAME ${TestNamePrefix}TEST3/test3.cir COMMAND Xyce test3.cir )
+set_property(TEST ${TestNamePrefix}TEST3/test3.cir PROPERTY LABELS "serial;nightly;bsim3;valgrind")
+set_tests_properties(${TestNamePrefix}TEST3/test3.cir PROPERTIES FIXTURES_SETUP test3.cir)
+add_test(NAME ${TestNamePrefix}TEST3/test3.cir.verify COMMAND ${XYCE_VERIFY} test3.cir ${OutputDataDir}/TEST3/test3.cir.prn test3.cir.prn )
+set_tests_properties(${TestNamePrefix}TEST3/test3.cir.verify PROPERTIES FIXTURES_REQUIRED test3.cir)

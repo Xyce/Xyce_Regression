@@ -5,5 +5,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug379.cir ${CMAKE_CURRENT_BINARY_DIR
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug379.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/bug379.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug379.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_379_SON/bug379.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug379.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug379.cir ${OutputDataDir}/Certification_Tests/BUG_379_SON/bug379.cir.prn )
-set_property(TEST Certification_Tests/BUG_379_SON/bug379.cir.sh PROPERTY LABELS "serial;nightly;analytic;valgrind;capacitor;vsin;measure;abm;sdt")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_379_SON/bug379.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug379.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug379.cir ${OutputDataDir}/Certification_Tests/BUG_379_SON/bug379.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_379_SON/bug379.cir.sh PROPERTY LABELS "serial;nightly;analytic;valgrind;capacitor;vsin;measure;abm;sdt")

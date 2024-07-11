@@ -10,5 +10,5 @@ file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/nand8.cir.sh PERMISSIONS OWNER_READ OWNER
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/nandgen.pl ${CMAKE_CURRENT_BINARY_DIR}/nandgen.pl ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/nandgen.pl PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_360_SON/nand8.cir.sh COMMAND perl -I${XyceRegressionTestScripts} nand8.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} nand8.cir ${OutputDataDir}/Certification_Tests/BUG_360_SON/nand8.cir.prn )
-set_property(TEST Certification_Tests/BUG_360_SON/nand8.cir.sh PROPERTY LABELS "parallel;serial;nightly;bug360")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_360_SON/nand8.cir.sh COMMAND perl -I${XyceRegressionTestScripts} nand8.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} nand8.cir ${OutputDataDir}/Certification_Tests/BUG_360_SON/nand8.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_360_SON/nand8.cir.sh PROPERTY LABELS "parallel;serial;nightly;bug360")

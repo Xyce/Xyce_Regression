@@ -9,5 +9,5 @@ file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/one-shot.cir.sh PERMISSIONS OWNER_READ OW
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/one-shot_lev49.cir ${CMAKE_CURRENT_BINARY_DIR}/one-shot_lev49.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/one-shot_lev9.cir ${CMAKE_CURRENT_BINARY_DIR}/one-shot_lev9.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_1797/one-shot.cir.sh COMMAND bash one-shot.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} one-shot.cir ${OutputDataDir}/Certification_Tests/BUG_1797/one-shot.cir.prn )
-set_property(TEST Certification_Tests/BUG_1797/one-shot.cir.sh PROPERTY LABELS "serial;nightly;parallel;bug1797;bsim3")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1797/one-shot.cir.sh COMMAND bash one-shot.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} one-shot.cir ${OutputDataDir}/Certification_Tests/BUG_1797/one-shot.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1797/one-shot.cir.sh PROPERTY LABELS "serial;nightly;parallel;bug1797;bsim3")

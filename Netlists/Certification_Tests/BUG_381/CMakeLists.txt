@@ -19,5 +19,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/comparator2.cir ${CMAKE_CURRENT_BINAR
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/comparator3.cir ${CMAKE_CURRENT_BINARY_DIR}/comparator3.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_381/bug_381.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_381.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug_381.cir ${OutputDataDir}/Certification_Tests/BUG_381/bug_381.cir.prn )
-set_property(TEST Certification_Tests/BUG_381/bug_381.cir.sh PROPERTY LABELS "serial;nightly;parallel;step")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_381/bug_381.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_381.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug_381.cir ${OutputDataDir}/Certification_Tests/BUG_381/bug_381.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_381/bug_381.cir.sh PROPERTY LABELS "serial;nightly;parallel;step")

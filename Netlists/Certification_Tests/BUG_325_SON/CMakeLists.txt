@@ -7,5 +7,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/vbic_3T_et_cf.cir ${CMAKE_CURRENT_BIN
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/vbic_3T_et_cf.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/vbic_3T_et_cf.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/vbic_3T_et_cf.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/vbic_3T_et_cf_m2.cir ${CMAKE_CURRENT_BINARY_DIR}/vbic_3T_et_cf_m2.cir ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_325_SON/vbic_3T_et_cf.cir.sh COMMAND perl -I${XyceRegressionTestScripts} vbic_3T_et_cf.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} vbic_3T_et_cf.cir ${OutputDataDir}/Certification_Tests/BUG_325_SON/vbic_3T_et_cf.cir.prn )
-set_property(TEST Certification_Tests/BUG_325_SON/vbic_3T_et_cf.cir.sh PROPERTY LABELS "serial;nightly;vbic;adms")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_325_SON/vbic_3T_et_cf.cir.sh COMMAND perl -I${XyceRegressionTestScripts} vbic_3T_et_cf.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} vbic_3T_et_cf.cir ${OutputDataDir}/Certification_Tests/BUG_325_SON/vbic_3T_et_cf.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_325_SON/vbic_3T_et_cf.cir.sh PROPERTY LABELS "serial;nightly;vbic;adms")

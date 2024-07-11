@@ -13,5 +13,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ring51_loca_arc.cir ${CMAKE_CURRENT_B
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ring51_loca_arc.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/ring51_loca_arc.cir.tags ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ring51_loca_defaults.cir ${CMAKE_CURRENT_BINARY_DIR}/ring51_loca_defaults.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_54_SON/ring51.cir.sh COMMAND perl -I${XyceRegressionTestScripts} ring51.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} ring51.cir ${OutputDataDir}/Certification_Tests/BUG_54_SON/ring51.cir.prn )
-set_property(TEST Certification_Tests/BUG_54_SON/ring51.cir.sh PROPERTY LABELS "nightly;serial")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_54_SON/ring51.cir.sh COMMAND perl -I${XyceRegressionTestScripts} ring51.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} ring51.cir ${OutputDataDir}/Certification_Tests/BUG_54_SON/ring51.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_54_SON/ring51.cir.sh PROPERTY LABELS "nightly;serial")

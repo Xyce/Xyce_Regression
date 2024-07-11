@@ -7,5 +7,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/acExpr1.cir.sh ${CMAKE_CURRENT_BINARY
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/acExpr1.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/ISSUE_543/acExpr1.cir.sh COMMAND perl -I${XyceRegressionTestScripts} acExpr1.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} acExpr1.cir ${OutputDataDir}/Certification_Tests/ISSUE_543/acExpr1.cir.prn )
-set_property(TEST Certification_Tests/ISSUE_543/acExpr1.cir.sh PROPERTY LABELS "serial;parallel;nightly;issue543;expression;ac;capacitor;resistor;isrc")
+add_test(NAME ${TestNamePrefix}Certification_Tests/ISSUE_543/acExpr1.cir.sh COMMAND perl -I${XyceRegressionTestScripts} acExpr1.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} acExpr1.cir ${OutputDataDir}/Certification_Tests/ISSUE_543/acExpr1.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/ISSUE_543/acExpr1.cir.sh PROPERTY LABELS "serial;parallel;nightly;issue543;expression;ac;capacitor;resistor;isrc")

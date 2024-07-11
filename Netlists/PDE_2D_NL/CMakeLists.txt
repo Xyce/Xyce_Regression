@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/pde2D_nl.cir ${CMAKE_CURRENT_BINARY_DIR}/pde2D_nl.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME PDE_2D_NL/pde2D_nl.cir COMMAND Xyce pde2D_nl.cir )
-set_property(TEST PDE_2D_NL/pde2D_nl.cir PROPERTY LABELS "serial;nightly;parallel;tags;pde;2d;valgrind")
-set_tests_properties(PDE_2D_NL/pde2D_nl.cir PROPERTIES FIXTURES_SETUP pde2D_nl.cir)
-add_test(NAME PDE_2D_NL/pde2D_nl.cir.verify COMMAND ${XYCE_VERIFY} pde2D_nl.cir ${OutputDataDir}/PDE_2D_NL/pde2D_nl.cir.prn pde2D_nl.cir.prn )
-set_tests_properties(PDE_2D_NL/pde2D_nl.cir.verify PROPERTIES FIXTURES_REQUIRED pde2D_nl.cir)
+add_test(NAME ${TestNamePrefix}PDE_2D_NL/pde2D_nl.cir COMMAND Xyce pde2D_nl.cir )
+set_property(TEST ${TestNamePrefix}PDE_2D_NL/pde2D_nl.cir PROPERTY LABELS "serial;nightly;parallel;tags;pde;2d;valgrind")
+set_tests_properties(${TestNamePrefix}PDE_2D_NL/pde2D_nl.cir PROPERTIES FIXTURES_SETUP pde2D_nl.cir)
+add_test(NAME ${TestNamePrefix}PDE_2D_NL/pde2D_nl.cir.verify COMMAND ${XYCE_VERIFY} pde2D_nl.cir ${OutputDataDir}/PDE_2D_NL/pde2D_nl.cir.prn pde2D_nl.cir.prn )
+set_tests_properties(${TestNamePrefix}PDE_2D_NL/pde2D_nl.cir.verify PROPERTIES FIXTURES_REQUIRED pde2D_nl.cir)

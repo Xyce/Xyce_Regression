@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/expPrint.cir ${CMAKE_CURRENT_BINARY_DIR}/expPrint.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME EXPPRINT/expPrint.cir COMMAND Xyce expPrint.cir )
-set_property(TEST EXPPRINT/expPrint.cir PROPERTY LABELS "serial;parallel;nightly;valgrind")
-set_tests_properties(EXPPRINT/expPrint.cir PROPERTIES FIXTURES_SETUP expPrint.cir)
-add_test(NAME EXPPRINT/expPrint.cir.verify COMMAND ${XYCE_VERIFY} expPrint.cir ${OutputDataDir}/EXPPRINT/expPrint.cir.prn expPrint.cir.prn )
-set_tests_properties(EXPPRINT/expPrint.cir.verify PROPERTIES FIXTURES_REQUIRED expPrint.cir)
+add_test(NAME ${TestNamePrefix}EXPPRINT/expPrint.cir COMMAND Xyce expPrint.cir )
+set_property(TEST ${TestNamePrefix}EXPPRINT/expPrint.cir PROPERTY LABELS "serial;parallel;nightly;valgrind")
+set_tests_properties(${TestNamePrefix}EXPPRINT/expPrint.cir PROPERTIES FIXTURES_SETUP expPrint.cir)
+add_test(NAME ${TestNamePrefix}EXPPRINT/expPrint.cir.verify COMMAND ${XYCE_VERIFY} expPrint.cir ${OutputDataDir}/EXPPRINT/expPrint.cir.prn expPrint.cir.prn )
+set_tests_properties(${TestNamePrefix}EXPPRINT/expPrint.cir.verify PROPERTIES FIXTURES_REQUIRED expPrint.cir)

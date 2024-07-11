@@ -9,5 +9,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/pwl_sources.cir.pspice ${CMAKE_CURRENT_BINARY_DIR}/pwl_sources.cir.pspice ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/pwl_sources.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/pwl_sources.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/pwl_sources.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-add_test(NAME XDM/PSPICE/PWL_SOURCES/pwl_sources.cir.sh COMMAND perl -I${XyceRegressionTestScripts} pwl_sources.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} pwl_sources.cir ${OutputDataDir}/XDM/PSPICE/PWL_SOURCES/pwl_sources.cir.prn )
-set_property(TEST XDM/PSPICE/PWL_SOURCES/pwl_sources.cir.sh PROPERTY LABELS "serial;nightly;required:xdm;pspice")
+add_test(NAME ${TestNamePrefix}XDM/PSPICE/PWL_SOURCES/pwl_sources.cir.sh COMMAND perl -I${XyceRegressionTestScripts} pwl_sources.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} pwl_sources.cir ${OutputDataDir}/XDM/PSPICE/PWL_SOURCES/pwl_sources.cir.prn )
+set_property(TEST ${TestNamePrefix}XDM/PSPICE/PWL_SOURCES/pwl_sources.cir.sh PROPERTY LABELS "serial;nightly;required:xdm;pspice")

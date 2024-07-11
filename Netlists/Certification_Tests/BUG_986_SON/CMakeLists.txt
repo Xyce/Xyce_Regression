@@ -8,5 +8,5 @@ file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug986.cir.sh PERMISSIONS OWNER_READ OWNE
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug986A.cir ${CMAKE_CURRENT_BINARY_DIR}/bug986A.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug986B.cir ${CMAKE_CURRENT_BINARY_DIR}/bug986B.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_986_SON/bug986.cir.sh COMMAND bash bug986.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug986.cir ${OutputDataDir}/Certification_Tests/BUG_986_SON/bug986.cir.prn )
-set_property(TEST Certification_Tests/BUG_986_SON/bug986.cir.sh PROPERTY LABELS "serial;nightly;bug986son;valgrind;capacitor")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_986_SON/bug986.cir.sh COMMAND bash bug986.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug986.cir ${OutputDataDir}/Certification_Tests/BUG_986_SON/bug986.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_986_SON/bug986.cir.sh PROPERTY LABELS "serial;nightly;bug986son;valgrind;capacitor")

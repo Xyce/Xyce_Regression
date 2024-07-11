@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/opampal.cir ${CMAKE_CURRENT_BINARY_DIR}/opampal.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME MCNC_BJT_OPAMPAL/opampal.cir COMMAND Xyce opampal.cir )
-set_property(TEST MCNC_BJT_OPAMPAL/opampal.cir PROPERTY LABELS "serial;nightly;parallel;bjtlev1")
-set_tests_properties(MCNC_BJT_OPAMPAL/opampal.cir PROPERTIES FIXTURES_SETUP opampal.cir)
-add_test(NAME MCNC_BJT_OPAMPAL/opampal.cir.verify COMMAND ${XYCE_VERIFY} opampal.cir ${OutputDataDir}/MCNC_BJT_OPAMPAL/opampal.cir.prn opampal.cir.prn )
-set_tests_properties(MCNC_BJT_OPAMPAL/opampal.cir.verify PROPERTIES FIXTURES_REQUIRED opampal.cir)
+add_test(NAME ${TestNamePrefix}MCNC_BJT_OPAMPAL/opampal.cir COMMAND Xyce opampal.cir )
+set_property(TEST ${TestNamePrefix}MCNC_BJT_OPAMPAL/opampal.cir PROPERTY LABELS "serial;nightly;parallel;bjtlev1")
+set_tests_properties(${TestNamePrefix}MCNC_BJT_OPAMPAL/opampal.cir PROPERTIES FIXTURES_SETUP opampal.cir)
+add_test(NAME ${TestNamePrefix}MCNC_BJT_OPAMPAL/opampal.cir.verify COMMAND ${XYCE_VERIFY} opampal.cir ${OutputDataDir}/MCNC_BJT_OPAMPAL/opampal.cir.prn opampal.cir.prn )
+set_tests_properties(${TestNamePrefix}MCNC_BJT_OPAMPAL/opampal.cir.verify PROPERTIES FIXTURES_REQUIRED opampal.cir)

@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/func.cir ${CMAKE_CURRENT_BINARY_DIR}/func.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME ABM_FUNC/func.cir COMMAND Xyce func.cir )
-set_property(TEST ABM_FUNC/func.cir PROPERTY LABELS "serial;nightly;valgrind;bsrc;expression;function;vpwl;resistor;transient")
-set_tests_properties(ABM_FUNC/func.cir PROPERTIES FIXTURES_SETUP func.cir)
-add_test(NAME ABM_FUNC/func.cir.verify COMMAND ${XYCE_VERIFY} func.cir ${OutputDataDir}/ABM_FUNC/func.cir.prn func.cir.prn )
-set_tests_properties(ABM_FUNC/func.cir.verify PROPERTIES FIXTURES_REQUIRED func.cir)
+add_test(NAME ${TestNamePrefix}ABM_FUNC/func.cir COMMAND Xyce func.cir )
+set_property(TEST ${TestNamePrefix}ABM_FUNC/func.cir PROPERTY LABELS "serial;nightly;valgrind;bsrc;expression;function;vpwl;resistor;transient")
+set_tests_properties(${TestNamePrefix}ABM_FUNC/func.cir PROPERTIES FIXTURES_SETUP func.cir)
+add_test(NAME ${TestNamePrefix}ABM_FUNC/func.cir.verify COMMAND ${XYCE_VERIFY} func.cir ${OutputDataDir}/ABM_FUNC/func.cir.prn func.cir.prn )
+set_tests_properties(${TestNamePrefix}ABM_FUNC/func.cir.verify PROPERTIES FIXTURES_REQUIRED func.cir)

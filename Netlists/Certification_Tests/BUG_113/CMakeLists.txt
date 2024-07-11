@@ -9,5 +9,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/VSWITCH_NOIC.cir ${CMAKE_CURRENT_BINA
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/VSWITCH_ON_OFF.cir ${CMAKE_CURRENT_BINARY_DIR}/VSWITCH_ON_OFF.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_113/VSWITCH.cir.sh COMMAND perl -I${XyceRegressionTestScripts} VSWITCH.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} VSWITCH.cir ${OutputDataDir}/Certification_Tests/BUG_113/VSWITCH.cir.prn )
-set_property(TEST Certification_Tests/BUG_113/VSWITCH.cir.sh PROPERTY LABELS "serial;nightly;verbose")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_113/VSWITCH.cir.sh COMMAND perl -I${XyceRegressionTestScripts} VSWITCH.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} VSWITCH.cir ${OutputDataDir}/Certification_Tests/BUG_113/VSWITCH.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_113/VSWITCH.cir.sh PROPERTY LABELS "serial;nightly;verbose")

@@ -3,8 +3,8 @@
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/nmesfet.cir ${CMAKE_CURRENT_BINARY_DIR}/nmesfet.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME NMESFET/nmesfet.cir COMMAND Xyce nmesfet.cir )
-set_property(TEST NMESFET/nmesfet.cir PROPERTY LABELS "nightly;serial;parallel;valgrind")
-set_tests_properties(NMESFET/nmesfet.cir PROPERTIES FIXTURES_SETUP nmesfet.cir)
-add_test(NAME NMESFET/nmesfet.cir.verify COMMAND ${XYCE_VERIFY} nmesfet.cir ${OutputDataDir}/NMESFET/nmesfet.cir.prn nmesfet.cir.prn )
-set_tests_properties(NMESFET/nmesfet.cir.verify PROPERTIES FIXTURES_REQUIRED nmesfet.cir)
+add_test(NAME ${TestNamePrefix}NMESFET/nmesfet.cir COMMAND Xyce nmesfet.cir )
+set_property(TEST ${TestNamePrefix}NMESFET/nmesfet.cir PROPERTY LABELS "nightly;serial;parallel;valgrind")
+set_tests_properties(${TestNamePrefix}NMESFET/nmesfet.cir PROPERTIES FIXTURES_SETUP nmesfet.cir)
+add_test(NAME ${TestNamePrefix}NMESFET/nmesfet.cir.verify COMMAND ${XYCE_VERIFY} nmesfet.cir ${OutputDataDir}/NMESFET/nmesfet.cir.prn nmesfet.cir.prn )
+set_tests_properties(${TestNamePrefix}NMESFET/nmesfet.cir.verify PROPERTIES FIXTURES_REQUIRED nmesfet.cir)

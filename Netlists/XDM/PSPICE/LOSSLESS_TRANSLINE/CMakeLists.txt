@@ -7,5 +7,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lossless_transline.cir ${CMAKE_CURREN
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lossless_transline.cir.pspice ${CMAKE_CURRENT_BINARY_DIR}/lossless_transline.cir.pspice ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lossless_transline.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/lossless_transline.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/lossless_transline.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-add_test(NAME XDM/PSPICE/LOSSLESS_TRANSLINE/lossless_transline.cir.sh COMMAND perl -I${XyceRegressionTestScripts} lossless_transline.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} lossless_transline.cir ${OutputDataDir}/XDM/PSPICE/LOSSLESS_TRANSLINE/lossless_transline.cir.prn )
-set_property(TEST XDM/PSPICE/LOSSLESS_TRANSLINE/lossless_transline.cir.sh PROPERTY LABELS "serial;nightly;bug2024;pspice;required:xdm")
+add_test(NAME ${TestNamePrefix}XDM/PSPICE/LOSSLESS_TRANSLINE/lossless_transline.cir.sh COMMAND perl -I${XyceRegressionTestScripts} lossless_transline.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} lossless_transline.cir ${OutputDataDir}/XDM/PSPICE/LOSSLESS_TRANSLINE/lossless_transline.cir.prn )
+set_property(TEST ${TestNamePrefix}XDM/PSPICE/LOSSLESS_TRANSLINE/lossless_transline.cir.sh PROPERTY LABELS "serial;nightly;bug2024;pspice;required:xdm")

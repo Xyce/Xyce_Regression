@@ -8,5 +8,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/testjac_comp.cir.gold_output ${CMAKE_
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/testjac_comp.cir.patfile ${CMAKE_CURRENT_BINARY_DIR}/testjac_comp.cir.patfile ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/testjac_comp.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/testjac_comp.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/testjac_comp.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-add_test(NAME TESTJAC/testjac_comp.cir.sh COMMAND perl -I${XyceRegressionTestScripts} testjac_comp.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} testjac_comp.cir ${OutputDataDir}/TESTJAC/testjac_comp.cir.prn )
-set_property(TEST TESTJAC/testjac_comp.cir.sh PROPERTY LABELS "testjac;serial;nightly")
+add_test(NAME ${TestNamePrefix}TESTJAC/testjac_comp.cir.sh COMMAND perl -I${XyceRegressionTestScripts} testjac_comp.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} testjac_comp.cir ${OutputDataDir}/TESTJAC/testjac_comp.cir.prn )
+set_property(TEST ${TestNamePrefix}TESTJAC/testjac_comp.cir.sh PROPERTY LABELS "testjac;serial;nightly")

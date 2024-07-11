@@ -6,5 +6,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/issue306.cir.sh ${CMAKE_CURRENT_BINAR
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/issue306.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/params.inc ${CMAKE_CURRENT_BINARY_DIR}/params.inc ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/ISSUE_306/issue306.cir.sh COMMAND perl -I${XyceRegressionTestScripts} issue306.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} issue306.cir ${OutputDataDir}/Certification_Tests/ISSUE_306/issue306.cir.prn )
-set_property(TEST Certification_Tests/ISSUE_306/issue306.cir.sh PROPERTY LABELS "serial;parallel;nightly;issue306;expression;sampling;bsim3;performance")
+add_test(NAME ${TestNamePrefix}Certification_Tests/ISSUE_306/issue306.cir.sh COMMAND perl -I${XyceRegressionTestScripts} issue306.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} issue306.cir ${OutputDataDir}/Certification_Tests/ISSUE_306/issue306.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/ISSUE_306/issue306.cir.sh PROPERTY LABELS "serial;parallel;nightly;issue306;expression;sampling;bsim3;performance")

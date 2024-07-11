@@ -6,5 +6,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/top.cir.sh ${CMAKE_CURRENT_BINARY_DIR
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/top.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/foobar.lib ${CMAKE_CURRENT_BINARY_DIR}/foobar.lib ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-add_test(NAME Certification_Tests/BUG_1038_SON/top.cir.sh COMMAND bash top.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} top.cir ${OutputDataDir}/Certification_Tests/BUG_1038_SON/top.cir.prn )
-set_property(TEST Certification_Tests/BUG_1038_SON/top.cir.sh PROPERTY LABELS "serial;nightly;parallel")
+add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1038_SON/top.cir.sh COMMAND bash top.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} top.cir ${OutputDataDir}/Certification_Tests/BUG_1038_SON/top.cir.prn )
+set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1038_SON/top.cir.sh PROPERTY LABELS "serial;nightly;parallel")
