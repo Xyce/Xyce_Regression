@@ -2,7 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 
 add_subdirectory(SPECTRE)
-add_subdirectory(PSPICE)
 add_subdirectory(QUERY)
-add_subdirectory(TSPICE)
 add_subdirectory(HSPICE)
+add_subdirectory(PSPICE)
+add_subdirectory(TSPICE)

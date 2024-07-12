@@ -262,6 +262,8 @@ def SetUpCtestFiles():
           scriptFile.close()
           if( firstLine.rfind('perl') > 0):
             interpreter="perl -I${XyceRegressionTestScripts}"
+          if( firstLine.rfind('python') > 0):
+            interpreter="python"
           # shell scripts take a standard set of inputs:
           # The input arguments to this script are: 
           # $ARGV[0] = location of Xyce binary
