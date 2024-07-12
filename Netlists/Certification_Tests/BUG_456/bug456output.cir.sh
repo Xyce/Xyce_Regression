@@ -22,7 +22,7 @@ $XYCE_VERIFY=$ARGV[1];
 #$CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
 
-$baseline="converter_baseline.cir";
+$baseline="converter_baseline_output.cir";
 $restarted="converter_restart_output.cir";
 
 `rm -f $baseline.prn $restarted.prn`;

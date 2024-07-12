@@ -7,6 +7,7 @@ bug456pp.cir.tags
 bug456pp_unpacked.cir
 bug456pp_unpacked.cir.tags
 converter_baseline.cir
+converter_baseline_output.cir
 converter_baseline_unpacked.cir
 converter_restart_unpacked.cir
 exclude
