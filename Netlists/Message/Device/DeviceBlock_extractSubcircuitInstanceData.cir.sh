@@ -39,5 +39,5 @@ $CIRFILE=$ARGV[3];
 $retval = $Tools->runAndCheckGroupedError($CIRFILE,$XYCE,@searchstrings);
 
 print "Exit code = $retval\n";
-exit $reval;
+exit $retval;
 

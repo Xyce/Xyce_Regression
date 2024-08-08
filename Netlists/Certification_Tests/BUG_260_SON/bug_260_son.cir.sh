@@ -37,7 +37,7 @@ $cmd="$XYCE $CIRFILE > $CIRFILE.out 2> $CIRFILE.err";
 system($cmd);
 $retval=$?;
 
-if ($retval != 0) { print "Exit code = $retval\n"; exit $retval; }
+if ($retval != 0) { print "Exit code = $retval\n"; exit $retval>>8; }
 
 if (not -s "$CIRFILE.raw" ) { print "Exit code = 14\n"; exit 14; }
 

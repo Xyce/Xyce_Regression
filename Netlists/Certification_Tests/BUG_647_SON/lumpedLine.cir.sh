@@ -41,7 +41,7 @@ if ($retval !=0)
 {
     print STDERR "Failed to run $CIRFILE.\n";
     print "Exit code = 10\n";
-    exit $retval;
+    exit 10;
 }
 
 $CMD="$XYCE $CIRFILE_modelpar > $CIRFILE_modelpar.out 2>$CIRFILE_modelpar.err";
@@ -50,7 +50,7 @@ if ($retval !=0)
 {
     print STDERR "Failed to run $CIRFILE_modelpar.\n";
     print "Exit code = 10\n";
-    exit $retval;
+    exit 10;
 }
 else
 {

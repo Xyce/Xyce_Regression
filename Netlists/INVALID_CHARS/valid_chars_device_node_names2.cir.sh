@@ -39,7 +39,7 @@ if ($retval !=0)
 {
     print STDERR "Failed to run $CIRFILE using -hspice-ext all option.\n";
     print "Exit code = $retval\n";
-    exit $retval;
+    exit $retval>>8;
 }
 else
 {
@@ -57,7 +57,7 @@ if ($retval !=0)
 {
     print STDERR "Failed to run $CIRFILE using -hspice-ext separator option.\n";
     print "Exit code = $retval\n";
-    exit $retval;
+    exit $retval>>8;
 }
 else
 {
