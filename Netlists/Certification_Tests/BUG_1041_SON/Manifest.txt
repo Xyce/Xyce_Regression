@@ -7,10 +7,12 @@ bsim3_comparatorBinningScale2.cir.sh
 bsim3_comparatorBinningScale2.cir.tags
 bsim3_comparatorBinningScale2Ref.cir
 bsim4_tranInverterBinningScaleRef.cir 
+bsim4_tranInverterBinningScale_optionRef.cir
 bsim4_tranInverterBinningScale.cir.sh
 bsim4_tranInverterBinningScale.cir          
 bsim4_tranInverterBinningScale.cir.tags
 bsim4_tranInverterBinningScale2Ref.cir 
+bsim4_tranInverterBinningScale_option2Ref.cir
 bsim4_tranInverterBinningScale2.cir.sh
 bsim4_tranInverterBinningScale2.cir          
 bsim4_tranInverterBinningScale2.cir.tags
@@ -27,6 +29,7 @@ b3soi_invert_option_scale.cir
 b3soi_invert_option_scale.cir.tags  
 b3soi_invert_option_scale.cir.sh    
 b3soi_invert_scaleRef.cir
+b3soi_invert_option_scaleRef.cir
 b3soi_invert_scale2.cir       
 b3soi_invert_scale2.cir.tags  
 b3soi_invert_scale2.cir.sh    
@@ -34,6 +37,7 @@ b3soi_invert_option_scale2.cir
 b3soi_invert_option_scale2.cir.tags  
 b3soi_invert_option_scale2.cir.sh    
 b3soi_invert_scale2Ref.cir
+b3soi_invert_option_scale2Ref.cir
 exclude
 mos1_invert_scale.cir       
 mos1_invert_scaleRef.cir

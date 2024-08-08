@@ -25,7 +25,7 @@ $XYCE_VERIFY=$ARGV[1];
 $CIRFILE=$ARGV[3];
 
 $CIRFILE_ref=$CIRFILE;
-$CIRFILE_ref =~ s/Scale_option.cir/ScaleRef.cir/;
+$CIRFILE_ref =~ s/.cir/Ref.cir/;
 
 # Clean up droppings from any previous run in this directory.
 `rm -f $CIRFILE.prn $CIRFILE.res $CIRFILE.err $CIRFILE.out`;
