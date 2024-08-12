@@ -224,6 +224,7 @@ bug1070son.cir
 bug1070son.cir.sh
 bug1070son.cir.tags
 sensCapGear_baseline.cir
+sensCapGear_baseline_copy.cir
 sensCapGear_global.cir
 sensCapGear_global2.cir
 sensCapGear_global_curlybrace.cir
