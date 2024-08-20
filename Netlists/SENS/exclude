@@ -54,6 +54,7 @@ fullWaveRectDiodeDirect.cir
 fullWaveDummy.cir
 sensCapGear_forceDeviceFD.cir
 sensCapGear_baseline.cir
+sensCapGear_baseline_copy.cir
 sensCapGear_global2.cir
 sensCapGear_oldFD.cir
 bug1092sonA.cir
