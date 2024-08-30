@@ -142,16 +142,45 @@ def SetUpCtestFiles():
       fileObj.write('set(XyceRegressionTestScripts ${CMAKE_CURRENT_SOURCE_DIR}/TestScripts)\n')
       fileObj.write('get_target_property(XyceBuildDir Xyce BINARY_DIR)\n')
       fileObj.write('cmake_path(SET XYCE_BINARY $<TARGET_FILE:Xyce>)\n')
+      fileObj.write('set(PERL_FOUND FALSE CACHE BOOL "True if perl found.")\n')
+      fileObj.write('set(BASH_FOUND FALSE CACHE BOOL "True if bash found.")\n')
+      fileObj.write('set(PYTHON_FOUND FALSE CACHE BOOL "True if python package found.")\n')
+      fileObj.write('set(PYTHON_NUMPY_FOUND FALSE CACHE BOOL "True if python package numpy found.")\n')
+      fileObj.write('set(PYTHON_SCIPY_FOUND FALSE CACHE BOOL "True if python package scipy found.")\n')
+      fileObj.write('find_program(PERL_BIN perl)\n')
+      fileObj.write('if( NOT (PERL_BIN EQUAL "PERL_BIN-NOTFOUND"))\n')
+      fileObj.write('  set(PERL_FOUND "TRUE")\n')
+      fileObj.write('endif()\n')
+      fileObj.write('message(STATUS "Perl found ${PERL_FOUND}")\n')
+      fileObj.write('find_program(BASH_FOUND bash)\n')
+      fileObj.write('if( NOT (BASH_FOUND EQUAL "BASH_FOUND-NOTFOUND"))\n')
+      fileObj.write('  set(BASH_FOUND "TRUE")\n')
+      fileObj.write('endif()\n')
+      fileObj.write('message(STATUS "Bash found ${BASH_FOUND}")\n')
+      fileObj.write('find_program(PYTHON_BIN python)\n')
+      fileObj.write('if( NOT (PYTHON_BIN EQUAL "PYTHON_BIN-NOTFOUND"))\n')
+      fileObj.write('  set(PYTHON_FOUND "TRUE")\n')
+      fileObj.write('endif()\n')
+      fileObj.write('message(STATUS "Python found ${PYTHON_FOUND}")\n')
+      fileObj.write('if( PYTHON_FOUND )\n')
+      fileObj.write('  execute_process(COMMAND ${PYTHON_BIN} -c "import numpy" RESULT_VARIABLE CMD_SUCCESS ERROR_QUIET)\n')
+      fileObj.write('  if( CMD_SUCCESS EQUAL 0)\n')
+      fileObj.write('    set(PYTHON_NUMPY_FOUND "TRUE")\n')
+      fileObj.write('  endif()\n')
+      fileObj.write('  message(STATUS "Python package numpy found ${PYTHON_NUMPY_FOUND}")\n')
+      fileObj.write('  execute_process(COMMAND ${PYTHON_BIN} -c "import scipy" RESULT_VARIABLE CMD_SUCCESS ERROR_QUIET)\n')
+      fileObj.write('  if( CMD_SUCCESS EQUAL 0)\n')
+      fileObj.write('    set(PYTHON_SCIPY_FOUND "TRUE")\n')
+      fileObj.write('  endif()\n')
+      fileObj.write('  message(STATUS "Python package scipy found ${PYTHON_SCIPY_FOUND}")\n')
+      fileObj.write('endif()\n')
       fileObj.write('if (EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../Xyce_SandiaRegression" AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../Xyce_SandiaRegression/CMakeLists.txt" )\n')
-      #fileObj.write('  file(REAL_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../Xyce_SandiaRegression" SandiaRegressiontDIR)\n')
-      #fileObj.write('  add_subdirectory( ${SandiaRegressiontDIR} Xyce_SandiaRegression)\n')
       fileObj.write('  add_subdirectory( ${CMAKE_CURRENT_SOURCE_DIR}/../Xyce_SandiaRegression Xyce_SandiaRegression)\n')
       fileObj.write('endif()\n')
       fileObj.write('if (EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../Xyce_FastrackRegression" AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../Xyce_FastrackRegression/CMakeLists.txt" )\n')
-      #fileObj.write('  file(REAL_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../Xyce_FastrackRegression" FastrackRegressiontDIR)\n')
       fileObj.write('  add_subdirectory( ${CMAKE_CURRENT_SOURCE_DIR}/../Xyce_FastrackRegression Xyce_FastrackRegression)\n')
       fileObj.write('endif()\n')
-    
+      
     # Independent test repos have their own output data directories.  Try overriding 
     # the OutputDataDir variable as it should propagate down in scope to test directories 
     if( keyName == "Xyce_SandiaRegression"):
@@ -173,6 +202,7 @@ def SetUpCtestFiles():
         
         # look for a test specific tags file.  Load it or the general tags file if the specific one doesn't exist 
         testtags=getTags( keyName, subDirName)
+        (serialConstraint, parallelConstraint) = setConstraintsBasedOnTags( testtags )
         # look for options set for the test
         testOptions=getOptions(keyName, subDirName)
         
@@ -196,38 +226,73 @@ def SetUpCtestFiles():
                     fileObj.write('file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/%s PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)\n' % (aFile))
 
           # first run Xyce on the test circuit 
-          fileObj.write('add_test(NAME ${TestNamePrefix}%s COMMAND Xyce %s )\n' % (testName, subDirName))
-          # write test tags as label for this test
-          if( len(testtags) > 0 ):
-            fileObj.write('set_property(TEST ${TestNamePrefix}%s PROPERTY LABELS \"%s\")\n' % (testName, testtags))
-          # set timelimit option if given as TIMEOUT for ctest 
-          if( len(testOptions) > 0):
-            for anOpt in testOptions:
-              if anOpt[0] == "timelimit":
-                fileObj.write('set_tests_properties(${TestNamePrefix}%s PROPERTIES TIMEOUT %s)\n' % (testName, anOpt[1]))
-          
-          # use the FIXTURES_SETUP and FIXTURES_REQUIRED properties so that testing steps that
-          # require the prior steps to pass don't run if it failed.
-          fileObj.write('set_tests_properties(${TestNamePrefix}%s PROPERTIES FIXTURES_SETUP %s)\n' % (testName, subDirName))
-          
-          # now if check if this test needs to generate the gold standard 
-          if os.path.exists(os.path.join(keyName, subDirName) + ".prn.gs.pl"):
-            fileObj.write('add_test(NAME ${TestNamePrefix}%s.gen_gs COMMAND perl %s.prn.gs.pl )\n' % (testName, subDirName))
-            fileObj.write('set_tests_properties(${TestNamePrefix}%s.gen_gs PROPERTIES FIXTURES_REQUIRED %s)\n' % (testName, subDirName))
-            # now add check the answer against the newly generated gold standard 
-            fileObj.write('add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${XYCE_VERIFY} %s %s.prn.gs %s.prn )\n' % (testName, subDirName, subDirName, subDirName))
-            fileObj.write('set_tests_properties(${TestNamePrefix}%s.verify PROPERTIES FIXTURES_REQUIRED %s)\n' % (testName, subDirName))
-          else:
-            # look at the path for the test /dirA/dirB/.../Netlists/TestDir1/TestDir2/test.cir 
-            # gold standard output will be in ${OutputDataDir}/TestDir1/TestDir2/test.cir.prn
-            testPathIndex = keyName.rfind("Netlists")+9
-            GoldOutput=os.path.join(keyName[testPathIndex:], subDirName + ".prn")
-            fileObj.write('add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${XYCE_VERIFY} %s ${OutputDataDir}/%s %s.prn )\n' % (testName, subDirName, GoldOutput, subDirName))
-            fileObj.write('set_tests_properties(${TestNamePrefix}%s.verify PROPERTIES FIXTURES_REQUIRED %s)\n' % (testName, subDirName))
+          if( testtags.find('serial') >= 0 ):
+            fileObj.write('if( %s )\n' % (serialConstraint))
+            fileObj.write('  add_test(NAME ${TestNamePrefix}%s COMMAND $<TARGET_FILE:Xyce> %s )\n' % (testName, subDirName))
+            # write test tags as label for this test
+            if( len(testtags) > 0 ):
+              fileObj.write('  set_property(TEST ${TestNamePrefix}%s PROPERTY LABELS \"%s\")\n' % (testName, testtags))
+            # set timelimit option if given as TIMEOUT for ctest 
+            if( len(testOptions) > 0):
+              for anOpt in testOptions:
+                if anOpt[0] == "timelimit":
+                  fileObj.write('  set_tests_properties(${TestNamePrefix}%s PROPERTIES TIMEOUT %s)\n' % (testName, anOpt[1]))
+                  
+            # use the FIXTURES_SETUP and FIXTURES_REQUIRED properties so that testing steps that
+            # require the prior steps to pass don't run if it failed.
+            fileObj.write('  set_tests_properties(${TestNamePrefix}%s PROPERTIES FIXTURES_SETUP %s)\n' % (testName, subDirName))
+            
+            # now if check if this test needs to generate the gold standard 
+            if os.path.exists(os.path.join(keyName, subDirName) + ".prn.gs.pl"):
+              fileObj.write('  add_test(NAME ${TestNamePrefix}%s.gen_gs COMMAND perl %s.prn.gs.pl %s.prn)\n' % (testName, subDirName, subDirName))
+              fileObj.write('  set_tests_properties(${TestNamePrefix}%s.gen_gs PROPERTIES FIXTURES_REQUIRED %s)\n' % (testName, subDirName))
+              # now add check the answer against the newly generated gold standard 
+              fileObj.write('  add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${XYCE_VERIFY} %s %s.prn.gs %s.prn )\n' % (testName, subDirName, subDirName, subDirName))
+              fileObj.write('  set_tests_properties(${TestNamePrefix}%s.verify PROPERTIES FIXTURES_REQUIRED %s)\n' % (testName, subDirName))
+            else:
+              # look at the path for the test /dirA/dirB/.../Netlists/TestDir1/TestDir2/test.cir 
+              # gold standard output will be in ${OutputDataDir}/TestDir1/TestDir2/test.cir.prn
+              testPathIndex = keyName.rfind("Netlists")+9
+              GoldOutput=os.path.join(keyName[testPathIndex:], subDirName + ".prn")
+              fileObj.write('  add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${XYCE_VERIFY} %s ${OutputDataDir}/%s %s.prn )\n' % (testName, subDirName, GoldOutput, subDirName))
+              fileObj.write('  set_tests_properties(${TestNamePrefix}%s.verify PROPERTIES FIXTURES_REQUIRED %s)\n' % (testName, subDirName))
+            fileObj.write('endif()\n')
+          if( testtags.find('parallel') >= 0 ):
+            fileObj.write('if( %s )\n' % (parallelConstraint))
+            fileObj.write('  add_test(NAME ${TestNamePrefix}%s COMMAND mpiexec -bind-to none -np 2 $<TARGET_FILE:Xyce> %s )\n' % (testName, subDirName))
+            # write test tags as label for this test
+            if( len(testtags) > 0 ):
+              fileObj.write('  set_property(TEST ${TestNamePrefix}%s PROPERTY LABELS \"%s\")\n' % (testName, testtags))
+            # set timelimit option if given as TIMEOUT for ctest 
+            if( len(testOptions) > 0):
+              for anOpt in testOptions:
+                if anOpt[0] == "timelimit":
+                  fileObj.write('  set_tests_properties(${TestNamePrefix}%s PROPERTIES TIMEOUT %s)\n' % (testName, anOpt[1]))
+            
+            # use the FIXTURES_SETUP and FIXTURES_REQUIRED properties so that testing steps that
+            # require the prior steps to pass don't run if it failed.
+            fileObj.write('set_tests_properties(${TestNamePrefix}%s PROPERTIES FIXTURES_SETUP %s)\n' % (testName, subDirName))
+            
+            # now if check if this test needs to generate the gold standard 
+            if os.path.exists(os.path.join(keyName, subDirName) + ".prn.gs.pl"):
+              fileObj.write('add_test(NAME ${TestNamePrefix}%s.gen_gs COMMAND perl %s.prn.gs.pl %s.prn)\n' % (testName, subDirName, subDirName))
+              fileObj.write('set_tests_properties(${TestNamePrefix}%s.gen_gs PROPERTIES FIXTURES_REQUIRED %s)\n' % (testName, subDirName))
+              # now add check the answer against the newly generated gold standard 
+              fileObj.write('add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${XYCE_VERIFY} %s %s.prn.gs %s.prn )\n' % (testName, subDirName, subDirName, subDirName))
+              fileObj.write('set_tests_properties(${TestNamePrefix}%s.verify PROPERTIES FIXTURES_REQUIRED %s)\n' % (testName, subDirName))
+            else:
+              # look at the path for the test /dirA/dirB/.../Netlists/TestDir1/TestDir2/test.cir 
+              # gold standard output will be in ${OutputDataDir}/TestDir1/TestDir2/test.cir.prn
+              testPathIndex = keyName.rfind("Netlists")+9
+              GoldOutput=os.path.join(keyName[testPathIndex:], subDirName + ".prn")
+              fileObj.write('add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${XYCE_VERIFY} %s ${OutputDataDir}/%s %s.prn )\n' % (testName, subDirName, GoldOutput, subDirName))
+              fileObj.write('set_tests_properties(${TestNamePrefix}%s.verify PROPERTIES FIXTURES_REQUIRED %s)\n' % (testName, subDirName))
+            fileObj.write('endif()\n')
       elif subDirName.endswith(".cir.sh"):
         # look for a test specific tags file.  Load it or the general tags file if the specific one doesn't exist 
         actualFileName = subDirName.removesuffix('.sh')
         testtags=getTags( keyName, actualFileName)
+        (serialConstraint, parallelConstraint) = setConstraintsBasedOnTags( testtags )
         # look for options set for the test
         testOptions=getOptions(keyName, actualFileName)
         
@@ -262,8 +327,17 @@ def SetUpCtestFiles():
           scriptFile.close()
           if( firstLine.rfind('perl') > 0):
             interpreter="perl -I${XyceRegressionTestScripts}"
+            serialConstraint = serialConstraint + " AND PERL_FOUND"
+            parallelConstraint = parallelConstraint + " AND PERL_FOUND"
           if( firstLine.rfind('python') > 0):
             interpreter="python"
+            if( serialConstraint.find("PYTHON") < 0):
+              serialConstraint = serialConstraint + " AND PYTHON_FOUND"
+            if( parallelConstraint.find("PYTHON") < 0):
+              parallelConstraint = parallelConstraint + " AND PYTHON_FOUND"
+          if interpreter == "bash":
+            serialConstraint = serialConstraint + " AND BASH_FOUND"
+            parallelConstraint = parallelConstraint + " AND BASH_FOUND"
           # shell scripts take a standard set of inputs:
           # The input arguments to this script are: 
           # $ARGV[0] = location of Xyce binary
@@ -271,16 +345,32 @@ def SetUpCtestFiles():
           # $ARGV[2] = location of compare script  -- no scripts use this but it's still passed in 
           # $ARGV[3] = location of circuit file to test
           # $ARGV[4] = location of gold standard prn file
-          fileObj.write('add_test(NAME ${TestNamePrefix}%s COMMAND %s %s $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} %s ${OutputDataDir}/%s )\n' % (testName, interpreter, subDirName, actualFileName, GoldOutput))
-          # write test tags as label for this test
-          if( len(testtags) > 0 ):
-            fileObj.write('set_property(TEST ${TestNamePrefix}%s PROPERTY LABELS \"%s\")\n' % (testName, testtags))
-          # set timelimit option if given as TIMEOUT for ctest 
-          if( len(testOptions) > 0):
-            for anOpt in testOptions:
-              if anOpt[0] == "timelimit":
-                fileObj.write('set_tests_properties(${TestNamePrefix}%s PROPERTIES TIMEOUT %s)\n' % (testName, anOpt[1]))
           
+          if( testtags.find('serial') >= 0 ):
+            fileObj.write('if( %s )\n' % (serialConstraint))
+            fileObj.write('  add_test(NAME ${TestNamePrefix}%s COMMAND %s %s $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} %s ${OutputDataDir}/%s )\n' % (testName, interpreter, subDirName, actualFileName, GoldOutput))
+            
+            # write test tags as label for this test
+            if( len(testtags) > 0 ):
+              fileObj.write('  set_property(TEST ${TestNamePrefix}%s PROPERTY LABELS \"%s\")\n' % (testName, testtags))
+            # set timelimit option if given as TIMEOUT for ctest 
+            if( len(testOptions) > 0):
+              for anOpt in testOptions:
+                if anOpt[0] == "timelimit":
+                  fileObj.write('  set_tests_properties(${TestNamePrefix}%s PROPERTIES TIMEOUT %s)\n' % (testName, anOpt[1]))
+            fileObj.write('endif()\n')
+          if( testtags.find('parallel') >= 0 ):
+            fileObj.write('if( %s )\n' % (parallelConstraint))
+            fileObj.write('  add_test(NAME ${TestNamePrefix}%s COMMAND %s %s \"mpiexec -bind-to none -np 2 $<TARGET_FILE:Xyce>\" ${XYCE_VERIFY} ${XYCE_VERIFY} %s ${OutputDataDir}/%s )\n' % (testName, interpreter, subDirName, actualFileName, GoldOutput))
+            # write test tags as label for this test
+            if( len(testtags) > 0 ):
+              fileObj.write('  set_property(TEST ${TestNamePrefix}%s PROPERTY LABELS \"%s\")\n' % (testName, testtags))
+            # set timelimit option if given as TIMEOUT for ctest 
+            if( len(testOptions) > 0):
+              for anOpt in testOptions:
+                if anOpt[0] == "timelimit":
+                  fileObj.write('  set_tests_properties(${TestNamePrefix}%s PROPERTIES TIMEOUT %s)\n' % (testName, anOpt[1]))
+            fileObj.write('endif()\n')
       else:
         # this entry is a sub directory so just add it as such
         # unless it's SandiaTests or FastrackTests.  Then put it in a conditional
@@ -342,9 +432,15 @@ def getTestsInDirectory( topDir ):
         #print( "Found exclude file at ", aTestFilePath.parent)
         exFile = open( excludeFile, 'r')
         exFileData = [aLine.strip() for aLine in exFile.readlines()]
-        #print(exFileData)
         exFile.close()
-        if aTestFilePath.name in exFileData:
+        exFileData2 = []
+        for aLine in exFileData:
+          if( aLine.find('#') > 0 ):
+            # there is an inline comment here.  Remove it 
+            aLine=aLine[0:aLine.find('#')].rstrip()
+          exFileData2.append(aLine)
+        #print(exFileData)
+        if aTestFilePath.name in exFileData2:
           #print( "=====> ", aTestFilePath.name, " is in ", excludeFile, " and will be skipped")
           inExcludeFile = True
       # file wasn't excluded. Check if a *.cir.sh file exists that should be called instead.
@@ -394,11 +490,53 @@ def getTags( parentDirName, testFileName):
     for tagline in tagFileData:
       newTags = tagline.replace(',',';')
       newTags = newTags.replace(' ', '')
-      if (len(newTags) > 0) and (len(testtags)==0):
+      if (len(newTags) > 0) and (newTags[0] != '#') and (len(testtags)==0):
         testtags = newTags
-      elif (len(newTags) > 0):
+      elif (len(newTags) > 0) and (newTags[0] != '#'):
         testtags = testtags + ";" + newTags
   return testtags
+
+def setConstraintsBasedOnTags( inputTags ):
+  # Build cache variables can be used to predetermine which tags already apply 
+  # use them to set up a boolean condition statement that can be used around 
+  # an if() conditional to conditionally include a test.
+  #
+  # this dictionary connects tags to cache variables
+  #   tag                 Cache var
+  tagToCacheDict = {
+    'required:fft':'Xyce_USE_FFT', 
+    'required:athena':'Xyce_ATHENA',
+    'required:buildplugin':'Xyce_PLUGIN_SUPPORT',
+    'required:rol':'Xyce_ROL',
+    'required:amesos2basker':'Xyce_AMESOS2',
+    'required:stokhos':'Xyce_STOKHOS_ENABLE',
+    'required:pymi':'DEFINED Xyce_PYMI',
+    'required:qaspr':'Xyce_RAD_MODELS', 
+    'required:rad':'Xyce_RAD_MODELS',
+    'rad':'Xyce_RAD_MODELS',
+    'required:nonfree':'Xyce_NONFREE_MODELS',
+    'required:verbose':'Xyce_VERBOSE_TIME',
+    'required:windows': 'WIN32',
+    'python':'PYTHON_FOUND',
+    'numpy':'PYTHON_NUMPY_FOUND',
+    'scipy':'PYTHON_SCIPY_FOUND' }
+    
+  # Note WIN32 is a CMake variable that is true under both 32 and 64 bit Windows.
+      
+  #  handle these tags differently as they are on almost every test. 
+  #  'parallel':'Xyce_PARALLEL_MPI',
+  #'  serial':'NOT Xyce_PARALLEL_MPI'}
+  # note there are several verbose flags.  We may need to AND them all
+  # Xyce_VERBOSE_TIME, Xyce_VERBOSE_LINEAR, Xyce_VERBOSE_NONLINEAR, Xyce_VERBOSE_NOX
+  
+  inputTagList = inputTags.split(';')
+  serialConditional="(NOT Xyce_PARALLEL_MPI)"
+  parallelConditional="Xyce_PARALLEL_MPI "
+  for aTag in inputTagList:
+    if aTag in tagToCacheDict:
+      serialConditional = serialConditional + " AND  "+ tagToCacheDict[aTag]
+      parallelConditional = parallelConditional + " AND " + tagToCacheDict[aTag]
+  return (serialConditional, parallelConditional)
   
 def getOptions( parentDirName, testFileName):
   # look for a test specific options file.  Load it or the general options file if the specific one doesn't exist 
