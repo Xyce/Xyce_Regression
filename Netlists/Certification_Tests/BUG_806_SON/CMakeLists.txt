@@ -2,6 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/mos2_baseline.cir ${CMAKE_CURRENT_BINARY_DIR}/mos2_baseline.cir ONLY_IF_DIFFERENT)
+file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/mos2_baseline_forglobal.cir ${CMAKE_CURRENT_BINARY_DIR}/mos2_baseline_forglobal.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/mos2_data_step.cir ${CMAKE_CURRENT_BINARY_DIR}/mos2_data_step.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/mos2_data_step.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/mos2_data_step.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/mos2_data_step.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
