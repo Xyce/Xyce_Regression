@@ -16,7 +16,7 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ramp_test1_pde_homotopy.cir ${CMAKE_C
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ramp_test1_pde_homotopy.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/ramp_test1_pde_homotopy.cir.tags ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
 add_test(NAME ${TestNamePrefix}PDE_1D_BJT/gilbert_cell_pde_four.cir COMMAND Xyce gilbert_cell_pde_four.cir )
-set_property(TEST ${TestNamePrefix}PDE_1D_BJT/gilbert_cell_pde_four.cir PROPERTY LABELS "serial;parallel;nightly;pde;bjt1d;valgrindrequired:klu")
+set_property(TEST ${TestNamePrefix}PDE_1D_BJT/gilbert_cell_pde_four.cir PROPERTY LABELS "serial;parallel;nightly;pde;bjt1d;valgrind;required:klu")
 set_tests_properties(${TestNamePrefix}PDE_1D_BJT/gilbert_cell_pde_four.cir PROPERTIES FIXTURES_SETUP gilbert_cell_pde_four.cir)
 add_test(NAME ${TestNamePrefix}PDE_1D_BJT/gilbert_cell_pde_four.cir.verify COMMAND ${XYCE_VERIFY} gilbert_cell_pde_four.cir ${OutputDataDir}/PDE_1D_BJT/gilbert_cell_pde_four.cir.prn gilbert_cell_pde_four.cir.prn )
 set_tests_properties(${TestNamePrefix}PDE_1D_BJT/gilbert_cell_pde_four.cir.verify PROPERTIES FIXTURES_REQUIRED gilbert_cell_pde_four.cir)
