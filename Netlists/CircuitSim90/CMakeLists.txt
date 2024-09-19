@@ -2,6 +2,6 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 
 add_subdirectory(MOS3)
-add_subdirectory(BJT)
 add_subdirectory(MOS2_LARGE)
 add_subdirectory(MOS2)
+add_subdirectory(BJT)

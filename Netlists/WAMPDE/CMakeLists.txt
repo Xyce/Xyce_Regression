@@ -2,7 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 
 add_subdirectory(PIERCE)
-add_subdirectory(HARTLEY)
-add_subdirectory(VCO)
 add_subdirectory(OSCILLATOR)
+add_subdirectory(VCO)
+add_subdirectory(HARTLEY)
 add_subdirectory(BLOCKING)

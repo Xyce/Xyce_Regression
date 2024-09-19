@@ -146,23 +146,29 @@ def SetUpCtestFiles():
       fileObj.write('message(DEBUG "[DBG]: XyceBuildDir: ${XyceBuildDir}")\n')
       fileObj.write('cmake_path(SET XYCE_BINARY $<TARGET_FILE:Xyce>)\n')
       fileObj.write('message(DEBUG "[DBG]: XYCE_BINARY: ${XYCE_BINARY}")\n')
+      fileObj.write('set(DAKOTA_FOUND FALSE CACHE BOOL "True if dakota found.")\n')
       fileObj.write('set(PERL_FOUND FALSE CACHE BOOL "True if perl found.")\n')
       fileObj.write('set(BASH_FOUND FALSE CACHE BOOL "True if bash found.")\n')
+      fileObj.write('set(BASH_FOUND FALSE CACHE BOOL "True if bash found.")\n')
+      fileObj.write('set(BASH_FOUND FALSE CACHE BOOL "True if bash found.")\n')
       fileObj.write('set(PYTHON_FOUND FALSE CACHE BOOL "True if python package found.")\n')
-      fileObj.write('set(PYTHON_NUMPY_FOUND FALSE CACHE BOOL "True if python package numpy found.")\n')
-      fileObj.write('set(PYTHON_SCIPY_FOUND FALSE CACHE BOOL "True if python package scipy found.")\n')
+      fileObj.write('set(SIMULINK_FOUND FALSE CACHE BOOL "True if simulink found.")\n')
+      fileObj.write('set(XDM_BDL_FOUND FALSE CACHE BOOL "True if xdm_bld found.")\n')
+      fileObj.write('set(MS_VPP_FOUND FALSE CACHE BOOL "True if vpp compiler found.")\n')
+      fileObj.write('set(VALGRIND_FOUND FALSE CACHE BOOL "True if valgrind found.")\n')
+      fileObj.write('set(VALGRIND_MASTER FALSE CACHE BOOL "True if valgrind_master set.")\n')
       fileObj.write('find_program(PERL_BIN perl)\n')
-      fileObj.write('if( NOT (PERL_BIN EQUAL "PERL_BIN-NOTFOUND"))\n')
+      fileObj.write('if( NOT (PERL_BIN STREQUAL "PERL_BIN-NOTFOUND"))\n')
       fileObj.write('  set(PERL_FOUND "TRUE")\n')
       fileObj.write('endif()\n')
       fileObj.write('message(STATUS "Perl found ${PERL_FOUND}")\n')
       fileObj.write('find_program(BASH_FOUND bash)\n')
-      fileObj.write('if( NOT (BASH_FOUND EQUAL "BASH_FOUND-NOTFOUND"))\n')
+      fileObj.write('if( NOT (BASH_FOUND STREQUAL "BASH_FOUND-NOTFOUND"))\n')
       fileObj.write('  set(BASH_FOUND "TRUE")\n')
       fileObj.write('endif()\n')
       fileObj.write('message(STATUS "Bash found ${BASH_FOUND}")\n')
       fileObj.write('find_program(PYTHON_BIN python)\n')
-      fileObj.write('if( NOT (PYTHON_BIN EQUAL "PYTHON_BIN-NOTFOUND"))\n')
+      fileObj.write('if( NOT (PYTHON_BIN STREQUAL "PYTHON_BIN-NOTFOUND"))\n')
       fileObj.write('  set(PYTHON_FOUND "TRUE")\n')
       fileObj.write('endif()\n')
       fileObj.write('message(STATUS "Python found ${PYTHON_FOUND}")\n')
@@ -178,6 +184,16 @@ def SetUpCtestFiles():
       fileObj.write('  endif()\n')
       fileObj.write('  message(STATUS "Python package scipy found ${PYTHON_SCIPY_FOUND}")\n')
       fileObj.write('endif()\n')
+      fileObj.write('find_program(XDM_BDL_BIN xdm_bdl)\n')
+      fileObj.write('if( NOT (XDM_BDL_BIN STREQUAL "XDM_BDL_BIN-NOTFOUND"))\n')
+      fileObj.write('  set(XDM_BDL_FOUND "TRUE")\n')
+      fileObj.write('endif()\n')
+      fileObj.write('message(STATUS "xdm_bdl found ${XDM_BDL_FOUND}")\n')
+      fileObj.write('find_program(MS_VPP_BIN vpp)\n')
+      fileObj.write('if( NOT (MS_VPP_BIN STREQUAL "MS_VPP_BIN-NOTFOUND"))\n')
+      fileObj.write('  set(MS_VPP_FOUND "TRUE")\n')
+      fileObj.write('endif()\n')
+      fileObj.write('message(STATUS "vpp found ${MS_VPP_FOUND}")\n')
       fileObj.write('# Sandia Tests\n')
       fileObj.write('if (EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../Xyce_SandiaRegression" AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../Xyce_SandiaRegression/CMakeLists.txt" )\n')
       fileObj.write('  add_subdirectory( ${CMAKE_CURRENT_SOURCE_DIR}/../Xyce_SandiaRegression Xyce_SandiaRegression)\n')
@@ -522,16 +538,23 @@ def setConstraintsBasedOnTags( inputTags ):
     'required:fft':'Xyce_USE_FFT', 
     'required:athena':'Xyce_ATHENA',
     'required:buildplugin':'Xyce_PLUGIN_SUPPORT',
+    'required:dakota': 'DEFINED Xyce_Dakota',
+    'required:dakota_bb': 'DAKOTA_FOUND',
     'required:rol':'Xyce_ROL',
     'required:amesos2basker':'Xyce_AMESOS2',
     'required:stokhos':'Xyce_STOKHOS_ENABLE',
+    'required:simulink': 'SIMULINK_FOUND',
     'required:pymi':'DEFINED Xyce_PYMI',
     'required:qaspr':'Xyce_RAD_MODELS', 
     'required:rad':'Xyce_RAD_MODELS',
     'rad':'Xyce_RAD_MODELS',
     'required:nonfree':'Xyce_NONFREE_MODELS',
     'required:verbose':'Xyce_VERBOSE_TIME',
+    'required:valgrind': 'VALGRIND_FOUND',
+    'required:valgrindmaster': 'VALGRIND_MASTER',
     'required:windows': 'WIN32',
+    'required:xdm': 'XDM_BDL_FOUND',
+    'required:mixedsignal': 'MS_VPP_FOUND',
     'python':'PYTHON_FOUND',
     'numpy':'PYTHON_NUMPY_FOUND',
     'scipy':'PYTHON_SCIPY_FOUND' }
