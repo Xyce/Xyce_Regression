@@ -13,9 +13,9 @@ DC DC Flyback Converter
 .options device separateload=0
 
 * to save data use something like this: 
-.options restart job=converter initial_interval=2.0e-4
+.options restart job=converter_output initial_interval=2.0e-4
 * and to restart use something like this:
-*.options restart file=trans_test1e-08
+*.options restart file=trans_test1e-08b
 * packing option 
 
 V1    n1   0    10V
