@@ -22,8 +22,8 @@ XYCE_VERIFY=$2
 #CIRFILE=$4
 #GOLDPRN=$5
 
-CIR1=time.cir
-GOLDSCRIPT=./time.cir.prn.gs.pl
+CIR1=time_param.cir
+GOLDSCRIPT=./time_param.cir.prn.gs.pl
 
 rm -f $CIR1.prn $CIR1.err $CIR1.prn.gs $GOLDSCRIPT.err
 
