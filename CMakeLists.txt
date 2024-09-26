@@ -71,7 +71,7 @@ if( NOT (MS_VPP_BIN STREQUAL "MS_VPP_BIN-NOTFOUND"))
 endif()
 message(STATUS "vpp found ${MS_VPP_FOUND}")
 # Sandia Tests
-message(DEBUG "[DEBUG]: CMAKE_CURRENT_SOURCE_DIR: ${CMAKE_CURRENT_SOURCE_DIR}")
+message(DEBUG "[DBG]: CMAKE_CURRENT_SOURCE_DIR: ${CMAKE_CURRENT_SOURCE_DIR}")
 if (EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../Xyce_SandiaRegression" AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../Xyce_SandiaRegression/CMakeLists.txt" )
   add_subdirectory( ${CMAKE_CURRENT_SOURCE_DIR}/../Xyce_SandiaRegression Xyce_SandiaRegression)
   message(STATUS "Adding Xyce_SandiaRegression tests")
