@@ -36,9 +36,6 @@ def SetUpCtestFiles():
   args = parser.parse_args()
 
   # check if Xyce_Regression exists as an input directory.
-  if args.verbose:
-    print("Looking for Xyce_Regression directory.")
-    
   XyceRegressionDirectory = args.input
   if( not os.path.exists( XyceRegressionDirectory)):
     print( "Error: Input Xyce_Regression directory does not exist %s" % (XyceRegressionDirectory))
@@ -46,22 +43,42 @@ def SetUpCtestFiles():
   if( not os.path.isdir( XyceRegressionDirectory)):
     print( "Error: Input Xyce_Regression is not a directory  %s" % (XyceRegressionDirectory))
     return -1
+  else:
+    if args.verbose:
+      print("Found regression directory: %s" %(XyceRegressionDirectory))
    
   XyceSandiaRegressionDirectory = XyceRegressionDirectory.replace("_Regression", "_SandiaRegression")
   if( not os.path.exists( XyceSandiaRegressionDirectory)):
-    print( "Error: Input Xyce_SandiaRegression directory does not exist %s" % (XyceSandiaRegressionDirectory))
-    XyceSandiaRegressionDirectory = None
+
+    # try it as a subdirectory of XyceRegressionDirectory
+    if( not os.path.exists( XyceRegressionDirectory + "/" + XyceSandiaRegressionDirectory)):
+      print( "Warning: Input Xyce_SandiaRegression directory does not exist %s" % (XyceSandiaRegressionDirectory))
+      XyceSandiaRegressionDirectory = None
+    else:
+      XyceSandiaRegressionDirectory = XyceRegressionDirectory + "/" + XyceSandiaRegressionDirectory;
+
   if( not os.path.isdir( XyceSandiaRegressionDirectory)):
-    print( "Error: Input Xyce_SandiaRegression is not a directory  %s" % (XyceSandiaRegressionDirectory))
+    print( "Warning: Input Xyce_SandiaRegression is not a directory  %s" % (XyceSandiaRegressionDirectory))
     XyceSandiaRegressionDirectory = None
+  else:
+    if args.verbose:
+      print("Found Sandia specific regression directory: %s" %(XyceSandiaRegressionDirectory))
   
   XyceFastrackRegressionDirectory = XyceRegressionDirectory.replace("_Regression", "_FastrackRegression")
   if( not os.path.exists( XyceFastrackRegressionDirectory)):
-    print( "Error: Input Xyce_FastrackRegression directory does not exist %s" % (XyceFastrackRegressionDirectory))
-    XyceFastrackRegressionDirectory = None
+    # try it as a subdirectory of XyceRegressionDirectory
+    if( not os.path.exists( XyceRegressionDirectory + "/" + XyceFastrackRegressionDirectory)):
+      print( "Warning: Input Xyce_FastrackRegression directory does not exist %s" % (XyceFastrackRegressionDirectory))
+      XyceFastrackRegressionDirectory = None
+    else:
+      XyceFastrackRegressionDirectory = XyceRegressionDirectory + "/" + XyceFastrackRegressionDirectory;
+
   if( not os.path.isdir( XyceFastrackRegressionDirectory)):
-    print( "Error: Input Xyce_FastrackRegression is not a directory  %s" % (XyceFastrackRegressionDirectory))
+    print( "Warning: Input Xyce_FastrackRegression is not a directory  %s" % (XyceFastrackRegressionDirectory))
     XyceFastrackRegressionDirectory = None
+  else:
+    if args.verbose:
+      print("Found Fastrack specific regression directory: %s" %(XyceFastrackRegressionDirectory))
   
   # set up symbolic links for directories like Xyce_<Foo>Regression.  
   # specifically
