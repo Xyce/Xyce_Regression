@@ -91,6 +91,7 @@ comparator.cir
 diode.cir
 diode.cir.sh
 diodeTran.cir
+diodeTranForAdjoint.cir
 diodeTran.cir.sh
 diodeTranAdjoint.cir
 diodeTranAdjoint.cir.sh
