@@ -8,6 +8,9 @@ gilbert_cell_hb.cir.sh
 gilbert_cell_hb1.cir
 gilbert_cell_hbTdsamples.cir
 gilbert_cell_hbTran.cir
+gilbert_cell_hbTran_copy1.cir
+gilbert_cell_hbTran_copy1.cir
+gilbert_cell_hbTran_copy3.cir
 gilbert_cell_hbTran_tahb.cir
 gilbert_cell_hbt.cir
 gilbert_cell_hbt.cir.sh

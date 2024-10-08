@@ -20,7 +20,7 @@ XYCE=$1
 XYCE_VERIFY=$2
 
 CIR1=gilbert_cell_hbt1.cir
-CIR2=gilbert_cell_hbTran.cir
+CIR2=gilbert_cell_hbTran_copy2.cir
 
 rm -f $CIR1.HB.TD.prn $CIR2.prn
 
