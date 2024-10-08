@@ -75,7 +75,7 @@ if (EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../Xyce_FastrackRegression" AND EXISTS "
   message(STATUS "Adding Xyce_FasttrackRegression tests")
   add_subdirectory( ${CMAKE_CURRENT_SOURCE_DIR}/../Xyce_FastrackRegression Xyce_FastrackRegression)
 elseif (EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/Xyce_FastrackRegression" AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/Xyce_FastrackRegression/CMakeLists.txt")
-  message(STATUS "Adding Xyce_FasttrackRegression tests")
+  message(STATUS "Adding Xyce_FastrackRegression tests")
   add_subdirectory( ${CMAKE_CURRENT_SOURCE_DIR}/Xyce_FastrackRegression Xyce_FastrackRegression)
 else()
   message(WARNING "Xyce_FastrackRegression tests not found")
