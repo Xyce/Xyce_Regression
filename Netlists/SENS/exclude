@@ -9,6 +9,7 @@ diodeTranFD.cir
 diodeTranTrap.cir
 diodeTranScaled.cir
 dummyDiodeTran.cir
+diodeTranForAdjoint.cir
 dummyDiodeTran2.cir
 dummyDiodeTran3.cir
 dummyDiodeTranScaled.cir
