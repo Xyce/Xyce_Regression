@@ -454,7 +454,11 @@ def SetUpCtestFiles():
             outputBuf.write('    add_subdirectory(%s)\n' % (subDirName))
             outputBuf.write('endif ()\n')
           else:
-            outputBuf.write('add_subdirectory(%s)\n' % (subDirName))
+            # this "if" avoids the script adding these subdirectories
+            # to Xyce_Regression/CMakeLists.txt when they are within
+            # the Xyce_Regression subdirectory
+            if( subDirName != "Xyce_SandiaRegression" and subDirName != "Xyce_FastrackRegression"):
+              outputBuf.write('add_subdirectory(%s)\n' % (subDirName))
 
       filesGenerated += 1
       # have the CMakeLists.txt file contents ready.  Check with any existing file if
