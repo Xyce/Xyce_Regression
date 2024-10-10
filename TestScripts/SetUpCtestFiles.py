@@ -1,3 +1,4 @@
+
 #
 # this script generates the CMakeLists.txt files in the
 # Xyce_Regression file structure to make regression tests
@@ -30,7 +31,8 @@ def SetUpCtestFiles():
   parser.add_argument("--input", help="Top level Xyce_Regression directory that will be used.", default="Xyce_Regression")
   parser.add_argument("--force", help="Force overwrite CMakeLists.txt files", default=False, action="store_true")
   parser.add_argument("--onlydir", help="Only update CMakeLists.txt file for a given directory", default=None)
-  parser.add_argument("--dryrun", help="Don not alter any CMakeLists.txt files.", default=False, action="store_true")
+  parser.add_argument("--dryrun", help="Do not alter any CMakeLists.txt files.", default=False, action="store_true")
+  parser.add_argument("--newfile", help="If the CMakeLists.txt file would normally not be overwritten output to CMakeLists.txt.NEW", default=False, action="store_true")
   parser.add_argument("-v", "--verbose", help="verbose output", action="store_true")
   # get the command line arguments
   args = parser.parse_args()
@@ -463,20 +465,45 @@ def SetUpCtestFiles():
       filesGenerated += 1
       # have the CMakeLists.txt file contents ready.  Check with any existing file if
       # this needs to be written out.
-      writeFileToDisk = True
+      isChanged = True
+      hasAutoHeader = True
+      writeFileToDisk = False
       if( os.path.exists(cmakeFileName)):
         fileObj = open( cmakeFileName,'r')
         oldFileData = io.StringIO()
         for aLine in fileObj:
           oldFileData.write(aLine)
         fileObj.close()
-        writeFileToDisk = newFileDifferentFromOld(outputBuf.getvalue(), oldFileData.getvalue() )
-        if( not args.force ):
-          writeFileToDisk = hasAutoGenHeader(oldFileData.getvalue()) and writeFileToDisk
+        isChanged = newFileDifferentFromOld(outputBuf.getvalue(), oldFileData.getvalue() )
+        hasAutoHeader = hasAutoGenHeader(oldFileData.getvalue())
         oldFileData.close()
+
+        # logic to determine when to write the file and when not
+        # to. order is important here, for example if the user
+        # specified "--force" and "--newfile" force will take
+        # precedence since it's tested first. in effect that means
+        # "--newfile" will be ignored.
+        if (isChanged and hasAutoHeader):
+          # if the new file differs and the standard header is intact
+          # write the new file
+          writeFileToDisk = True
+        elif (isChanged and not hasAutoHeader and args.force):
+          # if the user wants to overwrite, even files without the
+          # standard header always do so when force is specified
+          writeFileToDisk = True
+        elif (isChanged and not hasAutoHeader and args.newfile):
+          # if the header has been removed, and the user wants to
+          # write a CMakeLists.txt.NEW for comparison
+          writeFileToDisk = True
+          cmakeFileName = cmakeFileName + ".NEW"
+
+        print("%s: newfile = %d, isChanged = %d , hasAutoHeader = %d, writeToFile = %d " % (cmakeFileName, args.newfile, isChanged, hasAutoHeader, writeFileToDisk))
+
+      # if the new file is different
       if( writeFileToDisk ):
         if args.verbose:
           print("Writing %s" % (cmakeFileName))
+          
         if( not args.dryrun):
           filesChanged +=1
           fileObj = open( cmakeFileName,'w')
