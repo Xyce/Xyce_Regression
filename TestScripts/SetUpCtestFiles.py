@@ -154,8 +154,6 @@ def SetUpCtestFiles():
         subDirSet.add( subDirName)
         depDirectoryDict[keyName] = subDirSet
 
-    #print(depDirectoryDict)
-
   # keep a set of copied Manifest files so we don't copy the same one more then twice
   copiedManifestDirs = set()
 
@@ -266,7 +264,12 @@ def SetUpCtestFiles():
       if( keyName == "Xyce_FastrackRegression"):
         outputBuf.write('set(TestNamePrefix "FastrackTests/")\n')
         outputBuf.write('set(OutputDataDir "${CMAKE_CURRENT_SOURCE_DIR}/OutputData")\n')
-      for subDirName in depDirectoryDict[keyName]:
+
+      # sort the values since the order seems to be random and varies
+      # from one run to the next otherwise
+      myTmpVals = list(depDirectoryDict[keyName])
+      myTmpVals.sort()
+      for subDirName in myTmpVals:
         # need a unique name for each test even when the same netlist name is used in multiple tests
         # otherwise setting properties on tests gets confused because it keys on test name
         testPathIndex = keyName.rfind("Netlists")+9
@@ -497,7 +500,8 @@ def SetUpCtestFiles():
           writeFileToDisk = True
           cmakeFileName = cmakeFileName + ".NEW"
 
-        print("%s: newfile = %d, isChanged = %d , hasAutoHeader = %d, writeToFile = %d " % (cmakeFileName, args.newfile, isChanged, hasAutoHeader, writeFileToDisk))
+        if args.verbose:
+          print("%s: newfile = %d, isChanged = %d , hasAutoHeader = %d, writeToFile = %d " % (cmakeFileName, args.newfile, isChanged, hasAutoHeader, writeFileToDisk))
 
       # if the new file is different
       if( writeFileToDisk ):
