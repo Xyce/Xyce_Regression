@@ -266,7 +266,9 @@ def SetUpCtestFiles():
         outputBuf.write('set(OutputDataDir "${CMAKE_CURRENT_SOURCE_DIR}/OutputData")\n')
 
       # sort the values since the order seems to be random and varies
-      # from one run to the next otherwise
+      # from one run to the next otherwise and that causes it to
+      # perform changes simply due to order differences in the
+      # list. this change fixes that
       myTmpVals = list(depDirectoryDict[keyName])
       myTmpVals.sort()
       for subDirName in myTmpVals:
