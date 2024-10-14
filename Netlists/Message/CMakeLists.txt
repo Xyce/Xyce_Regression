@@ -2,9 +2,9 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-add_subdirectory(Function)
 add_subdirectory(Device)
+add_subdirectory(Function)
+add_subdirectory(Input)
 add_subdirectory(Print)
 add_subdirectory(Subcircuit)
-add_subdirectory(Input)
 add_subdirectory(Topology)

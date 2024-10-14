@@ -80,7 +80,6 @@ elseif (EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/Xyce_FastrackRegression" AND EXISTS 
 else()
   message(WARNING "Xyce_FastrackRegression tests not found")
 endif()
-
 # General Tests
 message(STATUS "Adding general tests")
 add_subdirectory(Netlists)

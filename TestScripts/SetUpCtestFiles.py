@@ -258,10 +258,10 @@ def SetUpCtestFiles():
 
       # Independent test repos have their own output data directories.  Try overriding
       # the OutputDataDir variable as it should propagate down in scope to test directories
-      if( keyName == "Xyce_SandiaRegression"):
+      if( keyName == "Xyce_SandiaRegression" or keyName == "Xyce_Regression/Xyce_SandiaRegression" ):
         outputBuf.write('set(TestNamePrefix "SandiaTests/")\n')
         outputBuf.write('set(OutputDataDir "${CMAKE_CURRENT_SOURCE_DIR}/OutputData")\n')
-      if( keyName == "Xyce_FastrackRegression"):
+      if( keyName == "Xyce_FastrackRegression" or keyName == "Xyce_Regression/Xyce_FastrackRegression" ):
         outputBuf.write('set(TestNamePrefix "FastrackTests/")\n')
         outputBuf.write('set(OutputDataDir "${CMAKE_CURRENT_SOURCE_DIR}/OutputData")\n')
 

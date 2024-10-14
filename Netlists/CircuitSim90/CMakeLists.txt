@@ -2,7 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-add_subdirectory(MOS2)
 add_subdirectory(BJT)
-add_subdirectory(MOS3)
+add_subdirectory(MOS2)
 add_subdirectory(MOS2_LARGE)
+add_subdirectory(MOS3)

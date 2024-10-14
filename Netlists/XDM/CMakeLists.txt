@@ -2,8 +2,8 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-add_subdirectory(PSPICE)
-add_subdirectory(SPECTRE)
 add_subdirectory(HSPICE)
-add_subdirectory(TSPICE)
+add_subdirectory(PSPICE)
 add_subdirectory(QUERY)
+add_subdirectory(SPECTRE)
+add_subdirectory(TSPICE)

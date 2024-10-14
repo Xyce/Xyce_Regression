@@ -2,9 +2,9 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
+add_subdirectory(NISP)
+add_subdirectory(NISP2)
+add_subdirectory(NI_REGRESSION)
 add_subdirectory(NI_REGRESSION2)
 add_subdirectory(PCE)
-add_subdirectory(NISP2)
-add_subdirectory(NISP)
-add_subdirectory(NI_REGRESSION)
 add_subdirectory(PCE2)

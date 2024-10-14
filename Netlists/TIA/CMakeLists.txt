@@ -2,8 +2,8 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-add_subdirectory(MINORDER)
+add_subdirectory(ERROROPTION)
 add_subdirectory(GEAR)
 add_subdirectory(Interpolation_TIA)
-add_subdirectory(ERROROPTION)
+add_subdirectory(MINORDER)
 add_subdirectory(TRAP)

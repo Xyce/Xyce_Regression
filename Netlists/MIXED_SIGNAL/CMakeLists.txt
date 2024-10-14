@@ -2,5 +2,5 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-add_subdirectory(VPI)
 add_subdirectory(Python)
+add_subdirectory(VPI)
