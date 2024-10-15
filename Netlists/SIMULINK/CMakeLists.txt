@@ -17,5 +17,4 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/options ${CMAKE_CURRENT_BINARY_DIR}/o
 if( (NOT Xyce_PARALLEL_MPI) AND  SIMULINK_FOUND AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}SIMULINK/1Dac2ADCSystem.cir.sh COMMAND perl -I${XyceRegressionTestScripts} 1Dac2ADCSystem.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} 1Dac2ADCSystem.cir ${OutputDataDir}/SIMULINK/1Dac2ADCSystem.cir.prn )
   set_property(TEST ${TestNamePrefix}SIMULINK/1Dac2ADCSystem.cir.sh PROPERTY LABELS "serial;nightly;required:simulink")
-  set_tests_properties(${TestNamePrefix}SIMULINK/1Dac2ADCSystem.cir.sh PROPERTIES TIMEOUT 180)
 endif()

@@ -33,6 +33,8 @@ def SetUpCtestFiles():
   parser.add_argument("--onlydir", help="Only update CMakeLists.txt file for a given directory", default=None)
   parser.add_argument("--dryrun", help="Do not alter any CMakeLists.txt files.", default=False, action="store_true")
   parser.add_argument("--newfile", help="If the CMakeLists.txt file would normally not be overwritten output to CMakeLists.txt.NEW", default=False, action="store_true")
+  parser.add_argument("--set-timeouts", help="Use the \"timelimit\" option to set the TIMEOUT property on tests",
+                      default=False, action="store_true")
   parser.add_argument("-v", "--verbose", help="verbose output", action="store_true")
   # get the command line arguments
   args = parser.parse_args()
@@ -317,7 +319,7 @@ def SetUpCtestFiles():
               # set timelimit option if given as TIMEOUT for ctest
               if( len(testOptions) > 0):
                 for anOpt in testOptions:
-                  if anOpt[0] == "timelimit":
+                  if(anOpt[0] == "timelimit" and args.set_timeouts):
                     outputBuf.write('  set_tests_properties(${TestNamePrefix}%s PROPERTIES TIMEOUT %s)\n' % (testName, anOpt[1]))
 
               # use the FIXTURES_SETUP and FIXTURES_REQUIRED properties so that testing steps that
@@ -348,7 +350,7 @@ def SetUpCtestFiles():
               # set timelimit option if given as TIMEOUT for ctest
               if( len(testOptions) > 0):
                 for anOpt in testOptions:
-                  if anOpt[0] == "timelimit":
+                  if( anOpt[0] == "timelimit" and args.set_timeouts ):
                     outputBuf.write('  set_tests_properties(${TestNamePrefix}%s PROPERTIES TIMEOUT %s)\n' % (testName, anOpt[1]))
 
               # use the FIXTURES_SETUP and FIXTURES_REQUIRED properties so that testing steps that
@@ -438,7 +440,7 @@ def SetUpCtestFiles():
               # set timelimit option if given as TIMEOUT for ctest
               if( len(testOptions) > 0):
                 for anOpt in testOptions:
-                  if anOpt[0] == "timelimit":
+                  if( anOpt[0] == "timelimit" and args.set_timeouts ):
                     outputBuf.write('  set_tests_properties(${TestNamePrefix}%s PROPERTIES TIMEOUT %s)\n' % (testName, anOpt[1]))
               outputBuf.write('endif()\n')
             if( testtags.find('parallel') >= 0 ):
@@ -450,7 +452,7 @@ def SetUpCtestFiles():
               # set timelimit option if given as TIMEOUT for ctest
               if( len(testOptions) > 0):
                 for anOpt in testOptions:
-                  if anOpt[0] == "timelimit":
+                  if( anOpt[0] == "timelimit" and args.set_timeouts ):
                     outputBuf.write('  set_tests_properties(${TestNamePrefix}%s PROPERTIES TIMEOUT %s)\n' % (testName, anOpt[1]))
               outputBuf.write('endif()\n')
         else:
@@ -484,23 +486,20 @@ def SetUpCtestFiles():
         oldFileData.close()
 
         # logic to determine when to write the file and when not
-        # to. order is important here, for example if the user
-        # specified "--force" and "--newfile" force will take
-        # precedence since it's tested first. in effect that means
-        # "--newfile" will be ignored.
+        # to.
         if (isChanged and hasAutoHeader):
           # if the new file differs and the standard header is intact
           # write the new file
-          writeFileToDisk = True
-        elif (isChanged and not hasAutoHeader and args.force):
-          # if the user wants to overwrite, even files without the
-          # standard header always do so when force is specified
           writeFileToDisk = True
         elif (isChanged and not hasAutoHeader and args.newfile):
           # if the header has been removed, and the user wants to
           # write a CMakeLists.txt.NEW for comparison
           writeFileToDisk = True
           cmakeFileName = cmakeFileName + ".NEW"
+        elif (args.force):
+          # if the user wants to overwrite, even files without the
+          # standard header always do so when force is specified
+          writeFileToDisk = True
 
         if args.verbose:
           print("%s: newfile = %d, isChanged = %d , hasAutoHeader = %d, writeToFile = %d " % (cmakeFileName, args.newfile, isChanged, hasAutoHeader, writeFileToDisk))
@@ -509,7 +508,7 @@ def SetUpCtestFiles():
       if( writeFileToDisk ):
         if args.verbose:
           print("Writing %s" % (cmakeFileName))
-          
+
         if( not args.dryrun):
           filesChanged +=1
           fileObj = open( cmakeFileName,'w')

@@ -11,5 +11,4 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/options ${CMAKE_CURRENT_BINARY_DIR}/o
 if( Xyce_PARALLEL_MPI  AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1025/null.cir.sh COMMAND perl -I${XyceRegressionTestScripts} null.cir.sh "mpiexec -bind-to none -np 2 $<TARGET_FILE:Xyce>" ${XYCE_VERIFY} ${XYCE_VERIFY} null.cir ${OutputDataDir}/Certification_Tests/BUG_1025/null.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1025/null.cir.sh PROPERTY LABELS "parallel;nightly;errorexit")
-  set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_1025/null.cir.sh PROPERTIES TIMEOUT 30)
 endif()
