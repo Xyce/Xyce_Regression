@@ -25,8 +25,8 @@ $XYCE_COMPARE=$ARGV[2];
 #$CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
 
-$CIR1="abmfreq1.cir";
-$CIR2="abmfreq1_data.cir";
+$CIR1="abmfreq1_copy.cir";
+$CIR2="abmfreq1_data_copy.cir";
 
 # comparison tolerances for ACComparator.pl
 $abstol=6e-5;
