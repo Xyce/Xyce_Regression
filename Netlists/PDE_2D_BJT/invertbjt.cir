@@ -69,6 +69,7 @@ YPDE BJT2 VOUT IN VDDNODE   PDEBJT
 * **** End Homotopy Setup ****
 **********************************
 .options timeint abstol=1e-6 reltol=1e-4  doubledcop=drift_diffusion
+.options linsol type=klu
 .options device debuglevel=-100
 
 .END

@@ -51,6 +51,9 @@ YPDE NMOS 3 2 1 4 NFET sgplotLevel=0 tecplotLevel=0
 * Time integration params:
 .options DEVICE debuglevel=-100 
 
+* Linear solver params:
+.options LINSOL type=klu
+
 *.DC VDD 0 5 0.5 
 .DC VDD 0 3 0.5 
 *.print DC I(VMON) V(3,2) V(1,2)

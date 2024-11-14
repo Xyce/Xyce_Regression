@@ -10,5 +10,5 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/nmos1_1level.cir ${CMAKE_CURRENT_BINA
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND BASH_FOUND )
   add_test(NAME ${TestNamePrefix}PDE_2D_NMOS/nmos1.cir.sh COMMAND bash nmos1.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} nmos1.cir ${OutputDataDir}/PDE_2D_NMOS/nmos1.cir.prn )
-  set_property(TEST ${TestNamePrefix}PDE_2D_NMOS/nmos1.cir.sh PROPERTY LABELS "weekly;serial;pde;twolevel;2d;required:klu")
+  set_property(TEST ${TestNamePrefix}PDE_2D_NMOS/nmos1.cir.sh PROPERTY LABELS "weekly;serial;pde;twolevel;2d")
 endif()

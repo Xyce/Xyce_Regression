@@ -97,3 +97,8 @@ Removed ".options LINSOL" line to avoid confusion, since "required:klu" is alrea
 the tags file.  By default, the transform interface turns off AMD ordering and partitioning
 if a serial direct solver is chosen for a parallel run.
 
+11/14/2024 hkthorn:
+=================
+
+The "required:klu" tag is being removed from the testing infrastructure, so the ".options LINSOL"
+line has been returned to the netlist.

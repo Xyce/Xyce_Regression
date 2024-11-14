@@ -105,6 +105,8 @@ RBB T1 0 1.0
 
 .options TIMEINT reltol=1.0e-3 abstol=1.0e-6 doubledcop=drift_diffusion
 
+.options LINSOL type=klu
+
 .DC VMON 0.0 0.0 1.0
 .PRINT DC V(T2) V(1) V(6) I(VMON1) I(VMON2) I(VMON3)
 

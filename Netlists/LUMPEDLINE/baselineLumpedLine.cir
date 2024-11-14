@@ -10,5 +10,6 @@ X_bigline DUT  1b rlc_12Foot
 .tran 0 1.0e-6
 .print tran V(1) V(1B) 
 
+.options linsol type=klu
 .options timeint method=gear 
 

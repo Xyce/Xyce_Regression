@@ -81,6 +81,8 @@ VMON3 2 7 0
 
 .options TIMEINT reltol=1.0e-3 abstol=1.0e-6 
 
+.options LINSOL type=klu
+
 .PRINT DC V(1) V(6) I(VMON1) I(VMON2) I(VMON3)
 
 .END

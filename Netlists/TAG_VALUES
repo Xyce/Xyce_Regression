@@ -38,21 +38,6 @@ Some of the tags current available:
     parallel.  In those cases, it is acceptable to have only serial or
     only parallel.
 
- required:klu
-    This tag is confusing, but it is used to indicate that when a test
-    is run in parallel, it must be run with the serial direct solver
-    (serial solve, parallel load).  
-
-    It is confusing because it doesn't actually tell the regression
-    scripts "this test must be run with serial direct solver", rather,
-    it means that the test procedure must run parallel testing twice,
-    once with "-klu" in its tagslist, and once with "+klu" in the
-    tagslist and "-linsolv klu" in the Xyce command line.
-
-    It is also troublesome in that unless one runs *serial* testing with 
-    the "?klu" tag in the tagslist, all of the required:klu tests get
-    skipped in serial, even though klu is the default there.
-
   valgrind
     This test is short enough and fast enough that nightly memory
     checking with valgrind is practical, and should be performed.  Do
