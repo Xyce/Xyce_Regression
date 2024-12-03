@@ -9,7 +9,7 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/sRC_prn.cir ${CMAKE_CURRENT_BINARY_DI
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/sRC_tecp.cir ${CMAKE_CURRENT_BINARY_DIR}/sRC_tecp.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-if( (NOT Xyce_PARALLEL_MPI) AND  Xyce_USE_FFT AND PERL_FOUND )
+if( (NOT Xyce_PARALLEL_MPI) AND Xyce_USE_FFT AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_836_SON/sRC.cir.sh COMMAND perl -I${XyceRegressionTestScripts} sRC.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} sRC.cir ${OutputDataDir}/Certification_Tests/BUG_836_SON/sRC.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_836_SON/sRC.cir.sh PROPERTY LABELS "serial;nightly;bug836;hb;required:fft")
 endif()

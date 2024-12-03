@@ -74,7 +74,7 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/unsupported_ac_measure_types.cir.sh $
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/unsupported_ac_measure_types.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/unsupported_ac_measure_types.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/unsupported_ac_measure_types.cir.tags ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/unsupported_ac_measure_types.cir.options ${CMAKE_CURRENT_BINARY_DIR}/unsupported_ac_measure_types.cir.options ONLY_IF_DIFFERENT)
-if( (NOT Xyce_PARALLEL_MPI) AND  Xyce_USE_FFT AND PERL_FOUND )
+if( (NOT Xyce_PARALLEL_MPI) AND Xyce_USE_FFT AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}MEASURE_AC/AvgTestAC.cir.sh COMMAND perl -I${XyceRegressionTestScripts} AvgTestAC.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} AvgTestAC.cir ${OutputDataDir}/MEASURE_AC/AvgTestAC.cir.prn )
   set_property(TEST ${TestNamePrefix}MEASURE_AC/AvgTestAC.cir.sh PROPERTY LABELS "nightly;serial;parallel;measure;ac;required:fft;valgrind")
 endif()

@@ -72,7 +72,7 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/unsupported_noise_measure_types.cir.s
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/unsupported_noise_measure_types.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/unsupported_noise_measure_types.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/unsupported_noise_measure_types.cir.tags ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/unsupported_noise_measure_types.cir.options ${CMAKE_CURRENT_BINARY_DIR}/unsupported_noise_measure_types.cir.options ONLY_IF_DIFFERENT)
-if( (NOT Xyce_PARALLEL_MPI) AND  Xyce_USE_FFT AND PERL_FOUND )
+if( (NOT Xyce_PARALLEL_MPI) AND Xyce_USE_FFT AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}MEASURE_NOISE/AvgTestNoise.cir.sh COMMAND perl -I${XyceRegressionTestScripts} AvgTestNoise.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} AvgTestNoise.cir ${OutputDataDir}/MEASURE_NOISE/AvgTestNoise.cir.prn )
   set_property(TEST ${TestNamePrefix}MEASURE_NOISE/AvgTestNoise.cir.sh PROPERTY LABELS "nightly;serial;parallel;measure;noise;required:fft;valgrind")
 endif()

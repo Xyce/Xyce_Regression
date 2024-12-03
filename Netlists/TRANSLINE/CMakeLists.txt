@@ -62,7 +62,7 @@ set_tests_properties(${TestNamePrefix}TRANSLINE/transline.cir PROPERTIES FIXTURE
 add_test(NAME ${TestNamePrefix}TRANSLINE/transline.cir.verify COMMAND ${XYCE_VERIFY} transline.cir ${OutputDataDir}/TRANSLINE/transline.cir.prn transline.cir.prn )
 set_tests_properties(${TestNamePrefix}TRANSLINE/transline.cir.verify PROPERTIES FIXTURES_REQUIRED transline.cir)
 endif()
-if( (NOT Xyce_PARALLEL_MPI) AND  Xyce_USE_FFT AND PERL_FOUND )
+if( (NOT Xyce_PARALLEL_MPI) AND Xyce_USE_FFT AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}TRANSLINE/transline_hb.cir.sh COMMAND perl -I${XyceRegressionTestScripts} transline_hb.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} transline_hb.cir ${OutputDataDir}/TRANSLINE/transline_hb.cir.prn )
   set_property(TEST ${TestNamePrefix}TRANSLINE/transline_hb.cir.sh PROPERTY LABELS "serial;nightly;parallel;transline;hb;valgrind;required:fft")
 endif()
