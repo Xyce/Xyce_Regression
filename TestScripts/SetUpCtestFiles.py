@@ -311,6 +311,11 @@ def SetUpCtestFiles():
 
             # first run Xyce on the test circuit
             if( testtags.find('serial') >= 0 ):
+              # if (serialConstraint.find('AND Xyce_RAD_MODELS') >= 0) :
+              #   addXyceRadBlock = True
+              #   serialConstraint = serialConstraint.replace('AND Xyce_RAD_MODELS','')
+              #   print ("**serialConstraint: %s, %s\n" % (serialConstraint, testName))
+                
               outputBuf.write('if( %s )\n' % (serialConstraint))
               outputBuf.write('  add_test(NAME ${TestNamePrefix}%s COMMAND $<TARGET_FILE:Xyce> %s )\n' % (testName, subDirName))
               # write test tags as label for this test
@@ -678,8 +683,15 @@ def setConstraintsBasedOnTags( inputTags ):
   parallelConditional="Xyce_PARALLEL_MPI "
   for aTag in inputTagList:
     if aTag in tagToCacheDict:
-      serialConditional = serialConditional + " AND  "+ tagToCacheDict[aTag]
-      parallelConditional = parallelConditional + " AND " + tagToCacheDict[aTag]
+
+      # don't repeat conditionals. this can happen when, for example,
+      # a test has a "required:qaspr" tag and a "rad" tag
+      if (serialConditional.find(tagToCacheDict[aTag]) < 0) :
+        serialConditional = serialConditional + " AND "+ tagToCacheDict[aTag]
+        
+      if (parallelConditional.find(tagToCacheDict[aTag]) < 0) :
+        parallelConditional = parallelConditional + " AND " + tagToCacheDict[aTag]
+        
   return (serialConditional, parallelConditional)
 
 def getOptions( parentDirName, testFileName):
