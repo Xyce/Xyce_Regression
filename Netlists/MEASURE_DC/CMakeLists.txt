@@ -123,7 +123,7 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/MeasfailOptionZero.cir ${CMAKE_CURREN
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/MeasfailOption.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/MeasfailOption.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/MeasfailOption.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/MeasfailOptionGSfile ${CMAKE_CURRENT_BINARY_DIR}/MeasfailOptionGSfile ONLY_IF_DIFFERENT)
-if( (NOT Xyce_PARALLEL_MPI) AND  Xyce_USE_FFT AND PERL_FOUND )
+if( (NOT Xyce_PARALLEL_MPI) AND Xyce_USE_FFT AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}MEASURE_DC/AvgTest1DC.cir.sh COMMAND perl -I${XyceRegressionTestScripts} AvgTest1DC.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} AvgTest1DC.cir ${OutputDataDir}/MEASURE_DC/AvgTest1DC.cir.prn )
   set_property(TEST ${TestNamePrefix}MEASURE_DC/AvgTest1DC.cir.sh PROPERTY LABELS "nightly;serial;parallel;measure;dc;required:fft;valgrind;preprocess")
 endif()

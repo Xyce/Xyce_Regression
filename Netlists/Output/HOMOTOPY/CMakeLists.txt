@@ -46,7 +46,7 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/homotopy-stepnum-col.cir.sh ${CMAKE_C
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/homotopy-stepnum-col.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/homotopy-stepnum-col.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/homotopy-stepnum-col.cir.tags ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-if( (NOT Xyce_PARALLEL_MPI) AND  PYTHON_SCIPY_FOUND AND PERL_FOUND )
+if( (NOT Xyce_PARALLEL_MPI) AND PYTHON_SCIPY_FOUND AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}Output/HOMOTOPY/arclengthSimple.cir.sh COMMAND perl -I${XyceRegressionTestScripts} arclengthSimple.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} arclengthSimple.cir ${OutputDataDir}/Output/HOMOTOPY/arclengthSimple.cir.prn )
   set_property(TEST ${TestNamePrefix}Output/HOMOTOPY/arclengthSimple.cir.sh PROPERTY LABELS "serial;nightly;parallel;homotopy;arclength;bug486;scipy")
 endif()

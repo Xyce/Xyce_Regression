@@ -7,7 +7,7 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/darlington.cir ${CMAKE_CURRENT_BINARY
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/darlington.cir.hspice ${CMAKE_CURRENT_BINARY_DIR}/darlington.cir.hspice ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/darlington.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/darlington.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/darlington.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-if( (NOT Xyce_PARALLEL_MPI) AND  XDM_BDL_FOUND AND PERL_FOUND )
+if( (NOT Xyce_PARALLEL_MPI) AND XDM_BDL_FOUND AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}XDM/HSPICE/DARLINGTON/darlington.cir.sh COMMAND perl -I${XyceRegressionTestScripts} darlington.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} darlington.cir ${OutputDataDir}/XDM/HSPICE/DARLINGTON/darlington.cir.prn )
   set_property(TEST ${TestNamePrefix}XDM/HSPICE/DARLINGTON/darlington.cir.sh PROPERTY LABELS "serial;nightly;required:xdm;hspice")
 endif()

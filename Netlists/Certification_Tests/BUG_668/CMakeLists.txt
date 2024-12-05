@@ -13,7 +13,7 @@ file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_668_raw_printline.cir ${CMAKE_CUR
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_668_tecplot.cir ${CMAKE_CURRENT_BINARY_DIR}/bug_668_tecplot.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-if( (NOT Xyce_PARALLEL_MPI) AND  PYTHON_NUMPY_FOUND AND PERL_FOUND )
+if( (NOT Xyce_PARALLEL_MPI) AND PYTHON_NUMPY_FOUND AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_668/bug_668.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_668.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug_668.cir ${OutputDataDir}/Certification_Tests/BUG_668/bug_668.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_668/bug_668.cir.sh PROPERTY LABELS "serial;parallel;nightly;tecplot;raw;output;numpy;bug668")
 endif()
