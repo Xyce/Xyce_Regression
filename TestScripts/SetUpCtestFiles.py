@@ -568,9 +568,12 @@ def SetUpCtestFiles():
           # if the user wants to overwrite, even files without the
           # standard header always do so when force is specified
           writeFileToDisk = True
+      else:
+        # no file found (probably a new test) so write initial file
+        writeFileToDisk = True
 
-        if args.verbose:
-          print("%s: newfile = %d, isChanged = %d , hasAutoHeader = %d, writeToFile = %d " % (cmakeFileName, args.newfile, isChanged, hasAutoHeader, writeFileToDisk))
+      if args.verbose:
+        print("%s: newfile = %d, isChanged = %d , hasAutoHeader = %d, writeToFile = %d " % (cmakeFileName, args.newfile, isChanged, hasAutoHeader, writeFileToDisk))
 
       # if the new file is different
       if( writeFileToDisk ):
