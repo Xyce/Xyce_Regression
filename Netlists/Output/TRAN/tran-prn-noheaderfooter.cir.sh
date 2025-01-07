@@ -27,7 +27,7 @@ $CIRFILE=$ARGV[3];
 $XPLAT_DIFF = $ARGV[1];
 $XPLAT_DIFF =~ s/xyce_verify/xplat_diff/;
 
-$GOLDCIRFILE="tran-prn.cir";
+$GOLDCIRFILE="tran-prn2.cir";
 
 system("rm -f $CIRFILE.prn $CIRFILE.err");
 
