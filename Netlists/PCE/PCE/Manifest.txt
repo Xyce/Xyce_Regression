@@ -15,6 +15,7 @@ paramUniformPCE.cir
 paramUniformPCE.cir.sh
 paramUniformPCE.cir.tags
 simpleUniformPCE.cir
+simpleUniformPCE_forParam.cir
 simpleUniformPCE.cir.sh
 simpleUniformPCE.cir.tags
 tags

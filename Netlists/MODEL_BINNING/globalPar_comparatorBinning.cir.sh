@@ -22,7 +22,7 @@ XYCE_VERIFY=$2
 #CIRFILE=$4
 #GOLDPRN=$5
 
-CIR1=comparatorBaseline.cir        
+CIR1=comparatorBaseline_forGlobal.cir        
 CIR2=comparatorBinning.cir
 
 $XYCE $CIR1 > $CIR1.out 2> $CIR1.err

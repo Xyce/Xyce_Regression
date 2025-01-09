@@ -1,4 +1,5 @@
 mos2_baseline.cir
+mos2_baseline_forglobal.cir
 mos2_data_step.cir
 mos2_data_step.cir.sh
 exclude

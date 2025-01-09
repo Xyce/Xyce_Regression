@@ -22,12 +22,12 @@ $XYCE_VERIFY=$ARGV[1];
 #$CIRFILE=$ARGV[3];
 #$GOLDPRN=$ARGV[4];
 
-$baseline="converter_baseline.cir";
+$baseline="converter_baseline_output.cir";
 $restarted="converter_restart_output.cir";
 
 `rm -f $baseline.prn $restarted.prn`;
 `rm -f $baseline.err $restarted.err`;
-`rm -f converter0*`;
+`rm -f converter_output0*`;
 # --------------------------------
 
 
@@ -42,9 +42,9 @@ if ($retval != 0) { print "Xyce failed running $baseline.\nExit code = 10\n"; ex
 # These next two conditionals are here because on Losedows with Intel compilers
 # the exponent in the file name gets an extra zero.  For simplicity, just
 # discard it so the netlists can find the restart file they're looking for.
-if (-f "converter2e-0004")
+if (-f "converter_output2e-0004")
 {
-    system("mv converter2e-0004 converter0.0002");
+    system("mv converter_output2e-0004 converter_output0.0002");
 }
 
 $CMD="$XYCE $restarted > $restarted.out 2> $restarted.err";

@@ -105,8 +105,8 @@ $SEDCMD="sed '1 s-^.*\$-".$HEADER1."-g'";
 
 
 $SEDCMD2="sed 's/ Sensitivity / /g'";
-`$SEDCMD2 $CIR1.FD.SENS.prn > tmp`;
-$CPCMD="mv tmp $CIR1.FD.SENS.prn";
+`$SEDCMD2 $CIR1.FD.SENS.prn > tmpori`;
+$CPCMD="mv tmpori $CIR1.FD.SENS.prn";
 `$CPCMD`;
 
 if (-f "$CIR2.FD.SENS.prn")

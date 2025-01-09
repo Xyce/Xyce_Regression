@@ -15,6 +15,7 @@ YTRANSLINE ERIC  DUT 1b  testLine
 *comp I(V1) offset=-0.2
 .print tran V(1) V(1B) 
 
+.options linsol type=klu
 .options timeint debuglevel=-100 method=gear 
 .options device debuglevel=-100
 

@@ -22,7 +22,7 @@ XYCE_VERIFY=$2
 #CIRFILE=$4
 #GOLDPRN=$5
 
-CIR1=mos2_baseline.cir
+CIR1=mos2_baseline_forglobal.cir
 CIR2=mos2_data_step_globalparam.cir 
 
 $XYCE $CIR1 > $CIR1.out 2> $CIR1.err

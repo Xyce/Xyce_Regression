@@ -36700,6 +36700,7 @@ Vsaddr0 2762 0 pwl (0 0 4.71e-07 0 8.95e-07 0 )
 VVdd 1 0 3.3 
 .options device temp=70 
 .options dist strategy=1; round-robin distribution strategy
+.options linsol type=klu
 .print TRAN v(2827) v(6) v(2843) v(2652) v(2757) 
 *.options limpts=50000 itl5=50000
 .TRAN 1e-09 2e-07

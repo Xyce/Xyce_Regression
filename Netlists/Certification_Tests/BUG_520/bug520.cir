@@ -37,6 +37,9 @@ YPDE FET1 3 1 2 2 PFET sgplotLevel=0 tecplotLevel=0 gnuplotlevel=0
 * Time integration params:
 .options TIMEINT reltol=1.0e-3 abstol=1.0e-6 DOUBLEDCOP=NL_POISSON
 
+* Linear solver params:
+.options LINSOL type=klu
+
 .options DEVICE voltlim=0
 
 .DC VDD 0 0 1.0

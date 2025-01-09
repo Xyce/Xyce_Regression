@@ -42,7 +42,7 @@ if ($retval !=0)
 {
     print STDERR "Failed to run $CIRFILE.\n";
     print "Exit code = 10\n";
-    exit $retval;
+    exit 10;
 }
 
 $CMD="$XYCE $CIRFILERef > $CIRFILERef.out 2>$CIRFILERef.err";
@@ -51,7 +51,7 @@ if ($retval !=0)
 {
     print STDERR "Failed to run $CIRFILERef.\n";
     print "Exit code = 10\n";
-    exit $retval;
+    exit 10;
 }
 else
 {

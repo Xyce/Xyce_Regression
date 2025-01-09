@@ -16,7 +16,7 @@
 
 $XYCE=$ARGV[0];
 #$XYCE_VERIFY=$ARGV[1];
-$CIRFILE="globalParamNormalMC.cir";
+$CIRFILE="normalParamNormalMC.cir";
 
 # Some platforms we test on (esp Windows) use a really bad random number generator.
 # To accomodate that I've made the comparison tolerances loose.  Also, if the test

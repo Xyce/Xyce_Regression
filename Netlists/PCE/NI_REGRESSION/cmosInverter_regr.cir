@@ -71,6 +71,7 @@ M2 drain gate vdd vdd PMOS  w =0.54e-6 ; l=0.18e-6
 + regression_pce=true
 + output_Sample_Stats=false
 
+*COMP {v(drain)} reltol=0.015
 .PRINT ES PRECISION=6 FORMAT=TECPLOT output_Sample_Stats=false
 
 .tran 1ns 1.5e-6

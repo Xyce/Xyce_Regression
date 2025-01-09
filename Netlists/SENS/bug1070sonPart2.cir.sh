@@ -39,7 +39,7 @@ $abstol=5e-3;
 $reltol=1e-3;
 $zerotol=1e-12;
 
-$CIR1 = "sensCapGear_baseline.cir";
+$CIR1 = "sensCapGear_baseline_copy.cir";
 $CIR2 = "sensCapGear_global.cir";
 
 `rm -f $CIR1.SENS.prn`;

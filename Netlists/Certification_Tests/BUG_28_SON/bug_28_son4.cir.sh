@@ -43,7 +43,7 @@ if ($retval !=0)
 {
     print STDERR "Failed to run $CIRFILE.\n";
     print "Exit code = 10\n";
-    exit $retval;
+    exit 10;
 }
 
 # now run all the non-step versions
@@ -56,7 +56,7 @@ foreach $CIRCUIT (@OTHERCIRS)
     {
         print STDERR "Failed to run $CIRCUIT.\n";
         print "Exit code = 10\n";
-        exit $retval;
+        exit 10;
     }
     # We have carefully constructed the circuit files so they lack just
     # the right headers so that the output can be concatenated and should

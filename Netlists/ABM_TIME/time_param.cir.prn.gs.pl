@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 
-open(INPUT,"time.cir.prn");
-open(OUTPUT,">time.cir.prn.gs");
+open(INPUT,"time_param.cir.prn");
+open(OUTPUT,">time_param.cir.prn.gs");
 
 #
 while ($line = <INPUT>)

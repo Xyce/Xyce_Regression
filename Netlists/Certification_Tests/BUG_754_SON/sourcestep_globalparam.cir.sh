@@ -36,7 +36,7 @@ if ($retval !=0)
 {
     print STDERR "Failed to run $CIRFILE.\n";
     print "Exit code = 10\n";
-    exit $retval;
+    exit 10;
 }
 
 # now run the otherp versions
@@ -47,7 +47,7 @@ if ($retval !=0)
 {
     print STDERR "Failed to run $CIR2.\n";
     print "Exit code = 10\n";
-    exit $retval;
+    exit 10;
 }
 
 # Now we have a faked gold standard (the "nostep" version) and a real step

@@ -14,9 +14,9 @@ DC DC Flyback Converter
 *.options TIMEINT method=7 erroption=1
 
 * to save data use something like this: 
-*.options restart job=converter initial_interval=2.0e-4
+*.options restart job=converter_output initial_interval=2.0e-4
 * and to restart use something like this:
-.options restart file=converter0.0002
+.options restart file=converter_output0.0002
 * packing option 
 
 

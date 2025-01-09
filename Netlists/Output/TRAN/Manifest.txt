@@ -29,6 +29,7 @@ tran-prn-timescalefactor.cir.sh
 tran-prn-width.cir
 tran-prn-width.cir.sh
 tran-prn.cir
+tran-prn2.cir
 tran-prn.cir.sh
 tran-probe.cir
 tran-probe.cir.sh

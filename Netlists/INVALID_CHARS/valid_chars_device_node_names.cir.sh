@@ -39,7 +39,7 @@ if ($retval !=0)
 {
     print STDERR "Failed to run $CIRFILE.\n";
     print "Exit code = $retval\n";
-    exit $retval;
+    exit $retval>>8;
 }
 else
 {

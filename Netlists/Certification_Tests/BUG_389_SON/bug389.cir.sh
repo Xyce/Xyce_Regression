@@ -38,11 +38,11 @@ if [ "$?" -ne "0" ]; then
   exit 10
 fi
 
-grep -v "TITLE" $CIR1.HB.FD.dat | grep -v "DATASETAUXDATA" > $CIR1.prn2
-grep -v "TITLE" $CIR2.HB.FD.dat | grep -v "DATASETAUXDATA" > $CIR2.prn2
+grep -v "TITLE" $CIR1.HB.FD.dat | grep -v "DATASETAUXDATA" | grep -v "ZONE" > $CIR1.prn2
+grep -v "TITLE" $CIR2.HB.FD.dat | grep -v "DATASETAUXDATA" | grep -v "ZONE" > $CIR2.prn2
 
-grep -v "TITLE" $CIR1.HB.TD.dat | grep -v "DATASETAUXDATA" > $CIR1.prn3
-grep -v "TITLE" $CIR2.HB.TD.dat | grep -v "DATASETAUXDATA" > $CIR2.prn3
+grep -v "TITLE" $CIR1.HB.TD.dat | grep -v "DATASETAUXDATA" | grep -v "ZONE" > $CIR1.prn3
+grep -v "TITLE" $CIR2.HB.TD.dat | grep -v "DATASETAUXDATA" | grep -v "ZONE" > $CIR2.prn3
 
 diff $CIR1.prn2 $CIR2.prn2 > $CIR2.prn.out 2> $CIR2.prn.err
 if [ "$?" -ne "0" ]; then

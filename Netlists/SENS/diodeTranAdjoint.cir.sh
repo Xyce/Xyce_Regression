@@ -24,7 +24,7 @@ XYCE_VERIFY=$2
 
 CIR1=diodeTranAdjoint.cir
 #CIR2=diodeTranFD.cir
-CIR2=diodeTran.cir
+CIR2=diodeTranForAdjoint.cir
 CIR3=dummyDiodeTran2.cir
 
 # first comparison

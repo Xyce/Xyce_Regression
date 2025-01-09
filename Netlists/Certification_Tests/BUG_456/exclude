@@ -1,4 +1,5 @@
 converter_baseline.cir
+converter_baseline_output.cir
 converter_baseline_unpacked.cir
 converter_restart.cir
 converter_restart_unpacked.cir

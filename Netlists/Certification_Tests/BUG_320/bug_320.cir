@@ -50,6 +50,8 @@ VMON3 2 7 0
 
 .DC VPOS 0.0 0.0 1.0 
 
+.options LINSOL type=klu
+
 .options NONLIN maxstep=25 maxsearchstep=1 searchmethod=2 fredlevel=0
 
 .options TIMEINT reltol=1.0e-3 abstol=1.0e-6 
