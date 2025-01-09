@@ -1,5 +1,4 @@
 serial, nightly, normal, parallel
-valgrind
 inductor
 mutualinductor
 pce

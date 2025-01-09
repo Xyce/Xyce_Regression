@@ -7,6 +7,7 @@ raw_file_f_sources.cir
 raw_file_f_sources.cir.sh
 raw_file_g_sources.cir
 raw_file_g_sources.cir.sh
+raw_file_g_sources.cir.tags
 raw_file_bjt.cir
 raw_file_bjt.cir.sh
 raw_file_dio1.cir

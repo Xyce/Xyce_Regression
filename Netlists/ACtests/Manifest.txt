@@ -15,6 +15,7 @@ rca3040.cir.sh
 rca3040.cir.tags
 reg0.cir
 reg0.cir.sh
+reg0.cir.tags
 tags
 test1.cir
 test1.cir.sh
