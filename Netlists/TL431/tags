@@ -1,2 +1,2 @@
-serial, nightly,  parallel, diode
+serial, nightly,  parallel, diode, vccs
 valgrind
