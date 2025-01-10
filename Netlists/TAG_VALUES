@@ -1,0 +1,117 @@
+nTags usage:
+
+run_xyce_regression supports use of tags lists such as:
+  +foo-bar?baz
+
+This means: "run only tests that have the tag 'foo', but not any test
+that has the tag 'bar', and also any test that also happens to have
+'required:baz'" 
+
+Nightly and weekly regression tests use a standard set of tags to
+catch all the appropriate tests, but developers could use additional
+tags to restrict their testing only to devices or libraries they're
+working on.
+
+Each test directory must have a tags file to tell the test script when
+to run tests in that directory.
+
+If a circuit file foobar.cir has a file foobar.cir.tags in the same
+directory, then that file is used instead of the directory-wide
+tags file.  This allows finer-grained control of testing for directories
+with multiple tests.
+
+Some of the tags current available:
+
+ nightly
+ weekly
+    At one of these tags *MUST* be present for a test to be run in
+    regular regression testing.  Generally, as many tests as possible
+    should have "nightly," and only very long and complex tests should
+    have "weekly".
+
+ serial
+ parallel
+
+    Determines whether the test should be run by nightly serial or
+    parallel tests.  Generally, a test should have both, but some
+    tests won't run in parallel, and some tests *only* run in
+    parallel.  In those cases, it is acceptable to have only serial or
+    only parallel.
+
+  valgrind
+    This test is short enough and fast enough that nightly memory
+    checking with valgrind is practical, and should be performed.  Do
+    not use this on a test that takes more than a few seconds with a
+    normal build.  Do use it for short tests.
+
+  required:rad
+    This test uses models in the SandiaModels part of the device package.
+
+  required:nonfree
+    This test uses models in the Xyce_NonFree part of the device package.
+
+Most other tags are used simply to provide developers with ways to
+restrict a test run to a particular model or analysis type during
+debugging.  Including one of these tags, (e.g. "+vsin") will run only tests that have that tag.  
+Examples:
+
+  resistor, capacitor, inductor
+     Test uses one of these basic linear devices
+
+  mos1, mos2, mos3...
+     This test uses the mosfet level 1 (2, 3...) model.
+
+  bjtlev1, bjtlev3, bjtlev4..
+     This test uses the BJT  level 1 (2, 3...) model.
+
+  vsrc, vsin, vpwl, vpulse...
+  isrc, isin, ipwl, ipulse...
+     Test uses the dc, sine, piecewise-linear, or pulse voltage or current source   
+
+  esrc, fsrc, gsrc, hsrc
+     test uses the e, f, g or h dependent source
+
+  bsrc
+     test uses the "B" behavioral modeling source
+  
+  digital
+     test uses one of the digital device models (U or Y)
+
+  transient
+  dcsweep
+  ac
+    Test uses transient (or dc sweep, or AC) analysis
+
+  noop
+    Test includes "NOOP" on the .tran line
+
+  tstart
+    test has a third parameter on the .tran line (TSTART)
+
+  maxtimestep
+    test has a fourth parameter on the .tran line (maximum time step)
+  
+  expression
+     test exercises the expression library (all bsrc tests do, and
+     should include both bsrc and expression)
+
+  undelimexpression
+     test uses "undelimited" expressions (expressions not enclosed by braces or single quotes)
+
+  conditionalexpr
+     Test uses an expression including "if"
+
+  table
+     Test uses an expression including "TABLE"
+
+  printexpr
+     test has expressions in the print line
+
+  subckt
+     test uses subcircuits
+  subcktparams
+     subcircuit in the test uses "PARAMS:"
+  subcktparamexpr
+     subcircuit in the test uses "PARAMS:" with expressions in a parameter default
+
+There are  many more of these, and an exhaustive list may not be possible.  

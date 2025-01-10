@@ -1,0 +1,29 @@
+***** Measure Functions ***** 
+
+AVG = FAILED
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+00
+
+DERIVAT = FAILED for AT = 1.000000e+00
+
+DERIVATFT = FAILED for AT = 1.000000e+00
+
+DERIVWHEN = FAILED
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+00
+
+DERIVWHENFT = FAILED
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+00
+
+FINDAT = 1.256439e-02 for AT = 1.000000e+00
+
+FINDATFT = 1.256439e-02 for AT = 1.000000e+00
+
+FINDWHEN = FAILED
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+00
+
+FINDWHENFT = FAILED
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+00
+
+RMS = FAILED
+Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+00
+
+

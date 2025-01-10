@@ -1,0 +1,52 @@
+Test of if-statements, min and max, and limit function in expressions.
+* Also add tests for the use of XOR, NEQ and NOT in IF statements,
+* and the use of the modulus operator in an expression.
+
+.func ifmin (a,b) {if(a<b, a, b)}
+.func ifmax (a,b) {if(a>b, a, b)}
+
+V1  1  0  2  SIN(2 1 1)
+R1  1  0  1
+
+R2  2  0  2
+B2  2  0  V={2*v(1)}
+
+R3a 3a 0  3
+E3  3a 0  value={ifmax(ifmin(-I(B2), 2.5), 1.5)}
+
+R4a 4a 0  3
+E4  4a 0  value={max(min(-I(B2), 2.5), 1.5)}
+
+R5a 5a 0  3
+E5  5a 0  value={limit(-I(B2),1.5,2.5)}
+
+V6 6 0 2
+R6 6 0 1
+V7 7 0 1
+R7 7 0 1
+
+* XOR evaluates to false
+R8a 8 0  3
+E8  8a 0  value={IF(((V(6) > 1.5) ^ (V(7) < 1.5)), 3, 1)}
+
+* XOR evaluates to TRUE
+R9a 9a 0  3
+E9  9a 0  value={{IF(((V(6) > 1.5) ^ (V(7) > 1.5)), 3, 1)}}
+
+* NEQ
+R10a 10a 0  3
+E10  10a 0  value={{IF((V(6) != V(7)), 3, 1)}}
+
+* NOT
+R11a 11a 0  3
+E11  11a 0  value={{IF( ~(V(6) > V(7)), 3, 1)}}
+
+* Also test modulus, along with its precedence vs. + - * and /.  
+* Because of precedence, this should evaluate to 4.
+.PARAM P1={2 + 6*5/2%4 - 1}
+
+.tran 0 1
+.print tran v(1) v(2) v(3a) v(4a) v(5a) v(8a) v(9a) 
++ V(10a) V(11a) {P1}
+.end
+

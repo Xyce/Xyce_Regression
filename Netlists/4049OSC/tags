@@ -1,0 +1,9 @@
+serial, nightly,  parallel
+valgrind
+mos1
+noop
+capacitor
+resistor
+subckt
+printexpr
+transient

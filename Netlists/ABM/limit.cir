@@ -1,0 +1,12 @@
+test for limit (limit function)
+* This test is very similar to the STP test.
+
+.param Delay=0.5
+.Func limitTest(t) { limit(t-Delay,0,1) }
+
+B1   1  0  V = {limitTest(time) * 5.0}
+R1   1  0  1
+
+.tran  0.1 2.0
+.print tran V(1)
+

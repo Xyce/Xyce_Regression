@@ -1,0 +1,29 @@
+ ***** Measure Functions ***** 
+
+AVG = FAILED
+Measure Start VSRC1 Value= 1.000000e+00	Measure End VSRC1 Value= 1.000000e+00
+
+DERIVAT = FAILED for AT = 1.000000e+00
+
+DERIVATFT = FAILED for AT = 1.000000e+00
+
+DERIVWHEN = FAILED
+Measure Start VSRC1 Value= 1.000000e+00	Measure End VSRC1 Value= 1.000000e+00
+
+DERIVWHENFT = FAILED
+Measure Start VSRC1 Value= 1.000000e+00	Measure End VSRC1 Value= 1.000000e+00
+
+FINDAT = 9.090909e-01 for AT = 1.000000e+00
+
+FINDATFT = 9.090909e-01 for AT = 1.000000e+00
+
+FINDWHEN = FAILED
+Measure Start VSRC1 Value= 1.000000e+00	Measure End VSRC1 Value= 1.000000e+00
+
+FINDWHENFT = FAILED
+Measure Start VSRC1 Value= 1.000000e+00	Measure End VSRC1 Value= 1.000000e+00
+
+RMS = FAILED
+Measure Start VSRC1 Value= 1.000000e+00	Measure End VSRC1 Value= 1.000000e+00
+
+
