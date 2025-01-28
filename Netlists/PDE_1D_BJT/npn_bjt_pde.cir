@@ -19,7 +19,7 @@ VMON2 3 2 0
 *--------------------------------------------------------------------------------
 ypde npnop 2 1 0 pdebjt    
 + C0=1.0e+17
-+ tecplotlevel=1 
++ tecplotlevel=0 
 + gnuplotlevel=0
 + mobmodel=philips
 + fielddep=true
@@ -30,7 +30,8 @@ ypde npnop 2 1 0 pdebjt
 + region={name       =            reg1,  reg2
 +         function   =            file, file
 +         file       =       boron.dat, phos.dat
-+         nmaxchop   =         1.5e+18, 3.3e+19
+*+         nmaxchop   =         1.5e+18, 3.3e+19
++         nmaxchop   =         1.5e+18, 3.0e+19
 +         type       =           ptype,  ntype
 +         species    =              BM,  PP }
 *
@@ -47,6 +48,7 @@ ypde npnop 2 1 0 pdebjt
 .options timeint doubledcop=drift_diffusion
 
 .DC VCC 0.0 6.0 0.01
+*.DC VCC 0.0 5.99 0.01
 .PRINT DC  V(4) I(VMON1) I(VMON2) V(1) V(2) 
 
 .END
