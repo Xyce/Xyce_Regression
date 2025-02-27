@@ -5,6 +5,7 @@
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/comparatorBaseline.cir ${CMAKE_CURRENT_BINARY_DIR}/comparatorBaseline.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/comparatorBinning.cir ${CMAKE_CURRENT_BINARY_DIR}/comparatorBinning.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/comparatorBaseline_forGlobal.cir ${CMAKE_CURRENT_BINARY_DIR}/comparatorBaseline_forGlobal.cir ONLY_IF_DIFFERENT)
+file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/comparatorBinning_forGlobal.cir ${CMAKE_CURRENT_BINARY_DIR}/comparatorBinning_forGlobal.cir ONLY_IF_DIFFERENT)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/comparatorBinning.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/comparatorBinning.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/comparatorBinning.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/comparatorBinning.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/comparatorBinning.cir.tags ONLY_IF_DIFFERENT)
