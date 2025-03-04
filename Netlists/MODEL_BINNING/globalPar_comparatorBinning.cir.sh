@@ -23,7 +23,7 @@ XYCE_VERIFY=$2
 #GOLDPRN=$5
 
 CIR1=comparatorBaseline_forGlobal.cir        
-CIR2=comparatorBinning.cir
+CIR2=comparatorBinning_forGlobal.cir
 
 $XYCE $CIR1 > $CIR1.out 2> $CIR1.err
 if [ "$?" -ne "0" ]; then

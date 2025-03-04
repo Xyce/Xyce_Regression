@@ -18,7 +18,7 @@ RsigGen 1 1b 50
 X_bigline DUT  1b rlc_len
 
 .hb 1e6
-.print hb format=tecplot V(1) V(1B) 
+.print hb format=tecplot precision=7 V(1) V(1B) 
 
 .options hbint numfreq=101 tahb=0
 

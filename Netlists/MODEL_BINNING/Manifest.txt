@@ -1,6 +1,7 @@
 comparatorBaseline.cir
 comparatorBinning.cir
 comparatorBaseline_forGlobal.cir
+comparatorBinning_forGlobal.cir
 comparatorBinning.cir.sh
 comparatorBinning.cir.tags
 dcModelBinning.cir
