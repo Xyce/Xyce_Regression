@@ -80,12 +80,10 @@ TAGLIST_RAD_SHOULDFAIL=""
 grep 'Parallel with MPI' $TMP_CAPABILITIES_FILE >/dev/null 2>&1
 if [ $? = 0 ]
 then
-    # For parallel runs we'll later have klu/noklu versions of each tags list
     TAGLIST="${TAGLIST}+parallel"
     PARALLEL=1
 else
-    # for serial runs, always add "?klu"
-    TAGLIST="${TAGLIST}+serial?klu"
+    TAGLIST="${TAGLIST}+serial"
     PARALLEL=0
 fi
 
@@ -275,12 +273,7 @@ else
 fi
 
 #Now output the tags lists
-if [ $PARALLEL = 1 ]
-then
-    echo "TAGLIST=${TAGLIST}-klu"
-else
-    echo "TAGLIST=${TAGLIST}"
-fi
+echo "TAGLIST=${TAGLIST}"
 
 if [ "x${TAGLIST_NONFREE_SHOULDFAIL}" != "x" ]
 then
@@ -291,22 +284,11 @@ then
     echo "TAGLIST_RAD_SHOULDFAIL=${TAGLIST_RAD_SHOULDFAIL}"
 fi
 
-# Now emit +klu versions for parallel:
+# Now emit the parallel build / serial run tags lists
 if [ $PARALLEL = 1 ]
 then
-    echo "TAGLIST_KLU=${TAGLIST}+klu"
     PbSrTAGLIST=`echo $TAGLIST|sed -e 's/+parallel/+serial-nompi/'`
     PbSrTAGLIST="${PbSrTAGLIST}?ac?mpde?hb"
     echo "TAGLIST_PbSr=${PbSrTAGLIST}"
-
-    if [ "x${TAGLIST_NONFREE_SHOULDFAIL}" != "x" ]
-    then
-        echo "TAGLIST_NONFREE_SHOULDFAIL_KLU=${TAGLIST_NONFREE_SHOULDFAIL}+klu"
-    fi
-    if [ "x${TAGLIST_RAD_SHOULDFAIL}" != "x" ]
-    then
-        echo "TAGLIST_RAD_SHOULDFAIL_KLU=${TAGLIST_RAD_SHOULDFAIL}+klu"
-    fi
-
 fi
 rm -f $TMP_CAPABILITIES_FILE
