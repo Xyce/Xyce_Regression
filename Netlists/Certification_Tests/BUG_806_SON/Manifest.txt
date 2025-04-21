@@ -5,6 +5,7 @@ mos2_data_step.cir.sh
 exclude
 tags
 dc_baseline.cir
+dc_baselineGP.cir
 dc_data.cir
 dc_data.cir.sh
 dc_globalparam_data.cir

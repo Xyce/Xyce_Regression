@@ -22,7 +22,7 @@ XYCE_VERIFY=$2
 #CIRFILE=$4
 #GOLDPRN=$5
 
-CIR1=dc_baseline.cir
+CIR1=dc_baselineGP.cir
 CIR2=dc_globalparam_data.cir
 
 $XYCE $CIR1 > $CIR1.out 2> $CIR1.err
