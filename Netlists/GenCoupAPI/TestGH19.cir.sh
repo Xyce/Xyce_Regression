@@ -25,6 +25,7 @@ $TESTROOT = cwd;
 
 # DEBUG: paths are hardcoded!
 $PREFIX="";
+$BUILDTYPE="";
 $XYCEROOT="missing ";
 
 print "XYCE = $XYCE\n";
@@ -35,6 +36,9 @@ if (-d "$2") { $PREFIX=$1; $XYCEROOT=$2; }
 
 $XYCE =~ m/([^\/]*)(.*)\/src\/Xyce.*/;
 if (-d "$2") { $PREFIX=$1; $XYCEROOT=$2; }
+
+$XYCE =~ m/([^\/]*)(.*)\/src\/Release\/Xyce.*/;
+if (-d "$2") { $PREFIX=$1; $XYCEROOT=$2; $BUILDTYPE="Release/"; }
 
 print "XYCEROOT = $XYCEROOT\n";
 
@@ -54,7 +58,7 @@ if (-d "$MAKEROOT/CMakeFiles")
   $EXT="";
 }
 $TestProgram="TestGH19$EXT";
-$XYCE_LIBTEST = "$MAKEROOT/$TestProgram";
+$XYCE_LIBTEST = "$MAKEROOT/$BUILDTYPE$TestProgram";
 
 if (-d "$MAKEROOT") {
   if ( (-e "$MAKEROOT/Makefile") and not (-d "$MAKEROOT/CMakeFiles") ) {

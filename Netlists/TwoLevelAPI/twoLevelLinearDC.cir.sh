@@ -37,6 +37,7 @@ $TESTROOT = cwd;
 
 # DEBUG: paths are hardcoded!
 $XYCEROOT="missing ";
+$BUILDTYPE="";
 
 # Try to decode Xyce root directory by stripping off bin/Xyce or src/Xyce
 $XYCE =~ m/(.*)\/bin\/Xyce.*/;
@@ -47,6 +48,9 @@ print "$1\n";
 
 $XYCE =~ m/(.*)\/src\/Xyce.*/;
 if (-d "$1") { $XYCEROOT=$1; }
+
+$XYCE =~ m/(.*)\/src\/Release\/Xyce.*/;
+if (-d "$1") { $XYCEROOT=$1; $BUILDTYPE="Release/";}
 
 print "$XYCE\n";
 print "$XYCEROOT\n";
@@ -69,7 +73,7 @@ if (-d "$MAKEROOT/CMakeFiles")
   $EXT="";
 }
 $TestProgram="twoLevelNewtonLinearDC$EXT";
-$XYCE_LIBTEST = "$MAKEROOT/$TestProgram";
+$XYCE_LIBTEST = "$MAKEROOT/$BUILDTYPE$TestProgram";
 
 if (-d "$MAKEROOT") {
   if ( (-e "$MAKEROOT/Makefile") and not (-d "$MAKEROOT/CMakeFiles") ) {
