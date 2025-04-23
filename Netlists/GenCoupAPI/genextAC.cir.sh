@@ -59,7 +59,7 @@ if (-d "$MAKEROOT/CMakeFiles")
   $EXT="";
 }
 $TestProgram="testGenCoup$EXT";
-$XYCE_LIBTEST = "$MAKEROOT/$BUILDTYPE$TestProgram";
+$XYCE_LIBTEST = "$MAKEROOT/$TestProgram";
 
 if (-d "$MAKEROOT") {
   if ( (-e "$MAKEROOT/Makefile") and not (-d "$MAKEROOT/CMakeFiles") ) {
