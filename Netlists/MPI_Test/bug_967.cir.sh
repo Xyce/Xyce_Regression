@@ -41,7 +41,7 @@ $XYCE =~ m/([^\/]*)(.*)\/src\/(Release\/|Debug\/|RelWithDebInfo\/|)Xyce.*/;
 if (-d "$2") { $PREFIX=$1; $XYCEROOT=$2; $TARGETDIR=$3}
 
 print "XYCE: $XYCE\n"; 
-print "PREFIX = $PREFIX\n"
+print "PREFIX = $PREFIX\n";
 print "XYCEROOT: $XYCEROOT\n";
 print "TARGETDIR = $TARGETDIR\n";
 print "MPIRUN: $MPIRUN\n";
