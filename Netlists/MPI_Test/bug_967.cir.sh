@@ -22,6 +22,8 @@ $GOLDPRN=$ARGV[4];
 $TESTROOT = cwd;
 
 # DEBUG: paths are hardcoded!
+$PREFIX="";
+$TARGETDIR="";
 $XYCEROOT="missing ";
 
 
@@ -35,11 +37,13 @@ $XYCE = $2;
 $XYCE =~ m/(.*)\/bin\/Xyce.*/;
 if (-d "$1") { $XYCEROOT=$1; }
 
-$XYCE =~ m/(.*)\/src\/Xyce.*/;
-if (-d "$1") { $XYCEROOT=$1; }
+$XYCE =~ m/([^\/]*)(.*)\/src\/(Release\/|Debug\/|RelWithDebInfo\/|)Xyce.*/;
+if (-d "$2") { $PREFIX=$1; $XYCEROOT=$2; $TARGETDIR=$3}
 
 print "XYCE: $XYCE\n"; 
-print "XYCEROOT: $XYCEROOT\n"; 
+print "PREFIX = $PREFIX\n"
+print "XYCEROOT: $XYCEROOT\n";
+print "TARGETDIR = $TARGETDIR\n";
 print "MPIRUN: $MPIRUN\n";
 
 #Check if we need a ".exe" extension (simply check for cygwin in uname)
@@ -58,7 +62,7 @@ if (-d "$MAKEROOT/CMakeFiles")
   $EXT="";
 }
 $TestProgram="testMPI$EXT";
-$MPI_TEST = "$MAKEROOT/$TestProgram";
+$MPI_TEST = "$MAKEROOT/$TARGETDIR$TestProgram";
 
 if (-d "$MAKEROOT") {
   if ( (-e "$MAKEROOT/Makefile") and not (-d "$MAKEROOT/CMakeFiles") ) {
