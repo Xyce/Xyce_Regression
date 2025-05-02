@@ -1,5 +1,8 @@
 akima.cir
 akima2.cir
+akimaOutOfOrder.cir
+akimaOutOfOrder.cir.sh
+akimaOutOfOrder_baseline.cir
 barycentric.cir
 barycentric2.cir
 bigPulse.dat
