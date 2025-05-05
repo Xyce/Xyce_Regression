@@ -1,5 +1,8 @@
 akima.cir
 akima2.cir
+akimaOutOfOrder.cir
+akimaOutOfOrder.cir.sh
+akimaOutOfOrder_baseline.cir
 barycentric.cir
 barycentric2.cir
 bigPulse.dat
@@ -27,6 +30,9 @@ table6.cir
 table7.cir
 table8.cir
 tableOutOfOrder.cir
+tableOutOfOrder2.cir
+tableOutOfOrder2.cir.sh
+tableOutOfOrder2_baseline.cir
 tags
 wodicka.cir
 wodicka2.cir

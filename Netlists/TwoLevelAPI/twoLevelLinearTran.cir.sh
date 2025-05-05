@@ -39,6 +39,8 @@ $retval=0;
 $TESTROOT = cwd;
 
 # DEBUG: paths are hardcoded!
+$PREFIX="";
+$TARGETDIR="";
 $XYCEROOT="missing ";
 
 # Try to decode Xyce root directory by stripping off bin/Xyce or src/Xyce
@@ -48,11 +50,12 @@ if (-d "$1") { $XYCEROOT=$1; }
 print "$XYCE\n";
 print "$1\n";
 
-$XYCE =~ m/(.*)\/src\/Xyce.*/;
-if (-d "$1") { $XYCEROOT=$1; }
+$XYCE =~ m/([^\/]*)(.*)\/src\/(Release\/|Debug\/|RelWithDebInfo\/|)Xyce.*/;
+if (-d "$2") { $PREFIX=$1; $XYCEROOT=$2; $TARGETDIR=$3}
 
 print "$XYCE\n";
 print "$XYCEROOT\n";
+print "TARGETDIR = $TARGETDIR\n";
 
 # Check if we need a ".exe" extension (simply check for cygwin in uname)
 $EXT="";
@@ -72,7 +75,7 @@ if (-d "$MAKEROOT/CMakeFiles")
   $EXT="";
 }
 $TestProgram="twoLevelNewtonLinearTran$EXT";
-$XYCE_LIBTEST = "$MAKEROOT/$TestProgram";
+$XYCE_LIBTEST = "$MAKEROOT/$TARGETDIR$TestProgram";
 
 if (-d "$MAKEROOT") {
   if ( (-e "$MAKEROOT/Makefile") and not (-d "$MAKEROOT/CMakeFiles") ) {

@@ -195,6 +195,7 @@ def SetUpCtestFiles():
         outputBuf.write('set(PYTHON_FOUND FALSE CACHE BOOL "True if python package found.")\n')
         outputBuf.write('set(SIMULINK_FOUND FALSE CACHE BOOL "True if simulink found.")\n')
         outputBuf.write('set(XDM_BDL_FOUND FALSE CACHE BOOL "True if xdm_bld found.")\n')
+        outputBuf.write('set(ADMSXML_FOUND FALSE CACHE BOOL "True if admsXml found.")\n')
         outputBuf.write('set(MS_VPP_FOUND FALSE CACHE BOOL "True if vpp compiler found.")\n')
         outputBuf.write('set(VALGRIND_FOUND FALSE CACHE BOOL "True if valgrind found.")\n')
         outputBuf.write('set(VALGRIND_MASTER FALSE CACHE BOOL "True if valgrind_master set.")\n')
@@ -230,6 +231,11 @@ def SetUpCtestFiles():
         outputBuf.write('  set(XDM_BDL_FOUND "TRUE")\n')
         outputBuf.write('endif()\n')
         outputBuf.write('message(STATUS "xdm_bdl found ${XDM_BDL_FOUND}")\n')
+        outputBuf.write('find_program(ADMSXML_BIN admsXml)\n')
+        outputBuf.write('if( NOT (ADMSXML_BIN STREQUAL "ADMSXML_BIN-NOTFOUND"))\n')
+        outputBuf.write('  set(ADMSXML_FOUND "TRUE")\n')
+        outputBuf.write('endif()\n')
+        outputBuf.write('message(STATUS "admsXml found ${ADMSXML_FOUND}")\n')
         outputBuf.write('find_program(MS_VPP_BIN vpp)\n')
         outputBuf.write('if( NOT (MS_VPP_BIN STREQUAL "MS_VPP_BIN-NOTFOUND"))\n')
         outputBuf.write('  set(MS_VPP_FOUND "TRUE")\n')
@@ -346,9 +352,14 @@ def SetUpCtestFiles():
               if os.path.exists(os.path.join(keyName, subDirName) + ".prn.gs.pl"):
                 outputBuf.write('  add_test(NAME ${TestNamePrefix}%s.gen_gs COMMAND perl %s.prn.gs.pl %s.prn)\n' % (testName, subDirName, subDirName))
                 outputBuf.write('  set_tests_properties(${TestNamePrefix}%s.gen_gs PROPERTIES FIXTURES_REQUIRED %s)\n' % (testName, subDirName))
+                outputBuf.write('set_tests_properties(${TestNamePrefix}%s.gen_gs PROPERTIES FIXTURES_SETUP %s.gs)\n' % (testName, subDirName))
+                if( len(testtags) > 0 ):
+                  outputBuf.write('  set_property(TEST ${TestNamePrefix}%s.gen_gs PROPERTY LABELS \"%s\")\n' % (testName, testtags))
                 # now add check the answer against the newly generated gold standard
                 outputBuf.write('  add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${XYCE_VERIFY} %s %s.prn.gs %s.prn )\n' % (testName, subDirName, subDirName, subDirName))
-                outputBuf.write('  set_tests_properties(${TestNamePrefix}%s.verify PROPERTIES FIXTURES_REQUIRED %s)\n' % (testName, subDirName))
+                outputBuf.write('  set_tests_properties(${TestNamePrefix}%s.verify PROPERTIES FIXTURES_REQUIRED %s.gs)\n' % (testName, subDirName))
+                if( len(testtags) > 0 ):
+                  outputBuf.write('  set_property(TEST ${TestNamePrefix}%s.verify PROPERTY LABELS \"%s\")\n' % (testName, testtags))
               else:
                 # look at the path for the test /dirA/dirB/.../Netlists/TestDir1/TestDir2/test.cir
                 # gold standard output will be in ${OutputDataDir}/TestDir1/TestDir2/test.cir.prn
@@ -366,6 +377,8 @@ def SetUpCtestFiles():
                   
                 outputBuf.write('%s  add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${XYCE_VERIFY} %s ${OutputDataDir}/%s %s.prn )\n' % (indent, testName, subDirName, GoldOutput, subDirName))
                 outputBuf.write('%s  set_tests_properties(${TestNamePrefix}%s.verify PROPERTIES FIXTURES_REQUIRED %s)\n' % (indent, testName, subDirName))
+                if( len(testtags) > 0 ):
+                  outputBuf.write('  set_property(TEST ${TestNamePrefix}%s.verify PROPERTY LABELS \"%s\")\n' % (testName, testtags))
                 if (radBool is True):
                   outputBuf.write('  endif()\n')
                   
@@ -397,9 +410,14 @@ def SetUpCtestFiles():
               if os.path.exists(os.path.join(keyName, subDirName) + ".prn.gs.pl"):
                 outputBuf.write('add_test(NAME ${TestNamePrefix}%s.gen_gs COMMAND perl %s.prn.gs.pl %s.prn)\n' % (testName, subDirName, subDirName))
                 outputBuf.write('set_tests_properties(${TestNamePrefix}%s.gen_gs PROPERTIES FIXTURES_REQUIRED %s)\n' % (testName, subDirName))
+                outputBuf.write('set_tests_properties(${TestNamePrefix}%s.gen_gs PROPERTIES FIXTURES_SETUP %s.gs)\n' % (testName, subDirName))
+                if( len(testtags) > 0 ):
+                  outputBuf.write('  set_property(TEST ${TestNamePrefix}%s.gen_gs PROPERTY LABELS \"%s\")\n' % (testName, testtags))
                 # now add check the answer against the newly generated gold standard
                 outputBuf.write('add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${XYCE_VERIFY} %s %s.prn.gs %s.prn )\n' % (testName, subDirName, subDirName, subDirName))
-                outputBuf.write('set_tests_properties(${TestNamePrefix}%s.verify PROPERTIES FIXTURES_REQUIRED %s)\n' % (testName, subDirName))
+                outputBuf.write('set_tests_properties(${TestNamePrefix}%s.verify PROPERTIES FIXTURES_REQUIRED %s.gs)\n' % (testName, subDirName))
+                if( len(testtags) > 0 ):
+                  outputBuf.write('  set_property(TEST ${TestNamePrefix}%s.verify PROPERTY LABELS \"%s\")\n' % (testName, testtags))
               else:
                 # look at the path for the test /dirA/dirB/.../Netlists/TestDir1/TestDir2/test.cir
                 # gold standard output will be in ${OutputDataDir}/TestDir1/TestDir2/test.cir.prn
@@ -417,6 +435,8 @@ def SetUpCtestFiles():
                   
                 outputBuf.write('%s  add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${XYCE_VERIFY} %s ${OutputDataDir}/%s %s.prn )\n' % (indent, testName, subDirName, GoldOutput, subDirName))
                 outputBuf.write('%s  set_tests_properties(${TestNamePrefix}%s.verify PROPERTIES FIXTURES_REQUIRED %s)\n' % (indent, testName, subDirName))
+                if( len(testtags) > 0 ):
+                  outputBuf.write('  set_property(TEST ${TestNamePrefix}%s.verify PROPERTY LABELS \"%s\")\n' % (testName, testtags))
                 if (radBool is True):
                   outputBuf.write('  endif()\n')
                   

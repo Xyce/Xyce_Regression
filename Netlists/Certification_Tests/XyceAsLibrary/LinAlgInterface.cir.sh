@@ -39,6 +39,7 @@ $TESTROOT = cwd;
 
 # DEBUG: paths are hardcoded!
 $PREFIX="";
+$TARGETDIR="";
 $XYCEROOT="missing ";
 
 print "XYCE = $XYCE\n";
@@ -47,10 +48,12 @@ print "XYCE = $XYCE\n";
 $XYCE =~ m/([^\/]*)(.*)\/bin\/Xyce.*/;
 if (-d "$2") { $PREFIX=$1; $XYCEROOT=$2; }
 
-$XYCE =~ m/([^\/]*)(.*)\/src\/Xyce.*/;
-if (-d "$2") { $PREFIX=$1; $XYCEROOT=$2; }
+$XYCE =~ m/([^\/]*)(.*)\/src\/(Release\/|Debug\/|RelWithDebInfo\/|)Xyce.*/;
+if (-d "$2") { $PREFIX=$1; $XYCEROOT=$2; $TARGETDIR=$3}
 
+print "PREFIX = $PREFIX\n";
 print "XYCEROOT = $XYCEROOT\n";
+print "TARGETDIR = $TARGETDIR\n";
 
 #Check if we need a ".exe" extension (simply check for cygwin in uname)
 $EXT="";
@@ -67,8 +70,8 @@ if (-d "$MAKEROOT/CMakeFiles")
 {
   $EXT="";
 }
-$XYCE_LIBTEST = "$XYCEROOT/src/test/LinearAlgebraTest/testBlockLinearSystems$EXT";
-
+$XYCE_LIBTEST = "$XYCEROOT/src/test/LinearAlgebraTest/${TARGETDIR}testBlockLinearSystems$EXT";
+print("XYCE_LIBTEST = $XYCE_LIBTEST\n");
 if (-d "$MAKEROOT") {
   if ( (-e "$MAKEROOT/Makefile") and not (-d "$MAKEROOT/CMakeFiles") ) {
     chdir($MAKEROOT);
