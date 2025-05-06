@@ -312,19 +312,18 @@ def SetUpCtestFiles():
             if keyName not in copiedManifestDirs:
               copiedManifestDirs.add(keyName)
               requiredFiles = readFilesFromManifest(keyName)
+              # make any needed sub directories
+              manifestFileDirDictionary = genManifestDict( requiredFiles )
+              for aTestSubDir in manifestFileDirDictionary:
+                if aTestSubDir != ".":
+                  outputBuf.write('file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/%s)\n' % (aTestSubDir))
+                  outputBuf.write('file(COPY %s DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/%s)\n' % (manifestFileDirDictionary[aTestSubDir], aTestSubDir))
+                else:
+                  outputBuf.write('file(COPY %s DESTINATION ${CMAKE_CURRENT_BINARY_DIR})\n' % (manifestFileDirDictionary[aTestSubDir]))
+              # need to make script files executable
               for aFile in requiredFiles:
-                if (len(aFile) > 0):
-                  # need to handled nested sub directories which are needed for some tests. as in sub1/sub2/file
-                  pathForm = Path(aFile)
-                  #parentsList = pathForm.parents
-                  if( len(pathForm.parents) > 1):
-                    #dirlist = Path(parentsList[0:len(parentsList)-1])
-                    outputBuf.write('file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/%s)\n' % (pathForm.parent))
-                  if os.path.exists(os.path.join(keyName,aFile)):
-                    outputBuf.write('file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/%s ${CMAKE_CURRENT_BINARY_DIR}/%s ONLY_IF_DIFFERENT)\n' % (aFile, aFile))
-                    if( aFile.endswith('.pl') or aFile.endswith('.py') or aFile.endswith('.sh')):
-                      outputBuf.write('file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/%s PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)\n' % (aFile))
-
+                if( aFile.endswith('.pl') or aFile.endswith('.py') or aFile.endswith('.sh')):
+                  outputBuf.write('file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/%s PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)\n' % (aFile))
             # first run Xyce on the test circuit
             if (testtags.find('serial') >= 0):
               outputBuf.write('if( %s )\n' % (serialConstraint))
@@ -463,18 +462,18 @@ def SetUpCtestFiles():
             if keyName not in copiedManifestDirs:
               copiedManifestDirs.add(keyName)
               requiredFiles = readFilesFromManifest(keyName)
+              # make any needed sub directories
+              manifestFileDirDictionary = genManifestDict( requiredFiles )
+              for aTestSubDir in manifestFileDirDictionary:
+                if aTestSubDir != ".":
+                  outputBuf.write('file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/%s)\n' % (aTestSubDir))
+                  outputBuf.write('file(COPY %s DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/%s)\n' % (manifestFileDirDictionary[aTestSubDir], aTestSubDir))
+                else:
+                  outputBuf.write('file(COPY %s DESTINATION ${CMAKE_CURRENT_BINARY_DIR})\n' % (manifestFileDirDictionary[aTestSubDir]))
+              # need to make script files executable
               for aFile in requiredFiles:
-                if (len(aFile) > 0):
-                  # need to handled nested sub directories which are needed for some tests. as in sub1/sub2/file
-                  pathForm = Path(aFile)
-                  #parentsList = pathForm.parents
-                  if( len(pathForm.parents) > 1):
-                    #dirlist = Path(parentsList[0:len(parentsList)-1])
-                    outputBuf.write('file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/%s)\n' % (pathForm.parent))
-                  if os.path.exists(os.path.join(keyName,aFile)):
-                    outputBuf.write('file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/%s ${CMAKE_CURRENT_BINARY_DIR}/%s ONLY_IF_DIFFERENT)\n' % (aFile, aFile))
-                    if( aFile.endswith('.pl') or aFile.endswith('.py') or aFile.endswith('.sh')):
-                      outputBuf.write('file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/%s PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)\n' % (aFile))
+                if( aFile.endswith('.pl') or aFile.endswith('.py') or aFile.endswith('.sh')):
+                  outputBuf.write('file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/%s PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)\n' % (aFile))
             # look at the path for the test /dirA/dirB/.../Netlists/TestDir1/TestDir2/test.cir
             # gold standard output will be in ${OutputDataDir}/TestDir1/TestDir2/test.cir.prn
             testPathIndex = keyName.rfind("Netlists")+9
@@ -795,12 +794,19 @@ def getOptions( parentDirName, testFileName):
   return testoptions
 
 def readFilesFromManifest( dirName ):
+  readFiles = []
   foundFiles = []
   manifestFileName=os.path.join(dirName, 'Manifest.txt')
   if os.path.exists(manifestFileName):
     manifestFile = open(manifestFileName)
-    foundFiles = [aLine.strip() for aLine in manifestFile.readlines()]
+    readFiles = [aLine.strip() for aLine in manifestFile.readlines()]
     manifestFile.close()
+    # check that files actually exist.  Some Manifest files have old files left in them
+    for aFile in readFiles:
+      if( len(aFile) > 0):
+        fullName = os.path.join(dirName, aFile)
+        if( os.path.exists(fullName)):
+          foundFiles.append(aFile)
   return foundFiles
 
 def newFileDifferentFromOld(strList1, strList2 ):
@@ -821,7 +827,30 @@ def newFileDifferentFromOld(strList1, strList2 ):
       return retval
   retval = False
   return retval
-
+  
+def genManifestDict( fileList ):
+  # filelist will be plain names with some names prefixed by sub directory names.  
+  # convert this to a dictionary of {".":"Files that just get copied", "sub1" : "files going to sub1"}
+  # start dictionary with current directory spot
+  returnDict = {".":""}
+  for aFile in fileList:
+    # can have blank lines so make sure length is positive
+    if (len(aFile) > 0):
+      # need to handled nested sub directories which are needed for some tests. as in sub1/sub2/file
+      pathForm = Path(aFile)
+      # pathForm.parents[0] returns the parents as a PosixPath.  Adding ".name" should 
+      # get the string version of that but it only returns the first parent.
+      # so convert to a string using this method.
+      strname = "%s" % (pathForm.parents[0])
+      if( len(strname) > 1):
+        fileInSubDir = aFile
+        if( strname in returnDict):
+          fileInSubDir = returnDict[strname] + " " + fileInSubDir 
+        returnDict[strname] = fileInSubDir
+      else:
+        returnDict["."] = returnDict["."] + " " + aFile
+  return returnDict
+  
 def hasAutoGenHeader(strList):
   retval = True
   if( strList.find('# Or you can remove this header line to prevent this file from being overwritten') == -1):
