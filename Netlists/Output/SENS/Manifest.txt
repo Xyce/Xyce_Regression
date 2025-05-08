@@ -28,6 +28,10 @@ sens-tranadjoint-csv.cir
 sens-tranadjoint-csv.cir.sh
 sens-tranadjoint-noindex.cir
 sens-tranadjoint-noindex.cir.sh
+sens-tranadjoint-overrideRaw.cir
+sens-tranadjoint-overrideRaw.cir.sh
+sens-tranadjoint-overrideRaw.cir.tags
+sens-tranadjoint-overrideRaw_ref.cir
 sens-tranadjoint-unsupportedProbeFormat.cir
 sens-tranadjoint-unsupportedProbeFormat.cir.sh
 sens-tranadjoint-unsupportedRawFormat.cir
