@@ -3,6 +3,9 @@ cpldLMIs_ic.cir
 InductorICBug.cir
 MINDUCTORS.cir
 MINDUCTORS_IC.cir
+MINDUCTORS_IC2.cir
+MINDUCTORS_IC3.cir
+MINDUCTORS_IC4.cir
 mutIndPrint1.cir
 mutIndPrint1.cir.tags
 mutIndPrint2.cir
