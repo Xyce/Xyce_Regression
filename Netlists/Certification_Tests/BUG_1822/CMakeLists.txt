@@ -2,11 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/FBH_HBT.cir ${CMAKE_CURRENT_BINARY_DIR}/FBH_HBT.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/FBH_HBT_trans.cir ${CMAKE_CURRENT_BINARY_DIR}/FBH_HBT_trans.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/FBH_HBT_trans.cir.res.gs ${CMAKE_CURRENT_BINARY_DIR}/FBH_HBT_trans.cir.res.gs ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/FBH_HBT_trans.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/FBH_HBT_trans.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  FBH_HBT.cir FBH_HBT_trans.cir FBH_HBT_trans.cir.res.gs FBH_HBT_trans.cir.tags tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1822/FBH_HBT.cir COMMAND $<TARGET_FILE:Xyce> FBH_HBT.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1822/FBH_HBT.cir PROPERTY LABELS "serial;nightly;fbhhbt;verilog;adms")

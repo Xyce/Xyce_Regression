@@ -2,14 +2,9 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/func_error.cir ${CMAKE_CURRENT_BINARY_DIR}/func_error.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/func_error.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/func_error.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  func_error.cir func_error.cir.sh invalid_math_operator.cir invalid_math_operator.cir.sh tags options DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/func_error.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/invalid_math_operator.cir ${CMAKE_CURRENT_BINARY_DIR}/invalid_math_operator.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/invalid_math_operator.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/invalid_math_operator.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/invalid_math_operator.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/options ${CMAKE_CURRENT_BINARY_DIR}/options ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}Message/Function/func_error.cir.sh COMMAND perl -I${XyceRegressionTestScripts} func_error.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} func_error.cir ${OutputDataDir}/Message/Function/func_error.cir.prn )
   set_property(TEST ${TestNamePrefix}Message/Function/func_error.cir.sh PROPERTY LABELS "serial;parallel;nightly;errorexit;bug1196son")

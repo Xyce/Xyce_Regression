@@ -2,11 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/150nm.mod ${CMAKE_CURRENT_BINARY_DIR}/150nm.mod ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/150nm_nmos.cir ${CMAKE_CURRENT_BINARY_DIR}/150nm_nmos.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/150nm_pmos.cir ${CMAKE_CURRENT_BINARY_DIR}/150nm_pmos.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/invert_ekv.cir ${CMAKE_CURRENT_BINARY_DIR}/invert_ekv.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  150nm.mod 150nm_nmos.cir 150nm_pmos.cir invert_ekv.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) AND Xyce_NONFREE_MODELS )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1353/150nm_nmos.cir COMMAND $<TARGET_FILE:Xyce> 150nm_nmos.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1353/150nm_nmos.cir PROPERTY LABELS "nightly;serial;ekv;adms;required:nonfree")

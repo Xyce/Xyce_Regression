@@ -2,8 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/amp_mod.cir ${CMAKE_CURRENT_BINARY_DIR}/amp_mod.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  amp_mod.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}AMPMOD/amp_mod.cir COMMAND $<TARGET_FILE:Xyce> amp_mod.cir )
   set_property(TEST ${TestNamePrefix}AMPMOD/amp_mod.cir PROPERTY LABELS "serial;nightly;parallel;valgrind;bsrc")

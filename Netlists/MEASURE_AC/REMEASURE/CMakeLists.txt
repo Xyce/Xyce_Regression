@@ -2,11 +2,8 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/UnsupportedRemeasureTypes.cir ${CMAKE_CURRENT_BINARY_DIR}/UnsupportedRemeasureTypes.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/UnsupportedRemeasureTypes.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/UnsupportedRemeasureTypes.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  UnsupportedRemeasureTypes.cir UnsupportedRemeasureTypes.cir.sh UnsupportedRemeasureTypes.cir.tags UnsupportedRemeasureTypes.cir.options DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/UnsupportedRemeasureTypes.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/UnsupportedRemeasureTypes.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/UnsupportedRemeasureTypes.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/UnsupportedRemeasureTypes.cir.options ${CMAKE_CURRENT_BINARY_DIR}/UnsupportedRemeasureTypes.cir.options ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}MEASURE_AC/REMEASURE/UnsupportedRemeasureTypes.cir.sh COMMAND perl -I${XyceRegressionTestScripts} UnsupportedRemeasureTypes.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} UnsupportedRemeasureTypes.cir ${OutputDataDir}/MEASURE_AC/REMEASURE/UnsupportedRemeasureTypes.cir.prn )
   set_property(TEST ${TestNamePrefix}MEASURE_AC/REMEASURE/UnsupportedRemeasureTypes.cir.sh PROPERTY LABELS "nightly;serial;parallel;ac;measure;remeasure;errorexit")

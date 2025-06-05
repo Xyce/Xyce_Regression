@@ -2,11 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/iswitch.cir ${CMAKE_CURRENT_BINARY_DIR}/iswitch.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/iswitch_spice.cir ${CMAKE_CURRENT_BINARY_DIR}/iswitch_spice.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/iswitchHyst1.cir ${CMAKE_CURRENT_BINARY_DIR}/iswitchHyst1.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/iswitchHyst1.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/iswitchHyst1.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  iswitch.cir iswitch_spice.cir iswitchHyst1.cir iswitchHyst1.cir.tags tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}ISWITCH/iswitch.cir COMMAND $<TARGET_FILE:Xyce> iswitch.cir )
   set_property(TEST ${TestNamePrefix}ISWITCH/iswitch.cir PROPERTY LABELS "serial;nightly;parallel;valgrind;iswitch;switch")

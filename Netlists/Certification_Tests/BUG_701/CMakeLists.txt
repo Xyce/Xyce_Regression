@@ -2,15 +2,9 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/README ${CMAKE_CURRENT_BINARY_DIR}/README ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/dup-subcircuit.cir ${CMAKE_CURRENT_BINARY_DIR}/dup-subcircuit.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/dup-subcircuit.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/dup-subcircuit.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  README dup-subcircuit.cir dup-subcircuit.cir.sh dup-toplevel.cir dup-toplevel.cir.sh tags options DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/dup-subcircuit.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/dup-toplevel.cir ${CMAKE_CURRENT_BINARY_DIR}/dup-toplevel.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/dup-toplevel.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/dup-toplevel.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/dup-toplevel.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/options ${CMAKE_CURRENT_BINARY_DIR}/options ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_701/dup-subcircuit.cir.sh COMMAND perl -I${XyceRegressionTestScripts} dup-subcircuit.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} dup-subcircuit.cir ${OutputDataDir}/Certification_Tests/BUG_701/dup-subcircuit.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_701/dup-subcircuit.cir.sh PROPERTY LABELS "serial;nightly;parallel;errorexit")

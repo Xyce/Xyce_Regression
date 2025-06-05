@@ -2,20 +2,11 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bad_device_parameter.cir ${CMAKE_CURRENT_BINARY_DIR}/bad_device_parameter.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bad_device_parameter.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/bad_device_parameter.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  bad_device_parameter.cir bad_device_parameter.cir.sh bad_nodename.cir bad_nodename.cir.sh bad_variable.cir bad_variable.cir.sh multiple_format_same_file.cir multiple_format_same_file.cir.sh tags options DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bad_device_parameter.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bad_nodename.cir ${CMAKE_CURRENT_BINARY_DIR}/bad_nodename.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bad_nodename.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/bad_nodename.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bad_nodename.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bad_variable.cir ${CMAKE_CURRENT_BINARY_DIR}/bad_variable.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bad_variable.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/bad_variable.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bad_variable.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/multiple_format_same_file.cir ${CMAKE_CURRENT_BINARY_DIR}/multiple_format_same_file.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/multiple_format_same_file.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/multiple_format_same_file.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/multiple_format_same_file.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/options ${CMAKE_CURRENT_BINARY_DIR}/options ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}Message/Print/bad_device_parameter.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bad_device_parameter.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bad_device_parameter.cir ${OutputDataDir}/Message/Print/bad_device_parameter.cir.prn )
   set_property(TEST ${TestNamePrefix}Message/Print/bad_device_parameter.cir.sh PROPERTY LABELS "serial;parallel;nightly;errorexit;vbic;adms")

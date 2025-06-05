@@ -2,10 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/cmod_capmod.cir ${CMAKE_CURRENT_BINARY_DIR}/cmod_capmod.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lmod_indmod.cir ${CMAKE_CURRENT_BINARY_DIR}/lmod_indmod.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/rmod_resmod.cir ${CMAKE_CURRENT_BINARY_DIR}/rmod_resmod.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  cmod_capmod.cir lmod_indmod.cir rmod_resmod.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_524_SON/cmod_capmod.cir COMMAND $<TARGET_FILE:Xyce> cmod_capmod.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_524_SON/cmod_capmod.cir PROPERTY LABELS "serial;nightly;bug524son")

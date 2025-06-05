@@ -2,13 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/README ${CMAKE_CURRENT_BINARY_DIR}/README ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/invert_mos6.cir ${CMAKE_CURRENT_BINARY_DIR}/invert_mos6.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/invert_mos6.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/invert_mos6.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/nmos6_dc.cir ${CMAKE_CURRENT_BINARY_DIR}/nmos6_dc.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/nmos6_dc.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/nmos6_dc.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/pmos6_dc.cir ${CMAKE_CURRENT_BINARY_DIR}/pmos6_dc.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/pmos6_dc.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/pmos6_dc.cir.tags ONLY_IF_DIFFERENT)
+file(COPY  README invert_mos6.cir invert_mos6.cir.tags nmos6_dc.cir nmos6_dc.cir.tags pmos6_dc.cir pmos6_dc.cir.tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}MOS6/invert_mos6.cir COMMAND $<TARGET_FILE:Xyce> invert_mos6.cir )
   set_property(TEST ${TestNamePrefix}MOS6/invert_mos6.cir PROPERTY LABELS "serial;nightly;parallel;mos6")

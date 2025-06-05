@@ -2,11 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/idvg0_Id_T27.cir ${CMAKE_CURRENT_BINARY_DIR}/idvg0_Id_T27.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/idvg0_Id_T27_pmos.cir ${CMAKE_CURRENT_BINARY_DIR}/idvg0_Id_T27_pmos.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/invert_psp.cir ${CMAKE_CURRENT_BINARY_DIR}/invert_psp.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/psp102_outvars.cir ${CMAKE_CURRENT_BINARY_DIR}/psp102_outvars.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  idvg0_Id_T27.cir idvg0_Id_T27_pmos.cir invert_psp.cir psp102_outvars.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}PSP102/idvg0_Id_T27.cir COMMAND $<TARGET_FILE:Xyce> idvg0_Id_T27.cir )
   set_property(TEST ${TestNamePrefix}PSP102/idvg0_Id_T27.cir PROPERTY LABELS "serial;parallel;nightly;psp102;adms")

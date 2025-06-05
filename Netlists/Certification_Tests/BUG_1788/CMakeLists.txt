@@ -2,19 +2,8 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/README ${CMAKE_CURRENT_BINARY_DIR}/README ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/inv_tr.cir ${CMAKE_CURRENT_BINARY_DIR}/inv_tr.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/inv_tr.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/inv_tr.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  README inv_tr.cir inv_tr.cir.sh inv_tr_lev10.cir inv_tr_lev10.cir.tags inv_tr_lev57.cir inv_tr_lev57.cir.tags nmos3p2.mod nmos3p2_lev57.mod pmos3p2.mod pmos3p2_lev57.mod tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/inv_tr.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/inv_tr_lev10.cir ${CMAKE_CURRENT_BINARY_DIR}/inv_tr_lev10.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/inv_tr_lev10.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/inv_tr_lev10.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/inv_tr_lev57.cir ${CMAKE_CURRENT_BINARY_DIR}/inv_tr_lev57.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/inv_tr_lev57.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/inv_tr_lev57.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/nmos3p2.mod ${CMAKE_CURRENT_BINARY_DIR}/nmos3p2.mod ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/nmos3p2_lev57.mod ${CMAKE_CURRENT_BINARY_DIR}/nmos3p2_lev57.mod ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/pmos3p2.mod ${CMAKE_CURRENT_BINARY_DIR}/pmos3p2.mod ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/pmos3p2_lev57.mod ${CMAKE_CURRENT_BINARY_DIR}/pmos3p2_lev57.mod ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND BASH_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1788/inv_tr.cir.sh COMMAND bash inv_tr.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} inv_tr.cir ${OutputDataDir}/Certification_Tests/BUG_1788/inv_tr.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1788/inv_tr.cir.sh PROPERTY LABELS "serial;nightly;parallel;bug1788;issue328")

@@ -2,9 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ipat.cir ${CMAKE_CURRENT_BINARY_DIR}/ipat.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ipat_step.cir ${CMAKE_CURRENT_BINARY_DIR}/ipat_step.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ipat_step.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/ipat_step.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  ipat.cir ipat_step.cir ipat_step.cir.sh DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/ipat_step.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}IPAT/ipat.cir COMMAND $<TARGET_FILE:Xyce> ipat.cir )

@@ -2,14 +2,8 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/README ${CMAKE_CURRENT_BINARY_DIR}/README ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/one-shot.cir ${CMAKE_CURRENT_BINARY_DIR}/one-shot.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/one-shot.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/one-shot.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  README exclude one-shot.cir one-shot.cir.sh one-shot_lev49.cir one-shot_lev9.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/one-shot.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/one-shot_lev49.cir ${CMAKE_CURRENT_BINARY_DIR}/one-shot_lev49.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/one-shot_lev9.cir ${CMAKE_CURRENT_BINARY_DIR}/one-shot_lev9.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND BASH_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1797/one-shot.cir.sh COMMAND bash one-shot.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} one-shot.cir ${OutputDataDir}/Certification_Tests/BUG_1797/one-shot.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1797/one-shot.cir.sh PROPERTY LABELS "serial;nightly;parallel;bug1797;bsim3")

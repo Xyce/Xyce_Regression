@@ -2,16 +2,10 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/timeDepMutInd.cir ${CMAKE_CURRENT_BINARY_DIR}/timeDepMutInd.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/timeDepMutInd.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/timeDepMutInd.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  tags timeDepMutInd.cir timeDepMutInd.cir.sh timeDepMutIndSens.cir timeDepMutIndSens.cir.sh timeDepMutIndSens.cir.SENS.prn.gs.pl timeDepMutIndSens.cir.tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/timeDepMutInd.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/timeDepMutIndSens.cir ${CMAKE_CURRENT_BINARY_DIR}/timeDepMutIndSens.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/timeDepMutIndSens.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/timeDepMutIndSens.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/timeDepMutIndSens.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/timeDepMutIndSens.cir.SENS.prn.gs.pl ${CMAKE_CURRENT_BINARY_DIR}/timeDepMutIndSens.cir.SENS.prn.gs.pl ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/timeDepMutIndSens.cir.SENS.prn.gs.pl PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/timeDepMutIndSens.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/timeDepMutIndSens.cir.tags ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}TimeDepMutInd/timeDepMutInd.cir.sh COMMAND perl -I${XyceRegressionTestScripts} timeDepMutInd.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} timeDepMutInd.cir ${OutputDataDir}/TimeDepMutInd/timeDepMutInd.cir.prn )
   set_property(TEST ${TestNamePrefix}TimeDepMutInd/timeDepMutInd.cir.sh PROPERTY LABELS "serial;nightly;analytic;mutualinductor;timedepmutind")

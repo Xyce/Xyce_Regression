@@ -2,9 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/etsoi.cir ${CMAKE_CURRENT_BINARY_DIR}/etsoi.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/hemt.cir ${CMAKE_CURRENT_BINARY_DIR}/hemt.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  etsoi.cir hemt.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}MVS2/etsoi.cir COMMAND $<TARGET_FILE:Xyce> etsoi.cir )
   set_property(TEST ${TestNamePrefix}MVS2/etsoi.cir PROPERTY LABELS "serial;nightly;mvs2;adms")

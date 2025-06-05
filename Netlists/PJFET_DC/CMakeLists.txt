@@ -2,14 +2,8 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/pjfet-2108.cir ${CMAKE_CURRENT_BINARY_DIR}/pjfet-2108.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/pjfet.cir ${CMAKE_CURRENT_BINARY_DIR}/pjfet.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/pjfet.cir.res.gs ${CMAKE_CURRENT_BINARY_DIR}/pjfet.cir.res.gs ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/pjfet_temp.cir ${CMAKE_CURRENT_BINARY_DIR}/pjfet_temp.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/pjfet_temp.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/pjfet_temp.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  pjfet-2108.cir pjfet.cir pjfet.cir.res.gs pjfet_temp.cir pjfet_temp.cir.sh pjfet_temp.cir.tags tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/pjfet_temp.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/pjfet_temp.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/pjfet_temp.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}PJFET_DC/pjfet-2108.cir COMMAND $<TARGET_FILE:Xyce> pjfet-2108.cir )
   set_property(TEST ${TestNamePrefix}PJFET_DC/pjfet-2108.cir PROPERTY LABELS "serial;nightly;parallel;jfet;valgrind;step;temp")

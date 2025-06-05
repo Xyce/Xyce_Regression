@@ -2,12 +2,8 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/Manifest.txt ${CMAKE_CURRENT_BINARY_DIR}/Manifest.txt ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/fmod.cir ${CMAKE_CURRENT_BINARY_DIR}/fmod.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/fmod.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/fmod.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  Manifest.txt fmod.cir fmod.cir.sh nint.cir noWorkee_nint.cir.sh DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/fmod.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/nint.cir ${CMAKE_CURRENT_BINARY_DIR}/nint.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/noWorkee_nint.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/noWorkee_nint.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/noWorkee_nint.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}ABM_NINT_FMOD/fmod.cir.sh COMMAND perl -I${XyceRegressionTestScripts} fmod.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} fmod.cir ${OutputDataDir}/ABM_NINT_FMOD/fmod.cir.prn )

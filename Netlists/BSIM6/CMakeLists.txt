@@ -2,22 +2,8 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bsim6_nmos_outvars.cir ${CMAKE_CURRENT_BINARY_DIR}/bsim6_nmos_outvars.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bsim6_pmos_outvars.cir ${CMAKE_CURRENT_BINARY_DIR}/bsim6_pmos_outvars.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/gummel_nmos_xyce.cir ${CMAKE_CURRENT_BINARY_DIR}/gummel_nmos_xyce.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/gummel_pmos_xyce.cir ${CMAKE_CURRENT_BINARY_DIR}/gummel_pmos_xyce.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/idvd_nmos_xyce.cir ${CMAKE_CURRENT_BINARY_DIR}/idvd_nmos_xyce.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/idvd_pmos_xyce.cir ${CMAKE_CURRENT_BINARY_DIR}/idvd_pmos_xyce.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/idvg_nmos_xyce.cir ${CMAKE_CURRENT_BINARY_DIR}/idvg_nmos_xyce.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/idvg_pmos_xyce.cir ${CMAKE_CURRENT_BINARY_DIR}/idvg_pmos_xyce.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/modelcard_xyce.nmos ${CMAKE_CURRENT_BINARY_DIR}/modelcard_xyce.nmos ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/modelcard_xyce.pmos ${CMAKE_CURRENT_BINARY_DIR}/modelcard_xyce.pmos ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ringosc_17_xyce.cir ${CMAKE_CURRENT_BINARY_DIR}/ringosc_17_xyce.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ringosc_17_xyce.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/ringosc_17_xyce.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  bsim6_nmos_outvars.cir bsim6_pmos_outvars.cir gummel_nmos_xyce.cir gummel_pmos_xyce.cir idvd_nmos_xyce.cir idvd_pmos_xyce.cir idvg_nmos_xyce.cir idvg_pmos_xyce.cir modelcard_xyce.nmos modelcard_xyce.pmos ringosc_17_xyce.cir ringosc_17_xyce.cir.sh ringosc_17_xyce.cir.tags tags inverter_transient_xyce.cir DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/ringosc_17_xyce.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ringosc_17_xyce.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/ringosc_17_xyce.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/inverter_transient_xyce.cir ${CMAKE_CURRENT_BINARY_DIR}/inverter_transient_xyce.cir ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}BSIM6/bsim6_nmos_outvars.cir COMMAND $<TARGET_FILE:Xyce> bsim6_nmos_outvars.cir )
   set_property(TEST ${TestNamePrefix}BSIM6/bsim6_nmos_outvars.cir PROPERTY LABELS "serial;parallel;nightly;mos77;bsim6;adms;valgrind")

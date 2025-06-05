@@ -2,13 +2,9 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/invert42_mos3.cir ${CMAKE_CURRENT_BINARY_DIR}/invert42_mos3.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/invert42_mos3.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/invert42_mos3.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  invert42_mos3.cir invert42_mos3.cir.sh invert50_mos1.cir invert50_mos1.cir.sh tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/invert42_mos3.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/invert50_mos1.cir ${CMAKE_CURRENT_BINARY_DIR}/invert50_mos1.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/invert50_mos1.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/invert50_mos1.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/invert50_mos1.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}MOS13_IC/invert42_mos3.cir.sh COMMAND perl -I${XyceRegressionTestScripts} invert42_mos3.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} invert42_mos3.cir ${OutputDataDir}/MOS13_IC/invert42_mos3.cir.prn )
   set_property(TEST ${TestNamePrefix}MOS13_IC/invert42_mos3.cir.sh PROPERTY LABELS "serial;parallel;nightly;mos3;resistor;capacitor;transient;ic")

@@ -2,8 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_813_son.cir ${CMAKE_CURRENT_BINARY_DIR}/bug_813_son.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_813_son.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/bug_813_son.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  bug_813_son.cir bug_813_son.cir.sh DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug_813_son.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_813_SON/bug_813_son.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_813_son.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug_813_son.cir ${OutputDataDir}/Certification_Tests/BUG_813_SON/bug_813_son.cir.prn )

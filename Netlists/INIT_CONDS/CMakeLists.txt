@@ -2,14 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/comparatorIC.cir ${CMAKE_CURRENT_BINARY_DIR}/comparatorIC.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/comparatorICnonVector.cir ${CMAKE_CURRENT_BINARY_DIR}/comparatorICnonVector.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/inv1xIC.cir ${CMAKE_CURRENT_BINARY_DIR}/inv1xIC.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/inv1xIC.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/inv1xIC.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/modelcard.nmos ${CMAKE_CURRENT_BINARY_DIR}/modelcard.nmos ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/modelcard.pmos ${CMAKE_CURRENT_BINARY_DIR}/modelcard.pmos ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ring_osc_bsim3.cir ${CMAKE_CURRENT_BINARY_DIR}/ring_osc_bsim3.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  comparatorIC.cir comparatorICnonVector.cir inv1xIC.cir inv1xIC.cir.tags modelcard.nmos modelcard.pmos ring_osc_bsim3.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}INIT_CONDS/comparatorIC.cir COMMAND $<TARGET_FILE:Xyce> comparatorIC.cir )
   set_property(TEST ${TestNamePrefix}INIT_CONDS/comparatorIC.cir PROPERTY LABELS "serial;nightly;parallel;init_conds;capacitor;bsim3;resistor")

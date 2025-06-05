@@ -2,10 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/njfet-2109.cir ${CMAKE_CURRENT_BINARY_DIR}/njfet-2109.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/njfet.cir ${CMAKE_CURRENT_BINARY_DIR}/njfet.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/njfet.cir.res.gs ${CMAKE_CURRENT_BINARY_DIR}/njfet.cir.res.gs ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  njfet-2109.cir njfet.cir njfet.cir.res.gs tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}NJFET_DC/njfet-2109.cir COMMAND $<TARGET_FILE:Xyce> njfet-2109.cir )
   set_property(TEST ${TestNamePrefix}NJFET_DC/njfet-2109.cir PROPERTY LABELS "serial;nightly;parallel;jfet;valgrind;step")

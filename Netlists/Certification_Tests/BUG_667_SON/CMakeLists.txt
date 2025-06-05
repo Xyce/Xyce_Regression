@@ -2,19 +2,10 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ic_in_subckt.cir ${CMAKE_CURRENT_BINARY_DIR}/ic_in_subckt.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ic_not_in_subckt.cir ${CMAKE_CURRENT_BINARY_DIR}/ic_not_in_subckt.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ic_in_subckt.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/ic_in_subckt.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  ic_in_subckt.cir ic_not_in_subckt.cir ic_in_subckt.cir.sh ic_in_subckt_warning.cir ic_in_subckt_warning.cir.sh nodeset_in_subckt.cir nodeset_not_in_subckt.cir nodeset_in_subckt.cir.sh tags exclude DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/ic_in_subckt.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ic_in_subckt_warning.cir ${CMAKE_CURRENT_BINARY_DIR}/ic_in_subckt_warning.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ic_in_subckt_warning.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/ic_in_subckt_warning.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/ic_in_subckt_warning.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/nodeset_in_subckt.cir ${CMAKE_CURRENT_BINARY_DIR}/nodeset_in_subckt.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/nodeset_not_in_subckt.cir ${CMAKE_CURRENT_BINARY_DIR}/nodeset_not_in_subckt.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/nodeset_in_subckt.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/nodeset_in_subckt.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/nodeset_in_subckt.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND BASH_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_667_SON/ic_in_subckt.cir.sh COMMAND bash ic_in_subckt.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} ic_in_subckt.cir ${OutputDataDir}/Certification_Tests/BUG_667_SON/ic_in_subckt.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_667_SON/ic_in_subckt.cir.sh PROPERTY LABELS "serial;parallel;nightly")

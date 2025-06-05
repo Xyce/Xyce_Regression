@@ -2,9 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug1197.cir ${CMAKE_CURRENT_BINARY_DIR}/bug1197.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug1197.cir.res.gs ${CMAKE_CURRENT_BINARY_DIR}/bug1197.cir.res.gs ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  bug1197.cir bug1197.cir.res.gs tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1197_SON/bug1197.cir COMMAND $<TARGET_FILE:Xyce> bug1197.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1197_SON/bug1197.cir PROPERTY LABELS "nightly;serial;parallel;voltdepcap;bug1197")

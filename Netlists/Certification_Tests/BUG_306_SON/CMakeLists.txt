@@ -2,17 +2,9 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lead_bjt_gear.cir ${CMAKE_CURRENT_BINARY_DIR}/lead_bjt_gear.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lead_bjt_gear.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/lead_bjt_gear.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  exclude lead_bjt_gear.cir lead_bjt_gear.cir.sh lead_bjt_gear_strings.cir lead_bjt_trap.cir lead_bjt_trap.cir.sh lead_bjt_trap_strings.cir lead_bjt_trap_strings2.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/lead_bjt_gear.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lead_bjt_gear_strings.cir ${CMAKE_CURRENT_BINARY_DIR}/lead_bjt_gear_strings.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lead_bjt_trap.cir ${CMAKE_CURRENT_BINARY_DIR}/lead_bjt_trap.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lead_bjt_trap.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/lead_bjt_trap.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/lead_bjt_trap.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lead_bjt_trap_strings.cir ${CMAKE_CURRENT_BINARY_DIR}/lead_bjt_trap_strings.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lead_bjt_trap_strings2.cir ${CMAKE_CURRENT_BINARY_DIR}/lead_bjt_trap_strings2.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND BASH_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_306_SON/lead_bjt_gear.cir.sh COMMAND bash lead_bjt_gear.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} lead_bjt_gear.cir ${OutputDataDir}/Certification_Tests/BUG_306_SON/lead_bjt_gear.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_306_SON/lead_bjt_gear.cir.sh PROPERTY LABELS "serial;parallel;nightly;leadcurrents")

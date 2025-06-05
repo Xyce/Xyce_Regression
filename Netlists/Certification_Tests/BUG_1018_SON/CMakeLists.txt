@@ -2,9 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug1018son.cir ${CMAKE_CURRENT_BINARY_DIR}/bug1018son.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug1018son.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/bug1018son.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  bug1018son.cir bug1018son.cir.tags tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( Xyce_PARALLEL_MPI  )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1018_SON/bug1018son.cir COMMAND mpiexec -bind-to none -np 2 $<TARGET_FILE:Xyce> bug1018son.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1018_SON/bug1018son.cir PROPERTY LABELS "parallel;nightly;bug1018;adms;juncap")

@@ -2,8 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/binary_funcs.cir ${CMAKE_CURRENT_BINARY_DIR}/binary_funcs.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  binary_funcs.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}BINARYOPS/binary_funcs.cir COMMAND $<TARGET_FILE:Xyce> binary_funcs.cir )
   set_property(TEST ${TestNamePrefix}BINARYOPS/binary_funcs.cir PROPERTY LABELS "serial;nightly;parallel;valgrind;bsrc;expression;dcsweep;resistor")

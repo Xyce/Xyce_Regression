@@ -2,22 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/modelcard.bsimsoiVA.nmos_xyce ${CMAKE_CURRENT_BINARY_DIR}/modelcard.bsimsoiVA.nmos_xyce ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/modelcard.bsimsoiVA.pmos_xyce ${CMAKE_CURRENT_BINARY_DIR}/modelcard.bsimsoiVA.pmos_xyce ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/invert_b4soi_4.5.cir ${CMAKE_CURRENT_BINARY_DIR}/invert_b4soi_4.5.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/inverter_tr.cir ${CMAKE_CURRENT_BINARY_DIR}/inverter_tr.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ring_osc.cir ${CMAKE_CURRENT_BINARY_DIR}/ring_osc.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/shmodtest_nmos.cir ${CMAKE_CURRENT_BINARY_DIR}/shmodtest_nmos.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/test1.cir ${CMAKE_CURRENT_BINARY_DIR}/test1.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/test1_shmod1.cir ${CMAKE_CURRENT_BINARY_DIR}/test1_shmod1.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/test2.cir ${CMAKE_CURRENT_BINARY_DIR}/test2.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/test3.cir ${CMAKE_CURRENT_BINARY_DIR}/test3.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/test4.cir ${CMAKE_CURRENT_BINARY_DIR}/test4.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/test5.cir ${CMAKE_CURRENT_BINARY_DIR}/test5.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/test6.cir ${CMAKE_CURRENT_BINARY_DIR}/test6.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/test7.cir ${CMAKE_CURRENT_BINARY_DIR}/test7.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/test8.cir ${CMAKE_CURRENT_BINARY_DIR}/test8.cir ONLY_IF_DIFFERENT)
+file(COPY  modelcard.bsimsoiVA.nmos_xyce modelcard.bsimsoiVA.pmos_xyce invert_b4soi_4.5.cir inverter_tr.cir ring_osc.cir tags shmodtest_nmos.cir test1.cir test1_shmod1.cir test2.cir test3.cir test4.cir test5.cir test6.cir test7.cir test8.cir DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}B4SOI_450/invert_b4soi_4.5.cir COMMAND $<TARGET_FILE:Xyce> invert_b4soi_4.5.cir )
   set_property(TEST ${TestNamePrefix}B4SOI_450/invert_b4soi_4.5.cir PROPERTY LABELS "serial;parallel;nightly;b4soi;adms")

@@ -2,10 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/test_ekv26_nmos.cir ${CMAKE_CURRENT_BINARY_DIR}/test_ekv26_nmos.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/test_ekv26_pmos.cir ${CMAKE_CURRENT_BINARY_DIR}/test_ekv26_pmos.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/inverter_transient_ekv26.cir ${CMAKE_CURRENT_BINARY_DIR}/inverter_transient_ekv26.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  test_ekv26_nmos.cir test_ekv26_pmos.cir inverter_transient_ekv26.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}EKV26/inverter_transient_ekv26.cir COMMAND $<TARGET_FILE:Xyce> inverter_transient_ekv26.cir )
   set_property(TEST ${TestNamePrefix}EKV26/inverter_transient_ekv26.cir PROPERTY LABELS "serial;parallel;nightly;ekv26")
