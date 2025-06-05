@@ -2,14 +2,8 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/vpwl.cir ${CMAKE_CURRENT_BINARY_DIR}/vpwl.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/vpwl.csv ${CMAKE_CURRENT_BINARY_DIR}/vpwl.csv ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/vpwl_filebased.cir ${CMAKE_CURRENT_BINARY_DIR}/vpwl_filebased.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/vpwl_repeat_step.cir ${CMAKE_CURRENT_BINARY_DIR}/vpwl_repeat_step.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/vpwl_repeat_step.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/vpwl_repeat_step.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  tags vpwl.cir vpwl.csv vpwl_filebased.cir vpwl_repeat_step.cir vpwl_repeat_step.cir.sh vpwl_repeat_step.cir.tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/vpwl_repeat_step.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/vpwl_repeat_step.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/vpwl_repeat_step.cir.tags ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}VPWL/vpwl.cir COMMAND $<TARGET_FILE:Xyce> vpwl.cir )
   set_property(TEST ${TestNamePrefix}VPWL/vpwl.cir PROPERTY LABELS "serial;nightly;vpwl;pwl;valgrind")

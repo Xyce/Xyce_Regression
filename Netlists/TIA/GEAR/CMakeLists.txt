@@ -2,10 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/circuit1.cir ${CMAKE_CURRENT_BINARY_DIR}/circuit1.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/circuit3.cir ${CMAKE_CURRENT_BINARY_DIR}/circuit3.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  circuit1.cir circuit3.cir exclude tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}TIA/GEAR/circuit3.cir COMMAND $<TARGET_FILE:Xyce> circuit3.cir )
   set_property(TEST ${TestNamePrefix}TIA/GEAR/circuit3.cir PROPERTY LABELS "serial;nightly;gear")

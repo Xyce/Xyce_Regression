@@ -2,10 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lossless_transline.cir ${CMAKE_CURRENT_BINARY_DIR}/lossless_transline.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lossless_transline.cir.hspice ${CMAKE_CURRENT_BINARY_DIR}/lossless_transline.cir.hspice ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lossless_transline.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/lossless_transline.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  exclude lossless_transline.cir lossless_transline.cir.hspice lossless_transline.cir.sh DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/lossless_transline.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND XDM_BDL_FOUND AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}XDM/HSPICE/LOSSLESS_TRANSLINE/lossless_transline.cir.sh COMMAND perl -I${XyceRegressionTestScripts} lossless_transline.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} lossless_transline.cir ${OutputDataDir}/XDM/HSPICE/LOSSLESS_TRANSLINE/lossless_transline.cir.prn )

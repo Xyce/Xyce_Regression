@@ -2,21 +2,9 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/memristorTEAM_lp_trap.cir ${CMAKE_CURRENT_BINARY_DIR}/memristorTEAM_lp_trap.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/memristorTEAM_test.cir ${CMAKE_CURRENT_BINARY_DIR}/memristorTEAM_test.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/memristorTEAM_lp_trap.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/memristorTEAM_lp_trap.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  memristorTEAM_lp_trap.cir memristorTEAM_test.cir tags memristorTEAM_lp_trap.cir.sh memristorYakopcic.cir memristorYakopcic.cir.sh memristorPEM1.cir memristorPEM2.cir memristorPEM1wIC.cir fxp_table.csv fxm_table.csv fxp_table.dat fxm_table.dat DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/memristorTEAM_lp_trap.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/memristorYakopcic.cir ${CMAKE_CURRENT_BINARY_DIR}/memristorYakopcic.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/memristorYakopcic.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/memristorYakopcic.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/memristorYakopcic.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/memristorPEM1.cir ${CMAKE_CURRENT_BINARY_DIR}/memristorPEM1.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/memristorPEM2.cir ${CMAKE_CURRENT_BINARY_DIR}/memristorPEM2.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/memristorPEM1wIC.cir ${CMAKE_CURRENT_BINARY_DIR}/memristorPEM1wIC.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/fxp_table.csv ${CMAKE_CURRENT_BINARY_DIR}/fxp_table.csv ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/fxm_table.csv ${CMAKE_CURRENT_BINARY_DIR}/fxm_table.csv ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/fxp_table.dat ${CMAKE_CURRENT_BINARY_DIR}/fxp_table.dat ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/fxm_table.dat ${CMAKE_CURRENT_BINARY_DIR}/fxm_table.dat ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}MEMRISTOR/memristorPEM1.cir COMMAND $<TARGET_FILE:Xyce> memristorPEM1.cir )
   set_property(TEST ${TestNamePrefix}MEMRISTOR/memristorPEM1.cir PROPERTY LABELS "serial;nightly;valgrind;memristor")

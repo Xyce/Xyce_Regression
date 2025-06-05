@@ -2,12 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/break.cir ${CMAKE_CURRENT_BINARY_DIR}/break.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/fastRisePulse.cir ${CMAKE_CURRENT_BINARY_DIR}/fastRisePulse.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/fastTable.cir ${CMAKE_CURRENT_BINARY_DIR}/fastTable.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/fastRisePulse.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/fastRisePulse.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/fastTable.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/fastTable.cir.tags ONLY_IF_DIFFERENT)
+file(COPY  break.cir fastRisePulse.cir fastTable.cir tags fastRisePulse.cir.tags fastTable.cir.tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}ABM_BREAK/break.cir COMMAND $<TARGET_FILE:Xyce> break.cir )
   set_property(TEST ${TestNamePrefix}ABM_BREAK/break.cir PROPERTY LABELS "serial;nightly;valgrind;bsrc;expression;resistor;transient;vpulse;table;conditionalexpr;expression_breakpoints")

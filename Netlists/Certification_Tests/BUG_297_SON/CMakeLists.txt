@@ -2,12 +2,8 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_297.cir ${CMAKE_CURRENT_BINARY_DIR}/bug_297.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/modelcard.mod ${CMAKE_CURRENT_BINARY_DIR}/modelcard.mod ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_297.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/bug_297.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  bug_297.cir modelcard.mod tags bug_297.cir.sh options DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug_297.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/options ${CMAKE_CURRENT_BINARY_DIR}/options ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_297_SON/bug_297.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_297.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug_297.cir ${OutputDataDir}/Certification_Tests/BUG_297_SON/bug_297.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_297_SON/bug_297.cir.sh PROPERTY LABELS "serial;nightly;parallel;errorexit")

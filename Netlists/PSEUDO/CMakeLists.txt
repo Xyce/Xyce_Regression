@@ -2,12 +2,8 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/nonpseudo.cir ${CMAKE_CURRENT_BINARY_DIR}/nonpseudo.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/pseudo.cir ${CMAKE_CURRENT_BINARY_DIR}/pseudo.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/pseudo.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/pseudo.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  exclude nonpseudo.cir pseudo.cir pseudo.cir.sh tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/pseudo.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND BASH_FOUND )
   add_test(NAME ${TestNamePrefix}PSEUDO/pseudo.cir.sh COMMAND bash pseudo.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} pseudo.cir ${OutputDataDir}/PSEUDO/pseudo.cir.prn )
   set_property(TEST ${TestNamePrefix}PSEUDO/pseudo.cir.sh PROPERTY LABELS "serial;nightly;parallel;bjtlev1;homotopy")

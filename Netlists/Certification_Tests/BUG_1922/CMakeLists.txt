@@ -2,12 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug1922.cir ${CMAKE_CURRENT_BINARY_DIR}/bug1922.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/pspice_netlist.cir ${CMAKE_CURRENT_BINARY_DIR}/pspice_netlist.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/pspice_netlist.cir.prn ${CMAKE_CURRENT_BINARY_DIR}/pspice_netlist.cir.prn ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/pspice_netlist.csd ${CMAKE_CURRENT_BINARY_DIR}/pspice_netlist.csd ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  bug1922.cir exclude pspice_netlist.cir pspice_netlist.cir.prn pspice_netlist.csd tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1922/bug1922.cir COMMAND $<TARGET_FILE:Xyce> bug1922.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1922/bug1922.cir PROPERTY LABELS "serial;nightly;inductor;mutualinductor")

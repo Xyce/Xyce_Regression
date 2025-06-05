@@ -2,8 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ibis.cir ${CMAKE_CURRENT_BINARY_DIR}/ibis.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/at16245.ibs ${CMAKE_CURRENT_BINARY_DIR}/at16245.ibs ONLY_IF_DIFFERENT)
+file(COPY  ibis.cir at16245.ibs DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}IBIS/ibis.cir COMMAND $<TARGET_FILE:Xyce> ibis.cir )
   set_property(TEST ${TestNamePrefix}IBIS/ibis.cir PROPERTY LABELS "ibis;nightly;serial;parallel")

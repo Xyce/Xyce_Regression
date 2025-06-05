@@ -2,15 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/gp2.cir ${CMAKE_CURRENT_BINARY_DIR}/gp2.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/gp2.cir.res.gs ${CMAKE_CURRENT_BINARY_DIR}/gp2.cir.res.gs ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/gp3.cir ${CMAKE_CURRENT_BINARY_DIR}/gp3.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/gp3.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/gp3.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/gp_func.cir ${CMAKE_CURRENT_BINARY_DIR}/gp_func.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/gp_func.cir.res.gs ${CMAKE_CURRENT_BINARY_DIR}/gp_func.cir.res.gs ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/gp_loca.cir ${CMAKE_CURRENT_BINARY_DIR}/gp_loca.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/gp_loca.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/gp_loca.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  gp2.cir gp2.cir.res.gs gp3.cir gp3.cir.tags gp_func.cir gp_func.cir.res.gs gp_loca.cir gp_loca.cir.tags tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}GLOBALPAR/gp2.cir COMMAND $<TARGET_FILE:Xyce> gp2.cir )
   set_property(TEST ${TestNamePrefix}GLOBALPAR/gp2.cir PROPERTY LABELS "serial;nightly;parallel;valgrind;step")

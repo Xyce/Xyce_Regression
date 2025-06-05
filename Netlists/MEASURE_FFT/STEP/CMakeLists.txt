@@ -2,11 +2,8 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/AllMeasures.cir ${CMAKE_CURRENT_BINARY_DIR}/AllMeasures.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/AllMeasures.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/AllMeasures.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  AllMeasures.cir AllMeasures.cir.sh AllMeasures.s0.cir AllMeasures.s1.cir DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/AllMeasures.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/AllMeasures.s0.cir ${CMAKE_CURRENT_BINARY_DIR}/AllMeasures.s0.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/AllMeasures.s1.cir ${CMAKE_CURRENT_BINARY_DIR}/AllMeasures.s1.cir ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND Xyce_USE_FFT AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}MEASURE_FFT/STEP/AllMeasures.cir.sh COMMAND perl -I${XyceRegressionTestScripts} AllMeasures.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} AllMeasures.cir ${OutputDataDir}/MEASURE_FFT/STEP/AllMeasures.cir.prn )
   set_property(TEST ${TestNamePrefix}MEASURE_FFT/STEP/AllMeasures.cir.sh PROPERTY LABELS "nightly;serial;parallel;measure;step;valgrind;required:fft")

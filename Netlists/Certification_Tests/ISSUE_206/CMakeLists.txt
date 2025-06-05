@@ -2,12 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/issue206.cir ${CMAKE_CURRENT_BINARY_DIR}/issue206.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/issue206binning1.cir ${CMAKE_CURRENT_BINARY_DIR}/issue206binning1.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/issue206binning2.cir ${CMAKE_CURRENT_BINARY_DIR}/issue206binning2.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/issue206binning1.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/issue206binning1.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/issue206binning2.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/issue206binning2.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  issue206.cir issue206binning1.cir issue206binning2.cir issue206binning1.cir.tags issue206binning2.cir.tags tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}Certification_Tests/ISSUE_206/issue206.cir COMMAND $<TARGET_FILE:Xyce> issue206.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/ISSUE_206/issue206.cir PROPERTY LABELS "serial;nightly;issue206;resistor")

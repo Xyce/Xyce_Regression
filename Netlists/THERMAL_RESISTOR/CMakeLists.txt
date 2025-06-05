@@ -2,11 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/constant.cir ${CMAKE_CURRENT_BINARY_DIR}/constant.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/copper.constant ${CMAKE_CURRENT_BINARY_DIR}/copper.constant ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/copper.linear ${CMAKE_CURRENT_BINARY_DIR}/copper.linear ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/linear.cir ${CMAKE_CURRENT_BINARY_DIR}/linear.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  constant.cir copper.constant copper.linear linear.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}THERMAL_RESISTOR/constant.cir COMMAND $<TARGET_FILE:Xyce> constant.cir )
   set_property(TEST ${TestNamePrefix}THERMAL_RESISTOR/constant.cir PROPERTY LABELS "serial;nightly;parallel;valgrind;thermalresistor;resistor")

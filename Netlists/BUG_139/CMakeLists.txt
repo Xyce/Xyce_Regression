@@ -2,9 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/README ${CMAKE_CURRENT_BINARY_DIR}/README ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/in_line_comment.cir ${CMAKE_CURRENT_BINARY_DIR}/in_line_comment.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  README in_line_comment.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}BUG_139/in_line_comment.cir COMMAND $<TARGET_FILE:Xyce> in_line_comment.cir )
   set_property(TEST ${TestNamePrefix}BUG_139/in_line_comment.cir PROPERTY LABELS "serial;nightly;valgrind")

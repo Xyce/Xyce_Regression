@@ -2,9 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/issue340.cir ${CMAKE_CURRENT_BINARY_DIR}/issue340.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/table.txt ${CMAKE_CURRENT_BINARY_DIR}/table.txt ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  issue340.cir table.txt tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}Certification_Tests/ISSUE_340/issue340.cir COMMAND $<TARGET_FILE:Xyce> issue340.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/ISSUE_340/issue340.cir PROPERTY LABELS "serial;nightly;issue340;expression;conditionalexpr;resistor;transient;abm;expression_breakpoints")

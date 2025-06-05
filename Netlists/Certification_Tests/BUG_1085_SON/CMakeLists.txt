@@ -2,12 +2,8 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug1085son.cir ${CMAKE_CURRENT_BINARY_DIR}/bug1085son.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug1085son.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/bug1085son.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  bug1085son.cir bug1085son.cir.sh bug1085sonRef.cir exclude tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug1085son.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug1085sonRef.cir ${CMAKE_CURRENT_BINARY_DIR}/bug1085sonRef.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1085_SON/bug1085son.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug1085son.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug1085son.cir ${OutputDataDir}/Certification_Tests/BUG_1085_SON/bug1085son.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1085_SON/bug1085son.cir.sh PROPERTY LABELS "serial;parallel;nightly;bug1085son")

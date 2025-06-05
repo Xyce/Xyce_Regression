@@ -2,12 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/patfile ${CMAKE_CURRENT_BINARY_DIR}/patfile ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/testjac_comp.cir ${CMAKE_CURRENT_BINARY_DIR}/testjac_comp.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/testjac_comp.cir.gold_output ${CMAKE_CURRENT_BINARY_DIR}/testjac_comp.cir.gold_output ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/testjac_comp.cir.patfile ${CMAKE_CURRENT_BINARY_DIR}/testjac_comp.cir.patfile ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/testjac_comp.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/testjac_comp.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  patfile tags testjac_comp.cir testjac_comp.cir.gold_output testjac_comp.cir.patfile testjac_comp.cir.sh DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/testjac_comp.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}TESTJAC/testjac_comp.cir.sh COMMAND perl -I${XyceRegressionTestScripts} testjac_comp.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} testjac_comp.cir ${OutputDataDir}/TESTJAC/testjac_comp.cir.prn )

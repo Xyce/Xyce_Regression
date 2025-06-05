@@ -2,8 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/test2.cir ${CMAKE_CURRENT_BINARY_DIR}/test2.cir ONLY_IF_DIFFERENT)
+file(COPY  tags test2.cir DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}TEST2/test2.cir COMMAND $<TARGET_FILE:Xyce> test2.cir )
   set_property(TEST ${TestNamePrefix}TEST2/test2.cir PROPERTY LABELS "serial;nightly;bsim3;valgrind")

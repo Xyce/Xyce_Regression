@@ -2,15 +2,9 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/largeRCladder.cir ${CMAKE_CURRENT_BINARY_DIR}/largeRCladder.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/largeRCladder.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/largeRCladder.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  largeRCladder.cir largeRCladder.cir.sh largeRCladder.cir.tags largeRCladder_belos.cir largeRCladder_belos.cir.sh largeRCladder_belos.cir.tags tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/largeRCladder.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/largeRCladder.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/largeRCladder.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/largeRCladder_belos.cir ${CMAKE_CURRENT_BINARY_DIR}/largeRCladder_belos.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/largeRCladder_belos.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/largeRCladder_belos.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/largeRCladder_belos.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/largeRCladder_belos.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/largeRCladder_belos.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND Xyce_USE_FFT AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1902/largeRCladder.cir.sh COMMAND perl -I${XyceRegressionTestScripts} largeRCladder.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} largeRCladder.cir ${OutputDataDir}/Certification_Tests/BUG_1902/largeRCladder.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1902/largeRCladder.cir.sh PROPERTY LABELS "serial;nightly;hb;required:fft")

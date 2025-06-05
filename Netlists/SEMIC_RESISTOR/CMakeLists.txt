@@ -2,12 +2,8 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/semic_resistor.cir ${CMAKE_CURRENT_BINARY_DIR}/semic_resistor.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/semic_resistor_step.cir ${CMAKE_CURRENT_BINARY_DIR}/semic_resistor_step.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/semic_resistor_step.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/semic_resistor_step.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  semic_resistor.cir semic_resistor_step.cir semic_resistor_step.cir.sh semic_resistor_step.cir.tags tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/semic_resistor_step.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/semic_resistor_step.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/semic_resistor_step.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}SEMIC_RESISTOR/semic_resistor.cir COMMAND $<TARGET_FILE:Xyce> semic_resistor.cir )
   set_property(TEST ${TestNamePrefix}SEMIC_RESISTOR/semic_resistor.cir PROPERTY LABELS "serial;nightly;valgrind;resistor;semicresistor")

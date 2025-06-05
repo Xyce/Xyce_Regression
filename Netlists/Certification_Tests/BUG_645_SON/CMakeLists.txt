@@ -2,21 +2,10 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug645son_Param.cir ${CMAKE_CURRENT_BINARY_DIR}/bug645son_Param.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug645son_Param.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/bug645son_Param.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  exclude bug645son_Param.cir bug645son_Param.cir.sh bug645son_ParamGold.cir bug645son_Func.cir bug645son_Func.cir.sh bug645son_FuncGold.cir bug645son_Global.cir bug645son_GlobalGold.cir bug645son_Global.cir.sh bug645son_GlobalStep.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug645son_Param.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug645son_ParamGold.cir ${CMAKE_CURRENT_BINARY_DIR}/bug645son_ParamGold.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug645son_Func.cir ${CMAKE_CURRENT_BINARY_DIR}/bug645son_Func.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug645son_Func.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/bug645son_Func.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug645son_Func.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug645son_FuncGold.cir ${CMAKE_CURRENT_BINARY_DIR}/bug645son_FuncGold.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug645son_Global.cir ${CMAKE_CURRENT_BINARY_DIR}/bug645son_Global.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug645son_GlobalGold.cir ${CMAKE_CURRENT_BINARY_DIR}/bug645son_GlobalGold.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug645son_Global.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/bug645son_Global.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug645son_Global.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug645son_GlobalStep.cir ${CMAKE_CURRENT_BINARY_DIR}/bug645son_GlobalStep.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_645_SON/bug645son_Func.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug645son_Func.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug645son_Func.cir ${OutputDataDir}/Certification_Tests/BUG_645_SON/bug645son_Func.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_645_SON/bug645son_Func.cir.sh PROPERTY LABELS "serial;parallel;nightly;sens;bug645son;resistor")

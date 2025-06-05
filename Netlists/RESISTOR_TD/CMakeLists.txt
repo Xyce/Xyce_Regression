@@ -2,13 +2,8 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/temp_dep.cir ${CMAKE_CURRENT_BINARY_DIR}/temp_dep.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/temp_dep_2.cir ${CMAKE_CURRENT_BINARY_DIR}/temp_dep_2.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exp_temp_dep.cir ${CMAKE_CURRENT_BINARY_DIR}/exp_temp_dep.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exp_temp_dep.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/exp_temp_dep.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  tags temp_dep.cir temp_dep_2.cir exp_temp_dep.cir exp_temp_dep.cir.sh exp_temp_dep.cir.tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/exp_temp_dep.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exp_temp_dep.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/exp_temp_dep.cir.tags ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}RESISTOR_TD/exp_temp_dep.cir.sh COMMAND perl -I${XyceRegressionTestScripts} exp_temp_dep.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} exp_temp_dep.cir ${OutputDataDir}/RESISTOR_TD/exp_temp_dep.cir.prn )
   set_property(TEST ${TestNamePrefix}RESISTOR_TD/exp_temp_dep.cir.sh PROPERTY LABELS "serial;nightly;resistor;thermalresistor;semicresistor;tce")

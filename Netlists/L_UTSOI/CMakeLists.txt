@@ -2,15 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/asym_nmos_idvg0_allsw0_T27.cir ${CMAKE_CURRENT_BINARY_DIR}/asym_nmos_idvg0_allsw0_T27.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/asym_nmos_idvg0_allsw0_T27.cir.res.gs ${CMAKE_CURRENT_BINARY_DIR}/asym_nmos_idvg0_allsw0_T27.cir.res.gs ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/asym_pmos_idvg0_allsw0_T27.cir ${CMAKE_CURRENT_BINARY_DIR}/asym_pmos_idvg0_allsw0_T27.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/asym_pmos_idvg0_allsw0_T27.cir.res.gs ${CMAKE_CURRENT_BINARY_DIR}/asym_pmos_idvg0_allsw0_T27.cir.res.gs ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/sym_nmos_idvg0_allsw0_T27.cir ${CMAKE_CURRENT_BINARY_DIR}/sym_nmos_idvg0_allsw0_T27.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/sym_nmos_idvg0_allsw0_T27.cir.res.gs ${CMAKE_CURRENT_BINARY_DIR}/sym_nmos_idvg0_allsw0_T27.cir.res.gs ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/sym_pmos_idvg0_allsw0_T27.cir ${CMAKE_CURRENT_BINARY_DIR}/sym_pmos_idvg0_allsw0_T27.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/sym_pmos_idvg0_allsw0_T27.cir.res.gs ${CMAKE_CURRENT_BINARY_DIR}/sym_pmos_idvg0_allsw0_T27.cir.res.gs ONLY_IF_DIFFERENT)
+file(COPY  asym_nmos_idvg0_allsw0_T27.cir asym_nmos_idvg0_allsw0_T27.cir.res.gs asym_pmos_idvg0_allsw0_T27.cir asym_pmos_idvg0_allsw0_T27.cir.res.gs sym_nmos_idvg0_allsw0_T27.cir sym_nmos_idvg0_allsw0_T27.cir.res.gs tags sym_pmos_idvg0_allsw0_T27.cir sym_pmos_idvg0_allsw0_T27.cir.res.gs DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}L_UTSOI/asym_nmos_idvg0_allsw0_T27.cir COMMAND $<TARGET_FILE:Xyce> asym_nmos_idvg0_allsw0_T27.cir )
   set_property(TEST ${TestNamePrefix}L_UTSOI/asym_nmos_idvg0_allsw0_T27.cir PROPERTY LABELS "serial;parallel;nightly;lutsoi")

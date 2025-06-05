@@ -2,16 +2,9 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/issue609.cir ${CMAKE_CURRENT_BINARY_DIR}/issue609.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/issue609.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/issue609.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  issue609.cir issue609.cir.sh issue609.cir.tags issue609Ref.cir issue609_devbal.cir issue609_devbal.cir.sh issue609_devbal.cir.tags issue609_devbalRef.cir DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/issue609.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/issue609.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/issue609.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/issue609Ref.cir ${CMAKE_CURRENT_BINARY_DIR}/issue609Ref.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/issue609_devbal.cir ${CMAKE_CURRENT_BINARY_DIR}/issue609_devbal.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/issue609_devbal.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/issue609_devbal.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/issue609_devbal.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/issue609_devbal.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/issue609_devbal.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/issue609_devbalRef.cir ${CMAKE_CURRENT_BINARY_DIR}/issue609_devbalRef.cir ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/ISSUE_609/issue609.cir.sh COMMAND perl -I${XyceRegressionTestScripts} issue609.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} issue609.cir ${OutputDataDir}/Certification_Tests/ISSUE_609/issue609.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/ISSUE_609/issue609.cir.sh PROPERTY LABELS "serial;parallel;nightly;bsim4;resistor;expression;issue609")

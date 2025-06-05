@@ -2,21 +2,9 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/supernode1.cir ${CMAKE_CURRENT_BINARY_DIR}/supernode1.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/supernode1.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/supernode1.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  exclude supernode1.cir supernode1.cir.sh supernode1a.cir supernode1b.cir supernode2.cir supernode3.cir supernode4.cir supernode5.cir supernode5.cir.tags supernode6.cir supernode6.cir.sh tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/supernode1.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/supernode1a.cir ${CMAKE_CURRENT_BINARY_DIR}/supernode1a.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/supernode1b.cir ${CMAKE_CURRENT_BINARY_DIR}/supernode1b.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/supernode2.cir ${CMAKE_CURRENT_BINARY_DIR}/supernode2.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/supernode3.cir ${CMAKE_CURRENT_BINARY_DIR}/supernode3.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/supernode4.cir ${CMAKE_CURRENT_BINARY_DIR}/supernode4.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/supernode5.cir ${CMAKE_CURRENT_BINARY_DIR}/supernode5.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/supernode5.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/supernode5.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/supernode6.cir ${CMAKE_CURRENT_BINARY_DIR}/supernode6.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/supernode6.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/supernode6.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/supernode6.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}SUPERNODE/supernode1.cir.sh COMMAND perl -I${XyceRegressionTestScripts} supernode1.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} supernode1.cir ${OutputDataDir}/SUPERNODE/supernode1.cir.prn )
   set_property(TEST ${TestNamePrefix}SUPERNODE/supernode1.cir.sh PROPERTY LABELS "serial;nightly;valgrind")

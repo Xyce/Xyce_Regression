@@ -2,16 +2,8 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/README ${CMAKE_CURRENT_BINARY_DIR}/README ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lib.h ${CMAKE_CURRENT_BINARY_DIR}/lib.h ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/nmos_3_2.mod ${CMAKE_CURRENT_BINARY_DIR}/nmos_3_2.mod ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/pmos_3_2.mod ${CMAKE_CURRENT_BINARY_DIR}/pmos_3_2.mod ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ring51.cir ${CMAKE_CURRENT_BINARY_DIR}/ring51.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ring51.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/ring51.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  README exclude lib.h nmos_3_2.mod pmos_3_2.mod ring51.cir ring51.cir.sh ring51_loca.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/ring51.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ring51_loca.cir ${CMAKE_CURRENT_BINARY_DIR}/ring51_loca.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_822/ring51.cir.sh COMMAND perl -I${XyceRegressionTestScripts} ring51.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} ring51.cir ${OutputDataDir}/Certification_Tests/BUG_822/ring51.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_822/ring51.cir.sh PROPERTY LABELS "serial;nightly;parallel;homotopy")

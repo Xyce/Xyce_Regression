@@ -2,13 +2,9 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug927-prn.cir ${CMAKE_CURRENT_BINARY_DIR}/bug927-prn.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug927-prn.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/bug927-prn.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  bug927-prn.cir bug927-prn.cir.sh bug927-op-raw.cir bug927-op-raw.cir.sh bug927-op-raw.cir.tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug927-prn.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug927-op-raw.cir ${CMAKE_CURRENT_BINARY_DIR}/bug927-op-raw.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug927-op-raw.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/bug927-op-raw.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug927-op-raw.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug927-op-raw.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/bug927-op-raw.cir.tags ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_927_SON/bug927-op-raw.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug927-op-raw.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug927-op-raw.cir ${OutputDataDir}/Certification_Tests/BUG_927_SON/bug927-op-raw.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_927_SON/bug927-op-raw.cir.sh PROPERTY LABELS "serial;nightly;noise;output;adms;hicum")

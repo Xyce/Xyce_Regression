@@ -2,19 +2,9 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ic_cap0.cir ${CMAKE_CURRENT_BINARY_DIR}/ic_cap0.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ic_cap1.cir ${CMAKE_CURRENT_BINARY_DIR}/ic_cap1.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ic_cap2.cir ${CMAKE_CURRENT_BINARY_DIR}/ic_cap2.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ic_cap_step.cir ${CMAKE_CURRENT_BINARY_DIR}/ic_cap_step.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ic_cap_step.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/ic_cap_step.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  ic_cap0.cir ic_cap1.cir ic_cap2.cir ic_cap_step.cir ic_cap_step.cir.sh vbicNand0.cir vbicNand1.cir vbicNandStep.cir vbicNandStep.cir.tags vbicNandStep.cir.sh tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/ic_cap_step.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/vbicNand0.cir ${CMAKE_CURRENT_BINARY_DIR}/vbicNand0.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/vbicNand1.cir ${CMAKE_CURRENT_BINARY_DIR}/vbicNand1.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/vbicNandStep.cir ${CMAKE_CURRENT_BINARY_DIR}/vbicNandStep.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/vbicNandStep.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/vbicNandStep.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/vbicNandStep.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/vbicNandStep.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/vbicNandStep.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1007_SON/ic_cap_step.cir.sh COMMAND perl -I${XyceRegressionTestScripts} ic_cap_step.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} ic_cap_step.cir ${OutputDataDir}/Certification_Tests/BUG_1007_SON/ic_cap_step.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1007_SON/ic_cap_step.cir.sh PROPERTY LABELS "serial;nightly;parallel;bug1007son;step")

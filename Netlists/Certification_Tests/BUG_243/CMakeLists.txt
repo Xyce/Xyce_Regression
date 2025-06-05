@@ -2,9 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/README ${CMAKE_CURRENT_BINARY_DIR}/README ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_243_mpi.cir ${CMAKE_CURRENT_BINARY_DIR}/bug_243_mpi.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  README bug_243_mpi.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( Xyce_PARALLEL_MPI  )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_243/bug_243_mpi.cir COMMAND mpiexec -bind-to none -np 2 $<TARGET_FILE:Xyce> bug_243_mpi.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_243/bug_243_mpi.cir PROPERTY LABELS "parallel;nightly;mos1")
