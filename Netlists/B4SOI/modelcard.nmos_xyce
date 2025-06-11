@@ -1,6 +1,6 @@
 * BSIMSOI4.7.0 beta example modelcard
 
-.model nmos1 nmos level=70 version=4.7
+.model nmos1 nmos level=70470 version=4.7
 + type=1
 + binunit=1
 + mobmod=1
