@@ -3,6 +3,8 @@
 
 *.option abstol=1e-6 reltol=1e-6 post
 
+
+
 *.hdl "../code/bsimsoi.va"
 .include "modelcard.pmos_xyce"
 .include "modelcard.nmos_xyce"
@@ -18,6 +20,7 @@ mp0 VD Gate Out VS pmos1 W=20u L=0.18u
 
 .tran 0.01n 600ps
 .options device temp=25
+*comp v(out) offset=.2
 .print tran v(gate) v(out)
 .END
 
