@@ -2,15 +2,8 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/abs.cir ${CMAKE_CURRENT_BINARY_DIR}/abs.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_138_1.cir ${CMAKE_CURRENT_BINARY_DIR}/bug_138_1.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_141-empty.cir ${CMAKE_CURRENT_BINARY_DIR}/bug_141-empty.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_141-empty.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/bug_141-empty.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  abs.cir bug_138_1.cir bug_141-empty.cir bug_141-empty.cir.sh dig_count.cir exclude poly.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug_141-empty.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/dig_count.cir ${CMAKE_CURRENT_BINARY_DIR}/dig_count.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/poly.cir ${CMAKE_CURRENT_BINARY_DIR}/poly.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
 if( Xyce_PARALLEL_MPI  AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_141_SON/bug_141-empty.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_141-empty.cir.sh "mpiexec -bind-to none -np 2 $<TARGET_FILE:Xyce>" ${XYCE_VERIFY} ${XYCE_VERIFY} bug_141-empty.cir ${OutputDataDir}/Certification_Tests/BUG_141_SON/bug_141-empty.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_141_SON/bug_141-empty.cir.sh PROPERTY LABELS "nightly;parallel")

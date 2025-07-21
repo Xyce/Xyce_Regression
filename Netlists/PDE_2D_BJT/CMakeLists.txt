@@ -2,15 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/cartbjt.cir ${CMAKE_CURRENT_BINARY_DIR}/cartbjt.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/cartbjt.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/cartbjt.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/cartbjt2.cir ${CMAKE_CURRENT_BINARY_DIR}/cartbjt2.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/cartbjt2.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/cartbjt2.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/cartbjt3.cir ${CMAKE_CURRENT_BINARY_DIR}/cartbjt3.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/cartbjt3.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/cartbjt3.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/invertbjt.cir ${CMAKE_CURRENT_BINARY_DIR}/invertbjt.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/invertbjt.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/invertbjt.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  cartbjt.cir cartbjt.cir.tags cartbjt2.cir cartbjt2.cir.tags cartbjt3.cir cartbjt3.cir.tags invertbjt.cir invertbjt.cir.tags tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}PDE_2D_BJT/cartbjt2.cir COMMAND $<TARGET_FILE:Xyce> cartbjt2.cir )
   set_property(TEST ${TestNamePrefix}PDE_2D_BJT/cartbjt2.cir PROPERTY LABELS "serial;parallel;nightly;pde;homotopy;2d")

@@ -2,9 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/README ${CMAKE_CURRENT_BINARY_DIR}/README ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/inverter_cascade_15.cir ${CMAKE_CURRENT_BINARY_DIR}/inverter_cascade_15.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  README inverter_cascade_15.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}Certification_Tests/MOS1_Invert_Cascade/inverter_cascade_15.cir COMMAND $<TARGET_FILE:Xyce> inverter_cascade_15.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/MOS1_Invert_Cascade/inverter_cascade_15.cir PROPERTY LABELS "serial;nightly;parallel")

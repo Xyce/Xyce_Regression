@@ -2,15 +2,8 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug1299son.cir ${CMAKE_CURRENT_BINARY_DIR}/bug1299son.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug1299son.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/bug1299son.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  bug1299son.cir bug1299son.cir.sh bug1299son_fixedinterval.net bug1299son_fixedinterval_gear.net bug1299son_lastcycle.net bug1299son_lastcycle_fixedinterval.net bug1299son_lastcycle_fixedinterval_gear.net bug1299son_lastcycle_gear.net DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug1299son.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug1299son_fixedinterval.net ${CMAKE_CURRENT_BINARY_DIR}/bug1299son_fixedinterval.net ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug1299son_fixedinterval_gear.net ${CMAKE_CURRENT_BINARY_DIR}/bug1299son_fixedinterval_gear.net ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug1299son_lastcycle.net ${CMAKE_CURRENT_BINARY_DIR}/bug1299son_lastcycle.net ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug1299son_lastcycle_fixedinterval.net ${CMAKE_CURRENT_BINARY_DIR}/bug1299son_lastcycle_fixedinterval.net ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug1299son_lastcycle_fixedinterval_gear.net ${CMAKE_CURRENT_BINARY_DIR}/bug1299son_lastcycle_fixedinterval_gear.net ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug1299son_lastcycle_gear.net ${CMAKE_CURRENT_BINARY_DIR}/bug1299son_lastcycle_gear.net ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1299_SON/bug1299son.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug1299son.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug1299son.cir ${OutputDataDir}/Certification_Tests/BUG_1299_SON/bug1299son.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1299_SON/bug1299son.cir.sh PROPERTY LABELS "serial;parallel;nightly")

@@ -2,15 +2,8 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/baselineLumpedLine.cir ${CMAKE_CURRENT_BINARY_DIR}/baselineLumpedLine.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/cables.lib ${CMAKE_CURRENT_BINARY_DIR}/cables.lib ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lumpedLine.cir ${CMAKE_CURRENT_BINARY_DIR}/lumpedLine.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lumpedLine.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/lumpedLine.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  baselineLumpedLine.cir cables.lib exclude lumpedLine.cir lumpedLine.cir.sh lumpedLine_issue191.cir lumpedLine_issue191.cir.tags tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/lumpedLine.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lumpedLine_issue191.cir ${CMAKE_CURRENT_BINARY_DIR}/lumpedLine_issue191.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lumpedLine_issue191.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/lumpedLine_issue191.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND BASH_FOUND )
   add_test(NAME ${TestNamePrefix}LUMPEDLINE/lumpedLine.cir.sh COMMAND bash lumpedLine.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} lumpedLine.cir ${OutputDataDir}/LUMPEDLINE/lumpedLine.cir.prn )
   set_property(TEST ${TestNamePrefix}LUMPEDLINE/lumpedLine.cir.sh PROPERTY LABELS "nightly;serial;parallel;lumpedline")

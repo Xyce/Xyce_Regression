@@ -2,8 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lcosc.cir ${CMAKE_CURRENT_BINARY_DIR}/lcosc.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  lcosc.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}WAMPDE/OSCILLATOR/lcosc.cir COMMAND $<TARGET_FILE:Xyce> lcosc.cir )
   set_property(TEST ${TestNamePrefix}WAMPDE/OSCILLATOR/lcosc.cir PROPERTY LABELS "serial;parallel;nightly;mpde;wampde;valgrind")

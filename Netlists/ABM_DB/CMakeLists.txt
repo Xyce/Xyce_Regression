@@ -2,9 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/Manifest.txt ${CMAKE_CURRENT_BINARY_DIR}/Manifest.txt ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/dbTest.cir ${CMAKE_CURRENT_BINARY_DIR}/dbTest.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/dbTest.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/dbTest.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  Manifest.txt dbTest.cir dbTest.cir.sh DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/dbTest.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}ABM_DB/dbTest.cir.sh COMMAND perl -I${XyceRegressionTestScripts} dbTest.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} dbTest.cir ${OutputDataDir}/ABM_DB/dbTest.cir.prn )

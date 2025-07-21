@@ -2,13 +2,9 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bjt_ic.cir ${CMAKE_CURRENT_BINARY_DIR}/bjt_ic.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bjt_ic.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/bjt_ic.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  bjt_ic.cir bjt_ic.cir.sh bjt_ic_nonzero.cir bjt_ic_nonzero.cir.sh tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bjt_ic.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bjt_ic_nonzero.cir ${CMAKE_CURRENT_BINARY_DIR}/bjt_ic_nonzero.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bjt_ic_nonzero.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/bjt_ic_nonzero.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bjt_ic_nonzero.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}BJT_IC/bjt_ic.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bjt_ic.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bjt_ic.cir ${OutputDataDir}/BJT_IC/bjt_ic.cir.prn )
   set_property(TEST ${TestNamePrefix}BJT_IC/bjt_ic.cir.sh PROPERTY LABELS "serial;nightly;bjtlev1;resistor;capacitor;dcsweep")

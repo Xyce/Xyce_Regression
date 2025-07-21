@@ -2,8 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/sandler24.cir ${CMAKE_CURRENT_BINARY_DIR}/sandler24.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  sandler24.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}SANDLER24/sandler24.cir COMMAND $<TARGET_FILE:Xyce> sandler24.cir )
   set_property(TEST ${TestNamePrefix}SANDLER24/sandler24.cir PROPERTY LABELS "serial;nightly;parallel;bjtlev1;diode;vccs;valgrind;bsrc")

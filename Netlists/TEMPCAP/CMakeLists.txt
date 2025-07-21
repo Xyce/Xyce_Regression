@@ -2,15 +2,9 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tempcap.cir ${CMAKE_CURRENT_BINARY_DIR}/tempcap.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tempcap.cir.prn.gs.pl ${CMAKE_CURRENT_BINARY_DIR}/tempcap.cir.prn.gs.pl ONLY_IF_DIFFERENT)
+file(COPY  tags tempcap.cir tempcap.cir.prn.gs.pl tempcap_instance.cir tempcap_instance.cir.prn.gs.pl tempcap_instance2.cir tempcap_instance2.cir.prn.gs.pl DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/tempcap.cir.prn.gs.pl PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tempcap_instance.cir ${CMAKE_CURRENT_BINARY_DIR}/tempcap_instance.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tempcap_instance.cir.prn.gs.pl ${CMAKE_CURRENT_BINARY_DIR}/tempcap_instance.cir.prn.gs.pl ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/tempcap_instance.cir.prn.gs.pl PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tempcap_instance2.cir ${CMAKE_CURRENT_BINARY_DIR}/tempcap_instance2.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tempcap_instance2.cir.prn.gs.pl ${CMAKE_CURRENT_BINARY_DIR}/tempcap_instance2.cir.prn.gs.pl ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/tempcap_instance2.cir.prn.gs.pl PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}TEMPCAP/tempcap.cir COMMAND $<TARGET_FILE:Xyce> tempcap.cir )

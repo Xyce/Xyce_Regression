@@ -2,8 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/load.cir ${CMAKE_CURRENT_BINARY_DIR}/load.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  load.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}LOAD/load.cir COMMAND $<TARGET_FILE:Xyce> load.cir )
   set_property(TEST ${TestNamePrefix}LOAD/load.cir PROPERTY LABELS "serial;nightly;parallel;bjt;bjtlev1;diode;inductor;capacitor;resistor")

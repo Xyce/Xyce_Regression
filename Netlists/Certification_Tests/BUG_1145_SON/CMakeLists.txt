@@ -2,12 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lotka_volterra.cir ${CMAKE_CURRENT_BINARY_DIR}/lotka_volterra.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lotka_volterra.cir.res.gs ${CMAKE_CURRENT_BINARY_DIR}/lotka_volterra.cir.res.gs ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lotka_volterra.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/lotka_volterra.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tranRc.cir ${CMAKE_CURRENT_BINARY_DIR}/tranRc.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tranRc.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/tranRc.cir.tags ONLY_IF_DIFFERENT)
+file(COPY  lotka_volterra.cir lotka_volterra.cir.res.gs lotka_volterra.cir.tags tags tranRc.cir tranRc.cir.tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1145_SON/lotka_volterra.cir COMMAND $<TARGET_FILE:Xyce> lotka_volterra.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1145_SON/lotka_volterra.cir PROPERTY LABELS "nightly;serial;parallel;bug1145son;ic;notmorethan4procs")

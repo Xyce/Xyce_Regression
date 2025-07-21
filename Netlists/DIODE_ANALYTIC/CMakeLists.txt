@@ -2,22 +2,13 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/breakdown_model.cir ${CMAKE_CURRENT_BINARY_DIR}/breakdown_model.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/breakdown_model.cir.gs.pl ${CMAKE_CURRENT_BINARY_DIR}/breakdown_model.cir.gs.pl ONLY_IF_DIFFERENT)
+file(COPY  breakdown_model.cir breakdown_model.cir.gs.pl breakdown_model.cir.sh forward_model.cir forward_model.cir.gs.pl forward_model.cir.sh reverse_model.cir reverse_model.cir.gs.pl reverse_model.cir.sh tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/breakdown_model.cir.gs.pl PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/breakdown_model.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/breakdown_model.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/breakdown_model.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/forward_model.cir ${CMAKE_CURRENT_BINARY_DIR}/forward_model.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/forward_model.cir.gs.pl ${CMAKE_CURRENT_BINARY_DIR}/forward_model.cir.gs.pl ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/forward_model.cir.gs.pl PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/forward_model.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/forward_model.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/forward_model.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/reverse_model.cir ${CMAKE_CURRENT_BINARY_DIR}/reverse_model.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/reverse_model.cir.gs.pl ${CMAKE_CURRENT_BINARY_DIR}/reverse_model.cir.gs.pl ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/reverse_model.cir.gs.pl PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/reverse_model.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/reverse_model.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/reverse_model.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND BASH_FOUND )
   add_test(NAME ${TestNamePrefix}DIODE_ANALYTIC/breakdown_model.cir.sh COMMAND bash breakdown_model.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} breakdown_model.cir ${OutputDataDir}/DIODE_ANALYTIC/breakdown_model.cir.prn )
   set_property(TEST ${TestNamePrefix}DIODE_ANALYTIC/breakdown_model.cir.sh PROPERTY LABELS "analytic;serial;parallel;valgrind;nightly;diode;capacitor")

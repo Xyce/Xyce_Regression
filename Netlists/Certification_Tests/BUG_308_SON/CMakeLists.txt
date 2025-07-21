@@ -2,12 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/comparator.cir ${CMAKE_CURRENT_BINARY_DIR}/comparator.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/comparator0.cir ${CMAKE_CURRENT_BINARY_DIR}/comparator0.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/comparator3.cir ${CMAKE_CURRENT_BINARY_DIR}/comparator3.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/comparator3.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/comparator3.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  comparator.cir comparator0.cir comparator3.cir exclude tags comparator3.cir.sh DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/comparator3.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_308_SON/comparator3.cir.sh COMMAND perl -I${XyceRegressionTestScripts} comparator3.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} comparator3.cir ${OutputDataDir}/Certification_Tests/BUG_308_SON/comparator3.cir.prn )

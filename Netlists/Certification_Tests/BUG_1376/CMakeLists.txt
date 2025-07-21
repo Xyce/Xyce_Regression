@@ -2,14 +2,8 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/README ${CMAKE_CURRENT_BINARY_DIR}/README ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_1376.cir ${CMAKE_CURRENT_BINARY_DIR}/bug_1376.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_1376.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/bug_1376.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  README bug_1376.cir bug_1376.cir.sh exclude lower_case.cir tags upper_case.cir DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug_1376.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lower_case.cir ${CMAKE_CURRENT_BINARY_DIR}/lower_case.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/upper_case.cir ${CMAKE_CURRENT_BINARY_DIR}/upper_case.cir ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1376/bug_1376.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_1376.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug_1376.cir ${OutputDataDir}/Certification_Tests/BUG_1376/bug_1376.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1376/bug_1376.cir.sh PROPERTY LABELS "nightly;serial;bug1376son;bsrc")

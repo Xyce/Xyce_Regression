@@ -2,20 +2,8 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ampSens.cir ${CMAKE_CURRENT_BINARY_DIR}/ampSens.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/amplifier.cir ${CMAKE_CURRENT_BINARY_DIR}/amplifier.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/dc-rol.cir ${CMAKE_CURRENT_BINARY_DIR}/dc-rol.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/diode_forTimurROL.cir ${CMAKE_CURRENT_BINARY_DIR}/diode_forTimurROL.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/diode_forTimurROL.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/diode_forTimurROL.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  ampSens.cir amplifier.cir dc-rol.cir diode_forTimurROL.cir diode_forTimurROL.cir.sh diode_forTimurROL.param diode_forTimurROL.cir.tags input.xml measurementsDC.dat parameters.txt tags uncertain_parameters.txt vbic.cir DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/diode_forTimurROL.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/diode_forTimurROL.param ${CMAKE_CURRENT_BINARY_DIR}/diode_forTimurROL.param ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/diode_forTimurROL.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/diode_forTimurROL.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/input.xml ${CMAKE_CURRENT_BINARY_DIR}/input.xml ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/measurementsDC.dat ${CMAKE_CURRENT_BINARY_DIR}/measurementsDC.dat ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/parameters.txt ${CMAKE_CURRENT_BINARY_DIR}/parameters.txt ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/uncertain_parameters.txt ${CMAKE_CURRENT_BINARY_DIR}/uncertain_parameters.txt ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/vbic.cir ${CMAKE_CURRENT_BINARY_DIR}/vbic.cir ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND Xyce_ROL AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}ROL/diode_forTimurROL.cir.sh COMMAND perl -I${XyceRegressionTestScripts} diode_forTimurROL.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} diode_forTimurROL.cir ${OutputDataDir}/ROL/diode_forTimurROL.cir.prn )
   set_property(TEST ${TestNamePrefix}ROL/diode_forTimurROL.cir.sh PROPERTY LABELS "serial;nightly;required:rol")

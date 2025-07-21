@@ -2,15 +2,8 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/voltDepCap.cir ${CMAKE_CURRENT_BINARY_DIR}/voltDepCap.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/voltDepCap.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/voltDepCap.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  exclude tags voltDepCap.cir voltDepCap.cir.sh voltDepCap_baseline.cir voltDepCap_test.cir voltDepCharge_test.cir ageTempDep.cir DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/voltDepCap.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/voltDepCap_baseline.cir ${CMAKE_CURRENT_BINARY_DIR}/voltDepCap_baseline.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/voltDepCap_test.cir ${CMAKE_CURRENT_BINARY_DIR}/voltDepCap_test.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/voltDepCharge_test.cir ${CMAKE_CURRENT_BINARY_DIR}/voltDepCharge_test.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ageTempDep.cir ${CMAKE_CURRENT_BINARY_DIR}/ageTempDep.cir ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}SOLN_DEP_CAP/ageTempDep.cir COMMAND $<TARGET_FILE:Xyce> ageTempDep.cir )
   set_property(TEST ${TestNamePrefix}SOLN_DEP_CAP/ageTempDep.cir PROPERTY LABELS "parallel;serial;nightly;expression;bsrc;subckt;voltdepcap;capacitor")

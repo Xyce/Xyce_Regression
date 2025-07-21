@@ -2,9 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/nonzeroInitialValue.cir ${CMAKE_CURRENT_BINARY_DIR}/nonzeroInitialValue.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/sdtWithFunc.cir ${CMAKE_CURRENT_BINARY_DIR}/sdtWithFunc.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  nonzeroInitialValue.cir sdtWithFunc.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_963_SON/nonzeroInitialValue.cir COMMAND $<TARGET_FILE:Xyce> nonzeroInitialValue.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_963_SON/nonzeroInitialValue.cir PROPERTY LABELS "nightly;serial;sdt;bug963son;analytic")

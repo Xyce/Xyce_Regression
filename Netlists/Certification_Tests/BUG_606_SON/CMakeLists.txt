@@ -2,16 +2,8 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug606son.cir ${CMAKE_CURRENT_BINARY_DIR}/bug606son.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug606son.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/bug606son.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  bug606son.cir bug606son.cir.sh global_params.cir global_params_dev_options.cir global_params_step.cir global_params_step.cir.res.gs resistor.cir resistor.cir.res.gs tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug606son.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/global_params.cir ${CMAKE_CURRENT_BINARY_DIR}/global_params.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/global_params_dev_options.cir ${CMAKE_CURRENT_BINARY_DIR}/global_params_dev_options.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/global_params_step.cir ${CMAKE_CURRENT_BINARY_DIR}/global_params_step.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/global_params_step.cir.res.gs ${CMAKE_CURRENT_BINARY_DIR}/global_params_step.cir.res.gs ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/resistor.cir ${CMAKE_CURRENT_BINARY_DIR}/resistor.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/resistor.cir.res.gs ${CMAKE_CURRENT_BINARY_DIR}/resistor.cir.res.gs ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_606_SON/bug606son.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug606son.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug606son.cir ${OutputDataDir}/Certification_Tests/BUG_606_SON/bug606son.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_606_SON/bug606son.cir.sh PROPERTY LABELS "serial;nightly;parallel;bug606son")

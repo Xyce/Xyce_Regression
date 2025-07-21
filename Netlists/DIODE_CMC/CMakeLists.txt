@@ -2,16 +2,9 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/DiodeClipper.cir ${CMAKE_CURRENT_BINARY_DIR}/DiodeClipper.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/DiodeClipper_DC.cir ${CMAKE_CURRENT_BINARY_DIR}/DiodeClipper_DC.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/DiodeClipper_AC.cir ${CMAKE_CURRENT_BINARY_DIR}/DiodeClipper_AC.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/DiodeClipper_AC.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/DiodeClipper_AC.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  DiodeClipper.cir DiodeClipper_DC.cir DiodeClipper_AC.cir DiodeClipper_AC.cir.sh DiodeClipper_noise.cir DiodeClipper_noise.cir.sh DiodeClipper_noise.cir.tags tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/DiodeClipper_AC.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/DiodeClipper_noise.cir ${CMAKE_CURRENT_BINARY_DIR}/DiodeClipper_noise.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/DiodeClipper_noise.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/DiodeClipper_noise.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/DiodeClipper_noise.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/DiodeClipper_noise.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/DiodeClipper_noise.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}DIODE_CMC/DiodeClipper.cir COMMAND $<TARGET_FILE:Xyce> DiodeClipper.cir )
   set_property(TEST ${TestNamePrefix}DIODE_CMC/DiodeClipper.cir PROPERTY LABELS "serial;parallel;nightly;adms;diodecmc")

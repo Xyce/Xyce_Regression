@@ -24,6 +24,8 @@ ac-step-probe.cir.sh
 ac-step-probe.cir.tags
 ac-step-raw-override-ascii.cir
 ac-step-raw-override-ascii.cir.sh
+ac-step-raw-override-ascii2.cir
+ac-step-raw-override-ascii2.cir.sh
 ac-step-raw-override.cir
 ac-step-raw-override.cir.sh
 ac-step-tecplot.cir

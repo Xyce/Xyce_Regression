@@ -2,20 +2,9 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug461.cir ${CMAKE_CURRENT_BINARY_DIR}/bug461.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug461.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/bug461.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  bug461.cir bug461.cir.sh bug461_printFormatRaw.cir bug461_printFormatRaw_versionOn.cir bug461_versionOn.cir bug461tran.cir bug461tran.cir.sh bug461tran_printFormatRaw.cir bug461tran_printFormatRaw_versionOn.cir bug461tran_versionOn.cir exclude tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug461.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug461_printFormatRaw.cir ${CMAKE_CURRENT_BINARY_DIR}/bug461_printFormatRaw.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug461_printFormatRaw_versionOn.cir ${CMAKE_CURRENT_BINARY_DIR}/bug461_printFormatRaw_versionOn.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug461_versionOn.cir ${CMAKE_CURRENT_BINARY_DIR}/bug461_versionOn.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug461tran.cir ${CMAKE_CURRENT_BINARY_DIR}/bug461tran.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug461tran.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/bug461tran.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug461tran.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug461tran_printFormatRaw.cir ${CMAKE_CURRENT_BINARY_DIR}/bug461tran_printFormatRaw.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug461tran_printFormatRaw_versionOn.cir ${CMAKE_CURRENT_BINARY_DIR}/bug461tran_printFormatRaw_versionOn.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug461tran_versionOn.cir ${CMAKE_CURRENT_BINARY_DIR}/bug461tran_versionOn.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_461_SON/bug461.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug461.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug461.cir ${OutputDataDir}/Certification_Tests/BUG_461_SON/bug461.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_461_SON/bug461.cir.sh PROPERTY LABELS "serial;nightly;ac;capacitor;resistor;vsin;bjtlev1;raw;output")

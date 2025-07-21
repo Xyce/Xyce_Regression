@@ -2,13 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lib.h ${CMAKE_CURRENT_BINARY_DIR}/lib.h ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/nmos_3_2.mod ${CMAKE_CURRENT_BINARY_DIR}/nmos_3_2.mod ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/pmos_3_2.mod ${CMAKE_CURRENT_BINARY_DIR}/pmos_3_2.mod ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ring51_srcstep1.cir ${CMAKE_CURRENT_BINARY_DIR}/ring51_srcstep1.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ring51_srcstep2.cir ${CMAKE_CURRENT_BINARY_DIR}/ring51_srcstep2.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ring51_trans.cir ${CMAKE_CURRENT_BINARY_DIR}/ring51_trans.cir ONLY_IF_DIFFERENT)
+file(COPY  lib.h nmos_3_2.mod pmos_3_2.mod ring51_srcstep1.cir ring51_srcstep2.cir tags ring51_trans.cir DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_277_SON/ring51_srcstep1.cir COMMAND $<TARGET_FILE:Xyce> ring51_srcstep1.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_277_SON/ring51_srcstep1.cir PROPERTY LABELS "serial;parallel;nightly;b3soi;sourcestep")

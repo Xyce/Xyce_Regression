@@ -2,8 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/one-shot.cir ${CMAKE_CURRENT_BINARY_DIR}/one-shot.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  one-shot.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}ONESHOT/one-shot.cir COMMAND $<TARGET_FILE:Xyce> one-shot.cir )
   set_property(TEST ${TestNamePrefix}ONESHOT/one-shot.cir PROPERTY LABELS "serial;nightly;parallel;bsim3")

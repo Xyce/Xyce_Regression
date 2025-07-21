@@ -2,12 +2,8 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug971.cir ${CMAKE_CURRENT_BINARY_DIR}/bug971.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/invalid_parameter.cir ${CMAKE_CURRENT_BINARY_DIR}/invalid_parameter.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/invalid_parameter.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/invalid_parameter.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  bug971.cir invalid_parameter.cir invalid_parameter.cir.sh invalid_parameter.cir.tags invalid_parameter.cir.options DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/invalid_parameter.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/invalid_parameter.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/invalid_parameter.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/invalid_parameter.cir.options ${CMAKE_CURRENT_BINARY_DIR}/invalid_parameter.cir.options ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_971_SON/bug971.cir COMMAND $<TARGET_FILE:Xyce> bug971.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_971_SON/bug971.cir PROPERTY LABELS "nightly;serial;parallel")

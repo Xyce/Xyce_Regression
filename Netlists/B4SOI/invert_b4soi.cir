@@ -27,7 +27,7 @@ VIN1  1	0  2V PULSE (2V 0V 1.5us 5ns 5ns 1.5us 3.01us)
 R1    VOUT  0  10K  
 C2    VOUT  0  0.1p
 XINV1 IN VOUT VDD 0 INVERTER
-.MODEL CMOSN NMOS ( LEVEL = 70
+.MODEL CMOSN NMOS ( LEVEL = 70470
 + mobmod = 1 capmod = 2 shmod = 1 
 + soimod = 1 igcmod = 0 igbmod = 0
 + dtoxcv = 0 llc = 0 lwc = 0  lwlc = 0
@@ -86,7 +86,7 @@ XINV1 IN VOUT VDD 0 INVERTER
 *+ noif = 1.0  
 + rgateMod = 2 rshg = 0.1 xrcrg1 = 12 xrcrG2 = 1)
 *
-.model CMOSP PMOS ( LEVEL = 70
+.model CMOSP PMOS ( LEVEL = 70470
 + mobmod = 1 capmod = 2 shmod = 1 
 + soimod = 1 igcmod = 0 igbmod = 0
 + dtoxcv = 0  llc = 0  lwc = 0  lwlc = 0

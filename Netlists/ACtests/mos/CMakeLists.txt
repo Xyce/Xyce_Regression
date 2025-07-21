@@ -2,22 +2,12 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/gain-stage1.cir ${CMAKE_CURRENT_BINARY_DIR}/gain-stage1.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/gain-stage1.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/gain-stage1.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  gain-stage1.cir gain-stage1.cir.sh gain-stage2.cir gain-stage2.cir.sh gain-stage3.cir gain-stage3.cir.sh gain-stage6.cir gain-stage6.cir.sh opamp-ol.cir opamp-ol.cir.sh tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/gain-stage1.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/gain-stage2.cir ${CMAKE_CURRENT_BINARY_DIR}/gain-stage2.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/gain-stage2.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/gain-stage2.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/gain-stage2.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/gain-stage3.cir ${CMAKE_CURRENT_BINARY_DIR}/gain-stage3.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/gain-stage3.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/gain-stage3.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/gain-stage3.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/gain-stage6.cir ${CMAKE_CURRENT_BINARY_DIR}/gain-stage6.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/gain-stage6.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/gain-stage6.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/gain-stage6.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/opamp-ol.cir ${CMAKE_CURRENT_BINARY_DIR}/opamp-ol.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/opamp-ol.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/opamp-ol.cir.sh ONLY_IF_DIFFERENT)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/opamp-ol.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}ACtests/mos/gain-stage1.cir.sh COMMAND perl -I${XyceRegressionTestScripts} gain-stage1.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} gain-stage1.cir ${OutputDataDir}/ACtests/mos/gain-stage1.cir.prn )
   set_property(TEST ${TestNamePrefix}ACtests/mos/gain-stage1.cir.sh PROPERTY LABELS "serial;parallel;nightly;ac;mos2;capacitor;isrc;resistor;esrc;vsin;mos3")

@@ -2,10 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_1131.cir ${CMAKE_CURRENT_BINARY_DIR}/bug_1131.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/incFile1 ${CMAKE_CURRENT_BINARY_DIR}/incFile1 ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/incFile2 ${CMAKE_CURRENT_BINARY_DIR}/incFile2 ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/incFile3 ${CMAKE_CURRENT_BINARY_DIR}/incFile3 ONLY_IF_DIFFERENT)
+file(COPY  bug_1131.cir incFile1 incFile2 incFile3 DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1131_SON/bug_1131.cir COMMAND $<TARGET_FILE:Xyce> bug_1131.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1131_SON/bug_1131.cir PROPERTY LABELS "serial;nightly")

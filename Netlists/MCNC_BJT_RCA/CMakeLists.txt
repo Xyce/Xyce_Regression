@@ -2,8 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/rca.cir ${CMAKE_CURRENT_BINARY_DIR}/rca.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  rca.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}MCNC_BJT_RCA/rca.cir COMMAND $<TARGET_FILE:Xyce> rca.cir )
   set_property(TEST ${TestNamePrefix}MCNC_BJT_RCA/rca.cir PROPERTY LABELS "serial;nightly;parallel;bjtlev1;valgrind")

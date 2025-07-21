@@ -2,15 +2,8 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/README ${CMAKE_CURRENT_BINARY_DIR}/README ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_1284.cir ${CMAKE_CURRENT_BINARY_DIR}/bug_1284.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_1284.cir.sh ${CMAKE_CURRENT_BINARY_DIR}/bug_1284.cir.sh ONLY_IF_DIFFERENT)
+file(COPY  README bug_1284.cir bug_1284.cir.sh bug_1284_baseline.cir bug_1284_first.cir bug_1284_restarted.cir exclude tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug_1284.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_1284_baseline.cir ${CMAKE_CURRENT_BINARY_DIR}/bug_1284_baseline.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_1284_first.cir ${CMAKE_CURRENT_BINARY_DIR}/bug_1284_first.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bug_1284_restarted.cir ${CMAKE_CURRENT_BINARY_DIR}/bug_1284_restarted.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/exclude ${CMAKE_CURRENT_BINARY_DIR}/exclude ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1284/bug_1284.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_1284.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug_1284.cir ${OutputDataDir}/Certification_Tests/BUG_1284/bug_1284.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1284/bug_1284.cir.sh PROPERTY LABELS "serial;nightly;transline")

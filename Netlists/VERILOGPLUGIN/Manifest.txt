@@ -1,6 +1,9 @@
 DiodeClipper.cir
 DiodeClipper.cir.sh
 DiodeClipper.cir.prn.gs
+MultiplePlugins.cir
+MultiplePlugins.cir.sh
+MultiplePlugins.cir.prn.gs
 rlc_series.cir
 rlc_series.cir.sh
 rlc_series.cir.prn.gs

@@ -2,14 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/b3soiTranDefaults.cir ${CMAKE_CURRENT_BINARY_DIR}/b3soiTranDefaults.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/dcSweep.cir ${CMAKE_CURRENT_BINARY_DIR}/dcSweep.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/dcSweep.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/dcSweep.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/b3soiTranDefaultsNoVoltLim.cir ${CMAKE_CURRENT_BINARY_DIR}/b3soiTranDefaultsNoVoltLim.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/dcSweepNoVoltLim.cir ${CMAKE_CURRENT_BINARY_DIR}/dcSweepNoVoltLim.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/b3soiTranDefaultsNoGminScaling.cir ${CMAKE_CURRENT_BINARY_DIR}/b3soiTranDefaultsNoGminScaling.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/dcSweepNoGminScaling.cir ${CMAKE_CURRENT_BINARY_DIR}/dcSweepNoGminScaling.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  b3soiTranDefaults.cir dcSweep.cir dcSweep.cir.tags b3soiTranDefaultsNoVoltLim.cir dcSweepNoVoltLim.cir b3soiTranDefaultsNoGminScaling.cir dcSweepNoGminScaling.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}BSIMSOI3/b3soiTranDefaults.cir COMMAND $<TARGET_FILE:Xyce> b3soiTranDefaults.cir )
   set_property(TEST ${TestNamePrefix}BSIMSOI3/b3soiTranDefaults.cir PROPERTY LABELS "serial;parallel;nightly;b3soi;mos10;resistor;vsin")

@@ -2,8 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/onedevice.cir ${CMAKE_CURRENT_BINARY_DIR}/onedevice.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  onedevice.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( Xyce_PARALLEL_MPI  )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1794/onedevice.cir COMMAND mpiexec -bind-to none -np 2 $<TARGET_FILE:Xyce> onedevice.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1794/onedevice.cir PROPERTY LABELS "parallel;nightly")

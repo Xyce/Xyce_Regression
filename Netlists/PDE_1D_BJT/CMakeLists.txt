@@ -2,20 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/boron.dat ${CMAKE_CURRENT_BINARY_DIR}/boron.dat ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/expressionDopingExample.cir ${CMAKE_CURRENT_BINARY_DIR}/expressionDopingExample.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/gilbert_cell_pde_four.cir ${CMAKE_CURRENT_BINARY_DIR}/gilbert_cell_pde_four.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/gilbert_cell_pde_four.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/gilbert_cell_pde_four.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/npn_bjt_pde.cir ${CMAKE_CURRENT_BINARY_DIR}/npn_bjt_pde.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/npn_bjt_pde.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/npn_bjt_pde.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/npn_bjt_pde_35C.cir ${CMAKE_CURRENT_BINARY_DIR}/npn_bjt_pde_35C.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/npn_bjt_pde_35C.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/npn_bjt_pde_35C.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/phos.dat ${CMAKE_CURRENT_BINARY_DIR}/phos.dat ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ramp_test1_pde.cir ${CMAKE_CURRENT_BINARY_DIR}/ramp_test1_pde.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ramp_test1_pde.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/ramp_test1_pde.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ramp_test1_pde_homotopy.cir ${CMAKE_CURRENT_BINARY_DIR}/ramp_test1_pde_homotopy.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ramp_test1_pde_homotopy.cir.tags ${CMAKE_CURRENT_BINARY_DIR}/ramp_test1_pde_homotopy.cir.tags ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  boron.dat expressionDopingExample.cir gilbert_cell_pde_four.cir gilbert_cell_pde_four.cir.tags npn_bjt_pde.cir npn_bjt_pde.cir.tags npn_bjt_pde_35C.cir npn_bjt_pde_35C.cir.tags phos.dat ramp_test1_pde.cir ramp_test1_pde.cir.tags ramp_test1_pde_homotopy.cir ramp_test1_pde_homotopy.cir.tags tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}PDE_1D_BJT/gilbert_cell_pde_four.cir COMMAND $<TARGET_FILE:Xyce> gilbert_cell_pde_four.cir )
   set_property(TEST ${TestNamePrefix}PDE_1D_BJT/gilbert_cell_pde_four.cir PROPERTY LABELS "serial;parallel;nightly;pde;bjt1d;valgrind")

@@ -2,13 +2,7 @@
 # If possible, modify the script to fix any issues with the CMakeLists.txt files
 # Or you can remove this header line to prevent this file from being overwritten
 
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/Xmodelcard.nmos ${CMAKE_CURRENT_BINARY_DIR}/Xmodelcard.nmos ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/Xmodelcard.pmos ${CMAKE_CURRENT_BINARY_DIR}/Xmodelcard.pmos ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/nmosGm1.cir ${CMAKE_CURRENT_BINARY_DIR}/nmosGm1.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/pmosGm1.cir ${CMAKE_CURRENT_BINARY_DIR}/pmosGm1.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/pmosGm1_rev.cir ${CMAKE_CURRENT_BINARY_DIR}/pmosGm1_rev.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/nmosGm1_rev.cir ${CMAKE_CURRENT_BINARY_DIR}/nmosGm1_rev.cir ONLY_IF_DIFFERENT)
-file(COPY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/tags ${CMAKE_CURRENT_BINARY_DIR}/tags ONLY_IF_DIFFERENT)
+file(COPY  Xmodelcard.nmos Xmodelcard.pmos nmosGm1.cir pmosGm1.cir pmosGm1_rev.cir nmosGm1_rev.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}BSIM4_GM/nmosGm1.cir COMMAND $<TARGET_FILE:Xyce> nmosGm1.cir )
   set_property(TEST ${TestNamePrefix}BSIM4_GM/nmosGm1.cir PROPERTY LABELS "serial;nightly;parallel;bsim4;gm")
