@@ -71,3 +71,11 @@ nlMutIndSens2_FD.cir
 issue729Ref.cir
 bsim4_issue694_ref.cir
 bsim4_issue694_FD.cir
+fdvpulse.cir
+fdvpwl.cir
+fdvsin.cir
+fdvsffm.cir
+dummy_vpulse.cir
+dummy_vpwl.cir
+dummy_vsin.cir
+dummy_vsffm.cir
