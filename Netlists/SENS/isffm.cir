@@ -1,0 +1,20 @@
+* Transient sensitivity example, SFFM source, analytical sensitivity
+*****************************************************************************
+.param v0 = 1.0
+.param va = 1.0
+.param fc = 1meg
+.param mdi = 2.0
+.param fs = 250k
+
+* original
+isin 0 1 sffm({v0} {va} {fc} {mdi} {fs})
+r1   1 0 1
+
+.tran 0 10us 
+.print tran i(isin)
+
+* Sensitivity commands
+.print sens 
+.sens objfunc={v(1)} param=isin:v0,isin:va,isin:fc,isin:mdi,isin:fs
+.options sensitivity direct=1 adjoint=0 forceanalytic=true
+.end

@@ -10,7 +10,7 @@ R2 1 2 res
 Vin 3 0 PULSE(0V 1V 0S 10US 10US 100US 220US)
 
 * Transient commands
-.tran 0 4ms uic
+.tran 0 1.5ms 
 .options timeint reltol=1e-6 abstol=1e-6
 
 .print tran v(1) v(2) v(3)

@@ -24,7 +24,7 @@ Vin 3 0 PWL(
 + 6ms {v6}  )
 
 * Transient commands
-.tran 0 10ms uic
+.tran 0 10ms 
 .options timeint reltol=1e-6 abstol=1e-6
 
 .print tran v(2)

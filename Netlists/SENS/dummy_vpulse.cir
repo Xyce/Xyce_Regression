@@ -1,4 +1,5 @@
-* Transient sensitivity example, pulse source "dummy" file to provide variable list to xyce_verify.  This file is not run as part of the test, just parsed.
+* Transient sensitivity example, pulse source "dummy" file to provide variable 
+* list to xyce_verify.  This file is not run as part of the test, just parsed.
 .param cap=0.1u
 .param res=1K
 
@@ -10,7 +11,7 @@ R2 1 2 res
 Vin 3 0 PULSE(0V 1V 0S 10US 10US 100US 220US)
 
 * Transient commands
-.tran 0 4ms uic
+.tran 0 1.5ms 
 .options timeint reltol=1e-6 abstol=1e-6
 
 *comp V(2) offset=0.1
