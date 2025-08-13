@@ -302,6 +302,11 @@ fdvpwl.cir
 vpwl.cir
 vpwl.cir.sh
 vpwl.cir.tags
+dummy_devLevelParams_vpwl.cir
+fddevLevelParams_vpwl.cir
+devLevelParams_vpwl.cir
+devLevelParams_vpwl.cir.sh
+devLevelParams_vpwl.cir.tags
 dummy_ipwl.cir
 fdipwl.cir
 fdipwl2.cir

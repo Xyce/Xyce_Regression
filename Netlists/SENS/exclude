@@ -91,3 +91,5 @@ dummy_vsin.cir
 dummy_isin.cir
 dummy_isffm.cir
 dummy_vsffm.cir
+fddevLevelParams_vpwl.cir
+dummy_devLevelParams_vpwl.cir
