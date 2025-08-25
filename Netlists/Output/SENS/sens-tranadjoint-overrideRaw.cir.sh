@@ -99,7 +99,7 @@ if (system("$XYCE_RAW_READ $CIR2.raw | grep -v 'The file:' | grep -v 'Date:' > $
     $retcode = 2;
 }
 
-$CMD3="diff -bi $CIR1.raw.info $CIR1.raw.info > $CIR1.raw.out";
+$CMD3="diff -bi $CIR1.raw.info $CIR2.raw.info > $CIR1.raw.out";
 if (system("$CMD3") != 0) {
     print STDERR "Verification failed on file $CIR1.raw, see $CIR1.raw.out\n";
     $retcode = 2;
