@@ -94,7 +94,7 @@ DERIVCROSSNEG3 = -4.269934e-01 at freq = 8.296111e-01
 Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e+01
 
 Netlist warning: DERIVCROSSNEG6 failed. Measured Rise,Fall,Cross=(2,3,5)
-DERIVCROSSNEG6 = FAILED
+DERIVCROSSNEG6 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e+01
 
 DERIVCROSSCONTNEG1 = 3.546943e-01 at freq = 1.334847e+00
@@ -114,7 +114,7 @@ DERIVRISENEG2 = 1.435027e-02 at freq = 5.461130e-01
 Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e+01
 
 Netlist warning: DERIVRISENEG3 failed. Measured Rise,Fall,Cross=(2,3,5)
-DERIVRISENEG3 = FAILED
+DERIVRISENEG3 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e+01
 
 DERIVRISECONTNEG1 = 1.232180e+00 at freq = 1.149737e+00
@@ -131,7 +131,7 @@ DERIVFALLNEG2 = -4.269934e-01 at freq = 8.296111e-01
 Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e+01
 
 Netlist warning: DERIVFALLNEG4 failed. Measured Rise,Fall,Cross=(2,3,5)
-DERIVFALLNEG4 = FAILED
+DERIVFALLNEG4 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e+01
 
 DERIVFALLCONTNEG1 = 3.546943e-01 at freq = 1.334847e+00
@@ -257,7 +257,7 @@ DERIVCROSSNEG3 = -1.472525e-01 at freq = 9.433038e-01
 Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e+01
 
 Netlist warning: DERIVCROSSNEG6 failed. Measured Rise,Fall,Cross=(2,3,5)
-DERIVCROSSNEG6 = FAILED
+DERIVCROSSNEG6 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e+01
 
 DERIVCROSSCONTNEG1 = -4.237279e+00 at freq = 1.623170e+00
@@ -277,7 +277,7 @@ DERIVRISENEG2 = 1.355647e-03 at freq = 4.629520e-01
 Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e+01
 
 Netlist warning: DERIVRISENEG3 failed. Measured Rise,Fall,Cross=(2,3,5)
-DERIVRISENEG3 = FAILED
+DERIVRISENEG3 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e+01
 
 DERIVRISECONTNEG1 = 7.012818e-01 at freq = 1.050439e+00
@@ -294,7 +294,7 @@ DERIVFALLNEG2 = -1.472525e-01 at freq = 9.433038e-01
 Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e+01
 
 Netlist warning: DERIVFALLNEG4 failed. Measured Rise,Fall,Cross=(2,3,5)
-DERIVFALLNEG4 = FAILED
+DERIVFALLNEG4 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e+01
 
 DERIVFALLCONTNEG1 = -4.237279e+00 at freq = 1.623170e+00

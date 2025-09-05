@@ -1,4 +1,4 @@
- ***** Measure Functions *****
+ ***** Measure Functions ***** 
 
 AVGVR4 = 3.933613e-01
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
@@ -15,19 +15,19 @@ Measure Start Freq= 1.000000e+03	Measure End Freq= 1.000000e+05
 AVGIMEAMP = 2.049891e-03
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-AVGVM4FROMTO1PT = FAILED
+AVGVM4FROMTO1PT = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+03	Measure End Freq= 1.000000e+03
 
 Netlist warning: AVGFAIL1 failed. FROM value > highest frequency value
-AVGFAIL1 = FAILED
+AVGFAIL1 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 Netlist warning: AVGFAIL2 failed. TO value < FROM value
-AVGFAIL2 = FAILED
+AVGFAIL2 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 LASTMEASURE = 4.406786e-01
- ***** Measure Functions *****
+ ***** Measure Functions ***** 
 
 AVGVR4 = 2.803164e-01
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
@@ -44,15 +44,15 @@ Measure Start Freq= 1.000000e+03	Measure End Freq= 1.000000e+05
 AVGIMEAMP = 1.528076e-03
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-AVGVM4FROMTO1PT = FAILED
+AVGVM4FROMTO1PT = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+03	Measure End Freq= 1.000000e+03
 
 Netlist warning: AVGFAIL1 failed. FROM value > highest frequency value
-AVGFAIL1 = FAILED
+AVGFAIL1 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 Netlist warning: AVGFAIL2 failed. TO value < FROM value
-AVGFAIL2 = FAILED
+AVGFAIL2 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 LASTMEASURE = 3.626679e-01

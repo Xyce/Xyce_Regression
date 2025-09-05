@@ -24,17 +24,17 @@ TRIGTARG8 = 7.500000e-03 with targ = 8.125000e-03 and trig = 6.250000e-04
 
 TDEARLY = 6.250000e-04 with targ = 1.250000e-03 and trig = 6.250000e-04
 
-RISEFALL1 = 5.878487e-03 with targ = 7.128487e-03 and trig = 1.250000e-03
+RISEFALL1 = 5.878303e-03 with targ = 7.128303e-03 and trig = 1.250000e-03
 
-RISEFALL2 = -1.871519e-03 with targ = 3.500000e-03 and trig = 5.371519e-03
+RISEFALL2 = -1.871520e-03 with targ = 3.500000e-03 and trig = 5.371520e-03
 
-RISEFALL3 = 3.496519e-03 with targ = 5.371519e-03 and trig = 1.875000e-03
+RISEFALL3 = 3.496520e-03 with targ = 5.371520e-03 and trig = 1.875000e-03
 
-RISEFALL4 = -2.628439e-03 with targ = 3.715606e-04 and trig = 3.000000e-03
+RISEFALL4 = -2.628489e-03 with targ = 3.715109e-04 and trig = 3.000000e-03
 
-TRIGTARGVAR = 2.500001e-03 with targ = 5.625001e-03 and trig = 3.125000e-03
+TRIGTARGVAR = 2.499992e-03 with targ = 5.624997e-03 and trig = 3.125005e-03
 
-TRIGTARGVAREXP = 2.500001e-03 with targ = 5.625001e-03 and trig = 3.125000e-03
+TRIGTARGVAREXP = 2.499992e-03 with targ = 5.624997e-03 and trig = 3.125005e-03
 
 TRIGTARGCURR = 1.250000e-03 with targ = 1.875000e-03 and trig = 6.250000e-04
 
@@ -42,14 +42,14 @@ ATTD1 = 6.000000e-03 with targ = 8.000000e-03 and trig = 2.000000e-03
 
 ATTD2 = 2.500000e-03 with targ = 3.500000e-03 and trig = 1.000000e-03
 
-ATEARLY = FAILED with targ = not found and trig = not found
+ATEARLY = 0.000000e+00 FAILED with targ = not found and trig = not found
 
-ATLATE = FAILED with targ = not found and trig = not found
+ATLATE = 0.000000e+00 FAILED with targ = not found and trig = not found
 
-TRIGTDLATE = FAILED with targ = 3.500000e-03 and trig = not found
+TRIGTDLATE = 0.000000e+00 FAILED with targ = 3.500000e-03 and trig = not found
 
-TARGTDLATE = FAILED with targ = not found and trig = 6.250000e-04
+TARGTDLATE = 0.000000e+00 FAILED with targ = not found and trig = 6.250000e-04
 
-VALNOTFOUND = FAILED with targ = not found and trig = not found
+VALNOTFOUND = 0.000000e+00 FAILED with targ = not found and trig = not found
 
 

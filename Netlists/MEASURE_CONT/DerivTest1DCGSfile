@@ -103,7 +103,7 @@ Measure Start V1 Value= 1.000000e+00	Measure End V1 Value= 1.000000e+01
 DERIVCROSSNEG3 = 5.625000e+00 at V1 value = 3.663889e+00
 Measure Start V1 Value= 1.000000e+00	Measure End V1 Value= 1.000000e+01
 
-DERIVCROSSNEG5 = FAILED
+DERIVCROSSNEG5 = 0.000000e+00 FAILED
 Measure Start V1 Value= 1.000000e+00	Measure End V1 Value= 1.000000e+01
 
 DERIVCROSSCONTNEG1 = 2.187500e+01 at V1 value = 8.142143e+00
@@ -124,7 +124,7 @@ Measure Start V1 Value= 1.000000e+00	Measure End V1 Value= 1.000000e+01
 DERIVRISENEG2 = 5.625000e+00 at V1 value = 3.663889e+00
 Measure Start V1 Value= 1.000000e+00	Measure End V1 Value= 1.000000e+01
 
-DERIVRISENEG3 = FAILED
+DERIVRISENEG3 = 0.000000e+00 FAILED
 Measure Start V1 Value= 1.000000e+00	Measure End V1 Value= 1.000000e+01
 
 DERIVRISECONTNEG1 = 2.187500e+01 at V1 value = 8.142143e+00
@@ -139,7 +139,7 @@ Measure Start V1 Value= 1.000000e+00	Measure End V1 Value= 1.000000e+01
 DERIVFALLNEG2 = -2.187500e+01 at V1 value = 1.857857e+00
 Measure Start V1 Value= 1.000000e+00	Measure End V1 Value= 1.000000e+01
 
-DERIVFALLNEG3 = FAILED
+DERIVFALLNEG3 = 0.000000e+00 FAILED
 Measure Start V1 Value= 1.000000e+00	Measure End V1 Value= 1.000000e+01
 
 DERIVFALLCONTNEG1 = -5.625000e+00 at V1 value = 6.336111e+00

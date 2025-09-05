@@ -128,7 +128,7 @@ WHENCROSSCONTNEG3 = 8.296111e+01
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
 Netlist warning: WHENCROSSCONTNEG6 failed. Measured Rise,Fall,Cross=(2,3,5)
-WHENCROSSCONTNEG6 = FAILED
+WHENCROSSCONTNEG6 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
 WHENRISECONTNEG1 = 1.149737e+02
@@ -138,7 +138,7 @@ WHENRISECONTNEG2 = 5.461130e+01
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
 Netlist warning: WHENRISECONTNEG3 failed. Measured Rise,Fall,Cross=(2,3,5)
-WHENRISECONTNEG3 = FAILED
+WHENRISECONTNEG3 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
 WHENFALLCONTNEG1 = 1.334847e+02
@@ -148,25 +148,25 @@ WHENFALLCONTNEG2 = 8.296111e+01
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
 Netlist warning: WHENFALLCONTNEG4 failed. Measured Rise,Fall,Cross=(2,3,5)
-WHENFALLCONTNEG4 = FAILED
+WHENFALLCONTNEG4 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
-WHENCROSSCONTFAIL1 = FAILED
+WHENCROSSCONTFAIL1 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
 Netlist warning: ATCONTFAIL failed. AT value outside frequency sweep window
-ATCONTFAIL = FAILED for AT = 2.000000e+03
+ATCONTFAIL = 0.000000e+00 FAILED for AT = 2.000000e+03
 
 Netlist warning: WHENCROSSCONTFAIL2 failed. Measured Rise,Fall,Cross=(2,3,5)
-WHENCROSSCONTFAIL2 = FAILED
+WHENCROSSCONTFAIL2 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
 Netlist warning: WHENRISECONTFAIL failed. Measured Rise,Fall,Cross=(2,3,5)
-WHENRISECONTFAIL = FAILED
+WHENRISECONTFAIL = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
 Netlist warning: WHENFALLCONTFAIL failed. Measured Rise,Fall,Cross=(2,3,5)
-WHENFALLCONTFAIL = FAILED
+WHENFALLCONTFAIL = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
 LASTMEASURE = 4.997176e-01 at freq = 1.000000e+00
@@ -300,7 +300,7 @@ WHENCROSSCONTNEG3 = 9.433038e+01
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
 Netlist warning: WHENCROSSCONTNEG6 failed. Measured Rise,Fall,Cross=(2,3,5)
-WHENCROSSCONTNEG6 = FAILED
+WHENCROSSCONTNEG6 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
 WHENRISECONTNEG1 = 1.050439e+02
@@ -310,7 +310,7 @@ WHENRISECONTNEG2 = 4.629520e+01
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
 Netlist warning: WHENRISECONTNEG3 failed. Measured Rise,Fall,Cross=(2,3,5)
-WHENRISECONTNEG3 = FAILED
+WHENRISECONTNEG3 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
 WHENFALLCONTNEG1 = 1.623170e+02
@@ -320,25 +320,25 @@ WHENFALLCONTNEG2 = 9.433038e+01
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
 Netlist warning: WHENFALLCONTNEG4 failed. Measured Rise,Fall,Cross=(2,3,5)
-WHENFALLCONTNEG4 = FAILED
+WHENFALLCONTNEG4 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
-WHENCROSSCONTFAIL1 = FAILED
+WHENCROSSCONTFAIL1 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
 Netlist warning: ATCONTFAIL failed. AT value outside frequency sweep window
-ATCONTFAIL = FAILED for AT = 2.000000e+03
+ATCONTFAIL = 0.000000e+00 FAILED for AT = 2.000000e+03
 
 Netlist warning: WHENCROSSCONTFAIL2 failed. Measured Rise,Fall,Cross=(2,3,5)
-WHENCROSSCONTFAIL2 = FAILED
+WHENCROSSCONTFAIL2 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
 Netlist warning: WHENRISECONTFAIL failed. Measured Rise,Fall,Cross=(2,3,5)
-WHENRISECONTFAIL = FAILED
+WHENRISECONTFAIL = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
 Netlist warning: WHENFALLCONTFAIL failed. Measured Rise,Fall,Cross=(2,3,5)
-WHENFALLCONTFAIL = FAILED
+WHENFALLCONTFAIL = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+00	Measure End Freq= 1.000000e+03
 
 LASTMEASURE = 6.034041e-01 at freq = 1.258925e+02

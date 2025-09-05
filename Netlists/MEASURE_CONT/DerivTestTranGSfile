@@ -104,7 +104,7 @@ DERIVCROSSNEG3 = -2.000000e+02 at time = 4.000000e-03
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
 Netlist warning: DERIVCROSSNEG5 failed. Measured Rise,Fall,Cross=(2,2,4)
-DERIVCROSSNEG5 = FAILED
+DERIVCROSSNEG5 = 0.000000e+00 FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
 DERIVCROSSCONTNEG1 = -1.538462e+02 at time = 8.700000e-03
@@ -124,7 +124,7 @@ DERIVRISENEG2 = 1.600000e+02 at time = 6.250000e-04
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
 Netlist warning: DERIVRISENEG3 failed. Measured Rise,Fall,Cross=(2,2,4)
-DERIVRISENEG3 = FAILED
+DERIVRISENEG3 = 0.000000e+00 FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
 DERIVRISECONTNEG1 = 1.666667e+02 at time = 6.200000e-03
@@ -141,7 +141,7 @@ DERIVFALLNEG2 = -2.000000e+02 at time = 4.000000e-03
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
 Netlist warning: DERIVFALLNEG3 failed. Measured Rise,Fall,Cross=(2,2,4)
-DERIVFALLNEG3 = FAILED
+DERIVFALLNEG3 = 0.000000e+00 FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
 DERIVFALLCONTNEG1 = -1.538462e+02 at time = 8.700000e-03

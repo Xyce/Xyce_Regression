@@ -1,4 +1,4 @@
-***** Measure Functions ***** 
+ ***** Measure Functions ***** 
 
 TRIGTARGCONTAT = 6.000000e-03 with targ = 8.000000e-03 and trig = 2.000000e-03
 
@@ -38,14 +38,14 @@ ATTD1 = 6.000000e-03 with targ = 8.000000e-03 and trig = 2.000000e-03
 
 ATTD2 = 2.500000e-03 with targ = 3.500000e-03 and trig = 1.000000e-03
 
-ATEARLY = FAILED with targ = not found and trig = not found
+ATEARLY = 0.000000e+00 FAILED with targ = not found and trig = not found
 
-ATLATE = FAILED with targ = not found and trig = not found
+ATLATE = 0.000000e+00 FAILED with targ = not found and trig = not found
 
-TRIGTDLATE = FAILED with targ = 3.500000e-03 and trig = not found
+TRIGTDLATE = 0.000000e+00 FAILED with targ = 3.500000e-03 and trig = not found
 
-TARGTDLATE = FAILED with targ = not found and trig = 6.250000e-04
+TARGTDLATE = 0.000000e+00 FAILED with targ = not found and trig = 6.250000e-04
 
-VALNOTFOUND = FAILED with targ = not found and trig = not found
+VALNOTFOUND = 0.000000e+00 FAILED with targ = not found and trig = not found
 
 

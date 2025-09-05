@@ -22,11 +22,11 @@ AVGVRBEXP = 1.590139e+00
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 Netlist warning: AVGFAIL1 failed. FROM value > highest frequency value
-AVGFAIL1 = FAILED
+AVGFAIL1 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 Netlist warning: AVGFAIL2 failed. TO value < FROM value
-AVGFAIL2 = FAILED
+AVGFAIL2 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 LASTMEASURE = 7.248821e-01
@@ -54,11 +54,11 @@ AVGVRBEXP = 1.877620e+00
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 Netlist warning: AVGFAIL1 failed. FROM value > highest frequency value
-AVGFAIL1 = FAILED
+AVGFAIL1 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 Netlist warning: AVGFAIL2 failed. TO value < FROM value
-AVGFAIL2 = FAILED
+AVGFAIL2 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 LASTMEASURE = 9.211731e-01

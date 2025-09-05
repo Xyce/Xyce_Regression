@@ -113,7 +113,7 @@ M14VARPAREN = 6.000000e-01 with trig time= 2.000000e-01 and targ time= 8.000000e
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e+00
 
 Netlist warning: M15 failed. FROM or TD value > sim end time
-M15 = FAILED
+M15 = -5.000000e+00 FAILED
 Measure Start Time= 1.100000e+00	Measure End Time= 1.000000e+00
 
 

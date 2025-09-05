@@ -38,14 +38,14 @@ TDEARLY = 7.297101e-01 with targ = 4.038043e+00 and trig = 3.308333e+00
 TDEARLY = -7.297101e-01 with targ = 5.961957e+00 and trig = 6.691667e+00
 TDEARLY = 1.828571e-01 with targ = 8.233571e+00 and trig = 8.050714e+00
 
-ATEARLY = FAILED with targ = not found and trig = not found
+ATEARLY = 0.000000e+00 FAILED with targ = not found and trig = not found
 
-ATLATE = FAILED with targ = not found and trig = not found
+ATLATE = 0.000000e+00 FAILED with targ = not found and trig = not found
 
-TRIGTDLATE = FAILED with targ = 4.038043e+00 and trig = not found
+TRIGTDLATE = 0.000000e+00 FAILED with targ = 4.038043e+00 and trig = not found
 
-TARGTDLATE = FAILED with targ = not found and trig = 1.949286e+00
+TARGTDLATE = 0.000000e+00 FAILED with targ = not found and trig = 1.949286e+00
 
-VALNOTFOUND = FAILED with targ = not found and trig = not found
+VALNOTFOUND = 0.000000e+00 FAILED with targ = not found and trig = not found
 
 
