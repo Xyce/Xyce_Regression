@@ -17,5 +17,12 @@ Z1 2 3 4 MESMOD AREA=1.4
 *COMP {-I(VSS)-IS(Z1)} abstol=1e-6 zerotol=1.0e-7
 .PRINT tran {-I(VDS)-ID(Z1)} {-I(VGS)-IG(Z1)} {-I(VSS)-IS(Z1)}
 
+.measure tran maxmag1   max {abs(-I(VDS)-ID(Z1))} failvalue=1e-6
+.measure tran totalrms1 rms {-I(VDS)-ID(Z1)} failvalue=1e-6 
+.measure tran maxmag2   max {abs(-I(VGS)-IG(Z1))} failvalue=1e-6
+.measure tran totalrms2 rms {-I(VGS)-IG(Z1)} failvalue=1e-6 
+.measure tran maxmag3   max {abs(-I(VSS)-IS(Z1))} failvalue=1e-6
+.measure tran totalrms3 rms {-I(VSS)-IS(Z1)} failvalue=1e-6 
+
 .END
 

@@ -23,4 +23,8 @@ R1 1 2 0.001
 .TRAN 0.1MS 20MS
 *COMP {I(L1)-I(I1)} abstol=1.0e-6 zerotol=1.0e-7
 .PRINT TRAN {I(L1)-I(I1)}
+
+.measure tran maxmag1   max {abs(I(L1)-I(I1))} failvalue=1e-6
+.measure tran totalrms1 rms {I(L1)-I(I1)} failvalue=1e-6 
+
 .END

@@ -106,6 +106,16 @@ v_s s 0 0
 x1 c b e s mysub
 .tran 1n 20u 
 .print tran {i(v_c)-ic(X1:Q1)} {i(v_b)-ib(X1:Q1)} {i(v_e)-ie(X1:Q1)} {i(v_s)-i4(x1:q1)}
+
+.measure tran maxmag1   max {abs(i(v_c)-ic(X1:Q1))} failvalue=1e-6
+.measure tran totalrms1 rms {i(v_c)-ic(X1:Q1)} failvalue=1e-6  
+.measure tran maxmag2   max {abs(i(v_b)-ib(X1:Q1))} failvalue=1e-6
+.measure tran totalrms2 rms {i(v_b)-ib(X1:Q1)} failvalue=1e-6  
+.measure tran maxmag3   max {abs(i(v_e)-ie(X1:Q1))} failvalue=1e-6
+.measure tran totalrms3 rms {i(v_e)-ie(X1:Q1)} failvalue=1e-6 
+.measure tran maxmag4   max {abs(i(v_s)-i4(x1:q1))} failvalue=1e-6
+.measure tran totalrms4 rms {i(v_s)-i4(x1:q1)} failvalue=1e-6 
+
 .options device temp=25
 .options nonlin-tran rhstol=1e-7
 *comp {i(v_c)-ic(X1:Q1)} abstol=1.0e-6 zerotol=1.0e-7

@@ -25,6 +25,11 @@ R2   0  2  1
 
 .PRINT TRAN {I(VS)-I(R1)} {I(B2)-I(R2)}
 
+.measure tran maxmag1   max {abs(I(VS)-I(R1))} failvalue=1e-6
+.measure tran totalrms1 rms {I(VS)-I(R1)} failvalue=1e-6  
+.measure tran maxmag2   max {abs(I(B2)-I(R2))} failvalue=1e-6
+.measure tran totalrms2 rms {I(B2)-I(R2)} failvalue=1e-6 
+
 .options timeint method=gear
 .options nonlin-tran rhstol=1.0e-7
 
