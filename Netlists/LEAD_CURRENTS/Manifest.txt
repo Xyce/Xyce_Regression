@@ -1,4 +1,3 @@
-CMakeLists.txt
 lead_bjt_gear.cir
 lead_bjt_trap.cir
 lead_bjt_trap.tags
@@ -61,8 +60,6 @@ lead_pde_dio.cir.tags
 lead_pjfet_tran_gear.cir
 lead_pjfet_tran_trap.cir
 lead_pmos1.cir
-lead_pmos1.cir.prn.gs.pl
-lead_pmos1.cir.sh
 lead_pmos1.cir.tags
 lead_psoi_gear.cir
 lead_psoi_trap.cir
@@ -88,5 +85,4 @@ lead_unsupported_multiterm_syntax.cir.tags
 lead_vdmos_gear.cir
 lead_vdmos_trap.cir
 lead_vdmos_trap.cir.tags
-Manifest.txt
 tags
