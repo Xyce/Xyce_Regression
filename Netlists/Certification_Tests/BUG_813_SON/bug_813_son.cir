@@ -23,21 +23,31 @@ M1 3 1a 2 6 NFET L=2.0U W=2.0U
 
 .MODEL NFET NMOS
 +  LEVEL=1  UO=966.5  L=2.0U  W=2.0U  VTO=1.043
-+  NFS=1.009E+11  TOX=1E-07  NSUB=1.379E+16  VMAX=4.096E+05
++  TOX=1E-07  NSUB=1.379E+16 
 +  RSH=0  RS=0 RD=0  IS =1E-14
-+  XJ=5.378E-06 LD=0 DELTA=0  NSS=1E10
-+  THETA =0.0582  ETA=0.095  KAPPA=2.93  CGDO=1UF
++  LD=0  NSS=1E10 CGDO=1UF
 +  CGSO=1UF  CGBO=1UF  CBD=1UF CBS=1UF
 
 .options timeint method=trap
 .options nonlin-tran rhstol=1.0e-7
 .tran 1ns 50us
 
+bexpression1 0 ex1 V={abs(I(VMOND)*V(4))+abs(I(VMONG)*V(1))}
+bexpression2 0 ex2 V={I(VMOND)+I(VMONG)}
+rex1load ex1 0 100
+rex2load ex2 0 100 
+
+
 .PRINT TRAN PRECISION=10
 + {abs(ID(M1)*V(4))+abs(IG(M1)*V(1))}
 + {abs(ID(M1)*V(4))} {abs(IG(M1)*V(1))}
 + {ID(M1)+IG(M1)}
 + {ID(M1)} {IG(M1)}
+
+.measure tran maxmag1   max {abs(ID(M1)*V(4))+abs(IG(M1)*V(1)) - abs(V(ex1))} failvalue=1e-6
+.measure tran totalrms1 rms {abs(ID(M1)*V(4))+abs(IG(M1)*V(1)) - abs(V(ex1))} failvalue=1e-6
+.measure tran maxmag2   max {abs(ID(M1)+IG(M1)) - abs(v(ex2))} failvalue=1e-6
+.measure tran totalrms2 rms {abs(ID(M1)+IG(M1)) - abs(v(ex2))} failvalue=1e-6 
 .END
 
 
