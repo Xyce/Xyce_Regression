@@ -24,15 +24,15 @@ Measure Start Freq= 1.000000e+03	Measure End Freq= 1.000000e+05
 RMSIMV1 = 4.684070e-01
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-RMSVMBFROMTO1PT = FAILED
+RMSVMBFROMTO1PT = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+03	Measure End Freq= 1.000000e+03
 
 Netlist warning: RMSFAIL1 failed. FROM value > highest frequency value
-RMSFAIL1 = FAILED
+RMSFAIL1 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 Netlist warning: RMSFAIL2 failed. TO value < FROM value
-RMSFAIL2 = FAILED
+RMSFAIL2 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 

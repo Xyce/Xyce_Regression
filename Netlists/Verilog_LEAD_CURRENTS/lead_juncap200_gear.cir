@@ -13,4 +13,8 @@ rload 3 0 1K
 
 *COMP {I(VIN)-I(d1)} abstol=1e-6 zerotol=1e-7
 .PRINT TRAN  {I(VIN)-I(d1)}
+
+.measure tran maxmag1   max {abs(I(VIN)-I(d1))} failvalue=1e-6
+.measure tran totalrms1 rms {I(VIN)-I(d1)} failvalue=1e-6  
+
 .END

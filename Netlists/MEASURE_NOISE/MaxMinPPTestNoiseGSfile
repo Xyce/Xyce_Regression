@@ -49,23 +49,23 @@ PPIMEAMP = 3.036773e-03 with max at freq= 1.000000e+06 and min at freq= 1.000000
 Measure Start Freq= 1.000000e+05	Measure End Freq= 1.000000e+06
 
 Netlist warning: MAXFROMTOFAIL1 failed. FROM value > highest frequency value
-MAXFROMTOFAIL1 = FAILED
+MAXFROMTOFAIL1 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 Netlist warning: MAXFROMTOFAIL2 failed. TO value < FROM value
-MAXFROMTOFAIL2 = FAILED
+MAXFROMTOFAIL2 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 Netlist warning: MINFROMTOFAIL1 failed. TO value <= 0
-MINFROMTOFAIL1 = FAILED
+MINFROMTOFAIL1 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 Netlist warning: MINFROMTOFAIL2 failed. FROM value > highest frequency value
-MINFROMTOFAIL2 = FAILED
+MINFROMTOFAIL2 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 Netlist warning: PPFROMTOFAIL1 failed. FROM value > highest frequency value
-PPFROMTOFAIL1 = FAILED
+PPFROMTOFAIL1 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 

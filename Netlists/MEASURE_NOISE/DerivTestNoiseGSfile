@@ -10,10 +10,10 @@ DERIVVROUTAT0.01 = 1.083053e+00 for AT = 1.000000e-02
 
 ATFT = 1.083053e+00 for AT = 1.000000e-02
 
-WHEN = FAILED
+WHEN = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e+03
 
-WHENFT = FAILED
+WHENFT = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e-02
 
 CONSTANT-AT = 0.000000e+00 for AT = 5.000000e+00
@@ -21,7 +21,7 @@ CONSTANT-AT = 0.000000e+00 for AT = 5.000000e+00
 CONSTANT-WHEN1 = 0.000000e+00 at freq = 5.846612e-01
 Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e+03
 
-CONSTANT-WHEN2 = FAILED
+CONSTANT-WHEN2 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e+03
 
 DERIVWHENVROUT1 = -6.026308e-01 at freq = 5.846612e-01
@@ -54,7 +54,7 @@ Measure Start Freq= 3.000000e-01	Measure End Freq= 1.000000e+03
 FROM4 = -1.712949e+00 at freq = 2.889384e-01
 Measure Start Freq= 2.600000e-01	Measure End Freq= 2.900000e-01
 
-TO1 = FAILED
+TO1 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e-02	Measure End Freq= 1.050000e+01
 
 TO2 = -6.263738e-02 at freq = 1.168456e+01
@@ -63,15 +63,15 @@ Measure Start Freq= 1.000000e-02	Measure End Freq= 1.200000e+01
 DERIVIMV1 = 6.281163e-01 for AT = 5.000000e-02
 
 Netlist warning: DERIVFAIL1 failed. AT value outside frequency sweep window
-DERIVFAIL1 = FAILED for AT = 1.000000e+04
+DERIVFAIL1 = 0.000000e+00 FAILED for AT = 1.000000e+04
 
-DERIVFAIL2 = FAILED
+DERIVFAIL2 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e-02	Measure End Freq= 1.000000e+03
 
 Netlist warning: ATFAILFROM failed. AT value outside measurement window
-ATFAILFROM = FAILED for AT = 1.000000e+00
+ATFAILFROM = 0.000000e+00 FAILED for AT = 1.000000e+00
 
 Netlist warning: ATFAILTO failed. AT value outside measurement window
-ATFAILTO = FAILED for AT = 1.000000e+01
+ATFAILTO = 0.000000e+00 FAILED for AT = 1.000000e+01
 
 

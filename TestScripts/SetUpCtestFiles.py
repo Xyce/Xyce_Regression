@@ -285,6 +285,8 @@ def SetUpCtestFiles():
         # otherwise setting properties on tests gets confused because it keys on test name
         testPathIndex = keyName.rfind("Netlists")+9
         testName=os.path.join(keyName[testPathIndex:], subDirName)
+        parentOutputDir = os.path.join(keyName[:testPathIndex-9], 'OutputData')
+        #print(f'Parent output directory {parentOutputDir}')
 
         if subDirName.endswith(".cir"):
           # this entry is a test where Xyce is run on the *.cir file
@@ -328,6 +330,9 @@ def SetUpCtestFiles():
             if (testtags.find('serial') >= 0):
               outputBuf.write('if( %s )\n' % (serialConstraint))
               outputBuf.write('  add_test(NAME ${TestNamePrefix}%s COMMAND $<TARGET_FILE:Xyce> %s )\n' % (testName, subDirName))
+              if( checkIfFileContainsText(keyName, subDirName, 'failvalue')):
+                # File failvalue keyword so set test property to trap for this as a test failure indicator 
+                outputBuf.write('  set_property(TEST ${TestNamePrefix}%s PROPERTY FAIL_REGULAR_EXPRESSION \"FAILED: Measure exceeds failure value\")\n' % (testName))
               # write test tags as label for this test
               if( len(testtags) > 0 ):
                 outputBuf.write('  set_property(TEST ${TestNamePrefix}%s PROPERTY LABELS \"%s\")\n' % (testName, testtags))
@@ -363,24 +368,24 @@ def SetUpCtestFiles():
                 # look at the path for the test /dirA/dirB/.../Netlists/TestDir1/TestDir2/test.cir
                 # gold standard output will be in ${OutputDataDir}/TestDir1/TestDir2/test.cir.prn
                 testPathIndex = keyName.rfind("Netlists")+9
+                GoldOutputActual=os.path.join(parentOutputDir,keyName[testPathIndex:], subDirName + ".prn")
                 GoldOutput=os.path.join(keyName[testPathIndex:], subDirName + ".prn")
-
-                # the verify step only needs to be run if
-                # Xyce_RAD_MODELS was ON. this prevents it from being
-                # run in the case of a Xyce_RAD_MODELS=OFF build but
-                # WILL_FAIL run of the "rad" tests.
-                indent = ''
-                if (radBool):
-                  indent = '  '
-                  outputBuf.write('  if (Xyce_RAD_MODELS)\n')
-                  
-                outputBuf.write('%s  add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${XYCE_VERIFY} %s ${OutputDataDir}/%s %s.prn )\n' % (indent, testName, subDirName, GoldOutput, subDirName))
-                outputBuf.write('%s  set_tests_properties(${TestNamePrefix}%s.verify PROPERTIES FIXTURES_REQUIRED %s)\n' % (indent, testName, subDirName))
-                if( len(testtags) > 0 ):
-                  outputBuf.write('  set_property(TEST ${TestNamePrefix}%s.verify PROPERTY LABELS \"%s\")\n' % (testName, testtags))
-                if (radBool is True):
-                  outputBuf.write('  endif()\n')
-                  
+                if( os.path.exists(GoldOutputActual) ):
+                  #print( f'GoldOutput is {GoldOutput}')
+                  # the verify step only needs to be run if
+                  # Xyce_RAD_MODELS was ON. this prevents it from being
+                  # run in the case of a Xyce_RAD_MODELS=OFF build but
+                  # WILL_FAIL run of the "rad" tests.
+                  indent = ''
+                  if (radBool):
+                    indent = '  '
+                    outputBuf.write('  if (Xyce_RAD_MODELS)\n')
+                  outputBuf.write('%s  add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${XYCE_VERIFY} %s ${OutputDataDir}/%s %s.prn )\n' % (indent, testName, subDirName, GoldOutput, subDirName))
+                  outputBuf.write('%s  set_tests_properties(${TestNamePrefix}%s.verify PROPERTIES FIXTURES_REQUIRED %s)\n' % (indent, testName, subDirName))
+                  if( len(testtags) > 0 ):
+                    outputBuf.write('  set_property(TEST ${TestNamePrefix}%s.verify PROPERTY LABELS \"%s\")\n' % (testName, testtags))
+                  if (radBool is True):
+                    outputBuf.write('  endif()\n')
               outputBuf.write('endif()\n')
               
             if( testtags.find('parallel') >= 0 ):
@@ -389,7 +394,10 @@ def SetUpCtestFiles():
               # write test tags as label for this test
               if( len(testtags) > 0 ):
                 outputBuf.write('  set_property(TEST ${TestNamePrefix}%s PROPERTY LABELS \"%s\")\n' % (testName, testtags))
-
+              if( checkIfFileContainsText(keyName, subDirName, 'failvalue')):
+                # File failvalue keyword so set test property to trap for this as a test failure indicator 
+                outputBuf.write('  set_property(TEST ${TestNamePrefix}%s PROPERTY FAIL_REGULAR_EXPRESSION \"FAILED: Measure exceeds failure value\")\n' % (testName))
+              
               # add property to allow rad tests to "successfully" fail
               # for a non-rad build
               if (radBool):
@@ -421,24 +429,24 @@ def SetUpCtestFiles():
                 # look at the path for the test /dirA/dirB/.../Netlists/TestDir1/TestDir2/test.cir
                 # gold standard output will be in ${OutputDataDir}/TestDir1/TestDir2/test.cir.prn
                 testPathIndex = keyName.rfind("Netlists")+9
+                GoldOutputActual=os.path.join(parentOutputDir,keyName[testPathIndex:], subDirName + ".prn")
                 GoldOutput=os.path.join(keyName[testPathIndex:], subDirName + ".prn")
-
-                # the verify step only needs to be run if
-                # Xyce_RAD_MODELS was ON. this prevents it from being
-                # run in the case of a Xyce_RAD_MODELS=OFF build but
-                # WILL_FAIL run of the "rad" tests.
-                indent = ''
-                if (radBool):
-                  indent = '  '
-                  outputBuf.write('  if (Xyce_RAD_MODELS)\n')
-                  
-                outputBuf.write('%s  add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${XYCE_VERIFY} %s ${OutputDataDir}/%s %s.prn )\n' % (indent, testName, subDirName, GoldOutput, subDirName))
-                outputBuf.write('%s  set_tests_properties(${TestNamePrefix}%s.verify PROPERTIES FIXTURES_REQUIRED %s)\n' % (indent, testName, subDirName))
-                if( len(testtags) > 0 ):
-                  outputBuf.write('  set_property(TEST ${TestNamePrefix}%s.verify PROPERTY LABELS \"%s\")\n' % (testName, testtags))
-                if (radBool is True):
-                  outputBuf.write('  endif()\n')
-                  
+                if( os.path.exists(GoldOutputActual) ):
+                  #print( f'GoldOutput is {GoldOutput}')
+                  # the verify step only needs to be run if
+                  # Xyce_RAD_MODELS was ON. this prevents it from being
+                  # run in the case of a Xyce_RAD_MODELS=OFF build but
+                  # WILL_FAIL run of the "rad" tests.
+                  indent = ''
+                  if (radBool):
+                    indent = '  '
+                    outputBuf.write('  if (Xyce_RAD_MODELS)\n')
+                  outputBuf.write('%s  add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${XYCE_VERIFY} %s ${OutputDataDir}/%s %s.prn )\n' % (indent, testName, subDirName, GoldOutput, subDirName))
+                  outputBuf.write('%s  set_tests_properties(${TestNamePrefix}%s.verify PROPERTIES FIXTURES_REQUIRED %s)\n' % (indent, testName, subDirName))
+                  if( len(testtags) > 0 ):
+                    outputBuf.write('  set_property(TEST ${TestNamePrefix}%s.verify PROPERTY LABELS \"%s\")\n' % (testName, testtags))
+                  if (radBool is True):
+                    outputBuf.write('  endif()\n')                  
               outputBuf.write('endif()\n')
         elif subDirName.endswith(".cir.sh"):
           # look for a test specific tags file.  Load it or the general tags file if the specific one doesn't exist
@@ -857,6 +865,18 @@ def hasAutoGenHeader(strList):
     # autogenerated header text is missing so do not overwrite this file
     retval = False
   return retval
+  
+def checkIfFileContainsText( subDirectory, filename, text):
+  retval = False
+  filePath = os.path.join(subDirectory,filename)
+  if( os.path.isfile( filePath )): 
+    fileHandle = open(filePath, 'r')
+    fileContents = fileHandle.read()
+    fileHandle.close()
+    if( text.casefold() in fileContents.casefold()):
+      retval = True
+  return retval
+  
 
 #
 # if this file is called directly then run the tests

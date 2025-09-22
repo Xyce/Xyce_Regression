@@ -68,7 +68,20 @@ RL2 5 0 50
 *COMP {i(vmonout2)-i1(tline2)} abstol=1.0e-6 zerotol=1.0e-16
 
 .PRINT TRAN {i1(TLINE1)-i2(TLINE2)} {i2(TLINE1)-i1(TLINE2)}
-+ {i(Vmonin1)-i1(tline1)} {I(Vmonin2)-i2(tline2)}
-+ {i(Vmonout1)-i2(tline1)} {I(Vmonout2)-i1(tline2)} 
++ {i(Vmonin1)-i1(tline1)} {i(vmonout1)-i2(tline1)}
++ {i(vmonin2)-i2(tline2)} {I(Vmonout2)-i1(tline2)} 
+
+.measure tran maxmag1   max {abs(i1(TLINE1)-i2(TLINE2))} failvalue=1e-6
+.measure tran totalrms1 rms {i1(TLINE1)-i2(TLINE2)} failvalue=1e-6 
+.measure tran maxmag2   max {abs(i2(TLINE1)-i1(TLINE2))} failvalue=1e-6
+.measure tran totalrms2 rms {i2(TLINE1)-i1(TLINE2)} failvalue=1e-6 
+.measure tran maxmag3   max {abs(i(Vmonin1)-i1(tline1))} failvalue=1e-6
+.measure tran totalrms3 rms {i(Vmonin1)-i1(tline1)} failvalue=1e-6 
+.measure tran maxmag4   max {abs(i(vmonout1)-i2(tline1))} failvalue=1e-6
+.measure tran totalrms4 rms {i(vmonout1)-i2(tline1)} failvalue=1e-6 
+.measure tran maxmag5   max {abs(i(vmonin2)-i2(tline2))} failvalue=1e-6
+.measure tran totalrms5 rms {i(vmonin2)-i2(tline2)} failvalue=1e-6 
+.measure tran maxmag6   max {abs(I(Vmonout2)-i1(tline2))} failvalue=1e-6
+.measure tran totalrms6 rms {I(Vmonout2)-i1(tline2)} failvalue=1e-6 
 
 .END

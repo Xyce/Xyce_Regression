@@ -20,4 +20,13 @@ M1 3 1g 2s 2b PFET L=10U W=160U
 .options nonlin rhstol=1.0e-7
 .PRINT DC V(2) ID(M1) IG(M1) IS(M1) IB(M1) {ID(M1)-I(VMOND)} {IG(M1)-I(VMONG)} {IS(M1)-I(VMONS)} {IB(M1)-I(VMONB)}
 
+.measure dc maxmag1   max {abs(ID(M1)-I(VMOND))} failvalue=1e-8
+.measure dc totalrms1 rms {ID(M1)-I(VMOND)} failvalue=1e-8 
+.measure dc maxmag2   max {abs(IG(M1)-I(VMONG))} failvalue=1e-8
+.measure dc totalrms2 rms {IG(M1)-I(VMONG)} failvalue=1e-8 
+.measure dc maxmag3   max {abs(IS(M1)-I(VMONS))} failvalue=1e-8
+.measure dc totalrms3 rms {IS(M1)-I(VMONS)} failvalue=1e-8 
+.measure dc maxmag4   max {abs(IB(M1)-I(VMONB))} failvalue=1e-8
+.measure dc totalrms4 rms {IB(M1)-I(VMONB)} failvalue=1e-8
+
 .END

@@ -27,15 +27,15 @@ Measure Start Freq= 1.000000e+03	Measure End Freq= 1.000000e+05
 AVGIMV1 = 4.605865e-01
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
-AVGVMBFROMTO1PT = FAILED
+AVGVMBFROMTO1PT = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+03	Measure End Freq= 1.000000e+03
 
 Netlist warning: AVGFAIL1 failed. FROM value > highest frequency value
-AVGFAIL1 = FAILED
+AVGFAIL1 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 Netlist warning: AVGFAIL2 failed. TO value < FROM value
-AVGFAIL2 = FAILED
+AVGFAIL2 = 0.000000e+00 FAILED
 Measure Start Freq= 1.000000e+02	Measure End Freq= 1.000000e+06
 
 

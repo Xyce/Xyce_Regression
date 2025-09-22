@@ -15,7 +15,7 @@ Measure Start Time= 3.200000e-01	Measure End Time= 3.800000e-01
 WHEN4 = 8.443785e-01
 Measure Start Time= 0.000000e+00	Measure End Time= 8.700000e-01
 
-WHEN5 = FAILED
+WHEN5 = 0.000000e+00 FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 8.200000e-01
 
 DERIV1 = 2.000000e+00 at time = 3.500000e-01
@@ -30,6 +30,6 @@ Measure Start Time= 3.200000e-01	Measure End Time= 3.800000e-01
 DERIV4 = 2.250230e+01 at time = 8.443785e-01
 Measure Start Time= 0.000000e+00	Measure End Time= 8.700000e-01
 
-DERIV5 = FAILED
+DERIV5 = 0.000000e+00 FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 8.200000e-01
 

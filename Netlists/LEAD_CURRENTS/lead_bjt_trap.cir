@@ -21,5 +21,13 @@ q1 3 2 1 qjunk
 *COMP {i(vic)-ic(q1)} abstol=1.0e-6 zerotol=1.0e-7
 *COMP {i(vie)-ie(q1)} abstol=1.0e-6 zerotol=1.0e-7
 
-.print tran  PRECISION=10 WIDTH=19 {i(vib)-ib(q1)} {i(vic)-ic(q1)} {i(vie)-ie(q1)}   
+.print tran  PRECISION=10 WIDTH=19 {i(vib)-ib(q1)} {i(vic)-ic(q1)} {i(vie)-ie(q1)}  
+
+.measure tran maxmag1   max {abs(i(vib)-ib(q1))} failvalue=1e-6
+.measure tran totalrms1 rms {i(vib)-ib(q1)} failvalue=1e-6  
+.measure tran maxmag2   max {abs(i(vic)-ic(q1))} failvalue=1e-6
+.measure tran totalrms2 rms {i(vic)-ic(q1)} failvalue=1e-6  
+.measure tran maxmag3   max {abs(i(vie)-ie(q1))} failvalue=1e-6
+.measure tran totalrms3 rms {i(vie)-ie(q1)} failvalue=1e-6 
+ 
 .end

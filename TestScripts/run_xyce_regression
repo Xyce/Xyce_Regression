@@ -712,23 +712,30 @@ sub runTest {
         }
       } 
       `rm -f $ckt.prn.out $ckt.prn.err`;
-      my $CMD = "$XYCE_VERIFY $ckt $GOLDPRN $ckt.prn > $ckt.prn.out 2> $ckt.prn.err";
-      #`echo $CMD > $ckt.prn.com`;
-      $vtime0 = time;
-      my $retval = system("$CMD");
-      $vtime1 = time;
-      if ($retval == 0) {
-        $status = 0;
-      } elsif (not defined($fulldiff)) {
-        $numberfailed++;
-        $status = 2;
-      }
-      if (not defined($saveoutput)) {
-        if ( -z "$ckt.err" ) { `rm -f $ckt.err`; }
-        if ( -z "$ckt.prn.err" ) { `rm -f $ckt.prn.err`; }
-        if ( -z "$ckt.prn.out" ) { `rm -f $ckt.prn.out`; }
-        if ( -z "$ckt.prn.gs.pl.err" ) { `rm -f $ckt.prn.gs.pl.err`; }
-        if ( -z "$ckt.prn.gs.pl.out" ) { `rm -f $ckt.prn.gs.pl.out`; }
+      if( -e $GOLDPRN )
+      {
+        my $CMD = "$XYCE_VERIFY $ckt $GOLDPRN $ckt.prn > $ckt.prn.out 2> $ckt.prn.err";
+        #`echo $CMD > $ckt.prn.com`;
+        $vtime0 = time;
+        my $retval = system("$CMD");
+        $vtime1 = time;
+        if ($retval == 0) {
+          $status = 0;
+        } elsif (not defined($fulldiff)) {
+          $numberfailed++;
+          $status = 2;
+        }
+        if (not defined($saveoutput)) {
+          if ( -z "$ckt.err" ) { `rm -f $ckt.err`; }
+          if ( -z "$ckt.prn.err" ) { `rm -f $ckt.prn.err`; }
+          if ( -z "$ckt.prn.out" ) { `rm -f $ckt.prn.out`; }
+          if ( -z "$ckt.prn.gs.pl.err" ) { `rm -f $ckt.prn.gs.pl.err`; }
+          if ( -z "$ckt.prn.gs.pl.out" ) { `rm -f $ckt.prn.gs.pl.out`; }
+        }
+      } elsif( $status == -1 ) {
+        # status is still the default so the run phase went fine and there was not a verify stage needed.
+        # return passed.
+        $status = 0
       }
     }
   }

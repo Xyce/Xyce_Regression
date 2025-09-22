@@ -19,4 +19,12 @@ C3  3a 0 C=40u IC=1
 .options nonlin-tran rhstol=1.0e-7
 .TRAN 0.5U 400ms
 .PRINT TRAN  {I(VIN)-I(R)} {I(VIN)-I(C)} {I(R3)+I(C3)}
+
+.measure tran maxmag1   max {abs(I(VIN)-I(R))} failvalue=1e-6
+.measure tran totalrms1 rms {I(VIN)-I(R)} failvalue=1e-6 
+.measure tran maxmag2   max {abs(I(VIN)-I(C))} failvalue=1e-6
+.measure tran totalrms2 rms {I(VIN)-I(C)} failvalue=1e-6 
+.measure tran maxmag3   max {abs(I(R3)+I(C3))} failvalue=1e-6
+.measure tran totalrms3 rms {I(R3)+I(C3)} failvalue=1e-6 
+
 .END

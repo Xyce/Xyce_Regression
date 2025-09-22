@@ -13,4 +13,10 @@ r3  0  3        200
 *COMP {I(S1)-I(V1)} abstol=1.0e-6 zerotol=1.0e-7
 *COMP {I(S2)-I(V1)} abstol=1.0e-6 zerotol=1.0e-7
 .PRINT TRAN V(1) V(3) {I(S1)-I(V1)} {I(S2)-I(V1)}
+
+.measure tran maxmag1   max {abs(I(S1)-I(V1))} failvalue=1e-6
+.measure tran totalrms1 rms {I(S1)-I(V1)} failvalue=1e-6 
+.measure tran maxmag2   max {abs(I(S2)-I(V1))} failvalue=1e-6
+.measure tran totalrms2 rms {I(S2)-I(V1)} failvalue=1e-6 
+
 .END

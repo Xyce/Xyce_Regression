@@ -24,19 +24,19 @@ TRIGTARG6 = 6.284286e+00 with targ = 8.233571e+00 and trig = 1.949286e+00
 
 TRIGTARG7 = 1.828571e-01 with targ = 8.233571e+00 and trig = 8.050714e+00
 
-TRIGTARG8 = FAILED with targ = not found and trig = not found
+TRIGTARG8 = 0.000000e+00 FAILED with targ = not found and trig = not found
 
 TDEARLY = 1.828571e-01 with targ = 8.233571e+00 and trig = 8.050714e+00
 
-ATEARLY = FAILED with targ = not found and trig = not found
+ATEARLY = 0.000000e+00 FAILED with targ = not found and trig = not found
 
-ATLATE = FAILED with targ = not found and trig = not found
+ATLATE = 0.000000e+00 FAILED with targ = not found and trig = not found
 
-TRIGTDLATE = FAILED with targ = 8.233571e+00 and trig = not found
+TRIGTDLATE = 0.000000e+00 FAILED with targ = 8.233571e+00 and trig = not found
 
-TARGTDLATE = FAILED with targ = not found and trig = 8.050714e+00
+TARGTDLATE = 0.000000e+00 FAILED with targ = not found and trig = 8.050714e+00
 
-VALNOTFOUND = FAILED with targ = not found and trig = not found
+VALNOTFOUND = 0.000000e+00 FAILED with targ = not found and trig = not found
 
 LASTMEASURE = 1.265625e+00 at V1 value = 7.000000e+00
  ***** Measure Functions ***** 
@@ -65,18 +65,18 @@ TRIGTARG6 = 6.512857e+00 with targ = 8.393571e+00 and trig = 1.880714e+00
 
 TRIGTARG7 = 2.742857e-01 with targ = 8.393571e+00 and trig = 8.119286e+00
 
-TRIGTARG8 = FAILED with targ = not found and trig = not found
+TRIGTARG8 = 0.000000e+00 FAILED with targ = not found and trig = not found
 
 TDEARLY = 2.742857e-01 with targ = 8.393571e+00 and trig = 8.119286e+00
 
-ATEARLY = FAILED with targ = not found and trig = not found
+ATEARLY = 0.000000e+00 FAILED with targ = not found and trig = not found
 
-ATLATE = FAILED with targ = not found and trig = not found
+ATLATE = 0.000000e+00 FAILED with targ = not found and trig = not found
 
-TRIGTDLATE = FAILED with targ = 8.393571e+00 and trig = not found
+TRIGTDLATE = 0.000000e+00 FAILED with targ = 8.393571e+00 and trig = not found
 
-TARGTDLATE = FAILED with targ = not found and trig = 8.119286e+00
+TARGTDLATE = 0.000000e+00 FAILED with targ = not found and trig = 8.119286e+00
 
-VALNOTFOUND = FAILED with targ = not found and trig = not found
+VALNOTFOUND = 0.000000e+00 FAILED with targ = not found and trig = not found
 
 LASTMEASURE = 8.437500e-01 at V1 value = 7.000000e+00

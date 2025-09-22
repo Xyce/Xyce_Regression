@@ -156,7 +156,7 @@ WHENCROSSNEG3 = 4.000000e-03
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
 Netlist warning: WHENCROSSNEG5 failed. Measured Rise,Fall,Cross=(2,2,4)
-WHENCROSSNEG5 = FAILED
+WHENCROSSNEG5 = 0.000000e+00 FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
 WHENCROSSCONTNEG1 = 8.750000e-03
@@ -169,14 +169,14 @@ WHENCROSSCONTNEG3 = 4.000000e-03
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
 Netlist warning: WHENCROSSCONTNEG5 failed. Measured Rise,Fall,Cross=(2,2,4)
-WHENCROSSCONTNEG5 = FAILED
+WHENCROSSCONTNEG5 = 0.000000e+00 FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
 WHENRISENEG2 = 6.250000e-04
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
 Netlist warning: WHENRISENEG3 failed. Measured Rise,Fall,Cross=(2,2,4)
-WHENRISENEG3 = FAILED
+WHENRISENEG3 = 0.000000e+00 FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
 WHENRISECONTNEG1 = 6.250000e-03
@@ -186,14 +186,14 @@ WHENRISECONTNEG2 = 6.250000e-04
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
 Netlist warning: WHENRISECONTNEG3 failed. Measured Rise,Fall,Cross=(2,2,4)
-WHENRISECONTNEG3 = FAILED
+WHENRISECONTNEG3 = 0.000000e+00 FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
 WHENFALLNEG2 = 4.000000e-03
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
 Netlist warning: WHENFALLNEG3 failed. Measured Rise,Fall,Cross=(2,2,4)
-WHENFALLNEG3 = FAILED
+WHENFALLNEG3 = 0.000000e+00 FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
 WHENFALLCONTNEG1 = 8.750000e-03
@@ -203,25 +203,25 @@ WHENFALLCONTNEG2 = 4.000000e-03
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
 Netlist warning: WHENFALLCONTNEG3 failed. Measured Rise,Fall,Cross=(2,2,4)
-WHENFALLCONTNEG3 = FAILED
+WHENFALLCONTNEG3 = 0.000000e+00 FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
-WHENCROSSCONTFAIL1 = FAILED
+WHENCROSSCONTFAIL1 = 0.000000e+00 FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
 Netlist warning: ATCONTFAIL failed. AT value outside sim window
-ATCONTFAIL = FAILED for AT = 2.000000e-02
+ATCONTFAIL = 0.000000e+00 FAILED for AT = 2.000000e-02
 
 Netlist warning: WHENCROSSCONTFAIL2 failed. Measured Rise,Fall,Cross=(2,2,4)
-WHENCROSSCONTFAIL2 = FAILED
+WHENCROSSCONTFAIL2 = 0.000000e+00 FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
 Netlist warning: WHENRISECONTFAIL failed. Measured Rise,Fall,Cross=(2,2,4)
-WHENRISECONTFAIL = FAILED
+WHENRISECONTFAIL = 0.000000e+00 FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
 Netlist warning: WHENFALLCONTFAIL failed. Measured Rise,Fall,Cross=(2,2,4)
-WHENFALLCONTFAIL = FAILED
+WHENFALLCONTFAIL = 0.000000e+00 FAILED
 Measure Start Time= 0.000000e+00	Measure End Time= 1.000000e-02
 
 

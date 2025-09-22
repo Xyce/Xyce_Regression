@@ -45,8 +45,26 @@ print STDERR  "$CIR1 runtime is $CIR1runtime\n";
 
 if ($CIR1runtime > 10) # this is VERY slow, but before the bugfix this circuit was even slower
 {
-  print STDERR "$CIR1 runtime failed  :  $CIR1runtime > 10\n";
-  $runtimePassed=0;
+  # systems with high load can case this test to fail through no falut on the test
+  # try running the circuit again 
+  `rm -f $CIR1*prn* $CIR1*.out $CIR1.err $CIR1.prn.err `;
+  $CMD="$XYCE $CIR1 > $CIR1.out 2> $CIR1.err";
+  if (system($CMD) != 0)
+  {
+    print "Xyce EXITED WITH ERROR! on $CIR1\n";
+    $xyceexit=1;
+  }
+  if (defined ($xyceexit)) {print "Exit code = 10\n"; exit 10;}
+  $CIR1runtime=`grep -m 1 'Total Simulation Solvers Run Time:' $CIR1.out`;
+  chomp($CIR1runtime);
+  $CIR1runtime=~ s/\*\*\*\*\* Total Simulation Solvers Run Time: ([0-9]*)/\1/;
+  $CIR1runtime=~ s/ ([0-9]*)seconds/\1/;
+  print STDERR  "$CIR1 runtime on second try is $CIR1runtime\n";
+  if ($CIR1runtime > 10) # this is VERY slow, but before the bugfix this circuit was even slower
+  {
+    print STDERR "$CIR1 runtime failed  :  $CIR1runtime > 10\n";
+    $runtimePassed=0;
+  }
 }
 else
 {

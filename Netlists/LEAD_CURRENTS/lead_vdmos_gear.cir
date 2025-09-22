@@ -52,6 +52,24 @@ M1p 3p 4p 2p 1p IRF130p W=0.386 L=2.5u
 
 .PRINT TRAN {I(VD)-ID(M1)} {I(VG)-IG(M1)} {I(VS)-IS(M1)} {I(VB)-IB(M1)}
 + {I(VDp)-ID(M1p)} {I(VGp)-IG(M1p)} {I(VSp)-IS(M1p)} {I(VBp)-IB(M1p)}
+
+.measure tran maxmag1   max {abs(I(VD)-ID(M1))} failvalue=1e-6
+.measure tran totalrms1 rms {I(VD)-ID(M1)} failvalue=1e-6 
+.measure tran maxmag2   max {abs(I(VG)-IG(M1))} failvalue=1e-6
+.measure tran totalrms2 rms {I(VG)-IG(M1)} failvalue=1e-6 
+.measure tran maxmag3   max {abs(I(VS)-IS(M1))} failvalue=1e-6
+.measure tran totalrms3 rms {I(VS)-IS(M1)} failvalue=1e-6 
+.measure tran maxmag4   max {abs(I(VB)-IB(M1))} failvalue=1e-6
+.measure tran totalrms4 rms {I(VB)-IB(M1)} failvalue=1e-6 
+.measure tran maxmag5   max {abs(I(VDp)-ID(M1p))} failvalue=1e-6
+.measure tran totalrms5 rms {I(VDp)-ID(M1p)} failvalue=1e-6 
+.measure tran maxmag6   max {abs(I(VGp)-IG(M1p))} failvalue=1e-6
+.measure tran totalrms6 rms {I(VGp)-IG(M1p)} failvalue=1e-6 
+.measure tran maxmag7   max {abs(I(VSp)-IS(M1p))} failvalue=1e-6
+.measure tran totalrms7 rms {I(VSp)-IS(M1p)} failvalue=1e-6 
+.measure tran maxmag8   max {abs(I(VBp)-IB(M1p))} failvalue=1e-6
+.measure tran totalrms8 rms {I(VBp)-IB(M1p)} failvalue=1e-6 
+
 .options timeint method=gear newbpstepping=0
 .options nonlin-tran rhstol=1.0e-7
 .END

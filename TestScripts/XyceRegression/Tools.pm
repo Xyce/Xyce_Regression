@@ -432,6 +432,12 @@ sub wrapXyce
         $exitcode = 13;
         $self->debugPrint("Found Dev Fatal in $cktout and did NOT find Xyce Abort, exiting with 13\n");
       }
+      elsif ($line =~ m/FAILED: Measure exceeds failure value/)
+      {
+        # Note:  Xyce was using a measure function to test the output and that comparison function failed.
+        $exitcode = 2;
+        $self->debugPrint("Found failed comparison measure.\n");
+      }
     }
     close(outfile);
   }
@@ -483,7 +489,7 @@ sub wrapXyceAndVerify {
   $cktprn="$ckt.prn" if (!defined($cktprn));
 
   $retval = $self->wrapXyce($XYCEPATH,$ckt,$cktprn);
-  if ($retval == 0) { 
+  if (($retval == 0) && (-e $GOLDPRN ) ) { 
     my $CMD="$XYCEVERIFY $ckt $GOLDPRN $cktprn > $ckt.prn.out 2> $ckt.prn.err";
     $retval = system("$CMD");
     if ($retval != 0)
