@@ -7,4 +7,5 @@ file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/valgrind.cir.sh PERMISSIONS OWNER_READ OW
 if( (NOT Xyce_PARALLEL_MPI) AND VALGRIND_MASTER AND BASH_FOUND )
   add_test(NAME ${TestNamePrefix}VALGRIND/valgrind.cir.sh COMMAND bash valgrind.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} valgrind.cir ${OutputDataDir}/VALGRIND/valgrind.cir.prn )
   set_property(TEST ${TestNamePrefix}VALGRIND/valgrind.cir.sh PROPERTY LABELS "nightly;serial;required:valgrindmaster")
+  set_tests_properties(${TestNamePrefix}VALGRIND/valgrind.cir.sh PROPERTIES TIMEOUT 28800)
 endif()

@@ -7,6 +7,7 @@ file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/issue575.cir.sh PERMISSIONS OWNER_READ OW
 if( (NOT Xyce_PARALLEL_MPI) AND BASH_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/ISSUE_575/issue575.cir.sh COMMAND bash issue575.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} issue575.cir ${OutputDataDir}/Certification_Tests/ISSUE_575/issue575.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/ISSUE_575/issue575.cir.sh PROPERTY LABELS "serial;weekly;expression;table;abm;issue575;performance")
+  set_tests_properties(${TestNamePrefix}Certification_Tests/ISSUE_575/issue575.cir.sh PROPERTIES TIMEOUT 120)
 endif()
 if( (NOT Xyce_PARALLEL_MPI) )
   add_test(NAME ${TestNamePrefix}Certification_Tests/ISSUE_575/issue575_small.cir COMMAND $<TARGET_FILE:Xyce> issue575_small.cir )

@@ -34,7 +34,7 @@ def SetUpCtestFiles():
   parser.add_argument("--dryrun", help="Do not alter any CMakeLists.txt files.", default=False, action="store_true")
   parser.add_argument("--newfile", help="If the CMakeLists.txt file would normally not be overwritten output to CMakeLists.txt.NEW", default=False, action="store_true")
   parser.add_argument("--set-timeouts", help="Use the \"timelimit\" option to set the TIMEOUT property on tests",
-                      default=False, action="store_true")
+                      default=True, action="store_true")
   parser.add_argument("-v", "--verbose", help="verbose output", action="store_true")
   # get the command line arguments
   args = parser.parse_args()
@@ -345,8 +345,8 @@ def SetUpCtestFiles():
               # set rad/norad property and timelimit option, if given, as TIMEOUT for ctest
               if( len(testOptions) > 0):
                 for anOpt in testOptions:
-                  if(anOpt[0] == "timelimit" and args.set_timeouts):
-                    outputBuf.write('  set_tests_properties(${TestNamePrefix}%s PROPERTIES TIMEOUT %s)\n' % (testName, anOpt[1]))
+                  if(anOpt[0] == "timelimit" and args.set_timeouts and (int(anOpt[1].removesuffix('s'))>60)):
+                    outputBuf.write('  set_tests_properties(${TestNamePrefix}%s PROPERTIES TIMEOUT %s)\n' % (testName, anOpt[1].removesuffix('s')))
 
               # use the FIXTURES_SETUP and FIXTURES_REQUIRED properties so that testing steps that
               # require the prior steps to pass don't run if it failed.
@@ -406,8 +406,8 @@ def SetUpCtestFiles():
               # set timelimit option if given as TIMEOUT for ctest
               if( len(testOptions) > 0):
                 for anOpt in testOptions:
-                  if( anOpt[0] == "timelimit" and args.set_timeouts ):
-                    outputBuf.write('  set_tests_properties(${TestNamePrefix}%s PROPERTIES TIMEOUT %s)\n' % (testName, anOpt[1]))
+                  if( anOpt[0] == "timelimit" and args.set_timeouts and (int(anOpt[1].removesuffix('s'))>60)):
+                    outputBuf.write('  set_tests_properties(${TestNamePrefix}%s PROPERTIES TIMEOUT %s)\n' % (testName, anOpt[1].removesuffix('s')))
 
               # use the FIXTURES_SETUP and FIXTURES_REQUIRED properties so that testing steps that
               # require the prior steps to pass don't run if it failed.
@@ -530,8 +530,8 @@ def SetUpCtestFiles():
 
               if( len(testOptions) > 0):
                 for anOpt in testOptions:
-                  if( anOpt[0] == "timelimit" and args.set_timeouts ):
-                    outputBuf.write('  set_tests_properties(${TestNamePrefix}%s PROPERTIES TIMEOUT %s)\n' % (anOpt[1]))
+                  if( anOpt[0] == "timelimit" and args.set_timeouts and (int(anOpt[1].removesuffix('s'))>60)):
+                    outputBuf.write('  set_tests_properties(${TestNamePrefix}%s PROPERTIES TIMEOUT %s)\n' % (testName, anOpt[1].removesuffix('s')))
               outputBuf.write('endif()\n')
               
             if( testtags.find('parallel') >= 0 ):
@@ -547,8 +547,8 @@ def SetUpCtestFiles():
 
               if( len(testOptions) > 0):
                 for anOpt in testOptions:
-                  if( anOpt[0] == "timelimit" and args.set_timeouts ):
-                    outputBuf.write('  set_tests_properties(${TestNamePrefix}%s PROPERTIES TIMEOUT %s)\n' % anOpt[1])
+                  if( anOpt[0] == "timelimit" and args.set_timeouts and (int(anOpt[1].removesuffix('s'))>60)):
+                    outputBuf.write('  set_tests_properties(${TestNamePrefix}%s PROPERTIES TIMEOUT %s)\n' % (testName, anOpt[1].removesuffix('s')))
               outputBuf.write('endif()\n')
         else:
           # this entry is a sub directory so just add it as such
