@@ -190,6 +190,7 @@ def SetUpCtestFiles():
         outputBuf.write('  message(DEBUG "[DBG]: XyceBuildDir: ${XyceBuildDir}")\n')
         outputBuf.write('  cmake_path(SET XYCE_BINARY $<TARGET_FILE:Xyce>)\n')
         outputBuf.write('else()\n')
+        outputBuf.write('  enable_testing()\n')
         outputBuf.write('  message(DEBUG "[DBG]: Target Xyce not inherited from parent project. Looking for Xyce on PATH and with environment variable Xyce_DIR")\n')
         outputBuf.write('  find_program(XYCE_BINARY NAMES Xyce Xyce.exe HINTS ENV XYCE_DIR ENV Xyce_DIR )\n')
         outputBuf.write('  message(DEBUG "[DBG]: XYCE_BINARY: ${XYCE_BINARY}")\n')
@@ -198,7 +199,7 @@ def SetUpCtestFiles():
         outputBuf.write('  else()\n')
         outputBuf.write('    # Xyce is installed.  Use Xyce\'s capabilities option to set build options \n')
         outputBuf.write('    execute_process(COMMAND ${XYCE_BINARY} -capabilities OUTPUT_VARIABLE XyceCapabilities ERROR_VARIABLE XyceErrorMsg)\n')
-        outputBuf.write('    #message(DEBUG "Xyce capabilities are \n${XyceCapabilities} and ${XyceErrorMsg}")\n')
+        outputBuf.write('    #message(DEBUG "Xyce capabilities are ${XyceCapabilities} and ${XyceErrorMsg}")\n')
         outputBuf.write('    set( Xyce_PARALLEL_MPI FALSE CACHE BOOL "True Xyce if built with MPI")\n')
         outputBuf.write('    set( Xyce_RAD_MODELS FALSE CACHE BOOL "Xyce rad models included")\n')
         outputBuf.write('    set( Xyce_NONFREE_MODELS FLASE CACHE BOOL "Non-free device models")\n')
@@ -407,7 +408,7 @@ def SetUpCtestFiles():
             # first run Xyce on the test circuit
             if (testtags.find('serial') >= 0):
               outputBuf.write('if( %s )\n' % (serialConstraint))
-              outputBuf.write('  add_test(NAME ${TestNamePrefix}%s COMMAND $<TARGET_FILE:Xyce> %s )\n' % (testName, subDirName))
+              outputBuf.write('  add_test(NAME ${TestNamePrefix}%s COMMAND ${XYCE_BINARY} %s )\n' % (testName, subDirName))
               if( checkIfFileContainsText(keyName, subDirName, 'failvalue')):
                 # File failvalue keyword so set test property to trap for this as a test failure indicator 
                 outputBuf.write('  set_property(TEST ${TestNamePrefix}%s PROPERTY FAIL_REGULAR_EXPRESSION \"FAILED: Measure exceeds failure value\")\n' % (testName))
@@ -468,7 +469,7 @@ def SetUpCtestFiles():
               
             if( testtags.find('parallel') >= 0 ):
               outputBuf.write('if( %s )\n' % (parallelConstraint))
-              outputBuf.write('  add_test(NAME ${TestNamePrefix}%s COMMAND mpiexec -bind-to none -np 2 $<TARGET_FILE:Xyce> %s )\n' % (testName, subDirName))
+              outputBuf.write('  add_test(NAME ${TestNamePrefix}%s COMMAND mpiexec -bind-to none -np 2 ${XYCE_BINARY} %s )\n' % (testName, subDirName))
               # write test tags as label for this test
               if( len(testtags) > 0 ):
                 outputBuf.write('  set_property(TEST ${TestNamePrefix}%s PROPERTY LABELS \"%s\")\n' % (testName, testtags))
@@ -596,7 +597,7 @@ def SetUpCtestFiles():
 
             if (testtags.find('serial') >= 0):
               outputBuf.write('if( %s )\n' % (serialConstraint))
-              outputBuf.write('  add_test(NAME ${TestNamePrefix}%s COMMAND %s %s $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} %s ${OutputDataDir}/%s )\n' % (testName, interpreter, subDirName, actualFileName, GoldOutput))
+              outputBuf.write('  add_test(NAME ${TestNamePrefix}%s COMMAND %s %s ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} %s ${OutputDataDir}/%s )\n' % (testName, interpreter, subDirName, actualFileName, GoldOutput))
 
               # write test tags as label for this test
               if( len(testtags) > 0 ):
@@ -614,7 +615,7 @@ def SetUpCtestFiles():
               
             if( testtags.find('parallel') >= 0 ):
               outputBuf.write('if( %s )\n' % (parallelConstraint))
-              outputBuf.write('  add_test(NAME ${TestNamePrefix}%s COMMAND %s %s \"mpiexec -bind-to none -np 2 $<TARGET_FILE:Xyce>\" ${XYCE_VERIFY} ${XYCE_VERIFY} %s ${OutputDataDir}/%s )\n' % (testName, interpreter, subDirName, actualFileName, GoldOutput))
+              outputBuf.write('  add_test(NAME ${TestNamePrefix}%s COMMAND %s %s \"mpiexec -bind-to none -np 2 ${XYCE_BINARY}\" ${XYCE_VERIFY} ${XYCE_VERIFY} %s ${OutputDataDir}/%s )\n' % (testName, interpreter, subDirName, actualFileName, GoldOutput))
               # write test tags as label for this test
               if( len(testtags) > 0 ):
                 outputBuf.write('  set_property(TEST ${TestNamePrefix}%s PROPERTY LABELS \"%s\")\n' % (testName, testtags))
