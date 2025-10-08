@@ -5,6 +5,6 @@
 file(COPY  bug269.cir bug269.cir.sh bug269_printFormatRaw.cir exclude tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug269.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_269_SON/bug269.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug269.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug269.cir ${OutputDataDir}/Certification_Tests/BUG_269_SON/bug269.cir.prn )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_269_SON/bug269.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug269.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} bug269.cir ${OutputDataDir}/Certification_Tests/BUG_269_SON/bug269.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_269_SON/bug269.cir.sh PROPERTY LABELS "serial;nightly;ac;capacitor;resistor;vsin;bjtlev1;raw;output")
 endif()

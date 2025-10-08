@@ -4,7 +4,7 @@
 
 file(COPY  README tags userOneD.cir DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_573/userOneD.cir COMMAND $<TARGET_FILE:Xyce> userOneD.cir )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_573/userOneD.cir COMMAND ${XYCE_BINARY} userOneD.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_573/userOneD.cir PROPERTY LABELS "serial;nightly;pde")
   set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_573/userOneD.cir PROPERTIES FIXTURES_SETUP userOneD.cir)
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_573/userOneD.cir.verify COMMAND ${XYCE_VERIFY} userOneD.cir ${OutputDataDir}/Certification_Tests/BUG_573/userOneD.cir.prn userOneD.cir.prn )

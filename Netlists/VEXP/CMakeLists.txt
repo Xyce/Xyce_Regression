@@ -4,7 +4,7 @@
 
 file(COPY  tags vexp.cir DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}VEXP/vexp.cir COMMAND $<TARGET_FILE:Xyce> vexp.cir )
+  add_test(NAME ${TestNamePrefix}VEXP/vexp.cir COMMAND ${XYCE_BINARY} vexp.cir )
   set_property(TEST ${TestNamePrefix}VEXP/vexp.cir PROPERTY LABELS "serial;nightly;valgrind")
   set_tests_properties(${TestNamePrefix}VEXP/vexp.cir PROPERTIES FIXTURES_SETUP vexp.cir)
   add_test(NAME ${TestNamePrefix}VEXP/vexp.cir.verify COMMAND ${XYCE_VERIFY} vexp.cir ${OutputDataDir}/VEXP/vexp.cir.prn vexp.cir.prn )

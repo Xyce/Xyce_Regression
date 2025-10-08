@@ -4,7 +4,7 @@
 
 file(COPY  break.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}BREAK/break.cir COMMAND $<TARGET_FILE:Xyce> break.cir )
+  add_test(NAME ${TestNamePrefix}BREAK/break.cir COMMAND ${XYCE_BINARY} break.cir )
   set_property(TEST ${TestNamePrefix}BREAK/break.cir PROPERTY LABELS "serial;nightly;valgrind;vpwl;conditionalexpr;expression;bsrc;resistor;transient;expression_breakpoints")
   set_tests_properties(${TestNamePrefix}BREAK/break.cir PROPERTIES FIXTURES_SETUP break.cir)
   add_test(NAME ${TestNamePrefix}BREAK/break.cir.verify COMMAND ${XYCE_VERIFY} break.cir ${OutputDataDir}/BREAK/break.cir.prn break.cir.prn )

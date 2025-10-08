@@ -4,7 +4,7 @@
 
 file(COPY  README negtable.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1012/negtable.cir COMMAND $<TARGET_FILE:Xyce> negtable.cir )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1012/negtable.cir COMMAND ${XYCE_BINARY} negtable.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1012/negtable.cir PROPERTY LABELS "serial;nightly")
   set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_1012/negtable.cir PROPERTIES FIXTURES_SETUP negtable.cir)
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1012/negtable.cir.verify COMMAND ${XYCE_VERIFY} negtable.cir ${OutputDataDir}/Certification_Tests/BUG_1012/negtable.cir.prn negtable.cir.prn )

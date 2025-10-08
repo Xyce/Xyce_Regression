@@ -4,7 +4,7 @@
 
 file(COPY  README rc_simple_xyce.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}RLC_LADDER/rc_simple_xyce.cir COMMAND $<TARGET_FILE:Xyce> rc_simple_xyce.cir )
+  add_test(NAME ${TestNamePrefix}RLC_LADDER/rc_simple_xyce.cir COMMAND ${XYCE_BINARY} rc_simple_xyce.cir )
   set_property(TEST ${TestNamePrefix}RLC_LADDER/rc_simple_xyce.cir PROPERTY LABELS "weekly;serial;performance;resistor;capacitor")
   set_tests_properties(${TestNamePrefix}RLC_LADDER/rc_simple_xyce.cir PROPERTIES FIXTURES_SETUP rc_simple_xyce.cir)
   add_test(NAME ${TestNamePrefix}RLC_LADDER/rc_simple_xyce.cir.verify COMMAND ${XYCE_VERIFY} rc_simple_xyce.cir ${OutputDataDir}/RLC_LADDER/rc_simple_xyce.cir.prn rc_simple_xyce.cir.prn )

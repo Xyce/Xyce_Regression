@@ -5,6 +5,6 @@
 file(COPY  README bug402SpiceTempOptions.cir bug402XyceTempOptions.cir bug402son.cir bug402son.cir.sh exclude tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug402son.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_402_SON/bug402son.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug402son.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug402son.cir ${OutputDataDir}/Certification_Tests/BUG_402_SON/bug402son.cir.prn )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_402_SON/bug402son.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug402son.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} bug402son.cir ${OutputDataDir}/Certification_Tests/BUG_402_SON/bug402son.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_402_SON/bug402son.cir.sh PROPERTY LABELS "serial;nightly;diode;resistor")
 endif()

@@ -5,6 +5,6 @@
 file(COPY  exclude nom.lib tags diodeClipper.cir.sh diodeClipper.cir diodeClipper.cir.hspice DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/diodeClipper.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND XDM_BDL_FOUND AND PERL_FOUND )
-  add_test(NAME ${TestNamePrefix}XDM/HSPICE/DIODE_CLIPPER/diodeClipper.cir.sh COMMAND perl -I${XyceRegressionTestScripts} diodeClipper.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} diodeClipper.cir ${OutputDataDir}/XDM/HSPICE/DIODE_CLIPPER/diodeClipper.cir.prn )
+  add_test(NAME ${TestNamePrefix}XDM/HSPICE/DIODE_CLIPPER/diodeClipper.cir.sh COMMAND perl -I${XyceRegressionTestScripts} diodeClipper.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} diodeClipper.cir ${OutputDataDir}/XDM/HSPICE/DIODE_CLIPPER/diodeClipper.cir.prn )
   set_property(TEST ${TestNamePrefix}XDM/HSPICE/DIODE_CLIPPER/diodeClipper.cir.sh PROPERTY LABELS "serial;nightly;required:xdm;hspice")
 endif()

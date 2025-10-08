@@ -5,6 +5,6 @@
 file(COPY  README bug899.cir bug899.cir.sh tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug899.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_899/bug899.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug899.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug899.cir ${OutputDataDir}/Certification_Tests/BUG_899/bug899.cir.prn )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_899/bug899.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug899.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} bug899.cir ${OutputDataDir}/Certification_Tests/BUG_899/bug899.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_899/bug899.cir.sh PROPERTY LABELS "serial;nightly;b3soi;verbose;bug899")
 endif()

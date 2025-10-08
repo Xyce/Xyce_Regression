@@ -4,7 +4,7 @@
 
 file(COPY  README bug_243_mpi.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( Xyce_PARALLEL_MPI  )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_243/bug_243_mpi.cir COMMAND mpiexec -bind-to none -np 2 $<TARGET_FILE:Xyce> bug_243_mpi.cir )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_243/bug_243_mpi.cir COMMAND mpiexec -bind-to none -np 2 ${XYCE_BINARY} bug_243_mpi.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_243/bug_243_mpi.cir PROPERTY LABELS "parallel;nightly;mos1")
   set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_243/bug_243_mpi.cir PROPERTIES FIXTURES_SETUP bug_243_mpi.cir)
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_243/bug_243_mpi.cir.verify COMMAND ${XYCE_VERIFY} bug_243_mpi.cir ${OutputDataDir}/Certification_Tests/BUG_243/bug_243_mpi.cir.prn bug_243_mpi.cir.prn )

@@ -5,6 +5,6 @@
 file(COPY  exclude first.cir first_last.cir first_last.cir.sh last.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/first_last.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/ISSUE_202/first_last.cir.sh COMMAND perl -I${XyceRegressionTestScripts} first_last.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} first_last.cir ${OutputDataDir}/Certification_Tests/ISSUE_202/first_last.cir.prn )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/ISSUE_202/first_last.cir.sh COMMAND perl -I${XyceRegressionTestScripts} first_last.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} first_last.cir ${OutputDataDir}/Certification_Tests/ISSUE_202/first_last.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/ISSUE_202/first_last.cir.sh PROPERTY LABELS "serial;nightly;issue202;parser")
 endif()

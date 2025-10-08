@@ -5,7 +5,7 @@
 file(COPY  bug457.cir bug457.cir.prn.gs.pl tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug457.cir.prn.gs.pl PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_457_SON/bug457.cir COMMAND $<TARGET_FILE:Xyce> bug457.cir )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_457_SON/bug457.cir COMMAND ${XYCE_BINARY} bug457.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_457_SON/bug457.cir PROPERTY LABELS "serial;nightly;bug457")
   set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_457_SON/bug457.cir PROPERTIES FIXTURES_SETUP bug457.cir)
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_457_SON/bug457.cir.gen_gs COMMAND perl bug457.cir.prn.gs.pl bug457.cir.prn)

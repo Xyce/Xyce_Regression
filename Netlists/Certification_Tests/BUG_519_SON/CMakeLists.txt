@@ -5,6 +5,6 @@
 file(COPY  bug_519_SON.cir bug_519_SON.cir.sh tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug_519_SON.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_519_SON/bug_519_SON.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_519_SON.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug_519_SON.cir ${OutputDataDir}/Certification_Tests/BUG_519_SON/bug_519_SON.cir.prn )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_519_SON/bug_519_SON.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_519_SON.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} bug_519_SON.cir ${OutputDataDir}/Certification_Tests/BUG_519_SON/bug_519_SON.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_519_SON/bug_519_SON.cir.sh PROPERTY LABELS "serial;nightly;raw;output")
 endif()

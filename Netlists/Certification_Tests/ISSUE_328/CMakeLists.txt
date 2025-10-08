@@ -5,6 +5,6 @@
 file(COPY  Xmodelcard.nmos Xmodelcard.pmos bsim4_temp.cir bsim4_tempC.cir bsim4_tempC2.cir bsim4_temp.cir.sh exclude tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bsim4_temp.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND BASH_FOUND )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/ISSUE_328/bsim4_temp.cir.sh COMMAND bash bsim4_temp.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bsim4_temp.cir ${OutputDataDir}/Certification_Tests/ISSUE_328/bsim4_temp.cir.prn )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/ISSUE_328/bsim4_temp.cir.sh COMMAND bash bsim4_temp.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} bsim4_temp.cir ${OutputDataDir}/Certification_Tests/ISSUE_328/bsim4_temp.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/ISSUE_328/bsim4_temp.cir.sh PROPERTY LABELS "serial;nightly;bsim4;issue328")
 endif()

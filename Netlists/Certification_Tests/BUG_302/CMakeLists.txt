@@ -5,6 +5,6 @@
 file(COPY  DC_comma.cir DC_defaults.cir DC_delimiter_invalid.cir DC_tab.cir README bug_302.cir bug_302.cir.sh exclude tags transient_comma.cir transient_defaults.cir transient_delimiter_invalid.cir transient_tab.cir DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug_302.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_302/bug_302.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_302.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug_302.cir ${OutputDataDir}/Certification_Tests/BUG_302/bug_302.cir.prn )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_302/bug_302.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_302.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} bug_302.cir ${OutputDataDir}/Certification_Tests/BUG_302/bug_302.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_302/bug_302.cir.sh PROPERTY LABELS "serial;nightly;bug302son;output;delimiter")
 endif()

@@ -5,6 +5,6 @@
 file(COPY  ForcedDampedHO.cir ForcedDampedHO.cir.sh tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/ForcedDampedHO.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
-  add_test(NAME ${TestNamePrefix}YACC/ForcedDampedHO.cir.sh COMMAND perl -I${XyceRegressionTestScripts} ForcedDampedHO.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} ForcedDampedHO.cir ${OutputDataDir}/YACC/ForcedDampedHO.cir.prn )
+  add_test(NAME ${TestNamePrefix}YACC/ForcedDampedHO.cir.sh COMMAND perl -I${XyceRegressionTestScripts} ForcedDampedHO.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} ForcedDampedHO.cir ${OutputDataDir}/YACC/ForcedDampedHO.cir.prn )
   set_property(TEST ${TestNamePrefix}YACC/ForcedDampedHO.cir.sh PROPERTY LABELS "serial;nightly;yacc")
 endif()

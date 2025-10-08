@@ -4,7 +4,7 @@
 
 file(COPY  GlobalInExpressionBug.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/ISSUE_229/GlobalInExpressionBug.cir COMMAND $<TARGET_FILE:Xyce> GlobalInExpressionBug.cir )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/ISSUE_229/GlobalInExpressionBug.cir COMMAND ${XYCE_BINARY} GlobalInExpressionBug.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/ISSUE_229/GlobalInExpressionBug.cir PROPERTY LABELS "serial;nightly;issue229;valgrind")
   set_tests_properties(${TestNamePrefix}Certification_Tests/ISSUE_229/GlobalInExpressionBug.cir PROPERTIES FIXTURES_SETUP GlobalInExpressionBug.cir)
   add_test(NAME ${TestNamePrefix}Certification_Tests/ISSUE_229/GlobalInExpressionBug.cir.verify COMMAND ${XYCE_VERIFY} GlobalInExpressionBug.cir ${OutputDataDir}/Certification_Tests/ISSUE_229/GlobalInExpressionBug.cir.prn GlobalInExpressionBug.cir.prn )

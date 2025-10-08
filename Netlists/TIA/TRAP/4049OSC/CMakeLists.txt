@@ -4,7 +4,7 @@
 
 file(COPY  4049osc.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}TIA/TRAP/4049OSC/4049osc.cir COMMAND $<TARGET_FILE:Xyce> 4049osc.cir )
+  add_test(NAME ${TestNamePrefix}TIA/TRAP/4049OSC/4049osc.cir COMMAND ${XYCE_BINARY} 4049osc.cir )
   set_property(TEST ${TestNamePrefix}TIA/TRAP/4049OSC/4049osc.cir PROPERTY LABELS "serial;nightly;newdae")
   set_tests_properties(${TestNamePrefix}TIA/TRAP/4049OSC/4049osc.cir PROPERTIES FIXTURES_SETUP 4049osc.cir)
   add_test(NAME ${TestNamePrefix}TIA/TRAP/4049OSC/4049osc.cir.verify COMMAND ${XYCE_VERIFY} 4049osc.cir ${OutputDataDir}/TIA/TRAP/4049OSC/4049osc.cir.prn 4049osc.cir.prn )
