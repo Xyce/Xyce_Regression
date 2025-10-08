@@ -5,6 +5,6 @@
 file(COPY  exclude lib.h nmos_3_2.mod pmos_3_2.mod ring51.cir ring51.cir.sh ring51_loca.cir ring51_loca_arc.cir ring51_loca_arc.cir.tags ring51_loca_defaults.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/ring51.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_54_SON/ring51.cir.sh COMMAND perl -I${XyceRegressionTestScripts} ring51.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} ring51.cir ${OutputDataDir}/Certification_Tests/BUG_54_SON/ring51.cir.prn )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_54_SON/ring51.cir.sh COMMAND perl -I${XyceRegressionTestScripts} ring51.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} ring51.cir ${OutputDataDir}/Certification_Tests/BUG_54_SON/ring51.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_54_SON/ring51.cir.sh PROPERTY LABELS "nightly;serial")
 endif()

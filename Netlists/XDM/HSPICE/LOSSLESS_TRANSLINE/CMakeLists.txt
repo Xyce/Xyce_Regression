@@ -5,6 +5,6 @@
 file(COPY  exclude lossless_transline.cir lossless_transline.cir.hspice lossless_transline.cir.sh DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/lossless_transline.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND XDM_BDL_FOUND AND PERL_FOUND )
-  add_test(NAME ${TestNamePrefix}XDM/HSPICE/LOSSLESS_TRANSLINE/lossless_transline.cir.sh COMMAND perl -I${XyceRegressionTestScripts} lossless_transline.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} lossless_transline.cir ${OutputDataDir}/XDM/HSPICE/LOSSLESS_TRANSLINE/lossless_transline.cir.prn )
+  add_test(NAME ${TestNamePrefix}XDM/HSPICE/LOSSLESS_TRANSLINE/lossless_transline.cir.sh COMMAND perl -I${XyceRegressionTestScripts} lossless_transline.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} lossless_transline.cir ${OutputDataDir}/XDM/HSPICE/LOSSLESS_TRANSLINE/lossless_transline.cir.prn )
   set_property(TEST ${TestNamePrefix}XDM/HSPICE/LOSSLESS_TRANSLINE/lossless_transline.cir.sh PROPERTY LABELS "serial;nightly;hspice;required:xdm")
 endif()

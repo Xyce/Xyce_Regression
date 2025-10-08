@@ -4,7 +4,7 @@
 
 file(COPY  func.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}ABM_FUNC/func.cir COMMAND $<TARGET_FILE:Xyce> func.cir )
+  add_test(NAME ${TestNamePrefix}ABM_FUNC/func.cir COMMAND ${XYCE_BINARY} func.cir )
   set_property(TEST ${TestNamePrefix}ABM_FUNC/func.cir PROPERTY LABELS "serial;nightly;valgrind;bsrc;expression;function;vpwl;resistor;transient")
   set_tests_properties(${TestNamePrefix}ABM_FUNC/func.cir PROPERTIES FIXTURES_SETUP func.cir)
   add_test(NAME ${TestNamePrefix}ABM_FUNC/func.cir.verify COMMAND ${XYCE_VERIFY} func.cir ${OutputDataDir}/ABM_FUNC/func.cir.prn func.cir.prn )

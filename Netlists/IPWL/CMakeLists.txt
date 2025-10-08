@@ -4,7 +4,7 @@
 
 file(COPY  ipwl.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}IPWL/ipwl.cir COMMAND $<TARGET_FILE:Xyce> ipwl.cir )
+  add_test(NAME ${TestNamePrefix}IPWL/ipwl.cir COMMAND ${XYCE_BINARY} ipwl.cir )
   set_property(TEST ${TestNamePrefix}IPWL/ipwl.cir PROPERTY LABELS "serial;nightly;ipwl;pwl;valgrind")
   set_tests_properties(${TestNamePrefix}IPWL/ipwl.cir PROPERTIES FIXTURES_SETUP ipwl.cir)
   add_test(NAME ${TestNamePrefix}IPWL/ipwl.cir.verify COMMAND ${XYCE_VERIFY} ipwl.cir ${OutputDataDir}/IPWL/ipwl.cir.prn ipwl.cir.prn )

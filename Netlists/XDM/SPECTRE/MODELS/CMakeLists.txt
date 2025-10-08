@@ -5,6 +5,6 @@
 file(COPY  exclude tags bsimsoi_translation.cir.spectre bsimsoi_translation.cir bsimsoi_translation.cir.sh DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bsimsoi_translation.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND XDM_BDL_FOUND AND PERL_FOUND )
-  add_test(NAME ${TestNamePrefix}XDM/SPECTRE/MODELS/bsimsoi_translation.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bsimsoi_translation.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bsimsoi_translation.cir ${OutputDataDir}/XDM/SPECTRE/MODELS/bsimsoi_translation.cir.prn )
+  add_test(NAME ${TestNamePrefix}XDM/SPECTRE/MODELS/bsimsoi_translation.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bsimsoi_translation.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} bsimsoi_translation.cir ${OutputDataDir}/XDM/SPECTRE/MODELS/bsimsoi_translation.cir.prn )
   set_property(TEST ${TestNamePrefix}XDM/SPECTRE/MODELS/bsimsoi_translation.cir.sh PROPERTY LABELS "serial;nightly;required:xdm;spectre")
 endif()

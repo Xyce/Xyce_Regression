@@ -4,7 +4,7 @@
 
 file(COPY  bug_601.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( Xyce_PARALLEL_MPI  )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_601_SON/bug_601.cir COMMAND mpiexec -bind-to none -np 2 $<TARGET_FILE:Xyce> bug_601.cir )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_601_SON/bug_601.cir COMMAND mpiexec -bind-to none -np 2 ${XYCE_BINARY} bug_601.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_601_SON/bug_601.cir PROPERTY LABELS "parallel;nightly;vbic;adms")
   set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_601_SON/bug_601.cir PROPERTIES FIXTURES_SETUP bug_601.cir)
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_601_SON/bug_601.cir.verify COMMAND ${XYCE_VERIFY} bug_601.cir ${OutputDataDir}/Certification_Tests/BUG_601_SON/bug_601.cir.prn bug_601.cir.prn )

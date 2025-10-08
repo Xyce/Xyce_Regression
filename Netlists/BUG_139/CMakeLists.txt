@@ -4,7 +4,7 @@
 
 file(COPY  README in_line_comment.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}BUG_139/in_line_comment.cir COMMAND $<TARGET_FILE:Xyce> in_line_comment.cir )
+  add_test(NAME ${TestNamePrefix}BUG_139/in_line_comment.cir COMMAND ${XYCE_BINARY} in_line_comment.cir )
   set_property(TEST ${TestNamePrefix}BUG_139/in_line_comment.cir PROPERTY LABELS "serial;nightly;valgrind")
   set_tests_properties(${TestNamePrefix}BUG_139/in_line_comment.cir PROPERTIES FIXTURES_SETUP in_line_comment.cir)
   add_test(NAME ${TestNamePrefix}BUG_139/in_line_comment.cir.verify COMMAND ${XYCE_VERIFY} in_line_comment.cir ${OutputDataDir}/BUG_139/in_line_comment.cir.prn in_line_comment.cir.prn )

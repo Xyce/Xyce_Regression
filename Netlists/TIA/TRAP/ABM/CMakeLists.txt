@@ -5,7 +5,7 @@
 file(COPY  ddt.cir ddt.cir.prn.gs.pl tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/ddt.cir.prn.gs.pl PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}TIA/TRAP/ABM/ddt.cir COMMAND $<TARGET_FILE:Xyce> ddt.cir )
+  add_test(NAME ${TestNamePrefix}TIA/TRAP/ABM/ddt.cir COMMAND ${XYCE_BINARY} ddt.cir )
   set_property(TEST ${TestNamePrefix}TIA/TRAP/ABM/ddt.cir PROPERTY LABELS "serial;nightly;analytic;ddt;bsrc;expression")
   set_tests_properties(${TestNamePrefix}TIA/TRAP/ABM/ddt.cir PROPERTIES FIXTURES_SETUP ddt.cir)
   add_test(NAME ${TestNamePrefix}TIA/TRAP/ABM/ddt.cir.gen_gs COMMAND perl ddt.cir.prn.gs.pl ddt.cir.prn)

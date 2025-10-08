@@ -5,6 +5,6 @@
 file(COPY  Manifest.txt exclude issue565_566.cir issue565_566.cir.sh issue565_566ref.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/issue565_566.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND BASH_FOUND )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/ISSUE_565_566/issue565_566.cir.sh COMMAND bash issue565_566.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} issue565_566.cir ${OutputDataDir}/Certification_Tests/ISSUE_565_566/issue565_566.cir.prn )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/ISSUE_565_566/issue565_566.cir.sh COMMAND bash issue565_566.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} issue565_566.cir ${OutputDataDir}/Certification_Tests/ISSUE_565_566/issue565_566.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/ISSUE_565_566/issue565_566.cir.sh PROPERTY LABELS "serial;nightly;issue565;issue566;vpwl;pwl;bsrc;abm;expression_breakpoints")
 endif()

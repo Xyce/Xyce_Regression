@@ -5,6 +5,6 @@
 file(COPY  bjt_baseline.cir bjt_load.cir bjt_save.cir bjt_save.cir.sh exclude tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bjt_save.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( Xyce_PARALLEL_MPI  AND BASH_FOUND )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_294_SON/bjt_save.cir.sh COMMAND bash bjt_save.cir.sh "mpiexec -bind-to none -np 2 $<TARGET_FILE:Xyce>" ${XYCE_VERIFY} ${XYCE_VERIFY} bjt_save.cir ${OutputDataDir}/Certification_Tests/BUG_294_SON/bjt_save.cir.prn )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_294_SON/bjt_save.cir.sh COMMAND bash bjt_save.cir.sh "mpiexec -bind-to none -np 2 ${XYCE_BINARY}" ${XYCE_VERIFY} ${XYCE_VERIFY} bjt_save.cir ${OutputDataDir}/Certification_Tests/BUG_294_SON/bjt_save.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_294_SON/bjt_save.cir.sh PROPERTY LABELS "nightly;parallel;ic;nodeset;bjtlev1;homotopy;save")
 endif()

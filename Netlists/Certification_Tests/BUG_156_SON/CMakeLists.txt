@@ -5,7 +5,7 @@
 file(COPY  tab_only_line.cir tab_only_line.cir.prn.gs.pl tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/tab_only_line.cir.prn.gs.pl PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_156_SON/tab_only_line.cir COMMAND $<TARGET_FILE:Xyce> tab_only_line.cir )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_156_SON/tab_only_line.cir COMMAND ${XYCE_BINARY} tab_only_line.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_156_SON/tab_only_line.cir PROPERTY LABELS "serial;nightly;valgrind")
   set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_156_SON/tab_only_line.cir PROPERTIES FIXTURES_SETUP tab_only_line.cir)
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_156_SON/tab_only_line.cir.gen_gs COMMAND perl tab_only_line.cir.prn.gs.pl tab_only_line.cir.prn)

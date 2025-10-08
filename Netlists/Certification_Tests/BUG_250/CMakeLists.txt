@@ -4,7 +4,7 @@
 
 file(COPY  README bug_250.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_250/bug_250.cir COMMAND $<TARGET_FILE:Xyce> bug_250.cir )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_250/bug_250.cir COMMAND ${XYCE_BINARY} bug_250.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_250/bug_250.cir PROPERTY LABELS "serial;nightly;mos1")
   set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_250/bug_250.cir PROPERTIES FIXTURES_SETUP bug_250.cir)
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_250/bug_250.cir.verify COMMAND ${XYCE_VERIFY} bug_250.cir ${OutputDataDir}/Certification_Tests/BUG_250/bug_250.cir.prn bug_250.cir.prn )

@@ -5,6 +5,6 @@
 file(COPY  README bug_1132-empty.cir bug_1132-empty.cir.sh tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug_1132-empty.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1132/bug_1132-empty.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_1132-empty.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug_1132-empty.cir ${OutputDataDir}/Certification_Tests/BUG_1132/bug_1132-empty.cir.prn )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1132/bug_1132-empty.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_1132-empty.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} bug_1132-empty.cir ${OutputDataDir}/Certification_Tests/BUG_1132/bug_1132-empty.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1132/bug_1132-empty.cir.sh PROPERTY LABELS "serial;nightly;valgrind")
 endif()

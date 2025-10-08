@@ -4,7 +4,7 @@
 
 file(COPY  DFF_Verify_Xyce.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}DIGITAL_DFF/DFF_Verify_Xyce.cir COMMAND $<TARGET_FILE:Xyce> DFF_Verify_Xyce.cir )
+  add_test(NAME ${TestNamePrefix}DIGITAL_DFF/DFF_Verify_Xyce.cir COMMAND ${XYCE_BINARY} DFF_Verify_Xyce.cir )
   set_property(TEST ${TestNamePrefix}DIGITAL_DFF/DFF_Verify_Xyce.cir PROPERTY LABELS "serial;nightly;digital;valgrind")
   set_tests_properties(${TestNamePrefix}DIGITAL_DFF/DFF_Verify_Xyce.cir PROPERTIES FIXTURES_SETUP DFF_Verify_Xyce.cir)
   add_test(NAME ${TestNamePrefix}DIGITAL_DFF/DFF_Verify_Xyce.cir.verify COMMAND ${XYCE_VERIFY} DFF_Verify_Xyce.cir ${OutputDataDir}/DIGITAL_DFF/DFF_Verify_Xyce.cir.prn DFF_Verify_Xyce.cir.prn )

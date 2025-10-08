@@ -4,7 +4,7 @@
 
 file(COPY  bug458.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}BUG_458/bug458.cir COMMAND $<TARGET_FILE:Xyce> bug458.cir )
+  add_test(NAME ${TestNamePrefix}BUG_458/bug458.cir COMMAND ${XYCE_BINARY} bug458.cir )
   set_property(TEST ${TestNamePrefix}BUG_458/bug458.cir PROPERTY LABELS "serial;nightly;inductor;valgrind")
   set_tests_properties(${TestNamePrefix}BUG_458/bug458.cir PROPERTIES FIXTURES_SETUP bug458.cir)
   add_test(NAME ${TestNamePrefix}BUG_458/bug458.cir.verify COMMAND ${XYCE_VERIFY} bug458.cir ${OutputDataDir}/BUG_458/bug458.cir.prn bug458.cir.prn )

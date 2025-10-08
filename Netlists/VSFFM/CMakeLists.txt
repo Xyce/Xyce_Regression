@@ -4,7 +4,7 @@
 
 file(COPY  tags vsffm.cir DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}VSFFM/vsffm.cir COMMAND $<TARGET_FILE:Xyce> vsffm.cir )
+  add_test(NAME ${TestNamePrefix}VSFFM/vsffm.cir COMMAND ${XYCE_BINARY} vsffm.cir )
   set_property(TEST ${TestNamePrefix}VSFFM/vsffm.cir PROPERTY LABELS "serial;nightly;valgrind")
   set_tests_properties(${TestNamePrefix}VSFFM/vsffm.cir PROPERTIES FIXTURES_SETUP vsffm.cir)
   add_test(NAME ${TestNamePrefix}VSFFM/vsffm.cir.verify COMMAND ${XYCE_VERIFY} vsffm.cir ${OutputDataDir}/VSFFM/vsffm.cir.prn vsffm.cir.prn )

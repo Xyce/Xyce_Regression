@@ -4,7 +4,7 @@
 
 file(COPY  HBT_IV_nosweep.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1770/HBT_IV_nosweep.cir COMMAND $<TARGET_FILE:Xyce> HBT_IV_nosweep.cir )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1770/HBT_IV_nosweep.cir COMMAND ${XYCE_BINARY} HBT_IV_nosweep.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1770/HBT_IV_nosweep.cir PROPERTY LABELS "serial;nightly;vbic;voltlim;adms")
   set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_1770/HBT_IV_nosweep.cir PROPERTIES FIXTURES_SETUP HBT_IV_nosweep.cir)
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1770/HBT_IV_nosweep.cir.verify COMMAND ${XYCE_VERIFY} HBT_IV_nosweep.cir ${OutputDataDir}/Certification_Tests/BUG_1770/HBT_IV_nosweep.cir.prn HBT_IV_nosweep.cir.prn )

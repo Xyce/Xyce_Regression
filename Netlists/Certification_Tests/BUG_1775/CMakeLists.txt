@@ -4,7 +4,7 @@
 
 file(COPY  HBT_IV.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1775/HBT_IV.cir COMMAND $<TARGET_FILE:Xyce> HBT_IV.cir )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1775/HBT_IV.cir COMMAND ${XYCE_BINARY} HBT_IV.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1775/HBT_IV.cir PROPERTY LABELS "serial;nightly;vbic;adms")
   set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_1775/HBT_IV.cir PROPERTIES FIXTURES_SETUP HBT_IV.cir)
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1775/HBT_IV.cir.verify COMMAND ${XYCE_VERIFY} HBT_IV.cir ${OutputDataDir}/Certification_Tests/BUG_1775/HBT_IV.cir.prn HBT_IV.cir.prn )

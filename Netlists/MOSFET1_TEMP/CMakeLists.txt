@@ -5,6 +5,6 @@
 file(COPY  CD40P_Temp1.cir CD40P_Temp1.cir.sh CD40P_Temp1.cir.tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/CD40P_Temp1.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
-  add_test(NAME ${TestNamePrefix}MOSFET1_TEMP/CD40P_Temp1.cir.sh COMMAND perl -I${XyceRegressionTestScripts} CD40P_Temp1.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} CD40P_Temp1.cir ${OutputDataDir}/MOSFET1_TEMP/CD40P_Temp1.cir.prn )
+  add_test(NAME ${TestNamePrefix}MOSFET1_TEMP/CD40P_Temp1.cir.sh COMMAND perl -I${XyceRegressionTestScripts} CD40P_Temp1.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} CD40P_Temp1.cir ${OutputDataDir}/MOSFET1_TEMP/CD40P_Temp1.cir.prn )
   set_property(TEST ${TestNamePrefix}MOSFET1_TEMP/CD40P_Temp1.cir.sh PROPERTY LABELS "serial;nightly;tempinterp;bug1150son;issue649;errorexit")
 endif()

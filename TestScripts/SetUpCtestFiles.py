@@ -177,16 +177,95 @@ def SetUpCtestFiles():
       if( keyName == "Xyce_Regression"):
         # make top level CMakeLists.txt file
         #topLevelCmakeFile = open( os.path.join(XyceRegressionDirectory, 'CMakeLists.txt'), 'w')
+        outputBuf.write('cmake_minimum_required(VERSION 3.22 FATAL_ERROR)\n')
+        outputBuf.write('project(XyceRegression VERSION 7.11.0 LANGUAGES CXX C)\n')
         outputBuf.write('message(DEBUG "[DBG]: CMAKE_CURRENT_SOURCE_DIR: ${CMAKE_CURRENT_SOURCE_DIR}")\n')
         outputBuf.write('set(XYCE_VERIFY "${CMAKE_CURRENT_SOURCE_DIR}/TestScripts/xyce_verify.pl")\n')
         outputBuf.write('message(DEBUG "[DBG]: XYCE_VERIFY: ${XYCE_VERIFY}")\n')
         outputBuf.write('set(OutputDataDir "${CMAKE_CURRENT_SOURCE_DIR}/OutputData")\n')
         outputBuf.write('set(TestNamePrefix "")\n')
         outputBuf.write('set(XyceRegressionTestScripts ${CMAKE_CURRENT_SOURCE_DIR}/TestScripts)\n')
-        outputBuf.write('get_target_property(XyceBuildDir Xyce BINARY_DIR)\n')
-        outputBuf.write('message(DEBUG "[DBG]: XyceBuildDir: ${XyceBuildDir}")\n')
-        outputBuf.write('cmake_path(SET XYCE_BINARY $<TARGET_FILE:Xyce>)\n')
-        outputBuf.write('message(DEBUG "[DBG]: XYCE_BINARY: ${XYCE_BINARY}")\n')
+        outputBuf.write('if(TARGET Xyce)\n')
+        outputBuf.write('  get_target_property(XyceBuildDir Xyce BINARY_DIR)\n')
+        outputBuf.write('  message(DEBUG "[DBG]: XyceBuildDir: ${XyceBuildDir}")\n')
+        outputBuf.write('  cmake_path(SET XYCE_BINARY $<TARGET_FILE:Xyce>)\n')
+        outputBuf.write('else()\n')
+        outputBuf.write('  enable_testing()\n')
+        outputBuf.write('  message(DEBUG "[DBG]: Target Xyce not inherited from parent project. Looking for Xyce on PATH and with environment variable Xyce_DIR")\n')
+        outputBuf.write('  find_program(XYCE_BINARY NAMES Xyce Xyce.exe HINTS ENV XYCE_DIR ENV Xyce_DIR )\n')
+        outputBuf.write('  message(DEBUG "[DBG]: XYCE_BINARY: ${XYCE_BINARY}")\n')
+        outputBuf.write('  if( XYCE_BINARY STREQUAL "XYCE_BINARY-NOTFOUND")\n')
+        outputBuf.write('    message(FATAL_ERROR "No Xyce binary found on path or set with environment variable Xyce_DIR")\n')
+        outputBuf.write('  else()\n')
+        outputBuf.write('    # Xyce is installed.  Use Xyce\'s capabilities option to set build options \n')
+        outputBuf.write('    execute_process(COMMAND ${XYCE_BINARY} -capabilities OUTPUT_VARIABLE XyceCapabilities ERROR_VARIABLE XyceErrorMsg)\n')
+        outputBuf.write('    #message(DEBUG "Xyce capabilities are ${XyceCapabilities} and ${XyceErrorMsg}")\n')
+        outputBuf.write('    set( Xyce_PARALLEL_MPI FALSE CACHE BOOL "True Xyce if built with MPI")\n')
+        outputBuf.write('    set( Xyce_RAD_MODELS FALSE CACHE BOOL "Xyce rad models included")\n')
+        outputBuf.write('    set( Xyce_NONFREE_MODELS FLASE CACHE BOOL "Non-free device models")\n')
+        outputBuf.write('    set( Xyce_ADMS_MODELS FALSE CACHE BOOL "ADMS models")\n')
+        outputBuf.write('    set( Xyce_ADMS_SENSITIVITIES FALSE CACHE BOOL "ADMS sensitivities")\n')
+        outputBuf.write('    set( Xyce_USE_FFT FALSE CACHE BOOL "FFT enabled")\n')
+        outputBuf.write('    set( Xyce_REACTION_PARSER FALSE CACHE BOOL "Reaction parser available")\n')
+        outputBuf.write('    set( Xyce_ATHENA FALSE CACHE BOOL "ATHENA available")\n')
+        outputBuf.write('    set( Xyce_ROL FALSE CACHE BOOL "ROL enabled")\n')
+        outputBuf.write('    set( Xyce_STOKHOS_ENABLE FALSE CACHE BOOL "Stokhos enabled")\n')
+        outputBuf.write('    set( Xyce_AMESOS2 FALSE CACHE BOOL "Amesos2 available")\n')
+        outputBuf.write('    if( XyceCapabilities MATCHES "Parallel with MPI")\n')
+        outputBuf.write('      set( Xyce_PARALLEL_MPI TRUE CACHE BOOL "True Xyce if built with MPI" FORCE )\n')
+        outputBuf.write('    endif()\n')
+        outputBuf.write('    if( XyceCapabilities MATCHES "Radiation models")\n')
+        outputBuf.write('      set( Xyce_RAD_MODELS TRUE CACHE BOOL "Xyce rad models included" FORCE)\n')
+        outputBuf.write('    endif()\n')
+        outputBuf.write('    if( XyceCapabilities MATCHES "Non-Free device models")\n')
+        outputBuf.write('      set( Xyce_NONFREE_MODELS TRUE CACHE BOOL "Non-free device models" FORCE)\n')
+        outputBuf.write('    endif()\n')
+        outputBuf.write('    if( XyceCapabilities MATCHES "Verilog-A derived")\n')
+        outputBuf.write('      set( Xyce_ADMS_MODELS TRUE CACHE BOOL "ADMS models" FORCE)\n')
+        outputBuf.write('    endif()\n')
+        outputBuf.write('    if( XyceCapabilities MATCHES "Analytic sensitivities in ADMS models")\n')
+        outputBuf.write('      set( Xyce_ADMS_SENSITIVITIES TRUE CACHE BOOL "ADMS sensitivities" FORCE)\n')
+        outputBuf.write('    endif()\n')
+        outputBuf.write('    if( XyceCapabilities MATCHES "FFT")\n')
+        outputBuf.write('      set( Xyce_USE_FFT TRUE CACHE BOOL "FFT enabled" FORCE)\n')
+        outputBuf.write('    endif()\n')
+        outputBuf.write('    if( XyceCapabilities MATCHES "Reaction parser")\n')
+        outputBuf.write('      set( Xyce_REACTION_PARSER TRUE CACHE BOOL "Reaction parser available" FORCE)\n')
+        outputBuf.write('    endif()\n')
+        outputBuf.write('    if( XyceCapabilities MATCHES "ATHENA")\n')
+        outputBuf.write('      set( Xyce_ATHENA TRUE CACHE BOOL "ATHENA available" FORCE)\n')
+        outputBuf.write('    endif()\n')
+        outputBuf.write('    if( XyceCapabilities MATCHES "ROL enabled")\n')
+        outputBuf.write('      set( Xyce_ROL TRUE CACHE BOOL "ROL enabled" FORCE)\n')
+        outputBuf.write('    endif()\n')
+        outputBuf.write('    if( XyceCapabilities MATCHES "Stokhos enabled")\n')
+        outputBuf.write('      set( Xyce_STOKHOS_ENABLE TRUE  CACHE BOOL "Stokhos enabled" FORCE)\n')
+        outputBuf.write('    endif()\n')
+        outputBuf.write('    if( XyceCapabilities MATCHES "Amesos2")\n')
+        outputBuf.write('      set( Xyce_AMESOS2 TRUE CACHE BOOL "Amesos2 available" FORCE)\n')
+        outputBuf.write('    endif()\n')
+        outputBuf.write('    message(DEBUG "[DBG]: Xyce_PARALLEL_MPI is ${Xyce_PARALLEL_MPI} ")\n')
+        outputBuf.write('    message(DEBUG "[DBG]: Xyce_RAD_MODELS is ${Xyce_RAD_MODELS} ")\n')
+        outputBuf.write('    message(DEBUG "[DBG]: Xyce_NONFREE_MODELS is ${Xyce_NONFREE_MODELS}")\n')
+        outputBuf.write('    message(DEBUG "[DBG]: Xyce_ADMS_MODELS is ${Xyce_ADMS_MODELS} ")\n')
+        outputBuf.write('    message(DEBUG "[DBG]: Xyce_ADMS_SENSITIVITIES is ${Xyce_ADMS_SENSITIVITIES} ")\n')
+        outputBuf.write('    message(DEBUG "[DBG]: Xyce_USE_FFT is ${Xyce_USE_FFT} ")\n')
+        outputBuf.write('    message(DEBUG "[DBG]: Xyce_REACTION_PARSER is ${Xyce_REACTION_PARSER} ")\n')
+        outputBuf.write('    message(DEBUG "[DBG]: Xyce_ATHENA is ${Xyce_ATHENA} ")\n')
+        outputBuf.write('    message(DEBUG "[DBG]: Xyce_ROL is ${Xyce_ROL} ")\n')
+        outputBuf.write('    message(DEBUG "[DBG]: Xyce_STOKHOS_ENABLE is ${Xyce_STOKHOS_ENABLE} ")\n')
+        outputBuf.write('    message(DEBUG "[DBG]: Xyce_AMESOS2 is ${Xyce_AMESOS2} ")\n')
+        outputBuf.write('  endif()\n')
+        outputBuf.write('endif()\n')  
+        
+        
+        
+        #outputBuf.write('get_target_property(XyceBuildDir Xyce BINARY_DIR)\n')
+        #outputBuf.write('message(DEBUG "[DBG]: XyceBuildDir: ${XyceBuildDir}")\n')
+        #outputBuf.write('cmake_path(SET XYCE_BINARY $<TARGET_FILE:Xyce>)\n')
+        #outputBuf.write('message(DEBUG "[DBG]: XYCE_BINARY: ${XYCE_BINARY}")\n')
+        
+        
         outputBuf.write('set(DAKOTA_FOUND FALSE CACHE BOOL "True if dakota found.")\n')
         outputBuf.write('set(PERL_FOUND FALSE CACHE BOOL "True if perl found.")\n')
         outputBuf.write('set(BASH_FOUND FALSE CACHE BOOL "True if bash found.")\n')
@@ -329,7 +408,7 @@ def SetUpCtestFiles():
             # first run Xyce on the test circuit
             if (testtags.find('serial') >= 0):
               outputBuf.write('if( %s )\n' % (serialConstraint))
-              outputBuf.write('  add_test(NAME ${TestNamePrefix}%s COMMAND $<TARGET_FILE:Xyce> %s )\n' % (testName, subDirName))
+              outputBuf.write('  add_test(NAME ${TestNamePrefix}%s COMMAND ${XYCE_BINARY} %s )\n' % (testName, subDirName))
               if( checkIfFileContainsText(keyName, subDirName, 'failvalue')):
                 # File failvalue keyword so set test property to trap for this as a test failure indicator 
                 outputBuf.write('  set_property(TEST ${TestNamePrefix}%s PROPERTY FAIL_REGULAR_EXPRESSION \"FAILED: Measure exceeds failure value\")\n' % (testName))
@@ -390,7 +469,7 @@ def SetUpCtestFiles():
               
             if( testtags.find('parallel') >= 0 ):
               outputBuf.write('if( %s )\n' % (parallelConstraint))
-              outputBuf.write('  add_test(NAME ${TestNamePrefix}%s COMMAND mpiexec -bind-to none -np 2 $<TARGET_FILE:Xyce> %s )\n' % (testName, subDirName))
+              outputBuf.write('  add_test(NAME ${TestNamePrefix}%s COMMAND mpiexec -bind-to none -np 2 ${XYCE_BINARY} %s )\n' % (testName, subDirName))
               # write test tags as label for this test
               if( len(testtags) > 0 ):
                 outputBuf.write('  set_property(TEST ${TestNamePrefix}%s PROPERTY LABELS \"%s\")\n' % (testName, testtags))
@@ -518,7 +597,7 @@ def SetUpCtestFiles():
 
             if (testtags.find('serial') >= 0):
               outputBuf.write('if( %s )\n' % (serialConstraint))
-              outputBuf.write('  add_test(NAME ${TestNamePrefix}%s COMMAND %s %s $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} %s ${OutputDataDir}/%s )\n' % (testName, interpreter, subDirName, actualFileName, GoldOutput))
+              outputBuf.write('  add_test(NAME ${TestNamePrefix}%s COMMAND %s %s ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} %s ${OutputDataDir}/%s )\n' % (testName, interpreter, subDirName, actualFileName, GoldOutput))
 
               # write test tags as label for this test
               if( len(testtags) > 0 ):
@@ -536,7 +615,7 @@ def SetUpCtestFiles():
               
             if( testtags.find('parallel') >= 0 ):
               outputBuf.write('if( %s )\n' % (parallelConstraint))
-              outputBuf.write('  add_test(NAME ${TestNamePrefix}%s COMMAND %s %s \"mpiexec -bind-to none -np 2 $<TARGET_FILE:Xyce>\" ${XYCE_VERIFY} ${XYCE_VERIFY} %s ${OutputDataDir}/%s )\n' % (testName, interpreter, subDirName, actualFileName, GoldOutput))
+              outputBuf.write('  add_test(NAME ${TestNamePrefix}%s COMMAND %s %s \"mpiexec -bind-to none -np 2 ${XYCE_BINARY}\" ${XYCE_VERIFY} ${XYCE_VERIFY} %s ${OutputDataDir}/%s )\n' % (testName, interpreter, subDirName, actualFileName, GoldOutput))
               # write test tags as label for this test
               if( len(testtags) > 0 ):
                 outputBuf.write('  set_property(TEST ${TestNamePrefix}%s PROPERTY LABELS \"%s\")\n' % (testName, testtags))

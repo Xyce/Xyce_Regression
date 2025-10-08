@@ -5,6 +5,6 @@
 file(COPY  README bug_1358_braces.cir bug_1358_quotes.cir bug_1358_quotes.cir.sh exclude tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug_1358_quotes.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1358/bug_1358_quotes.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_1358_quotes.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} bug_1358_quotes.cir ${OutputDataDir}/Certification_Tests/BUG_1358/bug_1358_quotes.cir.prn )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1358/bug_1358_quotes.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_1358_quotes.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} bug_1358_quotes.cir ${OutputDataDir}/Certification_Tests/BUG_1358/bug_1358_quotes.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1358/bug_1358_quotes.cir.sh PROPERTY LABELS "serial;nightly")
 endif()

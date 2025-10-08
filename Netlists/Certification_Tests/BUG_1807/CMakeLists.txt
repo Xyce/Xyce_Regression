@@ -4,7 +4,7 @@
 
 file(COPY  tags vbic_pnp_default.cir DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1807/vbic_pnp_default.cir COMMAND $<TARGET_FILE:Xyce> vbic_pnp_default.cir )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1807/vbic_pnp_default.cir COMMAND ${XYCE_BINARY} vbic_pnp_default.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1807/vbic_pnp_default.cir PROPERTY LABELS "serial;nightly;vbic;adms")
   set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_1807/vbic_pnp_default.cir PROPERTIES FIXTURES_SETUP vbic_pnp_default.cir)
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1807/vbic_pnp_default.cir.verify COMMAND ${XYCE_VERIFY} vbic_pnp_default.cir ${OutputDataDir}/Certification_Tests/BUG_1807/vbic_pnp_default.cir.prn vbic_pnp_default.cir.prn )

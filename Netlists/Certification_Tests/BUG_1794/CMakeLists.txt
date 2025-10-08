@@ -4,7 +4,7 @@
 
 file(COPY  onedevice.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( Xyce_PARALLEL_MPI  )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1794/onedevice.cir COMMAND mpiexec -bind-to none -np 2 $<TARGET_FILE:Xyce> onedevice.cir )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1794/onedevice.cir COMMAND mpiexec -bind-to none -np 2 ${XYCE_BINARY} onedevice.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1794/onedevice.cir PROPERTY LABELS "parallel;nightly")
   set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_1794/onedevice.cir PROPERTIES FIXTURES_SETUP onedevice.cir)
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1794/onedevice.cir.verify COMMAND ${XYCE_VERIFY} onedevice.cir ${OutputDataDir}/Certification_Tests/BUG_1794/onedevice.cir.prn onedevice.cir.prn )
