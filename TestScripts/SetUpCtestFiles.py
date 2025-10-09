@@ -178,7 +178,7 @@ def SetUpCtestFiles():
         # make top level CMakeLists.txt file
         #topLevelCmakeFile = open( os.path.join(XyceRegressionDirectory, 'CMakeLists.txt'), 'w')
         outputBuf.write('cmake_minimum_required(VERSION 3.22 FATAL_ERROR)\n')
-        outputBuf.write('project(XyceRegression VERSION 7.11.0 LANGUAGES CXX C)\n')
+        outputBuf.write('project(XyceRegression VERSION 7.11.0 LANGUAGES NONE)\n')
         outputBuf.write('message(DEBUG "[DBG]: CMAKE_CURRENT_SOURCE_DIR: ${CMAKE_CURRENT_SOURCE_DIR}")\n')
         outputBuf.write('set(XYCE_VERIFY "${CMAKE_CURRENT_SOURCE_DIR}/TestScripts/xyce_verify.pl")\n')
         outputBuf.write('message(DEBUG "[DBG]: XYCE_VERIFY: ${XYCE_VERIFY}")\n')

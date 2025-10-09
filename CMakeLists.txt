@@ -3,7 +3,7 @@
 # Or you can remove this header line to prevent this file from being overwritten
 
 cmake_minimum_required(VERSION 3.22 FATAL_ERROR)
-project(XyceRegression VERSION 7.11.0 LANGUAGES CXX C)
+project(XyceRegression VERSION 7.11.0 LANGUAGES NONE)
 message(DEBUG "[DBG]: CMAKE_CURRENT_SOURCE_DIR: ${CMAKE_CURRENT_SOURCE_DIR}")
 set(XYCE_VERIFY "${CMAKE_CURRENT_SOURCE_DIR}/TestScripts/xyce_verify.pl")
 message(DEBUG "[DBG]: XYCE_VERIFY: ${XYCE_VERIFY}")
