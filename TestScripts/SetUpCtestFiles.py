@@ -821,6 +821,7 @@ def setConstraintsBasedOnTags( inputTags ):
     'required:fft':'Xyce_USE_FFT',
     'required:athena':'Xyce_ATHENA',
     'required:buildplugin':'Xyce_PLUGIN_SUPPORT',
+    'required:capacity':'DEFINED Xyce_CAPACITY_TESTING',
     'required:dakota': 'DEFINED Xyce_Dakota',
     'required:dakota_bb': 'DAKOTA_FOUND',
     'required:rol':'Xyce_ROL',
