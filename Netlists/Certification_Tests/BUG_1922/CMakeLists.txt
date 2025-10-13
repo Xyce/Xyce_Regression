@@ -4,7 +4,7 @@
 
 file(COPY  bug1922.cir exclude pspice_netlist.cir pspice_netlist.cir.prn pspice_netlist.csd tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1922/bug1922.cir COMMAND $<TARGET_FILE:Xyce> bug1922.cir )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1922/bug1922.cir COMMAND ${XYCE_BINARY} bug1922.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1922/bug1922.cir PROPERTY LABELS "serial;nightly;inductor;mutualinductor")
   set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_1922/bug1922.cir PROPERTIES FIXTURES_SETUP bug1922.cir)
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1922/bug1922.cir.verify COMMAND ${XYCE_VERIFY} bug1922.cir ${OutputDataDir}/Certification_Tests/BUG_1922/bug1922.cir.prn bug1922.cir.prn )

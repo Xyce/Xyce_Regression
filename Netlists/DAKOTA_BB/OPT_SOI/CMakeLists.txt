@@ -5,6 +5,6 @@
 file(COPY  opt_soi.cir opt_soi.cir.sh opt_soi.dak opt_soi.dat tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/opt_soi.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND DAKOTA_FOUND AND PERL_FOUND )
-  add_test(NAME ${TestNamePrefix}DAKOTA_BB/OPT_SOI/opt_soi.cir.sh COMMAND perl -I${XyceRegressionTestScripts} opt_soi.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} opt_soi.cir ${OutputDataDir}/DAKOTA_BB/OPT_SOI/opt_soi.cir.prn )
+  add_test(NAME ${TestNamePrefix}DAKOTA_BB/OPT_SOI/opt_soi.cir.sh COMMAND perl -I${XyceRegressionTestScripts} opt_soi.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} opt_soi.cir ${OutputDataDir}/DAKOTA_BB/OPT_SOI/opt_soi.cir.prn )
   set_property(TEST ${TestNamePrefix}DAKOTA_BB/OPT_SOI/opt_soi.cir.sh PROPERTY LABELS "serial;nightly;required:dakota_bb")
 endif()

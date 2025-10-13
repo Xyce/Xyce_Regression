@@ -4,7 +4,7 @@
 
 file(COPY  tags vpulse.cir DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}VPULSE/vpulse.cir COMMAND $<TARGET_FILE:Xyce> vpulse.cir )
+  add_test(NAME ${TestNamePrefix}VPULSE/vpulse.cir COMMAND ${XYCE_BINARY} vpulse.cir )
   set_property(TEST ${TestNamePrefix}VPULSE/vpulse.cir PROPERTY LABELS "serial;nightly;valgrind")
   set_tests_properties(${TestNamePrefix}VPULSE/vpulse.cir PROPERTIES FIXTURES_SETUP vpulse.cir)
   add_test(NAME ${TestNamePrefix}VPULSE/vpulse.cir.verify COMMAND ${XYCE_VERIFY} vpulse.cir ${OutputDataDir}/VPULSE/vpulse.cir.prn vpulse.cir.prn )

@@ -4,7 +4,7 @@
 
 file(COPY  bug_466.cir bug_466.cir.res.gs exclude tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_466_SON/bug_466.cir COMMAND $<TARGET_FILE:Xyce> bug_466.cir )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_466_SON/bug_466.cir COMMAND ${XYCE_BINARY} bug_466.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_466_SON/bug_466.cir PROPERTY LABELS "serial;nightly;result")
   set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_466_SON/bug_466.cir PROPERTIES FIXTURES_SETUP bug_466.cir)
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_466_SON/bug_466.cir.verify COMMAND ${XYCE_VERIFY} bug_466.cir ${OutputDataDir}/Certification_Tests/BUG_466_SON/bug_466.cir.prn bug_466.cir.prn )

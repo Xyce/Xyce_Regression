@@ -4,7 +4,7 @@
 
 file(COPY  issue235.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/ISSUE_235/issue235.cir COMMAND $<TARGET_FILE:Xyce> issue235.cir )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/ISSUE_235/issue235.cir COMMAND ${XYCE_BINARY} issue235.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/ISSUE_235/issue235.cir PROPERTY LABELS "serial;nightly;issue235;valgrind")
   set_tests_properties(${TestNamePrefix}Certification_Tests/ISSUE_235/issue235.cir PROPERTIES FIXTURES_SETUP issue235.cir)
   add_test(NAME ${TestNamePrefix}Certification_Tests/ISSUE_235/issue235.cir.verify COMMAND ${XYCE_VERIFY} issue235.cir ${OutputDataDir}/Certification_Tests/ISSUE_235/issue235.cir.prn issue235.cir.prn )

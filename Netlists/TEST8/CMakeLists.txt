@@ -4,7 +4,7 @@
 
 file(COPY  tags test8.cir DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}TEST8/test8.cir COMMAND $<TARGET_FILE:Xyce> test8.cir )
+  add_test(NAME ${TestNamePrefix}TEST8/test8.cir COMMAND ${XYCE_BINARY} test8.cir )
   set_property(TEST ${TestNamePrefix}TEST8/test8.cir PROPERTY LABELS "serial;nightly;bsim3;valgrind")
   set_tests_properties(${TestNamePrefix}TEST8/test8.cir PROPERTIES FIXTURES_SETUP test8.cir)
   add_test(NAME ${TestNamePrefix}TEST8/test8.cir.verify COMMAND ${XYCE_VERIFY} test8.cir ${OutputDataDir}/TEST8/test8.cir.prn test8.cir.prn )

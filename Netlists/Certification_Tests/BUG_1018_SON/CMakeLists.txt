@@ -4,7 +4,7 @@
 
 file(COPY  bug1018son.cir bug1018son.cir.tags tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( Xyce_PARALLEL_MPI  )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1018_SON/bug1018son.cir COMMAND mpiexec -bind-to none -np 2 $<TARGET_FILE:Xyce> bug1018son.cir )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1018_SON/bug1018son.cir COMMAND mpiexec -bind-to none -np 2 ${XYCE_BINARY} bug1018son.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1018_SON/bug1018son.cir PROPERTY LABELS "parallel;nightly;bug1018;adms;juncap")
   set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_1018_SON/bug1018son.cir PROPERTIES FIXTURES_SETUP bug1018son.cir)
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1018_SON/bug1018son.cir.verify COMMAND ${XYCE_VERIFY} bug1018son.cir ${OutputDataDir}/Certification_Tests/BUG_1018_SON/bug1018son.cir.prn bug1018son.cir.prn )

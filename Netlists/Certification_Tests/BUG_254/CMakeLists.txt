@@ -4,7 +4,7 @@
 
 file(COPY  README atanh_tanh.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_254/atanh_tanh.cir COMMAND $<TARGET_FILE:Xyce> atanh_tanh.cir )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_254/atanh_tanh.cir COMMAND ${XYCE_BINARY} atanh_tanh.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_254/atanh_tanh.cir PROPERTY LABELS "serial;nightly;atanh")
   set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_254/atanh_tanh.cir PROPERTIES FIXTURES_SETUP atanh_tanh.cir)
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_254/atanh_tanh.cir.verify COMMAND ${XYCE_VERIFY} atanh_tanh.cir ${OutputDataDir}/Certification_Tests/BUG_254/atanh_tanh.cir.prn atanh_tanh.cir.prn )

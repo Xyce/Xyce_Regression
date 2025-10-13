@@ -5,6 +5,6 @@
 file(COPY  README exclude inv.cir inv.cir.sh inv1_tran.cir inv2.cir inv_loca.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/inv.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND BASH_FOUND )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_834/inv.cir.sh COMMAND bash inv.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} inv.cir ${OutputDataDir}/Certification_Tests/BUG_834/inv.cir.prn )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_834/inv.cir.sh COMMAND bash inv.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} inv.cir ${OutputDataDir}/Certification_Tests/BUG_834/inv.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_834/inv.cir.sh PROPERTY LABELS "serial;nightly;homotopy;b3soi")
 endif()

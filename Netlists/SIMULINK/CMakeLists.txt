@@ -5,6 +5,7 @@
 file(COPY  XyceBlocks.slx 1Dac2ADCSystem.cir 1Dac2ADCSystem.cir.sh Driver1_1DAC_2ADC.slx TestNetlist1.cir TestNetlist2.cir TestNetlist3.cir XyceRESTTests.m exclude tags options DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/1Dac2ADCSystem.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND SIMULINK_FOUND AND PERL_FOUND )
-  add_test(NAME ${TestNamePrefix}SIMULINK/1Dac2ADCSystem.cir.sh COMMAND perl -I${XyceRegressionTestScripts} 1Dac2ADCSystem.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} 1Dac2ADCSystem.cir ${OutputDataDir}/SIMULINK/1Dac2ADCSystem.cir.prn )
+  add_test(NAME ${TestNamePrefix}SIMULINK/1Dac2ADCSystem.cir.sh COMMAND perl -I${XyceRegressionTestScripts} 1Dac2ADCSystem.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} 1Dac2ADCSystem.cir ${OutputDataDir}/SIMULINK/1Dac2ADCSystem.cir.prn )
   set_property(TEST ${TestNamePrefix}SIMULINK/1Dac2ADCSystem.cir.sh PROPERTY LABELS "serial;nightly;required:simulink")
+  set_tests_properties(${TestNamePrefix}SIMULINK/1Dac2ADCSystem.cir.sh PROPERTIES TIMEOUT 180)
 endif()

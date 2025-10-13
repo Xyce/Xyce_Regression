@@ -4,7 +4,7 @@
 
 file(COPY  issue340.cir table.txt tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/ISSUE_340/issue340.cir COMMAND $<TARGET_FILE:Xyce> issue340.cir )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/ISSUE_340/issue340.cir COMMAND ${XYCE_BINARY} issue340.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/ISSUE_340/issue340.cir PROPERTY LABELS "serial;nightly;issue340;expression;conditionalexpr;resistor;transient;abm;expression_breakpoints")
   set_tests_properties(${TestNamePrefix}Certification_Tests/ISSUE_340/issue340.cir PROPERTIES FIXTURES_SETUP issue340.cir)
   add_test(NAME ${TestNamePrefix}Certification_Tests/ISSUE_340/issue340.cir.verify COMMAND ${XYCE_VERIFY} issue340.cir ${OutputDataDir}/Certification_Tests/ISSUE_340/issue340.cir.prn issue340.cir.prn )

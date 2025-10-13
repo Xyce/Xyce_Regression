@@ -4,7 +4,7 @@
 
 file(COPY  README formerly-bad-vsrc.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_439/formerly-bad-vsrc.cir COMMAND $<TARGET_FILE:Xyce> formerly-bad-vsrc.cir )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_439/formerly-bad-vsrc.cir COMMAND ${XYCE_BINARY} formerly-bad-vsrc.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_439/formerly-bad-vsrc.cir PROPERTY LABELS "serial;nightly")
   set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_439/formerly-bad-vsrc.cir PROPERTIES FIXTURES_SETUP formerly-bad-vsrc.cir)
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_439/formerly-bad-vsrc.cir.verify COMMAND ${XYCE_VERIFY} formerly-bad-vsrc.cir ${OutputDataDir}/Certification_Tests/BUG_439/formerly-bad-vsrc.cir.prn formerly-bad-vsrc.cir.prn )

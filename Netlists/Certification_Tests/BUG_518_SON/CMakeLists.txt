@@ -4,7 +4,7 @@
 
 file(COPY  bug518.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_518_SON/bug518.cir COMMAND $<TARGET_FILE:Xyce> bug518.cir )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_518_SON/bug518.cir COMMAND ${XYCE_BINARY} bug518.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_518_SON/bug518.cir PROPERTY LABELS "serial;nightly;inductor;mutualinductor;valgrind")
   set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_518_SON/bug518.cir PROPERTIES FIXTURES_SETUP bug518.cir)
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_518_SON/bug518.cir.verify COMMAND ${XYCE_VERIFY} bug518.cir ${OutputDataDir}/Certification_Tests/BUG_518_SON/bug518.cir.prn bug518.cir.prn )

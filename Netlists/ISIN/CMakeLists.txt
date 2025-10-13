@@ -4,7 +4,7 @@
 
 file(COPY  isin.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}ISIN/isin.cir COMMAND $<TARGET_FILE:Xyce> isin.cir )
+  add_test(NAME ${TestNamePrefix}ISIN/isin.cir COMMAND ${XYCE_BINARY} isin.cir )
   set_property(TEST ${TestNamePrefix}ISIN/isin.cir PROPERTY LABELS "serial;nightly;valgrind")
   set_tests_properties(${TestNamePrefix}ISIN/isin.cir PROPERTIES FIXTURES_SETUP isin.cir)
   add_test(NAME ${TestNamePrefix}ISIN/isin.cir.verify COMMAND ${XYCE_VERIFY} isin.cir ${OutputDataDir}/ISIN/isin.cir.prn isin.cir.prn )

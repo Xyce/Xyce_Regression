@@ -5,6 +5,6 @@
 file(COPY  IndPathToGround.cir IndPathToGround.cir.sh README tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/IndPathToGround.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
-  add_test(NAME ${TestNamePrefix}GROUND_PATH/IndPathToGround.cir.sh COMMAND perl -I${XyceRegressionTestScripts} IndPathToGround.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} IndPathToGround.cir ${OutputDataDir}/GROUND_PATH/IndPathToGround.cir.prn )
+  add_test(NAME ${TestNamePrefix}GROUND_PATH/IndPathToGround.cir.sh COMMAND perl -I${XyceRegressionTestScripts} IndPathToGround.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} IndPathToGround.cir ${OutputDataDir}/GROUND_PATH/IndPathToGround.cir.prn )
   set_property(TEST ${TestNamePrefix}GROUND_PATH/IndPathToGround.cir.sh PROPERTY LABELS "serial;nightly")
 endif()

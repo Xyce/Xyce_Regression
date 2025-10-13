@@ -5,6 +5,6 @@
 file(COPY  capacitor.cir capacitor.cir.sh exclude invert.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/capacitor.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND Xyce_VERBOSE_TIME AND PERL_FOUND )
-  add_test(NAME ${TestNamePrefix}TIA/MINORDER/capacitor.cir.sh COMMAND perl -I${XyceRegressionTestScripts} capacitor.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} capacitor.cir ${OutputDataDir}/TIA/MINORDER/capacitor.cir.prn )
+  add_test(NAME ${TestNamePrefix}TIA/MINORDER/capacitor.cir.sh COMMAND perl -I${XyceRegressionTestScripts} capacitor.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} capacitor.cir ${OutputDataDir}/TIA/MINORDER/capacitor.cir.prn )
   set_property(TEST ${TestNamePrefix}TIA/MINORDER/capacitor.cir.sh PROPERTY LABELS "serial;nightly;newdae;required:verbose")
 endif()

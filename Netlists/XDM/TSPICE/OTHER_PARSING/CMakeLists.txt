@@ -5,6 +5,6 @@
 file(COPY  exclude tags subckt.cir.sh subckt.cir subckt.cir.tspice DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/subckt.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND XDM_BDL_FOUND AND PERL_FOUND )
-  add_test(NAME ${TestNamePrefix}XDM/TSPICE/OTHER_PARSING/subckt.cir.sh COMMAND perl -I${XyceRegressionTestScripts} subckt.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} subckt.cir ${OutputDataDir}/XDM/TSPICE/OTHER_PARSING/subckt.cir.prn )
+  add_test(NAME ${TestNamePrefix}XDM/TSPICE/OTHER_PARSING/subckt.cir.sh COMMAND perl -I${XyceRegressionTestScripts} subckt.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} subckt.cir ${OutputDataDir}/XDM/TSPICE/OTHER_PARSING/subckt.cir.prn )
   set_property(TEST ${TestNamePrefix}XDM/TSPICE/OTHER_PARSING/subckt.cir.sh PROPERTY LABELS "serial;nightly;required:xdm;tspice")
 endif()

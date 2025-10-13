@@ -4,7 +4,7 @@
 
 file(COPY  circuit1.cir circuit3.cir exclude tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}TIA/GEAR/circuit3.cir COMMAND $<TARGET_FILE:Xyce> circuit3.cir )
+  add_test(NAME ${TestNamePrefix}TIA/GEAR/circuit3.cir COMMAND ${XYCE_BINARY} circuit3.cir )
   set_property(TEST ${TestNamePrefix}TIA/GEAR/circuit3.cir PROPERTY LABELS "serial;nightly;gear")
   set_tests_properties(${TestNamePrefix}TIA/GEAR/circuit3.cir PROPERTIES FIXTURES_SETUP circuit3.cir)
   add_test(NAME ${TestNamePrefix}TIA/GEAR/circuit3.cir.verify COMMAND ${XYCE_VERIFY} circuit3.cir ${OutputDataDir}/TIA/GEAR/circuit3.cir.prn circuit3.cir.prn )

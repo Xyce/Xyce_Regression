@@ -4,7 +4,7 @@
 
 file(COPY  README Xmodelcard.nmos tags test1.X.cir DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1377/test1.X.cir COMMAND $<TARGET_FILE:Xyce> test1.X.cir )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1377/test1.X.cir COMMAND ${XYCE_BINARY} test1.X.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1377/test1.X.cir PROPERTY LABELS "serial;nightly;bsim4")
   set_tests_properties(${TestNamePrefix}Certification_Tests/BUG_1377/test1.X.cir PROPERTIES FIXTURES_SETUP test1.X.cir)
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1377/test1.X.cir.verify COMMAND ${XYCE_VERIFY} test1.X.cir ${OutputDataDir}/Certification_Tests/BUG_1377/test1.X.cir.prn test1.X.cir.prn )

@@ -5,6 +5,6 @@
 file(COPY  sRC.cir sRC.cir.sh sRC_prn.cir sRC_tecp.cir exclude tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/sRC.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND Xyce_USE_FFT AND PERL_FOUND )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_836_SON/sRC.cir.sh COMMAND perl -I${XyceRegressionTestScripts} sRC.cir.sh $<TARGET_FILE:Xyce> ${XYCE_VERIFY} ${XYCE_VERIFY} sRC.cir ${OutputDataDir}/Certification_Tests/BUG_836_SON/sRC.cir.prn )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_836_SON/sRC.cir.sh COMMAND perl -I${XyceRegressionTestScripts} sRC.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} sRC.cir ${OutputDataDir}/Certification_Tests/BUG_836_SON/sRC.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_836_SON/sRC.cir.sh PROPERTY LABELS "serial;nightly;bug836;hb;required:fft")
 endif()

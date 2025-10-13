@@ -4,7 +4,7 @@
 
 file(COPY  iexp.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}IEXP/iexp.cir COMMAND $<TARGET_FILE:Xyce> iexp.cir )
+  add_test(NAME ${TestNamePrefix}IEXP/iexp.cir COMMAND ${XYCE_BINARY} iexp.cir )
   set_property(TEST ${TestNamePrefix}IEXP/iexp.cir PROPERTY LABELS "serial;nightly;valgrind")
   set_tests_properties(${TestNamePrefix}IEXP/iexp.cir PROPERTIES FIXTURES_SETUP iexp.cir)
   add_test(NAME ${TestNamePrefix}IEXP/iexp.cir.verify COMMAND ${XYCE_VERIFY} iexp.cir ${OutputDataDir}/IEXP/iexp.cir.prn iexp.cir.prn )

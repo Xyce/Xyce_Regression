@@ -4,7 +4,7 @@
 
 file(COPY  Manifest.txt issue310.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/ISSUE_310/issue310.cir COMMAND $<TARGET_FILE:Xyce> issue310.cir )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/ISSUE_310/issue310.cir COMMAND ${XYCE_BINARY} issue310.cir )
   set_property(TEST ${TestNamePrefix}Certification_Tests/ISSUE_310/issue310.cir PROPERTY LABELS "serial;nightly;issue310;expression;modulus")
   set_tests_properties(${TestNamePrefix}Certification_Tests/ISSUE_310/issue310.cir PROPERTIES FIXTURES_SETUP issue310.cir)
   add_test(NAME ${TestNamePrefix}Certification_Tests/ISSUE_310/issue310.cir.verify COMMAND ${XYCE_VERIFY} issue310.cir ${OutputDataDir}/Certification_Tests/ISSUE_310/issue310.cir.prn issue310.cir.prn )

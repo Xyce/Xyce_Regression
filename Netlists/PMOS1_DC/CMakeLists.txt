@@ -4,7 +4,7 @@
 
 file(COPY  pmos1.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 if( (NOT Xyce_PARALLEL_MPI) )
-  add_test(NAME ${TestNamePrefix}PMOS1_DC/pmos1.cir COMMAND $<TARGET_FILE:Xyce> pmos1.cir )
+  add_test(NAME ${TestNamePrefix}PMOS1_DC/pmos1.cir COMMAND ${XYCE_BINARY} pmos1.cir )
   set_property(TEST ${TestNamePrefix}PMOS1_DC/pmos1.cir PROPERTY LABELS "serial;nightly;mos1;valgrind")
   set_tests_properties(${TestNamePrefix}PMOS1_DC/pmos1.cir PROPERTIES FIXTURES_SETUP pmos1.cir)
   add_test(NAME ${TestNamePrefix}PMOS1_DC/pmos1.cir.verify COMMAND ${XYCE_VERIFY} pmos1.cir ${OutputDataDir}/PMOS1_DC/pmos1.cir.prn pmos1.cir.prn )
