@@ -51,7 +51,7 @@ fi
 
 grep -f patfile $CIR1.prn > $CIR1.reduced.prn 
 
-diff $CIR1.reduced.prn $CIR0.prn > $CIR1.prn.out 2> $CIR1.prn.err
+diff --strip-trailing-cr $CIR1.reduced.prn $CIR0.prn > $CIR1.prn.out 2> $CIR1.prn.err
 if [ "$?" -ne "0" ]; then
   echo "Exit code = 2"
   exit 2
