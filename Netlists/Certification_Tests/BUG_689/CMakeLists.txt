@@ -6,5 +6,6 @@ file(COPY  README dos-diode.cir dos-diode.cir.sh exclude tags unix-diode.cir DES
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/dos-diode.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_689/dos-diode.cir.sh COMMAND perl -I${XyceRegressionTestScripts} dos-diode.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} dos-diode.cir ${OutputDataDir}/Certification_Tests/BUG_689/dos-diode.cir.prn )
+  set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_689/dos-diode.cir.sh PROPERTY ATTACHED_FILES_ON_FAIL ${CMAKE_CURRENT_BINARY_DIR}/dos-diode.cir.err )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_689/dos-diode.cir.sh PROPERTY LABELS "serial;nightly")
 endif()

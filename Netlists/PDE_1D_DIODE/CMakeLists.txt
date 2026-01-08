@@ -6,6 +6,7 @@ file(COPY  diopde.cir bug978son.cir tags bug1155.cir bug1155.cir.sh bug1155_1lev
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug1155.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND BASH_FOUND )
   add_test(NAME ${TestNamePrefix}PDE_1D_DIODE/bug1155.cir.sh COMMAND bash bug1155.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} bug1155.cir ${OutputDataDir}/PDE_1D_DIODE/bug1155.cir.prn )
+  set_property(TEST ${TestNamePrefix}PDE_1D_DIODE/bug1155.cir.sh PROPERTY ATTACHED_FILES_ON_FAIL ${CMAKE_CURRENT_BINARY_DIR}/bug1155.cir.err )
   set_property(TEST ${TestNamePrefix}PDE_1D_DIODE/bug1155.cir.sh PROPERTY LABELS "serial;nightly;pde;twolevel;bug1155son;valgrind")
 endif()
 if( (NOT Xyce_PARALLEL_MPI) )

@@ -6,5 +6,6 @@ file(COPY  copper.linear exclude linear_simple.cir linear_simple.cir.sh linear_s
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/linear_simple.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1826/linear_simple.cir.sh COMMAND perl -I${XyceRegressionTestScripts} linear_simple.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} linear_simple.cir ${OutputDataDir}/Certification_Tests/BUG_1826/linear_simple.cir.prn )
+  set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1826/linear_simple.cir.sh PROPERTY ATTACHED_FILES_ON_FAIL ${CMAKE_CURRENT_BINARY_DIR}/linear_simple.cir.err )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1826/linear_simple.cir.sh PROPERTY LABELS "serial;nightly;thermalresistor")
 endif()

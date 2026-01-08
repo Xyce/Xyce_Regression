@@ -598,6 +598,11 @@ def SetUpCtestFiles():
             if (testtags.find('serial') >= 0):
               outputBuf.write('if( %s )\n' % (serialConstraint))
               outputBuf.write('  add_test(NAME ${TestNamePrefix}%s COMMAND %s %s ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} %s ${OutputDataDir}/%s )\n' % (testName, interpreter, subDirName, actualFileName, GoldOutput))
+              
+              # this attaches the *.cir.err file to the dashboard results when a test fails, otherwise
+              # you can't find out why the script-driven test fails without logging in to look at this file.
+              if actualFileName.endswith('.cir'):
+                outputBuf.write('  set_property(TEST ${TestNamePrefix}%s PROPERTY ATTACHED_FILES_ON_FAIL ${CMAKE_CURRENT_BINARY_DIR}/%s.err )\n' % (testName, actualFileName))
 
               # write test tags as label for this test
               if( len(testtags) > 0 ):
@@ -616,6 +621,12 @@ def SetUpCtestFiles():
             if( testtags.find('parallel') >= 0 ):
               outputBuf.write('if( %s )\n' % (parallelConstraint))
               outputBuf.write('  add_test(NAME ${TestNamePrefix}%s COMMAND %s %s \"mpiexec -bind-to none -np 2 ${XYCE_BINARY}\" ${XYCE_VERIFY} ${XYCE_VERIFY} %s ${OutputDataDir}/%s )\n' % (testName, interpreter, subDirName, actualFileName, GoldOutput))
+
+              # this attaches the *.cir.err file to the dashboard results when a test fails, otherwise
+              # you can't find out why the script-driven test fails without logging in to look at this file.
+              if actualFileName.endswith('.cir'):
+                outputBuf.write('  set_property(TEST ${TestNamePrefix}%s PROPERTY ATTACHED_FILES_ON_FAIL ${CMAKE_CURRENT_BINARY_DIR}/%s.err )\n' % (testName, actualFileName))
+
               # write test tags as label for this test
               if( len(testtags) > 0 ):
                 outputBuf.write('  set_property(TEST ${TestNamePrefix}%s PROPERTY LABELS \"%s\")\n' % (testName, testtags))

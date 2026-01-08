@@ -6,6 +6,7 @@ file(COPY  exp_temp_dep.cir exp_temp_dep.cir.sh multSolDepRes.cir solDepRes.cir 
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/exp_temp_dep.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}SOLN_DEP_RES/exp_temp_dep.cir.sh COMMAND perl -I${XyceRegressionTestScripts} exp_temp_dep.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} exp_temp_dep.cir ${OutputDataDir}/SOLN_DEP_RES/exp_temp_dep.cir.prn )
+  set_property(TEST ${TestNamePrefix}SOLN_DEP_RES/exp_temp_dep.cir.sh PROPERTY ATTACHED_FILES_ON_FAIL ${CMAKE_CURRENT_BINARY_DIR}/exp_temp_dep.cir.err )
   set_property(TEST ${TestNamePrefix}SOLN_DEP_RES/exp_temp_dep.cir.sh PROPERTY LABELS "serial;nightly;voltdepres;resistor;expression")
 endif()
 if( (NOT Xyce_PARALLEL_MPI) )
