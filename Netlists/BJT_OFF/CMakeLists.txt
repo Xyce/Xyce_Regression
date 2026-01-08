@@ -6,5 +6,6 @@ file(COPY  bjt_off.cir bjt_off.cir.sh tags DESTINATION ${CMAKE_CURRENT_BINARY_DI
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bjt_off.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}BJT_OFF/bjt_off.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bjt_off.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} bjt_off.cir ${OutputDataDir}/BJT_OFF/bjt_off.cir.prn )
+  set_property(TEST ${TestNamePrefix}BJT_OFF/bjt_off.cir.sh PROPERTY ATTACHED_FILES_ON_FAIL ${CMAKE_CURRENT_BINARY_DIR}/bjt_off.cir.err )
   set_property(TEST ${TestNamePrefix}BJT_OFF/bjt_off.cir.sh PROPERTY LABELS "serial;nightly;bjtlev1;resistor;capacitor;dcsweep")
 endif()

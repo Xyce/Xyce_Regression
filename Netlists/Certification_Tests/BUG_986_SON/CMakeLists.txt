@@ -6,5 +6,6 @@ file(COPY  exclude bug986.cir bug986.cir.sh bug986A.cir bug986B.cir tags DESTINA
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug986.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND BASH_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_986_SON/bug986.cir.sh COMMAND bash bug986.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} bug986.cir ${OutputDataDir}/Certification_Tests/BUG_986_SON/bug986.cir.prn )
+  set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_986_SON/bug986.cir.sh PROPERTY ATTACHED_FILES_ON_FAIL ${CMAKE_CURRENT_BINARY_DIR}/bug986.cir.err )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_986_SON/bug986.cir.sh PROPERTY LABELS "serial;nightly;bug986son;valgrind;capacitor")
 endif()

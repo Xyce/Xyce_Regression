@@ -6,5 +6,6 @@ file(COPY  exclude tags rlc.cir.spectre rlc.cir rlc.cir.sh DESTINATION ${CMAKE_C
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/rlc.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND XDM_BDL_FOUND AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}XDM/SPECTRE/MULTIPLICITY/rlc.cir.sh COMMAND perl -I${XyceRegressionTestScripts} rlc.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} rlc.cir ${OutputDataDir}/XDM/SPECTRE/MULTIPLICITY/rlc.cir.prn )
+  set_property(TEST ${TestNamePrefix}XDM/SPECTRE/MULTIPLICITY/rlc.cir.sh PROPERTY ATTACHED_FILES_ON_FAIL ${CMAKE_CURRENT_BINARY_DIR}/rlc.cir.err )
   set_property(TEST ${TestNamePrefix}XDM/SPECTRE/MULTIPLICITY/rlc.cir.sh PROPERTY LABELS "serial;nightly;required:xdm;spectre")
 endif()

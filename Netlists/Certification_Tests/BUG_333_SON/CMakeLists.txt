@@ -6,5 +6,6 @@ file(COPY  bug_333_son.cir bug_333_son.cir.sh bug_333_son_baseline.cir bug_333_s
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug_333_son.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_333_SON/bug_333_son.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_333_son.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} bug_333_son.cir ${OutputDataDir}/Certification_Tests/BUG_333_SON/bug_333_son.cir.prn )
+  set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_333_SON/bug_333_son.cir.sh PROPERTY ATTACHED_FILES_ON_FAIL ${CMAKE_CURRENT_BINARY_DIR}/bug_333_son.cir.err )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_333_SON/bug_333_son.cir.sh PROPERTY LABELS "serial;nightly;restart;ltra")
 endif()
