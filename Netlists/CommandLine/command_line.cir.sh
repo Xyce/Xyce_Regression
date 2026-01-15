@@ -44,10 +44,10 @@ if ($system_code != 0) {
 # Also, ignore differences in the number of blank lines, since their number/position 
 # may vary depending on the build. This is done with the -B option for grep, in the second 
 # grep. Finally, the help test associated with totalview is also not present in all builds.
-$CMD="grep -vi -e plugin -e dakota -e debug -e totalview help.out > helpTrimmed.out 2> helpTrimmed.err";
+$CMD="grep -vi -E \"plugin|dakota|debug|totalview\" help.out > helpTrimmed.out 2> helpTrimmed.err";
 $system_code = system($CMD);
 # this second grep ignores blank lines
-$CMD="diff -biB helpTrimmed.out goldHelpTxt > helpGrep.out 2> helpGrep.err";
+$CMD="diff --strip-trailing-cr -biB helpTrimmed.out goldHelpTxt > helpGrep.out 2> helpGrep.err";
 $system_code = system($CMD);
 if ($system_code != 0) {
   print STDERR "Xyce -h output text did not match gold standard\n";
@@ -135,7 +135,7 @@ if ($system_code != 0) {
   ++$failed;
 }
 
-$CMD=" grep -if noQuietStrings quiet.out > quietGrep.out 2> quietGrep.err";
+$CMD="grep -i -E \"Percent complete|Current system time|Estimated time to completion\" quiet.out > quietGrep.out 2> quietGrep.err";
 $system_code = system($CMD);
 $quiet_exit_code = $system_code >> 8;
 if ($quiet_exit_code != 1) {
