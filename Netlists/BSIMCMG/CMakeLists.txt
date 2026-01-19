@@ -6,6 +6,7 @@ file(COPY  ac.cir ac.cir.sh ac.cir.tags gummel_n.cir gummel_n_outvars.cir gummel
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/ac.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}BSIMCMG/ac.cir.sh COMMAND perl -I${XyceRegressionTestScripts} ac.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} ac.cir ${OutputDataDir}/BSIMCMG/ac.cir.prn )
+  set_property(TEST ${TestNamePrefix}BSIMCMG/ac.cir.sh PROPERTY ATTACHED_FILES_ON_FAIL ${CMAKE_CURRENT_BINARY_DIR}/ac.cir.err )
   set_property(TEST ${TestNamePrefix}BSIMCMG/ac.cir.sh PROPERTY LABELS "serial;nightly;bsimcmg;capacitor;resistor;ac;adms")
 endif()
 if( (NOT Xyce_PARALLEL_MPI) )

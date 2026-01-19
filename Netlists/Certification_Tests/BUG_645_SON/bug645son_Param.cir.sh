@@ -66,7 +66,7 @@ $SEDCMD="sed '1 s-^.*\$-".$HEADER1."-g'";
 $CMD1="$SEDCMD $CIR2.SENS.prn > $CIR2.tmpFile; mv $CIR2.tmpFile $CIR2.SENS.prn";  
 system($CMD1);
 
-$CMD="diff $CIR1.SENS.prn $CIR2.SENS.prn > $CIR1.SENS.prn.out 2> $CIR1.SENS.prn.err";
+$CMD="diff --strip-trailing-cr $CIR1.SENS.prn $CIR2.SENS.prn > $CIR1.SENS.prn.out 2> $CIR1.SENS.prn.err";
 
 if (system($CMD) != 0)
 {

@@ -6,6 +6,7 @@ file(COPY  Level2_Temp_Dep_Breakdown.cir Level2_Temp_Dep_Breakdown.cir.sh Zener_
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/Level2_Temp_Dep_Breakdown.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}DIODE/Level2_Temp_Dep_Breakdown.cir.sh COMMAND perl -I${XyceRegressionTestScripts} Level2_Temp_Dep_Breakdown.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} Level2_Temp_Dep_Breakdown.cir ${OutputDataDir}/DIODE/Level2_Temp_Dep_Breakdown.cir.prn )
+  set_property(TEST ${TestNamePrefix}DIODE/Level2_Temp_Dep_Breakdown.cir.sh PROPERTY ATTACHED_FILES_ON_FAIL ${CMAKE_CURRENT_BINARY_DIR}/Level2_Temp_Dep_Breakdown.cir.err )
   set_property(TEST ${TestNamePrefix}DIODE/Level2_Temp_Dep_Breakdown.cir.sh PROPERTY LABELS "serial;nightly;valgrind;diode")
 endif()
 if( (NOT Xyce_PARALLEL_MPI) )

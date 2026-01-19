@@ -6,5 +6,6 @@ file(COPY  exclude multiSubcktPar.cir multiSubcktPar.cir.sh multiSubcktParRef.ci
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/multiSubcktPar.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
   add_test(NAME ${TestNamePrefix}Certification_Tests/BUGS_ISSUE_54/multiSubcktPar.cir.sh COMMAND perl -I${XyceRegressionTestScripts} multiSubcktPar.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} multiSubcktPar.cir ${OutputDataDir}/Certification_Tests/BUGS_ISSUE_54/multiSubcktPar.cir.prn )
+  set_property(TEST ${TestNamePrefix}Certification_Tests/BUGS_ISSUE_54/multiSubcktPar.cir.sh PROPERTY ATTACHED_FILES_ON_FAIL ${CMAKE_CURRENT_BINARY_DIR}/multiSubcktPar.cir.err )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUGS_ISSUE_54/multiSubcktPar.cir.sh PROPERTY LABELS "serial;nightly;subcircuit;param;issue54")
 endif()
