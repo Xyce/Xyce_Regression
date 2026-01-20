@@ -90,7 +90,11 @@ def rhsErrorArc(ugood, good, utest, test, reltol, abstol):
   differenceSq = (difference/(reltol*abs(good) + abstol))**2.0
   denominator = (reltol*abs(good) + abstol);
 
-  errorSum = numpy.trapz(differenceSq, arcX)
+  if hasattr(numpy, 'trapezoid'): 
+    errorSum = numpy.trapezoid(differenceSq, arcX)
+  else: 
+    errorSum = numpy.trapz(differenceSq, arcX)
+ 
   retValue = numpy.sqrt( errorSum )
 
   return retValue
