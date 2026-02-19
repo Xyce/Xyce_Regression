@@ -584,7 +584,7 @@ def SetUpCtestFiles():
               serialConstraint = serialConstraint + " AND PERL_FOUND"
               parallelConstraint = parallelConstraint + " AND PERL_FOUND"
             elif ( firstLine.rfind('python') > 0):
-              interpreter="${PYHON_BIN}"
+              interpreter="${PYTHON_BIN}"
               if( serialConstraint.find("PYTHON") < 0):
                 serialConstraint = serialConstraint + " AND PYTHON_FOUND"
               if( parallelConstraint.find("PYTHON") < 0):
