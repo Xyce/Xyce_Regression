@@ -5,7 +5,7 @@
 file(COPY  abs.cir bug_138_1.cir bug_141-empty.cir bug_141-empty.cir.sh dig_count.cir exclude poly.cir tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug_141-empty.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( Xyce_PARALLEL_MPI  AND PERL_FOUND )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_141_SON/bug_141-empty.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_141-empty.cir.sh "mpiexec -bind-to none -np 2 ${XYCE_BINARY}" ${XYCE_VERIFY} ${XYCE_VERIFY} bug_141-empty.cir ${OutputDataDir}/Certification_Tests/BUG_141_SON/bug_141-empty.cir.prn )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_141_SON/bug_141-empty.cir.sh COMMAND ${PERL_BIN} -I${XyceRegressionTestScripts} bug_141-empty.cir.sh "mpiexec -bind-to none -np 2 ${XYCE_BINARY}" ${XYCE_VERIFY} ${XYCE_VERIFY} bug_141-empty.cir ${OutputDataDir}/Certification_Tests/BUG_141_SON/bug_141-empty.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_141_SON/bug_141-empty.cir.sh PROPERTY ATTACHED_FILES_ON_FAIL ${CMAKE_CURRENT_BINARY_DIR}/bug_141-empty.cir.err )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_141_SON/bug_141-empty.cir.sh PROPERTY LABELS "nightly;parallel")
 endif()

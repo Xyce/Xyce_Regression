@@ -269,9 +269,10 @@ def SetUpCtestFiles():
         outputBuf.write('set(DAKOTA_FOUND FALSE CACHE BOOL "True if dakota found.")\n')
         outputBuf.write('set(PERL_FOUND FALSE CACHE BOOL "True if perl found.")\n')
         outputBuf.write('set(BASH_FOUND FALSE CACHE BOOL "True if bash found.")\n')
-        outputBuf.write('set(BASH_FOUND FALSE CACHE BOOL "True if bash found.")\n')
-        outputBuf.write('set(BASH_FOUND FALSE CACHE BOOL "True if bash found.")\n')
         outputBuf.write('set(PYTHON_FOUND FALSE CACHE BOOL "True if python package found.")\n')
+        outputBuf.write('set(PYTHON_NUMPY_FOUND FALSE CACHE BOOL "True if python package found.")\n')
+        outputBuf.write('set(PYTHON_SCIPY_FOUND FALSE CACHE BOOL "True if python package found.")\n')
+        outputBuf.write('set(PYTHON_PYTEST_FOUND FALSE CACHE BOOL "True if python package found.")\n')
         outputBuf.write('set(SIMULINK_FOUND FALSE CACHE BOOL "True if simulink found.")\n')
         outputBuf.write('set(XDM_BDL_FOUND FALSE CACHE BOOL "True if xdm_bld found.")\n')
         outputBuf.write('set(ADMSXML_FOUND FALSE CACHE BOOL "True if admsXml found.")\n')
@@ -280,44 +281,49 @@ def SetUpCtestFiles():
         outputBuf.write('set(VALGRIND_MASTER FALSE CACHE BOOL "True if valgrind_master set.")\n')
         outputBuf.write('find_program(PERL_BIN perl)\n')
         outputBuf.write('if( NOT (PERL_BIN STREQUAL "PERL_BIN-NOTFOUND"))\n')
-        outputBuf.write('  set(PERL_FOUND "TRUE")\n')
+        outputBuf.write('  set(PERL_FOUND TRUE CACHE BOOL "True if perl found." FORCE)\n')
         outputBuf.write('endif()\n')
         outputBuf.write('message(STATUS "Perl found ${PERL_FOUND}")\n')
-        outputBuf.write('find_program(BASH_FOUND bash)\n')
-        outputBuf.write('if( NOT (BASH_FOUND STREQUAL "BASH_FOUND-NOTFOUND"))\n')
-        outputBuf.write('  set(BASH_FOUND "TRUE")\n')
+        outputBuf.write('find_program(BASH_BIN bash)\n')
+        outputBuf.write('if( NOT (BASH_BIN STREQUAL "BASH_BIN-NOTFOUND"))\n')
+        outputBuf.write('  set(BASH_FOUND TRUE CACHE BOOL "True if bash found." FORCE)\n')
         outputBuf.write('endif()\n')
         outputBuf.write('message(STATUS "Bash found ${BASH_FOUND}")\n')
         outputBuf.write('find_program(PYTHON_BIN python)\n')
         outputBuf.write('if( NOT (PYTHON_BIN STREQUAL "PYTHON_BIN-NOTFOUND"))\n')
-        outputBuf.write('  set(PYTHON_FOUND "TRUE")\n')
+        outputBuf.write('  set(PYTHON_FOUND TRUE CACHE BOOL "True if python package found." FORCE)\n')
         outputBuf.write('endif()\n')
         outputBuf.write('message(STATUS "Python found ${PYTHON_FOUND}")\n')
         outputBuf.write('if( PYTHON_FOUND )\n')
         outputBuf.write('  execute_process(COMMAND ${PYTHON_BIN} -c "import numpy" RESULT_VARIABLE CMD_SUCCESS ERROR_QUIET)\n')
         outputBuf.write('  if( CMD_SUCCESS EQUAL 0)\n')
-        outputBuf.write('    set(PYTHON_NUMPY_FOUND "TRUE")\n')
+        outputBuf.write('    set(PYTHON_NUMPY_FOUND TRUE CACHE BOOL "True if python package NUMPY is found." FORCE)\n')
         outputBuf.write('  endif()\n')
         outputBuf.write('  message(STATUS "Python package numpy found ${PYTHON_NUMPY_FOUND}")\n')
         outputBuf.write('  execute_process(COMMAND ${PYTHON_BIN} -c "import scipy" RESULT_VARIABLE CMD_SUCCESS ERROR_QUIET)\n')
         outputBuf.write('  if( CMD_SUCCESS EQUAL 0)\n')
-        outputBuf.write('    set(PYTHON_SCIPY_FOUND "TRUE")\n')
+        outputBuf.write('    set(PYTHON_SCIPY_FOUND TRUE CACHE BOOL "True if python package SCIPY is found." FORCE)\n')
         outputBuf.write('  endif()\n')
         outputBuf.write('  message(STATUS "Python package scipy found ${PYTHON_SCIPY_FOUND}")\n')
+        outputBuf.write('  execute_process(COMMAND ${PYTHON_BIN} -c "import pytest" RESULT_VARIABLE CMD_SUCCESS ERROR_QUIET)\n')
+        outputBuf.write('  if( CMD_SUCCESS EQUAL 0)\n')
+        outputBuf.write('    set(PYTHON_PYTEST_FOUND TRUE CACHE BOOL "True if python package PYTEST is found." FORCE)\n')
+        outputBuf.write('  endif()\n')
+        outputBuf.write('  message(STATUS "Python package pytest found ${PYTHON_PYTEST_FOUND}")\n')        
         outputBuf.write('endif()\n')
         outputBuf.write('find_program(XDM_BDL_BIN xdm_bdl)\n')
         outputBuf.write('if( NOT (XDM_BDL_BIN STREQUAL "XDM_BDL_BIN-NOTFOUND"))\n')
-        outputBuf.write('  set(XDM_BDL_FOUND "TRUE")\n')
+        outputBuf.write('  set(XDM_BDL_FOUND TRUE CACHE BOOL "True if xdm_bld is found." FORCE)\n')
         outputBuf.write('endif()\n')
         outputBuf.write('message(STATUS "xdm_bdl found ${XDM_BDL_FOUND}")\n')
         outputBuf.write('find_program(ADMSXML_BIN admsXml)\n')
         outputBuf.write('if( NOT (ADMSXML_BIN STREQUAL "ADMSXML_BIN-NOTFOUND"))\n')
-        outputBuf.write('  set(ADMSXML_FOUND "TRUE")\n')
+        outputBuf.write('  set(ADMSXML_FOUND TRUE CACHE BOOL "True if admsXml is found." FORCE)\n')
         outputBuf.write('endif()\n')
         outputBuf.write('message(STATUS "admsXml found ${ADMSXML_FOUND}")\n')
         outputBuf.write('find_program(MS_VPP_BIN vpp)\n')
         outputBuf.write('if( NOT (MS_VPP_BIN STREQUAL "MS_VPP_BIN-NOTFOUND"))\n')
-        outputBuf.write('  set(MS_VPP_FOUND "TRUE")\n')
+        outputBuf.write('  set(MS_VPP_FOUND TRUE CACHE BOOL "True if vpp compiler is found." FORCE)\n')
         outputBuf.write('endif()\n')
         outputBuf.write('message(STATUS "vpp found ${MS_VPP_FOUND}")\n')
         outputBuf.write('# Sandia Tests\n')
@@ -433,13 +439,13 @@ def SetUpCtestFiles():
 
               # now if check if this test needs to generate the gold standard
               if os.path.exists(os.path.join(keyName, subDirName) + ".prn.gs.pl"):
-                outputBuf.write('  add_test(NAME ${TestNamePrefix}%s.gen_gs COMMAND perl %s.prn.gs.pl %s.prn)\n' % (testName, subDirName, subDirName))
+                outputBuf.write('  add_test(NAME ${TestNamePrefix}%s.gen_gs COMMAND ${PERL_BIN} %s.prn.gs.pl %s.prn)\n' % (testName, subDirName, subDirName))
                 outputBuf.write('  set_tests_properties(${TestNamePrefix}%s.gen_gs PROPERTIES FIXTURES_REQUIRED %s)\n' % (testName, subDirName))
                 outputBuf.write('set_tests_properties(${TestNamePrefix}%s.gen_gs PROPERTIES FIXTURES_SETUP %s.gs)\n' % (testName, subDirName))
                 if( len(testtags) > 0 ):
                   outputBuf.write('  set_property(TEST ${TestNamePrefix}%s.gen_gs PROPERTY LABELS \"%s\")\n' % (testName, testtags))
                 # now add check the answer against the newly generated gold standard
-                outputBuf.write('  add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${XYCE_VERIFY} %s %s.prn.gs %s.prn )\n' % (testName, subDirName, subDirName, subDirName))
+                outputBuf.write('  add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${PERL_BIN} ${XYCE_VERIFY} %s %s.prn.gs %s.prn )\n' % (testName, subDirName, subDirName, subDirName))
                 outputBuf.write('  set_tests_properties(${TestNamePrefix}%s.verify PROPERTIES FIXTURES_REQUIRED %s.gs)\n' % (testName, subDirName))
                 if( len(testtags) > 0 ):
                   outputBuf.write('  set_property(TEST ${TestNamePrefix}%s.verify PROPERTY LABELS \"%s\")\n' % (testName, testtags))
@@ -459,7 +465,7 @@ def SetUpCtestFiles():
                   if (radBool):
                     indent = '  '
                     outputBuf.write('  if (Xyce_RAD_MODELS)\n')
-                  outputBuf.write('%s  add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${XYCE_VERIFY} %s ${OutputDataDir}/%s %s.prn )\n' % (indent, testName, subDirName, GoldOutput, subDirName))
+                  outputBuf.write('%s  add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${PERL_BIN} ${XYCE_VERIFY} %s ${OutputDataDir}/%s %s.prn )\n' % (indent, testName, subDirName, GoldOutput, subDirName))
                   outputBuf.write('%s  set_tests_properties(${TestNamePrefix}%s.verify PROPERTIES FIXTURES_REQUIRED %s)\n' % (indent, testName, subDirName))
                   if( len(testtags) > 0 ):
                     outputBuf.write('  set_property(TEST ${TestNamePrefix}%s.verify PROPERTY LABELS \"%s\")\n' % (testName, testtags))
@@ -494,13 +500,13 @@ def SetUpCtestFiles():
 
               # now if check if this test needs to generate the gold standard
               if os.path.exists(os.path.join(keyName, subDirName) + ".prn.gs.pl"):
-                outputBuf.write('add_test(NAME ${TestNamePrefix}%s.gen_gs COMMAND perl %s.prn.gs.pl %s.prn)\n' % (testName, subDirName, subDirName))
+                outputBuf.write('add_test(NAME ${TestNamePrefix}%s.gen_gs COMMAND ${PERL_BIN} %s.prn.gs.pl %s.prn)\n' % (testName, subDirName, subDirName))
                 outputBuf.write('set_tests_properties(${TestNamePrefix}%s.gen_gs PROPERTIES FIXTURES_REQUIRED %s)\n' % (testName, subDirName))
                 outputBuf.write('set_tests_properties(${TestNamePrefix}%s.gen_gs PROPERTIES FIXTURES_SETUP %s.gs)\n' % (testName, subDirName))
                 if( len(testtags) > 0 ):
                   outputBuf.write('  set_property(TEST ${TestNamePrefix}%s.gen_gs PROPERTY LABELS \"%s\")\n' % (testName, testtags))
                 # now add check the answer against the newly generated gold standard
-                outputBuf.write('add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${XYCE_VERIFY} %s %s.prn.gs %s.prn )\n' % (testName, subDirName, subDirName, subDirName))
+                outputBuf.write('add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${PERL_BIN} ${XYCE_VERIFY} %s %s.prn.gs %s.prn )\n' % (testName, subDirName, subDirName, subDirName))
                 outputBuf.write('set_tests_properties(${TestNamePrefix}%s.verify PROPERTIES FIXTURES_REQUIRED %s.gs)\n' % (testName, subDirName))
                 if( len(testtags) > 0 ):
                   outputBuf.write('  set_property(TEST ${TestNamePrefix}%s.verify PROPERTY LABELS \"%s\")\n' % (testName, testtags))
@@ -520,7 +526,7 @@ def SetUpCtestFiles():
                   if (radBool):
                     indent = '  '
                     outputBuf.write('  if (Xyce_RAD_MODELS)\n')
-                  outputBuf.write('%s  add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${XYCE_VERIFY} %s ${OutputDataDir}/%s %s.prn )\n' % (indent, testName, subDirName, GoldOutput, subDirName))
+                  outputBuf.write('%s  add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${PERL_BIN} ${XYCE_VERIFY} %s ${OutputDataDir}/%s %s.prn )\n' % (indent, testName, subDirName, GoldOutput, subDirName))
                   outputBuf.write('%s  set_tests_properties(${TestNamePrefix}%s.verify PROPERTIES FIXTURES_REQUIRED %s)\n' % (indent, testName, subDirName))
                   if( len(testtags) > 0 ):
                     outputBuf.write('  set_property(TEST ${TestNamePrefix}%s.verify PROPERTY LABELS \"%s\")\n' % (testName, testtags))
@@ -568,22 +574,22 @@ def SetUpCtestFiles():
 
             # in run_xyce_regression, the script file is set to execute with "chmod +x" and then just run
             # From Ctest that doesn't seem to work so need to find out if we call bash or perl on the script file.
-            interpreter="bash"
+            interpreter="${BASH_BIN}"
             scriptFile = open(os.path.join(keyName, subDirName), 'r')
-            firstLine = scriptFile.readline();
+            firstLine = scriptFile.readline()
             scriptFile.close()
 
             if( firstLine.rfind('perl') > 0):
-              interpreter="perl -I${XyceRegressionTestScripts}"
+              interpreter="${PERL_BIN} -I${XyceRegressionTestScripts}"
               serialConstraint = serialConstraint + " AND PERL_FOUND"
               parallelConstraint = parallelConstraint + " AND PERL_FOUND"
             elif ( firstLine.rfind('python') > 0):
-              interpreter="python"
+              interpreter="${PYTHON_BIN}"
               if( serialConstraint.find("PYTHON") < 0):
                 serialConstraint = serialConstraint + " AND PYTHON_FOUND"
               if( parallelConstraint.find("PYTHON") < 0):
                 parallelConstraint = parallelConstraint + " AND PYTHON_FOUND"
-            elif interpreter == "bash":
+            elif interpreter == "${BASH_BIN}":
               serialConstraint = serialConstraint + " AND BASH_FOUND"
               parallelConstraint = parallelConstraint + " AND BASH_FOUND"
 

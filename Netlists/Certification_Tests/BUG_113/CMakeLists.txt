@@ -5,7 +5,7 @@
 file(COPY  README VSWITCH.cir VSWITCH.cir.sh VSWITCH_NOIC.cir VSWITCH_ON_OFF.cir exclude tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/VSWITCH.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_113/VSWITCH.cir.sh COMMAND perl -I${XyceRegressionTestScripts} VSWITCH.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} VSWITCH.cir ${OutputDataDir}/Certification_Tests/BUG_113/VSWITCH.cir.prn )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_113/VSWITCH.cir.sh COMMAND ${PERL_BIN} -I${XyceRegressionTestScripts} VSWITCH.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} VSWITCH.cir ${OutputDataDir}/Certification_Tests/BUG_113/VSWITCH.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_113/VSWITCH.cir.sh PROPERTY ATTACHED_FILES_ON_FAIL ${CMAKE_CURRENT_BINARY_DIR}/VSWITCH.cir.err )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_113/VSWITCH.cir.sh PROPERTY LABELS "serial;nightly;verbose")
 endif()
