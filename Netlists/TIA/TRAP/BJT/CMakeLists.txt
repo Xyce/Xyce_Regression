@@ -6,7 +6,7 @@ file(COPY  ramp_test1.cir ramp_test1.cir.gs.pl ramp_test1.cir.sh tags DESTINATIO
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/ramp_test1.cir.gs.pl PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/ramp_test1.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND BASH_FOUND )
-  add_test(NAME ${TestNamePrefix}TIA/TRAP/BJT/ramp_test1.cir.sh COMMAND bash ramp_test1.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} ramp_test1.cir ${OutputDataDir}/TIA/TRAP/BJT/ramp_test1.cir.prn )
+  add_test(NAME ${TestNamePrefix}TIA/TRAP/BJT/ramp_test1.cir.sh COMMAND ${BASH_BIN} ramp_test1.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} ramp_test1.cir ${OutputDataDir}/TIA/TRAP/BJT/ramp_test1.cir.prn )
   set_property(TEST ${TestNamePrefix}TIA/TRAP/BJT/ramp_test1.cir.sh PROPERTY ATTACHED_FILES_ON_FAIL ${CMAKE_CURRENT_BINARY_DIR}/ramp_test1.cir.err )
   set_property(TEST ${TestNamePrefix}TIA/TRAP/BJT/ramp_test1.cir.sh PROPERTY LABELS "analytic;serial")
 endif()

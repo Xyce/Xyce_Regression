@@ -5,7 +5,7 @@
 file(COPY  exclude tags vbic_3T_et_cf.cir vbic_3T_et_cf.cir.sh vbic_3T_et_cf_m2.cir DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/vbic_3T_et_cf.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_325_SON/vbic_3T_et_cf.cir.sh COMMAND perl -I${XyceRegressionTestScripts} vbic_3T_et_cf.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} vbic_3T_et_cf.cir ${OutputDataDir}/Certification_Tests/BUG_325_SON/vbic_3T_et_cf.cir.prn )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_325_SON/vbic_3T_et_cf.cir.sh COMMAND ${PERL_BIN} -I${XyceRegressionTestScripts} vbic_3T_et_cf.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} vbic_3T_et_cf.cir ${OutputDataDir}/Certification_Tests/BUG_325_SON/vbic_3T_et_cf.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_325_SON/vbic_3T_et_cf.cir.sh PROPERTY ATTACHED_FILES_ON_FAIL ${CMAKE_CURRENT_BINARY_DIR}/vbic_3T_et_cf.cir.err )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_325_SON/vbic_3T_et_cf.cir.sh PROPERTY LABELS "serial;nightly;vbic;adms")
 endif()

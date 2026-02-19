@@ -5,7 +5,7 @@
 file(COPY  bug_1686.cir bug_1686.cir.sh bug_1686_dup.cir bug_1686a.cir exclude inc1.sub inc2.sub tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug_1686.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1686/bug_1686.cir.sh COMMAND perl -I${XyceRegressionTestScripts} bug_1686.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} bug_1686.cir ${OutputDataDir}/Certification_Tests/BUG_1686/bug_1686.cir.prn )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1686/bug_1686.cir.sh COMMAND ${PERL_BIN} -I${XyceRegressionTestScripts} bug_1686.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} bug_1686.cir ${OutputDataDir}/Certification_Tests/BUG_1686/bug_1686.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1686/bug_1686.cir.sh PROPERTY ATTACHED_FILES_ON_FAIL ${CMAKE_CURRENT_BINARY_DIR}/bug_1686.cir.err )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1686/bug_1686.cir.sh PROPERTY LABELS "serial;nightly")
 endif()

@@ -5,7 +5,7 @@
 file(COPY  README RLC.cir RLC.cir.sh RLC_simple.cir exclude tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/RLC.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND BASH_FOUND )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1398/RLC.cir.sh COMMAND bash RLC.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} RLC.cir ${OutputDataDir}/Certification_Tests/BUG_1398/RLC.cir.prn )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_1398/RLC.cir.sh COMMAND ${BASH_BIN} RLC.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} RLC.cir ${OutputDataDir}/Certification_Tests/BUG_1398/RLC.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1398/RLC.cir.sh PROPERTY ATTACHED_FILES_ON_FAIL ${CMAKE_CURRENT_BINARY_DIR}/RLC.cir.err )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_1398/RLC.cir.sh PROPERTY LABELS "serial;nightly;inductor")
 endif()

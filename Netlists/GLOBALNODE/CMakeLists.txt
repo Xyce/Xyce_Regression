@@ -5,7 +5,7 @@
 file(COPY  global.cir global.cir.sh global2.cir global3.cir global_hspice.cir global_hspice.cir.tags tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/global.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND BASH_FOUND )
-  add_test(NAME ${TestNamePrefix}GLOBALNODE/global.cir.sh COMMAND bash global.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} global.cir ${OutputDataDir}/GLOBALNODE/global.cir.prn )
+  add_test(NAME ${TestNamePrefix}GLOBALNODE/global.cir.sh COMMAND ${BASH_BIN} global.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} global.cir ${OutputDataDir}/GLOBALNODE/global.cir.prn )
   set_property(TEST ${TestNamePrefix}GLOBALNODE/global.cir.sh PROPERTY ATTACHED_FILES_ON_FAIL ${CMAKE_CURRENT_BINARY_DIR}/global.cir.err )
   set_property(TEST ${TestNamePrefix}GLOBALNODE/global.cir.sh PROPERTY LABELS "serial;nightly;globalnode;issue445;valgrind")
 endif()

@@ -5,7 +5,7 @@
 file(COPY  exclude tags nodeset_global_node_warning.cir.hspice nodeset_global_node_warning.cir nodeset_global_node_warning.cir.sh DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/nodeset_global_node_warning.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND XDM_BDL_FOUND AND PERL_FOUND )
-  add_test(NAME ${TestNamePrefix}XDM/HSPICE/NODESET/nodeset_global_node_warning.cir.sh COMMAND perl -I${XyceRegressionTestScripts} nodeset_global_node_warning.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} nodeset_global_node_warning.cir ${OutputDataDir}/XDM/HSPICE/NODESET/nodeset_global_node_warning.cir.prn )
+  add_test(NAME ${TestNamePrefix}XDM/HSPICE/NODESET/nodeset_global_node_warning.cir.sh COMMAND ${PERL_BIN} -I${XyceRegressionTestScripts} nodeset_global_node_warning.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} nodeset_global_node_warning.cir ${OutputDataDir}/XDM/HSPICE/NODESET/nodeset_global_node_warning.cir.prn )
   set_property(TEST ${TestNamePrefix}XDM/HSPICE/NODESET/nodeset_global_node_warning.cir.sh PROPERTY ATTACHED_FILES_ON_FAIL ${CMAKE_CURRENT_BINARY_DIR}/nodeset_global_node_warning.cir.err )
   set_property(TEST ${TestNamePrefix}XDM/HSPICE/NODESET/nodeset_global_node_warning.cir.sh PROPERTY LABELS "serial;nightly;required:xdm;hspice;ic;nodeset")
 endif()
