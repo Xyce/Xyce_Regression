@@ -5,7 +5,7 @@
 file(COPY  dev_par.cir dev_par.cir.sh dev_par.cir.tags tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/dev_par.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PYTHON_FOUND )
-  add_test(NAME ${TestNamePrefix}DEV_PAR/dev_par.cir.sh COMMAND ${PYHON_BIN} dev_par.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} dev_par.cir ${OutputDataDir}/DEV_PAR/dev_par.cir.prn )
+  add_test(NAME ${TestNamePrefix}DEV_PAR/dev_par.cir.sh COMMAND ${PYTHON_BIN} dev_par.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} dev_par.cir ${OutputDataDir}/DEV_PAR/dev_par.cir.prn )
   set_property(TEST ${TestNamePrefix}DEV_PAR/dev_par.cir.sh PROPERTY ATTACHED_FILES_ON_FAIL ${CMAKE_CURRENT_BINARY_DIR}/dev_par.cir.err )
   set_property(TEST ${TestNamePrefix}DEV_PAR/dev_par.cir.sh PROPERTY LABELS "serial;nightly;paramdefaults;issue990")
 endif()
