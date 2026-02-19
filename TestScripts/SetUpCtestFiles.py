@@ -445,7 +445,7 @@ def SetUpCtestFiles():
                 if( len(testtags) > 0 ):
                   outputBuf.write('  set_property(TEST ${TestNamePrefix}%s.gen_gs PROPERTY LABELS \"%s\")\n' % (testName, testtags))
                 # now add check the answer against the newly generated gold standard
-                outputBuf.write('  add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${XYCE_VERIFY} %s %s.prn.gs %s.prn )\n' % (testName, subDirName, subDirName, subDirName))
+                outputBuf.write('  add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${PERL_BIN} ${XYCE_VERIFY} %s %s.prn.gs %s.prn )\n' % (testName, subDirName, subDirName, subDirName))
                 outputBuf.write('  set_tests_properties(${TestNamePrefix}%s.verify PROPERTIES FIXTURES_REQUIRED %s.gs)\n' % (testName, subDirName))
                 if( len(testtags) > 0 ):
                   outputBuf.write('  set_property(TEST ${TestNamePrefix}%s.verify PROPERTY LABELS \"%s\")\n' % (testName, testtags))
@@ -465,7 +465,7 @@ def SetUpCtestFiles():
                   if (radBool):
                     indent = '  '
                     outputBuf.write('  if (Xyce_RAD_MODELS)\n')
-                  outputBuf.write('%s  add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${XYCE_VERIFY} %s ${OutputDataDir}/%s %s.prn )\n' % (indent, testName, subDirName, GoldOutput, subDirName))
+                  outputBuf.write('%s  add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${PERL_BIN} ${XYCE_VERIFY} %s ${OutputDataDir}/%s %s.prn )\n' % (indent, testName, subDirName, GoldOutput, subDirName))
                   outputBuf.write('%s  set_tests_properties(${TestNamePrefix}%s.verify PROPERTIES FIXTURES_REQUIRED %s)\n' % (indent, testName, subDirName))
                   if( len(testtags) > 0 ):
                     outputBuf.write('  set_property(TEST ${TestNamePrefix}%s.verify PROPERTY LABELS \"%s\")\n' % (testName, testtags))
@@ -506,7 +506,7 @@ def SetUpCtestFiles():
                 if( len(testtags) > 0 ):
                   outputBuf.write('  set_property(TEST ${TestNamePrefix}%s.gen_gs PROPERTY LABELS \"%s\")\n' % (testName, testtags))
                 # now add check the answer against the newly generated gold standard
-                outputBuf.write('add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${XYCE_VERIFY} %s %s.prn.gs %s.prn )\n' % (testName, subDirName, subDirName, subDirName))
+                outputBuf.write('add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${PERL_BIN} ${XYCE_VERIFY} %s %s.prn.gs %s.prn )\n' % (testName, subDirName, subDirName, subDirName))
                 outputBuf.write('set_tests_properties(${TestNamePrefix}%s.verify PROPERTIES FIXTURES_REQUIRED %s.gs)\n' % (testName, subDirName))
                 if( len(testtags) > 0 ):
                   outputBuf.write('  set_property(TEST ${TestNamePrefix}%s.verify PROPERTY LABELS \"%s\")\n' % (testName, testtags))
@@ -526,7 +526,7 @@ def SetUpCtestFiles():
                   if (radBool):
                     indent = '  '
                     outputBuf.write('  if (Xyce_RAD_MODELS)\n')
-                  outputBuf.write('%s  add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${XYCE_VERIFY} %s ${OutputDataDir}/%s %s.prn )\n' % (indent, testName, subDirName, GoldOutput, subDirName))
+                  outputBuf.write('%s  add_test(NAME ${TestNamePrefix}%s.verify COMMAND ${PERL_BIN} ${XYCE_VERIFY} %s ${OutputDataDir}/%s %s.prn )\n' % (indent, testName, subDirName, GoldOutput, subDirName))
                   outputBuf.write('%s  set_tests_properties(${TestNamePrefix}%s.verify PROPERTIES FIXTURES_REQUIRED %s)\n' % (indent, testName, subDirName))
                   if( len(testtags) > 0 ):
                     outputBuf.write('  set_property(TEST ${TestNamePrefix}%s.verify PROPERTY LABELS \"%s\")\n' % (testName, testtags))
