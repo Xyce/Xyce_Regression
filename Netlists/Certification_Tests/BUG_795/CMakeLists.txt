@@ -5,7 +5,7 @@
 file(COPY  README print.cir print.cir.sh tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/print.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND BASH_FOUND )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_795/print.cir.sh COMMAND bash print.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} print.cir ${OutputDataDir}/Certification_Tests/BUG_795/print.cir.prn )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_795/print.cir.sh COMMAND ${BASH_BIN} print.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} print.cir ${OutputDataDir}/Certification_Tests/BUG_795/print.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_795/print.cir.sh PROPERTY ATTACHED_FILES_ON_FAIL ${CMAKE_CURRENT_BINARY_DIR}/print.cir.err )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_795/print.cir.sh PROPERTY LABELS "serial;nightly")
 endif()

@@ -5,7 +5,7 @@
 file(COPY  bug_496_son.cir bug_496_son.cir.sh tags DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/bug_496_son.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND BASH_FOUND )
-  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_496_SON/bug_496_son.cir.sh COMMAND bash bug_496_son.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} bug_496_son.cir ${OutputDataDir}/Certification_Tests/BUG_496_SON/bug_496_son.cir.prn )
+  add_test(NAME ${TestNamePrefix}Certification_Tests/BUG_496_SON/bug_496_son.cir.sh COMMAND ${BASH_BIN} bug_496_son.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} bug_496_son.cir ${OutputDataDir}/Certification_Tests/BUG_496_SON/bug_496_son.cir.prn )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_496_SON/bug_496_son.cir.sh PROPERTY ATTACHED_FILES_ON_FAIL ${CMAKE_CURRENT_BINARY_DIR}/bug_496_son.cir.err )
   set_property(TEST ${TestNamePrefix}Certification_Tests/BUG_496_SON/bug_496_son.cir.sh PROPERTY LABELS "serial;nightly;random")
 endif()

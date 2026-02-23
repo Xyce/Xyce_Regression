@@ -27,7 +27,7 @@ if returncode != 0:
 # We now have a successful par file.  Close it.
 parOut.close()
 
-compareCommandList=[DevParCompare]
+compareCommandList=[sys.executable,DevParCompare]
 
 compareCommandList.append(GOLDPARAMS)
 compareCommandList.append("par")

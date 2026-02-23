@@ -5,7 +5,7 @@
 file(COPY  patfile tags testjac_comp.cir testjac_comp.cir.gold_output testjac_comp.cir.patfile testjac_comp.cir.sh DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/testjac_comp.cir.sh PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 if( (NOT Xyce_PARALLEL_MPI) AND PERL_FOUND )
-  add_test(NAME ${TestNamePrefix}TESTJAC/testjac_comp.cir.sh COMMAND perl -I${XyceRegressionTestScripts} testjac_comp.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} testjac_comp.cir ${OutputDataDir}/TESTJAC/testjac_comp.cir.prn )
+  add_test(NAME ${TestNamePrefix}TESTJAC/testjac_comp.cir.sh COMMAND ${PERL_BIN} -I${XyceRegressionTestScripts} testjac_comp.cir.sh ${XYCE_BINARY} ${XYCE_VERIFY} ${XYCE_VERIFY} testjac_comp.cir ${OutputDataDir}/TESTJAC/testjac_comp.cir.prn )
   set_property(TEST ${TestNamePrefix}TESTJAC/testjac_comp.cir.sh PROPERTY ATTACHED_FILES_ON_FAIL ${CMAKE_CURRENT_BINARY_DIR}/testjac_comp.cir.err )
   set_property(TEST ${TestNamePrefix}TESTJAC/testjac_comp.cir.sh PROPERTY LABELS "testjac;serial;nightly")
 endif()
