@@ -202,7 +202,7 @@ def SetUpCtestFiles():
         outputBuf.write('    #message(DEBUG "Xyce capabilities are ${XyceCapabilities} and ${XyceErrorMsg}")\n')
         outputBuf.write('    set( Xyce_PARALLEL_MPI FALSE CACHE BOOL "True Xyce if built with MPI")\n')
         outputBuf.write('    set( Xyce_RAD_MODELS FALSE CACHE BOOL "Xyce rad models included")\n')
-        outputBuf.write('    set( Xyce_NONFREE_MODELS FLASE CACHE BOOL "Non-free device models")\n')
+        outputBuf.write('    set( Xyce_NONFREE_MODELS FALSE CACHE BOOL "Non-free device models")\n')
         outputBuf.write('    set( Xyce_ADMS_MODELS FALSE CACHE BOOL "ADMS models")\n')
         outputBuf.write('    set( Xyce_ADMS_SENSITIVITIES FALSE CACHE BOOL "ADMS sensitivities")\n')
         outputBuf.write('    set( Xyce_USE_FFT FALSE CACHE BOOL "FFT enabled")\n')
