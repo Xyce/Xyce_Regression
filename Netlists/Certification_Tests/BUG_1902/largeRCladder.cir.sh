@@ -48,10 +48,13 @@ if ( -f "$CIRFILE.hb_ic.prn" )
   $CMD="$XYCE_VERIFY $CIRFILE $CIRFILE.hb_ic.prn $GOLDPRN.hb_ic.prn > $CIRFILE.hb_ic.prn.out 2> $CIRFILE.hb_ic.prn.err";
   $retval = system("$CMD");
 
+  # Check if Xyce redirected this iterative solver to Belos
+  $belos_err = `grep "changing to BELOS" $CIRFILE.out`;
+  
   # Check to see that the code is resizing the Krylov subspace
   # Some platforms do not have enough memory to allocate for this problem, so see if they run out of memory.
   $err1 = `grep "resizing Krylov subspace" $CIRFILE.out`;
-  if ( $err1 && ($err2 || $err3) && $retval==0 )
+  if ( ($belos_err || ($err1 && ($err2 || $err3))) && $retval==0 )
   {
     # The code correctly resized the Krylov subspace, but there is not enough memory to solve this problem.
     # This receives a pass because it cannot be helped by Xyce and a reasonable error is output by AztecOO.
