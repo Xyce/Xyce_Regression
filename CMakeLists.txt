@@ -104,7 +104,7 @@ message(STATUS "Bash found ${BASH_FOUND}")
 
 # ---- Python detection (plays well with earlier CMake, uses cache only to record results) ----
 if(NOT DEFINED PYTHON_BIN)
-  find_program(PYTHON_BIN NAMES python python3 HINTS ENV PYTHON ENV PYTHON_BIN)
+  find_program(PYTHON_BIN NAMES python python3 NO_DEFAULT_PATH HINTS ENV PYTHON ENV PYTHON_BIN ENV PATH)
 endif()
 
 # Only define cache vars if they are not already in the cache

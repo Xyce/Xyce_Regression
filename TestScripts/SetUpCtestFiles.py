@@ -287,7 +287,7 @@ def SetUpCtestFiles():
         outputBuf.write('message(STATUS "Bash found ${BASH_FOUND}")\n')
         outputBuf.write('\n# ---- Python detection (plays well with earlier CMake, uses cache only to record results) ----\n')
         outputBuf.write('if(NOT DEFINED PYTHON_BIN)\n')
-        outputBuf.write('  find_program(PYTHON_BIN NAMES python python3 HINTS ENV PYTHON ENV PYTHON_BIN)\n')
+        outputBuf.write('  find_program(PYTHON_BIN NAMES python python3 NO_DEFAULT_PATH HINTS ENV PYTHON ENV PYTHON_BIN ENV PATH)\n')
         outputBuf.write('endif()\n\n')
         outputBuf.write('# Only define cache vars if they are not already in the cache\n')
         outputBuf.write('if(NOT DEFINED PYTHON_FOUND)\n')
