@@ -83,7 +83,7 @@ class Device(BaseDevice):
         current = transConductance_*(indepVars[controlNodePos]-indepVars[controlNodeNeg])
 
         v_diff = indepVars[controlNodePos]-indepVars[controlNodeNeg]
-        np_v_diff = np.reshape(np.array([v_diff,], dtype=np.float64), newshape=(1,1))
+        np_v_diff = np.reshape(np.array([v_diff,], dtype=np.float64), shape=(1,1))
         
         computed_current = self.tf_model.predict(np_v_diff)
         assert abs(abs(current)-abs(computed_current))<eps, "Current (%.16f) and calculated current (%.16f) differ by more than machine precision" % (current,computed_current)
