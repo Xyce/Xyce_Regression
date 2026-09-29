@@ -442,8 +442,8 @@ class Device(KokkosDevice):
         # only called for comparison
         (Fcontribs2D, dFdXcontribs3D) = self.generateData(indepVars2D[:,0], b_params, d_params, i_params, s_params)
 
-        Fcontribs[0] = self.gmls.predict(np.reshape(np.array([indepVars2D[0,0]], dtype=np.float64), newshape=(1,1)), self.data_F[:,0])
-        Fcontribs[1] = self.gmls.predict(np.reshape(np.array([indepVars2D[0,0]], dtype=np.float64), newshape=(1,1)), self.data_F[:,1])
+        Fcontribs[0] = self.gmls.predict(np.reshape(np.array([indepVars2D[0,0]], dtype=np.float64), shape=(1,1)), self.data_F[:,0])
+        Fcontribs[1] = self.gmls.predict(np.reshape(np.array([indepVars2D[0,0]], dtype=np.float64), shape=(1,1)), self.data_F[:,1])
         for i in range(numVars):
             F[i]=Fcontribs[i]
         #    F[i]=Fcontribs2D[0,i]
@@ -451,14 +451,14 @@ class Device(KokkosDevice):
 
     
         dFdXcontribs = np.zeros(shape=(numVars,numVars),dtype=np.float64)
-        #dFdXcontribs[0][0] = self.gmls.gradient(np.reshape(np.array([indepVars[0], indepVars[1]], dtype=np.float64), newshape=(1,2)), self.data_F[:,0], 0)
-        #dFdXcontribs[0][1] = self.gmls.gradient(np.reshape(np.array([indepVars[0], indepVars[1]], dtype=np.float64), newshape=(1,2)), self.data_F[:,0], 1)
-        #dFdXcontribs[1][0] = self.gmls.gradient(np.reshape(np.array([indepVars[0], indepVars[1]], dtype=np.float64), newshape=(1,2)), self.data_F[:,1], 0)
-        #dFdXcontribs[1][1] = self.gmls.gradient(np.reshape(np.array([indepVars[0], indepVars[1]], dtype=np.float64), newshape=(1,2)), self.data_F[:,1], 1)
-        dFdXcontribs[0][0] = self.gmls.gradient(np.reshape(np.array([indepVars2D[0,0],], dtype=np.float64), newshape=(1,1)), self.data_F[:,0], 0)
-        dFdXcontribs[0][1] = self.gmls.gradient(np.reshape(np.array([indepVars2D[0,0],], dtype=np.float64), newshape=(1,1)), self.data_F[:,0], 1)
-        dFdXcontribs[1][0] = self.gmls.gradient(np.reshape(np.array([indepVars2D[0,0],], dtype=np.float64), newshape=(1,1)), self.data_F[:,1], 0)
-        dFdXcontribs[1][1] = self.gmls.gradient(np.reshape(np.array([indepVars2D[0,0],], dtype=np.float64), newshape=(1,1)), self.data_F[:,1], 1)
+        #dFdXcontribs[0][0] = self.gmls.gradient(np.reshape(np.array([indepVars[0], indepVars[1]], dtype=np.float64), shape=(1,2)), self.data_F[:,0], 0)
+        #dFdXcontribs[0][1] = self.gmls.gradient(np.reshape(np.array([indepVars[0], indepVars[1]], dtype=np.float64), shape=(1,2)), self.data_F[:,0], 1)
+        #dFdXcontribs[1][0] = self.gmls.gradient(np.reshape(np.array([indepVars[0], indepVars[1]], dtype=np.float64), shape=(1,2)), self.data_F[:,1], 0)
+        #dFdXcontribs[1][1] = self.gmls.gradient(np.reshape(np.array([indepVars[0], indepVars[1]], dtype=np.float64), shape=(1,2)), self.data_F[:,1], 1)
+        dFdXcontribs[0][0] = self.gmls.gradient(np.reshape(np.array([indepVars2D[0,0],], dtype=np.float64), shape=(1,1)), self.data_F[:,0], 0)
+        dFdXcontribs[0][1] = self.gmls.gradient(np.reshape(np.array([indepVars2D[0,0],], dtype=np.float64), shape=(1,1)), self.data_F[:,0], 1)
+        dFdXcontribs[1][0] = self.gmls.gradient(np.reshape(np.array([indepVars2D[0,0],], dtype=np.float64), shape=(1,1)), self.data_F[:,1], 0)
+        dFdXcontribs[1][1] = self.gmls.gradient(np.reshape(np.array([indepVars2D[0,0],], dtype=np.float64), shape=(1,1)), self.data_F[:,1], 1)
 
 
 
@@ -518,7 +518,7 @@ class Device(KokkosDevice):
 
         # setup GMLS problem on inputs
         DEBUG and print(np.atleast_2d(all_sV).T.shape)
-        self.gmls = GMLS(source_sites=np.atleast_2d(all_sV).T, polynomial_order=5, weighting_power=2, epsilon_multiplier=1.7)
+        self.gmls = GMLS(source_sites=np.reshape(all_sV, (all_sV.size, 1)), polynomial_order=5, weighting_power=2, epsilon_multiplier=1.7)
     
     def generateData(self, all_sV, b_params, d_params, i_params, s_params):
     
