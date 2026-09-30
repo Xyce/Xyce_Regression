@@ -243,9 +243,9 @@ def SetUpCtestFiles():
         outputBuf.write('    endif()\n')
         outputBuf.write('    if( XyceCapabilities MATCHES "Amesos2")\n')
         outputBuf.write('      set( Xyce_AMESOS2 TRUE CACHE BOOL "Amesos2 available" FORCE)\n')
-        outputBuf.write('    endif()\n')
+        outputBuf.write('    endif()\n\n')
 
-        outputBuf.write('    \n# Auto-detect Xyce-PyMi if not explicitly set\n')
+        outputBuf.write('    # Auto-detect Xyce-PyMi if not explicitly set\n')
         outputBuf.write('    if(NOT DEFINED Xyce_PYMI)\n')
         outputBuf.write('      # Try to find Xyce-PyMi in the same directory as Xyce binary\n')
         outputBuf.write('      cmake_path(GET XYCE_BINARY PARENT_PATH XYCE_BINARY_DIR)\n')
