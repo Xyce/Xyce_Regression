@@ -127,7 +127,7 @@ class Device(BaseDevice):
         #(Fcontribs2D, dFdXcontribs3D) = self.generateData(indepVars2D[:,0], b_params, d_params, i_params, s_params)
 
         v_diff = indepVars2D[0,0]
-        np_v_diff = np.reshape(np.array([v_diff,], dtype=np.float64), newshape=(1,1))
+        np_v_diff = np.reshape(np.array([v_diff,], dtype=np.float64), shape=(1,1))
         F0 = self.tf_model.predict(np_v_diff) 
 
         Fcontribs[0] = F0
