@@ -35,7 +35,7 @@ xdum ss dum
 
 .options device debuglevel=-10
 .options timeint debuglevel=-10
-.options linsol type=aztecoo AZ_kspace=100
+.options linsol type=belos AZ_kspace=150
 
 .include nmos_3_2.mod
 .include pmos_3_2.mod
