@@ -1,0 +1,8 @@
+Voltage and current in the same behavioral expression
+V1 V1 0 2
+R1 V1 0 4
+B1 out 0 V={V(V1)+3*I(V1)}
+R2 out 0 1
+.DC V1 1 4 0.25
+.PRINT DC V(V1) I(V1) V(out) {V(V1)+3*I(V1)}
+.END
