@@ -95,6 +95,8 @@ OptionBlock_extractOptionsData_2.cir
 OptionBlock_extractOptionsData_2.cir.sh
 OptionBlock_extractDotDataStatement.cir
 OptionBlock_extractDotDataStatement.cir.sh
+OP_STEP_Nested.cir
+OP_STEP_Nested.cir.sh
 OutputMgr_parsePRINTBlock.cir
 OutputMgr_parsePRINTBlock.cir.sh
 ParsingHelpers_handleEndlLine1.cir

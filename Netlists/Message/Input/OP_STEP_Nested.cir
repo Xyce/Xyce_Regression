@@ -1,0 +1,10 @@
+Nested DC operating-point sweep
+V1 in 0 1
+R1 in out 1
+R2 out 0 3
+.OP
+*.DC R2 3 3 1
+.STEP R1 LIST 1 2
+.STEP V1 LIST 1 2
+.PRINT DC FORMAT=CSV V(in) V(out) I(R1)
+.END
